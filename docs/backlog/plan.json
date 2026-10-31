@@ -67,8 +67,8 @@
         "monsterwuerfel",
         "wuerfel-auktion"
       ],
-      "status": "verified",
-      "implementation_commit": null,
+      "status": "done",
+      "implementation_commit": "8751c0baa542083eb0a9b7fb5bb35e55b6edc815",
       "test_results": [
         {
           "command": "npm test",
@@ -120,7 +120,7 @@
           "log": "artifacts/backlog-dice-solo-catalog.log"
         }
       ],
-      "completed_at": null
+      "completed_at": "2026-10-31"
     }
   ],
   "games": [
@@ -430,9 +430,9 @@
     {
       "id": "wuerfeljagd",
       "name": "Würfeljagd",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-02",
-      "implementation_commit": null,
+      "implementation_commit": "8751c0baa542083eb0a9b7fb5bb35e55b6edc815",
       "test_results": [
         {
           "command": "npm test",
@@ -495,14 +495,48 @@
         "docs/backlog/screenshots/dice/desktop/wuerfeljagd-900x450.png",
         "docs/backlog/screenshots/dice/mobil/hunt-playing.png",
         "docs/backlog/screenshots/dice/mobil/hunt-reveal.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/wuerfeljagd/room.js",
+          "sha256": "138bc09b36149f1bef351cf2c0d5da6901ec1fe0f8c58ab03dfca34a13f6d5b0"
+        },
+        {
+          "path": "games/wuerfeljagd/index.js",
+          "sha256": "2af3dcb771beab32ca0459c82bd87df553b7df553d00b40c2d27ade6702d9c01"
+        },
+        {
+          "path": "public/games/wuerfeljagd/wuerfeljagd.js",
+          "sha256": "d31c256581755fe670955f5461d6ba4ff4399594195a37fa9ad387adef878f0c"
+        },
+        {
+          "path": "public/games/wuerfeljagd/wuerfeljagd.css",
+          "sha256": "0fd81993a53abe7fdca36507b39875dd3262938ee9f6ce01a86f73abb5a42070"
+        },
+        {
+          "path": "games/backlog-dice.js",
+          "sha256": "fe282ba6c2674c5c47651f83079fb655edfe0ef603a5c92496a9cd806cb430e0"
+        },
+        {
+          "path": "public/games/backlog-kit.js",
+          "sha256": "57b5e907a4b571d223e811d77a97ef1039064245b5a13f1ba6f4b15045607178"
+        },
+        {
+          "path": "public/games/backlog.css",
+          "sha256": "c5a27393a8f30834cc0e55dd40ded47e22e259a13a4b14908e70c3957d0336dc"
+        },
+        {
+          "path": "public/games/backlog-dice.css",
+          "sha256": "4fda28d445ab58a998d202577297fc084a83cbfc8d7ffd245619c30786f3d989"
+        }
       ]
     },
     {
       "id": "monsterwuerfel",
       "name": "Monsterwürfel",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-02",
-      "implementation_commit": null,
+      "implementation_commit": "8751c0baa542083eb0a9b7fb5bb35e55b6edc815",
       "test_results": [
         {
           "command": "npm test",
@@ -563,6 +597,40 @@
         "docs/backlog/screenshots/dice/desktop/monsterwuerfel-768x1024.png",
         "docs/backlog/screenshots/dice/desktop/monsterwuerfel-900x450.png",
         "docs/backlog/screenshots/dice/mobil/monster-cooperative.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/monsterwuerfel/room.js",
+          "sha256": "02705d1200912afb74bc0cbea48d66b64a41955e48aef01bc625fa65da274b90"
+        },
+        {
+          "path": "games/monsterwuerfel/index.js",
+          "sha256": "3ad87cca5fb48c63f1bd8b8ecfb409494cf0b418879716bf1064f62fc26b7d46"
+        },
+        {
+          "path": "public/games/monsterwuerfel/monsterwuerfel.js",
+          "sha256": "a5ccb4c27f7785af85b5a1e6b92e3723fd1afc059761d1017ce2925beba5cde1"
+        },
+        {
+          "path": "public/games/monsterwuerfel/monsterwuerfel.css",
+          "sha256": "0fd81993a53abe7fdca36507b39875dd3262938ee9f6ce01a86f73abb5a42070"
+        },
+        {
+          "path": "games/backlog-dice.js",
+          "sha256": "fe282ba6c2674c5c47651f83079fb655edfe0ef603a5c92496a9cd806cb430e0"
+        },
+        {
+          "path": "public/games/backlog-kit.js",
+          "sha256": "57b5e907a4b571d223e811d77a97ef1039064245b5a13f1ba6f4b15045607178"
+        },
+        {
+          "path": "public/games/backlog.css",
+          "sha256": "c5a27393a8f30834cc0e55dd40ded47e22e259a13a4b14908e70c3957d0336dc"
+        },
+        {
+          "path": "public/games/backlog-dice.css",
+          "sha256": "4fda28d445ab58a998d202577297fc084a83cbfc8d7ffd245619c30786f3d989"
+        }
       ]
     },
     {
@@ -793,9 +861,9 @@
     {
       "id": "wuerfel-auktion",
       "name": "Würfel-Auktion",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-02",
-      "implementation_commit": null,
+      "implementation_commit": "8751c0baa542083eb0a9b7fb5bb35e55b6edc815",
       "test_results": [
         {
           "command": "npm test",
@@ -858,6 +926,40 @@
         "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-900x450.png",
         "docs/backlog/screenshots/dice/mobil/auction-private.png",
         "docs/backlog/screenshots/dice/mobil/auction-reveal.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/wuerfel-auktion/room.js",
+          "sha256": "70d20334d74e9c9f5197e208f281d0caabd08e12df70ccf1a1041126f4720c8a"
+        },
+        {
+          "path": "games/wuerfel-auktion/index.js",
+          "sha256": "7684a44e631ef5931aa95269fdb65f818cae5837f6d60ef5ac12dc33645e85e5"
+        },
+        {
+          "path": "public/games/wuerfel-auktion/wuerfel-auktion.js",
+          "sha256": "43cd7ed681932543053ce23a79cc4eb26c72b9400658e1dbc0a824107943dbda"
+        },
+        {
+          "path": "public/games/wuerfel-auktion/wuerfel-auktion.css",
+          "sha256": "0fd81993a53abe7fdca36507b39875dd3262938ee9f6ce01a86f73abb5a42070"
+        },
+        {
+          "path": "games/backlog-dice.js",
+          "sha256": "fe282ba6c2674c5c47651f83079fb655edfe0ef603a5c92496a9cd806cb430e0"
+        },
+        {
+          "path": "public/games/backlog-kit.js",
+          "sha256": "57b5e907a4b571d223e811d77a97ef1039064245b5a13f1ba6f4b15045607178"
+        },
+        {
+          "path": "public/games/backlog.css",
+          "sha256": "c5a27393a8f30834cc0e55dd40ded47e22e259a13a4b14908e70c3957d0336dc"
+        },
+        {
+          "path": "public/games/backlog-dice.css",
+          "sha256": "4fda28d445ab58a998d202577297fc084a83cbfc8d7ffd245619c30786f3d989"
+        }
       ]
     },
     {

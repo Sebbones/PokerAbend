@@ -104,6 +104,8 @@ Der erste Node-Lauf meldete sechs veraltete Katalog-Sollwerte. Die erwarteten ID
 
 Zusätzlich sind alle 18 Größenaufnahmen im Manifest enthalten. Bilder von Handy, Querformat und Auflösung wurden visuell angesehen. Es sind keine Produktivräume oder echten privaten Geschichten enthalten.
 
+Implementierungscommit für BACKLOG-02: **[`8751c0baa542083eb0a9b7fb5bb35e55b6edc815`](https://github.com/TTLPSCWA/PokerAbend/commit/8751c0baa542083eb0a9b7fb5bb35e55b6edc815)**. Quellhashes beziehen sich auf dieses vorhandene Git-Objekt; der folgende Nachweis-Commit verändert keine Spielregeln.
+
 ## Weiterer Umfang
 
 Implementierungscommit für BACKLOG-01: **[`69b46d6c98aaf5b9cc402a41782110f5386129c7`](https://github.com/TTLPSCWA/PokerAbend/commit/69b46d6c98aaf5b9cc402a41782110f5386129c7)**. Der folgende Nachweis-Commit verknüpft genau dieses bestehende Git-Objekt mit den tatsächlichen Quellhashes, 26 PNGs und Testergebnissen. Beide werden direkt auf `main` geführt.
