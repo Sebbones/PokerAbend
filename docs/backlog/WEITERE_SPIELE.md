@@ -68,6 +68,8 @@ Zusätzlich sind alle 18 Größenaufnahmen im Manifest enthalten. Bilder von Han
 
 ## Weiterer Umfang
 
+Implementierungscommit für BACKLOG-01: **[`69b46d6c98aaf5b9cc402a41782110f5386129c7`](https://github.com/TTLPSCWA/PokerAbend/commit/69b46d6c98aaf5b9cc402a41782110f5386129c7)**. Der folgende Nachweis-Commit verknüpft genau dieses bestehende Git-Objekt mit den tatsächlichen Quellhashes, 26 PNGs und Testergebnissen. Beide werden direkt auf `main` geführt.
+
 Die verbleibenden **38 Spiele** stehen unverändert mit ihren bestehenden IDs und Regeln im Backlog. `plan.json` hält den Gesamtauftrag als `in_progress` fest; weitere Spiele werden erst nach ihrer tatsächlichen Implementierung und Prüfung als fertig vermerkt. Die neun separat geplanten lokalen Solo-Spiele, die großen Projekte und die V2-Pakete gehören nicht zu dieser 41er-Rubrik.
 
 Pushes auf `main` starten den bestehenden Test-/GHCR-Workflow. Eine Image-Veröffentlichung ist kein Produktivdeployment. Auf dem Produktivserver werden in diesem Auftrag keine Befehle ausgeführt und keine Daten geändert.

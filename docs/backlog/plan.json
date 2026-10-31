@@ -15,8 +15,8 @@
         "story-chaos",
         "zahlenreihe"
       ],
-      "status": "verified",
-      "implementation_commit": null,
+      "status": "done",
+      "implementation_commit": "69b46d6c98aaf5b9cc402a41782110f5386129c7",
       "test_results": [
         {
           "command": "npm test",
@@ -57,17 +57,58 @@
           "failed": 0,
           "log": "artifacts/backlog-small-story-release.log"
         }
-      ]
+      ],
+      "completed_at": "2026-10-31"
     }
   ],
   "games": [
     {
       "id": "risiko-wuerfeln",
       "name": "Risiko-Würfeln",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-01",
-      "implementation_commit": null,
-      "test_results": [],
+      "implementation_commit": "69b46d6c98aaf5b9cc402a41782110f5386129c7",
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 934,
+          "failed": 0,
+          "log": "artifacts/backlog-small-final-node.log"
+        },
+        {
+          "command": "node --test test/backlog-small.test.js",
+          "passed": 10,
+          "failed": 0,
+          "log": "artifacts/backlog-small-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-small.spec.js",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 1,
+          "log": "artifacts/backlog-small-final-ui.log"
+        },
+        {
+          "command": "playwright shared catalog, languages, bots, party program and UI regression",
+          "passed": 67,
+          "failed": 0,
+          "skipped": 1,
+          "log": "artifacts/backlog-small-regression.log"
+        },
+        {
+          "command": "final npm test after dropout quota and restart guards",
+          "passed": 934,
+          "failed": 0,
+          "duration_seconds": 50.95,
+          "log": "artifacts/backlog-small-release-node.log"
+        },
+        {
+          "command": "story browser recheck after dropout safeguards",
+          "passed": 2,
+          "failed": 0,
+          "log": "artifacts/backlog-small-story-release.log"
+        }
+      ],
       "screenshots": [
         "docs/backlog/screenshots/desktop/risiko-wuerfeln-1440x900.png",
         "docs/backlog/screenshots/desktop/risiko-wuerfeln-1920x1080.png",
@@ -77,15 +118,81 @@
         "docs/backlog/screenshots/desktop/risiko-wuerfeln-900x450.png",
         "docs/backlog/screenshots/desktop/risk-playing.png",
         "docs/backlog/screenshots/mobil/risk-playing.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/risiko-wuerfeln/room.js",
+          "sha256": "2bb905441a9a59f08b86a7c5218ad8d2c1fb8960cf7d505628dfc51cabf1118b"
+        },
+        {
+          "path": "games/risiko-wuerfeln/index.js",
+          "sha256": "367f541f70e49175f9e8072bfa5996949930e232b77d8802cbf2b9084908a88b"
+        },
+        {
+          "path": "public/games/risiko-wuerfeln/risiko-wuerfeln.js",
+          "sha256": "0ee2dc2703d4de4eca23a6c6a40d05dd0000950173519b540c24cff9b1157649"
+        },
+        {
+          "path": "public/games/risiko-wuerfeln/risiko-wuerfeln.css",
+          "sha256": "ed8e03e52a7a63817e6bc2d0ebc75983daf8034c5e6f090efc555d5a54f9c0c1"
+        },
+        {
+          "path": "public/games/backlog-kit.js",
+          "sha256": "57b5e907a4b571d223e811d77a97ef1039064245b5a13f1ba6f4b15045607178"
+        },
+        {
+          "path": "public/games/backlog.css",
+          "sha256": "c5a27393a8f30834cc0e55dd40ded47e22e259a13a4b14908e70c3957d0336dc"
+        }
       ]
     },
     {
       "id": "story-chaos",
       "name": "Story-Chaos",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-01",
-      "implementation_commit": null,
-      "test_results": [],
+      "implementation_commit": "69b46d6c98aaf5b9cc402a41782110f5386129c7",
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 934,
+          "failed": 0,
+          "log": "artifacts/backlog-small-final-node.log"
+        },
+        {
+          "command": "node --test test/backlog-small.test.js",
+          "passed": 10,
+          "failed": 0,
+          "log": "artifacts/backlog-small-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-small.spec.js",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 1,
+          "log": "artifacts/backlog-small-final-ui.log"
+        },
+        {
+          "command": "playwright shared catalog, languages, bots, party program and UI regression",
+          "passed": 67,
+          "failed": 0,
+          "skipped": 1,
+          "log": "artifacts/backlog-small-regression.log"
+        },
+        {
+          "command": "final npm test after dropout quota and restart guards",
+          "passed": 934,
+          "failed": 0,
+          "duration_seconds": 50.95,
+          "log": "artifacts/backlog-small-release-node.log"
+        },
+        {
+          "command": "story browser recheck after dropout safeguards",
+          "passed": 2,
+          "failed": 0,
+          "log": "artifacts/backlog-small-story-release.log"
+        }
+      ],
       "screenshots": [
         "docs/backlog/screenshots/desktop/story-chaos-1440x900.png",
         "docs/backlog/screenshots/desktop/story-chaos-1920x1080.png",
@@ -97,15 +204,81 @@
         "docs/backlog/screenshots/desktop/story-private.png",
         "docs/backlog/screenshots/mobil/story-final.png",
         "docs/backlog/screenshots/mobil/story-private.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/story-chaos/room.js",
+          "sha256": "4cc770cf7694c4e0cd53a0e0791f4c32e4b0e2e9e75cafa11bd850d1d4acded9"
+        },
+        {
+          "path": "games/story-chaos/index.js",
+          "sha256": "e3aeec0f41d4ad12d82ff82f52b3d14f3f866cf388d9899c7b559268b9626604"
+        },
+        {
+          "path": "public/games/story-chaos/story-chaos.js",
+          "sha256": "7f5f54f4284849b25f5581a47820f622cd7c33f8adbcb6526e8269d0fcda4569"
+        },
+        {
+          "path": "public/games/story-chaos/story-chaos.css",
+          "sha256": "d2bf3f58eaf4cf3bea652b1420bcd3db009ac96c3edc3c9a67e83f3b8eb12b68"
+        },
+        {
+          "path": "public/games/backlog-kit.js",
+          "sha256": "57b5e907a4b571d223e811d77a97ef1039064245b5a13f1ba6f4b15045607178"
+        },
+        {
+          "path": "public/games/backlog.css",
+          "sha256": "c5a27393a8f30834cc0e55dd40ded47e22e259a13a4b14908e70c3957d0336dc"
+        }
       ]
     },
     {
       "id": "zahlenreihe",
       "name": "Zahlenreihe",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-01",
-      "implementation_commit": null,
-      "test_results": [],
+      "implementation_commit": "69b46d6c98aaf5b9cc402a41782110f5386129c7",
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 934,
+          "failed": 0,
+          "log": "artifacts/backlog-small-final-node.log"
+        },
+        {
+          "command": "node --test test/backlog-small.test.js",
+          "passed": 10,
+          "failed": 0,
+          "log": "artifacts/backlog-small-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-small.spec.js",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 1,
+          "log": "artifacts/backlog-small-final-ui.log"
+        },
+        {
+          "command": "playwright shared catalog, languages, bots, party program and UI regression",
+          "passed": 67,
+          "failed": 0,
+          "skipped": 1,
+          "log": "artifacts/backlog-small-regression.log"
+        },
+        {
+          "command": "final npm test after dropout quota and restart guards",
+          "passed": 934,
+          "failed": 0,
+          "duration_seconds": 50.95,
+          "log": "artifacts/backlog-small-release-node.log"
+        },
+        {
+          "command": "story browser recheck after dropout safeguards",
+          "passed": 2,
+          "failed": 0,
+          "log": "artifacts/backlog-small-story-release.log"
+        }
+      ],
       "screenshots": [
         "docs/backlog/screenshots/desktop/sequence-reveal.png",
         "docs/backlog/screenshots/desktop/zahlenreihe-1440x900.png",
@@ -115,6 +288,36 @@
         "docs/backlog/screenshots/desktop/zahlenreihe-768x1024.png",
         "docs/backlog/screenshots/desktop/zahlenreihe-900x450.png",
         "docs/backlog/screenshots/mobil/sequence-reveal.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/zahlenreihe/room.js",
+          "sha256": "53677f402f7f4e3dbda724d7238be2f04cb0c17b6d9b4b547bac2eea0f8fcd8a"
+        },
+        {
+          "path": "games/zahlenreihe/index.js",
+          "sha256": "1625fb81d08305e6ff17aa9bd0d3d343d276c83ac15a677455320b00f2a65946"
+        },
+        {
+          "path": "public/games/zahlenreihe/zahlenreihe.js",
+          "sha256": "c127a21dc7e42dfa213405a041b8bbc4d03bdbf64328227d6175e7f8ae3ddd71"
+        },
+        {
+          "path": "public/games/zahlenreihe/zahlenreihe.css",
+          "sha256": "c09d2be434deaf3097aacc8ebb7c7f7203544a358571860d2cfce685c5760507"
+        },
+        {
+          "path": "public/games/backlog-kit.js",
+          "sha256": "57b5e907a4b571d223e811d77a97ef1039064245b5a13f1ba6f4b15045607178"
+        },
+        {
+          "path": "public/games/backlog.css",
+          "sha256": "c5a27393a8f30834cc0e55dd40ded47e22e259a13a4b14908e70c3957d0336dc"
+        },
+        {
+          "path": "public/games/party-kit.js",
+          "sha256": "a7e5b23583960abdaa2d7f03e4e4d5258e41801020bd823a83f30fabfb44be36"
+        }
       ]
     },
     {

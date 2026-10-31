@@ -1,6 +1,6 @@
 {
   "captured_at": "2026-10-31",
-  "implementation_commit": null,
+  "implementation_commit": "69b46d6c98aaf5b9cc402a41782110f5386129c7",
   "policy": "Original PNG captures from isolated real local multiplayer rooms. No production data. Initial implementation, not a claimed completed VIS redesign.",
   "screenshots": [
     {
