@@ -1407,6 +1407,19 @@
             "failed": 0,
             "skipped": 0,
             "log": "artifacts/card-ux-final-language.log"
+          },
+          {
+            "command": "npm test after VM helper loading and isolated hub ports",
+            "passed": 915,
+            "failed": 0,
+            "duration_seconds": 55.547,
+            "log": "artifacts/card-ux-ci-final-node.log"
+          },
+          {
+            "command": "node renderer, card UX and visual integrity checks",
+            "passed": 38,
+            "failed": 0,
+            "log": "artifacts/card-ux-ci-renderers.log"
           }
         ],
         "source_audit": [
@@ -2053,6 +2066,19 @@
             "failed": 0,
             "skipped": 0,
             "log": "artifacts/card-ux-final-language.log"
+          },
+          {
+            "command": "npm test after VM helper loading and isolated hub ports",
+            "passed": 915,
+            "failed": 0,
+            "duration_seconds": 55.547,
+            "log": "artifacts/card-ux-ci-final-node.log"
+          },
+          {
+            "command": "node renderer, card UX and visual integrity checks",
+            "passed": 38,
+            "failed": 0,
+            "log": "artifacts/card-ux-ci-renderers.log"
           }
         ],
         "source_audit": [
@@ -2314,6 +2340,19 @@
             "failed": 0,
             "skipped": 0,
             "log": "artifacts/card-ux-final-language.log"
+          },
+          {
+            "command": "npm test after VM helper loading and isolated hub ports",
+            "passed": 915,
+            "failed": 0,
+            "duration_seconds": 55.547,
+            "log": "artifacts/card-ux-ci-final-node.log"
+          },
+          {
+            "command": "node renderer, card UX and visual integrity checks",
+            "passed": 38,
+            "failed": 0,
+            "log": "artifacts/card-ux-ci-renderers.log"
           }
         ],
         "source_audit": [

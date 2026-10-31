@@ -14,6 +14,8 @@ function renderer(game, language = 'de') {
     colorMark: (c) => `<i data-colour="${c}"></i>`, svg: (s) => `<svg>${s}</svg>`, backCard: (n) => `<span>${n}</span>`,
     kitGame: (d) => { def = d; return { render() {} }; }, kitShedding: (d) => { def = d; },
   });
+  context.window=context;
+  vm.runInContext(readFileSync(new URL('../public/games/card-interaction.js',import.meta.url),'utf8'),context);
   vm.runInContext(readFileSync(new URL(`../public/games/${game}/${game}.js`, import.meta.url), 'utf8'), context);
   return def;
 }

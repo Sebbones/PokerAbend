@@ -27,6 +27,7 @@ function renderer({ reduced = true, calm = false, language = 'de' } = {}) {
     esc: (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])),
     colorMark: () => '', kitShedding: (d) => { def = d; },
   }, language);
+  vm.runInContext(readFileSync(new URL('../public/games/card-interaction.js',import.meta.url),'utf8'),context);
   vm.runInContext(readFileSync(new URL('../public/games/farbenchaos/farbenchaos.js', import.meta.url), 'utf8'), context);
   return { def, animations, dataset, prefs };
 }

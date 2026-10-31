@@ -8,18 +8,30 @@ import { join } from 'node:path';
 import { io } from 'socket.io-client';
 import { GAMES } from '../games/index.js';
 
-const PORT = 4350 + Math.floor(Math.random() * 50); // eigener Bereich: 4350–4399
-const URL = `http://localhost:${PORT}`;
+let URL;
 const dataDir = mkdtempSync(join(tmpdir(), 'poker-hub-'));
 let server;
+async function startTestServer(dir,createLimit='500') {
+  const child=spawn(process.execPath,['--input-type=module','-e',`
+    const {http}=await import('./server/index.js');
+    const ready=()=>console.log('TEST_READY:'+http.address().port);
+    if(http.listening)ready();else http.once('listening',ready);
+  `],{
+    env: { ...process.env, PORT:'0', DATA_DIR:dir, POKER_NO_DOTENV:'1', SITE_PASSWORD:'', CREATE_LIMIT:createLimit }, stdio:'pipe',
+  });
+  let output='';
+  const url=await new Promise((res,rej)=>{
+    const timer=setTimeout(()=>{child.kill();rej(new Error('Serverstart zu langsam: '+output));},15000);
+    child.stderr.on('data',(d)=>{output+=d;});
+    child.stdout.on('data',(d)=>{output+=d;const match=output.match(/TEST_READY:(\d+)/);if(match){clearTimeout(timer);res('http://localhost:'+match[1]);}});
+    child.once('error',(e)=>{clearTimeout(timer);rej(e);});
+    child.once('exit',(c)=>{clearTimeout(timer);rej(new Error('Server beendet: '+c+' '+output));});
+  });
+  return {process:child,url};
+}
 before(async () => {
-  server = spawn(process.execPath, ['server/index.js'], {
-    env: { ...process.env, PORT: String(PORT), DATA_DIR: dataDir, POKER_NO_DOTENV: '1', SITE_PASSWORD: '', CREATE_LIMIT: '500' }, stdio: 'pipe',
-  });
-  await new Promise((res, rej) => {
-    server.stdout.on('data', (d) => { if (String(d).includes('läuft')) res(); });
-    server.on('exit', (c) => rej(new Error('Server beendet: ' + c)));
-  });
+  // The OS allocates a free port; abort.test.js may run in parallel in the old range.
+  const started=await startTestServer(dataDir);server=started.process;URL=started.url;
 });
 after(() => server.kill());
 
@@ -161,14 +173,12 @@ test('Rate-Limit: Dauerfeuer auf die Liste wird gebremst', async () => {
 });
 
 test('Privat-Schalter übersteht einen Neustart; Spielwechsel behält ihn', async () => {
-  const PORT2 = 4350 + ((PORT - 4350 + 25) % 50);
+  let restartUrl;
   const dir = mkdtempSync(join(tmpdir(), 'poker-hub2-'));
   const start = async () => {
-    const p = spawn(process.execPath, ['server/index.js'], { env: { ...process.env, PORT: String(PORT2), DATA_DIR: dir, POKER_NO_DOTENV: '1', SITE_PASSWORD: '' }, stdio: 'pipe' });
-    await new Promise((res, rej) => { p.stdout.on('data', (d) => { if (String(d).includes('läuft')) res(); }); p.on('exit', (c) => rej(new Error('Server beendet: ' + c))); });
-    return p;
+    const started=await startTestServer(dir,'6');restartUrl=started.url;return started.process;
   };
-  const connect = () => { const s = io(`http://localhost:${PORT2}`, { transports: ['websocket'], forceNew: true, reconnection: false }); s.state = null; s.on('state', (st) => { s.state = st; }); s.ask = (ev, d = {}) => new Promise((r) => s.emit(ev, d, r)); return s; };
+  const connect = () => { const s = io(restartUrl, { transports: ['websocket'], forceNew: true, reconnection: false }); s.state = null; s.on('state', (st) => { s.state = st; }); s.ask = (ev, d = {}) => new Promise((r) => s.emit(ev, d, r)); return s; };
   let p = await start();
   const host = connect();
   const t = await host.ask('create', { game: 'maumau', name: 'Rita' });
