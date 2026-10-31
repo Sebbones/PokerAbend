@@ -46,4 +46,4 @@ Lokale Daten sind nicht manipulationssicher, nicht geräteübergreifend synchron
 
 Die vorhandene GitHub-Action führt `npm test` aus und baut/veröffentlicht `ghcr.io/ttlpscwa/pokerabend:latest`. Weder Workflow noch Compose-Dateien enthalten einen automatischen Austausch produktiver Container. Kein Server wurde aktualisiert und keine `.env` oder Produktionsdaten wurden geändert.
 
-Der tatsächliche Implementierungscommit und der anschließende Dokumentationsabschluss werden nach dem Commit unten ergänzt.
+Implementierungscommit: **`904cd0751fd3c89d9ea2169de09edbb3197e58ad`** (`feat: add local solo hub with Sudoku, 2048 and Wellenwacht`). Der nachfolgende Dokumentationscommit ergänzt ausschließlich diese realen Nachweise und den Designabschluss. Die Source-Audits der drei neuen VIS-Pakete verwenden die LF-Quelldateien dieses tatsächlichen Commits. Die vorherigen 95 VIS-Paketobjekte bleiben unverändert; die Inventur zählt nun 7 `done` und 100 `planned`.

@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Zentrale Laufzeitplanung: `games/planned.js`, eingebunden aus `games/singleplayer/planned.js`. Die öffentliche Roadmap verwendet dieselben Einträge. Kein paralleles Backlog.
 
-SOLO-001 Sudoku, SOLO-002 2048 und SOLO-003 Wellenwacht werden im aktuellen Auftrag implementiert. Die folgenden neun Pakete bleiben **planned**; ihre Issues sind keine Implementierungsfreigabe.
+SOLO-001 Sudoku, SOLO-002 2048 und SOLO-003 Wellenwacht wurden implementiert und geprüft (Commit `904cd0751fd3c89d9ea2169de09edbb3197e58ad`). Die folgenden neun Pakete bleiben **planned**; ihre Issues sind keine Implementierungsfreigabe.
 
 Aufwand: S ca. 1–2, M ca. 3–5, L ca. 6–10 Entwicklungstage einschließlich Logik, UI und Tests; vor Freigabe neu schätzen. Das ist getrennt vom reinen VIS-Frontendaufwand.
 

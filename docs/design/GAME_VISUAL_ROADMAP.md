@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**52 spielbare Spiele, 55 noch nicht implementierte Spiele, 107 eigene VIS-Pakete.** Scotland Yard sowie die anschließend beauftragten Kartenwelten UNO, Skip-Bo und Phase 10 sind abgeschlossen. Sudoku, 2048 und Wellenwacht wurden im expliziten Solo-Auftrag ergänzt; ihr endgültiger Designabschluss wird mit tatsächlichem Implementierungscommit dokumentiert. Die weiteren 45 bestehenden Spieloberflächen und 55 Backlog-Konzepte bleiben geplant. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
+**52 spielbare Spiele, 55 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 7 done, 100 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10 sowie die ausdrücklich beauftragten neuen Solo-Spiele Sudoku, 2048 und Wellenwacht sind abgeschlossen. Die Solo-Implementierung steht in Commit `904cd0751fd3c89d9ea2169de09edbb3197e58ad`; Tests und permanente Bilder sind in der Solo-Abnahme dokumentiert. Die weiteren 45 bestehenden Spieloberflächen und 55 Backlog-Konzepte bleiben geplant. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
 
 ## Verbindliche Arbeitsweise
 

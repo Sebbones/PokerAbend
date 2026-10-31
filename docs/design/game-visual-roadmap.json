@@ -5,8 +5,8 @@
   "audit_hash_format": "SHA-256 of UTF-8 source with LF line endings at package.source_audit_commit, falling back to audited_source_commit",
   "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen.",
   "id_policy": "VIS-IDs sind dauerhafte Design-IDs. Bestehende IDs niemals neu nummerieren; spätere Einträge mit nächster freier Nummer ergänzen. Unabhängig von V2-XX und technischen Spiel-IDs.",
-  "scope_policy": "VIS-001 sowie die anschließend ausdrücklich freigegebenen VIS-004, VIS-009 und VIS-008 sind abgeschlossen. Alle anderen Pakete bleiben Planung und erfordern eigene ausdrückliche Freigabe. Kein V2-Implementierungsauftrag. VIS-004 wurde anschließend allein für UNO Ultimate und die dauerhaft verfügbare Spuknacht-Variante erweitert; keine weiteren Pakete freigegeben.",
-  "assessment_scope": "Alle registrierten Frontend-Ordner, direkte gemeinsame Komponenten und der Backlog sind inventarisiert. Manuelle Vorher-/Nachher-Abnahme für Scotland Yard, UNO, Skip-Bo und Phase 10. Für die übrigen Spiele stehen spätere individuelle Sichtprüfungen aus.",
+  "scope_policy": "VIS-001 sowie die anschließend ausdrücklich freigegebenen VIS-004, VIS-009 und VIS-008 sind abgeschlossen. Alle anderen Pakete bleiben Planung und erfordern eigene ausdrückliche Freigabe. Kein V2-Implementierungsauftrag. VIS-004 wurde anschließend allein für UNO Ultimate und die dauerhaft verfügbare Spuknacht-Variante erweitert; keine weiteren Pakete freigegeben. VIS-096, VIS-097 und VIS-098 wurden im ausdrücklichen Solo-Auftrag implementiert und abgeschlossen. Die übrigen 100 individuellen Pakete bleiben planned; keine Folgefreigabe.",
+  "assessment_scope": "Alle registrierten Frontend-Ordner, direkte gemeinsame Komponenten und der Backlog sind inventarisiert. Manuelle Vorher-/Nachher-Abnahme für Scotland Yard, UNO, Skip-Bo und Phase 10. Für die übrigen Spiele stehen spätere individuelle Sichtprüfungen aus. Sudoku, 2048 und Wellenwacht sind mit eigenem lokalen Frontend, permanenten Aufnahmen und Desktop-/Mobile-Abnahme ergänzt.",
   "references": [
     "AGENTS.md",
     "CLAUDE.md",
@@ -24,12 +24,11 @@
   "inventory": {
     "playable_count": 52,
     "not_implemented_count": 55,
-    "completed_visual_count": 4,
-    "open_playable_visual_count": 48,
-    "planned_visual_count": 103,
+    "completed_visual_count": 7,
+    "open_playable_visual_count": 45,
+    "planned_visual_count": 100,
     "total_visual_packages": 107,
     "playable_game_ids": [
-      "scotland-yard",
       "poker",
       "maumau",
       "farbenchaos",
@@ -76,6 +75,7 @@
       "monopoly-deal",
       "monopoly",
       "spiel-des-lebens",
+      "scotland-yard",
       "hex",
       "wuerfelduell",
       "sudoku",
@@ -83,6 +83,15 @@
       "wellenwacht"
     ],
     "not_implemented_game_ids": [
+      "snake",
+      "memory",
+      "minesweeper",
+      "nonogramm",
+      "sokoban",
+      "block-puzzle",
+      "solitaire",
+      "mahjong-solitaire",
+      "match-3",
       "omaha-hi-lo",
       "seven-card-stud",
       "short-deck",
@@ -128,22 +137,16 @@
       "geschenkdiebe",
       "fallenbauer",
       "reaktor-notfall",
-      "bomben-duell",
-      "snake",
-      "memory",
-      "minesweeper",
-      "nonogramm",
-      "sokoban",
-      "block-puzzle",
-      "solitaire",
-      "mahjong-solitaire",
-      "match-3"
+      "bomben-duell"
     ],
     "completed_visual_game_ids": [
       "scotland-yard",
       "farbenchaos",
       "zehnetappen",
-      "stapelrennen"
+      "stapelrennen",
+      "sudoku",
+      "2048",
+      "wellenwacht"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -312,7 +315,6 @@
     "VIS-034",
     "VIS-014",
     "VIS-031",
-    "VIS-097",
     "VIS-040",
     "VIS-024",
     "VIS-028",
@@ -324,7 +326,6 @@
     "VIS-038",
     "VIS-042",
     "VIS-044",
-    "VIS-096",
     "VIS-023",
     "VIS-043",
     "VIS-017",
@@ -337,7 +338,6 @@
     "VIS-036",
     "VIS-002",
     "VIS-047",
-    "VIS-098",
     "VIS-046"
   ],
   "suggested_development_order": [
@@ -385,10 +385,7 @@
     "VIS-002",
     "VIS-024",
     "VIS-047",
-    "VIS-046",
-    "VIS-096",
-    "VIS-097",
-    "VIS-098"
+    "VIS-046"
   ],
   "future_concepts_order": [
     "VIS-055",
@@ -10798,9 +10795,9 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
         "level": "individual_local_world",
@@ -10808,7 +10805,7 @@
           "public/singleplayer/runtime.js",
           "public/singleplayer/singleplayer.css"
         ],
-        "assessment": "Eigene lokale Oberfläche im aktuellen Solo-Auftrag; Abschlussnachweise folgen nach Prüfung."
+        "assessment": "Eigenständige lokale Spieloberfläche implementiert und auf Desktop/Mobile geprüft; tatsächlicher Implementierungscommit und permanente Bildnachweise sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/runtime.js",
@@ -10819,12 +10816,33 @@
         "public/singleplayer.js",
         "public/singleplayer/storage.js"
       ],
-      "source_audit": [],
+      "source_audit": [
+        {
+          "path": "public/singleplayer/runtime.js",
+          "sha256": "36a979a1fcaa6d3f3ac4335e7530028c976407e14167775d351f6d4deb5e3421"
+        },
+        {
+          "path": "public/singleplayer/sudoku-logic.js",
+          "sha256": "3a12ef3abcb13d545232a7a637fac6843752ad91f831901f6511f0c00e274207"
+        },
+        {
+          "path": "public/singleplayer/singleplayer.css",
+          "sha256": "ee641f766674d2e6de96a9ae971f54f3bce3ac8b55ceed353e46afe2c1f05e16"
+        },
+        {
+          "path": "public/singleplayer.js",
+          "sha256": "37abbdeff761e5586569b75003075dee88697855d0117bb121ed332d9d9c394a"
+        },
+        {
+          "path": "public/singleplayer/storage.js",
+          "sha256": "8aabe0538e114be46069274745ccb7a2676b7b12375b3978a7da1c844c788738"
+        }
+      ],
       "current_design": "Sudoku: Ruhige elfenbeinfarbene Logiktafel auf salbeigrünem Grund. Bereits als lokale Spielansicht umgesetzt; keine Multiplayer-Lobby.",
       "known_visual_weaknesses": [
         "Weitere optionale Themen und umfangreichere lokale Statistiken sind nicht Teil dieser ersten Version."
       ],
-      "assessment_method": "Eigene native HTML-/Canvas-Oberfläche, Prüfung über Node und echte Desktop-/Mobile-Browser; Nachweise nach Prüfung ergänzen.",
+      "assessment_method": "Manuelle Sichtprüfung repräsentativer Desktop-/Mobile-Aufnahmen, sechs responsive Viewports und echte Node-/Playwright-Abnahme im bestehenden Projekt.",
       "gameplay_summary": "Eine ruhige Zahlenpause: eindeutige Rätsel, Notizen und vier Schwierigkeitsstufen.",
       "planned_style": "Ruhige elfenbeinfarbene Logiktafel auf salbeigrünem Grund.",
       "background_concept": "Sudoku: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine importierten Originalgrafiken.",
@@ -10873,11 +10891,32 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/solo-games/screenshots/sudoku-1440x900.png",
+        "docs/solo-games/screenshots/sudoku-1920x1080.png",
+        "docs/solo-games/screenshots/sudoku-360x800.png",
+        "docs/solo-games/screenshots/sudoku-390x844.png",
+        "docs/solo-games/screenshots/sudoku-768x1024.png",
+        "docs/solo-games/screenshots/sudoku-900x450.png",
+        "docs/solo-games/screenshots/sudoku-playing-desktop.png",
+        "docs/solo-games/screenshots/sudoku-playing-mobil.png",
+        "docs/solo-games/screenshots/sudoku-start-desktop.png",
+        "docs/solo-games/screenshots/sudoku-start-mobil.png",
+        "docs/solo-games/screenshots/sudoku-won-desktop.png",
+        "docs/solo-games/screenshots/sudoku-won-mobil.png"
+      ],
+      "test_results": [
+        "npm test: 907 passed, 0 failed (2026-10-31).",
+        "Solo release browser checks: 21 passed, 1 duplicate viewport matrix skipped; desktop + mobile.",
+        "Corrected related browser regression: 45 passed, 1 duplicate matrix skipped.",
+        "Six viewport sizes, permanent PNG evidence and SHA-256 manifest; see docs/solo-games/ACCEPTANCE.md."
+      ],
+      "commits": [
+        "904cd0751fd3c89d9ea2169de09edbb3197e58ad"
+      ],
+      "implementation_commit": "904cd0751fd3c89d9ea2169de09edbb3197e58ad",
+      "completed_at": "2026-10-31",
+      "source_audit_commit": "904cd0751fd3c89d9ea2169de09edbb3197e58ad"
     },
     {
       "id": "VIS-097",
@@ -10886,9 +10925,9 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
         "level": "individual_local_world",
@@ -10896,7 +10935,7 @@
           "public/singleplayer/runtime.js",
           "public/singleplayer/singleplayer.css"
         ],
-        "assessment": "Eigene lokale Oberfläche im aktuellen Solo-Auftrag; Abschlussnachweise folgen nach Prüfung."
+        "assessment": "Eigenständige lokale Spieloberfläche implementiert und auf Desktop/Mobile geprüft; tatsächlicher Implementierungscommit und permanente Bildnachweise sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/runtime.js",
@@ -10907,12 +10946,33 @@
         "public/singleplayer.js",
         "public/singleplayer/storage.js"
       ],
-      "source_audit": [],
+      "source_audit": [
+        {
+          "path": "public/singleplayer/runtime.js",
+          "sha256": "36a979a1fcaa6d3f3ac4335e7530028c976407e14167775d351f6d4deb5e3421"
+        },
+        {
+          "path": "public/singleplayer/2048-logic.js",
+          "sha256": "4e195822880afde2f745a751a80710ad7bc0abc58e4227e531e9cc67f02de6d5"
+        },
+        {
+          "path": "public/singleplayer/singleplayer.css",
+          "sha256": "ee641f766674d2e6de96a9ae971f54f3bce3ac8b55ceed353e46afe2c1f05e16"
+        },
+        {
+          "path": "public/singleplayer.js",
+          "sha256": "37abbdeff761e5586569b75003075dee88697855d0117bb121ed332d9d9c394a"
+        },
+        {
+          "path": "public/singleplayer/storage.js",
+          "sha256": "8aabe0538e114be46069274745ccb7a2676b7b12375b3978a7da1c844c788738"
+        }
+      ],
       "current_design": "2048: Warme bernsteinfarbene Zahlentafel mit zurückhaltenden Bewegungen. Bereits als lokale Spielansicht umgesetzt; keine Multiplayer-Lobby.",
       "known_visual_weaknesses": [
         "Weitere optionale Themen und umfangreichere lokale Statistiken sind nicht Teil dieser ersten Version."
       ],
-      "assessment_method": "Eigene native HTML-/Canvas-Oberfläche, Prüfung über Node und echte Desktop-/Mobile-Browser; Nachweise nach Prüfung ergänzen.",
+      "assessment_method": "Manuelle Sichtprüfung repräsentativer Desktop-/Mobile-Aufnahmen, sechs responsive Viewports und echte Node-/Playwright-Abnahme im bestehenden Projekt.",
       "gameplay_summary": "Schiebe, verbinde und plane voraus. Wie weit kommst du nach 2048?",
       "planned_style": "Warme bernsteinfarbene Zahlentafel mit zurückhaltenden Bewegungen.",
       "background_concept": "2048: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine importierten Originalgrafiken.",
@@ -10962,11 +11022,34 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/solo-games/screenshots/2048-1440x900.png",
+        "docs/solo-games/screenshots/2048-1920x1080.png",
+        "docs/solo-games/screenshots/2048-360x800.png",
+        "docs/solo-games/screenshots/2048-390x844.png",
+        "docs/solo-games/screenshots/2048-768x1024.png",
+        "docs/solo-games/screenshots/2048-900x450.png",
+        "docs/solo-games/screenshots/2048-lost-desktop.png",
+        "docs/solo-games/screenshots/2048-lost-mobil.png",
+        "docs/solo-games/screenshots/2048-playing-desktop.png",
+        "docs/solo-games/screenshots/2048-playing-mobil.png",
+        "docs/solo-games/screenshots/2048-start-desktop.png",
+        "docs/solo-games/screenshots/2048-start-mobil.png",
+        "docs/solo-games/screenshots/2048-won-desktop.png",
+        "docs/solo-games/screenshots/2048-won-mobil.png"
+      ],
+      "test_results": [
+        "npm test: 907 passed, 0 failed (2026-10-31).",
+        "Solo release browser checks: 21 passed, 1 duplicate viewport matrix skipped; desktop + mobile.",
+        "Corrected related browser regression: 45 passed, 1 duplicate matrix skipped.",
+        "Six viewport sizes, permanent PNG evidence and SHA-256 manifest; see docs/solo-games/ACCEPTANCE.md."
+      ],
+      "commits": [
+        "904cd0751fd3c89d9ea2169de09edbb3197e58ad"
+      ],
+      "implementation_commit": "904cd0751fd3c89d9ea2169de09edbb3197e58ad",
+      "completed_at": "2026-10-31",
+      "source_audit_commit": "904cd0751fd3c89d9ea2169de09edbb3197e58ad"
     },
     {
       "id": "VIS-098",
@@ -10975,9 +11058,9 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
         "level": "individual_local_world",
@@ -10985,7 +11068,7 @@
           "public/singleplayer/runtime.js",
           "public/singleplayer/singleplayer.css"
         ],
-        "assessment": "Eigene lokale Oberfläche im aktuellen Solo-Auftrag; Abschlussnachweise folgen nach Prüfung."
+        "assessment": "Eigenständige lokale Spieloberfläche implementiert und auf Desktop/Mobile geprüft; tatsächlicher Implementierungscommit und permanente Bildnachweise sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/runtime.js",
@@ -10997,12 +11080,37 @@
         "public/singleplayer.js",
         "public/singleplayer/storage.js"
       ],
-      "source_audit": [],
+      "source_audit": [
+        {
+          "path": "public/singleplayer/runtime.js",
+          "sha256": "36a979a1fcaa6d3f3ac4335e7530028c976407e14167775d351f6d4deb5e3421"
+        },
+        {
+          "path": "public/singleplayer/wellenwacht-logic.js",
+          "sha256": "2fdf0137265c23041db42f1338df5059c74f2f27d2d85f4997ea60d27a71b085"
+        },
+        {
+          "path": "public/singleplayer/singleplayer.css",
+          "sha256": "ee641f766674d2e6de96a9ae971f54f3bce3ac8b55ceed353e46afe2c1f05e16"
+        },
+        {
+          "path": "public/singleplayer/wellenwacht-art.js",
+          "sha256": "1f8705252d21b119ad55e727b450adaa06d051ed20cfb75afc48dd87413249fb"
+        },
+        {
+          "path": "public/singleplayer.js",
+          "sha256": "37abbdeff761e5586569b75003075dee88697855d0117bb121ed332d9d9c394a"
+        },
+        {
+          "path": "public/singleplayer/storage.js",
+          "sha256": "8aabe0538e114be46069274745ccb7a2676b7b12375b3978a7da1c844c788738"
+        }
+      ],
       "current_design": "Wellenwacht: Eigenständige grün-kupferne Landschaft aus originaler Canvas-Zeichnung. Bereits als lokale Spielansicht umgesetzt; keine Multiplayer-Lobby.",
       "known_visual_weaknesses": [
         "Weitere optionale Themen und umfangreichere lokale Statistiken sind nicht Teil dieser ersten Version."
       ],
-      "assessment_method": "Eigene native HTML-/Canvas-Oberfläche, Prüfung über Node und echte Desktop-/Mobile-Browser; Nachweise nach Prüfung ergänzen.",
+      "assessment_method": "Manuelle Sichtprüfung repräsentativer Desktop-/Mobile-Aufnahmen, sechs responsive Viewports und echte Node-/Playwright-Abnahme im bestehenden Projekt.",
       "gameplay_summary": "Baue deine Verteidigung, forme neue Wege und schütze die Basis vor zwölf Wellen.",
       "planned_style": "Eigenständige grün-kupferne Landschaft aus originaler Canvas-Zeichnung.",
       "background_concept": "Wellenwacht: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine importierten Originalgrafiken.",
@@ -11052,11 +11160,36 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/solo-games/screenshots/wellenwacht-1440x900.png",
+        "docs/solo-games/screenshots/wellenwacht-1920x1080.png",
+        "docs/solo-games/screenshots/wellenwacht-360x800.png",
+        "docs/solo-games/screenshots/wellenwacht-390x844.png",
+        "docs/solo-games/screenshots/wellenwacht-768x1024.png",
+        "docs/solo-games/screenshots/wellenwacht-900x450.png",
+        "docs/solo-games/screenshots/wellenwacht-delta-desktop.png",
+        "docs/solo-games/screenshots/wellenwacht-delta-mobil.png",
+        "docs/solo-games/screenshots/wellenwacht-lost-desktop.png",
+        "docs/solo-games/screenshots/wellenwacht-lost-mobil.png",
+        "docs/solo-games/screenshots/wellenwacht-playing-desktop.png",
+        "docs/solo-games/screenshots/wellenwacht-playing-mobil.png",
+        "docs/solo-games/screenshots/wellenwacht-start-desktop.png",
+        "docs/solo-games/screenshots/wellenwacht-start-mobil.png",
+        "docs/solo-games/screenshots/wellenwacht-won-desktop.png",
+        "docs/solo-games/screenshots/wellenwacht-won-mobil.png"
+      ],
+      "test_results": [
+        "npm test: 907 passed, 0 failed (2026-10-31).",
+        "Solo release browser checks: 21 passed, 1 duplicate viewport matrix skipped; desktop + mobile.",
+        "Corrected related browser regression: 45 passed, 1 duplicate matrix skipped.",
+        "Six viewport sizes, permanent PNG evidence and SHA-256 manifest; see docs/solo-games/ACCEPTANCE.md."
+      ],
+      "commits": [
+        "904cd0751fd3c89d9ea2169de09edbb3197e58ad"
+      ],
+      "implementation_commit": "904cd0751fd3c89d9ea2169de09edbb3197e58ad",
+      "completed_at": "2026-10-31",
+      "source_audit_commit": "904cd0751fd3c89d9ea2169de09edbb3197e58ad"
     },
     {
       "id": "VIS-099",
