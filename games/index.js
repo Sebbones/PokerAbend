@@ -51,8 +51,11 @@ import wuerfelduell from './wuerfelduell/index.js';
 import risikoWuerfeln from './risiko-wuerfeln/index.js';
 import storyChaos from './story-chaos/index.js';
 import zahlenreihe from './zahlenreihe/index.js';
+import wuerfeljagd from './wuerfeljagd/index.js';
+import monsterwuerfel from './monsterwuerfel/index.js';
+import wuerfelAuktion from './wuerfel-auktion/index.js';
 
-export const GAMES = Object.fromEntries([poker, maumau, farbenchaos, maexchen, schocken, huetchen, zehnetappen, stapelrennen, schwimmen, blackjack, kniffel, schiffe, viergewinnt, shutthebox, zehntausend, muehle, schaetzmeister, schlagfertig, werhatdasgesagt, mogeln, praesident, durak, omaha, wuerfelpoker, luegenwuerfel, chicago, reversi, dame, domino, zahlenzoo, gedaechtnisKueche, pfeilfieber, sortierstation, tickendesPaket, werwolf, werBinIch, kritzelpost, bildunterschrift, malenRaten, broeckelboden, kronenjagd, laserHuepfer, sechsNimmt, monopolyDeal, monopoly, spielDesLebens, scotlandYard, hex, wuerfelduell, risikoWuerfeln, storyChaos, zahlenreihe].map((g) => [g.id, g]));
+export const GAMES = Object.fromEntries([poker, maumau, farbenchaos, maexchen, schocken, huetchen, zehnetappen, stapelrennen, schwimmen, blackjack, kniffel, schiffe, viergewinnt, shutthebox, zehntausend, muehle, schaetzmeister, schlagfertig, werhatdasgesagt, mogeln, praesident, durak, omaha, wuerfelpoker, luegenwuerfel, chicago, reversi, dame, domino, zahlenzoo, gedaechtnisKueche, pfeilfieber, sortierstation, tickendesPaket, werwolf, werBinIch, kritzelpost, bildunterschrift, malenRaten, broeckelboden, kronenjagd, laserHuepfer, sechsNimmt, monopolyDeal, monopoly, spielDesLebens, scotlandYard, hex, wuerfelduell, risikoWuerfeln, storyChaos, zahlenreihe, wuerfeljagd, monsterwuerfel, wuerfelAuktion].map((g) => [g.id, g]));
 export const DEFAULT_GAME = 'poker'; // alte Spielstände ohne Spielart sind Poker
 export { SINGLEPLAYER_GAMES, singleplayerGameList } from './singleplayer/index.js';
 import { SINGLEPLAYER_GAMES } from './singleplayer/index.js';

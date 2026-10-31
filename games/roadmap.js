@@ -140,7 +140,7 @@ export const ROADMAP = [
     ...liste('poker-extra', 'funktion', [['Straddle', 'Optionaler zusätzlicher Blindeinsatz vor dem Geben.'], ['Bomb Pot', 'Gemeinsam mit einem festgelegten Einsatz direkt zum Flop.'], ['Run It Twice', 'Bei All-in die verbleibenden Gemeinschaftskarten zweimal geben.'], ['7-2-Bonus', 'Zusätzlicher Bonus für einen Sieg mit Sieben und Zwei.'], ['Rabbit Hunt', 'Nach einer beendeten Hand die nicht mehr gegebenen Gemeinschaftskarten ansehen.'], ['Hand-Replay', 'Eine vergangene Hand mit ihren einzelnen Aktionen erneut abspielen.']]),
   ] },
   { id: 'party-extras', titel: 'Party-Extras', satz: 'Bekannte Spiele mit wechselnden Zusatzregeln und neuen Abendformaten.', stufe: 'spaeter', eintraege: ['modifikatoren', 'chaos-modus', 'survival-abend'], punkte: [] },
-  { id: 'spaetere-spiele', titel: 'Weitere Spiele', satz: 'Der übrige Backlog für kommende Spiele-Päckchen.', stufe: 'spaeter', paeckchen: 'spaeter', punkte: spiele(['risiko-wuerfeln','story-chaos','zahlenreihe']) },
+  { id: 'spaetere-spiele', titel: 'Weitere Spiele', satz: 'Der übrige Backlog für kommende Spiele-Päckchen.', stufe: 'spaeter', paeckchen: 'spaeter', punkte: spiele(['risiko-wuerfeln','story-chaos','zahlenreihe','wuerfeljagd','monsterwuerfel','wuerfel-auktion']) },
   { id: 'grosse-projekte', titel: 'Große Projekte', satz: 'Größere Spielsysteme und Experimente mit mehr Vorlauf.', stufe: 'gross', paeckchen: 'gross', punkte: [
     punkt('3d-experiment', '3D-Experiment', 'design', '3D-Würfel als begrenzter Test für eine räumliche Darstellung.'),
     punkt('discord-activity', 'Discord Activity', 'discord', 'Direkt gemeinsam im Discord-Sprachkanal spielen.'),

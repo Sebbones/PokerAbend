@@ -1,0 +1,2 @@
+import {Room} from './room.js';import {turnGame} from '../../server/turn-game.js';import {glyph} from '../art-kit.js';
+export default turnGame(Room,{id:'monsterwuerfel',name:'Monsterwürfel',category:'wuerfel',minPlayers:1,maxPlayers:6,duration:20,players:'1–6 Spieler',description:'Gemeinsam würfeln, Angriff, Schutz und Heilung abwägen und eine Folge von Monstern besiegen.',art:glyph('monster'),createFields:[],events:{roll:(r,p,{keep,revision,roundKey})=>r.throwDice(p.id,keep,revision,roundKey),resolve:(r,p,{revision,roundKey})=>r.resolve(p.id,revision,roundKey)}});

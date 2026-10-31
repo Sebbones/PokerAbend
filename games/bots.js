@@ -512,3 +512,5 @@ export const BOTS = { 'spiel-des-lebens': lifeBot, monopoly, 'monopoly-deal': mo
 
 Object.assign(BOTS, { 'scotland-yard': scotlandYardBot, hex: hexBot, wuerfelduell: duelBot });
 Object.assign(BOTS, { 'risiko-wuerfeln':(room,id)=>room.botStep(id),'story-chaos':(room,id,rng)=>room.botStep(id,rng),zahlenreihe:(room,id,rng)=>room.botStep(id,rng) });
+
+Object.assign(BOTS, {wuerfeljagd:(room,id)=>room.botStep(id),monsterwuerfel:(room,id)=>room.botStep(id),'wuerfel-auktion':(room,id,rng)=>room.botStep(id,rng)});

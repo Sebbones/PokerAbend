@@ -1,0 +1,203 @@
+{
+  "captured_at": "2026-10-31",
+  "implementation_commit": null,
+  "policy": "Original PNG captures from isolated real local multiplayer rooms. No production data. Functional game implementation; separate VIS redesigns remain planned.",
+  "screenshots": [
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/auction-private.png",
+      "source": "artifacts/backlog-dice/desktop/auction-private.png",
+      "sha256": "5883f80de8405f41c0d26ef74882b9727e1020e3108804e9705996fd7230d90e"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/auction-reveal.png",
+      "source": "artifacts/backlog-dice/desktop/auction-reveal.png",
+      "sha256": "43f1105c586bdc5f80220e510eada7d9355556e8ba9d88f45120cfc8cdd7c5df"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/hunt-playing.png",
+      "source": "artifacts/backlog-dice/desktop/hunt-playing.png",
+      "sha256": "3c09791d1501b2a2f57047058bd9ee3b5eb68af2e38ffb706a6e56f4193fa4c3"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/hunt-reveal.png",
+      "source": "artifacts/backlog-dice/desktop/hunt-reveal.png",
+      "sha256": "0a4a4a00f764e16682c1169b456740d06e363550e94149f8b14ffc68ecab5226"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/monster-cooperative.png",
+      "source": "artifacts/backlog-dice/desktop/monster-cooperative.png",
+      "sha256": "57878757886fd211bddf600a4681c3e127dbe26d726e2d0e7757cedb22798616"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/monsterwuerfel-1440x900.png",
+      "source": "artifacts/backlog-dice/desktop/monsterwuerfel-1440x900.png",
+      "sha256": "1e755e5ac045b70f259c6102604f38751a91174daa62855d504e6535799e24cc"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/monsterwuerfel-1920x1080.png",
+      "source": "artifacts/backlog-dice/desktop/monsterwuerfel-1920x1080.png",
+      "sha256": "edc837cabc26458b179aae3db50d6f5f034973ae52162546d66b75c067591c63"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/monsterwuerfel-360x800.png",
+      "source": "artifacts/backlog-dice/desktop/monsterwuerfel-360x800.png",
+      "sha256": "fe0dd310113ae235bc5225ced51a0deb3b2215eceecdadab4d89dd4e05cc3b84"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/monsterwuerfel-390x844.png",
+      "source": "artifacts/backlog-dice/desktop/monsterwuerfel-390x844.png",
+      "sha256": "075e70db76679ca8eb335b70b27fe578356b2458822193a764ab6a65c80c02c0"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/monsterwuerfel-768x1024.png",
+      "source": "artifacts/backlog-dice/desktop/monsterwuerfel-768x1024.png",
+      "sha256": "cdd1791502f7e827ed03ddeca5845cb0542dbc93b8e83e6d62d7ce5e14023c7b"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/monsterwuerfel-900x450.png",
+      "source": "artifacts/backlog-dice/desktop/monsterwuerfel-900x450.png",
+      "sha256": "851cf9ca3e2d37414b3b167f964e18a96e54166443c9ff0c8f36cdd8961a2afe"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-1440x900.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfel-auktion-1440x900.png",
+      "sha256": "1e24dc05ba2a0861c3b3ed9852d8590bc3bb00f7ea18f8572743e0193dcb0bd5"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-1920x1080.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfel-auktion-1920x1080.png",
+      "sha256": "abde3025db5a0baab27f42566ef22e46c1dcda324a1cc3bdb779a218afb310da"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-360x800.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfel-auktion-360x800.png",
+      "sha256": "b869eb0f603524b99fe0362d5069b8c0ec4f1e6da864ce8026b28a42f1750b01"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-390x844.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfel-auktion-390x844.png",
+      "sha256": "ce8d69f3133dca4eb83ef17c9b4cdf697a450f11337696f7e3024d5ec9e76fe5"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-768x1024.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfel-auktion-768x1024.png",
+      "sha256": "d0b279d1f24055d6e2a993997b6905296c67081e5b7cb92e6e7ec417d83d83ac"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-900x450.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfel-auktion-900x450.png",
+      "sha256": "b2b447964db4871c86dea1ed413b64e3a8ac3913d6a011c1030b9afd0a926826"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfeljagd-1440x900.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfeljagd-1440x900.png",
+      "sha256": "b8031b4d5bc5d7fe1fc66531ae799178bb27b50150cd81c7eb0ed72f9aaf9c98"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfeljagd-1920x1080.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfeljagd-1920x1080.png",
+      "sha256": "9cd35efdd988886aa36555aa7078207ffcc46d58be30e8f26f153dec844530af"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfeljagd-360x800.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfeljagd-360x800.png",
+      "sha256": "9c9b27bc41abaf994441f9c6b696f5f51615c670016d6c222f561f408211cfed"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfeljagd-390x844.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfeljagd-390x844.png",
+      "sha256": "bfbe9d838a693b7e7539b178e675fe217c4a7987d98e5f5118ff9d72525aec2c"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfeljagd-768x1024.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfeljagd-768x1024.png",
+      "sha256": "f2feb5a23fc2cccf620bd1add74b3b04b3e66c8d19d39064cf6f54b5755b08f2"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/dice/desktop/wuerfeljagd-900x450.png",
+      "source": "artifacts/backlog-dice/desktop/wuerfeljagd-900x450.png",
+      "sha256": "8892023d74097e9c84fff5af7dac111e009741a54d5c1a8e798c25977c1fd8ac"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/dice/mobil/auction-private.png",
+      "source": "artifacts/backlog-dice/mobil/auction-private.png",
+      "sha256": "cd657d154b3ae1b97d3174739bf70ec666519b95b9a27e4cb612343c9babec51"
+    },
+    {
+      "game_id": "wuerfel-auktion",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/dice/mobil/auction-reveal.png",
+      "source": "artifacts/backlog-dice/mobil/auction-reveal.png",
+      "sha256": "e25cacfa2f955e028eae8328331ab185bdccd12d7fadfff951587274299f33e5"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/dice/mobil/hunt-playing.png",
+      "source": "artifacts/backlog-dice/mobil/hunt-playing.png",
+      "sha256": "8b2fdfc311211265980458d12ecb72946976e72539a9a3738cfbc7ef74712476"
+    },
+    {
+      "game_id": "wuerfeljagd",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/dice/mobil/hunt-reveal.png",
+      "source": "artifacts/backlog-dice/mobil/hunt-reveal.png",
+      "sha256": "26a6f153f24ea05999d4730154290e6c12b95a5e38c682c5a5d516b4aa81c09a"
+    },
+    {
+      "game_id": "monsterwuerfel",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/dice/mobil/monster-cooperative.png",
+      "source": "artifacts/backlog-dice/mobil/monster-cooperative.png",
+      "sha256": "fbe9f1a6f31116405b739c8575df2bc9d796ba77cea1457e563a45acf8d1ae3f"
+    }
+  ]
+}

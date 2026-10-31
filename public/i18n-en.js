@@ -504,12 +504,22 @@ Object.assign(window.EN, {
 Object.assign(window.EN_GAMES, {
   'risiko-wuerfeln': {name:'Risk Dice',description:'Roll again or bank your points. A one loses your turn points; the first to reach the target wins.'},
   'story-chaos': {name:'Story Chaos',description:'Take turns writing a shared story. Each player sees only the last sentence; read everything together at the end.'},
+  wuerfeljagd:{name:'Dice Hunt',description:'Everyone chases the same dice combination. Keep matching dice and earn 100 points within the shared time limit.'},
+  monsterwuerfel:{name:'Monster Dice',description:'Work together, balance attack, defence and healing, and defeat a series of monsters.'},
+  'wuerfel-auktion':{name:'Dice Auction',description:'Submit private bids for dice packages. Only a unique highest bidder pays and rolls; tied bids keep all chips.'},
   zahlenreihe: {name:'Number Sequence',description:'Find the pattern and fill the missing numbers. Correct answers score; the fastest earns a bonus.'},
   'scotland-yard': { name: 'Scotland Yard', description: 'Detectives hunt Mr. X across an original city map using taxi, bus and underground tickets. His location usually stays hidden.' },
   hex: { name: 'Hex', description: 'Connect your two edges on a hexagonal board. Every stone matters and there are no draws.' },
   wuerfelduell: { name: 'Dice Duel', description: 'Attack, defend and be the last player with health remaining.' },
 });
 Object.assign(window.EN,{
+  'Anzahl Zielkombinationen':'Number of targets','Zeit pro Kombination in Sekunden':'Time per target in seconds','Würfe pro Kombination':'Rolls per target',
+  'Anzahl Monster':'Number of monsters','Anzahl Würfelpakete':'Number of dice packages','Zeit pro Gebot in Sekunden':'Time per bid in seconds','Startchips pro Spieler':'Starting chips per player',
+  'Zielkombination':'Target combination','Würfeljagd':'Dice hunt','würfelt …':'rolling …','Würfelpaket':'Dice package','Verdeckt bieten':'Private bidding','bietet …':'bidding …',
+  'Diese Würfelauswahl ist ungültig':'Invalid dice selection','Mindestens einen Würfel neu werfen':'Reroll at least one die','Dieser Würfelzug ist nicht mehr aktuell':'This dice move is no longer current',
+  'Gerade wird nicht gejagt':'The hunt is not active','Du bist für diese Kombination fertig':'You have finished this target','Die Zeit ist abgelaufen':'Time has expired','Kurz warten, dann erneut würfeln':'Wait briefly before rolling again',
+  'Alle drei Würfe sind verbraucht':'All three rolls have been used','Erst würfeln':'Roll first','Gerade wird nicht geboten':'Bidding is not active','Dieses Würfelpaket ist nicht mehr aktuell':'This dice package is no longer current',
+  'Dein Gebot wurde bereits abgegeben':'Your bid has already been submitted','Das Gebot muss zwischen null und deinen verfügbaren Chips liegen':'Your bid must be between zero and your available chips',
   'Sätze pro Mitspieler':'Sentences per player','Schreibzeit pro Satz in Sekunden (0 = ohne)':'Writing time per sentence in seconds (0 = unlimited)',
   'Zeit pro Entscheidung in Sekunden (0 = ohne)':'Time per decision in seconds (0 = unlimited)',
   'Zwei fehlende Zahlen statt einer':'Two missing numbers instead of one','Bonus für die schnellste richtige Antwort':'Bonus for the fastest correct answer',

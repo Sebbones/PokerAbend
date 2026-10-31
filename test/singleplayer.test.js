@@ -8,13 +8,13 @@ import {GAMES,PLAYABLE_GAMES,singleplayerGameList,gameEvents,PLANNED} from '../g
 import {resolvedRoadmap} from '../games/roadmap.js';
 
 test('single player is a separate catalog; only registered multiplayer games provide room events and programs',()=>{
-  assert.equal(Object.keys(GAMES).length,52);assert.equal(Object.keys(PLAYABLE_GAMES).length,55);
+  assert.equal(Object.keys(GAMES).length,55);assert.equal(Object.keys(PLAYABLE_GAMES).length,58);
   assert.deepEqual(singleplayerGameList().map((g)=>g.id).sort(),['2048','sudoku','wellenwacht']);
   for(const g of singleplayerGameList()){assert.equal(g.local,true);assert.equal(g.minPlayers,1);assert.equal(g.maxPlayers,1);assert.equal(GAMES[g.id],undefined);assert.equal(g.create,undefined);assert.ok(g.art.includes('<svg'));}
   assert.ok(!gameEvents().some((e)=>e.startsWith('singleplayer')));
   const planned=PLANNED.filter((p)=>p.paeckchen==='solo-zukunft');assert.equal(planned.length,9);
   for(const p of planned){assert.equal(p.status,'planned');assert.ok(!PLAYABLE_GAMES[p.id]);for(const k of ['features','dependencies','acceptance'])assert.ok(p[k].length);}
-  for(const id of ['minenlauf','puzzle-panik','monsterwuerfel'])assert.ok(PLANNED.some((p)=>p.id===id));
+  for(const id of ['minenlauf','puzzle-panik','wortjagd'])assert.ok(PLANNED.some((p)=>p.id===id));
   const roadmap=resolvedRoadmap();assert.equal(roadmap.find((e)=>e.id==='einzelspieler-zukunft').punkte.length,9);
   assert.ok(roadmap.find((e)=>e.id==='einzelspieler-start').punkte.every((p)=>p.erledigt&&p.spiel.local));
 });

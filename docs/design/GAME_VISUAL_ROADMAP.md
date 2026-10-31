@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**55 spielbare Spiele, 52 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 7 done, 100 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10 sowie die ausdrücklich beauftragten neuen Solo-Spiele Sudoku, 2048 und Wellenwacht sind visuell abgeschlossen. Risiko-Würfeln, Story-Chaos und Zahlenreihe sind anschließend als neue Spiele implementiert; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 48 bestehenden Spieloberflächen und 52 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
+**58 spielbare Spiele, 49 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 7 done, 100 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10 sowie die ausdrücklich beauftragten neuen Solo-Spiele Sudoku, 2048 und Wellenwacht sind visuell abgeschlossen. Risiko-Würfeln, Story-Chaos und Zahlenreihe sind anschließend als neue Spiele implementiert; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 51 bestehenden Spieloberflächen und 49 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) inventarisiert alle 13 registrierten Kartenspiele; zehn Folgepakete bleiben geplant. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -70,8 +70,11 @@ Die folgenden ersten Aufgaben sind kleine Verbesserungen mit überschaubarem Zus
 | 46 | [VIS-055](#vis-055) | Risiko-Würfeln | 4–6 h | P2 |
 | 47 | [VIS-059](#vis-059) | Story-Chaos | 5–8 h | P2 |
 | 48 | [VIS-085](#vis-085) | Zahlenreihe | 6–9 h | P2 |
+| 49 | [VIS-056](#vis-056) | Würfeljagd | 6–9 h | P2 |
+| 50 | [VIS-057](#vis-057) | Monsterwürfel | 10–15 h | P2 |
+| 51 | [VIS-084](#vis-084) | Würfel-Auktion | 9–14 h | P2 |
 
-Die JSON-Datei enthält eine reine Aufwandssortierung aller 107 Pakete sowie eine getrennte Reihenfolge für offene spielbare Spiele. Die letzten drei Tabellenzeilen sind der Nachtrag für die neuen kleinen Spiele; das ist keine VIS-Umsetzungsfreigabe. Vorhandene individuelle Bretter behalten ihre Materialarbeit; spätere Pakete polieren sie nach eigener Freigabe.
+Die JSON-Datei enthält eine reine Aufwandssortierung aller 107 Pakete sowie eine getrennte Reihenfolge für offene spielbare Spiele. Die letzten sechs Tabellenzeilen sind Nachträge für die neuen kleinen Spiele; das ist keine VIS-Umsetzungsfreigabe. Vorhandene individuelle Bretter behalten ihre Materialarbeit; spätere Pakete polieren sie nach eigener Freigabe.
 
 ## Bedingte Konzepte noch nicht implementierter Spiele
 
@@ -79,7 +82,6 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 
 | Konzept | Spiel | Designaufwand nach Gameplay |
 | --- | --- | --- |
-| VIS-056 | Würfeljagd | 6–9 h |
 | VIS-083 | Brückenroulette | 7–11 h |
 | VIS-082 | Lügenbaron | 7–11 h |
 | VIS-073 | Puzzle-Panik | 7–11 h |
@@ -89,8 +91,6 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | VIS-071 | Geschenkfänger | 9–14 h |
 | VIS-052 | Short Deck Poker | 9–14 h |
 | VIS-074 | Wortjagd | 9–14 h |
-| VIS-084 | Würfel-Auktion | 9–14 h |
-| VIS-057 | Monsterwürfel | 10–15 h |
 | VIS-053 | Stichmeister | 10–15 h |
 | VIS-075 | Stillgestanden! | 10–15 h |
 | VIS-091 | Turmbauer | 10–15 h |
@@ -1669,12 +1669,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-056 – Würfeljagd
 
 - **Spiel-ID/Kategorie:** `wuerfeljagd` / Würfelspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 6–9 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **planned**.
+- **Priorität / Aufwand:** P2; 6–9 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/wuerfeljagd/wuerfeljagd.js`, `public/games/wuerfeljagd/wuerfeljagd.css`
+- **Gemeinsame Komponenten:** Kit, BacklogKit und gemeinsame Würfeldarstellung; Party-Kit für gleichzeitige Runden.
+- **Aktueller Stand:** Funktionierendes Spiel mit eigenen Regeln und Oberfläche; gesondertes VIS-Redesign weiterhin geplant. Siehe docs/backlog/WEITERE_SPIELE.md.
+- **Optische Verbesserungsziele:** Die individuelle visuelle Planung ist nach eigener VIS-Freigabe mit den tatsächlichen Spielzuständen abzugleichen.
 - **Stil:** Grafische Würfel-Challenge mit klarer Zielkombination.
 - **Hintergrund:** Statische konzentrierte Spielfläche ohne flackernde Kulisse.
 - **Spielfeld:** Ziel und geworfene Kombination nebeneinander.
@@ -1683,7 +1683,7 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Ziel sichtbar halten, große Tippflächen.
 - **Technische Grenzen:** Zeitfenster und Zielgenerator erst nach Gameplayfreigabe festlegen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von wuerfeljagd.
+- **Abhängigkeiten:** VIS-001; Spiel implementiert; gesonderte VIS-Freigabe bleibt erforderlich.
 
 **Individuelle Akzeptanz:**
 
@@ -1696,12 +1696,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-057 – Monsterwürfel
 
 - **Spiel-ID/Kategorie:** `monsterwuerfel` / Würfelspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 10–15 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **planned**.
+- **Priorität / Aufwand:** P2; 10–15 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/monsterwuerfel/monsterwuerfel.js`, `public/games/monsterwuerfel/monsterwuerfel.css`
+- **Gemeinsame Komponenten:** Kit, BacklogKit und gemeinsame Würfeldarstellung; Party-Kit für gleichzeitige Runden.
+- **Aktueller Stand:** Funktionierendes Spiel mit eigenen Regeln und Oberfläche; gesondertes VIS-Redesign weiterhin geplant. Siehe docs/backlog/WEITERE_SPIELE.md.
+- **Optische Verbesserungsziele:** Die individuelle visuelle Planung ist nach eigener VIS-Freigabe mit den tatsächlichen Spielzuständen abzugleichen.
 - **Stil:** Eigenes kooperatives Monster-Abenteuer mit ruhigem Würfellager.
 - **Hintergrund:** Illustriertes eigenes Lager außerhalb der Würfelfläche.
 - **Spielfeld:** Gegnerkarte, Gruppenstatus und Würfelzone trennen.
@@ -1710,7 +1710,7 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Gegner und aktuelle Entscheidung in einer Spalte.
 - **Technische Grenzen:** Keine Fähigkeiten, Trefferchancen oder Rollen als neue Mechanik erfinden. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von monsterwuerfel.
+- **Abhängigkeiten:** VIS-001; Spiel implementiert; gesonderte VIS-Freigabe bleibt erforderlich.
 
 **Individuelle Akzeptanz:**
 
@@ -2425,12 +2425,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-084 – Würfel-Auktion
 
 - **Spiel-ID/Kategorie:** `wuerfel-auktion` / Würfelspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 9–14 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **planned**.
+- **Priorität / Aufwand:** P2; 9–14 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/wuerfel-auktion/wuerfel-auktion.js`, `public/games/wuerfel-auktion/wuerfel-auktion.css`
+- **Gemeinsame Komponenten:** Kit, BacklogKit und gemeinsame Würfeldarstellung; Party-Kit für gleichzeitige Runden.
+- **Aktueller Stand:** Funktionierendes Spiel mit eigenen Regeln und Oberfläche; gesondertes VIS-Redesign weiterhin geplant. Siehe docs/backlog/WEITERE_SPIELE.md.
+- **Optische Verbesserungsziele:** Die individuelle visuelle Planung ist nach eigener VIS-Freigabe mit den tatsächlichen Spielzuständen abzugleichen.
 - **Stil:** Hochwertiger kleiner Auktionstisch mit Würfelpaketen.
 - **Hintergrund:** Dunkler Clubraum mit ruhiger Bieterfläche.
 - **Spielfeld:** Aktuelles Paket, eigenes Gebot und spätere Zuschlagskarte.
@@ -2439,7 +2439,7 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Gebotseingabe und Budget groß, Paket bleibt sichtbar.
 - **Technische Grenzen:** Fremde Gebote nicht vor der gleichzeitigen Auflösung anzeigen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von wuerfel-auktion.
+- **Abhängigkeiten:** VIS-001; Spiel implementiert; gesonderte VIS-Freigabe bleibt erforderlich.
 
 **Individuelle Akzeptanz:**
 

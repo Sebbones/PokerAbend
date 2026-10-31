@@ -2,9 +2,11 @@
 
 Stand: 31.10.2026. Ausgangsstand `2dd1d4b12a9b9c03991272ca654b60f614c919ab`. Nutzerauftrag: die vorhandene Roadmap-Rubrik **„Weitere Spiele – 0 von 41 erledigt“** umsetzen. Ausdrücklich gewählte Reihenfolge: **zuerst Risiko-Würfeln, Story-Chaos und Zahlenreihe**. Fortschritt und tatsächliche Implementierungscommits: [plan.json](plan.json). Das ist ein Ausführungsprotokoll der bestehenden 41 IDs, keine zweite Quelle für neue Spielideen; Beschreibungen des verbleibenden Backlogs stehen weiterhin in `games/planned.js`.
 
+**Aktueller Fortschritt: 6 von 41 implementiert, 35 offen.** 55 Raumspiele plus drei lokale Einzelspieler ergeben 58 spielbare Spiele.
+
 ## BACKLOG-01 – Die ersten drei kleinen Spiele
 
-**Drei Spiele sind implementiert und geprüft. Öffentliche Roadmap: 3 von 41 erledigt, 38 offen.** Sie haben eigene Servermodule und Browseroberflächen und sind regulär im bestehenden Hub hostbar. Der Katalog umfasst jetzt **52 Raumspiele plus drei lokale Einzelspieler, insgesamt 55 spielbare Spiele**. Neue Branches, PRs oder Produktivdeployments wurden nicht angelegt.
+**Stand nach BACKLOG-01: drei Spiele implementiert und geprüft, 3 von 41 erledigt, 38 offen.** Sie haben eigene Servermodule und Browseroberflächen und sind regulär im bestehenden Hub hostbar. Der Katalog umfasste danach **52 Raumspiele plus drei lokale Einzelspieler, insgesamt 55 spielbare Spiele**. Neue Branches, PRs oder Produktivdeployments wurden nicht angelegt.
 
 ### Risiko-Würfeln
 
@@ -28,15 +30,51 @@ Jeder gibt genau eine verbindliche Antwort ab. Bis zur Auflösung kennt man nur 
 
 Der Bot leitet seine Antwort aus der öffentlichen Folge ab; er liest die geheime Lösung nicht aus. Er antwortet absichtlich nicht immer richtig. Eingabe, Gruppenfortschritt und Auflösung verwenden den vorhandenen `PartyRoom`-/`partyGame`-Ablauf.
 
+## BACKLOG-02 – Würfeljagd, Monsterwürfel und Würfel-Auktion
+
+Alle drei Spiele sind regulär im vorhandenen Hub verfügbar, mit Host-Einstellungen, optionalen Bots, Reconnect, gemeinsamer Host-Pause und deutschen/englischen Beschriftungen. Würfelwerte erzeugt ausschließlich der Server. Eingaben werden auf Teilnahme, Phase, Pause und aktuelle Aufgabenkennung geprüft. Die Würfelspiele verwenden die bestehenden Raum- und UI-Grundlagen; vorhandene Spielregeln wurden nicht ersetzt.
+
+### Würfeljagd
+
+2–8 Spieler jagen gleichzeitig dieselbe offene Kombination aus drei Würfeln. Die Reihenfolge spielt keine Rolle, Häufigkeiten dagegen schon. Jeder darf passende Würfel antippen und behalten. Standard: fünf Kombinationen, sechs Würfe pro Kombination, 25 Sekunden gemeinsame Zeit. Zwischen eigenen Würfen müssen mindestens 500 Millisekunden Spielzeit liegen; Pausen verbrauchen weder diese Wartezeit noch Rundenzeit. Zieltreffer bringen einmalig 100 Punkte. Erfolg oder verbrauchte Würfe schließen die eigene Aufgabe ab. Fremde Würfel werden erst bei der Auflösung sichtbar. Alle haben dieselbe Versuchsgrenze und dasselbe Zeitfenster. Bots behalten passende Würfel anhand des öffentlichen Ziels. Bei mehreren Bots verteilt der Runner die Würfe gleichmäßig nach der bisherigen Versuchszahl.
+
+Die eigene Würfelansicht und ihr Tastaturfokus bleiben bei fremden Würfen erhalten. Rundenkennung, Zielnummer und eigene Revision verhindern doppelte oder veraltete Aktionen. Der Rollknopf wird nach Ablauf der kurzen Wartezeit automatisch wieder verfügbar. Der Browser-Test fand einen Zugriff auf fehlende Lobby-Daten; die Abfrage berücksichtigt jetzt auch diesen regulären Zustand. Ein weiterer Testfehler wartete auf ein nicht vorhandenes Ansichts-Feld; er prüft jetzt den tatsächlich übertragenen öffentlichen Zug.
+
+### Monsterwürfel
+
+Kooperativ für 1–6 Spieler gegen eine einstellbare Folge von Monstern. Pro Zug gibt es bis zu drei Würfe mit drei Würfeln. Angetippte Würfel bleiben liegen; „Zug auswerten“ übernimmt ausdrücklich das Ergebnis. 1/2 sind Angriff (ein Angriff verursacht 1 Schaden, ab zwei Angriffen je 2); 3/4 geben je 1 Schutz; 5/6 heilen je 2 Gruppenleben bis zum Maximum. Ein überlebendes Monster schlägt mit seinem Angriff minus Schutz zurück. Besiegte Monster schlagen nicht mehr zurück. Null Gruppenleben verlieren gemeinsam; nach dem letzten Monster erhalten alle verbliebenen Spieler den gemeinsamen Sieg und je 100 Punkte. Schaden pro Spieler ist eine offene Beitragsanzeige, keine zusätzliche Siegbedingung. Bots wählen bei wenig Gruppenleben Heilung, ansonsten Angriff. Solo-Spiel, Aussteigen und automatische Entscheidungen sind abgedeckt.
+
+### Würfel-Auktion
+
+3–8 Spieler starten standardmäßig mit je 20 Chips und bieten gleichzeitig auf sechs Pakete mit je 2–5 Würfeln. Ein Gebot ist eine verbindliche ganze Zahl von 0 bis zum verbleibenden Budget. Fremde Gebote bleiben bis zur Auflösung geheim; 0 ist ein gültiger Verzicht. Nur ein eindeutiger positiver Höchstbieter kauft das Paket, bezahlt sein Gebot und erhält die tatsächlich vom Server gewürfelte Augensumme als Punkte. Bei gleichen Höchstgeboten oder ausschließlich Nullen wird nichts verkauft oder berechnet. Verlierer behalten ihre Chips. Nach allen Paketen gewinnt die höchste Punktzahl. Bots kalkulieren mit eigenem Budget, offenen Paketgrößen und verbleibenden Runden; sie lesen keine fremden Gebote. Nicht implementierte Hausregel-Ideen aus dem alten Backlog werden nicht als auswählbar angeboten.
+
+### Prüfungen und Bilder
+
+| Prüfung | Ergebnis | Protokoll |
+| --- | --- | --- |
+| Abschließender gesamter Node-Bestand einschließlich Bot-Reihenfolge und Bildhashes | **957 bestanden, 0 fehlgeschlagen**, 65,45 s | `artifacts/backlog-dice-release-node.log` |
+| Neue Regeln, erstes Päckchen und konsistente visuelle Inventur | **30 bestanden**; neue Würfeltests enthalten 60 abgeschlossene Bot-Partien | `artifacts/backlog-dice-proof-release.log` |
+| Bestehende Sprache, Bots, Programme und Start/Panels aller 55 Raumspiele auf Desktop/Touch | **67 bestanden, 0 fehlgeschlagen, 1 bewusst ausgelassen**, 8,1 min | `artifacts/backlog-dice-regression.log` |
+| Solo-Katalog weiterhin getrennt, aktueller Raumspielbestand statt historischer 49er-Zahl | **2 bestanden, 0 fehlgeschlagen**, 8,2 s | `artifacts/backlog-dice-solo-catalog.log` |
+| Echte Mehrspieler-Partien auf Desktop/Touch plus sechs Viewports | **7 bestanden, 0 fehlgeschlagen, 1 bewusst ausgelassen**, 40,2 s | `artifacts/backlog-dice-browser-release.log` |
+
+Der ausgelassene Touch-Fall vermeidet nur eine zweite Ausführung derselben vollständigen Größenmatrix. 28 originale PNGs mit SHA-256 und Herkunft: [Bildmanifest BACKLOG-02](dice-screenshots.json). Ausgewählte Aufnahmen wurden visuell geprüft. Alle Aufnahmen stammen aus isolierten lokalen Testräumen.
+
+| Spiel | Desktop | Handy |
+| --- | --- | --- |
+| Monsterwürfel | [Kooperative Würfel](screenshots/dice/desktop/monster-cooperative.png) | [Kooperative Würfel](screenshots/dice/mobil/monster-cooperative.png) |
+| Würfeljagd | [Eigene Würfel](screenshots/dice/desktop/hunt-playing.png) · [Auflösung](screenshots/dice/desktop/hunt-reveal.png) | [Eigene Würfel](screenshots/dice/mobil/hunt-playing.png) |
+| Würfel-Auktion | [Geheime Gebote](screenshots/dice/desktop/auction-private.png) · [Auflösung](screenshots/dice/desktop/auction-reveal.png) | [Auflösung](screenshots/dice/mobil/auction-reveal.png) |
+
 ## Gemeinsame Anbindung
 
-Die Spiele verwenden die vorhandenen Räume, Anmeldung, Spieler-IDs, Socket.IO-Ereignisse, Host-Einstellungen, Zuschauer, Bots, Abendprogramme, Pause und Wiederverbindung. `turnGame`, `TurnRoom` und `PartyRoom` bleiben die Grundlage. Der bestehende Katalog und seine bisherigen Spielregeln bleiben erhalten; nur die drei fertigen Einträge verlassen `games/planned.js`. Ihre erledigten Roadmap-Punkte bleiben im ursprünglichen 41er-Abschnitt, damit der Nenner nicht schrumpft.
+Die Spiele verwenden die vorhandenen Räume, Anmeldung, Spieler-IDs, Socket.IO-Ereignisse, Host-Einstellungen, Zuschauer, Bots, Abendprogramme, Pause und Wiederverbindung. `turnGame`, `TurnRoom` und `PartyRoom` bleiben die Grundlage. Der bestehende Katalog und seine bisherigen Spielregeln bleiben erhalten; die sechs fertig implementierten Einträge verlassen `games/planned.js`. Ihre erledigten Roadmap-Punkte bleiben im ursprünglichen 41er-Abschnitt, damit der Nenner nicht schrumpft.
 
 `BacklogKit` verwendet die bereits geprüfte Anfrage-Sperre aus `CardInteraction`, ohne einen Kartenauswahlmodus zu aktivieren. Anfragen warten auf den Server, doppelte ausstehende Eingaben werden blockiert, Offline-Eingaben werden nicht aufgestaut, und eine unbekannte Bestätigung verlangt bewusstes Neuladen des Spielstands. Entwürfe bleiben bei abgelehnten, weiterhin passenden Formularen erhalten. `pkForm` erhält dafür lediglich eine optionale `disabled`-Eigenschaft; bestehende Partyspiele verwenden ihren bisherigen Standard.
 
-Die drei neuen Spiele haben DE/EN-Beschriftungen und eigene Regeln. Technische IDs bleiben unverändert. Bestehende gemeinsame Altmeldungen können weiterhin unter „English (Beta)“ deutsch sein. Die neuen Oberflächen nutzen das bestehende Szenensystem und lokale SVG-Motive; es gibt keine neue Demo-Seite, zusätzliche Fotohintergründe oder 3D-Funktionen.
+Die sechs neuen Spiele haben DE/EN-Beschriftungen und eigene Regeln. Technische IDs bleiben unverändert. Bestehende gemeinsame Altmeldungen können weiterhin unter „English (Beta)“ deutsch sein. Die neuen Oberflächen nutzen das bestehende Szenensystem und lokale SVG-Motive; es gibt keine neue Demo-Seite, zusätzliche Fotohintergründe oder 3D-Funktionen.
 
-Die visuellen Pakete **VIS-055, VIS-059 und VIS-085 bleiben `planned`**. Sie sind jetzt als spielbar inventarisiert, aber ihr separates individuelles Redesign wird durch eine erste funktionierende Oberfläche nicht als erledigt ausgegeben. Alle 107 VIS-IDs bleiben stabil; sieben visuelle Pakete sind erledigt, 100 geplant. Keine V2-Funktionen wurden freigegeben oder umgesetzt.
+Die visuellen Pakete **VIS-055, VIS-056, VIS-057, VIS-059, VIS-084 und VIS-085 bleiben `planned`**. Sie sind jetzt als spielbar inventarisiert, aber ihr separates individuelles Redesign wird durch eine erste funktionierende Oberfläche nicht als erledigt ausgegeben. Alle 107 VIS-IDs bleiben stabil; sieben visuelle Pakete sind erledigt, 100 geplant. Keine V2-Funktionen wurden freigegeben oder umgesetzt.
 
 ## Tatsächliche Prüfungen
 
@@ -70,6 +108,6 @@ Zusätzlich sind alle 18 Größenaufnahmen im Manifest enthalten. Bilder von Han
 
 Implementierungscommit für BACKLOG-01: **[`69b46d6c98aaf5b9cc402a41782110f5386129c7`](https://github.com/TTLPSCWA/PokerAbend/commit/69b46d6c98aaf5b9cc402a41782110f5386129c7)**. Der folgende Nachweis-Commit verknüpft genau dieses bestehende Git-Objekt mit den tatsächlichen Quellhashes, 26 PNGs und Testergebnissen. Beide werden direkt auf `main` geführt.
 
-Die verbleibenden **38 Spiele** stehen unverändert mit ihren bestehenden IDs und Regeln im Backlog. `plan.json` hält den Gesamtauftrag als `in_progress` fest; weitere Spiele werden erst nach ihrer tatsächlichen Implementierung und Prüfung als fertig vermerkt. Die neun separat geplanten lokalen Solo-Spiele, die großen Projekte und die V2-Pakete gehören nicht zu dieser 41er-Rubrik.
+Die verbleibenden **35 Spiele** stehen unverändert mit ihren bestehenden IDs und Regeln im Backlog. `plan.json` hält den Gesamtauftrag als `in_progress` fest; weitere Spiele werden erst nach ihrer tatsächlichen Implementierung und Prüfung als fertig vermerkt. Die neun separat geplanten lokalen Solo-Spiele, die großen Projekte und die V2-Pakete gehören nicht zu dieser 41er-Rubrik.
 
 Pushes auf `main` starten den bestehenden Test-/GHCR-Workflow. Eine Image-Veröffentlichung ist kein Produktivdeployment. Auf dem Produktivserver werden in diesem Auftrag keine Befehle ausgeführt und keine Daten geändert.

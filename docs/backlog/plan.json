@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 3,
-  "remaining_count": 38,
+  "completed_count": 6,
+  "remaining_count": 35,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -59,6 +59,68 @@
         }
       ],
       "completed_at": "2026-10-31"
+    },
+    {
+      "id": "BACKLOG-02",
+      "games": [
+        "wuerfeljagd",
+        "monsterwuerfel",
+        "wuerfel-auktion"
+      ],
+      "status": "verified",
+      "implementation_commit": null,
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 955,
+          "failed": 0,
+          "duration_seconds": 47.61,
+          "log": "artifacts/backlog-dice-node.log"
+        },
+        {
+          "command": "node --test test/backlog-dice.test.js test/backlog-small.test.js test/game-visual-roadmap.test.js",
+          "passed": 28,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-dice.spec.js",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 1,
+          "duration_seconds": 40.2,
+          "log": "artifacts/backlog-dice-browser-release.log"
+        },
+        {
+          "command": "final npm test including fair multi-bot scheduling and permanent image verification",
+          "passed": 957,
+          "failed": 0,
+          "duration_seconds": 65.45,
+          "log": "artifacts/backlog-dice-release-node.log"
+        },
+        {
+          "command": "final new/previous backlog and visual inventory checks",
+          "passed": 30,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof-release.log"
+        },
+        {
+          "command": "playwright existing languages, bots, party programs and UI including all 55 registered games on desktop and touch",
+          "passed": 67,
+          "failed": 0,
+          "skipped": 1,
+          "duration_minutes": 8.1,
+          "log": "artifacts/backlog-dice-regression.log"
+        },
+        {
+          "command": "playwright single-player library catalog separation, desktop and touch",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 8.2,
+          "log": "artifacts/backlog-dice-solo-catalog.log"
+        }
+      ],
+      "completed_at": null
     }
   ],
   "games": [
@@ -368,20 +430,140 @@
     {
       "id": "wuerfeljagd",
       "name": "Würfeljagd",
-      "status": "planned",
-      "package_id": null,
+      "status": "verified",
+      "package_id": "BACKLOG-02",
       "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 955,
+          "failed": 0,
+          "duration_seconds": 47.61,
+          "log": "artifacts/backlog-dice-node.log"
+        },
+        {
+          "command": "node --test test/backlog-dice.test.js test/backlog-small.test.js test/game-visual-roadmap.test.js",
+          "passed": 28,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-dice.spec.js",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 1,
+          "duration_seconds": 40.2,
+          "log": "artifacts/backlog-dice-browser-release.log"
+        },
+        {
+          "command": "final npm test including fair multi-bot scheduling and permanent image verification",
+          "passed": 957,
+          "failed": 0,
+          "duration_seconds": 65.45,
+          "log": "artifacts/backlog-dice-release-node.log"
+        },
+        {
+          "command": "final new/previous backlog and visual inventory checks",
+          "passed": 30,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof-release.log"
+        },
+        {
+          "command": "playwright existing languages, bots, party programs and UI including all 55 registered games on desktop and touch",
+          "passed": 67,
+          "failed": 0,
+          "skipped": 1,
+          "duration_minutes": 8.1,
+          "log": "artifacts/backlog-dice-regression.log"
+        },
+        {
+          "command": "playwright single-player library catalog separation, desktop and touch",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 8.2,
+          "log": "artifacts/backlog-dice-solo-catalog.log"
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/dice/desktop/hunt-playing.png",
+        "docs/backlog/screenshots/dice/desktop/hunt-reveal.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfeljagd-1440x900.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfeljagd-1920x1080.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfeljagd-360x800.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfeljagd-390x844.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfeljagd-768x1024.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfeljagd-900x450.png",
+        "docs/backlog/screenshots/dice/mobil/hunt-playing.png",
+        "docs/backlog/screenshots/dice/mobil/hunt-reveal.png"
+      ]
     },
     {
       "id": "monsterwuerfel",
       "name": "Monsterwürfel",
-      "status": "planned",
-      "package_id": null,
+      "status": "verified",
+      "package_id": "BACKLOG-02",
       "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 955,
+          "failed": 0,
+          "duration_seconds": 47.61,
+          "log": "artifacts/backlog-dice-node.log"
+        },
+        {
+          "command": "node --test test/backlog-dice.test.js test/backlog-small.test.js test/game-visual-roadmap.test.js",
+          "passed": 28,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-dice.spec.js",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 1,
+          "duration_seconds": 40.2,
+          "log": "artifacts/backlog-dice-browser-release.log"
+        },
+        {
+          "command": "final npm test including fair multi-bot scheduling and permanent image verification",
+          "passed": 957,
+          "failed": 0,
+          "duration_seconds": 65.45,
+          "log": "artifacts/backlog-dice-release-node.log"
+        },
+        {
+          "command": "final new/previous backlog and visual inventory checks",
+          "passed": 30,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof-release.log"
+        },
+        {
+          "command": "playwright existing languages, bots, party programs and UI including all 55 registered games on desktop and touch",
+          "passed": 67,
+          "failed": 0,
+          "skipped": 1,
+          "duration_minutes": 8.1,
+          "log": "artifacts/backlog-dice-regression.log"
+        },
+        {
+          "command": "playwright single-player library catalog separation, desktop and touch",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 8.2,
+          "log": "artifacts/backlog-dice-solo-catalog.log"
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/dice/desktop/monster-cooperative.png",
+        "docs/backlog/screenshots/dice/desktop/monsterwuerfel-1440x900.png",
+        "docs/backlog/screenshots/dice/desktop/monsterwuerfel-1920x1080.png",
+        "docs/backlog/screenshots/dice/desktop/monsterwuerfel-360x800.png",
+        "docs/backlog/screenshots/dice/desktop/monsterwuerfel-390x844.png",
+        "docs/backlog/screenshots/dice/desktop/monsterwuerfel-768x1024.png",
+        "docs/backlog/screenshots/dice/desktop/monsterwuerfel-900x450.png",
+        "docs/backlog/screenshots/dice/mobil/monster-cooperative.png"
+      ]
     },
     {
       "id": "labyrinth-brett",
@@ -611,11 +793,72 @@
     {
       "id": "wuerfel-auktion",
       "name": "Würfel-Auktion",
-      "status": "planned",
-      "package_id": null,
+      "status": "verified",
+      "package_id": "BACKLOG-02",
       "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 955,
+          "failed": 0,
+          "duration_seconds": 47.61,
+          "log": "artifacts/backlog-dice-node.log"
+        },
+        {
+          "command": "node --test test/backlog-dice.test.js test/backlog-small.test.js test/game-visual-roadmap.test.js",
+          "passed": 28,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-dice.spec.js",
+          "passed": 7,
+          "failed": 0,
+          "skipped": 1,
+          "duration_seconds": 40.2,
+          "log": "artifacts/backlog-dice-browser-release.log"
+        },
+        {
+          "command": "final npm test including fair multi-bot scheduling and permanent image verification",
+          "passed": 957,
+          "failed": 0,
+          "duration_seconds": 65.45,
+          "log": "artifacts/backlog-dice-release-node.log"
+        },
+        {
+          "command": "final new/previous backlog and visual inventory checks",
+          "passed": 30,
+          "failed": 0,
+          "log": "artifacts/backlog-dice-proof-release.log"
+        },
+        {
+          "command": "playwright existing languages, bots, party programs and UI including all 55 registered games on desktop and touch",
+          "passed": 67,
+          "failed": 0,
+          "skipped": 1,
+          "duration_minutes": 8.1,
+          "log": "artifacts/backlog-dice-regression.log"
+        },
+        {
+          "command": "playwright single-player library catalog separation, desktop and touch",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 8.2,
+          "log": "artifacts/backlog-dice-solo-catalog.log"
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/dice/desktop/auction-private.png",
+        "docs/backlog/screenshots/dice/desktop/auction-reveal.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-1440x900.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-1920x1080.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-360x800.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-390x844.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-768x1024.png",
+        "docs/backlog/screenshots/dice/desktop/wuerfel-auktion-900x450.png",
+        "docs/backlog/screenshots/dice/mobil/auction-private.png",
+        "docs/backlog/screenshots/dice/mobil/auction-reveal.png"
+      ]
     },
     {
       "id": "turmbauer",
