@@ -117,6 +117,15 @@ function kitGame(def) {
   let panel = null;
   let fullLog = null; // ganzer Verlauf, wenn geladen
   const isMine = () => current === mod && S;
+  const cardTracker = def.cardUX ? CardInteraction.tracker() : null;
+  let reconnecting = false;
+  const actionGate = def.cardUX ? CardInteraction.gate(send, () => render(), () => !!(isMine() && socket.connected && !reconnecting && !S.gamePaused && S.phase === 'playing')) : null;
+  const command = (event, data = {}) => actionGate ? actionGate.run(event, data) : send(event, data);
+  function cards() {
+    if (!cardTracker || !S) return [];
+    const records = [...cardTracker.update(S)], key = def.sort?.[prefs['sort:' + def.id]];
+    return key ? records.sort((a,b) => { const x=key(a.card),y=key(b.card);return (x<y?-1:x>y?1:0)||a.index-b.index; }) : records;
+  }
 
   // Was „Ansehen“ zeigt: die Teile des Spiels (def.look) und die letzten Züge – alles aus dem öffentlichen Zustand
   function lookSheet(st) {
@@ -125,7 +134,7 @@ function kitGame(def) {
   mod.lookSheet = lookSheet;
 
   function mount() {
-    $('#game-root').innerHTML = I18n.html`<div id="kg" class="kg kg-${def.id}">
+    $('#game-root').innerHTML = I18n.html`<div id="kg" class="kg kg-${def.id}${def.cardUX ? ' cix-game' : ''}">
       <header class="topbar">
         <div class="top-left">
           ${homeButtonHTML()}
@@ -188,7 +197,12 @@ function kitGame(def) {
   const nameHTML = (p) => `${esc(p.name)}${p.isHost ? I18n.html` ${ICON.crown}<span class="sr-only">(Host)</span>` : ''}`;
   const statusText = (p) => [p.id === S.turnId && I18n.html('<em>am Zug</em>'), !p.connected && I18n.html`${ICON.offline} offline`,
     S.phase === 'playing' && !p.inRound && I18n.t('ab nächster Runde')].filter(Boolean).join(' · ');
-  const pClass = (p) => `${p.id === S.turnId ? 'turn' : ''} ${p.id === S.you?.id ? 'me' : ''} ${p.connected ? '' : 'is-offline'} ${S.phase === 'playing' && !p.inRound ? 'out' : ''}`;
+  const pClass = (p) => `${p.id === S.turnId ? 'turn' : ''} ${p.id === S.you?.id ? 'me' : ''} ${p.connected ? '' : 'is-offline'} ${S.phase === 'playing' && !p.inRound ? 'out' : ''} ${def.cardUX && p.eliminated ? 'eliminated' : ''}`;
+  function cardPlayerInfo(p) {
+    const tx=CardInteraction.tx, count=Number.isInteger(p.cards)?p.cards:0;
+    const extra=p.eliminated?tx('Ausgeschieden','Eliminated'):def.id==='stapelrennen'?`${tx('Spielstapel','Stock pile')}: <b>${p.stock ?? 0}</b>`:def.id==='zehnetappen'?`${tx('Phase','Phase')} ${p.phase ?? '–'} · ${p.laidDone?tx('✓ ausgelegt','✓ laid down'):tx('noch offen','not laid down')}`:'';
+    return `<span class="cix-opponent"><span class="cix-count ${def.id==='farbenchaos'&&count===1&&!p.eliminated?'last':''}" aria-label="${esc(p.name)} · ${count} ${count===1?tx('Handkarte','hand card'):tx('Handkarten','hand cards')}">${svg('<rect x="5" y="4" width="12" height="16" rx="2"/><path d="M9 2h10v15"/>')}<span data-hand-count="${esc(p.id)}">${count}</span> ${count===1?tx('Karte','card'):tx('Karten','cards')}${p.last&&def.id==='farbenchaos'?' · UNO!':''}</span>${extra?`<span>${extra}</span>`:''}</span>`;
+  }
 
   function seatHTML(p) {
     return `<div class="ks ${pClass(p)}" data-pid="${esc(p.id)}">
@@ -231,12 +245,12 @@ function kitGame(def) {
     const dir = def.direction !== false && S.phase === 'playing' && players.filter((p) => p.inRound).length > 2
       ? I18n.html`<div class="kp kp-watch" title="Spielrichtung"><small>${S.dir < 0 ? I18n.t('↺ andersherum') : I18n.t('↻ Richtung')}</small></div>` : '';
     return dir + players.map((p) => {
-      const info = infoOf(p, false);
+      const info = def.cardUX && S.phase !== 'lobby' ? cardPlayerInfo(p) : infoOf(p, false);
       const st = statusText(p);
       return `<div class="kp ${pClass(p)}" data-pid="${esc(p.id)}">
         <span class="kp-av" aria-hidden="true">${avatarHTML(p)}</span>
-        <span class="kp-txt"><b>${nameHTML(p)}</b>
-          <small>${st}${st && info ? ' · ' : ''}${info}</small>${bubble(p, 'kp-act')}</span>
+        <span class="kp-txt"><b>${nameHTML(p)}${def.cardUX&&p.id===S.you?.id?` <small>${CardInteraction.tx('(du)','(you)')}</small>`:''}</b>
+          <small>${st}${st && info && !def.cardUX ? ' · ' : ''}${def.cardUX?'':info}</small>${def.cardUX?info:''}${bubble(p, 'kp-act')}</span>
       </div>`;
     }).join('') + (watchers ? I18n.html`<div class="kp kp-watch"><small>${watchers} schau${watchers === 1 ? 't' : 'en'} zu</small></div>` : '')
       || I18n.html('<p class="hint" style="margin:0">Noch spielt niemand mit.</p>');
@@ -249,6 +263,7 @@ function kitGame(def) {
     const left = Math.max(0, Math.ceil((S.deadline - gameNow(S)) / 1000));
     el.textContent = I18n.html`noch ${left} s`;
     el.classList.toggle('urgent', left <= 10);
+    if (def.cardUX) $$('[data-cix-clock]').forEach((clock) => { clock.textContent = `${left} s`; });
   }
   setInterval(() => { if (isMine()) tickClock(); }, 1000);
 
@@ -282,12 +297,21 @@ function kitGame(def) {
     const help = I18n.html('<button class="help-btn" data-kit="help" aria-label="Kurzregeln und Hausregeln" title="Kurzregeln">?</button>');
     const center = S.phase === 'lobby' ? (def.lobby?.(S) || lobbyHTML()) : def.main(S, { ring });
     main.classList.toggle('has-program', !!S.partyProgram);
-    if (!def.keepMain?.(S)) main.innerHTML = GameDesign.backdrop(def.id) + help + programBannerHTML(S) + (ring ? ringHTML(center) : center) + (S.phase === 'over' && S.result && resultClosed !== S.roundNo ? resultHTML() : '');
+    if (!def.keepMain?.(S)) {
+      const html=GameDesign.backdrop(def.id)+help+programBannerHTML(S)+(ring?ringHTML(center):center)+(S.phase==='over'&&S.result&&resultClosed!==S.roundNo?resultHTML():'');
+      if(def.cardUX)CardInteraction.patch(main,html);else main.innerHTML=html;
+    }
 
     // Aktionsleiste
     const baseDockKey = def.dockKey ? def.dockKey(S, myTurn) : null;
     const dkey = baseDockKey === null ? null : `${baseDockKey}|${S.partyProgram?.status || ''}|${S.partyProgram?.index ?? ''}`;
-    if (dkey === null || dkey !== dockKeyPrev || !$('#kg-dock').firstChild) { $('#kg-dock').innerHTML = dockHTML(myTurn); dockKeyPrev = dkey; }
+    if (dkey === null || dkey !== dockKeyPrev || !$('#kg-dock').firstChild) { const html=dockHTML(myTurn);if(def.cardUX)CardInteraction.patch($('#kg-dock'),html);else $('#kg-dock').innerHTML=html;dockKeyPrev=dkey; }
+    if(def.cardUX){
+      const blocked=actionGate.busy||reconnecting||!socket.connected||S.gamePaused;
+      $('#kg').classList.toggle('cix-pending',actionGate.busy);$('#kg-dock').setAttribute('aria-busy',String(actionGate.busy));
+      if(blocked)$$('#kg [data-g],#kg .kg-sort').forEach((el)=>{if(el.matches('button,input,select'))el.disabled=true;});
+      tickClock();
+    }
     GameDesign.scaleCards($('#kg'));
     setupHand();
     document.documentElement.style.setProperty('--dock-h', $('#kg-dock').offsetHeight + 'px');
@@ -304,8 +328,10 @@ function kitGame(def) {
   // Hand nach dem Zeichnen: Ziehen auf die Ablage (Maus) und Überlappen bei vielen Karten (Handy)
   function setupHand() {
     const hand = $('#kg-dock .kg-hand');
-    if (FINE.matches && def.onDrop) $$('#kg [data-drag]').forEach((el) => { if (!el.disabled) el.draggable = true; });
+    if(def.cardUX)$$('#kg [data-card-key]').forEach((el)=>{el.draggable=!!(FINE.matches&&def.onDrop&&el.hasAttribute('data-drag')&&!el.disabled);});
+    else if (FINE.matches && def.onDrop) $$('#kg [data-drag]').forEach((el) => { if (!el.disabled) el.draggable = true; });
     if (!hand) return;
+    if (def.cardUX) { hand.classList.remove('overlap');hand.style.removeProperty('--ov');return; }
     const cards = [...hand.children];
     hand.classList.remove('overlap');
     hand.style.removeProperty('--ov');
@@ -369,7 +395,13 @@ function kitGame(def) {
     // hint() liefert HTML – Namen darin escapt das Spiel selbst
     const text = (def.hint && def.hint(S, myTurn)) || (myTurn ? I18n.t('Du bist dran') : I18n.html`${esc(nameOf(S.turnId))} ist dran`);
     const sortKey = prefs['sort:' + def.id] || 'none';
-    const sort = def.sort ? I18n.html`<button class="btn btn-sm btn-ghost kg-sort" data-kit="sort" title="Handkarten sortieren">Sortieren: ${{ none: 'aus', color: 'Farbe', number: 'Zahl' }[sortKey]}</button>` : '';
+    const sort = !def.sort ? '' : def.cardUX ? `<button class="btn btn-sm btn-ghost kg-sort" data-kit="sort" title="${CardInteraction.tx('Handkarten sortieren','Sort your hand')}">${CardInteraction.tx('Sortieren','Sort')}: ${{none:CardInteraction.tx('aus','off'),color:CardInteraction.tx('Farbe','colour'),number:CardInteraction.tx('Zahl','number')}[sortKey]}</button>` : I18n.html`<button class="btn btn-sm btn-ghost kg-sort" data-kit="sort" title="Handkarten sortieren">Sortieren: ${{ none: 'aus', color: 'Farbe', number: 'Zahl' }[sortKey]}</button>`;
+    if(def.cardUX){
+      const tx=CardInteraction.tx,own=S.phase==='playing'&&myTurn;
+      const title=reconnecting||!socket.connected?tx('Verbindung wird wiederhergestellt','Reconnecting'):S.gamePaused?tx('Spiel pausiert','Game paused'):actionGate.busy?tx('Warte auf Bestätigung','Waiting for confirmation'):S.phase==='over'?tx('Runde beendet','Round complete'):S.phase==='lobby'?tx('Warte auf Mitspieler','Waiting for players'):!S.you?.inRound?tx('Du schaust zu','You are watching'):own?tx('DU BIST DRAN','YOUR TURN'):esc(nameOf(S.turnId))+' '+tx('ist dran','is on turn');
+      const hint=actionGate.busy?tx('Die Aktion wird vom Server geprüft.','The server is checking your action.'):reconnecting||!socket.connected?tx('Warte auf den aktuellen Spielstand.','Waiting for the current game state.'):S.gamePaused?tx('Für alle angehalten. Der Host setzt das Spiel fort.','Paused for everyone. The host resumes the game.'):S.phase==='lobby'?tx('Der Host startet, sobald alle bereit sind.','The host starts when everyone is ready.'):!S.you?.inRound?tx('Verfolge die offenen Züge und Kartenzahlen.','Follow public moves and card counts.'):text;
+      return `<div class="cix-turn ${own&&!S.gamePaused&&!reconnecting?'is-mine':''}" data-turn-state="${reconnecting?'reconnecting':S.gamePaused?'paused':own?'mine':'waiting'}"><div role="status" aria-live="polite" aria-atomic="true"><strong>${title}</strong><small>${hint}</small></div>${S.deadline?'<span class="cix-clock" data-cix-clock aria-live="off"></span>':''}${sort}</div>${actionGate.error?`<div class="cix-error" role="alert">${esc(actionGate.error)}${actionGate.uncertain?` <button type="button" class="btn" data-kit="resync">${tx('Spielstand neu laden','Refresh game state')}</button>`:''}</div>`:''}`;
+    }
     return `<div class="kg-hint-row"><p class="kg-hint ${myTurn ? 'mine' : ''}" aria-live="polite">${text}</p>${sort}</div>`;
   }
 
@@ -398,6 +430,7 @@ function kitGame(def) {
       if (S.phase === 'over') parts.push(`<button class="btn" data-kit-panel="host">${programRunning(S) ? I18n.t('Programm verwalten') : I18n.t('Anderes Spiel …')}</button>`);
     }
     const row = `<div class="kg-dock-row">${parts.join('')}</div>`;
+    if(def.cardUX)return `<div class="kg-dock-in">${hintRow(myTurn)}${watch}${row}</div>`;
     return watch ? `<div class="kg-dock-in">${watch}${row}</div>` : row;
   }
 
@@ -500,7 +533,7 @@ function kitGame(def) {
       return;
     }
     // Überlappende Hand auf dem Handy: erstes Tippen vergrößert die Karte, zweites spielt sie
-    if (def.peek && t.dataset.peek && t.closest('.kg-hand.overlap') && peekKey !== t.dataset.peek) {
+    if (!def.cardUX && def.peek && t.dataset.peek && t.closest('.kg-hand.overlap') && peekKey !== t.dataset.peek) {
       peekKey = t.dataset.peek;
       $$('#kg-dock .kg-hand .peek').forEach((x) => x.classList.remove('peek'));
       t.classList.add('peek');
@@ -509,6 +542,7 @@ function kitGame(def) {
     peekKey = null;
     const k = t.dataset.kit;
     if (k === 'close') openPanel(null);
+    else if(k==='resync'&&def.cardUX){socket.disconnect();socket.connect();}
     else if (k === 'closeResult') { resultClosed = S.roundNo; render(); }
     else if (k === 'switchPanel') { resultClosed = S.roundNo; openPanel('host', true); render(); $('#switch-game')?.focus(); }
     else if (k === 'sort') {
@@ -532,7 +566,10 @@ function kitGame(def) {
       const link = I18n.html`${location.origin}/?t=${S.code}`;
       try { await navigator.clipboard.writeText(link); toast(I18n.t('Link kopiert – schick ihn in eure Gruppe')); }
       catch { ask({ title: I18n.t('Einladungslink'), text: I18n.t('Kopieren hat nicht geklappt. Markier den Link und kopier ihn selbst.'), ok: I18n.t('Fertig'), input: { value: link, readOnly: true, noCancel: true, label: I18n.t('Einladungslink') } }); }
-    } else if (t.dataset.g !== undefined) def.onClick?.(t, S, e);
+    } else if (t.dataset.g !== undefined) {
+      if(def.cardUX&&(actionGate.busy||reconnecting||!socket.connected||S.gamePaused))return;
+      def.onClick?.(t,S,e);
+    }
   });
   // Karte auf ein Ziel ziehen (nur mit Maus): Quelle trägt data-drag, Ziel data-drop
   let dragEl = null;
@@ -540,24 +577,29 @@ function kitGame(def) {
     if (!isMine() || !def.onDrop) return;
     dragEl = e.target.closest?.('#kg [data-drag]');
     if (!dragEl) return;
+    if(def.cardUX&&(dragEl.disabled||actionGate.busy||reconnecting||!socket.connected||S.gamePaused)){e.preventDefault();dragEl=null;return;}
+    if(def.cardUX){def.onDragStart?.(dragEl,S);render();}
+    if(def.cardUX)dragEl.classList.add('cix-dragging');
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/plain', dragEl.dataset.drag);
-    $$('#kg [data-drop]').forEach((z) => z.classList.add('drop-ok'));
+    $$('#kg [data-drop]').forEach((z) => {if(!def.canDrop||def.canDrop(dragEl,z,S))z.classList.add('drop-ok');});
   });
-  document.addEventListener('dragend', () => { dragEl = null; $$('#kg .drop-ok, #kg .drag-over').forEach((z) => z.classList.remove('drop-ok', 'drag-over')); });
+  const clearDrag=()=>{dragEl=null;$$('#kg .drop-ok,#kg .drag-over,#kg .cix-dragging').forEach((z)=>z.classList.remove('drop-ok','drag-over','cix-dragging'));};
+  document.addEventListener('dragend',()=>{clearDrag();if(def.cardUX&&isMine()){def.onDragEnd?.();render();}});
   document.addEventListener('dragover', (e) => {
     const z = dragEl && e.target.closest?.('#kg [data-drop]');
-    if (!z) return;
+    if (!z||def.cardUX&&(!dragEl.isConnected||S.gamePaused||actionGate.busy||!def.canDrop?.(dragEl,z,S)))return;
     e.preventDefault();
     $$('#kg .drag-over').forEach((x) => x !== z && x.classList.remove('drag-over'));
     z.classList.add('drag-over');
   });
   document.addEventListener('drop', (e) => {
     const z = dragEl && e.target.closest?.('#kg [data-drop]');
-    if (!z) return;
+    if (!z||def.cardUX&&(!dragEl.isConnected||S.gamePaused||actionGate.busy||!def.canDrop?.(dragEl,z,S))){if(def.cardUX)clearDrag();return;}
     e.preventDefault();
     const src = dragEl;
     dragEl = null;
+    if(def.cardUX)clearDrag();
     def.onDrop(src, z, S);
   });
 
@@ -574,9 +616,14 @@ function kitGame(def) {
     else if (t.closest?.('#kg') && t.dataset?.g !== undefined) def.onChange?.(t, S, e);
   });
   document.addEventListener('keydown', (e) => {
+    if(def.cardUX&&isMine()&&['ArrowLeft','ArrowRight','Home','End'].includes(e.key)&&e.target.closest('.kg-hand [data-card-key]')){
+      const hand=$$('#kg-dock .kg-hand [data-card-key]'),i=hand.indexOf(e.target.closest('[data-card-key]')),next=e.key==='Home'?0:e.key==='End'?hand.length-1:Math.max(0,Math.min(hand.length-1,i+(e.key==='ArrowLeft'?-1:1)));e.preventDefault();hand[next]?.focus({preventScroll:true});hand[next]?.scrollIntoView({block:'nearest',inline:'nearest'});return;
+    }
     if (!isMine() || e.key !== 'Escape' || $('#dlg').open) return;
     if (panel) openPanel(null);
+    else if(def.cardUX){def.onClear?.();clearDrag();render();}
   });
+  if(def.cardUX)socket.on('disconnect',()=>{if(isMine()){reconnecting=true;actionGate.invalidate();def.onClear?.();clearDrag();render();}});
   document.addEventListener('visibilitychange', () => { if (!document.hidden && isMine()) document.title = 'Spieleabend'; });
 
   // Hand nur im Browser sortieren – gespielt wird über den Kartenwert bzw. die Karten-ID, nicht die Position
@@ -607,22 +654,23 @@ function kitGame(def) {
       else if (prev?.phase === 'playing' && st.phase === 'over') cue = st.result?.winners?.includes(st.you?.id) ? 'win' : 'end';
       else if (prev && prev.roundNo === st.roundNo) cue = def.sounds?.(st, prev) || actSound(st.acts, prev.acts);
       if (cue) GameDesign.sound(def.id, cue);
-      sortHand(st);
+      if(def.cardUX){cardTracker.update(st);reconnecting=!socket.connected;if(prev&&CardInteraction.context(prev)!==CardInteraction.context(st))clearDrag();}else sortHand(st);
       def.onState?.(st, prev);
       render();
       if (cue) GameDesign.pulse($('#kg'), cue);
       // Neues Rundenende: Fokus ins Ergebnisfenster (Tastatur, Bildschirmleser)
       if (st.phase === 'over' && prev?.phase === 'playing') $('#kg .kg-over .btn-brass, #kg .kg-over .btn')?.focus();
     },
-    onPrefs() { dockKeyPrev = null; if (S) sortHand(S); render(); if (panel) { $('#kg-panel-title').textContent = I18n.t(TITLES[panel]); renderPanel(true); } },
+    onPrefs() { dockKeyPrev = null; if (S&&!def.cardUX) sortHand(S); render(); if (panel) { $('#kg-panel-title').textContent = I18n.t(TITLES[panel]); renderPanel(true); } },
   });
   registerGame(def.id, mod);
-  return { render, get S() { return S; }, lookSheet };
+  return { render, get S() { return S; }, lookSheet, command, cards, get busy(){return !!actionGate?.busy;} };
 }
 
 // ---------- Ablegespiele (Mau-Mau, UNO): gleiche Bedienung, andere Karten ----------
 // opts: { id, name, rules, card(c, extra) → HTML, wishes: [[Wert, Beschriftung, Klasse]], wishLabel, lastWord }
 function kitShedding(opts) {
+  if(opts.cardUX)return kitSafeShedding(opts);
   let wishFor = null; // Karte, für die gerade eine Farbe gewählt wird
   let targetFor = null, chosenTarget = null;
   let callArmed = false; // „Mau“/„UNO“ für den nächsten Zug angesagt

@@ -1,0 +1,34 @@
+{
+  "game": "farbenchaos",
+  "project": "mobil",
+  "initial": {
+    "hand": [
+      "5r",
+      "3b",
+      "6y",
+      "4g",
+      "Ww",
+      "1y",
+      "5y"
+    ],
+    "playable": [
+      "4g",
+      "Ww"
+    ]
+  },
+  "observed": {
+    "hand": [
+      "5r",
+      "3b",
+      "6y",
+      "4g",
+      "Ww",
+      "1y",
+      "5y"
+    ],
+    "selected": 1,
+    "pressed": 0,
+    "enabledBuilds": 0,
+    "overlap": true
+  }
+}

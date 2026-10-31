@@ -81,3 +81,7 @@ Hauptimplementierung: `852d2e1112281dc3cc6f0ee3826955c997b4df64`. Letzte Absiche
 Die bestehende Kennzeichnung „English (Beta)“ gilt weiterhin für bisherige Detailregeln; neue Variantenbeschreibungen und Themenbeschriftungen sind zweisprachig. Serverneustarts nutzen unverändert die bestehende Snapshotstrategie zwischen Runden. Weitere Spiele und die historische V2-Planung bleiben außerhalb dieses Auftrags.
 
 Vor dem Push werden Remote-Stand und bekannte Automatik geprüft. Der vorhandene GitHub-Workflow führt Tests mit Node 22 aus und veröffentlicht das GHCR-Image. Kein eigenständiger Produktivdeploy und keine Änderungen an produktiven Daten. Nach diesem UNO-Auftrag wird kein weiteres Paket begonnen.
+
+## Späterer Bedienungsauftrag
+
+[Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt anschließend für alle fünf UNO-Welten die sichere Auswahl mit ausdrücklicher Bestätigung. Designs, Kartenmaterialien und Spielregeln dieses historischen UNO-Ultimate-Stands bleiben erhalten; die neue Bedienung hat eigene Tests und Bildnachweise.

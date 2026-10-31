@@ -80,3 +80,5 @@ Der bekannte Workflow `.github/workflows/docker.yml` führt bei einem Push auf `
 ## Späterer UNO-Folgeauftrag
 
 Dieser Bericht und seine Bilder dokumentieren den historischen Kartenwelten-Stand `84cccbc`. UNO wurde anschließend ausdrücklich allein mit fünf Themen und der Spuknacht-Variante weiterentwickelt: [UNO Ultimate / Spuknacht](UNO_ULTIMATE_REDESIGN.md). Die hier dokumentierten Skip-Bo- und Phase-10-Oberflächen wurden dabei nicht verändert.
+
+Der spätere Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) überarbeitet die Bedienung aller drei Piloten einschließlich ihrer Varianten. Die ursprünglichen Designs und historischen Bildnachweise bleiben erhalten; sichere Auswahl, bestätigte Aktionen, Status und neue Vorher-/Nachher-Abnahme sind separat dokumentiert.

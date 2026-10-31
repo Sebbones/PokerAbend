@@ -1,0 +1,500 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-31",
+  "authority": "Expliziter Nutzerauftrag Card Interaction UX Overhaul V1. Genau drei Piloten implementieren; die übrigen registrierten Kartenspiele ausschließlich analysieren und einzeln planen.",
+  "scope_policy": "Keine weitere Karten-UX-Implementierung ohne neue ausdrückliche Freigabe. CUX ist ein eigener Interaktionsplan und ändert keine geplanten VIS-/V2-Umsetzungsstände.",
+  "inventory": {
+    "registered_card_games": [
+      "poker",
+      "maumau",
+      "farbenchaos",
+      "zehnetappen",
+      "stapelrennen",
+      "schwimmen",
+      "blackjack",
+      "mogeln",
+      "praesident",
+      "durak",
+      "omaha",
+      "sechs-nimmt",
+      "monopoly-deal"
+    ],
+    "registered_count": 13,
+    "authorized_pilots": 3,
+    "planned_followups": 10
+  },
+  "references": [
+    "docs/design/CARD_INTERACTION_UX.md",
+    "docs/design/GAME_VISUAL_GUIDELINES.md",
+    "docs/design/game-visual-roadmap.json",
+    "games/index.js"
+  ],
+  "packages": [
+    {
+      "id": "CUX-001",
+      "game_id": "farbenchaos",
+      "game_name": "UNO",
+      "status": "in_progress",
+      "requires_separate_authorization": false,
+      "related_visual_package": "VIS-004",
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-002",
+      "game_id": "stapelrennen",
+      "game_name": "Skip-Bo",
+      "status": "in_progress",
+      "requires_separate_authorization": false,
+      "related_visual_package": "VIS-009",
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-003",
+      "game_id": "zehnetappen",
+      "game_name": "Phase 10",
+      "status": "in_progress",
+      "requires_separate_authorization": false,
+      "related_visual_package": "VIS-008",
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-004",
+      "game_id": "maumau",
+      "game_name": "Mau-Mau",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-003",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/maumau/maumau.js",
+          "sha256": "8feff11be6d7ef5ddaaefd767289ea1fd15a700b76f81336f082cb4cfeabd182"
+        }
+      ],
+      "current_interaction": "kitShedding spielt normale Karten sofort. Auf überlappenden Mobilhänden wird zuerst vergrößert, danach gespielt. Farbwahl ist ein zusätzlicher Zustand; Handkarten werden nach Wert adressiert.",
+      "findings": [
+        "Desktop-Klick und mobiler Ersttipp haben unterschiedliche Folgen.",
+        "Ein erneuter Tipp kann einen Zug auslösen, statt die Auswahl aufzuheben.",
+        "Auswahl ist hauptsächlich eine Farbwahl-Vorbereitung; der allgemeine Auswahlzustand hat kein aria-pressed."
+      ],
+      "proposal": [
+        "Den sicheren Shedding-Adapter nur nach eigener Freigabe übernehmen.",
+        "Französisches/deutsches Blatt, Bube-Wunsch, Ziehstapeln und Mau-Meldungen unverändert lassen.",
+        "Spielbare Karte auswählen, passende Ablage beziehungsweise explizites Ausspielen bestätigen; Wunsch separat."
+      ],
+      "acceptance_criteria": [
+        "Derselbe normale Klick wählt auf Desktop und Touch nur aus.",
+        "Bube wird erst nach ausdrücklich gewählter Farbe gespielt.",
+        "Beide Blätter, Stapeln, Nachziehen und Mau-Regeln bleiben erhalten."
+      ],
+      "shared_components": "Kit, deckCard/DECK, kitShedding; vorhandenes Desktop-DnD auf die Ablage.",
+      "opponent_information": "Die öffentliche Restkartenzahl und der aktive Spieler sind vorhanden, aber nur als kleine Zusatzzeilen. Nicht die Hand anderer Spieler als Vorschau verwenden.",
+      "priority": "P1",
+      "effort_hours": {
+        "min": 4,
+        "max": 7
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-005",
+      "game_id": "durak",
+      "game_name": "Durak",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-023",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/durak/durak.js",
+          "sha256": "9604b94aab0aebaa72ab130f523a99b32d14c6472c0753bacea69e081c8c1ee0"
+        }
+      ],
+      "current_interaction": "Angriff: Karte wählen und Angreifen. Verteidigung: Karte wählen und Angriffskarte antippen; bei genau einem offenen Angriff spielt ein zweiter Tipp auf dieselbe Handkarte sofort.",
+      "findings": [
+        "Der erneute Tipp ist abhängig von der Anzahl offener Angriffe entweder Abwählen oder Verteidigen.",
+        "Angriffsknöpfe erhalten bei irgendeiner Auswahl einen Handler, auch wenn beats() für die gewählte Karte false ergibt.",
+        "Auswahl wird vor der Serverantwort gelöscht."
+      ],
+      "proposal": [
+        "Wiederholter Kartentipp soll immer nur abwählen; Verteidigung benötigt ein ausdrücklich gewähltes Angriffsziel.",
+        "Nur mit beats() kompatible Ziele aktivieren und die Rollen Angreifer/Verteidiger/Taking deutlich trennen.",
+        "Quelle bis zur Serverbestätigung erhalten; Aufnehmen und Genug bleiben eigenständige Aktionen."
+      ],
+      "acceptance_criteria": [
+        "Eine einzelne offene Angriffskarte bewirkt keinen Sonderfall beim Abwählen.",
+        "Ungültiges Verteidigungsziel sendet keinen Zug.",
+        "Trumpf, Rollenwechsel, Nachwerfen und Aufnehmen behalten ihre Serverregeln."
+      ],
+      "shared_components": "Kit und frenchCard, eigene sortHand/sel/Beats-Anzeige; kein eigener DnD-Adapter.",
+      "opponent_information": "Kartenzahl und Rolle sind öffentlich vorhanden. Beide Rollen und Nachwerfberechtigung müssen den Status bestimmen; kein pauschaler UNO-Zugstatus.",
+      "priority": "P1",
+      "effort_hours": {
+        "min": 6,
+        "max": 10
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-006",
+      "game_id": "sechs-nimmt",
+      "game_name": "6 nimmt!",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-044",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/sechs-nimmt/sechs-nimmt.js",
+          "sha256": "f025f31667e4f734bc7da00adb00e0ac092e8a1565f0cde67b9613fcfe4c8681"
+        }
+      ],
+      "current_interaction": "Ein Klick auf eine Handkarte sendet choose unmittelbar. Der Server bindet diese verdeckte Auswahl; ein zweiter choose wird abgelehnt. Reihenwahl ist ein eigener bestätigender Knopf.",
+      "findings": [
+        "Ein versehentlicher erster Klick bindet eine unwiderrufliche verdeckte Karte.",
+        "Es fehlt eine lokale Vorschau-/Abwahlstufe vor choose.",
+        "Öffentliche Kartenzahl wird im Bereit-Zustand durch das Bereit-Häkchen ersetzt."
+      ],
+      "proposal": [
+        "Lokale Zahl auswählen und erst mit Verdeckt bestätigen senden.",
+        "Status gleichzeitig für alle Unfertigen anzeigen, danach Warten und Aufdecken unterscheiden.",
+        "Öffentliche Restkartenzahl neben bereit/nicht bereit erhalten; weder gegnerische Werte noch eine absehbare Zuordnung des Kartenpools verraten."
+      ],
+      "acceptance_criteria": [
+        "Vor Bestätigung bleibt chosen auf dem Server leer.",
+        "Nach Bestätigung ist keine Änderung vorgetäuscht möglich.",
+        "Reihenwahl, Profi/Taktik, Gleichzeitigkeit und automatische Timerwahl bleiben korrekt."
+      ],
+      "shared_components": "Kit und eigener Zahlenrenderer, eigener pick/row/reveal-Ablauf; kein DnD.",
+      "opponent_information": "Die Auswahlphase ist simultan. Ein einzelner turnId reicht als Zugstatus nicht aus; ready ist für jeden Spieler separat öffentlich.",
+      "priority": "P1",
+      "effort_hours": {
+        "min": 5,
+        "max": 8
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-007",
+      "game_id": "schwimmen",
+      "game_name": "Schwimmen",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-010",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/schwimmen/schwimmen.js",
+          "sha256": "6dfb7a9e8a5ef038aaf4313accd6b1ce1ec8ae4ef74ae0e473c87f6350f1d0a8"
+        }
+      ],
+      "current_interaction": "Eine Quelle aus Hand oder Mitte wählen, danach eine Karte der anderen Seite antippen und sofort tauschen. Alle drei tauschen, Schieben und Klopfen sind eigene Knöpfe.",
+      "findings": [
+        "Die Quelle wird nur über Seite und Index gehalten; eine passende Handänderung bei gleichem Zug kann diese Referenz verschieben.",
+        "Auswahl hat eine visuelle sel-Klasse, aber kein aria-pressed.",
+        "Tauschauswahl wird vor Bestätigung gelöscht; Status zu letzter Runde/Klopfen ist hauptsächlich Fließtext."
+      ],
+      "proposal": [
+        "Einzeltausch mit zustandsgebundenem Quellschlüssel und beschriftetem Mittelkarten-Ziel vereinheitlichen.",
+        "Bestehenden zweiten Zielschritt erhalten; nicht noch eine unnötige Bestätigung nach jedem Ziel erzwingen.",
+        "Klopfen/letzte Runde und Leben prominent machen; die immer drei Karten nicht als schrumpfendes UNO-Ziel darstellen."
+      ],
+      "acceptance_criteria": [
+        "Hand-/Mitte-Updates verwerfen ungültige Quellen zuverlässig.",
+        "Klick, Touch und optionales DnD tauschen dieselben zwei Karten.",
+        "Alle drei tauschen, Leben und Klopfen bleiben unverändert."
+      ],
+      "shared_components": "Kit, deckCard und eigener sel; vorhandenes Hand-zu-Mitte-DnD.",
+      "opponent_information": "Gegnerinformationen sind Leben/Badges, keine frei einsehbaren Handwerte. Kartenzahl ist hier kein Fortschrittsziel.",
+      "priority": "P2",
+      "effort_hours": {
+        "min": 4,
+        "max": 7
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-008",
+      "game_id": "mogeln",
+      "game_name": "Mogeln",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-021",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/mogeln/mogeln.js",
+          "sha256": "ccbd7a9a6c8f72faa7b8e5a5d2864f4942fcdb3867cd3971a0a6398419c3093e"
+        }
+      ],
+      "current_interaction": "Mehrere Karten über Set auswählen, dann als geforderten Rang ablegen. Mogeln! ist ein separates Reaktionsfenster. Volle Kartenwerte dienen als eindeutige Schlüssel im einzelnen Deck.",
+      "findings": [
+        "Auswahlklassen haben keine aria-pressed-Semantik oder Auswahlreihenfolge.",
+        "play leert die Auswahl vor dem Server-Ack.",
+        "Ein generischer Spielbarkeitsfilter nach ehrlichem Kartenrang wäre für den Bluffmechanismus falsch."
+      ],
+      "proposal": [
+        "Mehrfachauswahl mit Zähler, Abwahl und gut lesbarem Rang-/Mengenhinweis verbessern.",
+        "Bestätigung abwarten und das erlaubte Anklagefenster unabhängig vom normalen Zug anzeigen.",
+        "Keine ehrlichen/bluffenden Karten als richtig oder falsch markieren; Karteninhalte bleiben bis zum regelkonformen Aufdecken geheim."
+      ],
+      "acceptance_criteria": [
+        "Sowohl ehrliche als auch gebluffte Mengen lassen sich ausdrücklich bestätigen.",
+        "Abgelehntes Ablegen erhält die Auswahl.",
+        "Reaktionsfenster und zulässige Kartenhöchstmenge bleiben erhalten."
+      ],
+      "shared_components": "Kit, frenchCard und eigener sortHand/Mehrfachauswahl; kein DnD.",
+      "opponent_information": "Öffentliche Restkartenzahl ist vorhanden. Keine zusätzlichen Werte aus fremden Händen oder unberechtigt aus dem Stapel anzeigen.",
+      "priority": "P2",
+      "effort_hours": {
+        "min": 5,
+        "max": 8
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-009",
+      "game_id": "praesident",
+      "game_name": "Präsident",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-022",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/praesident/praesident.js",
+          "sha256": "c5f5787dd6ab6551cf15e0ad1230b7b9edd140926f1e39b50b502a0be4d312d6"
+        }
+      ],
+      "current_interaction": "Karten gleichen Rangs auswählen, danach mit Mengenknopf ablegen. Ein anderer Rang ersetzt die Auswahl. Passen ist separat.",
+      "findings": [
+        "Die vorhandene sichere Zweistufigkeit ist sinnvoll, aber aria-pressed fehlt.",
+        "Die Auswahl wird bei play vor dem Server-Ack gelöscht.",
+        "passt()/fits() und Mindestmengen werden nur über Farbe/Umrandung sowie einen deaktivierten Knopf vermittelt."
+      ],
+      "proposal": [
+        "Mehrfachauswahl nach Rang erhalten, Auswahlzähler und verständlichen Mengen-/Ranggrund ergänzen.",
+        "Bestätigungs-/Fehlerzustand ohne vorzeitiges Löschen ergänzen.",
+        "Restkarten und erreichten Platz gemeinsam anzeigen; keine erzwungene Einzelkartenauswahl."
+      ],
+      "acceptance_criteria": [
+        "Paare/Drillinge bleiben Mehrfachauswahlen und werden nicht einzeln gespielt.",
+        "Unzulässige Anzahl und zu niedriger Rang sind verständlich erkennbar.",
+        "Passen, Platzierung und nächste Runde bleiben erhalten."
+      ],
+      "shared_components": "Kit und frenchCard, eigener Rang-Set-Renderer; kein DnD.",
+      "opponent_information": "Nach dem Ausspielen aller Karten wird im Spielertext primär der Platz gezeigt; der Plan soll Platz und öffentlichen Rest klar kombinieren.",
+      "priority": "P2",
+      "effort_hours": {
+        "min": 4,
+        "max": 7
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-010",
+      "game_id": "monopoly-deal",
+      "game_name": "Monopoly Deal",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-045",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/monopoly-deal/monopoly-deal.js",
+          "sha256": "cc4accba2da555dc6ce571c57617d7e54b232852cc2a1c0180385ecd01a6cd28"
+        }
+      ],
+      "current_interaction": "Kartentipp öffnet bereits einen Detaildialog. Bank, Grundstück und Aktion haben ausdrücklich beschriftete Knöpfe. Zahlung, Just-Say-No und Umordnen sind eigene Dialogabläufe.",
+      "findings": [
+        "act() schließt den Kartendialog vor der Serverantwort.",
+        "Abwurf nutzt eine sel-Klasse ohne aria-pressed auf den Karten.",
+        "Reaktions-/Zahlungsstatus und regulärer aktiver Spieler sind unterschiedliche Rollen."
+      ],
+      "proposal": [
+        "Die gute Detail-/Bestätigungsstufe erhalten, den Dialog bei Ablehnung mit Auswahlwerten wiederherstellen.",
+        "Für das Abwerfen eindeutige Kartenwahl, Restmenge und Bestätigung ergänzen.",
+        "Actor, responder, Aktionsbudget und Bank/Auslage als getrennte Begriffe beibehalten."
+      ],
+      "acceptance_criteria": [
+        "Bankwert und ausgespielte Aktion lassen sich niemals durch bloßen Kartentipp verwechseln.",
+        "Fehler verliert keine gewählten Ziel-/Farb-/Satzwerte.",
+        "Zahlungen, Reaktionsketten, volle Sätze und Joker bleiben serverautoritativ."
+      ],
+      "shared_components": "Kit plus md-dialog, cards.js-Regeln und eigene Dialoglistener; kein generisches Karten-DnD erzwingen.",
+      "opponent_information": "Handkarten, Geld und vollständige Sätze sind getrennte öffentliche Größen; private Handkarten anderer bleiben verborgen.",
+      "priority": "P2",
+      "effort_hours": {
+        "min": 8,
+        "max": 14
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-011",
+      "game_id": "blackjack",
+      "game_name": "Blackjack",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-011",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/blackjack/blackjack.js",
+          "sha256": "6ce31dc402d61f7465e175e6df818fc6d5d250197b548f32e86fc07e30a0c2b1"
+        }
+      ],
+      "current_interaction": "Karten sind Anzeigen, keine auszuspielenden Handobjekte. Der Spieler setzt und wählt Hit/Stay/Double/Split oder Versicherung über explizite Aktionsknöpfe.",
+      "findings": [
+        "Knöpfe senden ohne sichtbaren gemeinsamen Pending-Zustand.",
+        "Bei geteilten Händen ist die aktive handIdx vor allem über die now-Klasse erkennbar.",
+        "Eine Karten-Ausspiel-/Drag-Logik wäre für dieses Spiel sachlich falsch."
+      ],
+      "proposal": [
+        "Nur gemeinsamen Status und Aktionssperre prüfen und gegebenenfalls angepasst übernehmen.",
+        "Aktive geteilte Hand als Hand 1/2 mit Entscheidungshinweis beschriften.",
+        "Betragsentwurf und Split-/Versicherungsentscheidung bei passenden Updates erhalten."
+      ],
+      "acceptance_criteria": [
+        "Kein Kartenausspielen oder Karten-Drag wird eingeführt.",
+        "Mehrfachklick auf Hit/Double erzeugt während Pending keine zweite Anfrage.",
+        "Dealer-Hole-Card, Insurance und Split-/Double-Rechte bleiben unverändert."
+      ],
+      "shared_components": "Kit und eigener Einsatz-/Split-Renderer, explizite Blackjack-Aktionen.",
+      "opponent_information": "Offene Hände und verdeckte Dealer-Karte haben andere Regeln als fremde UNO-Hände. Spielstände/Chips sind wichtiger als Restkarten-Badges.",
+      "priority": "P3",
+      "effort_hours": {
+        "min": 4,
+        "max": 7
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-012",
+      "game_id": "poker",
+      "game_name": "Texas Hold'em",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-002",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/poker/poker.js",
+          "sha256": "08c585e3efc39724c96dfa1158af13ef58730bb02a1e882a2f5ce5ea919ced77"
+        }
+      ],
+      "current_interaction": "Hole-Cards werden angezeigt. Fold/Check/Call/Raise sind eigene Aktionen; Raise hat einen lokalen Betragsentwurf, Aktionen haben bereits eindeutige IDs, Fold statt kostenlosem Check fragt nach.",
+      "findings": [
+        "doAction() sendet ohne sichtbare gemeinsame Pending-Sperre; vorhandene Aktions-IDs ersetzen nicht die Rückmeldung während einer laufenden Anfrage.",
+        "Zugstatus liegt primär in Header/Tischmarkern und kann am mobilen Betragseditor weniger präsent sein.",
+        "Kartenauswahl ist weder erforderlich noch eine passende Übernahme des UNO-Adapters."
+      ],
+      "proposal": [
+        "Eigenen Poker-Rahmen behalten und nur Status/Pending gezielt prüfen.",
+        "Raise-Entwurf, erlaubten Betrag, Einsatz und All-in klar zusammenhalten.",
+        "Tastenkürzel müssen dieselbe Pending-Sperre wie Knöpfe nutzen; bestehende IDs und Fold-Bestätigung erhalten."
+      ],
+      "acceptance_criteria": [
+        "Keine freie Hole-Card-Auswahl und kein Karten-DnD ergänzen.",
+        "Betragsentwurf bleibt bei unveränderten Limits stabil.",
+        "Side-Pots, All-in, verdeckte Hände und Check/Fold-Entscheidung bleiben korrekt."
+      ],
+      "shared_components": "Eigener Poker-Renderer, kein kitGame; core send(), bestehende newId()/doAction().",
+      "opponent_information": "Gegnerinformationen sind Stack, Einsatz, Fold/All-in und Position. Nicht das UNO-Restkarten-Modell auf Poker übertragen.",
+      "priority": "P3",
+      "effort_hours": {
+        "min": 6,
+        "max": 10
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    },
+    {
+      "id": "CUX-013",
+      "game_id": "omaha",
+      "game_name": "Omaha",
+      "status": "planned",
+      "requires_separate_authorization": true,
+      "related_visual_package": "VIS-024",
+      "assessment": "source_audit",
+      "analysis_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+      "source_audit": [
+        {
+          "path": "public/games/poker/poker.js",
+          "sha256": "08c585e3efc39724c96dfa1158af13ef58730bb02a1e882a2f5ce5ea919ced77"
+        }
+      ],
+      "current_interaction": "Die eigene technische Spiel-ID nutzt über GAME_FILES.omaha denselben Poker-Renderer. Vier Hole-Cards und Pot-Limit unterscheiden die Aufgabe; genau zwei eigene Karten zählen bei der Wertung.",
+      "findings": [
+        "Die vier eigenen Karten erhöhen die mobile Dichte im selben Betrags-/Aktionsbereich.",
+        "Pot-Limit-Maximum und genau-zwei-Regel brauchen einen eigenen Hinweis, keinen scheinbaren Kartenauswahlmodus.",
+        "Gemeinsame Poker-Änderungen könnten Omaha unbeabsichtigt treffen."
+      ],
+      "proposal": [
+        "Als eigenes Prüf-/Abnahmepaket am gemeinsamen Poker-Rahmen führen.",
+        "Vier Karten vollständig erreichbar halten und Pot-Limit-Entwurf/-Maximum passend anzeigen.",
+        "Genau zwei zählen als Regelhinweis; keine vom Spieler bestätigte falsche Kartenkombination verlangen."
+      ],
+      "acceptance_criteria": [
+        "Vier Karten in 360 Pixeln und Querformat lesbar.",
+        "Pot-Limit und Hold’em-Regression jeweils separat geprüft.",
+        "Keine Regeln, Bewertungslogik oder verdeckten Gegnerkarten ändern."
+      ],
+      "shared_components": "GAME_FILES-Alias auf public/games/poker/poker.js; gemeinsame Quelle, eigene Variante und eigener Servermodus.",
+      "opponent_information": "Eigene Viererhand darf keinen fremden Informationsgewinn erzeugen; Gegnerdaten wie Poker.",
+      "priority": "P3",
+      "effort_hours": {
+        "min": 3,
+        "max": 6
+      },
+      "implementation_commit": null,
+      "completed_at": null,
+      "test_results": [],
+      "screenshots": []
+    }
+  ]
+}

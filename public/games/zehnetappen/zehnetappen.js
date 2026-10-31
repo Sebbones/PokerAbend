@@ -13,18 +13,20 @@
   let mode = null;         // null = Standard (Auslegen bzw. Anlegen), 'discard' = Abwerfen
   let slotKey = '';        // Runde + Phase – wechselt sie, werden die Felder geleert
   let skipFor = null;      // Aussetzen-Karte, für die gerade jemand gewählt wird
+  let draggingId = null;
+  const clearSelection=()=>{picked.clear();slots=slots.map(()=>[]);skipFor=null;draggingId=null;mode=null;};
 
   // Karte im bekannten Aufbau: Farbe, große Zahl in der Mitte, kleine in den Ecken; Joker mit „J“, Aussetzen mit eigenem Zeichen
   const card = (c, { cls = '', attrs = '', tag = 'button', badge = '' } = {}) => {
-    const label = c.c === 'j' ? 'Joker' : c.c === 's' ? 'Aussetzen' : `${COLOR[c.c]} ${c.n}`;
+    const label = c.c === 'j' ? 'Joker' : c.c === 's' ? CardInteraction.term('Aussetzen') : `${CardInteraction.term(COLOR[c.c])} ${c.n}`;
     const corner = c.c === 'j' ? 'J' : c.c === 's' ? SKIP : c.n;
-    const face = c.c === 'j' ? I18n.html('<b class="ze-j">J</b><small>Joker</small>') : c.c === 's' ? I18n.html`${SKIP}<small>Aussetzen</small>` : `<b>${c.n}</b>`;
-    return `<${tag} ${tag === 'button' ? 'type="button"' : 'role="img"'} class="kc kc-ze ze-${c.c} ${cls}" ${attrs} aria-label="${label}">${colorMark(c.c)}
+    const face = c.c === 'j' ? I18n.html('<b class="ze-j">J</b><small>Joker</small>') : c.c === 's' ? `${SKIP}<small>${CardInteraction.term('Aussetzen')}</small>` : `<b>${c.n}</b>`;
+    return `<${tag} ${tag === 'button' ? 'type="button"' : 'role="img"'} class="kc kc-ze ze-${c.c} ${cls}" ${attrs} aria-label="${esc(I18n.t(label))}">${colorMark(c.c)}
       <span class="cr tl">${corner}</span><span class="v">${face}</span><span class="cr br">${corner}</span>${badge}</${tag}>`;
   };
   const TYPE = { set: 'gleiche Zahl', run: 'Folge', color: 'eine Farbe' };
   const SET_WORD = { 2: 'Zwilling', 3: 'Drilling', 4: 'Vierling', 5: 'Fünfling' };
-  const groupName = (gr) => (gr.type === 'set' ? SET_WORD[gr.size] : gr.type === 'run' ? I18n.html`${gr.size}er-Folge` : I18n.html`${gr.size} einer Farbe`);
+  const groupName = (gr) => (gr.type === 'set' ? tx(SET_WORD[gr.size],`${gr.size} of a kind`) : gr.type === 'run' ? tx(`${gr.size}er-Folge`,`${gr.size}-card run`) : tx(`${gr.size} einer Farbe`,`${gr.size} of one colour`));
   // Passen die Karten als Gruppe? (wie auf dem Server: Joker füllen Lücken, Aussetzen nie, mindestens eine echte Karte)
   function validGroup(type, cards) {
     if (cards.some((c) => c.c === 's')) return false;
@@ -39,21 +41,21 @@
   }
   // Kurzer Grund, warum ein Feld noch nicht passt (null = passt)
   function reason(gr, cards, exact) {
-    if (!cards.length) return I18n.html`noch ${gr.size} Karten`;
-    if (cards.some((c) => c.c === 's')) return 'Aussetzen gehört in keine Gruppe';
+    if (!cards.length) return tx(`noch ${gr.size} Karten`,`${gr.size} cards still needed`);
+    if (cards.some((c) => c.c === 's')) return tx('Aussetzen gehört in keine Gruppe','Skip cards cannot go in a group');
     const nat = cards.filter((c) => c.c !== 'j');
-    if (!nat.length) return 'mindestens eine echte Karte nötig';
-    if (gr.type === 'set' && new Set(nat.map((c) => c.n)).size > 1) return 'verschiedene Zahlen';
-    if (gr.type === 'color' && new Set(nat.map((c) => c.c)).size > 1) return 'verschiedene Farben';
+    if (!nat.length) return tx('mindestens eine echte Karte nötig','At least one natural card is required');
+    if (gr.type === 'set' && new Set(nat.map((c) => c.n)).size > 1) return tx('verschiedene Zahlen','Different numbers');
+    if (gr.type === 'color' && new Set(nat.map((c) => c.c)).size > 1) return tx('verschiedene Farben','Different colours');
     if (gr.type === 'run') {
       const ns = nat.map((c) => c.n).sort((a, b) => a - b);
       const dup = ns.find((n, i) => n === ns[i - 1]);
-      if (dup) return I18n.html`${dup} doppelt`;
-      if (cards.length > 12) return 'höchstens 12 Karten';
-      if (ns[ns.length - 1] - ns[0] + 1 > cards.length) { for (let v = ns[0]; v <= ns[ns.length - 1]; v++) if (!ns.includes(v)) return I18n.html`keine Folge – ${v} fehlt`; }
+      if (dup) return tx(`${dup} doppelt`,`${dup} occurs twice`);
+      if (cards.length > 12) return tx('höchstens 12 Karten','At most 12 cards');
+      if (ns[ns.length - 1] - ns[0] + 1 > cards.length) { for (let v = ns[0]; v <= ns[ns.length - 1]; v++) if (!ns.includes(v)) return tx(`keine Folge – ${v} fehlt`,`Not a run — ${v} is missing`); }
     }
-    if (cards.length < gr.size) return I18n.html`noch ${gr.size - cards.length} Karte${gr.size - cards.length === 1 ? '' : 'n'}`;
-    if (exact && cards.length > gr.size) return I18n.html`genau ${gr.size} Karten`;
+    if (cards.length < gr.size) return tx(`noch ${gr.size - cards.length} Karte${gr.size - cards.length === 1 ? '' : 'n'}`,`${gr.size-cards.length} more card${gr.size-cards.length===1?'':'s'} needed`);
+    if (exact && cards.length > gr.size) return tx(`genau ${gr.size} Karten`,`Exactly ${gr.size} cards`);
     return null;
   }
   // Passt die Karte an diese ausgelegte Gruppe? Seiten: 'set' (Satz/Farbe), 'high', 'low' – wie auf dem Server (Joker haben feste Werte)
@@ -86,12 +88,12 @@
     // Aussetzen mit freier Wahl: Knöpfe mit den Namen statt Eintippen
     if (c.c === 's' && S.settings.skipChoose) { skipFor = id; kit.render(); return; }
     const target = c.c === 's' ? S.players.find((p) => p.inRound && p.id !== S.you.id)?.id : '';
-    send('discard', { card: id, target }).then((r) => { if (r?.ok) { picked.clear(); mode = null; } });
+    kit.command('discard', { card: id, target }).then((r) => { if (r?.ok) { picked.clear(); mode = null; } kit.render(); });
   }
   function doHit(S, owner, group, end) {
     const id = [...picked][0];
     if (id === undefined) return;
-    send('hit', { card: id, owner, group, end }).then((r) => { if (r?.ok) picked.clear(); });
+    kit.command('hit', { card: id, owner, group, end }).then((r) => { if (r?.ok) picked.clear(); kit.render(); });
   }
 
   // The existing selection renderer lives on the table; validation and actions stay unchanged.
@@ -103,16 +105,18 @@
         const why = slotReason(S, i);
         const exact = S.settings.exactSize;
         return I18n.html`<div class="ze-slot ${why === null ? 'ok' : ''} ${active === i ? 'active' : ''}" data-drop="slot" data-i="${i}">
-          <button type="button" class="ze-slot-head" data-g="slot" data-i="${i}" aria-pressed="${active === i}" aria-label="Gruppe ${i + 1}: ${groupName(gr)} wählen">
-            <b>Gruppe ${i + 1}: ${groupName(gr)}</b><small>${cards.length}/${gr.size}${exact ? '' : '+'}${why === null ? ' ✓' : ''}</small></button>
-          <div class="ze-slot-cards">${cards.length ? cards.map((c) => card(c, { attrs: `data-g="unslot" data-id="${c.id}" title="Zurück auf die Hand"` })).join('') : `<span class="ze-empty">${active === i ? 'Karten antippen – sie kommen hierher' : 'Feld antippen, dann Karten wählen'}</span>`}</div>
-          <div class="ze-why ${why === null ? 'ok' : ''}" role="status">${why === null ? '✓ passt' : esc(why)}</div></div>`;
+          <button type="button" class="ze-slot-head" data-g="slot" data-i="${i}" aria-pressed="${active === i}" aria-label="${tx(`Gruppe ${i+1}: ${groupName(gr)} wählen`,`Choose group ${i+1}: ${groupName(gr)}`)}">
+            <b>${tx('Gruppe','Group')} ${i + 1}: ${groupName(gr)}</b><small>${cards.length}/${gr.size}${exact ? '' : '+'}${why === null ? ' ✓' : ''}</small></button>
+          <div class="ze-slot-cards">${cards.length ? cards.map((c) => card(c, { attrs: `data-g="unslot" data-id="${c.id}" title="${tx('Zurück auf die Hand','Return to hand')}"` })).join('') : `<span class="ze-empty">${active === i ? tx('Karten antippen – sie kommen hierher','Select cards to place them here') : tx('Feld antippen, dann Karten wählen','Choose a group, then select cards')}</span>`}</div>
+          <div class="ze-why ${why === null ? 'ok' : ''}" role="status">${why === null ? tx('✓ passt','✓ valid') : esc(why)}</div></div>`;
       }).join('')}</div>` : '';
     return bar;
   }
 
   const kit = kitGame({
     id: 'zehnetappen',
+    cardUX: true,
+    onClear: clearSelection,
     ring: false,
     lobby(S) {
       const players = S.players.filter((p) => p.seated), ready = players.length >= S.minPlayers, limit = S.variant === 'short' ? 5 : 10;
@@ -156,12 +160,12 @@
     hint(S, myTurn) {
       const g = S.g;
       const m = modeOf(S);
-      if (skipFor !== null) return 'Wer soll aussetzen?';
-      if (!myTurn) return I18n.html`${esc(S.players.find((p) => p.id === S.turnId)?.name ?? '?')} ist dran – du kannst schon Karten in die Gruppen legen`;
-      if (g.step === 'draw') return 'Zieh eine Karte – vom Stapel oder die oberste der Ablage';
-      if (m === 'discard') return 'Abwerfen: genau eine Karte wählen, dann „Abwerfen“ oder die Ablage antippen';
-      if (m === 'hit') return picked.size ? 'Die leuchtenden Auslagen passen – antippen zum Anlegen' : 'Anlegen: Karte wählen – oder „Abwerfen“, wenn du fertig bist';
-      return 'Karten antippen: Sie kommen in die aktive Gruppe. Passt alles, „Phase auslegen“ – zum Schluss abwerfen';
+      if (skipFor !== null) return tx('Wer soll aussetzen?', 'Who should skip a turn?');
+      if (!myTurn) return `${esc(S.players.find((p) => p.id === S.turnId)?.name ?? '?')} ${tx('ist dran – du kannst schon Karten in die Gruppen legen','is on turn — you may already prepare your groups')}`;
+      if (g.step === 'draw') return tx('Zieh eine Karte – vom Stapel oder die oberste der Ablage', 'Draw a card — from the deck or the top of the discard pile');
+      if (m === 'discard') return tx('Abwerfen: genau eine Karte wählen, dann „Abwerfen“ oder die Ablage antippen', 'Discard: choose exactly one card, then confirm “Discard” or choose the discard pile');
+      if (m === 'hit') return picked.size ? tx('Die leuchtenden Auslagen passen – antippen zum Anlegen', 'Highlighted groups fit — choose one to add your card') : tx('Anlegen: Karte wählen – oder „Abwerfen“, wenn du fertig bist', 'Add cards: select a card — or choose “Discard” when finished');
+      return tx('Karten antippen: Sie kommen in die aktive Gruppe. Passt alles, „Phase auslegen“ – zum Schluss abwerfen', 'Select cards for the active group. Once valid, confirm “Lay phase” — then discard');
     },
     // Farbe: Rot, Grün, Blau, Gelb, dann Aussetzen und Joker; Zahl: 1–12, dann Aussetzen und Joker
     sort: {
@@ -171,17 +175,28 @@
     // Ziehen (Maus): Karte in ein Ausleg-Feld, auf eine Auslage = anlegen, auf die Ablage = abwerfen
     onDrop(src, z, S) {
       const id = Number(src.dataset.id);
+      draggingId=null;
       if (z.dataset.drop === 'slot') { putInSlot(S, id, Number(z.dataset.i)); return; }
-      if (z.dataset.drop === 'discard') { picked = new Set([id]); doDiscard(S); return; }
-      if (z.dataset.drop === 'group') { picked = new Set([id]); doHit(S, z.dataset.owner, Number(z.dataset.group), null); }
+      if (z.dataset.drop === 'discard') { mode='discard';picked = new Set([id]);doDiscard(S);return; }
+      if (z.dataset.drop === 'group') { picked = new Set([id]);const gr=S.g.laid[z.dataset.owner]?.[Number(z.dataset.group)],c=handCard(S,id);if(gr&&c&&sides(gr,c).length===1)doHit(S,z.dataset.owner,Number(z.dataset.group),sides(gr,c)[0]);else kit.render(); }
     },
-    onState(S) {
+    onDragStart(src,S){draggingId=Number(src.dataset.id);if(meOf(S)?.laidDone)picked=new Set([draggingId]);},
+    onDragEnd(){draggingId=null;},
+    canDrop(src,z,S){
+      const c=handCard(S,Number(src.dataset.id));if(!c||!meOf(S)?.inRound||S.gamePaused)return false;
+      if(z.dataset.drop==='slot'){const i=Number(z.dataset.i);return !meOf(S).laidDone&&modeOf(S)!=='discard'&&c.c!=='s'&&!!S.g.myGroups[i]&&(!S.settings.exactSize||slotOf(c.id)===i||slots[i].length<S.g.myGroups[i].size);}
+      if(!canAct(S))return false;if(z.dataset.drop==='discard')return true;
+      const gr=S.g.laid[z.dataset.owner]?.[Number(z.dataset.group)];return z.dataset.drop==='group'&&meOf(S).laidDone&&!!gr&&sides(gr,c).length>0;
+    },
+    onState(S,prev) {
       const ids = new Set((S.g?.hand || []).map((c) => c.id));
       picked = new Set([...picked].filter((id) => ids.has(id)));
-      const key = `${S.roundNo}:${S.g?.myPhase}:${(S.g?.myGroups || []).length}`;
+      const key = `${S.code}:${S.you?.id}:${S.variant}:${S.roundNo}:${S.g?.myPhase}:${(S.g?.myGroups || []).length}`;
       if (key !== slotKey || meOf(S)?.laidDone) { slotKey = key; slots = (S.g?.myGroups || []).map(() => []); active = 0; }
       slots = slots.map((l) => l.filter((id) => ids.has(id)));
       if (active >= slots.length) active = 0;
+      if(!ids.has(skipFor))skipFor=null;
+      if(prev&&CardInteraction.context(S)!==CardInteraction.context(prev))draggingId=null;
       if (S.turnId !== S.you?.id) { skipFor = null; mode = null; picked.clear(); }
     },
     main(S) {
@@ -203,9 +218,9 @@
         return `<div class="ze-group ${fits ? 'can' : ''}" ${playing && m === 'hit' ? 'data-drop="group"' : ''} data-owner="${id}" data-group="${i}">
           <button type="button" class="ze-gbtn" data-g="hit" data-owner="${id}" data-group="${i}" ${fits && !both ? '' : 'disabled'} aria-label="${label}">
             <small>${TYPE[gr.type]}${gr.type === 'run' ? ` ${gr.vals[0]}–${gr.vals[gr.vals.length - 1]}` : ''}</small><span class="ze-cards">${groupCards(gr)}</span></button>
-          ${both ? I18n.html`<span class="ze-ends"><button type="button" class="btn btn-sm btn-brass" data-g="hit" data-owner="${id}" data-group="${i}" data-end="low">unten (${gr.vals[0] - 1})</button><button type="button" class="btn btn-sm btn-brass" data-g="hit" data-owner="${id}" data-group="${i}" data-end="high">oben (${gr.vals[gr.vals.length - 1] + 1})</button></span>` : ''}</div>`;
+          ${both ? I18n.html`<span class="ze-ends"><button type="button" class="btn btn-sm btn-brass" data-g="hit" data-owner="${id}" data-group="${i}" data-side="low">${tx('unten','Low')} (${gr.vals[0] - 1})</button><button type="button" class="btn btn-sm btn-brass" data-g="hit" data-owner="${id}" data-group="${i}" data-side="high">${tx('oben','High')} (${gr.vals[gr.vals.length - 1] + 1})</button></span>` : ''}</div>`;
       }).join('')}</div>`).join('');
-      const targetPile = playing && m === 'discard' && picked.size === 1;
+      const targetPile = playing && (m === 'discard' && picked.size === 1 || draggingId !== null);
       const top = g.top ? card(g.top, { cls: 'big', attrs: 'disabled' }) : '<div class="kc kc-empty"></div>';
       const ownTurn = S.phase === 'playing' && S.turnId === S.you?.id;
       return I18n.html`<div class="kg-table ze-workbench">
@@ -225,29 +240,31 @@
       const inRound = !!me?.inRound;
       const chosen = m === 'lay' ? slots.flat().length : picked.size;
       const counter = inRound && (m === 'lay' || picked.size || m === 'discard')
-        ? I18n.html`<div class="ze-count" role="status"><span>${chosen} ausgewählt${m === 'discard' ? ' (zum Abwerfen: genau 1)' : ''}</span>${chosen ? I18n.html('<button type="button" class="btn btn-sm btn-ghost" data-g="clear">Auswahl aufheben</button>') : ''}</div>` : '';
-      const hand = (g.hand || []).map((c) => {
+        ? `<div class="ze-count" data-cix-node="phase-count" role="status"><span>${tx(`${chosen} ausgewählt`,`${chosen} selected`)}${m === 'discard' ? tx(' (zum Abwerfen: genau 1)',' (discard: exactly 1)') : ''}</span>${chosen ? `<button type="button" class="btn btn-sm btn-ghost" data-g="clear">${tx('Auswahl aufheben','Clear selection')}</button>` : ''}</div>` : '';
+      const hand = kit.cards().map(({card:c,key}) => {
         const si = m === 'lay' ? slotOf(c.id) : -1;
         const isPick = picked.has(c.id);
-        const cls = `${si >= 0 ? 'ze-sel' : ''} ${isPick ? (m === 'discard' ? 'ze-disc' : 'ze-sel') : ''}`;
-        const badge = si >= 0 ? `<i class="ze-badge" aria-hidden="true">${si + 1}</i>` : '';
-        return card(c, { cls, badge, attrs: `data-g="pick" data-id="${c.id}" aria-pressed="${si >= 0 || isPick}" data-drag="${c.id}"` });
+        const cls = `${si >= 0 ? 'ze-sel' : ''} ${isPick ? (m === 'discard' ? 'ze-disc' : 'ze-sel') : ''} ${draggingId===c.id?'cix-selected':''}`;
+        const badge = si >= 0 ? `<i class="ze-badge" aria-hidden="true">${si + 1}</i><i class="cix-phase-order" aria-hidden="true">#${slots[si].indexOf(c.id)+1}</i>` : '';
+        return card(c, { cls, badge, attrs: `data-g="pick" data-id="${c.id}" data-card-key="${key}" aria-pressed="${si >= 0 || isPick || draggingId===c.id}" data-drag="${c.id}"` });
       }).join('');
       let acts = '';
       if (skipFor !== null) {
         const others = S.players.filter((p) => p.inRound && p.id !== S.you.id);
-        acts = I18n.html`${others.map((p) => I18n.html`<button class="btn" data-g="skipwho" data-who="${esc(p.id)}">${esc(p.name)} aussetzen lassen</button>`).join('')}<button class="btn btn-ghost" data-g="noskip">Abbrechen</button>`;
+        acts = `${others.map((p) => `<button class="btn" data-g="skipwho" data-who="${esc(p.id)}">${esc(p.name)} · ${tx('aussetzen lassen','skip a turn')}</button>`).join('')}<button class="btn btn-ghost" data-g="noskip">${tx('Abbrechen','Cancel')}</button>`;
       } else if (myTurn && g.step === 'draw') {
-        acts = I18n.html`<button class="btn btn-brass" data-g="draw-deck">Vom Stapel ziehen</button>
-          <button class="btn" data-g="draw-discard" ${!g.top || g.top.c === 's' ? 'disabled title="Aussetzen darf man nicht aufnehmen"' : ''}>Ablage nehmen</button>`;
+        acts = `<button class="btn btn-brass" data-g="draw-deck">${tx('Vom Stapel ziehen','Draw from deck')}</button>
+          <button class="btn" data-g="draw-discard" ${!g.top || g.top.c === 's' ? `disabled title="${tx('Aussetzen darf man nicht aufnehmen','Skip cards cannot be picked up')}"` : ''}>${tx('Ablage nehmen','Take discard')}</button>`;
       } else if (myTurn) {
         const done = me?.laidDone;
         const ready = !done && slots.length && slots.every((_, i) => slotOk(S, i));
-        acts = `${done ? '' : I18n.html`<button class="btn ${ready ? 'btn-brass' : ''}" data-g="lay" ${ready ? '' : 'disabled title="Erst alle Gruppen passend füllen"'}>Phase auslegen</button>`}
-          ${m === 'discard' ? I18n.html`<button class="btn btn-outline-red ze-discard-btn" data-g="discard" ${picked.size === 1 ? '' : 'disabled title="Genau eine Karte auswählen"'}>Abwerfen</button><button class="btn btn-ghost" data-g="mode-back">${done ? 'Zurück zum Anlegen' : 'Zurück zum Auslegen'}</button>`
-            : I18n.html`<button class="btn" data-g="mode-discard">Karte abwerfen …</button>`}`;
+        acts = `${done ? '' : `<button class="btn ${ready ? 'btn-brass' : ''}" data-g="lay" ${ready ? '' : `disabled title="${tx('Erst alle Gruppen passend füllen','Complete all groups first')}"`}>${tx('Phase auslegen','Lay phase')}</button>`}
+          ${m === 'discard' ? `<button class="btn btn-outline-red ze-discard-btn" data-g="discard" ${picked.size === 1 ? '' : `disabled title="${tx('Genau eine Karte auswählen','Select exactly one card')}"`}>${tx('Abwerfen','Discard')}</button><button class="btn btn-ghost" data-g="mode-back">${done ? tx('Zurück zum Anlegen','Back to adding cards') : tx('Zurück zum Auslegen','Back to preparing groups')}</button>`
+            : `<button class="btn" data-g="mode-discard">${tx('Karte abwerfen …','Discard a card …')}</button>`}`;
       }
-      return I18n.html`${counter}<div class="kg-hand ze-hand" role="group" aria-label="Deine Karten">${hand}</div><div class="kg-acts">${acts}</div>`;
+      const one=picked.size===1?handCard(S,[...picked][0]):draggingId!==null?handCard(S,draggingId):null;
+      const summary=one?CardInteraction.selection({label:one.c==='j'?'Joker':one.c==='s'?CardInteraction.term('Aussetzen'):`${CardInteraction.term(COLOR[one.c])} ${one.n}`,html:card(one,{tag:'span'}),hint:m==='discard'?tx('Abwerfen beendet deinen Zug.','Discarding ends your turn.'):tx('Nur passende Auslagen sind markiert. Bei Jokern das Ende selbst wählen.','Only matching groups are highlighted. Choose the end for a wild card.')}):'';
+      return I18n.html`${counter}${summary}<div class="kg-hand ze-hand" data-cix-node="hand" role="group" aria-label="Deine Karten">${hand}</div><div class="kg-acts" data-cix-node="actions">${acts}</div>`;
     },
     async onClick(t, S) {
       const g = t.dataset.g;
@@ -265,12 +282,12 @@
       else if (g === 'clear') { picked.clear(); slots = slots.map(() => []); kit.render(); }
       else if (g === 'mode-discard') { mode = 'discard'; picked.clear(); kit.render(); }
       else if (g === 'mode-back') { mode = null; picked.clear(); kit.render(); }
-      else if (g === 'draw-deck') send('draw', { from: 'deck' });
-      else if (g === 'draw-discard') send('draw', { from: 'discard' });
-      else if (g === 'lay') send('lay', { cards: slots.flat(), groups: slots }).then((r) => { if (r?.ok) { slots = slots.map(() => []); picked.clear(); } });
-      else if (g === 'hit') doHit(S, t.dataset.owner, Number(t.dataset.group), t.dataset.end || null);
+      else if (g === 'draw-deck') kit.command('draw', { from: 'deck' });
+      else if (g === 'draw-discard') kit.command('draw', { from: 'discard' });
+      else if (g === 'lay') kit.command('lay', { cards: slots.flat(), groups: slots }).then((r) => { if (r?.ok) { slots = slots.map(() => []); picked.clear(); } kit.render(); });
+      else if (g === 'hit') doHit(S, t.dataset.owner, Number(t.dataset.group), t.dataset.side || null);
       else if (g === 'discard' || g === 'discard-pile') { if (picked.size === 1) doDiscard(S); }
-      else if (g === 'skipwho') { const id = skipFor; skipFor = null; send('discard', { card: id, target: t.dataset.who }).then((r) => { if (r?.ok) { picked.clear(); mode = null; } }); }
+      else if (g === 'skipwho') { const id = skipFor; kit.command('discard', { card: id, target: t.dataset.who }).then((r) => { if (r?.ok) { picked.clear(); mode = null;skipFor=null; } kit.render(); }); }
       else if (g === 'noskip') { skipFor = null; kit.render(); }
     },
     rules: I18n.html`<p>Zehn Phasen nacheinander. Jede Runde versuchst du, deine aktuelle Phase auszulegen:</p>

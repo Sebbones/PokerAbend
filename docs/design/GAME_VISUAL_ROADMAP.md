@@ -4,6 +4,8 @@ Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/pla
 
 **52 spielbare Spiele, 55 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 7 done, 100 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10 sowie die ausdrücklich beauftragten neuen Solo-Spiele Sudoku, 2048 und Wellenwacht sind abgeschlossen. Die Solo-Implementierung steht in Commit `904cd0751fd3c89d9ea2169de09edbb3197e58ad`; Tests und permanente Bilder sind in der Solo-Abnahme dokumentiert. Die weiteren 45 bestehenden Spieloberflächen und 55 Backlog-Konzepte bleiben geplant. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
 
+Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) inventarisiert alle 13 registrierten Kartenspiele; zehn Folgepakete bleiben geplant. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
+
 ## Verbindliche Arbeitsweise
 
 Nur ein ausdrücklich freigegebenes Spiel bzw. VIS-Paket umsetzen. Ein Designpaket ist keine Gameplay-Freigabe und kein V2-Paket. Ausschließlich main; keine Branches/PRs, kein Force-Push, kein eigenständiges Produktivdeployment. Nach Umsetzung Status, echte Tests, ausgewählte dauerhafte Screenshots und Implementierungscommit ergänzen und stoppen. Details: [Designstandard](GAME_VISUAL_GUIDELINES.md).

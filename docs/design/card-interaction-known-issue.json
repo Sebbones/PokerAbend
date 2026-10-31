@@ -1,0 +1,110 @@
+{
+  "captured_at": "2026-10-31",
+  "baseline_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+  "status": "open",
+  "game_id": "maumau",
+  "scope": "Existing bot/engine outside the three authorized UI pilots; no implementation or test weakening in this task",
+  "description": "Bot0 repeatedly draws and plays Ad from an exhausted deck/discard while the ace-repeat rule keeps the same player on turn. The existing 600-step guard fails. Genuine deck shuffling makes the mass-test outcome vary.",
+  "source_audit": [
+    {
+      "path": "games/maumau/room.js",
+      "sha256": "2e2facff305c8cb624f9a92057f0f24e94ab855897dbb9b54d45b3083f25a712"
+    },
+    {
+      "path": "games/bots.js",
+      "sha256": "47ef0326baf451f87591541b0992ef09804bd11690ad9b727b319d059448772c"
+    },
+    {
+      "path": "server/random.js",
+      "sha256": "1f9d3c4ddd503b4bdebe77750b799297ef989014d8271360316be7359a650ee4"
+    },
+    {
+      "path": "test/simulation.test.js",
+      "sha256": "8b4e2a4af0344af621a61f801d60d0de0188b94d8f762ff0ccf99ca82a4a9d2d"
+    },
+    {
+      "path": "test/sim-helpers.js",
+      "sha256": "a6bcc5904784ca70ccdc57feddd34e771a5fcff4d7f086762a919f82fae493e9"
+    }
+  ],
+  "diagnostic": {
+    "trial": 7,
+    "n": 697,
+    "k": 600,
+    "count": 7,
+    "options": {
+      "handSize": 9,
+      "seven": true,
+      "sevenStack": true,
+      "eight": true,
+      "jackWish": true,
+      "jackOnJack": false,
+      "ace": true,
+      "mauCall": true,
+      "firstCardEffect": true
+    },
+    "view": {
+      "top": "Ad",
+      "wish": null,
+      "pending": 0,
+      "deck": 0,
+      "hand": [
+        "7h",
+        "8c",
+        "Kc",
+        "Tc",
+        "9c",
+        "8s",
+        "7s",
+        "9s"
+      ],
+      "playable": [],
+      "drawn": null,
+      "callNeeded": true,
+      "forgot": null
+    },
+    "recent": [
+      {
+        "turn": 0,
+        "pending": 0,
+        "drawn": null,
+        "top": "Ad",
+        "deck": 0,
+        "hand": 8
+      },
+      {
+        "turn": 0,
+        "pending": 0,
+        "drawn": "Ad",
+        "top": "Ad",
+        "deck": 0,
+        "hand": 9
+      },
+      {
+        "turn": 0,
+        "pending": 0,
+        "drawn": null,
+        "top": "Ad",
+        "deck": 0,
+        "hand": 8
+      },
+      {
+        "turn": 0,
+        "pending": 0,
+        "drawn": "Ad",
+        "top": "Ad",
+        "deck": 0,
+        "hand": 9
+      },
+      {
+        "turn": 0,
+        "pending": 0,
+        "drawn": null,
+        "top": "Ad",
+        "deck": 0,
+        "hand": 8
+      }
+    ]
+  },
+  "implementation_commit": null
+}

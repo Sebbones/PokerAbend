@@ -1,3 +1,4 @@
+@import url('/games/card-interaction.css');
 /* Shared presentation, loaded only by the three explicitly redesigned games.
    Card faces and all input/state logic remain in the individual game modules. */
 :is(.kg-farbenchaos,.kg-stapelrennen,.kg-zehnetappen){--cw-text:#f2f0e8;--cw-muted:#b8c5ce;--cw-edge:#b8cbd32b;--cw-panel:#172832;--cw-bg:#0f1b25;--cw-accent:#a7d6cb;color:var(--cw-text);background:var(--cw-bg)}

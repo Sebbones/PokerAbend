@@ -1,0 +1,26 @@
+{
+  "game": "stapelrennen",
+  "project": "desktop",
+  "initial": {
+    "hand": [
+      7,
+      7,
+      7,
+      12,
+      9
+    ]
+  },
+  "observed": {
+    "hand": [
+      7,
+      7,
+      7,
+      12,
+      9
+    ],
+    "selected": 1,
+    "pressed": 0,
+    "enabledBuilds": 4,
+    "overlap": false
+  }
+}

@@ -1,0 +1,1115 @@
+{
+  "captured_at": "2026-10-31",
+  "baseline_commit": "18451f45110be4773565466db8b4715779d5cfe1",
+  "implementation_commit": null,
+  "policy": "Permanent selected original PNG captures; SHA-256 hashes are verified by Node tests. Before images precede product changes. After images use the documented real-server test fixtures. WebKit iPhone profile runs on Windows, not physical iPhone hardware.",
+  "comparisons": [
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/farbenchaos/playing.png",
+      "source": "artifacts/card-ux/before/desktop/farbenchaos/playing.png",
+      "sha256": "91277199d91b8b2f5434e87c38b51c1c63de0e77ae0f4ef0a3bbf0e0a60f0d09"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/farbenchaos/opponent.png",
+      "source": "artifacts/card-ux/before/desktop/farbenchaos/opponent.png",
+      "sha256": "bc0b981b41f8f8aad6a411e7fb1ebb13cdacd89e9b1ee3ac871cb6ca4f583d2a"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/farbenchaos/after-first-card-tap.png",
+      "source": "artifacts/card-ux/before/desktop/farbenchaos/after-first-card-tap.png",
+      "sha256": "eed88d6c64dc41163825cfeb4f2971de8fb399a80183582916530c5c689ae70b"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/stapelrennen/playing.png",
+      "source": "artifacts/card-ux/before/desktop/stapelrennen/playing.png",
+      "sha256": "6177c07f70f66fe396a855c072418ff5fe889e06ec9056089432c3fd83257f8f"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/stapelrennen/opponent.png",
+      "source": "artifacts/card-ux/before/desktop/stapelrennen/opponent.png",
+      "sha256": "969ae71926d642f99f3c7bc76e6a272d5a358c4aa0c5142ba8093d082a20eaf4"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/stapelrennen/after-first-card-tap.png",
+      "source": "artifacts/card-ux/before/desktop/stapelrennen/after-first-card-tap.png",
+      "sha256": "c7188783878c7bb7fdd873c988a02d1fc7b0e58e66205a5de32dddfa3a5988d7"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/zehnetappen/playing.png",
+      "source": "artifacts/card-ux/before/desktop/zehnetappen/playing.png",
+      "sha256": "ffaf57aa584b68601c654946433bf3268f0fbe2ee8da71f2b6a877db658f17d2"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/zehnetappen/opponent.png",
+      "source": "artifacts/card-ux/before/desktop/zehnetappen/opponent.png",
+      "sha256": "ec81c6fc1c1d82c98d533d17885f914613e931f9525f11510333acfd3f7c9e2e"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/zehnetappen/after-first-card-tap.png",
+      "source": "artifacts/card-ux/before/desktop/zehnetappen/after-first-card-tap.png",
+      "sha256": "11dfc52889e9b81a6089b752fd1f7f06f2a92b1c37c0ae17a511781eb05bf757"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/farbenchaos/playing.png",
+      "source": "artifacts/card-ux/before/mobil/farbenchaos/playing.png",
+      "sha256": "996d54ae5046feb9e7f953dc36e0fd996b6d3c317776f1fa434d3b51c57b4eea"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/farbenchaos/opponent.png",
+      "source": "artifacts/card-ux/before/mobil/farbenchaos/opponent.png",
+      "sha256": "217c3c0296e86b709dc3bf8d76d963f54d06d41800c238aa50008e6286c79af1"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/farbenchaos/after-first-card-tap.png",
+      "source": "artifacts/card-ux/before/mobil/farbenchaos/after-first-card-tap.png",
+      "sha256": "289921ec69a41aad23a714ff6ba5e7d5ad7eb9eb175b0ffb82ac06da61b85f8a"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/stapelrennen/playing.png",
+      "source": "artifacts/card-ux/before/mobil/stapelrennen/playing.png",
+      "sha256": "231adc735282e206d3383aca761af1efb70e2a68013d50e5d9af4edcb8b3f94f"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/stapelrennen/opponent.png",
+      "source": "artifacts/card-ux/before/mobil/stapelrennen/opponent.png",
+      "sha256": "91511dbee9c28ecda933468e2967b68a0698eb6bdc76c108c407109b4863e0ad"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/stapelrennen/after-first-card-tap.png",
+      "source": "artifacts/card-ux/before/mobil/stapelrennen/after-first-card-tap.png",
+      "sha256": "2539ce5fbbd65c4ed6731af88bd26b55245fd34d3007d013e913d3475a209076"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/zehnetappen/playing.png",
+      "source": "artifacts/card-ux/before/mobil/zehnetappen/playing.png",
+      "sha256": "16f8a890fcce635a40b897887b07d425e05f2f28f0f3c498f5f8a8a09d6fa0db"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/zehnetappen/opponent.png",
+      "source": "artifacts/card-ux/before/mobil/zehnetappen/opponent.png",
+      "sha256": "1737960abe6614dcc1302754e35ed5bc1e213d1f90ce6796a6226da312e03235"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/zehnetappen/after-first-card-tap.png",
+      "source": "artifacts/card-ux/before/mobil/zehnetappen/after-first-card-tap.png",
+      "sha256": "0422538af0d5d78ada2bfd1837b002e0aa4b3f46003d6fc2d21194df09daed61"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-classic-selected.png",
+      "source": "artifacts/card-ux/after/desktop/uno-classic-selected.png",
+      "sha256": "fc3d782c0c3edaf1dac84586fec04bd9d179657487326096c64a6d45ad774833"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-flip-selected.png",
+      "source": "artifacts/card-ux/after/desktop/uno-flip-selected.png",
+      "sha256": "35911a72ec41caa5600074cabbe596436826dba6cd6276db0b865085edb2d5a3"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-no-mercy-selected.png",
+      "source": "artifacts/card-ux/after/desktop/uno-no-mercy-selected.png",
+      "sha256": "62b221283d1c57663efe54dd30c7c960a3522f47eac8eb114c977f06807f775b"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-all-wild-selected.png",
+      "source": "artifacts/card-ux/after/desktop/uno-all-wild-selected.png",
+      "sha256": "90273a69ca6a5be895c3eabdd34d268dcf395fb69e2cce4d8e37c1f2706caf6d"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-halloween-ghosthunt-selected.png",
+      "source": "artifacts/card-ux/after/desktop/uno-halloween-ghosthunt-selected.png",
+      "sha256": "1a3daf7ffdd0062343d6196ded809fdeba8115f6353dbd1478c314d5729bbd45"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/skip-classic-targets.png",
+      "source": "artifacts/card-ux/after/desktop/skip-classic-targets.png",
+      "sha256": "4a3da3be98f363790235b81e9cbf4e828dd9668da7b36dd3deb85a1b4f29241d"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/phase-classic-groups.png",
+      "source": "artifacts/card-ux/after/desktop/phase-classic-groups.png",
+      "sha256": "fc86fbc4bbcbe508a5a869585864297aceaf11919d88298db39a32e3219f8329"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/skip-short-targets.png",
+      "source": "artifacts/card-ux/after/desktop/skip-short-targets.png",
+      "sha256": "a4131308b3170a1956256129abc7981e6a844ac98eb2527cc36d6c8ce6e96e1d"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/phase-short-groups.png",
+      "source": "artifacts/card-ux/after/desktop/phase-short-groups.png",
+      "sha256": "3f71dd2837da138489fc458564f6bcfdd542cdfff554d3d708b969639fb27002"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/skip-team-targets.png",
+      "source": "artifacts/card-ux/after/desktop/skip-team-targets.png",
+      "sha256": "5803ab92af526bebce320ff2661ccb8cfefe4cf5ad9bc25e4d00b14b7e5dd38c"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/phase-team-groups.png",
+      "source": "artifacts/card-ux/after/desktop/phase-team-groups.png",
+      "sha256": "6643fca18dfbe592105ef827dfb47229493b690c4905467977e3cbb002911a9f"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-colour-choice-english.png",
+      "source": "artifacts/card-ux/after/desktop/uno-colour-choice-english.png",
+      "sha256": "3c37af7e3f607224f89ff4ab7bc5ce6bbae0010a487a142c9745f7177a8ec045"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/phase-groups-english.png",
+      "source": "artifacts/card-ux/after/desktop/phase-groups-english.png",
+      "sha256": "a9c2dc58a0344554312dea4f545387eb31d46daa49c2cb06011e2704af5cfe91"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-classic-selected.png",
+      "source": "artifacts/card-ux/after/mobil/uno-classic-selected.png",
+      "sha256": "b981ca33bf8ab76d5ed112f1053c945547f4dabf1516005b9ad914844430f258"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-flip-selected.png",
+      "source": "artifacts/card-ux/after/mobil/uno-flip-selected.png",
+      "sha256": "a31cf7d93626c308e1040d121456f6c4fe7d22d1aefac0e5bc1858fb2345d45f"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-no-mercy-selected.png",
+      "source": "artifacts/card-ux/after/mobil/uno-no-mercy-selected.png",
+      "sha256": "7d358339c165e12b1fe45b31d1444adcfea049774b9bbc5e8d1625849af16841"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-all-wild-selected.png",
+      "source": "artifacts/card-ux/after/mobil/uno-all-wild-selected.png",
+      "sha256": "1d6f2f184bfa9516d3e1c13a6fd1546c3b7096751ebcba84cc5442bf3670af65"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-halloween-ghosthunt-selected.png",
+      "source": "artifacts/card-ux/after/mobil/uno-halloween-ghosthunt-selected.png",
+      "sha256": "2d0abd1be72162b9cff297021c2a8fe8e682604f9fcd68fccd7378b9a646c1a4"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/skip-classic-targets.png",
+      "source": "artifacts/card-ux/after/mobil/skip-classic-targets.png",
+      "sha256": "13e247dc8c045882efbf2f3415b49a3347627e41f150a276bc252213d393c7fe"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/phase-classic-groups.png",
+      "source": "artifacts/card-ux/after/mobil/phase-classic-groups.png",
+      "sha256": "1bddc623013d49f33d35db41bc97cab54c998f500926f4c4e542690056a776d0"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/skip-short-targets.png",
+      "source": "artifacts/card-ux/after/mobil/skip-short-targets.png",
+      "sha256": "ad003b00a4dbdab3ed4e0ed3c783228a588c30fff23537a16555ab2a213b8ac9"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/phase-short-groups.png",
+      "source": "artifacts/card-ux/after/mobil/phase-short-groups.png",
+      "sha256": "cb4c94c3c5cc62c01a9014a764cb42498b88b2390ebac38058daeb59d04d6b1a"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/skip-team-targets.png",
+      "source": "artifacts/card-ux/after/mobil/skip-team-targets.png",
+      "sha256": "cc97372d3dc9b4b7c79d6f7f82feef3db78176c595498ba14bbdebb3cd43ba65"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/phase-team-groups.png",
+      "source": "artifacts/card-ux/after/mobil/phase-team-groups.png",
+      "sha256": "74f2946f6f9e33defdcd5a9e24a796a41a64e21fd8d3b1616f0c38c86a2cc015"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-colour-choice-english.png",
+      "source": "artifacts/card-ux/after/mobil/uno-colour-choice-english.png",
+      "sha256": "bc770f622ed6c448b22864d49caa5b856b40dcb8c6c0e57ba9cc0bbdc847a549"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/phase-groups-english.png",
+      "source": "artifacts/card-ux/after/mobil/phase-groups-english.png",
+      "sha256": "4ba9bc41e6a366321f0f5620d8c6eaf6704c7f3b27128bf119a1cfb11e5188a2"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1920,
+        1080
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/farbenchaos-1920x1080.png",
+      "source": "artifacts/card-ux/after/desktop/farbenchaos-1920x1080.png",
+      "sha256": "d3980d17136ef0be0713e40de3cfee439d266d1da661b009f0ff5bf94ba00e90"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/farbenchaos-1440x900.png",
+      "source": "artifacts/card-ux/after/desktop/farbenchaos-1440x900.png",
+      "sha256": "ede99bad25c64713b484bed46bcae4bf0ece9789f901622dc0652abf6e8a9b6e"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        768,
+        1024
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/farbenchaos-768x1024.png",
+      "source": "artifacts/card-ux/after/desktop/farbenchaos-768x1024.png",
+      "sha256": "d2701c17ef42196cf88a29f78184c6f11b8c38317d9990ad21e5b3ce8ab5aae4"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/farbenchaos-390x844.png",
+      "source": "artifacts/card-ux/after/desktop/farbenchaos-390x844.png",
+      "sha256": "648625f2e1f76a85beb5767df16a1a09c9cfbe3f7af16e7fc0bd1c4790ea0f9f"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        360,
+        800
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/farbenchaos-360x800.png",
+      "source": "artifacts/card-ux/after/desktop/farbenchaos-360x800.png",
+      "sha256": "f46f3fa57aa445006a3dd0ddccb62446060b39e87cda757ef12e257f44775d48"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        900,
+        450
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/farbenchaos-900x450.png",
+      "source": "artifacts/card-ux/after/desktop/farbenchaos-900x450.png",
+      "sha256": "bc48b11c6c329d6cf94c810c4a4382bb060b27bed8ff8c23624e9f7c37003749"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1920,
+        1080
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/stapelrennen-1920x1080.png",
+      "source": "artifacts/card-ux/after/desktop/stapelrennen-1920x1080.png",
+      "sha256": "ec05d07924d253d0c43271c50a0977efe4a6bfc6871fedbfed8eb0db3fce2329"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/stapelrennen-1440x900.png",
+      "source": "artifacts/card-ux/after/desktop/stapelrennen-1440x900.png",
+      "sha256": "87221fca9348f3355af5f3e9b77a138077dc19d48928ad6b691352443ab4e315"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        768,
+        1024
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/stapelrennen-768x1024.png",
+      "source": "artifacts/card-ux/after/desktop/stapelrennen-768x1024.png",
+      "sha256": "813aaf1b720dd55ed56ebd5202926a7552a32f469c0f11dae6ef19bde15014a6"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/stapelrennen-390x844.png",
+      "source": "artifacts/card-ux/after/desktop/stapelrennen-390x844.png",
+      "sha256": "eadded4b86ac04021d6a71427b66bf70f6b851b2bbb0d10fca0f0f5c9690eca7"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        360,
+        800
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/stapelrennen-360x800.png",
+      "source": "artifacts/card-ux/after/desktop/stapelrennen-360x800.png",
+      "sha256": "f660a8e409274bb8999c3c6ac1bde7283af716addf2160aea23c2cf87840ca9b"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        900,
+        450
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/stapelrennen-900x450.png",
+      "source": "artifacts/card-ux/after/desktop/stapelrennen-900x450.png",
+      "sha256": "5a1c562170eb8267edd9321bada90e2ce329531100f87a4496f58b0d33eb27e1"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1920,
+        1080
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/zehnetappen-1920x1080.png",
+      "source": "artifacts/card-ux/after/desktop/zehnetappen-1920x1080.png",
+      "sha256": "4ee4a9710be4d1499dabe332b8966ee7de468a62036e0eff464c2a7fa5bb46bc"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/zehnetappen-1440x900.png",
+      "source": "artifacts/card-ux/after/desktop/zehnetappen-1440x900.png",
+      "sha256": "2b732334c6231913171b055b2228e062616526230fc5f2d9ce48f0398b2ece8f"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        768,
+        1024
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/zehnetappen-768x1024.png",
+      "source": "artifacts/card-ux/after/desktop/zehnetappen-768x1024.png",
+      "sha256": "b1ca5fb3f3324b715549443068dc0ca85ad6eeeb1423d2e0c6da7e807a6b7bd5"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/zehnetappen-390x844.png",
+      "source": "artifacts/card-ux/after/desktop/zehnetappen-390x844.png",
+      "sha256": "415205365cb9b09df34101e81aec56ade744fae38bbb9c5fc900271f0bc9d290"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        360,
+        800
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/zehnetappen-360x800.png",
+      "source": "artifacts/card-ux/after/desktop/zehnetappen-360x800.png",
+      "sha256": "1302ac2727b949bee750daae47038eacb182b1438e8312d67ef8b35f73c63c2a"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        900,
+        450
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/zehnetappen-900x450.png",
+      "source": "artifacts/card-ux/after/desktop/zehnetappen-900x450.png",
+      "sha256": "986881cdc2a9881143e084a9e4ffa0513d6caa6689b82db424053ed13feb4354"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/uno-classic-selected.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/uno-classic-selected.png",
+      "sha256": "a418bb5af0d13aa90f4d2aec6bce35b112880de8617820b579377e42ef0b9f93"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/uno-flip-selected.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/uno-flip-selected.png",
+      "sha256": "196d45c5ed0c48ae1bc716b078a8ad206505f5ba0330589f871342988cedef65"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/uno-all-wild-target.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/uno-all-wild-target.png",
+      "sha256": "2ad07cf1bbb30559ce1845261723aae92d968c1611d2f4d16ec6b06ca0c7c0bb"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/skip-team-targets.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/skip-team-targets.png",
+      "sha256": "085bdea3fdf4510742c06481079ed7fd8e4872dcaeb412bde8bc3de9ef52a107"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/phase-classic-groups.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/phase-classic-groups.png",
+      "sha256": "31304717429b33c3494a51182f9c1ac4f833034323681470740a322298cf5f96"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/uno-long-hand.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/uno-long-hand.png",
+      "sha256": "5e4796ffced8ebb8cdfcc05e298c406f98b334ad308f688d4840a782db6408eb"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/uno-colour-choice-english.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/uno-colour-choice-english.png",
+      "sha256": "419c1a5f3fb54acd278054971dac5f0af7425845dd1530d85b985e079e0f49d1"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "webkit-iphone",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/webkit-iphone/phase-groups-english.png",
+      "source": "artifacts/card-ux/after/webkit-iphone/phase-groups-english.png",
+      "sha256": "e8ae8555a7b7fd7209347f711d1eed8add0e07c8706dac2c078c6470c529deb0"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-long-hand.png",
+      "source": "artifacts/card-ux/after/mobil/uno-long-hand.png",
+      "sha256": "321dd599c6bd65f435384b8e94726d29e7b1fbf096ac42a9b092fe12542ba8d7"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-no-mercy-eliminated.png",
+      "source": "artifacts/card-ux/after/desktop/uno-no-mercy-eliminated.png",
+      "sha256": "bcf1f431e48536b22c37ddf6b7e39d4a10ea84c44216cd9f616cf7d4a6ed646e"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-no-mercy-eliminated.png",
+      "source": "artifacts/card-ux/after/mobil/uno-no-mercy-eliminated.png",
+      "sha256": "f8f52dbc6b203a7b341508aff5d1091e6948f64534d6cf127aa2c3429d90a917"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-flip-dark-and-challenge.png",
+      "source": "artifacts/card-ux/after/mobil/uno-flip-dark-and-challenge.png",
+      "sha256": "dde59fbeee87af02777e941733a525898c83e1714378e405a6d7b825ea17ab0e"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-classic-last-card.png",
+      "source": "artifacts/card-ux/after/mobil/uno-classic-last-card.png",
+      "sha256": "a7356004e637e535005a0d11539e32d01727ca2151a33c97acba5c5efb388126"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/mobil/uno-halloween-ghosthunt-paused.png",
+      "source": "artifacts/card-ux/after/mobil/uno-halloween-ghosthunt-paused.png",
+      "sha256": "abf72f34ea07c7e3c9e188231a79424a4536a310263f19a04b5aa633b8656b49"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/phase-joker-end-choice.png",
+      "source": "artifacts/card-ux/after/desktop/phase-joker-end-choice.png",
+      "sha256": "29df6b173336f2cd54c957802156bf2e6713b19c82089774069fad508316a3f7"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-all-wild-target.png",
+      "source": "artifacts/card-ux/after/desktop/uno-all-wild-target.png",
+      "sha256": "550fcd8f4c11486a6e60003e5efd0a241332158c1520f77a4e2a3b64bd59936a"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "after",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "real isolated room; deterministic rare state via test-process IPC; actual server-confirmed browser actions",
+      "path": "docs/design/screenshots/card-ux/after/desktop/uno-unconfirmed.png",
+      "source": "artifacts/card-ux/after/desktop/uno-unconfirmed.png",
+      "sha256": "d41072d3fd333d79672f021a6e0addb9f148eb561be7a7c735d0f218ef92820f"
+    }
+  ],
+  "observations": [
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/farbenchaos/observations.json",
+      "source": "artifacts/card-ux/before/desktop/farbenchaos/observations.json",
+      "sha256": "d299541d196ab6615407b517200516c0ccec50a65a2e1cc6174d017e3c8d9eeb"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/stapelrennen/observations.json",
+      "source": "artifacts/card-ux/before/desktop/stapelrennen/observations.json",
+      "sha256": "7977658df4fb937c24ff1bbc0bdcc595b76973af3dfb971756029054b049a082"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "desktop",
+      "css_viewport": [
+        1440,
+        900
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/desktop/zehnetappen/observations.json",
+      "source": "artifacts/card-ux/before/desktop/zehnetappen/observations.json",
+      "sha256": "3bb072faa10d168bcf385317d1d06a7a60727b975b218b16260134a5dbe8a438"
+    },
+    {
+      "game_id": "farbenchaos",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/farbenchaos/observations.json",
+      "source": "artifacts/card-ux/before/mobil/farbenchaos/observations.json",
+      "sha256": "3b280269cfaeb5385588a9ff861830579e690f4bee7e8282e44d352eae93e264"
+    },
+    {
+      "game_id": "stapelrennen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/stapelrennen/observations.json",
+      "source": "artifacts/card-ux/before/mobil/stapelrennen/observations.json",
+      "sha256": "b5f6b59d9ecbfdcfea3be248664a5e5c2ea680ec8f579ff3726dbc6d47397080"
+    },
+    {
+      "game_id": "zehnetappen",
+      "stage": "before",
+      "project": "mobil",
+      "css_viewport": [
+        390,
+        844
+      ],
+      "capture_mode": "ordinary real room with two independent players at baseline",
+      "path": "docs/design/screenshots/card-ux/before/mobil/zehnetappen/observations.json",
+      "source": "artifacts/card-ux/before/mobil/zehnetappen/observations.json",
+      "sha256": "5b81f086f33c7b81454d37a2aaeec36a3c414cf32b4e672a4f2397b4135e1995"
+    }
+  ]
+}

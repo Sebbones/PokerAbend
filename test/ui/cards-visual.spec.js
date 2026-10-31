@@ -91,8 +91,7 @@ for (const [game, variant] of cases) test(`Card worlds ${game}/${variant}: state
       }, game);
       if (game === 'farbenchaos') {
         await page.locator('.kg-hand [data-card="Ww"]').click();
-        // Dense hands retain the established first-tap preview, second-tap play.
-        if (!await page.locator('.kg-wishes .wish').count()) await page.locator('.kg-hand [data-card="Ww"]').click();
+        await page.locator('.kg-acts [data-g="play-selected"]').click();
         await expect(page.locator('.kg-wishes .wish')).toHaveCount(4);
         await shot(page, 'fixture-colour-choice');
       } else if (game === 'stapelrennen') {
@@ -150,6 +149,7 @@ for (const [game, variant] of cases) test(`Card worlds ${game}/${variant}: state
       if (variant === 'flip') {
         await expect(page.locator('.fc-side-state')).toHaveText('◐ Dunkle Seite');
         await page.locator('.kg-hand [data-card="Ww"]').click();
+        await page.locator('.kg-acts [data-g="play-selected"]').click();
         await expect(page.locator('.kg-wishes .wish')).toHaveCount(4);
         await expect(page.locator('.kg-wishes')).toContainText('Pink');
         const purple = page.locator('.kg-wishes .fc-v');
@@ -161,6 +161,7 @@ for (const [game, variant] of cases) test(`Card worlds ${game}/${variant}: state
         await expect(page.locator('[data-g="challengeDraw"]')).toBeVisible();
       } else {
         await page.locator('.kg-hand [data-card="Xw"]').click();
+        await page.locator('.kg-acts [data-g="play-selected"]').click();
         await expect(page.locator('[data-g="target"]')).toHaveCount(1);
       }
       await shot(page, 'fixture-variant-action');

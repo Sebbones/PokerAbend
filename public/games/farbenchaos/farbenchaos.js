@@ -1,4 +1,4 @@
-// UNO im Browser (Regeln: games/farbenchaos/room.js). Bedienung wie Mau-Mau (kitShedding), eigene Karten.
+// UNO im Browser (Regeln: games/farbenchaos/room.js). Sichere Auswahl mit ausdrücklicher Bestätigung über kitShedding.
 'use strict';
 {
   const tx = (de, en) => I18n.language === 'en' ? en : de;
@@ -37,10 +37,10 @@
     const variant = themeOf(S), theme = themeName(variant), value = c[0], colour = c[1];
     const dark = variant === 'flip' && (inactive ? !S?.g?.side : !!S?.g?.side);
     const symbol = BIG[value] || value, corner = drawValues[value] ? `+${drawValues[value]}` : value === 'W' ? '◇' : value === 'E' ? '∀' : value === 'K' ? '×2' : BIG[value] ? `<span class="fc-corner-symbol">${BIG[value]}</span>` : value;
-    const name = I18n.t(LABEL[value] || value);
+    const name = CardInteraction.term(LABEL[value] || value);
     const haunted = variant === 'halloween-ghosthunt';
     const illustration = haunted ? value === 'W' ? SIGIL : value === 'F' ? icon('<path d="M10 31V18q0-4 4-2V8q2-4 4 0v11V5q2-4 4 0v14V8q2-4 4 0v14l3-5q4-2 3 3l-5 13H15Z"/>') : value === 'R' ? SIGIL : GHOST : variant === 'all-wild' ? SIGIL : '';
-    return `<button type="button" class="kc kc-fc fc-${colour} ${drawValues[value] ? 'fc-attack' : ''} ${cls}" data-uno-theme="${theme}" data-face="${dark ? 'dark' : 'light'}" data-action="${value}" ${attrs} aria-label="${esc(`${colour === 'w' ? '' : I18n.t(COLOR[colour]) + ' '}${name}`)}">
+    return `<button type="button" class="kc kc-fc fc-${colour} ${drawValues[value] ? 'fc-attack' : ''} ${cls}" data-uno-theme="${theme}" data-face="${dark ? 'dark' : 'light'}" data-action="${value}" ${attrs} aria-label="${esc(`${colour === 'w' ? '' : CardInteraction.term(COLOR[colour]) + ' '}${name}`)}">
       <span class="fc-card-border" aria-hidden="true"></span>${colorMark(colour)}<span class="cr tl">${corner}</span>
       ${illustration ? `<span class="fc-card-art" aria-hidden="true">${illustration}</span>` : ''}<span class="oval"><span class="v ${value === '6' || value === '9' ? 'ul' : ''}">${symbol}</span></span>
       <span class="fc-card-name" aria-hidden="true">${/^\d$/.test(value) ? haunted ? tx('SPUR', 'CLUE') : variant === 'flip' ? dark ? 'DARK' : 'LIGHT' : 'UNO' : esc(name)}</span><span class="cr br">${corner}</span>
@@ -87,6 +87,8 @@
   const COLORS = 'rygbptovw';
   kitShedding({
     id: 'farbenchaos',
+    cardUX: true,
+    cardLabel: (c) => `${c[1] === 'w' ? '' : CardInteraction.term(COLOR[c[1]]) + ' '}${CardInteraction.term(LABEL[c[0]] || c[0])}`,
     name: 'UNO',
     ring: false,
     lobby(S) {
@@ -106,7 +108,7 @@
       const color = g.top?.[1] === 'w' ? g.wish : g.top?.[1], name = esc(S.players.find((p) => p.id === S.turnId)?.name || '');
       const eliminated = S.players.filter((p) => p.eliminated);
       return `<header class="cw-table-head fc-table-head"><div><span class="cw-eyebrow">${haunted ? 'UNO: ' + tx('Spuknacht', 'Ghost Night') : 'UNO · ' + theme[0]}</span><h2>${tx(theme[1], theme[2])}</h2>${haunted ? `<p class="fc-subtitle">${tx('Halloween Special – Die Geisterjagd beginnt', 'Halloween Special — the ghost hunt begins')}</p>` : ''}</div><span class="cw-turn ${S.turnId === S.you?.id ? 'is-mine' : ''}">${S.phase === 'over' ? tx('Runde beendet', 'Round complete') : S.turnId === S.you?.id ? tx('Du bist am Zug', 'Your turn') : `${name} · ${tx('am Zug', 'on turn')}`}</span></header>
-        <div class="fc-state-strip"><span class="fc-current-colour fc-${color || 'w'}">${colorMark(color || 'w')}<b>${variant === 'all-wild' ? tx('Alle Karten passen', 'Every card fits') : color ? I18n.t(COLOR[color]) : tx('Freie Farbwahl', 'Open colour choice')}</b></span><span>${S.dir < 0 ? '↶' : '↷'} ${tx('Spielrichtung', 'Direction')}</span>${variant === 'flip' ? `<span class="fc-side-state">${g.side ? '◐' : '◒'} ${g.side ? tx('Dunkle Seite', 'Dark side') : tx('Helle Seite', 'Light side')}</span>` : ''}${g.pending && variant !== 'no-mercy' ? `<strong>+${g.pending} ${tx('ziehen', 'to draw')}</strong>` : ''}${haunted ? `<span class="fc-investigation-status">${S.phase === 'over' ? tx('Akte geschlossen', 'Case closed') : tx('Ermittlung läuft', 'Investigation active')}</span>` : ''}</div>
+        <div class="fc-state-strip"><span class="fc-current-colour fc-${color || 'w'}">${colorMark(color || 'w')}<b>${variant === 'all-wild' ? tx('Alle Karten passen', 'Every card fits') : color ? CardInteraction.term(COLOR[color]) : tx('Freie Farbwahl', 'Open colour choice')}</b></span><span>${S.dir < 0 ? '↶' : '↷'} ${tx('Spielrichtung', 'Direction')}</span>${variant === 'flip' ? `<span class="fc-side-state">${g.side ? '◐' : '◒'} ${g.side ? tx('Dunkle Seite', 'Dark side') : tx('Helle Seite', 'Light side')}</span>` : ''}${g.pending && variant !== 'no-mercy' ? `<strong>+${g.pending} ${tx('ziehen', 'to draw')}</strong>` : ''}${haunted ? `<span class="fc-investigation-status">${S.phase === 'over' ? tx('Akte geschlossen', 'Case closed') : tx('Ermittlung läuft', 'Investigation active')}</span>` : ''}</div>
         ${variant === 'no-mercy' && g.pending ? `<div class="fc-penalty-meter" role="status"><b>+${g.pending}</b><div><strong>${tx('STRAFKETTE', 'DRAW CHAIN')}</strong><span>${g.lastDraw ? tx(`Letzte Ziehkarte: +${g.lastDraw}`, `Last draw card: +${g.lastDraw}`) : tx('Offene Ziehstrafe', 'Pending draw penalty')}</span></div></div>` : ''}
         ${eliminated.length ? `<div class="fc-eliminated" role="status">${SKIP}<span>${tx('Ausgeschieden', 'Eliminated')}: ${eliminated.map((p) => esc(p.name)).join(', ')}</span></div>` : ''}`;
     },
@@ -121,7 +123,7 @@
     // Erste Schritte beim ersten Spiel (3 Schritte, abschaltbar unter „Ich“)
     intro: [
       ["Ziel", I18n.html("Werde als Erster alle Karten los: gleiche <b>Farbe</b> oder gleiche <b>Zahl bzw. gleiches Symbol</b>.")],
-      ["Bedienung", "Karten mit Goldrand passen – antippen legt sie. Bei der Farbwahl tippst du einen der vier Farbkreise an."],
+      ["Bedienung", tx('Karten mit gestricheltem Rand passen. Antippen wählt aus, „Ausspielen“ bestätigt. Bei der Farbwahl wählst du anschließend einen Farbkreis.', 'Cards with a dashed outline fit. Tap to select, then confirm with “Play card”. For wild cards, choose a colour next.')],
       ["Sonderkarten", "Aussetzen, Richtungswechsel, +2, Farbwahl und +4. Der Gewinner kassiert die Punkte der Restkarten. Welche Hausregeln gelten, steht unter „?“."],
     ],
     card,
@@ -142,7 +144,7 @@
     needsWish: (c, S) => S.variant !== 'all-wild' && c[1] === 'w' && c[0] !== 'Q',
     needsTarget: (c, S) => (S.variant === 'no-mercy' || S.settings.sevenZero) && c[0] === '7' || S.variant === 'all-wild' && ['T', 'X'].includes(c[0]),
     // Farbwahl: vier große Farbkreise (mit Name und Form – nicht nur Farbe)
-    wishes: (S) => (S.g.colors || ['r', 'y', 'g', 'b']).map((k) => [k, `<span class="wc-dot">${colorMark(k)}</span><span>${COLOR[k]}</span>`, I18n.html`wish-circle fc-${k}`]),
+    wishes: (S) => (S.g.colors || ['r', 'y', 'g', 'b']).map((k) => [k, `<span class="wc-dot">${colorMark(k)}</span><span>${CardInteraction.term(COLOR[k])}</span>`, I18n.html`wish-circle fc-${k}`]),
     seat: (p, S) => p.eliminated ? I18n.html('<span>Ausgeschieden (25 Karten)</span>') : S.g.inactiveHands?.[p.id] ? I18n.html`<div class="uno-backs">${S.g.inactiveHands[p.id].map((c) => card(c, { attrs: 'disabled', cls: 'inactive', inactive: true }, S)).join('')}</div><small>Inaktive Seite · ${p.cards} Karten</small>` : null,
     extraMain(S) {
       const inactive = (c) => card(c, { attrs: 'disabled', inactive: true }, S);
@@ -151,12 +153,12 @@
         + (S.g.revealed?.length ? I18n.html`<details><summary>Aufgedeckte Roulette-Karten (${S.g.revealed.length})</summary><div class="uno-backs">${S.g.revealed.map(shown).join('')}</div></details>` : '')
         + (S.g.challengeHand ? I18n.html`<details open><summary>Bei der Anfechtung vorgezeigte Hand</summary><div class="uno-backs">${S.g.challengeHand.map(shown).join('')}</div></details>` : '');
     },
-    specialHint: (S, mine) => mine && S.g.colorChoice ? 'Wähle eine Farbe für die offene Entscheidung' : mine && S.g.challenge ? 'Ziehstrafe annehmen oder die letzte Plus-Karte anfechten' : S.variant === 'all-wild' && mine ? 'Jede Karte passt – Aktionskarten wirken sofort' : null,
-    specialDock: (S, mine) => !mine ? null : S.g.colorChoice ? `<div class="kg-wishes">${S.g.colors.map((c) => `<button class="btn wish-circle fc-${c}" data-g="chooseColor" data-color="${c}">${COLOR[c]}</button>`).join('')}</div>` : S.g.challenge ? I18n.html('<button class="btn" data-g="acceptDraw">Strafe ziehen</button><button class="btn" data-g="challengeDraw">Anfechten (+2 bei Irrtum)</button>') : null,
-    onClick: (t) => { const g = t.dataset.g; if (g === 'chooseColor') { send('chooseColor', { color: t.dataset.color }); return true; } if (['acceptDraw', 'challengeDraw'].includes(g)) { send('challenge', { challenge: g === 'challengeDraw' }); return true; } return false; },
+    specialHint: (S, mine) => mine && S.g.colorChoice ? tx('Wähle eine Farbe für die offene Entscheidung', 'Choose a colour for the pending decision') : mine && S.g.challenge ? tx('Ziehstrafe annehmen oder die letzte Plus-Karte anfechten', 'Accept the draw penalty or challenge the last draw card') : S.variant === 'all-wild' && mine ? tx('Jede Karte passt – wähle eine Karte und bestätige die Aktion.', 'Every card fits — select a card and confirm the action.') : null,
+    specialDock: (S, mine) => !mine ? null : S.g.colorChoice ? `<div class="kg-wishes">${S.g.colors.map((c) => `<button class="btn wish-circle fc-${c}" data-g="chooseColor" data-color="${c}">${CardInteraction.term(COLOR[c])}</button>`).join('')}</div>` : S.g.challenge ? `<button class="btn" data-g="acceptDraw">${tx('Strafe ziehen','Accept draw penalty')}</button><button class="btn" data-g="challengeDraw">${tx('Anfechten (+2 bei Irrtum)','Challenge (+2 if wrong)')}</button>` : null,
+    onClick: (t, S, command = send) => { const g = t.dataset.g; if (g === 'chooseColor') { command('chooseColor', { color: t.dataset.color }); return true; } if (['acceptDraw', 'challengeDraw'].includes(g)) { command('challenge', { challenge: g === 'challengeDraw' }); return true; } return false; },
     // Gewählte Farbe: leuchtender Ring um die Ablage (dazu steht „Gewünscht: Rot“ darunter)
     pileClass: (g) => (g.wish && g.top?.[1] === 'w' ? I18n.html`wish-ring ring-${g.wish}` : ''),
-    wishName: (w) => COLOR[w],
+    wishName: (w) => CardInteraction.term(COLOR[w]),
     wishLabel: 'Welche Farbe soll gelten?',
     lastWord: 'UNO!',
     short: [

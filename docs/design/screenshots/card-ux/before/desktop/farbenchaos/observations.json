@@ -1,0 +1,33 @@
+{
+  "game": "farbenchaos",
+  "project": "desktop",
+  "initial": {
+    "hand": [
+      "9g",
+      "7y",
+      "Ww",
+      "2r",
+      "3g",
+      "1b",
+      "Dy"
+    ],
+    "playable": [
+      "Ww",
+      "1b"
+    ]
+  },
+  "observed": {
+    "hand": [
+      "9g",
+      "7y",
+      "Ww",
+      "2r",
+      "3g",
+      "Dy"
+    ],
+    "selected": 0,
+    "pressed": 0,
+    "enabledBuilds": 0,
+    "overlap": false
+  }
+}
