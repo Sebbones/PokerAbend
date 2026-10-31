@@ -3,8 +3,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { GAMES, PLANNED, plannedGames, gameEvents } from '../games/index.js';
 
-const CATEGORIES = ['karten', 'wuerfel', 'brett', 'party'];
-const PACKAGES = ['4', '5', '6', '7', '7b', '8', '9', 'spaeter', 'gross'];
+const CATEGORIES = ['karten', 'wuerfel', 'brett', 'party', 'einzelspieler'];
+const PACKAGES = ['4', '5', '6', '7', '7b', '8', '9', 'spaeter', 'gross', 'solo-zukunft'];
 const games = PLANNED.filter((e) => e.type !== 'feature');
 const features = PLANNED.filter((e) => e.type === 'feature');
 
@@ -54,6 +54,7 @@ test('IDs sind eindeutig und kollidieren nicht mit gebauten Spielen oder Spiel-E
 
 test('Alle Spiele und Funktionen der Liste sind eingetragen – im richtigen Päckchen', () => {
   const want = {
+    'solo-zukunft': ['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3'],
     spaeter: ['omaha-hi-lo', 'seven-card-stud', 'short-deck', 'stichmeister', 'exploding-deck', 'risiko-wuerfeln',  'wuerfeljagd', 'monsterwuerfel', 'labyrinth-brett', 'story-chaos', 'regelwahnsinn', 'jaeger-schatten', 'infektionsjagd', 'letzter-schutzplatz', 'kistenchaos', 'survival-abend', 'chaos-modus', 'backgammon', 'scrabble', 'hearts', 'five-card-draw',  'schatzinsel', 'gummiband-challenge', 'geschenkfaenger', 'rhythmus-rausch', 'puzzle-panik', 'wortjagd', 'stillgestanden', 'schatzgraeber', 'minenlauf', 'labyrinth-chaos', 'schubsarena', 'scheinwerfer-flucht', 'doppelagent', 'luegenbaron', 'brueckenroulette', 'wuerfel-auktion', 'zahlenreihe', 'modifikatoren', 'turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell'],
     gross: ['skat', 'doppelkopf',  'schach', 'staedtehandel', 'gebietskampf', 'party-brett'],
   };

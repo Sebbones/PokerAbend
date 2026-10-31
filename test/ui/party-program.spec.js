@@ -59,7 +59,7 @@ test('Playlist: Vorlagen, Regeln, Wechsel im selben Raum, Reconnect, Gesamtwertu
   try {
     await page.reload({ waitUntil: 'commit' });
     await expect.poll(() => typeof releaseKit).toBe('function');
-    await expect.poll(() => page.evaluate(() => account.games.length)).toBeGreaterThan(0);
+    await expect.poll(() => page.evaluate(() => typeof account === 'undefined' ? 0 : account.games.length)).toBeGreaterThan(0);
     // Auch eine vorzeitig eintreffende Wiederanmeldung muss sicher warten;
     // der normale Seitenstart wartet inzwischen selbst auf die Hub-Skripte.
     await page.evaluate(() => openRoomByUrl());

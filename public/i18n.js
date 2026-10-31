@@ -14,6 +14,10 @@ window.I18n = (() => {
     for (const game of games) {
       const english = window.EN_GAMES?.[game.id];
       if (english) for (const field of ['name', 'description']) window.EN[normal(game[field])] = english[field];
+      if (game.workPackage?.startsWith('SOLO-') && game.english) {
+        for (const field of ['description','mechanics','design']) if (typeof game.english[field] === 'string') window.EN[normal(game[field])] = game.english[field];
+        for (const field of ['features','dependencies','acceptance']) (game[field] || []).forEach((text, i) => { if (typeof game.english[field]?.[i] === 'string') window.EN[normal(text)] = game.english[field][i]; });
+      }
     }
   }
   // Translate the authored template before inserting values. Names, chat, custom prompts,

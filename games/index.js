@@ -51,6 +51,9 @@ import wuerfelduell from './wuerfelduell/index.js';
 
 export const GAMES = Object.fromEntries([poker, maumau, farbenchaos, maexchen, schocken, huetchen, zehnetappen, stapelrennen, schwimmen, blackjack, kniffel, schiffe, viergewinnt, shutthebox, zehntausend, muehle, schaetzmeister, schlagfertig, werhatdasgesagt, mogeln, praesident, durak, omaha, wuerfelpoker, luegenwuerfel, chicago, reversi, dame, domino, zahlenzoo, gedaechtnisKueche, pfeilfieber, sortierstation, tickendesPaket, werwolf, werBinIch, kritzelpost, bildunterschrift, malenRaten, broeckelboden, kronenjagd, laserHuepfer, sechsNimmt, monopolyDeal, monopoly, spielDesLebens, scotlandYard, hex, wuerfelduell].map((g) => [g.id, g]));
 export const DEFAULT_GAME = 'poker'; // alte Spielstände ohne Spielart sind Poker
+export { SINGLEPLAYER_GAMES, singleplayerGameList } from './singleplayer/index.js';
+import { SINGLEPLAYER_GAMES } from './singleplayer/index.js';
+export const PLAYABLE_GAMES = { ...GAMES, ...SINGLEPLAYER_GAMES };
 
 // Was die Startseite über die Spiele wissen muss
 export const gameList = () => Object.values(GAMES).map(({ id, name, description, players, category = 'karten', minPlayers, maxPlayers, duration, art, createFields, createHint, variants, create, options = [] }) => ({
@@ -58,7 +61,7 @@ export const gameList = () => Object.values(GAMES).map(({ id, name, description,
 }));
 export { PLANNED, plannedGames } from './planned.js';
 // Kategorien der Startseite, in dieser Reihenfolge
-export const CATEGORIES = [['karten', 'Kartenspiele'], ['wuerfel', 'Würfelspiele'], ['brett', 'Brettspiele'], ['party', 'Party Spiele']];
+export const CATEGORIES = [['karten', 'Kartenspiele'], ['wuerfel', 'Würfelspiele'], ['brett', 'Brettspiele'], ['party', 'Party Spiele'], ['einzelspieler', 'Einzelspieler']];
 
 // Ereignisnamen aller Spiele – die Plattform meldet sie einmal pro Verbindung an
 export const gameEvents = () => [...new Set(Object.values(GAMES).flatMap((g) => Object.keys(g.events)))];

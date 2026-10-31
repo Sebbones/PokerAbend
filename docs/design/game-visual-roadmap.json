@@ -3,7 +3,7 @@
   "updated_at": "2026-10-31",
   "audited_source_commit": "ef6511d76f78689fc525a63f6e3637c3f14f1252",
   "audit_hash_format": "SHA-256 of UTF-8 source with LF line endings at package.source_audit_commit, falling back to audited_source_commit",
-  "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele.",
+  "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen.",
   "id_policy": "VIS-IDs sind dauerhafte Design-IDs. Bestehende IDs niemals neu nummerieren; spätere Einträge mit nächster freier Nummer ergänzen. Unabhängig von V2-XX und technischen Spiel-IDs.",
   "scope_policy": "VIS-001 sowie die anschließend ausdrücklich freigegebenen VIS-004, VIS-009 und VIS-008 sind abgeschlossen. Alle anderen Pakete bleiben Planung und erfordern eigene ausdrückliche Freigabe. Kein V2-Implementierungsauftrag. VIS-004 wurde anschließend allein für UNO Ultimate und die dauerhaft verfügbare Spuknacht-Variante erweitert; keine weiteren Pakete freigegeben.",
   "assessment_scope": "Alle registrierten Frontend-Ordner, direkte gemeinsame Komponenten und der Backlog sind inventarisiert. Manuelle Vorher-/Nachher-Abnahme für Scotland Yard, UNO, Skip-Bo und Phase 10. Für die übrigen Spiele stehen spätere individuelle Sichtprüfungen aus.",
@@ -17,16 +17,19 @@
     "docs/design/CARD_WORLDS_REDESIGN.md",
     "docs/design/card-worlds-screenshots.json",
     "docs/design/UNO_ULTIMATE_REDESIGN.md",
-    "docs/design/uno-ultimate-screenshots.json"
+    "docs/design/uno-ultimate-screenshots.json",
+    "docs/solo-games/README.md",
+    "docs/solo-games/SOLO_GAMES_ROADMAP.md"
   ],
   "inventory": {
-    "playable_count": 49,
-    "not_implemented_count": 46,
+    "playable_count": 52,
+    "not_implemented_count": 55,
     "completed_visual_count": 4,
-    "open_playable_visual_count": 45,
-    "planned_visual_count": 91,
-    "total_visual_packages": 95,
+    "open_playable_visual_count": 48,
+    "planned_visual_count": 103,
+    "total_visual_packages": 107,
     "playable_game_ids": [
+      "scotland-yard",
       "poker",
       "maumau",
       "farbenchaos",
@@ -73,9 +76,11 @@
       "monopoly-deal",
       "monopoly",
       "spiel-des-lebens",
-      "scotland-yard",
       "hex",
-      "wuerfelduell"
+      "wuerfelduell",
+      "sudoku",
+      "2048",
+      "wellenwacht"
     ],
     "not_implemented_game_ids": [
       "omaha-hi-lo",
@@ -123,7 +128,16 @@
       "geschenkdiebe",
       "fallenbauer",
       "reaktor-notfall",
-      "bomben-duell"
+      "bomben-duell",
+      "snake",
+      "memory",
+      "minesweeper",
+      "nonogramm",
+      "sokoban",
+      "block-puzzle",
+      "solitaire",
+      "mahjong-solitaire",
+      "match-3"
     ],
     "completed_visual_game_ids": [
       "scotland-yard",
@@ -151,7 +165,8 @@
       "schach",
       "staedtehandel",
       "gebietskampf",
-      "fallenbauer"
+      "fallenbauer",
+      "wellenwacht"
     ]
   },
   "common_acceptance_criteria": {
@@ -261,7 +276,19 @@
     "VIS-086",
     "VIS-087",
     "VIS-090",
-    "VIS-089"
+    "VIS-089",
+    "VIS-096",
+    "VIS-097",
+    "VIS-098",
+    "VIS-099",
+    "VIS-100",
+    "VIS-101",
+    "VIS-102",
+    "VIS-103",
+    "VIS-104",
+    "VIS-105",
+    "VIS-106",
+    "VIS-107"
   ],
   "effort_order": [
     "VIS-027",
@@ -285,6 +312,7 @@
     "VIS-034",
     "VIS-014",
     "VIS-031",
+    "VIS-097",
     "VIS-040",
     "VIS-024",
     "VIS-028",
@@ -296,6 +324,7 @@
     "VIS-038",
     "VIS-042",
     "VIS-044",
+    "VIS-096",
     "VIS-023",
     "VIS-043",
     "VIS-017",
@@ -308,6 +337,7 @@
     "VIS-036",
     "VIS-002",
     "VIS-047",
+    "VIS-098",
     "VIS-046"
   ],
   "suggested_development_order": [
@@ -355,7 +385,10 @@
     "VIS-002",
     "VIS-024",
     "VIS-047",
-    "VIS-046"
+    "VIS-046",
+    "VIS-096",
+    "VIS-097",
+    "VIS-098"
   ],
   "future_concepts_order": [
     "VIS-055",
@@ -403,7 +436,16 @@
     "VIS-086",
     "VIS-087",
     "VIS-090",
-    "VIS-089"
+    "VIS-089",
+    "VIS-099",
+    "VIS-100",
+    "VIS-101",
+    "VIS-102",
+    "VIS-103",
+    "VIS-104",
+    "VIS-105",
+    "VIS-106",
+    "VIS-107"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
   "verification": {
@@ -10740,6 +10782,1038 @@
       "gameplay_prerequisite": {
         "game_id": "bomben-duell",
         "source": "games/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-096",
+      "game_id": "sudoku",
+      "game_name": "Sudoku",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "playable",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/index.js",
+      "existing_visual_work": {
+        "level": "individual_local_world",
+        "evidence": [
+          "public/singleplayer/runtime.js",
+          "public/singleplayer/singleplayer.css"
+        ],
+        "assessment": "Eigene lokale Oberfläche im aktuellen Solo-Auftrag; Abschlussnachweise folgen nach Prüfung."
+      },
+      "current_frontend_files": [
+        "public/singleplayer/runtime.js",
+        "public/singleplayer/sudoku-logic.js",
+        "public/singleplayer/singleplayer.css"
+      ],
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js"
+      ],
+      "source_audit": [],
+      "current_design": "Sudoku: Ruhige elfenbeinfarbene Logiktafel auf salbeigrünem Grund. Bereits als lokale Spielansicht umgesetzt; keine Multiplayer-Lobby.",
+      "known_visual_weaknesses": [
+        "Weitere optionale Themen und umfangreichere lokale Statistiken sind nicht Teil dieser ersten Version."
+      ],
+      "assessment_method": "Eigene native HTML-/Canvas-Oberfläche, Prüfung über Node und echte Desktop-/Mobile-Browser; Nachweise nach Prüfung ergänzen.",
+      "gameplay_summary": "Eine ruhige Zahlenpause: eindeutige Rätsel, Notizen und vier Schwierigkeitsstufen.",
+      "planned_style": "Ruhige elfenbeinfarbene Logiktafel auf salbeigrünem Grund.",
+      "background_concept": "Sudoku: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine importierten Originalgrafiken.",
+      "board_concept": "9×9-Feld mit kräftigen 3×3-Grenzen, Peer-Markierung und ausgewählter Zelle.",
+      "objects_concept": "Feste dunkle Vorgaben, blaue Eingaben und neun lesbare Kandidatenplätze.",
+      "status_and_actions": "Sudoku: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Zahlenfeld in voller Breite, große Zifferntasten und getrennte Hilfen.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "won"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 8,
+        "max_hours": 14,
+        "level": "medium",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "P2",
+      "priority_reason": "Expliziter Auftrag für drei lokale Einzelspieler-Spiele.",
+      "acceptance_criteria": [
+        "Start, Spielzug, Pause, Fortsetzung und Endzustände tatsächlich auf Desktop und Smartphone prüfen.",
+        "Sprache DE/EN und lokale, versionierte Spielstände ohne öffentliche Tabellen verifizieren."
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": null,
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-097",
+      "game_id": "2048",
+      "game_name": "2048",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "playable",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/index.js",
+      "existing_visual_work": {
+        "level": "individual_local_world",
+        "evidence": [
+          "public/singleplayer/runtime.js",
+          "public/singleplayer/singleplayer.css"
+        ],
+        "assessment": "Eigene lokale Oberfläche im aktuellen Solo-Auftrag; Abschlussnachweise folgen nach Prüfung."
+      },
+      "current_frontend_files": [
+        "public/singleplayer/runtime.js",
+        "public/singleplayer/2048-logic.js",
+        "public/singleplayer/singleplayer.css"
+      ],
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js"
+      ],
+      "source_audit": [],
+      "current_design": "2048: Warme bernsteinfarbene Zahlentafel mit zurückhaltenden Bewegungen. Bereits als lokale Spielansicht umgesetzt; keine Multiplayer-Lobby.",
+      "known_visual_weaknesses": [
+        "Weitere optionale Themen und umfangreichere lokale Statistiken sind nicht Teil dieser ersten Version."
+      ],
+      "assessment_method": "Eigene native HTML-/Canvas-Oberfläche, Prüfung über Node und echte Desktop-/Mobile-Browser; Nachweise nach Prüfung ergänzen.",
+      "gameplay_summary": "Schiebe, verbinde und plane voraus. Wie weit kommst du nach 2048?",
+      "planned_style": "Warme bernsteinfarbene Zahlentafel mit zurückhaltenden Bewegungen.",
+      "background_concept": "2048: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine importierten Originalgrafiken.",
+      "board_concept": "4×4-Brett mit festen Positionen und klarer Ein-Zug-Zusammenführung.",
+      "objects_concept": "Wertabhängige Kacheltöne und große typografische Zahlen statt Bildtexturen.",
+      "status_and_actions": "2048: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Wischfläche, sichtbare Richtungstasten und getrennte Undo-/Siegaktionen.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "won",
+        "lost"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 6,
+        "max_hours": 10,
+        "level": "medium",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "P2",
+      "priority_reason": "Expliziter Auftrag für drei lokale Einzelspieler-Spiele.",
+      "acceptance_criteria": [
+        "Start, Spielzug, Pause, Fortsetzung und Endzustände tatsächlich auf Desktop und Smartphone prüfen.",
+        "Sprache DE/EN und lokale, versionierte Spielstände ohne öffentliche Tabellen verifizieren."
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": null,
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-098",
+      "game_id": "wellenwacht",
+      "game_name": "Wellenwacht",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "playable",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/index.js",
+      "existing_visual_work": {
+        "level": "individual_local_world",
+        "evidence": [
+          "public/singleplayer/runtime.js",
+          "public/singleplayer/singleplayer.css"
+        ],
+        "assessment": "Eigene lokale Oberfläche im aktuellen Solo-Auftrag; Abschlussnachweise folgen nach Prüfung."
+      },
+      "current_frontend_files": [
+        "public/singleplayer/runtime.js",
+        "public/singleplayer/wellenwacht-logic.js",
+        "public/singleplayer/singleplayer.css",
+        "public/singleplayer/wellenwacht-art.js"
+      ],
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js"
+      ],
+      "source_audit": [],
+      "current_design": "Wellenwacht: Eigenständige grün-kupferne Landschaft aus originaler Canvas-Zeichnung. Bereits als lokale Spielansicht umgesetzt; keine Multiplayer-Lobby.",
+      "known_visual_weaknesses": [
+        "Weitere optionale Themen und umfangreichere lokale Statistiken sind nicht Teil dieser ersten Version."
+      ],
+      "assessment_method": "Eigene native HTML-/Canvas-Oberfläche, Prüfung über Node und echte Desktop-/Mobile-Browser; Nachweise nach Prüfung ergänzen.",
+      "gameplay_summary": "Baue deine Verteidigung, forme neue Wege und schütze die Basis vor zwölf Wellen.",
+      "planned_style": "Eigenständige grün-kupferne Landschaft aus originaler Canvas-Zeichnung.",
+      "background_concept": "Wellenwacht: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine importierten Originalgrafiken.",
+      "board_concept": "Zwei 14×9-Karten mit lesbaren Eingängen, Basis, Felsen und aktuellen BFS-Wegen.",
+      "objects_concept": "Vier unterschiedliche Turmsilhouetten, drei sichtbare Stufen und vier Gegnerformen.",
+      "status_and_actions": "Wellenwacht: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Spielfeld zuerst, Bau als separate Bestätigung, optional 44-Pixel-Zoom mit internem Scrollen.",
+      "individual_complex_board": true,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "won",
+        "lost"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 18,
+        "max_hours": 28,
+        "level": "large",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "P2",
+      "priority_reason": "Expliziter Auftrag für drei lokale Einzelspieler-Spiele.",
+      "acceptance_criteria": [
+        "Start, Spielzug, Pause, Fortsetzung und Endzustände tatsächlich auf Desktop und Smartphone prüfen.",
+        "Sprache DE/EN und lokale, versionierte Spielstände ohne öffentliche Tabellen verifizieren."
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": null,
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-099",
+      "game_id": "snake",
+      "game_name": "Snake",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Snake: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Lenke eine Schlange, sammle Nahrung und vermeide Kollisionen.",
+      "planned_style": "Klare Leuchtspuren auf dunklem Raster.",
+      "background_concept": "Snake: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Snake: Steuerung auf einem Raster, Wachstum und zunehmendes Tempo.",
+      "objects_concept": "Snake: Tastatur und Wischgesten; Pause, lokaler Highscore, drei Tempostufen.",
+      "status_and_actions": "Snake: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Snake: Touch-Steuerung passend zu steuerung auf einem raster, wachstum und zunehmendes tempo.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 6,
+        "max_hours": 10,
+        "level": "medium",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Keine rückwärtige 180°-Wende",
+        "Kollisionen und reproduzierbare Nahrung getestet",
+        "Desktop und Touch geprüft"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "snake",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-100",
+      "game_id": "memory",
+      "game_name": "Memory",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Memory: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Finde passende Kartenpaare in deinem eigenen Tempo.",
+      "planned_style": "Ruhige illustrierte Symbolkarten mit starken Kontrasten.",
+      "background_concept": "Memory: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Memory: Zwei Karten aufdecken; passende Paare bleiben offen.",
+      "objects_concept": "Memory: Drei Rastergrößen; Zugzähler und optionale Uhr; Lokale Bestleistungen.",
+      "status_and_actions": "Memory: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Memory: Touch-Steuerung passend zu zwei karten aufdecken; passende paare bleiben offen.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 3,
+        "max_hours": 5,
+        "level": "small",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Jedes Motiv genau zweimal",
+        "Keine dritte Karte während der Aufdeckung",
+        "Eigenständiges Solo-Spiel; keine gemeinsame Aufgabe wie Gedächtnisküche"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "memory",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-101",
+      "game_id": "minesweeper",
+      "game_name": "Minesweeper",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Minesweeper: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Entschärfe ein Minenfeld mit Logik und Markierungen.",
+      "planned_style": "Lesbare nummerierte Felder, eigenständige Werkstattoptik.",
+      "background_concept": "Minesweeper: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Minesweeper: Nachbarzahlen verraten versteckte Minen.",
+      "objects_concept": "Minesweeper: Sicherer erster Klick; Flaggen und Aufdecken; Drei Feldgrößen.",
+      "status_and_actions": "Minesweeper: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Minesweeper: Touch-Steuerung passend zu nachbarzahlen verraten versteckte minen.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 6,
+        "max_hours": 10,
+        "level": "medium",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Erster Klick ist sicher",
+        "Flood-Fill ohne Rekursionsüberlauf",
+        "Separat von Minenlauf: private Einzelrunde statt Party-Wettlauf"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "minesweeper",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-102",
+      "game_id": "nonogramm",
+      "game_name": "Nonogramm",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Nonogramm: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Entschlüssle ein Pixelmotiv anhand von Zahlen am Rand.",
+      "planned_style": "Papierartige Logiktafel mit farbigen fertigen Motiven.",
+      "background_concept": "Nonogramm: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Nonogramm: Zahlenfolgen geben zusammenhängende Blöcke in Zeilen und Spalten an.",
+      "objects_concept": "Nonogramm: 5×5 bis 15×15; Markierung leerer Felder; Undo und Hilfen.",
+      "status_and_actions": "Nonogramm: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Nonogramm: Touch-Steuerung passend zu zahlenfolgen geben zusammenhängende blöcke in zeilen und spalten an.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 12,
+        "max_hours": 20,
+        "level": "large",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Zahlenhinweise korrekt erzeugt",
+        "Jedes veröffentlichte Rätsel eindeutig",
+        "Keine Server-Rangliste aus lokalen Saves"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "nonogramm",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-103",
+      "game_id": "sokoban",
+      "game_name": "Sokoban",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Sokoban: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Schiebe Kisten auf Zielmarkierungen und plane jeden Schritt.",
+      "planned_style": "Eigene kleine Lagerhäuser aus lesbaren 2D-Kacheln.",
+      "background_concept": "Sokoban: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Sokoban: Kisten lassen sich schieben, aber nicht ziehen.",
+      "objects_concept": "Sokoban: Handgebaute eigene Level; Undo und Neustart; Lokaler Level-Fortschritt.",
+      "status_and_actions": "Sokoban: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Sokoban: Touch-Steuerung passend zu kisten lassen sich schieben, aber nicht ziehen.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 6,
+        "max_hours": 10,
+        "level": "medium",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Keine Bewegung durch Wände oder zwei Kisten",
+        "Alle Level mit Lösung nachgewiesen",
+        "Undo stellt jeden Schritt exakt wieder her"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "sokoban",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-104",
+      "game_id": "block-puzzle",
+      "game_name": "Block Puzzle",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Block Puzzle: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Setze Formen ein und räume vollständige Reihen ab.",
+      "planned_style": "Materialhafte flache Formen mit Muster zusätzlich zur Farbe.",
+      "background_concept": "Block Puzzle: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Block Puzzle: Drei angebotene Formen auf ein Raster setzen; volle Linien verschwinden.",
+      "objects_concept": "Block Puzzle: Drehregeln festlegen; Touch-Vorschau; Highscore und Undo.",
+      "status_and_actions": "Block Puzzle: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Block Puzzle: Touch-Steuerung passend zu drei angebotene formen auf ein raster setzen; volle linien verschwinden.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 6,
+        "max_hours": 10,
+        "level": "medium",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Zeilen und Spalten gleichzeitig korrekt löschen",
+        "Game Over erst wenn keine angebotene Form passt",
+        "Puzzle-Panik bleibt eigenständiges geplantes Partyspiel"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "block-puzzle",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-105",
+      "game_id": "solitaire",
+      "game_name": "Solitaire",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Solitaire: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Ordne ein Kartendeck im klassischen Klondike-Solospiel.",
+      "planned_style": "Ruhiger eigener Kartentisch, vorhandene zugängliche Kartenwerte.",
+      "background_concept": "Solitaire: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Solitaire: Abwechselnde Farben absteigend, Fundamente aufsteigend.",
+      "objects_concept": "Solitaire: Ein- und Dreikarten-Zug; Undo und Hinweis; Lokale Statistik.",
+      "status_and_actions": "Solitaire: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Solitaire: Touch-Steuerung passend zu abwechselnde farben absteigend, fundamente aufsteigend.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 12,
+        "max_hours": 20,
+        "level": "large",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Alle Karten genau einmal im Deck",
+        "Nur erlaubte Teilstapel bewegen",
+        "Stock/Waste und Gewinnzustand getestet"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "solitaire",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-106",
+      "game_id": "mahjong-solitaire",
+      "game_name": "Mahjong Solitaire",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Mahjong Solitaire: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Entferne freie gleiche Steinpaare in eigenen Anordnungen.",
+      "planned_style": "Deutliche flache Steinlagen mit lesbaren Symbolen.",
+      "background_concept": "Mahjong Solitaire: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Mahjong Solitaire: Nur oben und mindestens auf einer Seite freie Steine sind wählbar.",
+      "objects_concept": "Mahjong Solitaire: Eigene Steinmotive; Mehrere Layouts; Undo, Hilfe und lokale Bestzeit.",
+      "status_and_actions": "Mahjong Solitaire: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Mahjong Solitaire: Touch-Steuerung passend zu nur oben und mindestens auf einer seite freie steine sind wählbar.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 12,
+        "max_hours": 20,
+        "level": "large",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Überdeckte und beidseitig gesperrte Steine nicht wählbar",
+        "Lösbarkeit der Startaufstellung nachgewiesen",
+        "Kein traditionelles Mehrspieler-Mahjong impliziert"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "mahjong-solitaire",
+        "source": "games/singleplayer/planned.js",
+        "status": "not_implemented",
+        "requires_separate_authorization": true
+      },
+      "screenshots": [],
+      "test_results": [],
+      "commits": [],
+      "implementation_commit": null,
+      "completed_at": null
+    },
+    {
+      "id": "VIS-107",
+      "game_id": "match-3",
+      "game_name": "Match-3",
+      "category": "einzelspieler",
+      "category_name": "Einzelspieler",
+      "implementation_status": "not_implemented",
+      "visual_status": "planned",
+      "implementation_authorized_now": false,
+      "implemented_in_this_order": false,
+      "inventory_source": "games/singleplayer/planned.js",
+      "existing_visual_work": {
+        "level": "no_frontend",
+        "evidence": [],
+        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+      },
+      "current_frontend_files": [],
+      "shared_frontend_files": [],
+      "source_audit": [],
+      "current_design": "Match-3: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "known_visual_weaknesses": [
+        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      ],
+      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "gameplay_summary": "Tausche benachbarte Symbole und bilde Dreierreihen.",
+      "planned_style": "Eigenes botanisches Symbolset ohne Farbzwang.",
+      "background_concept": "Match-3: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "board_concept": "Match-3: Gültige Tausche lösen Reihen, Nachrutschen und Kaskaden aus.",
+      "objects_concept": "Match-3: Zugbasierte Ziele; Eigene Level; Hilfen und lokaler Fortschritt.",
+      "status_and_actions": "Match-3: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
+      "mobile_concept": "Match-3: Touch-Steuerung passend zu gültige tausche lösen reihen, nachrutschen und kaskaden aus.",
+      "individual_complex_board": false,
+      "required_states": [
+        "setup",
+        "playing",
+        "pause",
+        "restore",
+        "end"
+      ],
+      "technical_constraints": [
+        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
+        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
+        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+      ],
+      "existing_variants": [],
+      "effort": {
+        "min_hours": 12,
+        "max_hours": 20,
+        "level": "large",
+        "basis": "Grobe reine Design-/Frontend-Schätzung einschließlich Responsive-Abnahme; Gameplay-Entwicklung separat."
+      },
+      "priority": "after_gameplay",
+      "priority_reason": "Nur vorgemerktes Solo-Arbeitspaket, keine aktuelle Implementierungsfreigabe.",
+      "acceptance_criteria": [
+        "Ungültiger Tausch wird zurückgesetzt",
+        "Keine Endlosschleifen bei Kaskaden",
+        "Mindestens ein gültiger Zug oder geregeltes Mischen"
+      ],
+      "common_acceptance_ids": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09",
+        "G10"
+      ],
+      "depends_on": [
+        "VIS-001"
+      ],
+      "gameplay_prerequisite": {
+        "game_id": "match-3",
+        "source": "games/singleplayer/planned.js",
         "status": "not_implemented",
         "requires_separate_authorization": true
       },

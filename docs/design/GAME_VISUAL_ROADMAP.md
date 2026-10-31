@@ -1,8 +1,8 @@
 # Individuelle Spielwelten – Design-Roadmap
 
-Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js), geprüft gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`. Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
+Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**49 spielbare Spiele, 46 noch nicht implementierte Spiele, 95 eigene VIS-Pakete.** Scotland Yard sowie die anschließend beauftragten Kartenwelten UNO, Skip-Bo und Phase 10 sind abgeschlossen: **4 done, 91 planned**. 45 weitere spielbare Spiele und 46 Backlog-Konzepte bleiben geplant. Vorhandene Material-/Brettarbeit anderer Spiele ist dokumentiert und wird erhalten, aber nicht als Umsetzung dieses neuen Standards ausgegeben.
+**52 spielbare Spiele, 55 noch nicht implementierte Spiele, 107 eigene VIS-Pakete.** Scotland Yard sowie die anschließend beauftragten Kartenwelten UNO, Skip-Bo und Phase 10 sind abgeschlossen. Sudoku, 2048 und Wellenwacht wurden im expliziten Solo-Auftrag ergänzt; ihr endgültiger Designabschluss wird mit tatsächlichem Implementierungscommit dokumentiert. Die weiteren 45 bestehenden Spieloberflächen und 55 Backlog-Konzepte bleiben geplant. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
 
 ## Verbindliche Arbeitsweise
 
@@ -2767,3 +2767,163 @@ VIS-004, VIS-009 und VIS-008 wurden anschließend ausdrücklich gemeinsam freige
 ## UNO Ultimate und Spuknacht als weiterer UNO-Folgeauftrag
 
 VIS-004 wurde anschließend allein für UNO und seine fünf Varianten überarbeitet. Spuknacht ist dauerhaft verfügbar und verwendet die Classic-Engine; Spiel-ID und Gesamtinventur bleiben unverändert. Commit: `dc2079a5862ba549cdcc9359c4a67157436ff1d9`. [Konzept, Tests, betroffene Dateien und Bilder](UNO_ULTIMATE_REDESIGN.md). Die übrigen 94 Paketeinträge sind unverändert; weiterhin 4 done und 91 planned.
+
+## Einzelspieler-Erweiterung vom 31.10.2026
+
+Der Gesamtbestand umfasst jetzt 52 spielbare Spiele (49 Raumspiele + 3 lokale Einzelspieler), 55 unimplementierte Spiele und 107 stabile VIS-Pakete. Einzelheiten, Abnahme und tatsächliche Abschlussstände: [Solo-Dokumentation](../solo-games/README.md) und die zentrale JSON-Datei. Die bisherigen VIS-001 bis VIS-095 werden nicht umnummeriert.
+
+### VIS-096 – Sudoku
+
+Spiel-ID: `sudoku` · playable · Designstatus siehe JSON.
+
+Ruhige elfenbeinfarbene Logiktafel auf salbeigrünem Grund.
+
+- Spielfeld: 9×9-Feld mit kräftigen 3×3-Grenzen, Peer-Markierung und ausgewählter Zelle.
+- Material: Feste dunkle Vorgaben, blaue Eingaben und neun lesbare Kandidatenplätze.
+- Mobil: Zahlenfeld in voller Breite, große Zifferntasten und getrennte Hilfen.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.
+- Aufwand (nur Frontend): 8–14 Stunden.
+- Abnahme: Start, Spielzug, Pause, Fortsetzung und Endzustände tatsächlich auf Desktop und Smartphone prüfen. Sprache DE/EN und lokale, versionierte Spielstände ohne öffentliche Tabellen verifizieren.
+
+### VIS-097 – 2048
+
+Spiel-ID: `2048` · playable · Designstatus siehe JSON.
+
+Warme bernsteinfarbene Zahlentafel mit zurückhaltenden Bewegungen.
+
+- Spielfeld: 4×4-Brett mit festen Positionen und klarer Ein-Zug-Zusammenführung.
+- Material: Wertabhängige Kacheltöne und große typografische Zahlen statt Bildtexturen.
+- Mobil: Wischfläche, sichtbare Richtungstasten und getrennte Undo-/Siegaktionen.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.
+- Aufwand (nur Frontend): 6–10 Stunden.
+- Abnahme: Start, Spielzug, Pause, Fortsetzung und Endzustände tatsächlich auf Desktop und Smartphone prüfen. Sprache DE/EN und lokale, versionierte Spielstände ohne öffentliche Tabellen verifizieren.
+
+### VIS-098 – Wellenwacht
+
+Spiel-ID: `wellenwacht` · playable · Designstatus siehe JSON.
+
+Eigenständige grün-kupferne Landschaft aus originaler Canvas-Zeichnung.
+
+- Spielfeld: Zwei 14×9-Karten mit lesbaren Eingängen, Basis, Felsen und aktuellen BFS-Wegen.
+- Material: Vier unterschiedliche Turmsilhouetten, drei sichtbare Stufen und vier Gegnerformen.
+- Mobil: Spielfeld zuerst, Bau als separate Bestätigung, optional 44-Pixel-Zoom mit internem Scrollen.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.
+- Aufwand (nur Frontend): 18–28 Stunden.
+- Abnahme: Start, Spielzug, Pause, Fortsetzung und Endzustände tatsächlich auf Desktop und Smartphone prüfen. Sprache DE/EN und lokale, versionierte Spielstände ohne öffentliche Tabellen verifizieren.
+
+### VIS-099 – Snake
+
+Spiel-ID: `snake` · not_implemented · Designstatus siehe JSON.
+
+Klare Leuchtspuren auf dunklem Raster.
+
+- Spielfeld: Snake: Steuerung auf einem Raster, Wachstum und zunehmendes Tempo.
+- Material: Snake: Tastatur und Wischgesten; Pause, lokaler Highscore, drei Tempostufen.
+- Mobil: Snake: Touch-Steuerung passend zu steuerung auf einem raster, wachstum und zunehmendes tempo.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 6–10 Stunden.
+- Abnahme: Keine rückwärtige 180°-Wende Kollisionen und reproduzierbare Nahrung getestet Desktop und Touch geprüft
+
+### VIS-100 – Memory
+
+Spiel-ID: `memory` · not_implemented · Designstatus siehe JSON.
+
+Ruhige illustrierte Symbolkarten mit starken Kontrasten.
+
+- Spielfeld: Memory: Zwei Karten aufdecken; passende Paare bleiben offen.
+- Material: Memory: Drei Rastergrößen; Zugzähler und optionale Uhr; Lokale Bestleistungen.
+- Mobil: Memory: Touch-Steuerung passend zu zwei karten aufdecken; passende paare bleiben offen.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 3–5 Stunden.
+- Abnahme: Jedes Motiv genau zweimal Keine dritte Karte während der Aufdeckung Eigenständiges Solo-Spiel; keine gemeinsame Aufgabe wie Gedächtnisküche
+
+### VIS-101 – Minesweeper
+
+Spiel-ID: `minesweeper` · not_implemented · Designstatus siehe JSON.
+
+Lesbare nummerierte Felder, eigenständige Werkstattoptik.
+
+- Spielfeld: Minesweeper: Nachbarzahlen verraten versteckte Minen.
+- Material: Minesweeper: Sicherer erster Klick; Flaggen und Aufdecken; Drei Feldgrößen.
+- Mobil: Minesweeper: Touch-Steuerung passend zu nachbarzahlen verraten versteckte minen.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 6–10 Stunden.
+- Abnahme: Erster Klick ist sicher Flood-Fill ohne Rekursionsüberlauf Separat von Minenlauf: private Einzelrunde statt Party-Wettlauf
+
+### VIS-102 – Nonogramm
+
+Spiel-ID: `nonogramm` · not_implemented · Designstatus siehe JSON.
+
+Papierartige Logiktafel mit farbigen fertigen Motiven.
+
+- Spielfeld: Nonogramm: Zahlenfolgen geben zusammenhängende Blöcke in Zeilen und Spalten an.
+- Material: Nonogramm: 5×5 bis 15×15; Markierung leerer Felder; Undo und Hilfen.
+- Mobil: Nonogramm: Touch-Steuerung passend zu zahlenfolgen geben zusammenhängende blöcke in zeilen und spalten an.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 12–20 Stunden.
+- Abnahme: Zahlenhinweise korrekt erzeugt Jedes veröffentlichte Rätsel eindeutig Keine Server-Rangliste aus lokalen Saves
+
+### VIS-103 – Sokoban
+
+Spiel-ID: `sokoban` · not_implemented · Designstatus siehe JSON.
+
+Eigene kleine Lagerhäuser aus lesbaren 2D-Kacheln.
+
+- Spielfeld: Sokoban: Kisten lassen sich schieben, aber nicht ziehen.
+- Material: Sokoban: Handgebaute eigene Level; Undo und Neustart; Lokaler Level-Fortschritt.
+- Mobil: Sokoban: Touch-Steuerung passend zu kisten lassen sich schieben, aber nicht ziehen.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 6–10 Stunden.
+- Abnahme: Keine Bewegung durch Wände oder zwei Kisten Alle Level mit Lösung nachgewiesen Undo stellt jeden Schritt exakt wieder her
+
+### VIS-104 – Block Puzzle
+
+Spiel-ID: `block-puzzle` · not_implemented · Designstatus siehe JSON.
+
+Materialhafte flache Formen mit Muster zusätzlich zur Farbe.
+
+- Spielfeld: Block Puzzle: Drei angebotene Formen auf ein Raster setzen; volle Linien verschwinden.
+- Material: Block Puzzle: Drehregeln festlegen; Touch-Vorschau; Highscore und Undo.
+- Mobil: Block Puzzle: Touch-Steuerung passend zu drei angebotene formen auf ein raster setzen; volle linien verschwinden.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 6–10 Stunden.
+- Abnahme: Zeilen und Spalten gleichzeitig korrekt löschen Game Over erst wenn keine angebotene Form passt Puzzle-Panik bleibt eigenständiges geplantes Partyspiel
+
+### VIS-105 – Solitaire
+
+Spiel-ID: `solitaire` · not_implemented · Designstatus siehe JSON.
+
+Ruhiger eigener Kartentisch, vorhandene zugängliche Kartenwerte.
+
+- Spielfeld: Solitaire: Abwechselnde Farben absteigend, Fundamente aufsteigend.
+- Material: Solitaire: Ein- und Dreikarten-Zug; Undo und Hinweis; Lokale Statistik.
+- Mobil: Solitaire: Touch-Steuerung passend zu abwechselnde farben absteigend, fundamente aufsteigend.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 12–20 Stunden.
+- Abnahme: Alle Karten genau einmal im Deck Nur erlaubte Teilstapel bewegen Stock/Waste und Gewinnzustand getestet
+
+### VIS-106 – Mahjong Solitaire
+
+Spiel-ID: `mahjong-solitaire` · not_implemented · Designstatus siehe JSON.
+
+Deutliche flache Steinlagen mit lesbaren Symbolen.
+
+- Spielfeld: Mahjong Solitaire: Nur oben und mindestens auf einer Seite freie Steine sind wählbar.
+- Material: Mahjong Solitaire: Eigene Steinmotive; Mehrere Layouts; Undo, Hilfe und lokale Bestzeit.
+- Mobil: Mahjong Solitaire: Touch-Steuerung passend zu nur oben und mindestens auf einer seite freie steine sind wählbar.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 12–20 Stunden.
+- Abnahme: Überdeckte und beidseitig gesperrte Steine nicht wählbar Lösbarkeit der Startaufstellung nachgewiesen Kein traditionelles Mehrspieler-Mahjong impliziert
+
+### VIS-107 – Match-3
+
+Spiel-ID: `match-3` · not_implemented · Designstatus siehe JSON.
+
+Eigenes botanisches Symbolset ohne Farbzwang.
+
+- Spielfeld: Match-3: Gültige Tausche lösen Reihen, Nachrutschen und Kaskaden aus.
+- Material: Match-3: Zugbasierte Ziele; Eigene Level; Hilfen und lokaler Fortschritt.
+- Mobil: Match-3: Touch-Steuerung passend zu gültige tausche lösen reihen, nachrutschen und kaskaden aus.
+- Grenzen: Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung. Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten. Implementierung nur nach ausdrücklicher eigener Freigabe.
+- Aufwand (nur Frontend): 12–20 Stunden.
+- Abnahme: Ungültiger Tausch wird zurückgesetzt Keine Endlosschleifen bei Kaskaden Mindestens ein gültiger Zug oder geregeltes Mischen

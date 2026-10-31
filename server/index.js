@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, unlinkSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { GAMES, DEFAULT_GAME, gameList, gameEvents, PLANNED, plannedGames } from '../games/index.js';
+import { GAMES, DEFAULT_GAME, gameList, singleplayerGameList, gameEvents, PLANNED, plannedGames } from '../games/index.js';
 import { resolvedRoadmap } from '../games/roadmap.js';
 import { createPresence } from './presence.js';
 import { createTicketAPI } from './ticket-api.js';
@@ -129,7 +129,7 @@ app.use((req, res, next) => {
 });
 app.get('/me', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  res.json({ mode: MODE, games: gameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
+  res.json({ mode: MODE, games: gameList(), singleplayerGames: singleplayerGameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
 });
 app.get('/roadmap', (_req, res) => {
   res.setHeader('Cache-Control', 'no-store');

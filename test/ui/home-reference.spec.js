@@ -1,9 +1,9 @@
 import { test, expect, login } from './helpers.js';
 
-test('Referenz-Home: vier echte Kategorien, großzügige SVG-Motive und getrennte Informationsspalte', async ({ page, app }, info) => {
+test('Referenz-Home: fünf echte Kategorien, großzügige SVG-Motive und getrennte Informationsspalte', async ({ page, app }, info) => {
   await login(page, app);
   await expect(page.locator('.welcome h1')).toHaveText('Spielebibliothek');
-  const categories = await page.evaluate(() => [...new Set(account.games.map((g) => g.category))].sort());
+  const categories = await page.evaluate(() => [...new Set([...account.games,...account.singleplayerGames].map((g) => g.category))].sort());
   expect(await page.locator('.home-categories a').evaluateAll((links) => links.map((a) => a.hash.split('/')[1]).sort())).toEqual(categories);
   await expect(page.locator('.home-games > li')).toHaveCount(4);
   const measurements = await page.locator('.home-games > li').evaluateAll((cards) => cards.map((card) => ({ height: card.getBoundingClientRect().height, art: card.querySelector('.game-art').getBoundingClientRect().width })));

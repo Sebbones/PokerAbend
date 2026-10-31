@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-31",
+  "method": "Playwright, real password-protected application with isolated temporary server data. Screenshot dimensions may be taller than viewport due to fullPage captures.",
+  "viewport_matrix": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1440,
+      900
+    ],
+    [
+      768,
+      1024
+    ],
+    [
+      390,
+      844
+    ],
+    [
+      360,
+      800
+    ],
+    [
+      900,
+      450
+    ]
+  ],
+  "scope": "New local games only. No prior frontend existed for before/after comparisons. End-state screenshots use validated deterministic test saves; full TD victory and legal-budget strategies are also exercised by the pure-engine tests.",
+  "screenshots": [
+    {
+      "path": "docs/solo-games/screenshots/2048-1440x900.png",
+      "sha256": "d310ac2db5b6dbe1b11c806b761ffb4c5ac3f199586d38028e538faba258c225",
+      "width": 1440,
+      "height": 1186
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-1920x1080.png",
+      "sha256": "7e823b6a8e23903ee91d055fd0dacd97b908deb040f1ce38cfb40117ffa42ac9",
+      "width": 1920,
+      "height": 1199
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-360x800.png",
+      "sha256": "ab017e614d5804782dece00465e0f434e32f772f499c143751a0f60880d92b42",
+      "width": 360,
+      "height": 1298
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-390x844.png",
+      "sha256": "97a3716e614a7f035db4e2464c79b071a5a4d478484defc36f3d68c2946c74e5",
+      "width": 390,
+      "height": 1320
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-768x1024.png",
+      "sha256": "72be32fb162eed782a12d1623d83cead08bac98d6ee90fdac0102b4b47bbbbfb",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-900x450.png",
+      "sha256": "38e9a1b135ad5ba9c63d44f4fb85b89304e9a6bf2d186783db728fb345582221",
+      "width": 900,
+      "height": 1125
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-lost-desktop.png",
+      "sha256": "79421212eb1c2e4330a2538d90979bbb3d1560819649f00b91b37458fc0afbe5",
+      "width": 1440,
+      "height": 1186
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-lost-mobil.png",
+      "sha256": "4343bb6cedb0490cb033997daaf0a1f9e3f2b3fefe7742b6f789476f13dc6d08",
+      "width": 390,
+      "height": 1466
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-playing-desktop.png",
+      "sha256": "78dc73470bea8e57c388a69b439f56c6edc98edfd34b6674abb1c4556b753fb8",
+      "width": 1440,
+      "height": 1186
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-playing-mobil.png",
+      "sha256": "6887e0e76ff5136a49cd2f26cdd58d56267c6184d8da97332c95f44b0b8ffc82",
+      "width": 390,
+      "height": 1320
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-start-desktop.png",
+      "sha256": "da1bd92d15f96b7789bf0b0308c2ce0420cd99b8cd6647b18019604d94465b27",
+      "width": 1440,
+      "height": 1010
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-start-mobil.png",
+      "sha256": "25ba760b2272d84a5164c66171fd386f97fb80f1974b27627d78e918acd4d940",
+      "width": 390,
+      "height": 1029
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-won-desktop.png",
+      "sha256": "14d7abc3ff4cda66acf575da1849d6e44877f17ba46555fe8df5f262a0bff70c",
+      "width": 1440,
+      "height": 1186
+    },
+    {
+      "path": "docs/solo-games/screenshots/2048-won-mobil.png",
+      "sha256": "4c255df490feaab3f074f732e7a12c608fa50353e8718c7be0b2a97576c675cc",
+      "width": 390,
+      "height": 1466
+    },
+    {
+      "path": "docs/solo-games/screenshots/library-desktop.png",
+      "sha256": "c048bd468ca97a6249524be6b9a9a5b1b9cb98ad2b1785bb1307aad1e5b8ac08",
+      "width": 1440,
+      "height": 984
+    },
+    {
+      "path": "docs/solo-games/screenshots/library-mobil.png",
+      "sha256": "bcc1ea2693c68af07bccd82f307e803af52b5331a0e4bf54fe9be9a504dc21d4",
+      "width": 390,
+      "height": 1943
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-1440x900.png",
+      "sha256": "7100a886bbb271cbae8e46584f7fcf85de288eb79ed316fd257ac90fa245768d",
+      "width": 1440,
+      "height": 1256
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-1920x1080.png",
+      "sha256": "87297569839d6de7a1c83b98656897412ca709421cc9d5240cd0217d582c5d2a",
+      "width": 1920,
+      "height": 1269
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-360x800.png",
+      "sha256": "d943fc931a1203c53c049bd7ee055f09f4fae70bc19b58c47784f2c0699bbe5a",
+      "width": 360,
+      "height": 1464
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-390x844.png",
+      "sha256": "c95dce6bd7832c5e0c9d3e63c3aefe95e419034ad446526cd1baaff8ba0a03bc",
+      "width": 390,
+      "height": 1486
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-768x1024.png",
+      "sha256": "02ef8184f5df43163c2cd8a272a32bf2300e7c8b797ef36ace08a1f097a1f237",
+      "width": 768,
+      "height": 1135
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-900x450.png",
+      "sha256": "e6a50a20f9ce9d9a1c2e091448261d1ec6508b7c3101d83da6e140c8c94755b3",
+      "width": 900,
+      "height": 1149
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-playing-desktop.png",
+      "sha256": "7ba154308cd9b23856b208c761920b5d702809bb564a058f58c77e80324ee7d8",
+      "width": 1440,
+      "height": 1256
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-playing-mobil.png",
+      "sha256": "9f00974956acfe23580ff6dd17c4483a427fa1a292d589712920247e5efa9d48",
+      "width": 390,
+      "height": 1486
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-start-desktop.png",
+      "sha256": "224e798ade20b131a974a0930d6b0175d9a241a63815583ac76df7b53ca2ba2b",
+      "width": 1440,
+      "height": 1039
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-start-mobil.png",
+      "sha256": "dcf4ad3f087f8c02fe21a80dfb527a50e20e5286e42e87619843943bb71c6a16",
+      "width": 390,
+      "height": 1076
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-won-desktop.png",
+      "sha256": "abbf0c8d5f074da0e286f2fef9251cf9b831152ba31d75b9ca550f74a2abf0b2",
+      "width": 1440,
+      "height": 1280
+    },
+    {
+      "path": "docs/solo-games/screenshots/sudoku-won-mobil.png",
+      "sha256": "06bfa2c182d873b8d52b5ea94ff161e2b9c3c436a1a23139263214456af6caff",
+      "width": 390,
+      "height": 1657
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-1440x900.png",
+      "sha256": "112ccced79d6a9fbb833d9c0600a281ece999df635e0f8d81029b0f2d4f4682e",
+      "width": 1440,
+      "height": 1380
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-1920x1080.png",
+      "sha256": "2632641549eb42d768bdef85600d0639192d7fcb0df23222415db1a6dd2d4b7a",
+      "width": 1920,
+      "height": 1478
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-360x800.png",
+      "sha256": "c46e0213f1331e2f84db19ebb954779bded60a0cd712f8e59d5ef574589da484",
+      "width": 360,
+      "height": 1595
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-390x844.png",
+      "sha256": "157b1b058dd16bc4f10167db9f528d93553d1d6de79f2af83af4b40e7c1443cd",
+      "width": 390,
+      "height": 1568
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-768x1024.png",
+      "sha256": "c0a405675eebf29f28f258d7232989ff253bf4b8b8c7c2ea3957ae0681c599c7",
+      "width": 768,
+      "height": 1444
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-900x450.png",
+      "sha256": "802d4a27ff02895b8dadc80a9abfdc78ba00e3863a862481e7e8397417e71fac",
+      "width": 900,
+      "height": 1539
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-delta-desktop.png",
+      "sha256": "15577ed4258dec0e6594acd6efedaccb84eb1c4f57140748b4f9750f2ee98c2f",
+      "width": 1440,
+      "height": 1380
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-delta-mobil.png",
+      "sha256": "fee850a16eec04a696add88116b4ae13545b274b2f32ec23cbeedc227001babd",
+      "width": 390,
+      "height": 1568
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-lost-desktop.png",
+      "sha256": "a98bf622d78a923336da08f1ff0757c053b8b08b63390ee301ff6a52bcd92b67",
+      "width": 1440,
+      "height": 1380
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-lost-mobil.png",
+      "sha256": "7c6cf4ee6086030e8e3e5b3a17ec2e5768156fd63540905c20f16a5a4f6fa2f5",
+      "width": 390,
+      "height": 1749
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-playing-desktop.png",
+      "sha256": "1f8a2e74d8e180b4b30e129ec45e20da54eb6f7ae58c8e9375817bccddbff1cd",
+      "width": 1440,
+      "height": 1380
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-playing-mobil.png",
+      "sha256": "dcd4cd9fdb95eb9a44b14da481804c835fe308ad941b28c8e1638488be86b65f",
+      "width": 390,
+      "height": 1465
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-start-desktop.png",
+      "sha256": "97c0863e9850a7c0f0e94127634ad81fcce50926338e4f63c6d70f8d8703fb3a",
+      "width": 1440,
+      "height": 1039
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-start-mobil.png",
+      "sha256": "02eb618e72a4ffc683d858a0c3aa6ef6157bfbecd3c1018bc20b42465fcf08ec",
+      "width": 390,
+      "height": 1134
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-won-desktop.png",
+      "sha256": "cca297be79ce5bf3f74f7f8eb0573ca88cb4090283800b6dfab2839ba3cd8066",
+      "width": 1440,
+      "height": 1380
+    },
+    {
+      "path": "docs/solo-games/screenshots/wellenwacht-won-mobil.png",
+      "sha256": "8da656d70848cf81abd7b1572d6ceee9bb1e7916e79d6c89441348e70a04bc85",
+      "width": 390,
+      "height": 1749
+    }
+  ]
+}

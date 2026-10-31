@@ -322,6 +322,7 @@ function pushRoomUrl(code) {
 
 // Ins Spiel wechseln, sobald das Modul geladen ist
 async function enterGame(r) {
+  window.Singleplayer?.leave();
   const prev = session;
   const game = r.game || 'poker';
   session = { code: r.code, token: r.token, game };
@@ -626,7 +627,7 @@ async function boot() {
   try {
     const r = await fetch('/me', { credentials: 'same-origin' });
     if (r.status === 401) { location.href = '/login?next=' + encodeURIComponent(location.pathname + location.search); return; }
-    if (r.ok) { account = { games: [], ...(await r.json()) }; I18n.configureGames(account.games); }
+    if (r.ok) { account = { games: [], ...(await r.json()) }; I18n.configureGames([...account.games, ...(account.singleplayerGames || []), ...(account.planned || [])]); }
   } catch { /* offline – Socket.IO versucht es weiter */ }
   // Der Hub und seine Seiten stehen erst nach den gemeinsamen Skripten bereit.
   if (document.readyState === 'loading') await new Promise((resolve) => document.addEventListener('DOMContentLoaded', resolve, { once: true }));

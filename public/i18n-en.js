@@ -1,6 +1,14 @@
 // Reviewed English UI messages; German source text is the fallback for missing entries.
 'use strict';
 window.EN = {
+  'Einzelspieler': 'Single player', 'Spielen': 'Play',
+  'Eine ruhige Zahlenpause: eindeutige Rätsel, Notizen und vier Schwierigkeitsstufen.': 'A quiet number break: unique puzzles, notes and four difficulty levels.',
+  'Schiebe, verbinde und plane voraus. Wie weit kommst du nach 2048?': 'Slide, merge and plan ahead. How far can you go beyond 2048?',
+  'Baue deine Verteidigung, forme neue Wege und schütze die Basis vor zwölf Wellen.': 'Build defences, reshape enemy routes and protect the base through twelve waves.',
+  'Einzelspieler: dein Spiel, dein Tempo': 'Single player: your game, your pace',
+  'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.': 'Sudoku, 2048 and Wellenwacht with private local saves, without another player.',
+  'Weitere Einzelspieler-Spiele': 'More single-player games',
+  'Neun einzeln geplante Arbeitspakete. Umsetzung jeweils erst nach eigener Freigabe.': 'Nine individually planned work packages. Each implementation requires its own approval.',
   'UNO-Varianten': 'UNO variants', 'Spuknacht': 'Ghost Night', 'UNO: Spuknacht': 'UNO: Ghost Night',
   'Modern Card Table · Gleiche Farbe oder Zahl, mit wählbaren Classic-Hausregeln.': 'Modern Card Table · Match a colour or number, with configurable Classic house rules.',
   'Dual World · Zwei Kartenseiten, neue Farben und echte Flip-Wechsel.': 'Dual World · Two card sides, new colours and actual flips.',

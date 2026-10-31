@@ -1,6 +1,8 @@
 # Spieleabend
 
-Spielesammlung für die Freundesgruppe mit 49 Spielen, im Browser und online spielbar: Texas Hold'em, Mau-Mau, UNO, Scotland Yard, Hex, Würfelduell und viele weitere. Der Server ist Geber und Schiedsrichter: Er mischt, teilt aus, würfelt, prüft jeden Zug und rechnet ab.
+Spielesammlung mit 52 Spielen: 49 Online-/Partyspiele für die Freundesgruppe sowie Sudoku, 2048 und Wellenwacht als lokale Einzelspieler. Bei den Online-Spielen ist der Server Geber und Schiedsrichter: Er mischt, teilt aus, würfelt, prüft jeden Zug und rechnet ab.
+
+Die Kategorie **Einzelspieler** in der Spielebibliothek startet ohne zweiten Teilnehmer oder Discord-Account. Fortschritte werden versioniert im aktuellen Browser gespeichert, beim Verlassen pausiert und lokal fortgesetzt. Es entstehen keine öffentlichen Tische oder Ranglisten aus Solo-Daten. Details, Tests, Screenshots und die neun ausschließlich geplanten weiteren Solo-Spiele: [Einzelspieler-Dokumentation](docs/solo-games/README.md).
 
 > **Name:** Sichtbar heißt die Seite „Spieleabend“. Technisch bleibt „pokerabend“ – Repo, Docker-Image `ghcr.io/ttlpscwa/pokerabend`, Container, Volume `poker-data`, Paketname, Cookie `pa_auth` und die Browser-Speicherschlüssel `poker:…`. Sonst brechen Deployment und laufende Sitzungen.
 

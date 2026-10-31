@@ -4,13 +4,15 @@
 // Abschlussdaten geprüft: af1c42d, 1da6720, c75b458, 88f2293, e945d48, 522ebaa,
 // 8bd8ec3, 2c82db2, 8197000, 703751d, b588e7d, 3d7366b (git log, Datum YYYY-MM-DD).
 import { PLANNED } from './planned.js';
-import { GAMES } from './index.js';
+import { PLAYABLE_GAMES as GAMES } from './index.js';
 
 const punkt = (id, titel, art, text, erledigt = false) => ({ id, titel, art, text, ...(erledigt ? { erledigt: true } : {}) });
 const liste = (prefix, art, rows, erledigt = false) => rows.map(([titel, text], i) => punkt(`${prefix}-${i + 1}`, titel, art, text, erledigt));
 const spiele = (ids) => ids.map((id) => punkt(id, GAMES[id].name, 'spiel', GAMES[id].description, true));
 
 export const ROADMAP = [
+  { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
+  { id: 'einzelspieler-zukunft', titel: 'Weitere Einzelspieler-Spiele', satz: 'Neun einzeln geplante Arbeitspakete. Umsetzung jeweils erst nach eigener Freigabe.', stufe: 'spaeter', eintraege: ['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3'], punkte: [] },
   { id: 'neue-spielwelten', titel: 'Neue Spielwelten & schönere Spieloberflächen', satz: 'Scotland Yard, UNO, Skip-Bo und Phase 10 sind visuell überarbeitet. Weitere individuelle Spielwelten folgen schrittweise nach eigener Freigabe.', stufe: 'spaeter', punkte: [
     punkt('visual-scotland-yard', 'Scotland Yard: Ermittlungszentrale & Stadtkarte', 'design', 'Eigene Stadtviertel, persönliche Figuren, Fahrkarten und Ermittlungsprotokoll – auf Desktop und Handy geprüft.', true),
     punkt('visual-kartenwelten', 'UNO, Skip-Bo & Phase 10: eigene Kartenwelten', 'design', 'Farbarena, nummerierte Baureihen und Phasen-Arbeitsfläche mit eigenen Lobbys und klaren Aktionen auf Desktop und Handy.', true),

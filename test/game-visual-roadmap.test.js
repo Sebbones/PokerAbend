@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { GAMES, PLANNED } from '../games/index.js';
+import { PLAYABLE_GAMES as GAMES, PLANNED } from '../games/index.js';
 import { resolvedRoadmap } from '../games/roadmap.js';
 import { i18nContext } from './i18n-harness.js';
 
@@ -64,9 +64,9 @@ test('Visual roadmap: completion requires real evidence; planned packages contai
     }
     if (p.implementation_status === 'not_implemented') assert.equal(p.visual_status, 'planned');
   }
-  for (const file of ['docs/design/scotland-yard-screenshots.json', 'docs/design/card-worlds-screenshots.json', 'docs/design/uno-ultimate-screenshots.json']) {
+  for (const file of ['docs/design/scotland-yard-screenshots.json', 'docs/design/card-worlds-screenshots.json', 'docs/design/uno-ultimate-screenshots.json', 'docs/solo-games/screenshots.json']) {
     const manifest = JSON.parse(read(file));
-    for (const { path, sha256 } of manifest.comparisons) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), sha256, path);
+    for (const { path, sha256 } of manifest.comparisons || manifest.screenshots) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), sha256, path);
   }
 });
 

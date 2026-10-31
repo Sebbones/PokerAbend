@@ -91,10 +91,12 @@ async function joinAndEnter(code, mode = '') {
 }
 
 // ---------- Seiten und Navigation ----------
-const GAME_CATEGORIES = [['karten', 'Kartenspiele'], ['wuerfel', 'Würfelspiele'], ['brett', 'Brettspiele'], ['party', 'Party']]; // wie games/index.js
+const GAME_CATEGORIES = [['karten', 'Kartenspiele'], ['wuerfel', 'Würfelspiele'], ['brett', 'Brettspiele'], ['party', 'Party'], ['einzelspieler', 'Einzelspieler']]; // wie games/index.js
+const libraryGames = () => [...(account.games || []), ...(account.singleplayerGames || [])];
 const hubVisible = () => !$('#hub').hidden;
 const ico = (d) => `<svg class="hub-ico" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
 const ICONS = {
+  einzelspieler: '<circle cx="12" cy="7" r="3.5"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/>',
   start: '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/>',
   tische: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14c3 0 4.5 2 4.5 5"/>',
   favoriten: '<path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/>',
@@ -110,12 +112,12 @@ const ICONS = {
   planung: '<path d="M4 5h16v15H4zM8 3v4M16 3v4M4 10h16m-9 4h6m-3-3v6"/>',
   tickets: '<path d="M4 4h16v5a3 3 0 0 0 0 6v5H4v-5a3 3 0 0 0 0-6z"/><path d="M12 7v2m0 3v2m0 3v1"/>',
 };
-const PAGES = ['start', 'spiele', 'favoriten', 'tische', 'bestenliste', 'roadmap', 'tickets', 'rueckblick', 'planung', 'erfolge'];
+const PAGES = ['start', 'spiele', 'favoriten', 'tische', 'bestenliste', 'roadmap', 'tickets', 'rueckblick', 'planung', 'erfolge', 'solo'];
 let route = { page: 'start', sub: '' };
 function parseRoute() {
   const [p = 'start', s = ''] = location.hash.replace(/^#/, '').split('/');
   const page = PAGES.includes(p) ? p : 'start';
-  return { page, sub: page === 'spiele' && GAME_CATEGORIES.some(([id]) => id === s) || page === 'tickets' && /^[1-9]\d{0,8}$/.test(s) || page === 'rueckblick' && EveningReviews.validId(s) || page === 'planung' && EveningPlans.validId(s) ? s : '' };
+  return { page, sub: page === 'spiele' && GAME_CATEGORIES.some(([id]) => id === s) || page === 'solo' && Singleplayer.ids.includes(s) || page === 'tickets' && /^[1-9]\d{0,8}$/.test(s) || page === 'rueckblick' && EveningReviews.validId(s) || page === 'planung' && EveningPlans.validId(s) ? s : '' };
 }
 const hashOf = (page, sub = '') => `#${page}${sub ? '/' + sub : ''}`;
 let hubTables = [];                      // offene Tische (vom Server, siehe Teil H3)
@@ -126,7 +128,7 @@ function navHTML() {
   const item = (href, key, label, extra = '') => `<a class="nav-item" href="${href}" aria-label="${I18n.t(label)}" title="${I18n.t(label)}" ${cur === href || ['tickets', 'rueckblick', 'planung'].includes(key) && route.page === key ? 'aria-current="page"' : ''}>${ico(ICONS[key])}<span class="side-label">${I18n.t(label)}</span>${extra}</a>`;
   const n = openTableCount();
   const badge = n ? I18n.html`<span class="badge" aria-label="${n} offene${n === 1 ? 'r' : ''} Tisch${n === 1 ? '' : 'e'}">${n}</span>` : '';
-  const games = account.games || [];
+  const games = libraryGames();
   return I18n.html`${item('#start', 'start', I18n.t('Start'))}${item('#spiele', 'spiele', I18n.t('Spielebibliothek'))}${item('#tische', 'tische', I18n.t('Offene Tische'), badge)}${item('#favoriten', 'favoriten', I18n.t('Favoriten'))}${item('#planung', 'planung', I18n.t('Abend planen'))}${item('#bestenliste', 'bestenliste', I18n.t('Bestenliste'))}${item('#erfolge', 'erfolge', I18n.t('Erfolge & Abzeichen'))}${item('#rueckblick', 'rueckblick', I18n.t('Rückblick'))}${item('#roadmap', 'roadmap', 'Roadmap')}${item('#tickets', 'tickets', 'Tickets')}
     <details class="side-categories" ${route.sub && route.page === 'spiele' ? 'open' : ''}><summary class="nav-item">${ico(ICONS.karten)}<span class="side-label">Spielarten</span></summary>
     ${GAME_CATEGORIES.map(([id, title]) => item(I18n.html`#spiele/${id}`, id, title, I18n.html`<span class="count side-label" aria-label="${games.filter((g) => (g.category || 'karten') === id).length} Spiele">${games.filter((g) => (g.category || 'karten') === id).length}</span>`)).join('')}</details>`;
@@ -143,22 +145,26 @@ const TITLES = { start: 'Start', spiele: 'Spiele', favoriten: 'Favoriten', tisch
 let renderedPage = null;
 function renderHub(focus = false) {
   route = parseRoute();
+  if (route.page === 'spiele' && route.sub === 'einzelspieler' && RANGES[gamesFilter]) gamesFilter = 'all';
+  Singleplayer.leave(route.page === 'solo' ? route.sub : '');
   $('#hub-language').innerHTML = I18n.selector();
   $('#side-nav').innerHTML = navHTML();
   $('#hub-tabbar').innerHTML = tabbarHTML();
   $('#hub-menu-nav').innerHTML = navHTML();
-  const page = { start: pageStart, spiele: pageGames, favoriten: pageGames, tische: pageTables, bestenliste: pageBoard, roadmap: pageRoadmap, tickets: pageTickets, rueckblick: EveningReviews.page, planung: EveningPlans.page, erfolge: Achievements.page }[route.page];
+  const page = { start: pageStart, spiele: pageGames, favoriten: pageGames, tische: pageTables, bestenliste: pageBoard, roadmap: pageRoadmap, tickets: pageTickets, rueckblick: EveningReviews.page, planung: EveningPlans.page, erfolge: Achievements.page, solo: pageSolo }[route.page];
   const main = $('#hub-main');
   $('#hub').dataset.page = route.page;
   const catalog = ['spiele', 'favoriten'].includes(route.page);
   $('#hub-search-slot').innerHTML = I18n.html`<form id="hub-search-form" role="search"><label class="search"><span class="sr-only">${catalog ? I18n.t('Spiel suchen') : I18n.t('Spiele suchen')}</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg><input id="${catalog ? 'games-search' : 'hub-search'}" type="search" placeholder="Spiele suchen …" value="${catalog ? esc(gamesQuery) : ''}" autocomplete="off"></label></form>`;
   const scroll = main.scrollTop;
   main.innerHTML = page();
-  document.title = I18n.html`${I18n.t(TITLES[route.page])} – Spieleabend`;
+  document.title = I18n.html`${route.page === 'solo' ? (libraryGames().find((g) => g.id === route.sub)?.name || I18n.t('Einzelspieler')) : I18n.t(TITLES[route.page])} – Spieleabend`;
   if (focus || renderedPage !== route.page + route.sub) { main.focus({ preventScroll: true }); scrollTo(0, 0); } else main.scrollTop = scroll;
   renderedPage = route.page + route.sub;
   afterPage?.();
+  if (route.page === 'solo' && route.sub) Singleplayer.mount($('#singleplayer-root'), route.sub);
 }
+function pageSolo() { return route.sub ? '<div id="singleplayer-root" aria-live="off"></div>' : `<p><a href="#spiele/einzelspieler">${I18n.t('Einzelspieler')}</a></p>`; }
 let afterPage = null;
 $('#hub-more').addEventListener('click', () => $('#hub-menu').showModal());
 $('#hub-menu-nav').addEventListener('click', (e) => { if (e.target.closest('a')) $('#hub-menu').close(); });
@@ -172,7 +178,7 @@ function showHub(error = '', { keepUrl = false } = {}) {
   if (!keepUrl && roomCodeFromUrl()) history.replaceState(null, '', '/' + (location.hash || '#start')); // ?t=CODE gehört zum Tisch, nicht zur Startseite
   resumeAt = 0; // „Weiterspielen“ neu laden: der gerade verlassene Tisch soll dort stehen
   renderProfileChip();
-  if (!profile.name) openProfile(true); // allererster Besuch
+  if (!profile.name && parseRoute().page !== 'solo' && !(parseRoute().page === 'spiele' && parseRoute().sub === 'einzelspieler')) openProfile(true); // lokale Spiele brauchen kein Profil
   renderHub();
 }
 const showLobby = (error = '') => showHub(error);
@@ -277,7 +283,7 @@ const RANGES = { p2: [2, 2], p34: [3, 4], p56: [5, 6], p7: [7, 99] };
 const catTitle = (id) => I18n.t((GAME_CATEGORIES.find(([c]) => c === id) || [, ''])[1]);
 const plannedAll = () => account.planned || [];
 // 'next' bleibt mit „Bald“ in der Spieleliste. Der übrige Backlog gehört zur Roadmap.
-const allGames = () => [...(account.games || []), ...plannedAll().filter((p) => p.status === 'next').map((p) => ({ ...p, planned: true }))];
+const allGames = () => [...libraryGames(), ...plannedAll().filter((p) => p.status === 'next').map((p) => ({ ...p, planned: true }))];
 const playersText = (g) => (g.minPlayers === g.maxPlayers ? I18n.html`${g.maxPlayers} Spieler` : I18n.html`${g.minPlayers}–${g.maxPlayers} Spieler`);
 
 // Sortierung: Favoriten zuerst, dann zuletzt gespielt, dann alphabetisch; Geplantes ans Ende
@@ -304,7 +310,7 @@ function gameHTML(g, tiles) {
   const meta = I18n.html`<span class="gr-meta"><span aria-label="${esc(playersText(g))}">${ico(ICONS.tische)}${esc(count)}</span><span>${ico('<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/>')}ca. ${g.duration} Min.</span></span>`;
   const star = g.planned ? '' : `<button type="button" class="star" data-fav="${esc(g.id)}" aria-pressed="${fav}" aria-label="${uiText(g.name)} ${fav ? I18n.t('aus den Favoriten nehmen') : I18n.t('zu den Favoriten')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></button>`;
   const detail = g.planned ? I18n.html`<button type="button" class="btn btn-ghost" data-plan="${esc(g.id)}" aria-label="${uiText(g.name)}: Beschreibung und Regeln">Regeln</button>` : '';
-  const action = g.planned ? `<span class="soon">${g.status === 'next' ? I18n.t('Bald') : I18n.t('Geplant')}</span>` : I18n.html`<button type="button" class="btn btn-brass" data-host="${esc(g.id)}" aria-label="${uiText(g.name)} hosten">Hosten</button>`;
+  const action = g.planned ? `<span class="soon">${g.status === 'next' ? I18n.t('Bald') : I18n.t('Geplant')}</span>` : g.local ? `<button type="button" class="btn btn-brass" data-solo-start="${esc(g.id)}">${Singleplayer.hasSave(g.id) ? I18n.t('Fortsetzen') : I18n.t('Spielen')}</button>` : I18n.html`<button type="button" class="btn btn-brass" data-host="${esc(g.id)}" aria-label="${uiText(g.name)} hosten">Hosten</button>`;
   return `<li class="game-${tiles ? 'tile' : 'row'} cat-${esc(g.category)}${g.planned ? ' planned' : ''}" data-id="${esc(g.id)}" ${g.planned ? 'aria-disabled="true"' : ''}>
       <div class="ga">${g.art}</div>
       <div class="gr-main">${g.planned ? `<b>${uiText(g.name)}</b>` : I18n.html`<button type="button" class="game-title" data-game-open="${esc(g.id)}" aria-label="${uiText(g.name)} auswählen"><b>${uiText(g.name)}</b></button>`}<small>${uiText(catTitle(g.category))}</small>${meta}<span>${variantBadgesHTML(g)}</span><span class="gr-desc">${uiText(g.description)}</span></div>
@@ -312,7 +318,7 @@ function gameHTML(g, tiles) {
 }
 function gamesToolbarHTML() {
   const filter = route.page === 'favoriten' ? 'fav' : gamesFilter;
-  const chips = CHIPS.filter(([id]) => route.page !== 'favoriten' || id !== 'fav').map(([id, label]) => `<button type="button" class="chip" data-chip="${id}" aria-pressed="${filter === id}">${I18n.t(label)}</button>`).join('');
+  const chips = CHIPS.filter(([id]) => (route.page !== 'favoriten' || id !== 'fav') && (route.sub !== 'einzelspieler' || !RANGES[id])).map(([id, label]) => `<button type="button" class="chip" data-chip="${id}" aria-pressed="${filter === id}">${I18n.t(label)}</button>`).join('');
   return I18n.html`<div class="chips" role="group" aria-label="Filter">${chips}</div>
     <div class="view-toggle" role="group" aria-label="Ansicht"><button type="button" data-view="list" aria-pressed="${gamesView === 'list'}">Liste</button><button type="button" data-view="tiles" aria-pressed="${gamesView === 'tiles'}">Kacheln</button></div>`;
 }
@@ -322,12 +328,13 @@ function gamesBodyHTML() {
   return `<ul class="games ${gamesView === 'tiles' ? 'tiles' : 'rows'}">${list.map((g) => gameHTML(g, gamesView === 'tiles')).join('')}</ul>`;
 }
 function pageGames() {
+  const solo = route.page === 'spiele' && route.sub === 'einzelspieler';
   const title = route.page === 'favoriten' ? I18n.t('Deine Favoriten') : route.sub ? catTitle(route.sub) : I18n.t('Spielebibliothek');
-  return I18n.html`<section class="hub-head library-head"><div><h1>${esc(title)}</h1><p>${route.page === 'favoriten' ? I18n.t('Deine Auswahl, nur in diesem Browser gespeichert.') : I18n.t('Entdecke neue Spiele. Finde eure nächste Runde. Gemeinsam mehr Spieleabende erleben.')}</p></div><button type="button" class="btn btn-brass" data-create-table>⊕ Tisch erstellen</button></section>
-    ${categoryTabsHTML(true)}<div class="home-layout library-layout"><div class="home-primary"><section class="home-panel library-panel"><div class="hub-block-head"><h2>${route.page === 'favoriten' ? I18n.t('Deine Auswahl') : I18n.t('Alle Spiele')}</h2><span class="library-count">${(account.games || []).length} spielbar</span></div><div class="games-tools"><div id="games-toolbar" class="toolbar">${gamesToolbarHTML()}</div></div><div id="games-body">${gamesBodyHTML()}</div></section></div><aside class="home-secondary" aria-label="Deine Runde">${localGamesHTML('favorites')}<section class="hub-block home-panel" id="presence-slot">${presenceHTML()}</section>${codeBoxHTML()}</aside></div>`;
+  return I18n.html`<section class="hub-head library-head"><div><h1>${esc(title)}</h1><p>${solo ? I18n.content('Für dich allein. Starte eine Runde oder setze deinen Spielstand fort.','Just for you. Start a round or continue your saved game.') : route.page === 'favoriten' ? I18n.t('Deine Auswahl, nur in diesem Browser gespeichert.') : I18n.t('Entdecke neue Spiele. Finde eure nächste Runde. Gemeinsam mehr Spieleabende erleben.')}</p></div>${solo ? '' : '<button type="button" class="btn btn-brass" data-create-table>⊕ ' + I18n.t('Tisch erstellen') + '</button>'}</section>
+    ${categoryTabsHTML(true)}<div class="home-layout library-layout"><div class="home-primary"><section class="home-panel library-panel"><div class="hub-block-head"><h2>${solo ? I18n.content('Deine Solo-Spiele','Your solo games') : route.page === 'favoriten' ? I18n.t('Deine Auswahl') : I18n.t('Alle Spiele')}</h2><span class="library-count">${solo ? (account.singleplayerGames || []).length : libraryGames().length} spielbar</span></div><div class="games-tools"><div id="games-toolbar" class="toolbar">${gamesToolbarHTML()}</div></div><div id="games-body">${gamesBodyHTML()}</div></section></div><aside class="home-secondary" aria-label="${solo ? I18n.t('Einzelspieler') : I18n.t('Deine Runde')}">${localGamesHTML('favorites')}${solo ? '<section class="hub-block home-panel"><h2>' + I18n.content('Dein Spielstand wartet','Your saved game is waiting') + '</h2><p>' + I18n.content('Dein Fortschritt bleibt in diesem Browser. Beim Verlassen pausieren wir für dich.','Your progress stays in this browser. We pause for you when you leave.') + '</p><p>' + I18n.content('Regeln und Einstellungen findest du direkt im Spiel.','Rules and settings are available inside each game.') + '</p></section>' : '<section class="hub-block home-panel" id="presence-slot">' + presenceHTML() + '</section>' + codeBoxHTML()}</aside></div>`;
 }
 function categoryTabsHTML(all) {
-  return I18n.html`<nav class="category-tabs ${all ? '' : 'home-categories'}" aria-label="Spielkategorien">${all ? I18n.html`<a class="category-all" href="#spiele" ${!route.sub && route.page === 'spiele' ? 'aria-current="page"' : ''}>${ico(ICONS.spiele)}Alle Spiele<span>${(account.games || []).length}</span></a>` : ''}${GAME_CATEGORIES.map(([id, label]) => `<a href="#spiele/${id}" ${route.sub === id ? 'aria-current="page"' : ''}>${ico(ICONS[id])}${I18n.t(label)}</a>`).join('')}</nav>`;
+  return I18n.html`<nav class="category-tabs ${all ? '' : 'home-categories'}" aria-label="Spielkategorien">${all ? I18n.html`<a class="category-all" href="#spiele" ${!route.sub && route.page === 'spiele' ? 'aria-current="page"' : ''}>${ico(ICONS.spiele)}Alle Spiele<span>${libraryGames().length}</span></a>` : ''}${GAME_CATEGORIES.map(([id, label]) => `<a href="#spiele/${id}" ${route.sub === id ? 'aria-current="page"' : ''}>${ico(ICONS[id])}${I18n.t(label)}</a>`).join('')}</nav>`;
 }
 function refreshGames() {
   $('#games-toolbar').innerHTML = gamesToolbarHTML(); $('#games-body').innerHTML = gamesBodyHTML();
@@ -337,6 +344,7 @@ function refreshGames() {
 function openPlan(id) {
   const g = plannedAll().find((x) => x.id === id) || roadmapData?.flatMap((e) => e.punkte).find((p) => p.id === id)?.spiel;
   if (!g) return;
+  if (g.local) { location.hash = '#solo/' + g.id; return; }
   const list = (items) => `<ul class="plan-rules">${items.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>`;
   const d = $('#host-dlg');
   d.innerHTML = I18n.html`<div class="plan-detail">
@@ -346,21 +354,22 @@ function openPlan(id) {
       <p><span class="soon">${g.status === 'available' ? I18n.t('Erledigt') : g.status === 'next' ? I18n.t('Bald') : I18n.t('Geplant')}</span> ${g.status === 'available' ? I18n.t('Bereits spielbar.') : I18n.t('Noch nicht spielbar.')}</p>
       <p>${uiText(g.description)}</p>
       ${g.vorbild ? I18n.html`<p class="hint">Vorbild (nur die Mechanik): ${esc(g.vorbild)}</p>` : ''}
-      <h3>Regeln</h3>${g.rules?.length ? list(g.rules) : I18n.html('<p>Die vollständigen Spielregeln findest du am Tisch unter „Regeln“.</p>')}
+      <h3>Regeln</h3>${g.rules?.length ? list(g.workPackage ? g.rules.map((t) => I18n.t(t)) : g.rules) : I18n.html('<p>Die vollständigen Spielregeln findest du am Tisch unter „Regeln“.</p>')}
       ${g.houseRules?.length ? I18n.html`<h3>Mögliche Hausregeln</h3>${list(g.houseRules)}` : ''}
+      ${g.workPackage ? `<h3>${I18n.content('Arbeitspaket','Work package')} ${esc(g.workPackage)}</h3><p>${uiText(g.design)}</p><p>${I18n.content('Aufwand','Effort')}: ${esc(g.effort)} · ${I18n.content('Abhängigkeiten','Dependencies')}: ${g.dependencies.map(uiText).join(', ')}</p><h3>${I18n.content('Abnahmekriterien','Acceptance criteria')}</h3>${list(g.acceptance.map((t) => I18n.t(t)))}<p><a href="${esc(g.issue)}" target="_blank" rel="noopener noreferrer">GitHub · ${esc(g.workPackage)} ↗</a></p>` : ''}
       <button type="button" class="btn btn-ghost" data-host-close>Schließen</button></div>`;
   d.dataset.game = '';
   d.showModal();
 }
 // Start: die ersten Spiele (Favoriten, zuletzt gespielt) als Kacheln
 function gamesPreviewHTML() {
-  const ranked = sortGames(account.games || []);
+  const ranked = sortGames(libraryGames());
   const list = favs().size || Object.keys(recent()).length ? ranked.slice(0, 4) : ['poker', 'kniffel', 'reversi', 'werwolf'].map((id) => ranked.find((g) => g.id === id)).filter(Boolean);
   return I18n.html`<section class="hub-block home-panel featured-games"><div class="hub-block-head"><h2>Spiele entdecken</h2><a href="#spiele">Alle ansehen →</a></div><ul class="games tiles home-games">${list.map((g) => gameHTML(g, true)).join('')}</ul></section>`;
 }
 function localGamesHTML(kind) {
   const favorite = kind === 'favorites', f = favs(), r = recent();
-  const list = sortGames(account.games || []).filter((g) => favorite ? f.has(g.id) : r[g.id]).slice(0, 3);
+  const list = sortGames(libraryGames()).filter((g) => favorite ? f.has(g.id) : r[g.id]).slice(0, 3);
   if (!favorite && !list.length) return '';
   return `<section class="hub-block home-panel" data-local-games="${kind}"><div class="hub-block-head"><h2>${favorite ? I18n.t('Deine Favoriten') : I18n.t('Zuletzt ausgewählt')}</h2>${favorite ? I18n.html('<a href="#favoriten">Alle →</a>') : ''}</div><p class="local-note">${favorite ? I18n.t('Mit einem Stern für später merken.') : I18n.t('In diesem Browser · keine laufenden Tische')}</p>${list.length ? `<ul class="compact-games">${list.map((g) => I18n.html`<li><button type="button" data-game-open="${esc(g.id)}"><span class="mini-art" aria-hidden="true">${g.art}</span><span><b>${uiText(g.name)}</b><small>${esc(playersText(g))} · ${g.duration} Min.</small></span><span aria-hidden="true">→</span></button></li>`).join('')}</ul>` : `<p class="hint">${favorite ? I18n.t('Noch kein Lieblingsspiel? Vergib in der Bibliothek einen Stern.') : I18n.t('Hier erscheinen Spiele, die du an einem Tisch geöffnet hast.')}</p>`}</section>`;
 }
@@ -412,7 +421,9 @@ document.addEventListener('click', (e) => {
   if (!hubVisible()) return;
   if (e.target.closest('[data-create-table]')) { openGamePicker(); return; }
   const selected = e.target.closest('[data-game-open]');
-  if (selected) { openHost(selected.dataset.gameOpen); return; }
+  if (selected) { if (Singleplayer.ids.includes(selected.dataset.gameOpen)) location.hash = '#solo/' + selected.dataset.gameOpen; else openHost(selected.dataset.gameOpen); return; }
+  const solo = e.target.closest('[data-solo-start]');
+  if (solo) { location.hash = '#solo/' + solo.dataset.soloStart; return; }
   const host = e.target.closest('[data-host]');
   if (host) { openHost(host.dataset.host); return; }
   const plan = e.target.closest('[data-plan]');
