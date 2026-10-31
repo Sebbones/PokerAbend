@@ -1,7 +1,7 @@
 {
   "captured_at": "2026-10-31",
   "baseline_commit": "18451f45110be4773565466db8b4715779d5cfe1",
-  "implementation_commit": null,
+  "implementation_commit": "95b2327ce4b234ddd8678c5b4c2d7f3aa2769901",
   "policy": "Permanent selected original PNG captures; SHA-256 hashes are verified by Node tests. Before images precede product changes. After images use the documented real-server test fixtures. WebKit iPhone profile runs on Windows, not physical iPhone hardware.",
   "comparisons": [
     {
@@ -1111,5 +1111,6 @@
       "source": "artifacts/card-ux/before/mobil/zehnetappen/observations.json",
       "sha256": "5b81f086f33c7b81454d37a2aaeec36a3c414cf32b4e672a4f2397b4135e1995"
     }
-  ]
+  ],
+  "observations_hash_format": "SHA-256 of UTF-8 JSON with LF line endings; PNG hashes use original bytes"
 }

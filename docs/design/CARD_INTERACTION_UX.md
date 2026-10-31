@@ -101,7 +101,7 @@ Die sechs ausdrücklich geprüften Größen sind **1920×1080, 1440×900, 768×1
 
 ## Dauerhafte Vorher-/Nachher-Nachweise
 
-**79 unveränderte PNG-Aufnahmen: 18 vorher, 61 nachher**, dazu sechs originale Vorher-Beobachtungsprotokolle. [Manifest mit Herkunft, Browserprofil, CSS-Viewport und SHA-256](card-interaction-screenshots.json). Die Node-Prüfung kontrolliert alle 85 Dateihashes. Ausgewählte Bilder wurden zusätzlich visuell angesehen: Auswahl gegen bloße Spielbarkeit, mobile Ziele, Querformat, WebKit und englische Farb-/Gruppenwahl. Keine Aufnahme stammt aus einem Produktivraum.
+**79 unveränderte PNG-Aufnahmen: 18 vorher, 61 nachher**, dazu sechs originale Vorher-Beobachtungsprotokolle. [Manifest mit Herkunft, Browserprofil, CSS-Viewport und SHA-256](card-interaction-screenshots.json). Die Node-Prüfung kontrolliert alle 85 Dateihashes: PNGs anhand ihrer Originalbytes, JSON-Textprotokolle mit LF-normalisierten Zeilenenden für identische Ergebnisse bei Windows-/Linux-Checkouts. Ausgewählte Bilder wurden zusätzlich visuell angesehen: Auswahl gegen bloße Spielbarkeit, mobile Ziele, Querformat, WebKit und englische Farb-/Gruppenwahl. Keine Aufnahme stammt aus einem Produktivraum.
 
 | Spiel | Vorher: erster Kartentipp | Nachher: sichere Auswahl / erlaubte Ziele |
 | --- | --- | --- |
@@ -118,3 +118,11 @@ Zwei Gesamt-Node-Läufe prüften jeweils 915 Fälle: 914 bestanden, **ein unver�
 Eine getrennte Diagnose mit ausschließlich bestehenden Engine-/Bot-Importen reproduzierte den Zyklus (`artifacts/card-ux-maumau-diagnostic.jsonl`): 7 Spieler, 9 Karten, `seven/sevenStack/eight/jackWish/ace/mauCall/firstCardEffect=true`, `jackOnJack=false`. Bei leerem Nachziehstapel und `Ad` oben zieht und legt Bot0 dieselbe `Ad` erneut. Seine Hand wechselt zwischen 8 und 9 Karten; durch die Ass-Regel bleibt er am Zug. Nach 600 Schritten löst die bestehende Fortschrittsprüfung aus. Das ist ein eigener Bot-/Regelrandfall, keine fehlende UI-Bestätigung. Der [dauerhafte Diagnoseauszug](card-interaction-known-issue.json) enthält die tatsächliche Options-/Hand-/Verlaufsmomentaufnahme sowie die fünf gegen die Ausgangsbasis geprüften unveränderten Quellhashes.
 
 Die Dateien `games/maumau/room.js`, `games/bots.js`, `server/random.js`, `test/simulation.test.js` und `test/sim-helpers.js` sind gegenüber der Ausgangsbasis unverändert. Auch die anderen Server-/Spielmodule wurden in diesem Auftrag nicht verändert. Der Befund bleibt ausdrücklich offen unter [Mau-Mau / CUX-004](CARD_INTERACTION_UX_ROADMAP.md#cux-004--mau-mau); Regeln und Bot-Verhalten dieses weiteren Spiels werden ohne eigene Freigabe nicht geändert und Tests nicht abgeschwächt. Ein zufällig grüner späterer CI-Lauf würde den reproduzierten Befund nicht widerlegen.
+
+## Implementierungs- und Abschlussstand
+
+Implementierungscommit auf `main`: **[`95b2327ce4b234ddd8678c5b4c2d7f3aa2769901`](https://github.com/TTLPSCWA/PokerAbend/commit/95b2327ce4b234ddd8678c5b4c2d7f3aa2769901)**. Der folgende Nachweis-Commit verknüpft die tatsächlichen Produktquellhashes, die 79 PNGs, sechs Beobachtungsprotokolle und die Testergebnisse mit genau diesem bestehenden Git-Objekt.
+
+`CUX-001`, `CUX-002` und `CUX-003` sind abgeschlossen. Die zehn weiteren Karten-UX-Pakete bleiben `planned`, ihre Implementierungsfelder leer. Die 104 anderen VIS-Paketeinträge stimmen unverändert mit der Ausgangsbasis überein; 7 visuelle Pakete bleiben erledigt, 100 geplant. Die historischen Grafik-Implementierungscommits der drei Piloten bleiben erhalten; der Bedienungsauftrag ist dort separat unter `interaction_ux` verknüpft. Keine V2-Freigaben, anderen Spieloberflächen, Serverregeln oder Produktionsdaten verändert.
+
+Vor Commit/Push wurde `origin/main` erneut abgeglichen. Der bestehende Push-Workflow führt Node-Tests aus und baut bei Erfolg das GHCR-Image. Das ist kein Produktivdeployment. Auf dem Produktivserver wurde nichts veröffentlicht. Weitere Spiele werden in diesem Auftrag nicht umgesetzt. Offen bleiben die reale iPhone-Hardware-Abnahme und der separat dokumentierte bestehende Mau-Mau-Bot-Zyklus.

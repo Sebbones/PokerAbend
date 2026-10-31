@@ -66,7 +66,10 @@ test('Visual roadmap: completion requires real evidence; planned packages contai
   }
   for (const file of ['docs/design/scotland-yard-screenshots.json', 'docs/design/card-worlds-screenshots.json', 'docs/design/uno-ultimate-screenshots.json', 'docs/solo-games/screenshots.json', 'docs/design/card-interaction-screenshots.json']) {
     const manifest = JSON.parse(read(file));
-    for (const { path, sha256 } of [...(manifest.comparisons || manifest.screenshots), ...(manifest.observations || [])]) assert.equal(createHash('sha256').update(readFileSync(new URL(path, root))).digest('hex'), sha256, path);
+    for (const { path, sha256 } of [...(manifest.comparisons || manifest.screenshots), ...(manifest.observations || [])]) {
+      const bytes=readFileSync(new URL(path,root)),data=path.endsWith('.json')?bytes.toString('utf8').replaceAll('\r\n','\n'):bytes;
+      assert.equal(createHash('sha256').update(data).digest('hex'),sha256,path);
+    }
   }
 });
 

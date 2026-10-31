@@ -34,37 +34,285 @@
       "id": "CUX-001",
       "game_id": "farbenchaos",
       "game_name": "UNO",
-      "status": "in_progress",
+      "status": "done",
       "requires_separate_authorization": false,
       "related_visual_package": "VIS-004",
-      "implementation_commit": null,
-      "completed_at": null,
-      "test_results": [],
-      "screenshots": []
+      "implementation_commit": "95b2327ce4b234ddd8678c5b4c2d7f3aa2769901",
+      "completed_at": "2026-10-31",
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 914,
+          "failed": 1,
+          "log": "artifacts/card-ux-final-node.log",
+          "note": "Unmodified pre-existing Mau-Mau bot cycle; explicitly open, not claimed fixed."
+        },
+        {
+          "command": "node --test test/card-interaction.test.js",
+          "passed": 8,
+          "failed": 0
+        },
+        {
+          "command": "playwright --config=playwright.card-ux.config.js",
+          "passed": 126,
+          "failed": 2,
+          "skipped": 25,
+          "log": "artifacts/card-ux-final-browser.log",
+          "note": "Test-only selector and random fixture reservation defects corrected; both are covered by final acceptance."
+        },
+        {
+          "command": "playwright card-ux final targeted acceptance",
+          "passed": 43,
+          "failed": 0,
+          "skipped": 8,
+          "log": "artifacts/card-ux-final-acceptance.log",
+          "note": "Exact filter and final source coverage documented in CARD_INTERACTION_UX.md"
+        },
+        {
+          "command": "playwright final colour/sort language checks",
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/card-ux-final-language.log"
+        }
+      ],
+      "screenshots": [
+        "docs/design/screenshots/card-ux/before/desktop/farbenchaos/playing.png",
+        "docs/design/screenshots/card-ux/before/desktop/farbenchaos/opponent.png",
+        "docs/design/screenshots/card-ux/before/desktop/farbenchaos/after-first-card-tap.png",
+        "docs/design/screenshots/card-ux/before/mobil/farbenchaos/playing.png",
+        "docs/design/screenshots/card-ux/before/mobil/farbenchaos/opponent.png",
+        "docs/design/screenshots/card-ux/before/mobil/farbenchaos/after-first-card-tap.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-classic-selected.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-flip-selected.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-no-mercy-selected.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-all-wild-selected.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-halloween-ghosthunt-selected.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-colour-choice-english.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-classic-selected.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-flip-selected.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-no-mercy-selected.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-all-wild-selected.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-halloween-ghosthunt-selected.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-colour-choice-english.png",
+        "docs/design/screenshots/card-ux/after/desktop/farbenchaos-1920x1080.png",
+        "docs/design/screenshots/card-ux/after/desktop/farbenchaos-1440x900.png",
+        "docs/design/screenshots/card-ux/after/desktop/farbenchaos-768x1024.png",
+        "docs/design/screenshots/card-ux/after/desktop/farbenchaos-390x844.png",
+        "docs/design/screenshots/card-ux/after/desktop/farbenchaos-360x800.png",
+        "docs/design/screenshots/card-ux/after/desktop/farbenchaos-900x450.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/uno-classic-selected.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/uno-flip-selected.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/uno-all-wild-target.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/uno-long-hand.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/uno-colour-choice-english.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-long-hand.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-no-mercy-eliminated.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-no-mercy-eliminated.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-flip-dark-and-challenge.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-classic-last-card.png",
+        "docs/design/screenshots/card-ux/after/mobil/uno-halloween-ghosthunt-paused.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-all-wild-target.png",
+        "docs/design/screenshots/card-ux/after/desktop/uno-unconfirmed.png"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/farbenchaos/farbenchaos.js",
+          "sha256": "90139e335b0d75d83d7165e7c2724d7349c7395edc77b21aba1892d2264f7b30"
+        },
+        {
+          "path": "public/games/kit.js",
+          "sha256": "93a24ca1c14eda1226aa9636ebe70ab85b915ddaa54467dc361e75d0ef103494"
+        },
+        {
+          "path": "public/games/card-interaction.js",
+          "sha256": "f50f4e3f3e6a6a1297535e6797f278b1ddbe42e8799d29d4947f55f0887cd64a"
+        },
+        {
+          "path": "public/games/card-interaction.css",
+          "sha256": "a827796c5b4ae08975c3a9ab5bc20e1049c85ed5b2faeb6df1ac8e2d749a63f1"
+        },
+        {
+          "path": "public/games/card-shedding.js",
+          "sha256": "9abb938113385ad9634b37a43f57266ced91849952e6aedd3c283a57797a66f0"
+        }
+      ]
     },
     {
       "id": "CUX-002",
       "game_id": "stapelrennen",
       "game_name": "Skip-Bo",
-      "status": "in_progress",
+      "status": "done",
       "requires_separate_authorization": false,
       "related_visual_package": "VIS-009",
-      "implementation_commit": null,
-      "completed_at": null,
-      "test_results": [],
-      "screenshots": []
+      "implementation_commit": "95b2327ce4b234ddd8678c5b4c2d7f3aa2769901",
+      "completed_at": "2026-10-31",
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 914,
+          "failed": 1,
+          "log": "artifacts/card-ux-final-node.log",
+          "note": "Unmodified pre-existing Mau-Mau bot cycle; explicitly open, not claimed fixed."
+        },
+        {
+          "command": "node --test test/card-interaction.test.js",
+          "passed": 8,
+          "failed": 0
+        },
+        {
+          "command": "playwright --config=playwright.card-ux.config.js",
+          "passed": 126,
+          "failed": 2,
+          "skipped": 25,
+          "log": "artifacts/card-ux-final-browser.log",
+          "note": "Test-only selector and random fixture reservation defects corrected; both are covered by final acceptance."
+        },
+        {
+          "command": "playwright card-ux final targeted acceptance",
+          "passed": 43,
+          "failed": 0,
+          "skipped": 8,
+          "log": "artifacts/card-ux-final-acceptance.log",
+          "note": "Exact filter and final source coverage documented in CARD_INTERACTION_UX.md"
+        },
+        {
+          "command": "playwright final colour/sort language checks",
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/card-ux-final-language.log"
+        }
+      ],
+      "screenshots": [
+        "docs/design/screenshots/card-ux/before/desktop/stapelrennen/playing.png",
+        "docs/design/screenshots/card-ux/before/desktop/stapelrennen/opponent.png",
+        "docs/design/screenshots/card-ux/before/desktop/stapelrennen/after-first-card-tap.png",
+        "docs/design/screenshots/card-ux/before/mobil/stapelrennen/playing.png",
+        "docs/design/screenshots/card-ux/before/mobil/stapelrennen/opponent.png",
+        "docs/design/screenshots/card-ux/before/mobil/stapelrennen/after-first-card-tap.png",
+        "docs/design/screenshots/card-ux/after/desktop/skip-classic-targets.png",
+        "docs/design/screenshots/card-ux/after/desktop/skip-short-targets.png",
+        "docs/design/screenshots/card-ux/after/desktop/skip-team-targets.png",
+        "docs/design/screenshots/card-ux/after/mobil/skip-classic-targets.png",
+        "docs/design/screenshots/card-ux/after/mobil/skip-short-targets.png",
+        "docs/design/screenshots/card-ux/after/mobil/skip-team-targets.png",
+        "docs/design/screenshots/card-ux/after/desktop/stapelrennen-1920x1080.png",
+        "docs/design/screenshots/card-ux/after/desktop/stapelrennen-1440x900.png",
+        "docs/design/screenshots/card-ux/after/desktop/stapelrennen-768x1024.png",
+        "docs/design/screenshots/card-ux/after/desktop/stapelrennen-390x844.png",
+        "docs/design/screenshots/card-ux/after/desktop/stapelrennen-360x800.png",
+        "docs/design/screenshots/card-ux/after/desktop/stapelrennen-900x450.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/skip-team-targets.png"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/stapelrennen/stapelrennen.js",
+          "sha256": "b706b482d8a653e9a3938066dcdae208598163ff7ff16324dfb1250bebf63a55"
+        },
+        {
+          "path": "public/games/kit.js",
+          "sha256": "93a24ca1c14eda1226aa9636ebe70ab85b915ddaa54467dc361e75d0ef103494"
+        },
+        {
+          "path": "public/games/card-interaction.js",
+          "sha256": "f50f4e3f3e6a6a1297535e6797f278b1ddbe42e8799d29d4947f55f0887cd64a"
+        },
+        {
+          "path": "public/games/card-interaction.css",
+          "sha256": "a827796c5b4ae08975c3a9ab5bc20e1049c85ed5b2faeb6df1ac8e2d749a63f1"
+        }
+      ]
     },
     {
       "id": "CUX-003",
       "game_id": "zehnetappen",
       "game_name": "Phase 10",
-      "status": "in_progress",
+      "status": "done",
       "requires_separate_authorization": false,
       "related_visual_package": "VIS-008",
-      "implementation_commit": null,
-      "completed_at": null,
-      "test_results": [],
-      "screenshots": []
+      "implementation_commit": "95b2327ce4b234ddd8678c5b4c2d7f3aa2769901",
+      "completed_at": "2026-10-31",
+      "test_results": [
+        {
+          "command": "npm test",
+          "passed": 914,
+          "failed": 1,
+          "log": "artifacts/card-ux-final-node.log",
+          "note": "Unmodified pre-existing Mau-Mau bot cycle; explicitly open, not claimed fixed."
+        },
+        {
+          "command": "node --test test/card-interaction.test.js",
+          "passed": 8,
+          "failed": 0
+        },
+        {
+          "command": "playwright --config=playwright.card-ux.config.js",
+          "passed": 126,
+          "failed": 2,
+          "skipped": 25,
+          "log": "artifacts/card-ux-final-browser.log",
+          "note": "Test-only selector and random fixture reservation defects corrected; both are covered by final acceptance."
+        },
+        {
+          "command": "playwright card-ux final targeted acceptance",
+          "passed": 43,
+          "failed": 0,
+          "skipped": 8,
+          "log": "artifacts/card-ux-final-acceptance.log",
+          "note": "Exact filter and final source coverage documented in CARD_INTERACTION_UX.md"
+        },
+        {
+          "command": "playwright final colour/sort language checks",
+          "passed": 9,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/card-ux-final-language.log"
+        }
+      ],
+      "screenshots": [
+        "docs/design/screenshots/card-ux/before/desktop/zehnetappen/playing.png",
+        "docs/design/screenshots/card-ux/before/desktop/zehnetappen/opponent.png",
+        "docs/design/screenshots/card-ux/before/desktop/zehnetappen/after-first-card-tap.png",
+        "docs/design/screenshots/card-ux/before/mobil/zehnetappen/playing.png",
+        "docs/design/screenshots/card-ux/before/mobil/zehnetappen/opponent.png",
+        "docs/design/screenshots/card-ux/before/mobil/zehnetappen/after-first-card-tap.png",
+        "docs/design/screenshots/card-ux/after/desktop/phase-classic-groups.png",
+        "docs/design/screenshots/card-ux/after/desktop/phase-short-groups.png",
+        "docs/design/screenshots/card-ux/after/desktop/phase-team-groups.png",
+        "docs/design/screenshots/card-ux/after/desktop/phase-groups-english.png",
+        "docs/design/screenshots/card-ux/after/mobil/phase-classic-groups.png",
+        "docs/design/screenshots/card-ux/after/mobil/phase-short-groups.png",
+        "docs/design/screenshots/card-ux/after/mobil/phase-team-groups.png",
+        "docs/design/screenshots/card-ux/after/mobil/phase-groups-english.png",
+        "docs/design/screenshots/card-ux/after/desktop/zehnetappen-1920x1080.png",
+        "docs/design/screenshots/card-ux/after/desktop/zehnetappen-1440x900.png",
+        "docs/design/screenshots/card-ux/after/desktop/zehnetappen-768x1024.png",
+        "docs/design/screenshots/card-ux/after/desktop/zehnetappen-390x844.png",
+        "docs/design/screenshots/card-ux/after/desktop/zehnetappen-360x800.png",
+        "docs/design/screenshots/card-ux/after/desktop/zehnetappen-900x450.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/phase-classic-groups.png",
+        "docs/design/screenshots/card-ux/after/webkit-iphone/phase-groups-english.png",
+        "docs/design/screenshots/card-ux/after/desktop/phase-joker-end-choice.png"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/zehnetappen/zehnetappen.js",
+          "sha256": "2eb2dc4b2b7337008b746beb69d2f10075891745572e7406859c7cd7fa6f21f2"
+        },
+        {
+          "path": "public/games/kit.js",
+          "sha256": "93a24ca1c14eda1226aa9636ebe70ab85b915ddaa54467dc361e75d0ef103494"
+        },
+        {
+          "path": "public/games/card-interaction.js",
+          "sha256": "f50f4e3f3e6a6a1297535e6797f278b1ddbe42e8799d29d4947f55f0887cd64a"
+        },
+        {
+          "path": "public/games/card-interaction.css",
+          "sha256": "a827796c5b4ae08975c3a9ab5bc20e1049c85ed5b2faeb6df1ac8e2d749a63f1"
+        }
+      ]
     },
     {
       "id": "CUX-004",
@@ -107,7 +355,13 @@
       "implementation_commit": null,
       "completed_at": null,
       "test_results": [],
-      "screenshots": []
+      "screenshots": [],
+      "additional_existing_issue": {
+        "scope": "Unchanged bot/engine, separate authorization required",
+        "summary": "With seven players, nine cards, an empty draw pile and the ace-repeat rule, Bot0 can repeatedly draw/play Ad without advancing the turn.",
+        "evidence": "docs/design/card-interaction-known-issue.json",
+        "implementation_commit": null
+      }
     },
     {
       "id": "CUX-005",
