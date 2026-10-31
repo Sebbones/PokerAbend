@@ -1,6 +1,8 @@
 # Spieleabend
 
-Spielesammlung mit 52 Spielen: 49 Online-/Partyspiele für die Freundesgruppe sowie Sudoku, 2048 und Wellenwacht als lokale Einzelspieler. Bei den Online-Spielen ist der Server Geber und Schiedsrichter: Er mischt, teilt aus, würfelt, prüft jeden Zug und rechnet ab.
+Spielesammlung mit 55 Spielen: 52 Online-/Partyspiele für die Freundesgruppe sowie Sudoku, 2048 und Wellenwacht als lokale Einzelspieler. Bei den Online-Spielen ist der Server Geber und Schiedsrichter: Er mischt, teilt aus, würfelt, prüft jeden Zug und rechnet ab.
+
+Der Ausbau von **„Weitere Spiele“** beginnt mit **Risiko-Würfeln, Story-Chaos und Zahlenreihe**. Die Roadmap zeigt **3 von 41 erledigt**. Regeln, Prüfungen, Bildnachweise und weiterer Fortschritt: [Backlog-Päckchen](docs/backlog/WEITERE_SPIELE.md).
 
 Die Kategorie **Einzelspieler** in der Spielebibliothek startet ohne zweiten Teilnehmer oder Discord-Account. Fortschritte werden versioniert im aktuellen Browser gespeichert, beim Verlassen pausiert und lokal fortgesetzt. Es entstehen keine öffentlichen Tische oder Ranglisten aus Solo-Daten. Details, Tests, Screenshots und die neun ausschließlich geplanten weiteren Solo-Spiele: [Einzelspieler-Dokumentation](docs/solo-games/README.md).
 
@@ -145,7 +147,7 @@ Alle drei unterstützen Bots, Host-Pause, Wiederverbinden und deutsche/englische
 
 ### Gemeinsame Spielpause
 
-In allen 49 Spielen und ihren Varianten kann ausschließlich der **Host** über **Pause** die gesamte Partie sofort anhalten. **Fortsetzen** startet sie an derselben Stelle mit der übrigen Zeit. Mitspieler und Zuschauer sehen einen gemeinsamen Pausenhinweis; Spielaktionen, Bots, Zug-/Rundentimer, Zünder und Echtzeitbewegungen warten. Auch lokal laufende Minispiele halten ihre Spielzeit und Eingaben an. Bei Poker bleibt zusätzlich „Pause nach dieser Hand“ erhalten.
+In allen 52 Raumspielen und ihren Varianten kann ausschließlich der **Host** über **Pause** die gesamte Partie sofort anhalten. **Fortsetzen** startet sie an derselben Stelle mit der übrigen Zeit. Mitspieler und Zuschauer sehen einen gemeinsamen Pausenhinweis; Spielaktionen, Bots, Zug-/Rundentimer, Zünder und Echtzeitbewegungen warten. Auch lokal laufende Minispiele halten ihre Spielzeit und Eingaben an. Bei Poker bleibt zusätzlich „Pause nach dieser Hand“ erhalten.
 
 Die Pause bleibt beim Wiederverbinden bestehen. Nach einem Hostwechsel kann der neue Host fortsetzen. Zur Startseite gehen, den Tisch verlassen, eine Runde gezielt abbrechen oder den Tisch schließen bleibt möglich. Eine Pause ist kein neuer dauerhafter Spielstand: Für Server-Neustarts gelten weiterhin die bestehenden Speicherregeln. Technische Details und Prüfungen: [Gemeinsame Spielpause](docs/game-pause.md).
 
@@ -193,7 +195,7 @@ Programm, Einstellungen und bereits vergebene Programmpunkte werden im Raum gesp
 
 ### Abend-Modus: alle Spiele gemeinsam werten
 
-Unter **Host → Abendprogramm planen → Abend-Modus · alle Spiele** lassen sich bis zu zwölf Stationen aus allen 46 Karten-, Würfel-, Brett- und Partyspielen frei zusammenstellen. Das geht an jedem Tisch, auch direkt bei Poker. Spiele im Auswahldialog sind nach Kategorien gruppiert; die gemeinsame Spielerzahl wird angezeigt. Jede Station hat eigene Regeln und Zeiten. Der Server prüft vor dem Start, ob alle Spiele zur festen Gruppe und zu vorhandenen Bots passen. Vorlagen werden wie die Party-Playlists im Browser gespeichert.
+Unter **Host → Abendprogramm planen → Abend-Modus · alle Spiele** lassen sich bis zu zwölf Stationen aus allen 52 Karten-, Würfel-, Brett- und Partyspielen frei zusammenstellen. Das geht an jedem Tisch, auch direkt bei Poker. Spiele im Auswahldialog sind nach Kategorien gruppiert; die gemeinsame Spielerzahl wird angezeigt. Jede Station hat eigene Regeln und Zeiten. Der Server prüft vor dem Start, ob alle Spiele zur festen Gruppe und zu vorhandenen Bots passen. Vorlagen werden wie die Party-Playlists im Browser gespeichert.
 
 Eine abgeschlossene Spielrunde zählt als Station. Unterschiedliche Punkteskalen werden in Platzierungen umgerechnet: Bei N Teilnehmern erhält Platz 1 N Abendpunkte, jeder weitere Platz einen weniger. Gleichstände teilen den Platz. Außerhalb von Poker haben tatsächliche Sieger bei gleichen Rohpunkten Vorrang. Spiele mit wenigen guten Punkten werden entsprechend umgekehrt gewertet. Zuschauer zählen nicht. **Gesamtwertung** zeigt den laufenden Stand; nach der letzten Station erscheint die Siegerehrung.
 
@@ -273,6 +275,9 @@ Wiederverbinden behält Figur und Punkte. Bei Tabwechsel, geöffnetem Menü oder
 | Zehntausend | 2–8 | Sechs Würfel, punktende Würfel herauslegen, weiterwürfeln oder sichern. Niete = Zug weg. Einstieg 350, wer das Ziel erreicht, löst die letzte Runde aus |
 | Mühle | 2 (+ Zuschauer) | Je 9 Steine setzen, ziehen, mit 3 Steinen springen. Mühle nimmt einen Stein, mit 2 Steinen oder ohne Zug verloren. Unentschieden nach 50 Zügen ohne Schlagen oder dreifacher Wiederholung |
 | Schätzmeister (Party Spiele) | 2–12 | Schätzfrage mit Zahl als Antwort, alle schätzen gleichzeitig. Danach Zahlenstrahl und richtige Antwort: am nächsten dran 3 Punkte, Zweiter 2, Dritter 1, genau richtig +2. Über 100 Fragen mit Quelle, eigene Fragen des Hosts möglich |
+| Risiko-Würfeln | 2–8 | Ein W6: 2–6 erhöhen die Zugpunkte, eine 1 verliert nur den ungesicherten Zuggewinn. Weiterwürfeln oder ausdrücklich sichern; zuerst am Ziel gewinnt |
+| Story-Chaos | 3–12 | Reihum einen Satz ergänzen; nur den letzten fremden Satz sehen. Am Ende gemeinsam die vollständige Geschichte lesen, ohne Einzelwertung |
+| Zahlenreihe | 2–10 | Gleichzeitig die fehlenden Zahlen ergänzen; verbindliche geheime Antworten, 100 Punkte für richtig und optional 50 für die schnellste Antwort. Eine oder zwei Lücken |
 | Schlagfertig (Party Spiele) | 3–8 | Jede Runde 2 lustige Aufgaben je Spieler, jede Aufgabe an genau 2 Spieler. Beide Antworten stehen ohne Namen nebeneinander, die anderen stimmen ab: Stimme = 100 Punkte, alle Stimmen für eine Antwort = Volltreffer +200. Letzte Runde: Finale mit einer Aufgabe für alle und 3 Stimmen. 182 Aufgaben, eigene möglich |
 | Wer hat das gesagt? (Party Spiele) | 3–10 | Eine lockere, persönliche Frage pro Runde, alle antworten anonym. Dann wird jede Antwort einzeln gezeigt und der Autor in der Spielerliste getippt: richtig +100, der Autor +50 je Fehltipp. 112 Fragen, eigene möglich (auch „nur eigene Fragen“) |
 | Schiffe versenken | 2 (+ Zuschauer) | Zwei Meere 10 × 10, Flotte setzen (nicht berühren), abwechselnd schießen: Wasser, Treffer, versenkt. Zeit pro Schuss. Die gegnerischen Schiffe sieht man erst nach Spielende |
@@ -351,7 +356,7 @@ Gehen bei Skip-Bo während der Runde die Nachziehkarten aus, darf ein Spieler oh
 - Nach jeder Runde zeigt ein großes Fenster die Punkte; der Host startet dort die nächste Runde oder wechselt das Spiel.
 - Unter „Ich“ (pro Browser gemerkt): **Farbsymbole** auf farbigen Karten (Rot ▲, Gelb ●, Grün ■, Blau ◆ – Standard an), **Töne** (Karten, Würfel, „UNO!“ – alles per Web Audio erzeugt, keine Dateien), **Animationen aus** (gilt auch bei „Bewegung reduzieren“ am Gerät), **Erste Schritte** (kurze Einführung beim ersten Spiel jeder Art), bei Mau-Mau das **Kartenblatt** (französisch oder deutsch).
 - **Kartengröße** unter „Ich“: Normal, Groß oder Sehr groß. Vergrößert die eigenen Handkarten in allen Kartenspielen einschließlich Poker/Omaha, wird im Browser gespeichert und verändert keine fremden Karten oder Ablagen.
-- **Design & Töne:** Alle 46 Spiele verwenden ihre Spielbilder auch am Tisch, mit passenden Akzentfarben und kurzen Aktionsklängen. „Ton ausprobieren“ hilft beim Einstellen; stumm bleibt alles stumm. Neue-Runde- und Aktionsimpulse beachten „Animationen aus“ und die Geräteeinstellung für reduzierte Bewegung.
+- **Design & Töne:** Alle 52 Raumspiele verwenden ihre Spielbilder auch am Tisch, mit passenden Akzentfarben und kurzen Aktionsklängen. „Ton ausprobieren“ hilft beim Einstellen; stumm bleibt alles stumm. Neue-Runde- und Aktionsimpulse beachten „Animationen aus“ und die Geräteeinstellung für reduzierte Bewegung.
 - **Querformat:** Bei 641 px oder mehr Breite und höchstens 560 px Höhe stehen Aktionen bei Karten-, Würfel- und Brettspielen rechts neben dem Tisch. Die Aktionsleiste lässt sich unabhängig scrollen. Reversi, Dame, Mühle, Hütchen und Vier gewinnt passen ihre Brettgröße an den verfügbaren Platz an; Schiffe zeigt die Meere und Kniffel Würfel und Punkteblatt nebeneinander. Zeichen-, Solo- und Echtzeitspiele nutzen ihre eigenen angepassten Spielflächen.
 
 ### Päckchen 9 – Monopoly & Co.

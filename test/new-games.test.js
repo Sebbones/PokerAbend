@@ -20,7 +20,7 @@ function chase(t) {
   return { r, ids };
 }
 test('Neue Spiele: Registrierung, Bots, Optionen und eigener zusammenhängender Stadtplan', () => {
-  assert.equal(Object.keys(GAMES).length, 49);
+  assert.equal(Object.keys(GAMES).length, 52);
   for (const id of ['scotland-yard', 'hex', 'wuerfelduell']) { assert.ok(GAMES[id]); assert.equal(typeof BOTS[id], 'function'); }
   assert.equal(CITY.nodes.length, 49); assert.equal(distances(1).size, 49);
   for (const e of CITY.edges) { assert.ok(e.a !== e.b); assert.ok(neighbours(e.a, e.mode).includes(e.b)); assert.ok(neighbours(e.b, e.mode).includes(e.a)); }

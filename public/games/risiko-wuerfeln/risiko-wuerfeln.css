@@ -1,0 +1,2 @@
+@import url('/games/backlog.css');
+.risk-pot{display:grid;justify-items:center;gap:12px;border:1px solid var(--line);border-radius:16px;background:#ffffff08;padding:24px}.risk-pot>strong{font-size:clamp(42px,8vw,78px);color:var(--scene-accent)}.risk-pot>span{color:var(--muted)}.risk-die{min-height:90px;display:grid;place-items:center}.risk-ready{font-size:72px;color:var(--scene-accent);line-height:1}.risk-bust{padding:12px;border-left:3px solid #e39a7b;color:#f1bea7}

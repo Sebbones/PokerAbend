@@ -15,12 +15,12 @@ const pkName = (S, id) => pkPlayer(S, id)?.name ?? '?';
 const pkAvatar = (S, id) => `<span class="pk-av" aria-hidden="true">${avatarHTML(pkPlayer(S, id))}</span>`;
 
 // Eingabezeile für die Aktionsleiste: ein Textfeld und „Senden“. max = Zeichen (Server kürzt ebenfalls auf 120).
-function pkForm({ kind, label, placeholder = '', value = '', max = 120, inputmode = 'text', button = I18n.t('Senden'), note = '', counter = false, data = {} }) {
+function pkForm({ kind, label, placeholder = '', value = '', max = 120, inputmode = 'text', button = I18n.t('Senden'), note = '', counter = false, data = {}, disabled = false }) {
   const attrs = Object.entries(data).map(([k, v]) => I18n.html` data-${esc(k)}="${esc(v)}"`).join(''); // z. B. data-task für die Aufgabe, zu der die Antwort gehört
   return `<form class="pk-form" data-pk="${esc(kind)}"${attrs} autocomplete="off">
     <label class="sr-only" for="pk-in">${esc(label)}</label>
-    <input id="pk-in" class="pk-input" type="text" inputmode="${esc(inputmode)}" enterkeyhint="send" maxlength="${max}" placeholder="${esc(placeholder)}" value="${esc(value)}" autocomplete="off" autocorrect="off" spellcheck="false">
-    <button class="btn btn-brass pk-send" type="submit">${esc(button)}</button>
+    <input id="pk-in" class="pk-input" type="text" inputmode="${esc(inputmode)}" enterkeyhint="send" maxlength="${max}" placeholder="${esc(placeholder)}" value="${esc(value)}" autocomplete="off" autocorrect="off" spellcheck="false" ${disabled ? 'disabled' : ''}>
+    <button class="btn btn-brass pk-send" type="submit" ${disabled ? 'disabled' : ''}>${esc(button)}</button>
     ${counter ? `<small class="pk-count" aria-live="off"><span id="pk-len">${[...value].length}</span>/${max}</small>` : ''}
     ${note ? `<small class="pk-note">${note}</small>` : ''}
   </form>`;

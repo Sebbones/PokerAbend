@@ -1,0 +1,189 @@
+{
+  "captured_at": "2026-10-31",
+  "implementation_commit": null,
+  "policy": "Original PNG captures from isolated real local multiplayer rooms. No production data. Initial implementation, not a claimed completed VIS redesign.",
+  "screenshots": [
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/risiko-wuerfeln-1440x900.png",
+      "source": "artifacts/backlog-small/desktop/risiko-wuerfeln-1440x900.png",
+      "sha256": "aebfebaa383d8b3313cc5377b906f289543673f55205f42d822b68a8861bb46e"
+    },
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/risiko-wuerfeln-1920x1080.png",
+      "source": "artifacts/backlog-small/desktop/risiko-wuerfeln-1920x1080.png",
+      "sha256": "a5837b54e287736c2e83c289cb6d1706bb9bf53021111455fcd5c3efc83ff8b4"
+    },
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/risiko-wuerfeln-360x800.png",
+      "source": "artifacts/backlog-small/desktop/risiko-wuerfeln-360x800.png",
+      "sha256": "01215a828fe94c0e7ce2a15420c4f0297fa7ccbae0c2236a5149ceec6471b8e9"
+    },
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/risiko-wuerfeln-390x844.png",
+      "source": "artifacts/backlog-small/desktop/risiko-wuerfeln-390x844.png",
+      "sha256": "b56b0e2d81e58921e40402ba3ad9a73409f357eaf8838cbac1875b16a4677602"
+    },
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/risiko-wuerfeln-768x1024.png",
+      "source": "artifacts/backlog-small/desktop/risiko-wuerfeln-768x1024.png",
+      "sha256": "85d178e243bcd40e70ee880bad691049e5712cdb83a73b2e05460171b8871630"
+    },
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/risiko-wuerfeln-900x450.png",
+      "source": "artifacts/backlog-small/desktop/risiko-wuerfeln-900x450.png",
+      "sha256": "1f884c7753b651fc9203a6b6c7ae906359aa1e334c97551d30f95a9c5ca56714"
+    },
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/risk-playing.png",
+      "source": "artifacts/backlog-small/desktop/risk-playing.png",
+      "sha256": "c59fc6beb347f25ef816389108d66794e7f5f6a0af62c45d9270cc09a851cce9"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/sequence-reveal.png",
+      "source": "artifacts/backlog-small/desktop/sequence-reveal.png",
+      "sha256": "5b0cc501033ef240b52af92e4b1022caaeaec81c11ad61e7e93d9e5b086a3d37"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-chaos-1440x900.png",
+      "source": "artifacts/backlog-small/desktop/story-chaos-1440x900.png",
+      "sha256": "674f8478a2dfd87dc8a87ef6961c6edded74f00a4a285697470018a321d7e616"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-chaos-1920x1080.png",
+      "source": "artifacts/backlog-small/desktop/story-chaos-1920x1080.png",
+      "sha256": "934f54ad937453771e10e633970b831494f62d3c56bef2421098533d0d95ba31"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-chaos-360x800.png",
+      "source": "artifacts/backlog-small/desktop/story-chaos-360x800.png",
+      "sha256": "c10e5bde44d68b1095b7369ffdfbb6eff212cbf358eefb81eb281bf1980e1776"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-chaos-390x844.png",
+      "source": "artifacts/backlog-small/desktop/story-chaos-390x844.png",
+      "sha256": "221a73176d02d9f3ffe3df1a2b69b88283f62b1db3a94fe9988a768deb89cd40"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-chaos-768x1024.png",
+      "source": "artifacts/backlog-small/desktop/story-chaos-768x1024.png",
+      "sha256": "12a127d099efd00d21130a3c7fd494e2f5815e3994a233a5dc5393b53fc22bde"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-chaos-900x450.png",
+      "source": "artifacts/backlog-small/desktop/story-chaos-900x450.png",
+      "sha256": "ce95fc0aee491fdfec5a9b0360a647bfa70b7f40d7c6ce2759a80f51e15968c8"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-final.png",
+      "source": "artifacts/backlog-small/desktop/story-final.png",
+      "sha256": "e48bd4d568f720925d8dc29fc31c0e691ea94ccf23863018c1795eb9f67700f8"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/story-private.png",
+      "source": "artifacts/backlog-small/desktop/story-private.png",
+      "sha256": "6aca828107ec455258a86ba5c9b4f23eae230403a84ed01a6f7e7d6181029ed9"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/zahlenreihe-1440x900.png",
+      "source": "artifacts/backlog-small/desktop/zahlenreihe-1440x900.png",
+      "sha256": "a34a0af584e193a53a49dbf6f77102b64949f585d49fd561f40c6bb2c999d533"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/zahlenreihe-1920x1080.png",
+      "source": "artifacts/backlog-small/desktop/zahlenreihe-1920x1080.png",
+      "sha256": "455ad14d72db25c1ba19842ec707ceac492749336c2629c1e41b9e5077a07da5"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/zahlenreihe-360x800.png",
+      "source": "artifacts/backlog-small/desktop/zahlenreihe-360x800.png",
+      "sha256": "57663199935b6a37624685f7ff0ddadb3945cef15b0deab0b3c01f95877f39c5"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/zahlenreihe-390x844.png",
+      "source": "artifacts/backlog-small/desktop/zahlenreihe-390x844.png",
+      "sha256": "90b2b52effec5929dd828af75d4f8120811bfa756a4624627e5194c67cc4d2f2"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/zahlenreihe-768x1024.png",
+      "source": "artifacts/backlog-small/desktop/zahlenreihe-768x1024.png",
+      "sha256": "27d298ddb4e831daa1d64ddc835ae1318a933a3cd6733d78ec5e616f2f831e9a"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "desktop",
+      "path": "docs/backlog/screenshots/desktop/zahlenreihe-900x450.png",
+      "source": "artifacts/backlog-small/desktop/zahlenreihe-900x450.png",
+      "sha256": "a8e45dc80f13931ded9239cae48357bc8ebecdc944c48d0d42b16d8a25242d23"
+    },
+    {
+      "game_id": "risiko-wuerfeln",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/mobil/risk-playing.png",
+      "source": "artifacts/backlog-small/mobil/risk-playing.png",
+      "sha256": "f44901d9d14f6e074b25b70a806d64f1d10934a6ec7e413429b2737e1a7cc148"
+    },
+    {
+      "game_id": "zahlenreihe",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/mobil/sequence-reveal.png",
+      "source": "artifacts/backlog-small/mobil/sequence-reveal.png",
+      "sha256": "77c272cadca671f02c5a2a2de0ee85e9ba52d64a2119b56c759e2dba914dffeb"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/mobil/story-final.png",
+      "source": "artifacts/backlog-small/mobil/story-final.png",
+      "sha256": "ad5b972d7b5057e66c1d59be9140bf3d3afa1d6868dfa87a07aba59bf05e79e1"
+    },
+    {
+      "game_id": "story-chaos",
+      "project": "mobil",
+      "path": "docs/backlog/screenshots/mobil/story-private.png",
+      "source": "artifacts/backlog-small/mobil/story-private.png",
+      "sha256": "d09a53ae2545b9141013fe748bf8a9258f38367dd10e73cd481e3618d0c9f1eb"
+    }
+  ]
+}

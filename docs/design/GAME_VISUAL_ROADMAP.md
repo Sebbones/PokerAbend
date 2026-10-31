@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**52 spielbare Spiele, 55 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 7 done, 100 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10 sowie die ausdrücklich beauftragten neuen Solo-Spiele Sudoku, 2048 und Wellenwacht sind abgeschlossen. Die Solo-Implementierung steht in Commit `904cd0751fd3c89d9ea2169de09edbb3197e58ad`; Tests und permanente Bilder sind in der Solo-Abnahme dokumentiert. Die weiteren 45 bestehenden Spieloberflächen und 55 Backlog-Konzepte bleiben geplant. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
+**55 spielbare Spiele, 52 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 7 done, 100 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10 sowie die ausdrücklich beauftragten neuen Solo-Spiele Sudoku, 2048 und Wellenwacht sind visuell abgeschlossen. Risiko-Würfeln, Story-Chaos und Zahlenreihe sind anschließend als neue Spiele implementiert; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 48 bestehenden Spieloberflächen und 52 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) inventarisiert alle 13 registrierten Kartenspiele; zehn Folgepakete bleiben geplant. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -67,8 +67,11 @@ Die folgenden ersten Aufgaben sind kleine Verbesserungen mit überschaubarem Zus
 | 43 | [VIS-024](#vis-024) | Omaha | 7–11 h | P2 |
 | 44 | [VIS-047](#vis-047) | Spiel des Lebens | 18–27 h | P3 |
 | 45 | [VIS-046](#vis-046) | Monopoly | 20–30 h | P3 |
+| 46 | [VIS-055](#vis-055) | Risiko-Würfeln | 4–6 h | P2 |
+| 47 | [VIS-059](#vis-059) | Story-Chaos | 5–8 h | P2 |
+| 48 | [VIS-085](#vis-085) | Zahlenreihe | 6–9 h | P2 |
 
-Die JSON-Datei enthält eine reine Aufwandssortierung aller 95 Pakete sowie eine getrennte Reihenfolge für offene spielbare Spiele. Vorhandene individuelle Bretter behalten ihre Materialarbeit; spätere Pakete polieren sie nach eigener Freigabe.
+Die JSON-Datei enthält eine reine Aufwandssortierung aller 107 Pakete sowie eine getrennte Reihenfolge für offene spielbare Spiele. Die letzten drei Tabellenzeilen sind der Nachtrag für die neuen kleinen Spiele; das ist keine VIS-Umsetzungsfreigabe. Vorhandene individuelle Bretter behalten ihre Materialarbeit; spätere Pakete polieren sie nach eigener Freigabe.
 
 ## Bedingte Konzepte noch nicht implementierter Spiele
 
@@ -76,10 +79,7 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 
 | Konzept | Spiel | Designaufwand nach Gameplay |
 | --- | --- | --- |
-| VIS-055 | Risiko-Würfeln | 4–6 h |
-| VIS-059 | Story-Chaos | 5–8 h |
 | VIS-056 | Würfeljagd | 6–9 h |
-| VIS-085 | Zahlenreihe | 6–9 h |
 | VIS-083 | Brückenroulette | 7–11 h |
 | VIS-082 | Lügenbaron | 7–11 h |
 | VIS-073 | Puzzle-Panik | 7–11 h |
@@ -1642,12 +1642,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-055 – Risiko-Würfeln
 
 - **Spiel-ID/Kategorie:** `risiko-wuerfeln` / Würfelspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 4–6 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **planned**.
+- **Priorität / Aufwand:** P2; 4–6 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/risiko-wuerfeln/risiko-wuerfeln.js`, `public/games/risiko-wuerfeln/risiko-wuerfeln.css`
+- **Gemeinsame Komponenten:** Kit, GameDesign and the scoped backlog helpers; Number Sequence also uses the existing PartyRoom/partyGame flow.
+- **Aktueller Stand:** New functional game implementation with its own rules and UI. The separate visual redesign is still planned; see docs/backlog/WEITERE_SPIELE.md.
+- **Optische Verbesserungsziele:** Initial functional layout exists. The individual visual concept must still be reconciled with these actual game states after separate VIS authorization.
 - **Stil:** Ruhiger Zock-Würfeltisch mit klarer Risiko-/Sicherungsseite.
 - **Hintergrund:** Dunkelgrünes Würfeltuch mit Holzrand.
 - **Spielfeld:** Aktueller Wurf und gesicherte Punkte getrennt.
@@ -1656,7 +1656,7 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Würfel und Entscheidung oben, Rangliste nachgeordnet.
 - **Technische Grenzen:** Keine zusätzlichen Nieten-/Wertungsregeln im Design erfinden. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von risiko-wuerfeln.
+- **Abhängigkeiten:** VIS-001; Gameplay implementation exists; separate VIS authorization is still required.
 
 **Individuelle Akzeptanz:**
 
@@ -1750,12 +1750,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-059 – Story-Chaos
 
 - **Spiel-ID/Kategorie:** `story-chaos` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 5–8 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **planned**.
+- **Priorität / Aufwand:** P2; 5–8 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/story-chaos/story-chaos.js`, `public/games/story-chaos/story-chaos.css`
+- **Gemeinsame Komponenten:** Kit, GameDesign and the scoped backlog helpers; Number Sequence also uses the existing PartyRoom/partyGame flow.
+- **Aktueller Stand:** New functional game implementation with its own rules and UI. The separate visual redesign is still planned; see docs/backlog/WEITERE_SPIELE.md.
+- **Optische Verbesserungsziele:** Initial functional layout exists. The individual visual concept must still be reconciled with these actual game states after separate VIS authorization.
 - **Stil:** Papieratelier für eine gemeinsam wachsende Geschichte.
 - **Hintergrund:** Ruhige Schreibwerkbank und lokale Papierstruktur.
 - **Spielfeld:** Nur freigegebener letzter Satz und eigener Entwurf im Fokus.
@@ -1764,7 +1764,7 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Lange Sätze umbrechen, Eingabetastatur und Entwurf erhalten.
 - **Technische Grenzen:** Frühere verdeckte Textstufen nicht vorzeitig im DOM ablegen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von story-chaos.
+- **Abhängigkeiten:** VIS-001; Gameplay implementation exists; separate VIS authorization is still required.
 
 **Individuelle Akzeptanz:**
 
@@ -2452,12 +2452,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-085 – Zahlenreihe
 
 - **Spiel-ID/Kategorie:** `zahlenreihe` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 6–9 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **planned**.
+- **Priorität / Aufwand:** P2; 6–9 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/zahlenreihe/zahlenreihe.js`, `public/games/zahlenreihe/zahlenreihe.css`
+- **Gemeinsame Komponenten:** Kit, GameDesign and the scoped backlog helpers; Number Sequence also uses the existing PartyRoom/partyGame flow.
+- **Aktueller Stand:** New functional game implementation with its own rules and UI. The separate visual redesign is still planned; see docs/backlog/WEITERE_SPIELE.md.
+- **Optische Verbesserungsziele:** Initial functional layout exists. The individual visual concept must still be reconciled with these actual game states after separate VIS authorization.
 - **Stil:** Redaktionelles Zahlenrätsel mit ruhigen Sequenzkarten.
 - **Hintergrund:** Schlichte Papierfläche ohne dekorative Zahlenfolgen.
 - **Spielfeld:** Aktuelle Folge und freie Stelle klar ausrichten.
@@ -2466,7 +2466,7 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Lange Zahlenfolgen umbrechen oder intern scrollen, Eingabe groß.
 - **Technische Grenzen:** Keine Regel oder richtige nächste Zahl im Hintergrund/DOM vorab zeigen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von zahlenreihe.
+- **Abhängigkeiten:** VIS-001; Gameplay implementation exists; separate VIS authorization is still required.
 
 **Individuelle Akzeptanz:**
 

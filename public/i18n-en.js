@@ -502,9 +502,22 @@ Object.assign(window.EN, {
   'Sehr groß': 'Extra large', 'Ton ausprobieren': 'Try sound',
 });
 Object.assign(window.EN_GAMES, {
+  'risiko-wuerfeln': {name:'Risk Dice',description:'Roll again or bank your points. A one loses your turn points; the first to reach the target wins.'},
+  'story-chaos': {name:'Story Chaos',description:'Take turns writing a shared story. Each player sees only the last sentence; read everything together at the end.'},
+  zahlenreihe: {name:'Number Sequence',description:'Find the pattern and fill the missing numbers. Correct answers score; the fastest earns a bonus.'},
   'scotland-yard': { name: 'Scotland Yard', description: 'Detectives hunt Mr. X across an original city map using taxi, bus and underground tickets. His location usually stays hidden.' },
   hex: { name: 'Hex', description: 'Connect your two edges on a hexagonal board. Every stone matters and there are no draws.' },
   wuerfelduell: { name: 'Dice Duel', description: 'Attack, defend and be the last player with health remaining.' },
+});
+Object.assign(window.EN,{
+  'Sätze pro Mitspieler':'Sentences per player','Schreibzeit pro Satz in Sekunden (0 = ohne)':'Writing time per sentence in seconds (0 = unlimited)',
+  'Zeit pro Entscheidung in Sekunden (0 = ohne)':'Time per decision in seconds (0 = unlimited)',
+  'Zwei fehlende Zahlen statt einer':'Two missing numbers instead of one','Bonus für die schnellste richtige Antwort':'Bonus for the fastest correct answer',
+  'Zahlenreihe':'Number sequence','Zahlen ergänzen':'Fill the numbers','rätselt …':'solving …',
+  'Ungültiger Würfelwurf':'Invalid die roll','Erst Punkte erwürfeln':'Roll for points first',
+  'Dieser Schreibzug ist nicht mehr aktuell':'This writing turn is no longer current','Bitte höchstens 240 Zeichen schreiben':'Please write no more than 240 characters',
+  'Bitte einen Satz schreiben':'Please write a sentence','Diese Zahlenreihe ist nicht mehr aktuell':'This number sequence is no longer current',
+  'Deine Antwort wurde bereits abgegeben':'Your answer has already been submitted','Bitte die fehlenden ganzen Zahlen mit Leerzeichen getrennt eingeben':'Please enter the missing integers separated by spaces',
 });
 Object.assign(window.EN, {
   'Züge von Mr. X': 'Mr. X moves', 'Auftauchen von Mr. X': 'Mr. X surfacing', 'Normal (3, 8, 13, 18, 24)': 'Normal (3, 8, 13, 18, 24)',

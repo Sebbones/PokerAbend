@@ -26,13 +26,14 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 52,
-    "not_implemented_count": 55,
+    "playable_count": 55,
+    "not_implemented_count": 52,
     "completed_visual_count": 7,
-    "open_playable_visual_count": 45,
+    "open_playable_visual_count": 48,
     "planned_visual_count": 100,
     "total_visual_packages": 107,
     "playable_game_ids": [
+      "2048",
       "poker",
       "maumau",
       "farbenchaos",
@@ -82,8 +83,10 @@
       "scotland-yard",
       "hex",
       "wuerfelduell",
+      "risiko-wuerfeln",
+      "story-chaos",
+      "zahlenreihe",
       "sudoku",
-      "2048",
       "wellenwacht"
     ],
     "not_implemented_game_ids": [
@@ -101,11 +104,9 @@
       "short-deck",
       "stichmeister",
       "exploding-deck",
-      "risiko-wuerfeln",
       "wuerfeljagd",
       "monsterwuerfel",
       "labyrinth-brett",
-      "story-chaos",
       "regelwahnsinn",
       "jaeger-schatten",
       "infektionsjagd",
@@ -131,7 +132,6 @@
       "luegenbaron",
       "brueckenroulette",
       "wuerfel-auktion",
-      "zahlenreihe",
       "skat",
       "doppelkopf",
       "schach",
@@ -298,46 +298,49 @@
     "VIS-107"
   ],
   "effort_order": [
+    "VIS-025",
     "VIS-027",
     "VIS-035",
     "VIS-049",
-    "VIS-025",
+    "VIS-015",
+    "VIS-018",
     "VIS-021",
     "VIS-033",
-    "VIS-018",
-    "VIS-015",
-    "VIS-032",
+    "VIS-055",
     "VIS-003",
     "VIS-020",
-    "VIS-039",
-    "VIS-030",
-    "VIS-026",
+    "VIS-032",
+    "VIS-059",
     "VIS-005",
-    "VIS-022",
-    "VIS-019",
     "VIS-010",
-    "VIS-034",
     "VIS-014",
+    "VIS-019",
+    "VIS-022",
+    "VIS-026",
+    "VIS-030",
     "VIS-031",
-    "VIS-040",
-    "VIS-024",
-    "VIS-028",
+    "VIS-034",
+    "VIS-039",
+    "VIS-085",
     "VIS-006",
     "VIS-016",
-    "VIS-029",
-    "VIS-048",
+    "VIS-024",
+    "VIS-028",
+    "VIS-040",
     "VIS-012",
+    "VIS-029",
     "VIS-038",
     "VIS-042",
     "VIS-044",
-    "VIS-023",
-    "VIS-043",
+    "VIS-048",
     "VIS-017",
+    "VIS-023",
     "VIS-037",
+    "VIS-043",
     "VIS-041",
     "VIS-045",
-    "VIS-011",
     "VIS-007",
+    "VIS-011",
     "VIS-013",
     "VIS-036",
     "VIS-002",
@@ -389,13 +392,13 @@
     "VIS-002",
     "VIS-024",
     "VIS-047",
-    "VIS-046"
-  ],
-  "future_concepts_order": [
+    "VIS-046",
     "VIS-055",
     "VIS-059",
+    "VIS-085"
+  ],
+  "future_concepts_order": [
     "VIS-056",
-    "VIS-085",
     "VIS-083",
     "VIS-082",
     "VIS-073",
@@ -7640,7 +7643,7 @@
       "game_name": "Risiko-Würfeln",
       "category": "wuerfel",
       "category_name": "Würfelspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
@@ -7650,14 +7653,26 @@
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/risiko-wuerfeln/risiko-wuerfeln.js",
+        "public/games/risiko-wuerfeln/risiko-wuerfeln.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/core.js",
+        "public/style.css",
+        "public/game-design.js",
+        "public/game-design.css",
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/games/backlog.css",
+        "public/games/card-interaction.js"
+      ],
+      "source_audit": [],
+      "current_design": "Functional first implementation in the existing game framework; individual visual redesign remains planned.",
+      "known_visual_weaknesses": [
+        "Functional initial UI uses the existing scene framework; the individual material and visual redesign package remains planned."
+      ],
+      "assessment_method": "Source inventory of the newly authorized game implementation; this does not complete the separate visual redesign package.",
       "gameplay_summary": "Jeder weitere Wurf kann den Zuggewinn erhöhen oder ihn vollständig kosten.",
       "planned_style": "Ruhiger Zock-Würfeltisch mit klarer Risiko-/Sicherungsseite.",
       "background_concept": "Dunkelgrünes Würfeltuch mit Holzrand.",
@@ -7687,7 +7702,7 @@
         "level": "small",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktueller Wurf und gesicherte Punkte getrennt. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
+      "priority": "P2",
       "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
       "acceptance_criteria": [
         "Ungesicherte und gesicherte Punkte unverwechselbar."
@@ -7709,9 +7724,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "risiko-wuerfeln",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/risiko-wuerfeln/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
@@ -7980,7 +7995,7 @@
       "game_name": "Story-Chaos",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
@@ -7990,14 +8005,26 @@
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/story-chaos/story-chaos.js",
+        "public/games/story-chaos/story-chaos.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/core.js",
+        "public/style.css",
+        "public/game-design.js",
+        "public/game-design.css",
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/games/backlog.css",
+        "public/games/card-interaction.js"
+      ],
+      "source_audit": [],
+      "current_design": "Functional first implementation in the existing game framework; individual visual redesign remains planned.",
+      "known_visual_weaknesses": [
+        "Functional initial UI uses the existing scene framework; the individual material and visual redesign package remains planned."
+      ],
+      "assessment_method": "Source inventory of the newly authorized game implementation; this does not complete the separate visual redesign package.",
       "gameplay_summary": "Reihum einen Satz ergänzen, nur den letzten sehen und am Ende die ganze Geschichte entdecken.",
       "planned_style": "Papieratelier für eine gemeinsam wachsende Geschichte.",
       "background_concept": "Ruhige Schreibwerkbank und lokale Papierstruktur.",
@@ -8027,7 +8054,7 @@
         "level": "small",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Nur freigegebener letzter Satz und eigener Entwurf im Fokus. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
+      "priority": "P2",
       "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
       "acceptance_criteria": [
         "Schreibansicht verrät keine spätere oder verborgene Geschichte."
@@ -8049,9 +8076,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "story-chaos",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/story-chaos/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
@@ -10191,7 +10218,7 @@
       "game_name": "Zahlenreihe",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
@@ -10201,14 +10228,27 @@
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/zahlenreihe/zahlenreihe.js",
+        "public/games/zahlenreihe/zahlenreihe.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/core.js",
+        "public/style.css",
+        "public/game-design.js",
+        "public/game-design.css",
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/games/backlog.css",
+        "public/games/card-interaction.js",
+        "public/games/party-kit.js"
+      ],
+      "source_audit": [],
+      "current_design": "Functional first implementation in the existing game framework; individual visual redesign remains planned.",
+      "known_visual_weaknesses": [
+        "Functional initial UI uses the existing scene framework; the individual material and visual redesign package remains planned."
+      ],
+      "assessment_method": "Source inventory of the newly authorized game implementation; this does not complete the separate visual redesign package.",
       "gameplay_summary": "Welche Zahl kommt als Nächstes? Wer die Regel zuerst erkennt, gewinnt.",
       "planned_style": "Redaktionelles Zahlenrätsel mit ruhigen Sequenzkarten.",
       "background_concept": "Schlichte Papierfläche ohne dekorative Zahlenfolgen.",
@@ -10238,7 +10278,7 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktuelle Folge und freie Stelle klar ausrichten. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
+      "priority": "P2",
       "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
       "acceptance_criteria": [
         "Zwei Lücken und lange Zahlwerte bleiben lesbar."
@@ -10260,9 +10300,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "zahlenreihe",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/zahlenreihe/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
