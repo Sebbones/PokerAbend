@@ -8,6 +8,7 @@ import { cleanText } from '../../server/security.js';
 import { BaseRoom, AVATARS, HISTORY_ROUNDS } from '../../server/base-room.js';
 import { maintenance } from '../../server/maintenance.js';
 import { isSebastian } from './sebastian.js';
+import {savedBotLevel,effectiveBotLevel} from '../bot-levels.js';
 
 export const DEFAULT_SETTINGS = {
   smallBlind: 50,
@@ -707,7 +708,7 @@ export class Room extends BaseRoom {
         cards = visible ? hp.cards : Array(this.table.holeCards).fill('??');
       }
       return {
-        seat: i, id: s.id, name: s.name, avatar: p?.avatar, bot: !!p?.bot, stack: s.stack,
+        seat: i, id: s.id, name: s.name, avatar: p?.avatar, bot: !!p?.bot, ...(p?.bot?{botDifficulty:effectiveBotLevel(this,p)}:{}), stack: s.stack,
         sittingOut: s.sittingOut, busted: s.stack === 0 && !(hp && !h.done && !hp.folded),
         connected: !!p?.connected, isHost: s.id === this.hostId,
         inHand: !!hp, folded: !!hp?.folded, allIn: !!hp?.allIn && !h?.done,
@@ -822,7 +823,7 @@ export class Room extends BaseRoom {
       button: this.table.button, handNo: this.table.handNo, stats: this.stats,
       blind: { level: this.blind.level, elapsed: this.blindInfo().args.elapsedMs, hands: this.blind.hands },
       players: [...this.players.values()].map((p) => ({
-        id: p.id, token: p.token, name: p.name, avatar: p.avatar, seat: p.seat, bot: !!p.bot,
+        id: p.id, token: p.token, name: p.name, avatar: p.avatar, seat: p.seat, bot: !!p.bot, ...(p.bot?{botDifficulty:savedBotLevel(p)}:{}),
         chips: p.seat !== null ? this.table.seats[p.seat].stack : p.bank,
         sittingOut: p.seat !== null ? this.table.seats[p.seat].sittingOut : false,
         buyIn: p.buyIn, rebuys: p.rebuys, sebPause: !!p.sebPause,
@@ -844,7 +845,7 @@ export class Room extends BaseRoom {
       const p = {
         id: d.id, token: d.token, name: d.name, seat: null, bank: d.chips,
         avatar: AVATARS.includes(d.avatar) ? d.avatar : AVATARS[r.players.size % AVATARS.length],
-        buyIn: d.buyIn, rebuys: d.rebuys, bot: d.bot === true, connected: d.bot === true, socketId: null, missed: 0, leaveAfterHand: false, seen: [],
+        buyIn: d.buyIn, rebuys: d.rebuys, bot: d.bot === true, ...(d.bot?{botDifficulty:savedBotLevel(d)}:{}), connected: d.bot === true, socketId: null, missed: 0, leaveAfterHand: false, seen: [],
         offlineSince: Date.now(), // nach einem Neustart bekommt jeder wieder die volle Frist
         sebPause: !!d.sebPause,
         sitLock: Number(d.sitLock) || 0, lastSeat: Number.isInteger(d.lastSeat) ? d.lastSeat : null,

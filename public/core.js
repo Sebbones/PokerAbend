@@ -570,19 +570,27 @@ document.addEventListener('click', (e) => {
 });
 
 // Optionale Computer-Mitspieler, für Poker und alle Rundenspiele gleich.
-function botControlsHTML(state, busy) {
-  const bots = state.bots || [];
-  const occupied = state.players ? state.players.filter((p) => p.seated).length : state.seats.filter(Boolean).length;
-  const full = occupied >= (state.maxPlayers || state.settings.maxPlayers);
-  return I18n.html`<section class="bot-controls" aria-label="Computer-Mitspieler"><h3>Mit Bots spielen (optional)</h3>
-    <p class="hint">${bots.length ? I18n.html`${bots.length} Computer-Mitspieler am Tisch.` : I18n.t('Ohne Bots. Füge bei Bedarf einen Computer-Mitspieler hinzu.')} ${busy ? I18n.t('Änderungen gehen nach dieser Runde.') : I18n.t('Du startest die Runde wie gewohnt.')}</p>
-    <button type="button" class="btn" data-add-bot ${busy || full ? 'disabled' : ''}>Bot hinzufügen${full ? ' – Tisch voll' : ''}</button>
-    ${bots.map((p) => I18n.html`<div class="bot-row"><span>${esc(p.name)} · Computer</span><button type="button" class="btn btn-outline-red" data-remove-bot="${esc(p.id)}" aria-label="${esc(p.name)} entfernen" ${busy ? 'disabled' : ''}>Entfernen</button></div>`).join('')}</section>`;
+const botLevelName=level=>I18n.t(({easy:'Leicht',medium:'Mittel',hard:'Schwer'})[level]||'Mittel');
+let addBotDifficulty='medium',botDraftRoom='';
+function botBadgeHTML(state,id){
+  const bot=(state.bots||[]).find(p=>p.id===id),player=(state.players||state.seats||[]).find(p=>p?.id===id);
+  if(!bot&&!player?.bot)return '';
+  return '<small class="bot-difficulty-badge">Bot \u00b7 '+esc(botLevelName(bot?.difficulty||player?.botDifficulty||'medium'))+'</small>';
 }
-document.addEventListener('click', (e) => {
-  if (e.target.closest('[data-add-bot]:not(:disabled)')) send('addBot');
-  const remove = e.target.closest('[data-remove-bot]:not(:disabled)');
-  if (remove) send('removeBot', { id: remove.dataset.removeBot });
+function botControlsHTML(state,busy){
+  const bots=state.bots||[],levels=state.botLevels||['medium'],single=levels.length===1;
+  const key=state.code+':'+state.game+':'+(state.variant||'classic');if(botDraftRoom!==key){addBotDifficulty='medium';botDraftRoom=key;}
+  const occupied=state.players?state.players.filter(p=>p.seated).length:state.seats.filter(Boolean).length,full=occupied>=(state.maxPlayers||state.settings.maxPlayers);
+  const options=selected=>levels.map(level=>'<option value="'+level+'" '+(level===selected?'selected':'')+'>'+esc(botLevelName(level))+'</option>').join('');
+  return '<section class="bot-controls" aria-label="'+I18n.t('Computer-Mitspieler')+'"><h3>'+I18n.t('Mit Bots spielen (optional)')+'</h3><p class="hint">'+(bots.length?bots.length+' '+I18n.t('Computer-Mitspieler am Tisch.')+' ':I18n.t('Ohne Bots.')+' ')+I18n.t(busy?'\u00c4nderungen gehen nach dieser Runde.':'Du startest die Runde wie gewohnt.')+'</p>'+(single?'<p class="hint" data-bot-single>'+I18n.t('Nur eine Stufe verf\u00fcgbar')+'</p>':'')+'<label class="bot-add-level">'+I18n.t('Schwierigkeit beim Hinzuf\u00fcgen')+' <select data-add-bot-level aria-label="'+I18n.t('Schwierigkeit beim Hinzuf\u00fcgen')+'" '+(busy||single?'disabled':'')+'>'+options(levels.includes(addBotDifficulty)?addBotDifficulty:'medium')+'</select></label> <button type="button" class="btn" data-add-bot '+(busy||full?'disabled':'')+'>'+I18n.t('Bot hinzuf\u00fcgen')+(full?' \u2013 '+I18n.t('Tisch voll'):'')+'</button>'+bots.map(p=>'<div class="bot-row"><span>'+esc(p.name)+' \u00b7 '+I18n.t('Computer')+'</span><label><span class="sr-only">'+esc(p.name)+': '+I18n.t('Schwierigkeit')+'</span><select data-bot-level="'+esc(p.id)+'" aria-label="'+esc(p.name)+': '+I18n.t('Schwierigkeit')+'" '+(busy||single?'disabled':'')+'>'+options(p.difficulty||'medium')+'</select></label><button type="button" class="btn btn-outline-red" data-remove-bot="'+esc(p.id)+'" aria-label="'+esc(p.name)+' '+I18n.t('entfernen')+'" '+(busy?'disabled':'')+'>'+I18n.t('Entfernen')+'</button></div>').join('')+'</section>';
+}
+document.addEventListener('change',e=>{
+  if(e.target.matches('[data-add-bot-level]'))addBotDifficulty=e.target.value;
+  if(e.target.matches('[data-bot-level]:not(:disabled)'))send('setBotDifficulty',{id:e.target.dataset.botLevel,difficulty:e.target.value}).then(r=>{if(!r.ok)toast(r.error,true);});
+});
+document.addEventListener('click',e=>{
+  const add=e.target.closest('[data-add-bot]:not(:disabled)');if(add)send('addBot',{difficulty:add.closest('.bot-controls')?.querySelector('[data-add-bot-level]')?.value||'medium'}).then(r=>{if(!r.ok)toast(r.error,true);});
+  const remove=e.target.closest('[data-remove-bot]:not(:disabled)');if(remove)send('removeBot',{id:remove.dataset.removeBot});
 });
 
 // Host-Schalter: Tisch nicht in der Liste der offenen Tische zeigen (privat, nur per Code/Link). Für Poker und alle Rundenspiele gleich.

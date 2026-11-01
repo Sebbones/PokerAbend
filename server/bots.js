@@ -1,9 +1,23 @@
 import { BOTS } from '../games/bots.js';
+import {BOT_LEVELS,botLevels,effectiveBotLevel} from '../games/bot-levels.js';
+import {botObservation,applyBotAction} from './bot-observation.js';
+import {createDecisionService} from './bot-decisions.js';
 
-export function addBot(room, hostId) {
+function validateLevel(room,difficulty){
+  if(typeof difficulty!=='string'||!BOT_LEVELS.includes(difficulty))throw new Error('Ungültige Bot-Stufe');
+  if(!botLevels(room.game,room.variant,room.settings).includes(difficulty))throw new Error('Nur eine Stufe verfügbar');
+}
+export function setBotDifficulty(room,hostId,id,difficulty){
+  room.requireHost(hostId);
+  if(room.busy)throw new Error('Bot-Stufen lassen sich nur zwischen zwei Runden ändern');
+  const p=room.players.get(id);if(!p?.bot||p.kicked)throw new Error('Bot nicht gefunden');
+  validateLevel(room,difficulty);p.botDifficulty=difficulty;
+}
+export function addBot(room, hostId, difficulty='medium') {
   room.requireHost(hostId);
   if (room.busy) throw new Error('Bots kommen nur zwischen zwei Runden dazu');
   if (!BOTS[room.game]) throw new Error('Für dieses Spiel gibt es noch keinen Bot');
+  validateLevel(room,difficulty);
   const seats = room.table ? room.table.seats : room.seats;
   const max = room.table ? room.settings.maxPlayers : room.opts.maxPlayers;
   if (seats.filter(Boolean).length >= max) throw new Error('Der Tisch ist voll');
@@ -11,6 +25,7 @@ export function addBot(room, hostId) {
   while ([...room.players.values()].some((p) => p.name.toLowerCase() === `bot ${n}`)) n++;
   const p = room.addPlayer(`Bot ${n}`, '🦉', { bot: true });
   p.bot = true;
+  p.botDifficulty = difficulty;
   p.connected = true;
   try {
     if (room.table) room.sit(p.id, seats.findIndex((s) => !s));
@@ -57,17 +72,18 @@ export function brokeBot(room) {
   return s ? s.id : null;
 }
 
-export function createBotRunner({ isCurrent, notify, delay = 800 }) {
+export function createBotRunner({ isCurrent, notify, delay = 800, decisions=createDecisionService() }) {
   const timers = new Map();
+  const running = new Map();
   const failed = new WeakMap();
   const present = (room) => [...room.players.values()].some((p) => !p.bot && !p.kicked && p.connected);
-  const stop = (room) => { clearTimeout(timers.get(room)); timers.delete(room); };
+  const stop = (room) => { clearTimeout(timers.get(room)); timers.delete(room); running.get(room)?.abort();running.delete(room); };
   // Ein fehlgeschlagener Zug sperrt nur genau diesen Spielstand, nicht die ganze Runde
   const stateKey = (room, id) => `${id}:${room.round}:${room.moveNo ?? ''}`;
   function sync(room) {
     if (!isCurrent(room) || !present(room) || !(nextBot(room) || brokeBot(room))) { stop(room); return; }
-    if (timers.has(room) || (nextBot(room) && failed.get(room) === stateKey(room, nextBot(room)))) return;
-    const timer = setTimeout(() => {
+    if (timers.has(room) || running.has(room) || (nextBot(room) && failed.get(room) === stateKey(room, nextBot(room)))) return;
+    const timer = setTimeout(async () => {
       timers.delete(room);
       if (!isCurrent(room) || !present(room)) return;
       const broke = brokeBot(room);
@@ -78,8 +94,16 @@ export function createBotRunner({ isCurrent, notify, delay = 800 }) {
       }
       const id = nextBot(room);
       if (!id) return;
+      const controller=new AbortController();running.set(room,controller);
       try {
-        BOTS[room.game](room, id, Math.random);
+        const level=effectiveBotLevel(room,room.players.get(id));
+        if(level==='medium')BOTS[room.game](room, id, Math.random);
+        else{
+          const observation=botObservation(room,id),fingerprint=JSON.stringify(observation);
+          const action=await decisions.decide(observation,level,{signal:controller.signal});
+          if(running.get(room)!==controller||!isCurrent(room)||!present(room)||room.gamePaused||nextBot(room)!==id||JSON.stringify(botObservation(room,id))!==fingerprint)return;
+          applyBotAction(room,id,action);
+        }
         room.afterChange();
       } catch (error) {
         console.error(`Bot ${room.game}:`, error.message);
@@ -92,12 +116,12 @@ export function createBotRunner({ isCurrent, notify, delay = 800 }) {
           failed.set(room, stateKey(room, id));
           room.say('Computerzug fehlgeschlagen. Der Host kann den Bot entfernen.', 'warn');
         }
-      }
+      }finally{if(running.get(room)===controller){running.delete(room);queueMicrotask(()=>sync(room));}}
       notify(room);
       sync(room);
     }, delay);
     timers.set(room, timer);
     timer.unref?.();
   }
-  return { sync, stop };
+  return { sync, stop, close(){for(const room of new Set([...timers.keys(),...running.keys()]))stop(room);decisions.close();} };
 }

@@ -2,6 +2,7 @@
 // Ein Spiel erweitert diese Klasse und füllt die Haken: setupRound, onTurnStart, onDropOut, gameView, publicPlayer.
 import { BaseRoom } from './base-room.js';
 import { assertNewRoundAllowed } from './maintenance.js';
+import {savedBotLevel,effectiveBotLevel} from '../games/bot-levels.js';
 
 export class TurnRoom extends BaseRoom {
   // opts: { minPlayers, maxPlayers, lowWins (wenig Punkte = gut), scoreLabel, winPoints (Punkte für einen Sieg, wenn Punkte = Siege) }
@@ -242,7 +243,7 @@ export class TurnRoom extends BaseRoom {
       hostId: this.hostId, settings: this.settings, phase: this.phase, roundNo: this.roundNo, turnId: this.currentId, deadline: this.deadline, dir: this.dir, acts: this.phase === 'lobby' ? {} : this.acts, moves: this.phase === 'lobby' ? [] : this.moves.slice(-40),
       minPlayers: this.opts.minPlayers, maxPlayers: this.opts.maxPlayers, scoreLabel: this.opts.scoreLabel, lowWins: this.opts.lowWins,
       players: people.map((p) => ({
-        id: p.id, name: p.name, avatar: p.avatar, bot: !!p.bot, connected: p.connected, isHost: p.id === this.hostId,
+        id: p.id, name: p.name, avatar: p.avatar, bot: !!p.bot, ...(p.bot?{botDifficulty:effectiveBotLevel(this,p)}:{}), connected: p.connected, isHost: p.id === this.hostId,
         seated: this.seats.includes(p.id), inRound: this.order.includes(p.id), score: this.scores[p.id] || 0, wins: this.wins[p.id] || 0,
         ...(this.order.includes(p.id) || this.phase !== 'lobby' ? this.publicPlayer(p) : {}),
       })),
@@ -259,7 +260,7 @@ export class TurnRoom extends BaseRoom {
       code: this.code, settings: this.settings, hostId: this.hostId, roundNo: this.roundNo, scores: this.scores, wins: this.wins, seats: this.seats,
       ...(this.variant !== 'classic' ? { variant: this.variant } : {}),
       extra: this.saveExtra(),
-      players: [...this.players.values()].filter((p) => !p.kicked).map((p) => ({ id: p.id, token: p.token, name: p.name, avatar: p.avatar, bot: !!p.bot })),
+      players: [...this.players.values()].filter((p) => !p.kicked).map((p) => ({ id: p.id, token: p.token, name: p.name, avatar: p.avatar, bot: !!p.bot, ...(p.bot?{botDifficulty:savedBotLevel(p)}:{}) })),
     };
   }
   saveExtra() { return null; }
@@ -271,7 +272,7 @@ export class TurnRoom extends BaseRoom {
     r.scores = data.scores || {};
     r.wins = data.wins || {};
     for (const d of data.players || []) {
-      r.players.set(d.id, { ...r.playerFields(), id: d.id, token: d.token, name: d.name, avatar: d.avatar, bot: d.bot === true, connected: d.bot === true, socketId: null, offlineSince: Date.now() });
+      r.players.set(d.id, { ...r.playerFields(), id: d.id, token: d.token, name: d.name, avatar: d.avatar, bot: d.bot === true, ...(d.bot?{botDifficulty:savedBotLevel(d)}:{}), connected: d.bot === true, socketId: null, offlineSince: Date.now() });
     }
     r.seats = (data.seats || []).filter((id) => r.players.has(id));
     if (data.extra) r.loadExtra(data.extra);

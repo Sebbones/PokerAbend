@@ -3,6 +3,7 @@
 import { randomBytes } from 'node:crypto';
 import { cleanName } from './security.js';
 import { RoomClock } from './room-clock.js';
+import {botLevels} from '../games/bot-levels.js';
 
 export const AVATARS = ['🦊', '🐻', '🐼', '🐸', '🦉', '🐯', '🐙', '🦄', '🐺', '🐧', '🦁', '🐢'];
 export const MAX_PEOPLE = 30;         // Spieler und Zuschauer pro Raum
@@ -42,7 +43,7 @@ export class BaseRoom {
 
   // Gemeinsame Sofort-Pause: nur der Host; ein expliziter Wert macht Wiederholungen sicher.
   get gamePaused() { return this.clock.paused; }
-  pauseView() { return { gamePaused: this.gamePaused, now: this.clock.now() }; }
+  pauseView() { return { gamePaused: this.gamePaused, now: this.clock.now(), botLevels:botLevels(this.game,this.variant,this.settings) }; }
   setGamePaused(id, value) {
     this.requireHost(id);
     if (typeof value !== 'boolean') throw new Error('Bitte Pause oder Weiterspielen wählen');

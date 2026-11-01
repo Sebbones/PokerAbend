@@ -416,7 +416,7 @@ function renderTable() {
       <div class="plate">
         <div class="av-wrap">${ringSVG}<div class="avatar">${avatarHTML(s)}</div></div>
         <div class="p-info">
-          <div class="p-name"><span>${esc(s.name)}</span>${s.isHost ? I18n.html`${ICON.crown}<span class="sr-only">(Host)</span>` : ''}</div>
+          <div class="p-name"><span>${esc(s.name)}</span>${typeof botBadgeHTML==='function'?botBadgeHTML(S,s.id):''}${s.isHost ? I18n.html`${ICON.crown}<span class="sr-only">(Host)</span>` : ''}</div>
           <div class="p-stack"><span class="chip c5" aria-hidden="true"></span>${amt(s.stack)}</div>
           ${compact && s.bet > 0 ? I18n.html`<div class="p-bet" aria-label="Einsatz ${amt(s.bet)}">↳ ${amt(s.bet)}</div>` : ''}
           ${handName}

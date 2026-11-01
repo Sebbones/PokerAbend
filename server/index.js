@@ -26,7 +26,8 @@ import { createIdentity, GUEST_COOKIE } from './identity.js';
 import { createIdentityAPI } from './identity-api.js';
 import { backupBeforeIdentityMigration } from './data-migration.js';
 import { createDiscordAuth, discordConfig } from './auth-discord.js';
-import { addBot, removeBot, createBotRunner } from './bots.js';
+import { addBot, removeBot, setBotDifficulty, createBotRunner } from './bots.js';
+import {botMetadata,savedBotLevel} from '../games/bot-levels.js';
 import { BOTS } from '../games/bots.js';
 import { configureBoards, boardStore } from '../games/monopoly/boards.js';
 import { createReviewStore, reviewMarkdown } from './evening-reviews.js';
@@ -432,7 +433,7 @@ function switchRoom(old, game, settings = {}, prepare = null) {
   for (const op of old.players.values()) {
     if (op.kicked) continue;
     next.players.set(op.id, { ...next.playerFields(op), id: op.id, token: op.token, name: op.name, avatar: op.avatar,
-      bot: !!op.bot, connected: op.connected, socketId: op.socketId, offlineSince: op.offlineSince, ...(op.accountId ? { accountId: op.accountId } : {}) });
+      bot: !!op.bot, ...(op.bot?{botDifficulty:savedBotLevel(op)}:{}), connected: op.connected, socketId: op.socketId, offlineSince: op.offlineSince, ...(op.accountId ? { accountId: op.accountId } : {}) });
   }
   next.hostId = next.players.has(old.hostId) ? old.hostId : [...next.players.keys()][0];
   next.unlisted = !!old.unlisted;
@@ -480,7 +481,7 @@ const notPlayable = (id) => (PLANNED.some((e) => e.id === String(id)) ? 'Das gib
 function broadcast(room) {
   presence.changed();
   bots.sync(room);
-  const botPlayers = [...room.players.values()].filter((p) => p.bot && !p.kicked).map(({ id, name }) => ({ id, name }));
+  const botPlayers = [...room.players.values()].filter((p) => p.bot && !p.kicked).map((p) => botMetadata(room,p));
   for (const p of room.players.values()) {
     if (p.socketId) io.to(p.socketId).emit('state', { ...room.view(p.id), game: room.game, bots: botPlayers, unlisted: !!room.unlisted, ...(room.partyProgram ? { partyProgram: publicProgram(room) } : {}) });
   }
@@ -794,7 +795,8 @@ io.on('connection', (socket) => {
 
   on('kick', ({ id }, room, p) => { room.requireHost(p.id); if (id === p.id) throw new Error('Du kannst dich nicht selbst entfernen'); const target = room.players.get(id); room.remove(id); if (target?.socketId && !room.players.has(id)) io.to(target.socketId).emit('kicked'); });
   on('makeHost', ({ id }, room, p) => { room.requireHost(p.id); const t = room.players.get(id); if (!t || t.bot) throw new Error('Ein Mensch muss Host bleiben'); room.hostId = id; room.say(`${t.name} ist jetzt Host`); });
-  on('addBot', (_data, room, p) => { if (programActive(room)) throw new Error('Während des Programms bleiben die Mitspieler fest'); addBot(room, p.id); });
+  on('addBot', ({difficulty='medium'}, room, p) => { if (programActive(room)) throw new Error('Während des Programms bleiben die Mitspieler fest'); addBot(room, p.id, difficulty); });
+  on('setBotDifficulty', ({id,difficulty},room,p)=>{if(programActive(room))throw new Error('Beende zuerst das Abendprogramm');setBotDifficulty(room,p.id,id,difficulty);});
   on('removeBot', ({ id }, room, p) => { if (programActive(room)) throw new Error('Beende zuerst das Abendprogramm'); removeBot(room, p.id, id); });
 
   // Ganzer Verlauf auf Anfrage (nicht in jedem Update – der kann lang werden). Ohne Neuzeichnen für alle.
@@ -864,7 +866,7 @@ process.on('unhandledRejection', (e) => console.error('Unerwarteter Fehler:', e)
 const NEW_ROUND_EVENTS = ['start', 'nextHand'];
 
 // Ein Spiel darf keine Plattform-Ereignisse überschreiben
-const RESERVED = ['create', 'join', 'kick', 'makeHost', 'history', 'react', 'switchGame', 'setVariant', 'disconnect', 'addBot', 'removeBot', 'lobby', 'peek', 'unlisted', 'park', 'leave', 'abortRound', 'closeTable', 'look', 'presence', 'programSave', 'programStart', 'programNext', 'programStop', 'clientError'];
+const RESERVED = ['create', 'join', 'kick', 'makeHost', 'history', 'react', 'switchGame', 'setVariant', 'disconnect', 'addBot', 'removeBot', 'setBotDifficulty', 'lobby', 'peek', 'unlisted', 'park', 'leave', 'abortRound', 'closeTable', 'look', 'presence', 'programSave', 'programStart', 'programNext', 'programStop', 'clientError'];
 for (const g of Object.values(GAMES)) {
   const clash = Object.keys(g.events).filter((e) => RESERVED.includes(e));
   if (clash.length) throw new Error(`Spiel ${g.id}: Ereignisse ${clash.join(', ')} gehören der Plattform`);

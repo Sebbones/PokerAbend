@@ -1098,7 +1098,7 @@
       "source_audit": [
         {
           "path": "games/backgammon/index.js",
-          "sha256": "ad020f5d86eaa9cdf2f7118b7e91576ebf41bbdae7c49d942a5e6198605e4369"
+          "sha256": "eb00bf8a80327497513b9af9aca5d92822decf9f228ce82de3b8623152e27177"
         },
         {
           "path": "games/backgammon/room.js",
@@ -1116,7 +1116,36 @@
           "path": "public/games/backgammon/backgammon.css",
           "sha256": "f08aac07dc7ddfe8d2e030486ee6d1fc81767051e27de88b2837d013143f0ed0"
         }
-      ]
+      ],
+      "pre_v2_16_rule_audit": {
+        "source_audit_commit": "9f0511779efc0ca03e759cb92b5b00605611fdaf",
+        "source_audit": [
+          {
+            "path": "games/backgammon/index.js",
+            "sha256": "ad020f5d86eaa9cdf2f7118b7e91576ebf41bbdae7c49d942a5e6198605e4369"
+          },
+          {
+            "path": "games/backgammon/room.js",
+            "sha256": "aa5a68628455312ffd9b1a9d2c6830590bf2a8ff2327b945c7ca646269cd09f3"
+          },
+          {
+            "path": "games/backgammon/rules.js",
+            "sha256": "c4418459b4c4762c05663f64854e759d63b749e9fab07b1a9ace8577280a13ca"
+          },
+          {
+            "path": "public/games/backgammon/backgammon.js",
+            "sha256": "aff20c8a5ac563b843cbf26aeda115d9ab4c292be8b4031236ece4eae68c8041"
+          },
+          {
+            "path": "public/games/backgammon/backgammon.css",
+            "sha256": "f08aac07dc7ddfe8d2e030486ee6d1fc81767051e27de88b2837d013143f0ed0"
+          }
+        ]
+      },
+      "v2_16_rule_summary": {
+        "scope": "Public nine-point rule summary for the existing roadmap dialog; no rule changes",
+        "implementation_commit": null
+      }
     },
     {
       "id": "scrabble",

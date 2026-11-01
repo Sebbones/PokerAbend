@@ -194,7 +194,7 @@ function kitGame(def) {
     const a = S.acts?.[p.id];
     return a ? `<span class="${cls} ${a.n === lastAct() ? 'fresh' : ''}">${esc(tr(a.text))}</span>` : '';
   };
-  const nameHTML = (p) => `${esc(p.name)}${p.isHost ? I18n.html` ${ICON.crown}<span class="sr-only">(Host)</span>` : ''}`;
+  const nameHTML = (p) => `${esc(p.name)}${typeof botBadgeHTML==='function'?botBadgeHTML(S,p.id):''}${p.isHost ? I18n.html` ${ICON.crown}<span class="sr-only">(Host)</span>` : ''}`;
   const statusText = (p) => [p.id === S.turnId && I18n.html('<em>am Zug</em>'), !p.connected && I18n.html`${ICON.offline} offline`,
     S.phase === 'playing' && !p.inRound && I18n.t('ab nächster Runde')].filter(Boolean).join(' · ');
   const pClass = (p) => `${p.id === S.turnId ? 'turn' : ''} ${p.id === S.you?.id ? 'me' : ''} ${p.connected ? '' : 'is-offline'} ${S.phase === 'playing' && !p.inRound ? 'out' : ''} ${def.cardUX && p.eliminated ? 'eliminated' : ''}`;
