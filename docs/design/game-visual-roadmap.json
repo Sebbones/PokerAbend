@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 62,
-    "not_implemented_count": 45,
+    "playable_count": 63,
+    "not_implemented_count": 44,
     "completed_visual_count": 10,
-    "open_playable_visual_count": 52,
+    "open_playable_visual_count": 53,
     "planned_visual_count": 97,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -93,6 +93,7 @@
       "hearts",
       "five-card-draw",
       "scrabble",
+      "omaha-hi-lo",
       "sudoku",
       "wellenwacht"
     ],
@@ -106,7 +107,6 @@
       "solitaire",
       "mahjong-solitaire",
       "match-3",
-      "omaha-hi-lo",
       "seven-card-stud",
       "short-deck",
       "stichmeister",
@@ -345,6 +345,7 @@
     "VIS-041",
     "VIS-057",
     "VIS-045",
+    "VIS-050",
     "VIS-007",
     "VIS-011",
     "VIS-013",
@@ -406,7 +407,8 @@
     "VIS-056",
     "VIS-057",
     "VIS-084",
-    "VIS-066"
+    "VIS-066",
+    "VIS-050"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -425,7 +427,6 @@
     "VIS-062",
     "VIS-063",
     "VIS-077",
-    "VIS-050",
     "VIS-094",
     "VIS-092",
     "VIS-072",
@@ -7249,24 +7250,31 @@
       "game_name": "Omaha Hi/Lo",
       "category": "karten",
       "category_name": "Kartenspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/omaha-hi-lo/index.js",
       "existing_visual_work": {
         "level": "no_frontend",
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/games/omaha-hi-lo/omaha-hi-lo.js",
+        "public/games/omaha-hi-lo/omaha-hi-lo.css"
+      ],
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
       "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
+      "current_design": "Individual poker world using the existing betting and chip components.",
       "known_visual_weaknesses": [
         "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "assessment_method": "Explicit BACKLOG-04 gameplay, bot and world authorization; real engine and browser checks required before completion.",
       "gameplay_summary": "High- und Low-Hand teilen sich den Pot, gespielt mit vier eigenen Karten.",
       "planned_style": "Casino-Salon mit klar getrennter High-/Low-Wertung.",
       "background_concept": "Ruhiger gemeinsamer Pokerraum mit eigenem Hi/Lo-Akzent.",
@@ -7320,9 +7328,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "omaha-hi-lo",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/omaha-hi-lo/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],

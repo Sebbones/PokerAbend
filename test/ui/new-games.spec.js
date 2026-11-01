@@ -1,3 +1,4 @@
+import '../../games/omaha-hi-lo/ui.spec.js';
 import '../../games/scrabble/ui.spec.js';
 import '../../games/backgammon/ui.spec.js';
 import '../../games/hearts/ui.spec.js';

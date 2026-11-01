@@ -55,7 +55,7 @@ test('IDs sind eindeutig und kollidieren nicht mit gebauten Spielen oder Spiel-E
 test('Alle Spiele und Funktionen der Liste sind eingetragen – im richtigen Päckchen', () => {
   const want = {
     'solo-zukunft': ['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3'],
-    spaeter: ['omaha-hi-lo', 'seven-card-stud', 'short-deck', 'stichmeister', 'exploding-deck', 'labyrinth-brett', 'regelwahnsinn', 'jaeger-schatten', 'infektionsjagd', 'letzter-schutzplatz', 'kistenchaos', 'survival-abend', 'chaos-modus',  'schatzinsel', 'gummiband-challenge', 'geschenkfaenger', 'rhythmus-rausch', 'puzzle-panik', 'wortjagd', 'stillgestanden', 'schatzgraeber', 'minenlauf', 'labyrinth-chaos', 'schubsarena', 'scheinwerfer-flucht', 'doppelagent', 'luegenbaron', 'brueckenroulette', 'modifikatoren', 'turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell'],
+    spaeter: ['seven-card-stud', 'short-deck', 'stichmeister', 'exploding-deck', 'labyrinth-brett', 'regelwahnsinn', 'jaeger-schatten', 'infektionsjagd', 'letzter-schutzplatz', 'kistenchaos', 'survival-abend', 'chaos-modus',  'schatzinsel', 'gummiband-challenge', 'geschenkfaenger', 'rhythmus-rausch', 'puzzle-panik', 'wortjagd', 'stillgestanden', 'schatzgraeber', 'minenlauf', 'labyrinth-chaos', 'schubsarena', 'scheinwerfer-flucht', 'doppelagent', 'luegenbaron', 'brueckenroulette', 'modifikatoren', 'turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell'],
     gross: ['skat', 'doppelkopf',  'schach', 'staedtehandel', 'gebietskampf', 'party-brett'],
   };
   for (const [p, ids] of Object.entries(want)) {

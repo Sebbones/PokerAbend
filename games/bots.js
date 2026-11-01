@@ -379,6 +379,12 @@ export function pokerDecision(view, rng = Math.random) {
   }
   const equity = wins / 80;
   const pot = view.hand.pots.reduce((sum, n) => sum + n, 0) + view.hand.bets;
+  return pokerWagerDecision(L, pot, equity, rng);
+}
+
+// Shared betting policy; variant samplers supply equity using only their public view.
+export function pokerWagerDecision(L, pot, equity, rng = Math.random) {
+  if (!L) return null;
   if (L.canRaise && equity > 0.68 && rng() < 0.65) return { type: 'raise', amount: Math.min(L.maxTo, Math.max(L.minTo, L.bet + L.toCall + Math.round(pot * 0.6))) };
   if (L.canCheck) return { type: 'check' };
   return { type: equity > L.toCall / Math.max(1, pot + L.toCall) + 0.07 ? 'call' : 'fold' };
@@ -522,3 +528,5 @@ Object.assign(BOTS,{hearts:(room,id)=>room.botStep(id)});
 Object.assign(BOTS,{'five-card-draw':(room,id,rng)=>room.botStep(id,rng)});
 
 Object.assign(BOTS,{'scrabble':(room,id,rng)=>room.botStep(id,rng)});
+
+Object.assign(BOTS,{'omaha-hi-lo':(room,id,rng)=>room.botStep(id,rng)});

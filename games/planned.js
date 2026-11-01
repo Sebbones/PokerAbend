@@ -24,10 +24,7 @@ const CARD = { fill: '#F7F3E8' };
 import { SINGLEPLAYER_PLANNED } from './singleplayer/planned.js';
 export const PLANNED = [
   ...SINGLEPLAYER_PLANNED,
-  spiel({ id: 'omaha-hi-lo', name: 'Omaha Hi/Lo', category: 'karten', minPlayers: 2, maxPlayers: 9, duration: 35, paeckchen: 'spaeter',
-    description: "High- und Low-Hand teilen sich den Pot, gespielt mit vier eigenen Karten.",
-    rules: ["Jeder bekommt vier verdeckte Karten, fünf Gemeinschaftskarten folgen in drei Setzrunden.","Für jede Wertung zählen genau zwei eigene und drei Gemeinschaftskarten.","Die beste High-Hand gewinnt die Hälfte; eine Low-Hand braucht fünf verschiedene Werte bis acht.","Gibt es keine gültige Low-Hand, gewinnt die High-Hand den gesamten Pot."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),
-  }),
+
   spiel({ id: 'seven-card-stud', name: 'Seven Card Stud', category: 'karten', minPlayers: 2, maxPlayers: 8, duration: 35, paeckchen: 'spaeter',
     description: "Sieben Karten pro Spieler, davon einige offen: Setzen und die beste Fünferhand bilden.",
     rules: ["Jeder beginnt mit zwei verdeckten und einer offenen Karte, danach wird reihum gesetzt.","Weitere offene Karten folgen mit Setzrunden, die siebte Karte bleibt verdeckt.","Zum Schluss zählt die beste Pokerhand aus fünf der sieben eigenen Karten."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),

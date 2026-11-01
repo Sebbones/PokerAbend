@@ -19,9 +19,10 @@
       "sechs-nimmt",
       "monopoly-deal",
       "hearts",
-      "five-card-draw"
+      "five-card-draw",
+      "omaha-hi-lo"
     ],
-    "registered_count": 15,
+    "registered_count": 16,
     "authorized_pilots": 3,
     "planned_followups": 10,
     "baseline_registered_card_games": [
@@ -864,6 +865,12 @@
       "scope": "New draw selection and explicit confirmation; original thirteen UX packages remain separate",
       "documentation": "games/five-card-draw/README.md",
       "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea"
+    },
+    {
+      "game_id": "omaha-hi-lo",
+      "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
+      "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
+      "documentation": "games/omaha-hi-lo/README.md"
     }
   ]
 }

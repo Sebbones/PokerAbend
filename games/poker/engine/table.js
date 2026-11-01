@@ -69,7 +69,7 @@ export class Table {
     const bb = this.nextFrom(sb, seats);
 
     // riggedDeck nur für Tests: Karten werden von hinten gezogen
-    const deck = this.riggedDeck ? this.riggedDeck.slice() : shuffle(newDeck(), this.rng);
+    const deck = this.riggedDeck ? this.riggedDeck.slice() : this.createDeck();
     this.riggedDeck = null;
     const players = {};
     for (const i of seats) {
@@ -343,6 +343,12 @@ export class Table {
     return pots;
   }
 
+  createDeck() { return shuffle(newDeck(), this.rng); }
+
+  // A split-pot variant may partition an already computed main/side pot.
+  // The actual refunds, chip division, tie order and payouts remain below.
+  splitPot(pot) { return [pot]; }
+
   // Flop games complete the board; draw poker overrides only this hook.
   completeBoard() {
     const h = this.hand;
@@ -367,9 +373,9 @@ export class Table {
     for (let k = 1; k <= SEATS; k++) { const i = (h.button + k) % SEATS; if (h.players[i]) order.push(i); }
 
     const result = { showdown, pots: [], board: h.board.slice() };
-    for (const pot of this.pots()) {
-      let winners = pot.eligible;
-      if (showdown && winners.length > 1) {
+    for (const pot of this.pots().flatMap((p) => this.splitPot(p, evals, showdown))) {
+      let winners = pot.fixedWinners || pot.eligible;
+      if (!pot.fixedWinners && showdown && winners.length > 1) {
         let best = null;
         for (const i of pot.eligible) {
           const c = best === null ? 1 : compareScores(evals[i].score, evals[best[0]].score);
@@ -388,8 +394,9 @@ export class Table {
       }
       result.pots.push({
         amount: pot.amount, winners, payouts,
-        hand: showdown ? evals[winners[0]].name : null,
-        cards: showdown ? evals[winners[0]].cards : null,
+        hand: showdown ? (pot.handLabel || evals[winners[0]].name) : null,
+        cards: showdown ? (pot.handCards || evals[winners[0]].cards) : null,
+        ...(pot.kind ? { kind: pot.kind } : {}),
       });
     }
     result.hands = Object.fromEntries(Object.entries(evals).map(([i, e]) => [i, e.name]));

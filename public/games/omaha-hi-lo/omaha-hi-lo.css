@@ -1,0 +1,2 @@
+@import url('/games/omaha-hi-lo/poker-world.css');
+.kg-omaha-hi-lo{--scene-accent:#a9ddd4;--pw-accent:#cfe3b2;--pw-edge:#81977a;--pw-felt:#286a65;--pw-dark:#11383f}.kg-omaha-hi-lo #kg-main{background:radial-gradient(ellipse at top,#4c877455,transparent 80%)}.kg-omaha-hi-lo .pw-table{border-radius:85px 85px 35px 35px}.kg-omaha-hi-lo .pw-pots li:has(b){box-shadow:inset 3px 0 #9bd4c6}.kg-omaha-hi-lo .pw-guide{background:#dfe8cf;color:#213d34;border-radius:5px;padding:12px}@media(max-width:600px){.kg-omaha-hi-lo .pw-table{border-radius:30px 30px 15px 15px}}

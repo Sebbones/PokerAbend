@@ -1,0 +1,64 @@
+{
+  "game_id": "omaha-hi-lo",
+  "captured_at": "2026-11-01",
+  "implementation_commit": null,
+  "kind": "First playable frontend, original local multiplayer and bot test rooms; own CSS world",
+  "screenshots": [
+    {
+      "path": "public/games/omaha-hi-lo/evidence/1440x900.png",
+      "sha256": "ab1f81b1733d8f5c925736586dbc999d371e28ef8a9f644d8694edd99629334b"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/1920x1080.png",
+      "sha256": "a4f53f3c3985029d8ee110a4930eea9fc8c71eafb1a502354a42135a0f7c8409"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/360x800.png",
+      "sha256": "14e90520e41fd6b28ae1afff3036d7ddf814a5359564a8862a0114087e44f8a3"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/390x844.png",
+      "sha256": "a830ec8230f63fd3c79211f687f0ac4119472a043c2a38981680cacb33d5521f"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/768x1024.png",
+      "sha256": "6b84ae9ee05205c4a998ddd2f55475485e9eaabffbe6d7561d20426c7c7ae4f6"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/900x450.png",
+      "sha256": "3620b63092fc8374dceaed8c1e520288ff15ff6e0a25b639482c6490fe275acf"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/bots-desktop.png",
+      "sha256": "cab9dd240e1b9c486914f79df96fe621f3642ba1b385d6376983ab8d2861d92c"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/bots-mobil.png",
+      "sha256": "630d2de4fb3ad746f7234b330ca23abe265983e42dd8c07485d8a85ee464e8e9"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/middle-desktop.png",
+      "sha256": "6805a74dc5753ab5f8fa13d58eeec43ce36f56f72446430a2fbfc6ad7a6c71e3"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/middle-mobil.png",
+      "sha256": "55ad16c64263bd86bff4d8459b424032591c7e0b39cc1312c0a6c5a828477116"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/playing-desktop.png",
+      "sha256": "9c12d5d50e00f0041d2c9ad549a15ea80b7a2081479af33faedf77f229f27536"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/playing-mobil.png",
+      "sha256": "272cf6c013e5190341116ead7e206cc535724d450d010700334bae9837f69065"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/showdown-desktop.png",
+      "sha256": "34ad1df4c598c33b872ad48aeec8c095ecabd7640fed4d0dc4f3a77d459d87fc"
+    },
+    {
+      "path": "public/games/omaha-hi-lo/evidence/showdown-mobil.png",
+      "sha256": "892f8e5e9d2ffb1ee2704ad37f51b6288c9010131f7ad76fd3385d8a7db03627"
+    }
+  ]
+}

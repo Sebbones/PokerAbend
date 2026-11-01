@@ -540,3 +540,5 @@ Object.assign(window.EN, {
 });
 
 Object.assign(window.EN_GAMES,{'scrabble':{name:"Scrabble",description:"Craft words on a wooden 15 by 15 board with German tiles, score previews and shared word review."}});
+
+Object.assign(window.EN_GAMES,{'omaha-hi-lo':{name:"Omaha Hi/Lo",description:"Pot-limit Omaha with four hole cards. Split every pot between high and qualifying eight-or-better low."}});

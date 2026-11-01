@@ -64,7 +64,7 @@ export function compareScores(a, b) {
   return 0;
 }
 
-function* combinations(arr, k, start = 0, picked = []) {
+export function* combinations(arr, k, start = 0, picked = []) {
   if (picked.length === k) { yield picked.slice(); return; }
   for (let i = start; i <= arr.length - (k - picked.length); i++) {
     picked.push(arr[i]);

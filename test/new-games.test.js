@@ -1,3 +1,4 @@
+import '../games/omaha-hi-lo/rules.test.js';
 import '../games/scrabble/rules.test.js';
 import '../games/five-card-draw/rules.test.js';
 import '../games/hearts/rules.test.js';
