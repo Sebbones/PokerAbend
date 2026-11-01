@@ -89,6 +89,15 @@ Das [UI-Redesign-Protokoll](docs/ui-redesign.md) beschreibt Gestaltung, tatsäch
 
    Die Domain muss per DNS-A-Record auf den Server zeigen. Traefik erkennt den Container an seinen Labels (`Host(DOMAIN)`, Port 3000) und holt das HTTPS-Zertifikat automatisch; die App selbst ist nicht direkt von außen erreichbar (nur `expose`, kein `ports`).
 
+**Kompression (gzip über Traefik):** Die Labels in `docker-compose.prod.yml` hängen die Middleware `poker-gzip` (`compress=true`) an den Router `poker`. Die App selbst komprimiert nicht. Traefik komprimiert nur Antworten, die der Browser mit `Accept-Encoding` erlaubt, und lässt WebSocket-Verbindungen (Socket.IO-Upgrade) sowie bereits komprimierte Dateien (PNG, WOFF2) unverändert. Nach dem Deployment prüfen:
+
+```bash
+curl -sI -H 'Accept-Encoding: gzip' https://DEINE-DOMAIN/hub.js | grep -i content-encoding   # erwartet: content-encoding: gzip
+curl -sI https://DEINE-DOMAIN/hub.js | grep -i content-encoding                              # ohne Header: keine Kompression
+```
+
+Die Seite `/` verlangt das Login-Cookie; ohne Cookie leitet sie um. `/style.css` und `/login.js` sind offen und eignen sich für die Prüfung ohne Anmeldung. Wenn `content-encoding` fehlt, laufen Traefik-Labels oder Router nicht (`docker compose ... config` zeigt sie). Socket.IO bleibt davon unberührt: im Browser unter „Netzwerk“ bleibt die `websocket`-Verbindung (Status 101) geöffnet.
+
 //3. **Update einspielen:** neues Image pushen, auf dem Server wieder `pull` und `up -d`.
 
 **Anmeldung:** Über das Gruppenpasswort `SITE_PASSWORD`. Auf dem Server ist es in der `.env` Pflicht, ohne startet nichts. Lokal ohne `SITE_PASSWORD` ist die Seite offen (nur zum Testen).

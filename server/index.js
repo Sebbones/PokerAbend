@@ -4,7 +4,7 @@ import './env.js'; // .env zuerst einlesen – alles danach liest process.env
 import express from 'express';
 import { createServer } from 'node:http';
 import { Server } from 'socket.io';
-import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, unlinkSync } from 'node:fs';
+import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, unlinkSync, copyFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GAMES, DEFAULT_GAME, gameList, singleplayerGameList, gameEvents, PLANNED, plannedGames } from '../games/index.js';
@@ -269,7 +269,7 @@ function save() {
 }
 
 function load() {
-  if (!existsSync(SAVE_FILE)) return;
+  if (!existsSync(SAVE_FILE)) return true;
   try {
     for (const d of JSON.parse(readFileSync(SAVE_FILE, 'utf8'))) {
       const game = GAMES[d.game || DEFAULT_GAME];
@@ -289,7 +289,24 @@ function load() {
       rooms.set(r.code, r);
     }
     console.log(`${rooms.size} Tisch(e) wiederhergestellt`);
-  } catch (e) { console.error('Laden fehlgeschlagen:', e.message); }
+    return true;
+  } catch (e) {
+    console.error('Laden fehlgeschlagen:', e.message);
+    // Die nächste Speicherung ersetzt die Datei: vorher sichern, falls sie nur teilweise lesbar war
+    try { copyFileSync(SAVE_FILE, `${SAVE_FILE}.unlesbar-${new Date().toISOString().replace(/[:.]/g, '-')}`); }
+    catch (error) { console.error('Sicherung von rooms.json fehlgeschlagen:', error.message); }
+    return false;
+  }
+}
+
+// Verlaufsdateien ohne zugehörigen Raum (nach Absturz oder Tisch-Schließen mitten im Speichern) räumen wir beim Start auf
+function removeOrphanHistory() {
+  try {
+    for (const name of readdirSync(DATA_DIR)) {
+      const m = /^history-([A-Z0-9]+)\.json(\.tmp)?$/.exec(name);
+      if (m && (m[2] || !rooms.has(m[1]))) unlinkSync(join(DATA_DIR, name));
+    }
+  } catch { /* Datenordner fehlt noch: nichts aufzuräumen */ }
 }
 
 // Meldungen eines Raums: mit data.to nur an diesen Spieler (z. B. Anstupsen), sonst alle neu zeichnen
@@ -761,7 +778,7 @@ for (const g of Object.values(GAMES)) {
   if (clash.length) throw new Error(`Spiel ${g.id}: Ereignisse ${clash.join(', ')} gehören der Plattform`);
 }
 
-load();
+if (load()) removeOrphanHistory(); // nach einem Lesefehler bleiben alle Verlaufsdateien liegen
 http.listen(PORT, () => console.log(`Spieleabend läuft auf http://localhost:${PORT}`));
 
 // ---------- Admin-Hilfen ----------

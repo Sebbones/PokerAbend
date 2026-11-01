@@ -27,6 +27,7 @@ for (const [id, plan] of Object.entries(PLAN)) {
       }));
       if (id === 'blackjack') { options.minBet = Math.max(1, Math.min(options.minBet, Math.floor(options.startStack / 5))); options.maxBet = Math.max(options.maxBet, options.minBet); }
       const room = GAMES[id].create('ABR' + n, { ...plan.settings, ...options }, () => {});
+      room.rng = (max) => Math.floor(rng() * max); // feste Kartenmischung: der Test ist bei jedem Lauf derselbe
       if ('roll' in room) room.roll = () => Math.floor(rng() * 6) + 1;
       const ids = Array.from({ length: count }, (_, k) => { const p = room.addPlayer('Bot' + k, null); room.sit(p.id); return p.id; });
       const host = room.hostId;

@@ -18,6 +18,9 @@ services:
       - traefik.http.routers.poker.entrypoints=websecure
       - traefik.http.routers.poker.tls=true
       - traefik.http.routers.poker.tls.certresolver=letsencrypt
+      # gzip für Seiten, Skripte und JSON; WebSocket-Upgrades (Socket.IO) und bereits komprimierte Bilder lässt Traefik unberührt
+      - traefik.http.middlewares.poker-gzip.compress=true
+      - traefik.http.routers.poker.middlewares=poker-gzip
       - traefik.http.services.poker.loadbalancer.server.port=3000
     networks:
       - default

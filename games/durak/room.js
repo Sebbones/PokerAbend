@@ -68,7 +68,7 @@ export class Room extends TurnRoom {
 
   setupRound() {
     this.resetTable();
-    this.deck = shuffle(deck36());
+    this.deck = shuffle(deck36(), this.rng); // this.rng: nur Tests setzen einen festen Zufall
     for (const id of this.order) this.hands[id] = this.deck.splice(-HAND);
     if (this.deck.length) { this.trumpCard = this.deck[0]; this.trump = this.deck[0][1]; }
     else this.trump = this.hands[this.order[this.order.length - 1]].at(-1)[1]; // bei 6 Spielern: die zuletzt gegebene Karte
