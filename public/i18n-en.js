@@ -538,3 +538,5 @@ Object.assign(window.EN, {
   'Tauschregel nach dem ersten Stein': 'Swap rule after the first stone', 'Lebenspunkte': 'Health',
   'Würfel je Angriff und Verteidigung': 'Dice for attack and defence',
 });
+
+Object.assign(window.EN_GAMES,{'scrabble':{name:"Scrabble",description:"Craft words on a wooden 15 by 15 board with German tiles, score previews and shared word review."}});

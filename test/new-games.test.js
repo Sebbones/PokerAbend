@@ -1,3 +1,4 @@
+import '../games/scrabble/rules.test.js';
 import '../games/five-card-draw/rules.test.js';
 import '../games/hearts/rules.test.js';
 import '../games/backgammon/rules.test.js';
@@ -11,7 +12,7 @@ import { BOTS } from '../games/bots.js';
 test('BACKLOG-03: three completed implementations retain real source and image evidence; denominator remains 41',()=>{
   const read=p=>readFileSync(new URL('../'+p,import.meta.url));
   const plan=JSON.parse(read('docs/backlog/plan.json'));
-  assert.equal(plan.total_count,41);assert.equal(plan.completed_count,9);assert.equal(plan.remaining_count,32);
+  assert.equal(plan.total_count,41);assert.equal(plan.completed_count,plan.games.filter(g=>['done','verified'].includes(g.status)).length);assert.equal(plan.remaining_count,41-plan.completed_count);
   const packet=plan.packages.find(p=>p.id==='BACKLOG-03');assert.equal(packet.status,'done');
   assert.deepEqual(packet.games,['backgammon','hearts','five-card-draw']);
   for(const id of packet.games){

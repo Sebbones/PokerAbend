@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 61,
-    "not_implemented_count": 46,
+    "playable_count": 62,
+    "not_implemented_count": 45,
     "completed_visual_count": 10,
-    "open_playable_visual_count": 51,
+    "open_playable_visual_count": 52,
     "planned_visual_count": 97,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -90,12 +90,22 @@
       "monsterwuerfel",
       "wuerfel-auktion",
       "backgammon",
-      "sudoku",
-      "wellenwacht",
       "hearts",
-      "five-card-draw"
+      "five-card-draw",
+      "scrabble",
+      "sudoku",
+      "wellenwacht"
     ],
     "not_implemented_game_ids": [
+      "snake",
+      "memory",
+      "minesweeper",
+      "nonogramm",
+      "sokoban",
+      "block-puzzle",
+      "solitaire",
+      "mahjong-solitaire",
+      "match-3",
       "omaha-hi-lo",
       "seven-card-stud",
       "short-deck",
@@ -107,7 +117,6 @@
       "infektionsjagd",
       "letzter-schutzplatz",
       "kistenchaos",
-      "scrabble",
       "schatzinsel",
       "gummiband-challenge",
       "geschenkfaenger",
@@ -132,16 +141,7 @@
       "geschenkdiebe",
       "fallenbauer",
       "reaktor-notfall",
-      "bomben-duell",
-      "snake",
-      "memory",
-      "minesweeper",
-      "nonogramm",
-      "sokoban",
-      "block-puzzle",
-      "solitaire",
-      "mahjong-solitaire",
-      "match-3"
+      "bomben-duell"
     ],
     "completed_visual_game_ids": [
       "scotland-yard",
@@ -351,7 +351,8 @@
     "VIS-036",
     "VIS-002",
     "VIS-047",
-    "VIS-046"
+    "VIS-046",
+    "VIS-066"
   ],
   "suggested_development_order": [
     "VIS-027",
@@ -404,7 +405,8 @@
     "VIS-085",
     "VIS-056",
     "VIS-057",
-    "VIS-084"
+    "VIS-084",
+    "VIS-066"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -439,7 +441,6 @@
     "VIS-093",
     "VIS-058",
     "VIS-088",
-    "VIS-066",
     "VIS-086",
     "VIS-087",
     "VIS-090",
@@ -8725,24 +8726,31 @@
       "game_name": "Scrabble",
       "category": "brett",
       "category_name": "Brettspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/scrabble/index.js",
       "existing_visual_work": {
         "level": "no_frontend",
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/games/scrabble/scrabble.js",
+        "public/games/scrabble/scrabble.css"
+      ],
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
       "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
+      "current_design": "Own wooden word workshop, 15 by 15 scroll/zoom board, private large tile rack and authoritative score preview.",
       "known_visual_weaknesses": [
         "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "assessment_method": "Explicit BACKLOG-04 gameplay, bot and world authorization; real engine and browser checks required before completion.",
       "gameplay_summary": "Wörter auf dem 15×15-Brett legen und mit Buchstabenwerten und Prämienfeldern Punkte sammeln.",
       "planned_style": "Eigene hochwertige Wortspiel-Werkbank.",
       "background_concept": "Ruhiger Holz-/Filztisch ohne Wörter im Hintergrund.",
@@ -8794,9 +8802,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "scrabble",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/scrabble/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],

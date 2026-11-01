@@ -1,0 +1,80 @@
+{
+  "game_id": "scrabble",
+  "captured_at": "2026-11-01",
+  "implementation_commit": null,
+  "kind": "Original isolated local rooms, first playable frontend; own CSS materials and no original logo",
+  "screenshots": [
+    {
+      "path": "public/games/scrabble/evidence/1440x900.png",
+      "sha256": "40ef97e1e0851fc334471b5793d10829062f2d82b663d058b3354745fd905dba"
+    },
+    {
+      "path": "public/games/scrabble/evidence/1920x1080.png",
+      "sha256": "88bedbe46b1128ccd19471a889dd2b6a79562c545184537f7feccea9bd1c1835"
+    },
+    {
+      "path": "public/games/scrabble/evidence/360x800.png",
+      "sha256": "e866588f7a2329892a18ebddc5c5435fe7ec9cfc9e9468d4caa4c54d5d9ad26d"
+    },
+    {
+      "path": "public/games/scrabble/evidence/390x844.png",
+      "sha256": "f5530f32969304b5da911592e8cd73196176687c7985e6412ad7eb475e472ec0"
+    },
+    {
+      "path": "public/games/scrabble/evidence/768x1024.png",
+      "sha256": "9bb633a575cb8eae6beb2870ad5dfd3e1bdecf395cc0558297fa4f734e91648a"
+    },
+    {
+      "path": "public/games/scrabble/evidence/900x450.png",
+      "sha256": "7f9cb63c67775a711c78499c53801fa57395443b9f9e76d0965ebffedc4044cf"
+    },
+    {
+      "path": "public/games/scrabble/evidence/bots-desktop.png",
+      "sha256": "e22c6f974bd9936ba0b5b5ca83c4f6537ede9ef01d6c061360d9cbd2485e066f"
+    },
+    {
+      "path": "public/games/scrabble/evidence/bots-mobil.png",
+      "sha256": "a1449fd175bb53d543ee6531650a565681dd0ae0a016a626bd559df1ed4fb47f"
+    },
+    {
+      "path": "public/games/scrabble/evidence/draft-desktop.png",
+      "sha256": "732a763be420747ba95d9ed157bb26a8a160689f0e8eb18967716f8768145eb8"
+    },
+    {
+      "path": "public/games/scrabble/evidence/draft-mobil.png",
+      "sha256": "caeef5f8e4d5d822df8bf401f86b361e6db4a66c7aec7a134d694cfbde2a2862"
+    },
+    {
+      "path": "public/games/scrabble/evidence/lobby-desktop.png",
+      "sha256": "167759437013b67b31475dc1f13f4174f9f9459813e4eee1d60b51d58d8ee361"
+    },
+    {
+      "path": "public/games/scrabble/evidence/lobby-mobil.png",
+      "sha256": "abd9883d7b6f6833685f216c11e9345715f94347b0b47d9c9246a002d49de7ab"
+    },
+    {
+      "path": "public/games/scrabble/evidence/result-desktop.png",
+      "sha256": "bea8ece19ba8b031d5b7e7bdcfd087eed47ab4977d192e31f619b5adf8076a18"
+    },
+    {
+      "path": "public/games/scrabble/evidence/result-mobil.png",
+      "sha256": "462cb1c9d83020987e06af182b1e84e410fdb17c233979d2688498ac4c7595f4"
+    },
+    {
+      "path": "public/games/scrabble/evidence/review-desktop.png",
+      "sha256": "fceae4f0ae7250a125713c5f1284cff432215c902f69d352735f475c228c80d5"
+    },
+    {
+      "path": "public/games/scrabble/evidence/review-mobil.png",
+      "sha256": "95cd15783f8dd249d2597a0d142587a91ccdd440347145227bd3f9208f1d1eaf"
+    },
+    {
+      "path": "public/games/scrabble/evidence/vote-desktop.png",
+      "sha256": "3e7fc6f59d089bca23625e58bb9708d9b1d0cb6796cb2501f2f083fdd2bdbc2f"
+    },
+    {
+      "path": "public/games/scrabble/evidence/vote-mobil.png",
+      "sha256": "b64848093a75ae47b9f7dae50a312d5d641571caa830542504445ba33a6e3867"
+    }
+  ]
+}

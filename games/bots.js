@@ -520,3 +520,5 @@ Object.assign(BOTS,{backgammon:(room,id)=>room.botStep(id)});
 Object.assign(BOTS,{hearts:(room,id)=>room.botStep(id)});
 
 Object.assign(BOTS,{'five-card-draw':(room,id,rng)=>room.botStep(id,rng)});
+
+Object.assign(BOTS,{'scrabble':(room,id,rng)=>room.botStep(id,rng)});

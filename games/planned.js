@@ -74,21 +74,7 @@ export const PLANNED = [
 
 
   // ---------- Später ----------
-  spiel({
-    id: 'scrabble', name: 'Scrabble', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 60, paeckchen: 'spaeter',
-    vorbild: 'Wortlegespiele wie Scrabble – nur die Mechanik, eigene Gestaltung',
-    description: 'Wörter auf dem 15×15-Brett legen und mit Buchstabenwerten und Prämienfeldern Punkte sammeln.',
-    rules: [
-      'Das Brett hat 15×15 Felder mit Prämienfeldern (doppelter und dreifacher Buchstaben- bzw. Wortwert); die Mitte ist das Startfeld.',
-      'Gespielt wird mit der deutschen Buchstabenverteilung und den deutschen Buchstabenwerten; jeder hat 7 Steine auf der Bank und füllt nach jedem Zug aus dem Beutel auf.',
-      'Man legt Steine in einer Reihe so an, dass ein gültiges Wort entsteht und alle neuen Kreuzungswörter ebenfalls; das erste Wort liegt auf dem Startfeld.',
-      'Wertung: Buchstabenwerte mit Prämienfeldern; wer alle 7 Steine in einem Zug legt, bekommt einen Bonus.',
-      'Ein Wörterbuch gibt es nicht: Jedes gelegte Wort kann angezweifelt werden, dann stimmen alle anderen ab. Ist es abgelehnt, nimmt der Spieler die Steine zurück und setzt aus.',
-      'Das Spiel endet, wenn der Beutel leer ist und jemand alle Steine los ist oder alle nacheinander passen; Reststeine zählen als Abzug.',
-    ],
-    houseRules: ['Zeitlimit pro Zug', 'Joker (Blanko-Steine) mit oder ohne', 'Tauschen von Steinen statt Legen'],
-    art: glyph('letters', '#8A6A2F'),
-  }),
+
 
   spiel({
     id: 'schatzinsel', name: 'Schatzinsel', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 15, paeckchen: 'spaeter',
