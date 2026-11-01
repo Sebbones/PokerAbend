@@ -7,6 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { io } from 'socket.io-client';
 import { createCodes, CODE_CHARS, CODE_LENGTH } from '../server/codes.js';
+import { freePort } from './free-port.js';
 
 test('Codes haben das richtige Format und sind eindeutig', () => {
   const codes = createCodes();
@@ -48,7 +49,7 @@ test('Wenn wirklich kein Code frei ist, gibt es einen Fehler statt einer Endloss
 });
 
 // ---------- Mit Server: gespeicherte Tische belegen ihre Codes ----------
-const PORT = 4200 + Math.floor(Math.random() * 50); // eigener Bereich: 4200–4249
+const PORT = await freePort();
 const URL = `http://localhost:${PORT}`;
 let server;
 const saved = (code, name) => ({

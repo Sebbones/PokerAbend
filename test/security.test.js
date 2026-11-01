@@ -7,8 +7,9 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { io } from 'socket.io-client';
 import { createAuth } from '../server/security.js';
+import { freePort } from './free-port.js';
 
-const PORT = 4050 + Math.floor(Math.random() * 50); // eigener Bereich: 4050–4099
+const PORT = await freePort();
 const URL = `http://localhost:${PORT}`;
 let server;
 

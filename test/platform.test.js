@@ -8,8 +8,9 @@ import { join } from 'node:path';
 import { io } from 'socket.io-client';
 import { GAMES, gameList, gameEvents } from '../games/index.js';
 import { BaseRoom } from '../server/base-room.js';
+import { freePort } from './free-port.js';
 
-const PORT = 4300 + Math.floor(Math.random() * 50); // eigener Bereich: 4300–4349
+const PORT = await freePort();
 const URL = `http://localhost:${PORT}`;
 const dataDir = mkdtempSync(join(tmpdir(), 'poker-platform-'));
 let server;

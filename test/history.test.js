@@ -7,6 +7,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { io } from 'socket.io-client';
 import { Room, HISTORY_HANDS } from '../games/poker/room.js';
+import { freePort } from './free-port.js';
 
 function room(names = ['Anna', 'Ben']) {
   const r = new Room('TESTX', { autoNext: false, turnTime: 0 }, () => {});
@@ -64,7 +65,7 @@ test('Alter Spielstand: Einträge ohne Nummer und Kategorie werden übernommen',
 });
 
 // ---------- Mit Server: ganzer Verlauf auf Anfrage, übersteht einen Neustart ----------
-const PORT = 4250 + Math.floor(Math.random() * 50); // eigener Bereich: 4250–4299
+const PORT = await freePort();
 const URL = `http://localhost:${PORT}`;
 const dataDir = mkdtempSync(join(tmpdir(), 'poker-hist-'));
 let server;

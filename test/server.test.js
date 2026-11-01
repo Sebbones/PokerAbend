@@ -6,8 +6,9 @@ import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { io } from 'socket.io-client';
+import { freePort } from './free-port.js';
 
-const PORT = 4000 + Math.floor(Math.random() * 50); // eigener Bereich: 4000–4049
+const PORT = await freePort();
 const URL = `http://localhost:${PORT}`;
 let server;
 

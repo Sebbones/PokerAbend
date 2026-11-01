@@ -9,6 +9,7 @@ import { io } from 'socket.io-client';
 import { GAMES } from '../games/index.js';
 import { BOTS } from '../games/bots.js';
 import { seeded, INVARIANTS, PLAN } from './sim-helpers.js';
+import { freePort } from './free-port.js';
 
 // ---------- Raum-Ebene: in jedem Rundenspiel mitten in der Runde abbrechen ----------
 for (const [id, plan] of Object.entries(PLAN)) {
@@ -102,7 +103,7 @@ test('Abbrechen Poker: Einsätze der Hand gehen zurück, die Chipsumme bleibt gl
 });
 
 // ---------- Mit dem Server: Rechte, Tisch schließen ----------
-const PORT = 4350 + Math.floor(Math.random() * 50);
+const PORT = await freePort();
 const URL = `http://localhost:${PORT}`;
 const dataDir = mkdtempSync(join(tmpdir(), 'poker-abort-'));
 let server;
