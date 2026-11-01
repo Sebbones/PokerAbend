@@ -62,6 +62,7 @@ Der erste Monopoly-Kurzvergleich mit nur 240 Aktionen war mit 106:94 zu schwach 
 - Bestehende Bot-UI plus neue Auswahltests: zuvor **10 bestanden** auf Desktop und Handy.
 - Bisher roter Backgammon-Test `Roadmap: Navigation, Filter, Spielregeln und gemerkte abgeschlossene Etappen`: **2 bestanden**. Ursache war fehlende öffentliche Regelmetadaten nach der Implementierung des Spiels. `games/backgammon/rule-summary.js` liefert nun neun echte Regelpunkte; keine Regeländerung und keine gelockerte Assertion.
 - `npm.cmd run test:fast`: **1.019 bestanden, 0 fehlgeschlagen**, 45,20 Sekunden. Die 2.200 Vergleichssimulationen sind als Langläufer im vollständigen Node-Lauf enthalten.
+- Nach dem abschließenden Roadmap-Status erneut **1.019 schnelle Tests bestanden, 0 fehlgeschlagen** (24,50 Sekunden) und die komplette `roadmap-presence.spec.js` auf Desktop/Handy **8 bestanden** (45,5 Sekunden), einschließlich des Backgammon-Regeldialogs.
 - Vollständige Playwright-Suite: **542 erfasst, 491 bestanden, 33 fehlgeschlagen, 18 vorgesehene Skips**, 36,0 Minuten (`playwright test --workers=2`, keine Filter). Dies war kein grüner Gesamtlauf.
 - Anschließend 70 ausgewählte Nachprüfungen: **68 bestanden, 2 fehlgeschlagen**, 14,0 Minuten. Letzte gezielte Prüfung nach deren Korrektur plus UNO-/Bot-/Backgammon-Regressionen: **12 bestanden, 0 fehlgeschlagen**, 57,6 Sekunden. **Alle 524 ausgeführten Fälle haben damit einen grünen letzten Prüflauf; kein offener fehlgeschlagener Fall.** Es wurde kein zweiter sauberer Komplettlauf behauptet. Fallzuordnung, Befehle und Prüfsummen der lokalen Protokolle: [v2-16-browser-results.json](v2-16-browser-results.json).
 
@@ -77,5 +78,6 @@ Bedienungsnachweise: [Desktop: Stufenwahl](screenshots/v2-16/desktop-host-levels
 - `6969ede`: Kartenstrategien Poker/Omaha, UNO, Hearts, 6 nimmt! und Informationsgrenzen.
 - `6fde83a`: Kniffel-Erwartungswerte.
 - `4127b5a`: Monopoly und Scrabble; optionale gemeinsame Suchabbruchpunkte, Testzeit-/Wortumfang.
+- `e7766ef`: abschließende Sicherheits-/UI-Nachweise, Screenshots und gezielte Browser-Fixture-Korrekturen; keine weitere Spiellogik geändert.
 
 Bestehende CUX-/Backlog-Quellprüfsummen wurden nur für die ausdrücklich betroffenen Dateien nachgezogen; vorherige Audits bleiben als `pre_v2_16_*` erhalten. Historische Umsetzungs-Commits, Screenshots, Spielstatus und andere Arbeitspakete bleiben erhalten. Die parallel bearbeiteten Login-, Identitäts-, Sicherheits-, Profil- und Admin-Dateien wurden nicht geändert. Der freigegebene Push startet die vorhandenen CI-/GHCR-Prüfungen; kein Produktivdeployment.

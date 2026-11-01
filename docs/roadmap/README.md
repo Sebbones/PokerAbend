@@ -1,9 +1,11 @@
 # PokerAbend V2 – Gemeinsame Entwicklungsplanung
-**Status:** Nur geplant. Noch keine Implementierung freigegeben. Stand: 30.10.2026. **18 Arbeitspakete (V2-00 bis V2-17).**
+**Status:** Paketweise Umsetzung nur nach ausdrücklicher Freigabe. Aktuelle Nachweise und Einzelstatus: `plan.json`. **18 Arbeitspakete (V2-00 bis V2-17).**
 **GitHub-Repository:** TTLPSCWA/PokerAbend
 **Verwendbar durch:** Codex, Claude Code und andere Coding-Agenten.
 
 ## Wichtige Dateien
+
+- [V2-16: Bot-Schwierigkeit](V2-16_BOT_SCHWIERIGKEIT.md): elf Piloten, Host-Auswahl, Informationsgrenzen, Budgets, 2.200 Vergleichspartien und vollständiger Browser-Prüfverlauf. Die übrigen nicht umgesetzten Pakete bleiben geplant.
 
 - **Separate visuelle Planung:** [Design-Roadmap für alle Spiele](../design/GAME_VISUAL_ROADMAP.md), [JSON-Pakete](../design/game-visual-roadmap.json) und [Designstandard](../design/GAME_VISUAL_GUIDELINES.md). Nach dem ausdrücklich beauftragten BACKLOG-04 sind vierzehn VIS-Pakete abgeschlossen. Die weiteren 93 VIS-Pakete (51 spielbare Spiele und 42 Konzepte; Stand 01.11.2026) benötigen eigene Freigaben und ändern keine V2-Statusangaben.
 - `docs/roadmap/V2_ADDENDUM_2026-10-30.md`: Sieben ergänzte Vorhaben zu Risiko, Catan-artigem Spiel, mehr Erfolgen, Presence, Einstellungen, Bot-Schwierigkeit und Adminverwaltung. Teil der verbindlichen Planung.

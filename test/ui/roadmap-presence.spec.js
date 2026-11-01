@@ -23,8 +23,8 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
   for (const task of plan.tasks) for (const id of task.public_roadmap_ids) {
     const matches = points.filter(p => p.id === id);
     expect(matches, `${task.id}: ${id}`).toHaveLength(1);
-    // V2-00/V2-01 sind umgesetzt (01.11.2026); alle übrigen Punkte bleiben offen
-    expect(!!matches[0].erledigt, id).toBe(['v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'].includes(id));
+    // Only explicitly authorized, implemented packages may complete public points.
+    expect(!!matches[0].erledigt, id).toBe(['v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'].includes(id));
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('v2-roadmap.png'), fullPage: true });

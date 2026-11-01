@@ -252,6 +252,16 @@
     {
       "path": "artifacts/v2-16-playwright-final.log",
       "sha256": "404016cc770a141af928b58edfb376ba692da87dadf7f6dc6172a993105aed9c"
+    },
+    {
+      "path": "artifacts/v2-16-roadmap-final.log",
+      "sha256": "e9fee161f15fc1f8edff0ef4fb3a269c1537e5204965085b03b8165635832775"
     }
-  ]
+  ],
+  "roadmap_metadata_recheck": {
+    "command": "playwright test test/ui/roadmap-presence.spec.js --workers=1 --output=artifacts/v2-16-roadmap-final",
+    "passed": 8,
+    "failed": 0,
+    "duration": "45.5s"
+  }
 }

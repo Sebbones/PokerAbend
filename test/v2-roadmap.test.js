@@ -9,8 +9,8 @@ import { ROADMAP, resolvedRoadmap } from '../games/roadmap.js';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const plan = JSON.parse(read('docs/roadmap/plan.json'));
 const inventory = JSON.parse(read('docs/roadmap/consolidation.json'));
-const DONE = ['V2-00', 'V2-01', 'V2-02'];
-const V2_DONE_POINTS = ['v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security']; // ausdrücklich freigegebene und umgesetzte Pakete
+const DONE = ['V2-00', 'V2-01', 'V2-02', 'V2-16'];
+const V2_DONE_POINTS = ['v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security']; // ausdrücklich freigegebene und umgesetzte Pakete
 
 test('V2-Plan: 18 vollständige, eindeutig geplante Pakete mit gültigen Abhängigkeiten', () => {
   const ids = Array.from({ length: 18 }, (_, i) => `V2-${String(i).padStart(2, '0')}`);
@@ -56,7 +56,7 @@ test('Alle V2-Pakete sind über echte, noch offene Besucher-Einträge mit der ö
   for (const t of plan.tasks) for (const id of t.public_roadmap_ids) {
     const found = points.filter(p => p.id === id);
     assert.equal(found.length, 1, `${t.id}: ${id}`);
-    // V2-00/V2-01 sind umgesetzt; ihre Roadmap-Einträge dürfen erledigt sein, alle anderen nicht
+    // Only the explicitly authorized DONE packages may complete their linked points.
     assert.equal(!!found[0].erledigt, DONE.includes(t.id) && V2_DONE_POINTS.includes(id), id + ' darf nur durch echte Umsetzung erledigt werden');
     assert.ok(['spaeter', 'gross'].includes(found[0].stage), id);
   }

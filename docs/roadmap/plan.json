@@ -804,15 +804,53 @@
         "Spiele ohne unterstützte Stufen zeigen einen ehrlichen Fallback",
         "Bots niemals in öffentlichen Ranglisten"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "e7766ef47a3f28e8018b8ae5016fb2791c5dfc43",
+      "completed_at": "2026-11-01",
+      "notes": [
+        "Explicitly authorized V2-16 only. Existing V2-00/V2-01/V2-02 completion from main is preserved; no other V2 package implemented.",
+        "Eleven classic pilot game IDs; per-bot Easy/Medium/Hard, default Medium invokes the unchanged existing strategy. Host-only, between rounds; saved preference survives snapshots, reconnect and game changes. Unsupported games/variants honestly expose Medium only.",
+        "Easy/Hard receive own/public projections only and run in at most two workers, 35 ms cooperative compute / 250 ms total wall limit. Bots remain outside accounts, public stats, achievements and Presence.",
+        "2200 measured comparisons, 200 per pilot; scope and limitations documented in docs/roadmap/V2-16_BOT_SCHWIERIGKEIT.md and v2-16-strength-results.json.",
+        "Full browser run: 491 passed, 33 failed, 18 skipped out of 542. Subsequent fixture repairs/rechecks leave all 524 executed cases with a passing latest result, 0 unresolved failures. This is not a claim of a second clean full run; see v2-16-browser-results.json.",
+        "Known Backgammon roadmap rule dialog fixed with nine public rule summaries, without changing game rules or weakening its assertion. Parallel identity/login/security/profile/admin implementation files untouched."
+      ],
       "public_roadmap_ids": [
         "v2-bot-schwierigkeit"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "result": "1140 passed, 0 failed, 3 pre-existing Windows Bash restore skips; 1143 tests, 74.38 s; includes all 2200 pilot comparisons."
+        },
+        {
+          "command": "npm.cmd run test:fast",
+          "result": "1019 passed, 0 failed, 24.50 s after final V2-16 roadmap metadata and assertions."
+        },
+        {
+          "command": "node --test test/bot-difficulty.test.js test/bot-difficulty-privacy.test.js",
+          "result": "12 difficulty/authorization/persistence/worker/budget/statistics tests and 11 pilot information-isolation tests passed in their recorded runs."
+        },
+        {
+          "command": "playwright test --workers=2",
+          "result": "Full 542-case run completed: 491 passed, 33 failed, 18 intentional skips, 36.0 m. Not a clean full run."
+        },
+        {
+          "command": "Playwright targeted followups (commands in docs/roadmap/v2-16-browser-results.json)",
+          "result": "70 followups: 68 passed, 2 fixture races failed; final 12 desktop/mobile rechecks passed after repair. All 524 executed cases have passing latest results; 35 distinct initial/followup failures resolved."
+        },
+        {
+          "command": "playwright test test/ui/roadmap-presence.spec.js --workers=1 --output=artifacts/v2-16-roadmap-final",
+          "result": "8 passed, 0 failed, 45.5 s after final public roadmap status; includes Backgammon rules on desktop/mobile."
+        }
+      ],
+      "commits": [
+        "3e3cd3f4ec87ab1b524f30e0c3bad573cfaabdaf",
+        "6969ede818a14d3507e6d36f6615faed0ebe2f12",
+        "6fde83a23e771d8e1632a584c41350f754532340",
+        "4127b5a2949993ff68d5958160226827d27e75a4",
+        "e7766ef47a3f28e8018b8ae5016fb2791c5dfc43"
+      ]
     },
     {
       "id": "V2-17",
