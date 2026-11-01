@@ -26,7 +26,7 @@ async function action(page, game) {
   const click = async (selector) => { const button = page.locator(selector).first(); if (await button.isVisible() && await button.isEnabled()) { await button.click(); return true; } return false; };
   if (game === 'monopoly') { if (await click('#mo-dialog[open] [data-mo=buy][data-yes=true]')) return; if (await click('[data-g=junior]')) return; if (await click('[data-g=speed]')) return; if (await click('[data-g=destination]')) return; if (await click('[data-g=roll]')) return; await click('[data-g=end]'); }
   else if (game === 'spiel-des-lebens') { if (await click('[data-g=choose]')) return; await click('[data-g=spin]'); }
-  else if (game === 'farbenchaos') { for (const selector of ['[data-g=target]', '[data-g=wish]', '[data-g=chooseColor]', '[data-g=acceptDraw]', '.kg-hand .can', '[data-g=pass]', '[data-g=draw]']) if (await click(selector)) return; }
+  else if (game === 'farbenchaos') { for (const selector of ['[data-g=target]', '[data-g=wish]', '[data-g=chooseColor]', '[data-g=acceptDraw]', '[data-g=play-selected]', '.kg-hand .can', '[data-g=pass]', '[data-g=draw]']) if (await click(selector)) return; }
   else if (game === 'kniffel') { if (await click('[data-g=score][data-f=chance]')) return; if (await click('[data-g=score]:not(.zero)')) return; await click('[data-g=roll]'); }
   else if (game === 'huetchen') { if (await click('[data-g=move]')) return; if (await click('[data-g=pick]')) return; await click('[data-g=roll]'); }
   else if (game === 'viergewinnt') await click('[data-g=col]');
