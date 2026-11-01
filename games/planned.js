@@ -25,10 +25,7 @@ import { SINGLEPLAYER_PLANNED } from './singleplayer/planned.js';
 export const PLANNED = [
   ...SINGLEPLAYER_PLANNED,
 
-  spiel({ id: 'seven-card-stud', name: 'Seven Card Stud', category: 'karten', minPlayers: 2, maxPlayers: 8, duration: 35, paeckchen: 'spaeter',
-    description: "Sieben Karten pro Spieler, davon einige offen: Setzen und die beste Fünferhand bilden.",
-    rules: ["Jeder beginnt mit zwei verdeckten und einer offenen Karte, danach wird reihum gesetzt.","Weitere offene Karten folgen mit Setzrunden, die siebte Karte bleibt verdeckt.","Zum Schluss zählt die beste Pokerhand aus fünf der sieben eigenen Karten."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),
-  }),
+
 
   spiel({ id: 'stichmeister', name: 'Stichmeister', category: 'karten', minPlayers: 3, maxPlayers: 6, duration: 20, paeckchen: 'spaeter',
     description: "Vorher ansagen, wie viele Stiche man holt – nur genaue Vorhersagen bringen Bonuspunkte.",

@@ -1,3 +1,4 @@
+import '../games/seven-card-stud/rules.test.js';
 import '../games/short-deck/rules.test.js';
 import '../games/omaha-hi-lo/rules.test.js';
 import '../games/scrabble/rules.test.js';

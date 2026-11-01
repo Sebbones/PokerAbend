@@ -1,0 +1,72 @@
+{
+  "game_id": "seven-card-stud",
+  "captured_at": "2026-11-01",
+  "implementation_commit": null,
+  "kind": "First playable frontend; original isolated multi-client, bot and seven-human common-river test rooms",
+  "screenshots": [
+    {
+      "path": "public/games/seven-card-stud/evidence/1440x900.png",
+      "sha256": "2defc376e5a8ace992fe7008ed432c112ce0885d09eeb7c9a7c95bf74c479bec"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/1920x1080.png",
+      "sha256": "1ff3eada0b8dbce54d8f35fa3a6dfc0f1af1d6300409f6ec7c1d303dd79dcc77"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/360x800.png",
+      "sha256": "5614e96961464f9218e4ad935f776cdb56028a37991212e7d55f9a71f93dabfd"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/390x844.png",
+      "sha256": "f745115b7498896db63df6bb1c468dcc5d4535590bcf3ba8b8c14c308840f4a8"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/768x1024.png",
+      "sha256": "2ec5e9042e5b0570156315a9b12355c9dcb669b819f511fe85573a88ce217e4c"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/900x450.png",
+      "sha256": "0c4e7b2ee1af32ae41b3455a6b50d2c2ab4bc0c390f50519e75e7e0bc0eed0ce"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/bots-desktop.png",
+      "sha256": "9663270068de895d2cc86a439627a9947ea3e9b93311665ee5739aec5d0caf56"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/bots-mobil.png",
+      "sha256": "4268c58abf9e45ddf9ac42ece4f623c6d9f8eed4ed9f4a01b2c54f493dd7cfa3"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/middle-desktop.png",
+      "sha256": "cb6c204005f2496a05738104800b50ac5844b4863919c3d0ed3df957f41372d9"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/middle-mobil.png",
+      "sha256": "7f54c98c6a444fe209343ecfbe9e6b16a3cef8849c24a0808bf7fa09fd12485e"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/playing-desktop.png",
+      "sha256": "5126c586648ff467226483597bd2fefaaa4b3ba336c5419218ba9d55ea56f04d"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/playing-mobil.png",
+      "sha256": "22449e860929043ef1673472ef62607681c01b4e41782d5b4b904a20e4067bb2"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/seven-common-desktop.png",
+      "sha256": "d61dda6ba71871757608a99f1d7262bf238a2c16fd96d6e0e9ed85cb7d77c682"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/seven-common-mobil.png",
+      "sha256": "b1820856acae339f89735f7aea61afc0b1f1c16482249bf08f244e127a56b15f"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/showdown-desktop.png",
+      "sha256": "79f284f284a5ec02a3a713e7c3cecfc648d59b9393d8cd61bdd662cb704d9fed"
+    },
+    {
+      "path": "public/games/seven-card-stud/evidence/showdown-mobil.png",
+      "sha256": "e1c341dd21a4eacdcc294e46688bb081ebe34b8d8f0b53b3d46e131b259ff813"
+    }
+  ]
+}

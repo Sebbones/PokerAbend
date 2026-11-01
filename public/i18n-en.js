@@ -544,3 +544,5 @@ Object.assign(window.EN_GAMES,{'scrabble':{name:"Scrabble",description:"Craft wo
 Object.assign(window.EN_GAMES,{'omaha-hi-lo':{name:"Omaha Hi/Lo",description:"Pot-limit Omaha with four hole cards. Split every pot between high and qualifying eight-or-better low."}});
 
 Object.assign(window.EN_GAMES,{'short-deck':{name:"Short Deck Poker",description:"36-card poker: flush beats a full house, an ace can connect to six, and trips can beat a straight."}});
+
+Object.assign(window.EN_GAMES,{'seven-card-stud':{name:"Seven Card Stud",description:"Limit poker with an ante, a door-card bring-in, exposed cards and a private seventh street."}});

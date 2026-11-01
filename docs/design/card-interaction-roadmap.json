@@ -21,9 +21,10 @@
       "hearts",
       "five-card-draw",
       "omaha-hi-lo",
-      "short-deck"
+      "short-deck",
+      "seven-card-stud"
     ],
-    "registered_count": 17,
+    "registered_count": 18,
     "authorized_pilots": 3,
     "planned_followups": 10,
     "baseline_registered_card_games": [
@@ -878,6 +879,12 @@
       "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
       "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
       "documentation": "games/short-deck/README.md"
+    },
+    {
+      "game_id": "seven-card-stud",
+      "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
+      "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
+      "documentation": "games/seven-card-stud/README.md"
     }
   ]
 }

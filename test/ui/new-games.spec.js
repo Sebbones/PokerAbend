@@ -1,3 +1,4 @@
+import '../../games/seven-card-stud/ui.spec.js';
 import '../../games/short-deck/ui.spec.js';
 import '../../games/omaha-hi-lo/ui.spec.js';
 import '../../games/scrabble/ui.spec.js';

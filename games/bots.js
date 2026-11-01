@@ -532,3 +532,5 @@ Object.assign(BOTS,{'scrabble':(room,id,rng)=>room.botStep(id,rng)});
 Object.assign(BOTS,{'omaha-hi-lo':(room,id,rng)=>room.botStep(id,rng)});
 
 Object.assign(BOTS,{'short-deck':(room,id,rng)=>room.botStep(id,rng)});
+
+Object.assign(BOTS,{'seven-card-stud':(room,id,rng)=>room.botStep(id,rng)});
