@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-31",
+  "updated_at": "2026-11-01",
   "authority": "Expliziter Nutzerauftrag Card Interaction UX Overhaul V1. Genau drei Piloten implementieren; die übrigen registrierten Kartenspiele ausschließlich analysieren und einzeln planen.",
   "scope_policy": "Keine weitere Karten-UX-Implementierung ohne neue ausdrückliche Freigabe. CUX ist ein eigener Interaktionsplan und ändert keine geplanten VIS-/V2-Umsetzungsstände.",
   "inventory": {
@@ -17,11 +17,29 @@
       "durak",
       "omaha",
       "sechs-nimmt",
+      "monopoly-deal",
+      "hearts",
+      "five-card-draw"
+    ],
+    "registered_count": 15,
+    "authorized_pilots": 3,
+    "planned_followups": 10,
+    "baseline_registered_card_games": [
+      "poker",
+      "maumau",
+      "farbenchaos",
+      "zehnetappen",
+      "stapelrennen",
+      "schwimmen",
+      "blackjack",
+      "mogeln",
+      "praesident",
+      "durak",
+      "omaha",
+      "sechs-nimmt",
       "monopoly-deal"
     ],
-    "registered_count": 13,
-    "authorized_pilots": 3,
-    "planned_followups": 10
+    "baseline_registered_count": 13
   },
   "references": [
     "docs/design/CARD_INTERACTION_UX.md",
@@ -754,8 +772,16 @@
       "shared_chip_extraction": {
         "authorization": "Explicit user request to reuse the existing poker chip animation for Five Card Draw",
         "date": "2026-11-01",
-        "implementation_commit": null,
-        "test_results": [],
+        "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea",
+        "test_results": [
+          {
+            "command": "playwright test --config games/five-card-draw/playwright.config.js --grep \"Poker shared chip regression\"",
+            "passed": 4,
+            "failed": 0,
+            "coverage": "Exact hash-verified repository baseline fixtures; works without old Git history",
+            "log": "games/five-card-draw/_artifacts/poker-fixture-release.log"
+          }
+        ],
         "scope": "Move the unchanged stack/flight behavior to one shared helper; no hand or betting UI redesign"
       }
     },
@@ -810,8 +836,16 @@
       "shared_chip_extraction": {
         "authorization": "Explicit user request to reuse the existing poker chip animation for Five Card Draw",
         "date": "2026-11-01",
-        "implementation_commit": null,
-        "test_results": [],
+        "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea",
+        "test_results": [
+          {
+            "command": "playwright test --config games/five-card-draw/playwright.config.js --grep \"Poker shared chip regression\"",
+            "passed": 4,
+            "failed": 0,
+            "coverage": "Exact hash-verified repository baseline fixtures; works without old Git history",
+            "log": "games/five-card-draw/_artifacts/poker-fixture-release.log"
+          }
+        ],
         "scope": "Move the unchanged stack/flight behavior to one shared helper; no hand or betting UI redesign"
       }
     }
@@ -821,13 +855,15 @@
       "game_id": "hearts",
       "authorization": "Explicit separate gameplay and game-world request, 2026-11-01",
       "scope": "Explicit card selection and confirmation in the new game; does not change the thirteen original UX packages",
-      "documentation": "games/hearts/README.md"
+      "documentation": "games/hearts/README.md",
+      "implementation_commit": "a79bcf41033d83c13925cabe274aa538244ef51f"
     },
     {
       "game_id": "five-card-draw",
       "authorization": "Explicit separate gameplay/game-world request on 2026-11-01",
       "scope": "New draw selection and explicit confirmation; original thirteen UX packages remain separate",
-      "documentation": "games/five-card-draw/README.md"
+      "documentation": "games/five-card-draw/README.md",
+      "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea"
     }
   ]
 }

@@ -32,3 +32,5 @@ Tests und Browserkonfiguration liegen bewusst im eigenen Spielordner. `test/new-
 Neue Quell-, Test- und Bilddateien dieses Auftrags liegen nur in den drei freigegebenen Spielordnern unter `games/` und `public/games/`. Die parallel betreuten Bereiche `server/`, `scripts/`, `.github/` und die Admin-Seite wurden nicht bearbeitet. Kein Produktivdeployment.
 
 Die Dateien `fixtures/poker-baseline.js` und `.css` sind unveraenderte Testkopien der repository-eigenen Poker-Assets aus dem oben genannten Basiscommit. Ihre SHA-256-Werte sind im Vergleichstest festgehalten (LF-normalisiert). So funktioniert der echte Vorher-/Nachher-Test auch in einem flachen CI-Checkout ohne alte Git-Objekte. Die Fixtures werden nicht als Spieloberflaeche ausgeliefert.
+
+Implementierungscommit: `d29b2e0acf244438c9638aaebce6266970149aea`. Abschluss: **1029 Node-Tests bestanden, 0 fehlgeschlagen, 3 bestehende Auslassungen**; **22 reguläre Mehrspieler-Browserfälle bestanden** und **vier zusätzliche Fixture-Vergleiche bestanden**. Dauerhafte Bilder: [Manifest](evidence.json). Einzelheiten und vollständiger Paketabschluss: [Backlog-Protokoll](../../docs/backlog/WEITERE_SPIELE.md).

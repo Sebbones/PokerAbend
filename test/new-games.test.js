@@ -3,8 +3,26 @@ import '../games/hearts/rules.test.js';
 import '../games/backgammon/rules.test.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import { GAMES } from '../games/index.js';
 import { BOTS } from '../games/bots.js';
+
+test('BACKLOG-03: three completed implementations retain real source and image evidence; denominator remains 41',()=>{
+  const read=p=>readFileSync(new URL('../'+p,import.meta.url));
+  const plan=JSON.parse(read('docs/backlog/plan.json'));
+  assert.equal(plan.total_count,41);assert.equal(plan.completed_count,9);assert.equal(plan.remaining_count,32);
+  const packet=plan.packages.find(p=>p.id==='BACKLOG-03');assert.equal(packet.status,'done');
+  assert.deepEqual(packet.games,['backgammon','hearts','five-card-draw']);
+  for(const id of packet.games){
+    const game=plan.games.find(g=>g.id===id),manifest=JSON.parse(read(`games/${id}/evidence.json`));
+    assert.equal(game.status,'done');assert.match(game.implementation_commit,/^[a-f0-9]{40}$/);
+    assert.equal(game.implementation_commit,packet.implementation_commits[id]);assert.equal(manifest.implementation_commit,game.implementation_commit);
+    assert.equal(manifest.screenshots.length,id==='backgammon'?12:id==='hearts'?16:30);
+    for(const s of manifest.screenshots)assert.equal(createHash('sha256').update(read(s.path)).digest('hex'),s.sha256,s.path);
+    for(const s of game.source_audit)assert.equal(createHash('sha256').update(read(s.path).toString('utf8').replaceAll('\r\n','\n')).digest('hex'),s.sha256,s.path);
+  }
+});
 import { CITY, neighbours, distances } from '../games/scotland-yard/map.js';
 import { chooseMove } from '../games/scotland-yard/room.js';
 import { connection, adjacent, botCell } from '../games/hex/room.js';

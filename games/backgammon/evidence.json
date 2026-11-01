@@ -1,56 +1,59 @@
 {
   "game_id": "backgammon",
   "captured_at": "2026-11-01",
-  "implementation_commit": null,
+  "implementation_commit": "9f0511779efc0ca03e759cb92b5b00605611fdaf",
   "kind": "first functional and visual implementation; no prior playable frontend existed",
   "screenshots": [
     {
       "path": "public/games/backgammon/evidence/1440x900.png",
-      "sha256": "c2cc4cb391e135390472b0c4851bfe4a5f4124dec8b7e59fd6eeeb6dcba9deda"
+      "sha256": "c5bfc9e5f624f5fec9fad7943bd28a996a12c5c0c3b680e816b27f2ebcc84a26"
     },
     {
       "path": "public/games/backgammon/evidence/1920x1080.png",
-      "sha256": "74e3432103295497236f7f90a536d97af3d175d2cc865aa045179a51d69ec829"
+      "sha256": "f5cec37824dca49f418983c1339965add6505fa78e3f1c7b6f70b49a7d142102"
     },
     {
       "path": "public/games/backgammon/evidence/360x800.png",
-      "sha256": "6d574684ea960c212e970ec67866b072e0555f724f7e14775d15adf3baec96e4"
+      "sha256": "b6d0ba1190f0787dec7e03c2f11141f5bf9e7de139b1470aaaa98a16931fe089"
     },
     {
       "path": "public/games/backgammon/evidence/390x844.png",
-      "sha256": "50cf03a6b7d3751cb0016e86efbdf57a16fdf033157113666faaffffdc6e5000"
+      "sha256": "5ad145bbec6460eb42a462960c5bb4313c0a09e20505850db3a30005638116fe"
     },
     {
       "path": "public/games/backgammon/evidence/768x1024.png",
-      "sha256": "c48f4d74ede7a00c4cea23047f46d2586d290a8f9f4397447d32a7d8672ec896"
+      "sha256": "9f73669cae0f18dc4732719149a5ab460b4163a507a96491092de54e8aaf0e2b"
     },
     {
       "path": "public/games/backgammon/evidence/900x450.png",
-      "sha256": "783dac6b18752dc19f60be30d934612cb7b3e3e702d7676dabd8c4c349e3f867"
+      "sha256": "72edad53ddba46a2b4befcb57ee1a0bce147b5b7cb78b514fa40cc23eaa6b4fa"
     },
     {
       "path": "public/games/backgammon/evidence/double-desktop.png",
-      "sha256": "67082889762a7338fb6ed90b43c5b9b7e4ef2636351f19e5057e4bd7190e14e6"
+      "sha256": "7ea9ef0e2aceba74861dd8ab6d188e6ecaf52d6a7e8a50a27415511d94119837"
     },
     {
       "path": "public/games/backgammon/evidence/double-mobil.png",
-      "sha256": "6dd092b3a366485908c72d68200611286e17c47b165b21cbc6a43da55cd19701"
+      "sha256": "5efb8516dfffb149e6a131688361fe98f2b408792b44ee80a7e6d776b196b31b"
     },
     {
       "path": "public/games/backgammon/evidence/match-end-desktop.png",
-      "sha256": "f5b8d56277e38621aa395e38c64e07ba8934f48e85b7c2e19852074c65f11b5f"
+      "sha256": "bb2b0e90eda6eb9c0e3fb88b6b5cbc11267ec80120f89bab701f1c1590f7bf8a"
     },
     {
       "path": "public/games/backgammon/evidence/match-end-mobil.png",
-      "sha256": "f5506dbd8ba6fa56101f47dc6304775eac1c228c5939ca14ecdd3413d0321a82"
+      "sha256": "0b80551a974c62fd10aa6ecc69d59ecafb55aa4671788c836b20cc17aaa423f6"
     },
     {
       "path": "public/games/backgammon/evidence/playing-desktop.png",
-      "sha256": "c2cc4cb391e135390472b0c4851bfe4a5f4124dec8b7e59fd6eeeb6dcba9deda"
+      "sha256": "c5bfc9e5f624f5fec9fad7943bd28a996a12c5c0c3b680e816b27f2ebcc84a26"
     },
     {
       "path": "public/games/backgammon/evidence/playing-mobil.png",
-      "sha256": "2c6e20eeeeb2f059319a8fa2e63b97369814a300ac8b896f197ee1665541f03f"
+      "sha256": "7b1ca0bf68a1cc5ae8aa99814d555615de3eff09b16901387a42b0cb7dfdf185"
     }
-  ]
+  ],
+  "capture_command": "CLASSIC_CAPTURE_EVIDENCE=1 playwright test --config games/backgammon/playwright.config.js",
+  "reproduction": "Default test runs write ignored _artifacts/screenshots; explicit capture updates permanent evidence, then refresh hashes. Local isolated test rooms, no production data.",
+  "shared_compatibility_commit": "d29b2e0acf244438c9638aaebce6266970149aea"
 }

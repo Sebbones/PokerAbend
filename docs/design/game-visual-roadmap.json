@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-31",
+  "updated_at": "2026-11-01",
   "audited_source_commit": "ef6511d76f78689fc525a63f6e3637c3f14f1252",
   "audit_hash_format": "SHA-256 of UTF-8 source with LF line endings at package.source_audit_commit, falling back to audited_source_commit",
-  "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen.",
+  "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen. Explicit BACKLOG-03 game, bot and visual-world authorization on 2026-11-01: Backgammon, Hearts and Five Card Draw only.",
   "id_policy": "VIS-IDs sind dauerhafte Design-IDs. Bestehende IDs niemals neu nummerieren; spätere Einträge mit nächster freier Nummer ergänzen. Unabhängig von V2-XX und technischen Spiel-IDs.",
-  "scope_policy": "VIS-001 sowie die anschließend ausdrücklich freigegebenen VIS-004, VIS-009 und VIS-008 sind abgeschlossen. Alle anderen Pakete bleiben Planung und erfordern eigene ausdrückliche Freigabe. Kein V2-Implementierungsauftrag. VIS-004 wurde anschließend allein für UNO Ultimate und die dauerhaft verfügbare Spuknacht-Variante erweitert; keine weiteren Pakete freigegeben. VIS-096, VIS-097 und VIS-098 wurden im ausdrücklichen Solo-Auftrag implementiert und abgeschlossen. Die übrigen 100 individuellen Pakete bleiben planned; keine Folgefreigabe.",
+  "scope_policy": "VIS-001 sowie die anschließend ausdrücklich freigegebenen VIS-004, VIS-009 und VIS-008 sind abgeschlossen. Alle anderen Pakete bleiben Planung und erfordern eigene ausdrückliche Freigabe. Kein V2-Implementierungsauftrag. VIS-004 wurde anschließend allein für UNO Ultimate und die dauerhaft verfügbare Spuknacht-Variante erweitert; keine weiteren Pakete freigegeben. VIS-096, VIS-097 und VIS-098 wurden im ausdrücklichen Solo-Auftrag implementiert und abgeschlossen. Nach BACKLOG-03 sind zehn Pakete abgeschlossen; die übrigen 97 bleiben planned. Keine weitere Freigabe.",
   "assessment_scope": "Alle registrierten Frontend-Ordner, direkte gemeinsame Komponenten und der Backlog sind inventarisiert. Manuelle Vorher-/Nachher-Abnahme für Scotland Yard, UNO, Skip-Bo und Phase 10. Für die übrigen Spiele stehen spätere individuelle Sichtprüfungen aus. Sudoku, 2048 und Wellenwacht sind mit eigenem lokalen Frontend, permanenten Aufnahmen und Desktop-/Mobile-Abnahme ergänzt.",
   "references": [
     "AGENTS.md",
@@ -28,9 +28,9 @@
   "inventory": {
     "playable_count": 61,
     "not_implemented_count": 46,
-    "completed_visual_count": 7,
-    "open_playable_visual_count": 54,
-    "planned_visual_count": 100,
+    "completed_visual_count": 10,
+    "open_playable_visual_count": 51,
+    "planned_visual_count": 97,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "2048",
@@ -148,6 +148,9 @@
       "farbenchaos",
       "zehnetappen",
       "stapelrennen",
+      "backgammon",
+      "hearts",
+      "five-card-draw",
       "sudoku",
       "2048",
       "wellenwacht"
@@ -341,16 +344,13 @@
     "VIS-084",
     "VIS-041",
     "VIS-057",
-    "VIS-067",
     "VIS-045",
-    "VIS-068",
     "VIS-007",
     "VIS-011",
     "VIS-013",
     "VIS-036",
     "VIS-002",
     "VIS-047",
-    "VIS-065",
     "VIS-046"
   ],
   "suggested_development_order": [
@@ -404,10 +404,7 @@
     "VIS-085",
     "VIS-056",
     "VIS-057",
-    "VIS-084",
-    "VIS-065",
-    "VIS-067",
-    "VIS-068"
+    "VIS-084"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -637,6 +634,37 @@
       "unchanged_other_package_entries": 104,
       "completed_pilots": 3,
       "planned_card_followups": 10
+    },
+    "backlog_classics": {
+      "implementation_commits": {
+        "backgammon": "9f0511779efc0ca03e759cb92b5b00605611fdaf",
+        "hearts": "a79bcf41033d83c13925cabe274aa538244ef51f",
+        "five-card-draw": "d29b2e0acf244438c9638aaebce6266970149aea"
+      },
+      "node_full": {
+        "command": "npm test (final proof included)",
+        "total": 1032,
+        "passed": 1029,
+        "failed": 0,
+        "skipped": 3,
+        "duration_seconds": 45.832,
+        "log": "games/five-card-draw/_artifacts/full-node-proof-release.log"
+      },
+      "browser_standard": {
+        "command": "playwright test test/ui/new-games.spec.js",
+        "passed": 22,
+        "failed": 0,
+        "coverage": "16 new-game/shared-chip cases plus 6 existing Scotland Yard/Hex/Dice Duel cases; desktop and touch",
+        "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
+      },
+      "chip_fixture_regression": {
+        "command": "playwright test --config games/five-card-draw/playwright.config.js --grep \"Poker shared chip regression\"",
+        "passed": 4,
+        "failed": 0,
+        "coverage": "Exact hash-verified repository baseline fixtures; works without old Git history",
+        "log": "games/five-card-draw/_artifacts/poker-fixture-release.log"
+      },
+      "permanent_screenshots": 58
     }
   },
   "packages": [
@@ -8551,14 +8579,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/backgammon/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/backgammon/README.md",
+          "games/backgammon/evidence.json"
+        ],
+        "assessment": "First playable and individually styled implementation, not a redesign of an existing frontend."
       },
       "current_frontend_files": [
         "public/games/backgammon/backgammon.js",
@@ -8569,12 +8600,21 @@
         "public/games/backlog-kit.js",
         "public/game-design.js"
       ],
-      "source_audit": [],
+      "source_audit": [
+        {
+          "path": "public/games/backgammon/backgammon.js",
+          "sha256": "aff20c8a5ac563b843cbf26aeda115d9ab4c292be8b4031236ece4eae68c8041"
+        },
+        {
+          "path": "public/games/backgammon/backgammon.css",
+          "sha256": "f08aac07dc7ddfe8d2e030486ee6d1fc81767051e27de88b2837d013143f0ed0"
+        }
+      ],
       "current_design": "Individually implemented wooden board, large internally scrollable points, legal target list, cube and reversible turn preview.",
       "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+        "Phone board intentionally scrolls internally to preserve point size; equivalent legal target buttons remain accessible."
       ],
-      "assessment_method": "Explicit gameplay and game-world authorization on 2026-11-01; real two-client desktop/touch checks and rule simulations.",
+      "assessment_method": "Real local multiplayer desktop/touch, six sizes, personal/spectator JSON, host pause, reload/network reconnect and end states; original CSS assets visually inspected.",
       "gameplay_summary": "Das klassische Würfel-Brettspiel: eigene Steine nach Hause bringen und Gegner schlagen.",
       "planned_style": "Edles klappbares Turnierbrett aus Holz und Leder.",
       "background_concept": "Schlichte Spieltischfläche.",
@@ -8594,7 +8634,6 @@
       ],
       "technical_constraints": [
         "Zugpflichten und Regelvarianten nicht aus bekannten Fremdversionen ableiten.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -8604,8 +8643,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: 24 Spitzen, Bar und Abtragbereich exakt nach späterer Engine. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-03 implementation and visual authorization completed; no follow-on work authorized.",
       "acceptance_criteria": [
         "Bar, Stapel und Abtragen auf Handy verständlich."
       ],
@@ -8630,11 +8669,55 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "public/games/backgammon/evidence/1440x900.png",
+        "public/games/backgammon/evidence/1920x1080.png",
+        "public/games/backgammon/evidence/360x800.png",
+        "public/games/backgammon/evidence/390x844.png",
+        "public/games/backgammon/evidence/768x1024.png",
+        "public/games/backgammon/evidence/900x450.png",
+        "public/games/backgammon/evidence/double-desktop.png",
+        "public/games/backgammon/evidence/double-mobil.png",
+        "public/games/backgammon/evidence/match-end-desktop.png",
+        "public/games/backgammon/evidence/match-end-mobil.png",
+        "public/games/backgammon/evidence/playing-desktop.png",
+        "public/games/backgammon/evidence/playing-mobil.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test games/backgammon/rules.test.js",
+          "passed": 13,
+          "failed": 0,
+          "bot_matches": 50
+        },
+        {
+          "command": "playwright test --config games/backgammon/playwright.config.js",
+          "passed": 2,
+          "failed": 0,
+          "full_match": true
+        },
+        {
+          "command": "npm test with parallel platform work",
+          "total": 997,
+          "passed": 994,
+          "failed": 0,
+          "skipped": 3,
+          "log": "games/backgammon/_artifacts/full-node-final.log"
+        },
+        {
+          "command": "final shared UI recheck including network reconnect",
+          "passed": 2,
+          "failed": 0,
+          "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
+        }
+      ],
+      "commits": [
+        "9f0511779efc0ca03e759cb92b5b00605611fdaf",
+        "d29b2e0acf244438c9638aaebce6266970149aea"
+      ],
+      "implementation_commit": "9f0511779efc0ca03e759cb92b5b00605611fdaf",
+      "completed_at": "2026-11-01",
+      "source_audit_commit": "9f0511779efc0ca03e759cb92b5b00605611fdaf"
     },
     {
       "id": "VIS-066",
@@ -8728,14 +8811,17 @@
       "category": "karten",
       "category_name": "Kartenspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/hearts/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/hearts/README.md",
+          "games/hearts/evidence.json"
+        ],
+        "assessment": "First playable and individually styled implementation, not a redesign of an existing frontend."
       },
       "current_frontend_files": [
         "public/games/hearts/hearts.js",
@@ -8746,12 +8832,21 @@
         "public/games/backlog-kit.js",
         "public/game-design.js"
       ],
-      "source_audit": [],
+      "source_audit": [
+        {
+          "path": "public/games/hearts/hearts.js",
+          "sha256": "c6e4c31d7ad0d43fbe230fbe26aedb379b14ebfff3ec1e6b5e2878663688a57f"
+        },
+        {
+          "path": "public/games/hearts/hearts.css",
+          "sha256": "eff7e185958ba9fca894d3b5db19b81f67851cc5872cc4c35ae65b8959c68c95"
+        }
+      ],
       "current_design": "Burgundy card room with private explicit card selection, public trick centre and paper score ledger.",
       "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+        "Small screens intentionally use internal hand scrolling and vertical result ledgers; action controls remain accessible."
       ],
-      "assessment_method": "Explicit gameplay and game-world authorization on 2026-11-01; new rule, privacy and bot simulation checks.",
+      "assessment_method": "Real local multiplayer desktop/touch, six sizes, personal/spectator JSON, host pause, reload/network reconnect and end states; original CSS assets visually inspected.",
       "gameplay_summary": "Stiche vermeiden: Herzen und die Pik-Dame sind Strafpunkte.",
       "planned_style": "Klassischer Stichspiel-Salon mit ruhiger Strafpunktwertung.",
       "background_concept": "Dunkles Kartentuch mit dezentem Herzakzent.",
@@ -8771,7 +8866,6 @@
       ],
       "technical_constraints": [
         "Verdeckte Hände und Tauschentscheidungen nicht vorzeitig zeigen.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -8781,8 +8875,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktueller Stich und Strafpunktleiste getrennt. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-03 implementation and visual authorization completed; no follow-on work authorized.",
       "acceptance_criteria": [
         "Strafkarten und gewöhnlicher Stich klar auseinanderhalten."
       ],
@@ -8807,11 +8901,65 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "public/games/hearts/evidence/1440x900.png",
+        "public/games/hearts/evidence/1920x1080.png",
+        "public/games/hearts/evidence/360x800.png",
+        "public/games/hearts/evidence/390x844.png",
+        "public/games/hearts/evidence/768x1024.png",
+        "public/games/hearts/evidence/900x450.png",
+        "public/games/hearts/evidence/deal-scored-desktop.png",
+        "public/games/hearts/evidence/deal-scored-mobil.png",
+        "public/games/hearts/evidence/house-3-desktop.png",
+        "public/games/hearts/evidence/house-3-mobil.png",
+        "public/games/hearts/evidence/house-5-desktop.png",
+        "public/games/hearts/evidence/house-5-mobil.png",
+        "public/games/hearts/evidence/match-end-desktop.png",
+        "public/games/hearts/evidence/match-end-mobil.png",
+        "public/games/hearts/evidence/playing-desktop.png",
+        "public/games/hearts/evidence/playing-mobil.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test games/hearts/rules.test.js",
+          "passed": 12,
+          "failed": 0,
+          "bot_matches": 60
+        },
+        {
+          "command": "playwright full real match desktop and touch",
+          "passed": 2,
+          "failed": 0,
+          "log": "games/hearts/_artifacts/browser-release.log"
+        },
+        {
+          "command": "playwright house games 3/5 with live bots and jack rule, desktop/touch",
+          "passed": 2,
+          "failed": 0,
+          "log": "games/hearts/_artifacts/browser-houses.log"
+        },
+        {
+          "command": "npm test",
+          "total": 1012,
+          "passed": 1009,
+          "failed": 0,
+          "skipped": 3,
+          "log": "games/hearts/_artifacts/full-node-release.log"
+        },
+        {
+          "command": "final shared UI recheck including network reconnect",
+          "passed": 4,
+          "failed": 0,
+          "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
+        }
+      ],
+      "commits": [
+        "a79bcf41033d83c13925cabe274aa538244ef51f",
+        "d29b2e0acf244438c9638aaebce6266970149aea"
+      ],
+      "implementation_commit": "a79bcf41033d83c13925cabe274aa538244ef51f",
+      "completed_at": "2026-11-01",
+      "source_audit_commit": "a79bcf41033d83c13925cabe274aa538244ef51f"
     },
     {
       "id": "VIS-068",
@@ -8820,14 +8968,17 @@
       "category": "karten",
       "category_name": "Kartenspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/five-card-draw/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/five-card-draw/README.md",
+          "games/five-card-draw/evidence.json"
+        ],
+        "assessment": "First playable and individually styled implementation, not a redesign of an existing frontend."
       },
       "current_frontend_files": [
         "public/games/five-card-draw/five-card-draw.js",
@@ -8839,12 +8990,21 @@
         "public/games/five-card-draw/poker-chips.js",
         "public/games/five-card-draw/poker-chips.css"
       ],
-      "source_audit": [],
+      "source_audit": [
+        {
+          "path": "public/games/five-card-draw/five-card-draw.js",
+          "sha256": "ba16a204cd71823112f3ab4dc227c2c157b4aa42a0ae2124f91caf4dc5d02d98"
+        },
+        {
+          "path": "public/games/five-card-draw/five-card-draw.css",
+          "sha256": "5f869afe9766a451b3be044fea6ec8b09c175838f3c8f3cc8a4326765a5d4b17"
+        }
+      ],
       "current_design": "Individual green saloon table with private draw selection, denomination chip stacks, open bets, side-pot labels and a showdown ledger.",
       "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+        "Small screens intentionally use internal hand scrolling and vertical result ledgers; action controls remain accessible."
       ],
-      "assessment_method": "Explicit gameplay and game-world authorization on 2026-11-01; actual poker-engine reuse with rule/privacy/side-pot simulations.",
+      "assessment_method": "Real local multiplayer desktop/touch, six sizes, personal/spectator JSON, host pause, reload/network reconnect and end states; original CSS assets visually inspected.",
       "gameplay_summary": "Der Poker-Klassiker: fünf Karten, einmal tauschen, dann Showdown.",
       "planned_style": "Privater Fünf-Karten-Pokertisch im gemeinsamen Casino-Stil.",
       "background_concept": "Ruhiger bestehender Pokerraum mit eigener Variantenplakette.",
@@ -8864,7 +9024,6 @@
       ],
       "technical_constraints": [
         "Keine Austausch-/Deckinformationen an andere Spieler vorab ausgeben.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -8874,8 +9033,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Persönliche Fünferhand und Austauschzone statt Community-Board. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-03 implementation and visual authorization completed; no follow-on work authorized.",
       "acceptance_criteria": [
         "Fünf Karten, Tauschwahl und Showdown ohne Community-Verwechslung."
       ],
@@ -8892,8 +9051,7 @@
         "G10"
       ],
       "depends_on": [
-        "VIS-001",
-        "VIS-002"
+        "VIS-001"
       ],
       "gameplay_prerequisite": {
         "game_id": "five-card-draw",
@@ -8901,11 +9059,74 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "public/games/five-card-draw/evidence/1440x900.png",
+        "public/games/five-card-draw/evidence/1920x1080.png",
+        "public/games/five-card-draw/evidence/360x800.png",
+        "public/games/five-card-draw/evidence/390x844.png",
+        "public/games/five-card-draw/evidence/768x1024.png",
+        "public/games/five-card-draw/evidence/900x450.png",
+        "public/games/five-card-draw/evidence/ante-3-allin-draw-desktop.png",
+        "public/games/five-card-draw/evidence/ante-3-allin-draw-mobil.png",
+        "public/games/five-card-draw/evidence/ante-3-showdown-desktop.png",
+        "public/games/five-card-draw/evidence/ante-3-showdown-mobil.png",
+        "public/games/five-card-draw/evidence/ante-6-allin-draw-desktop.png",
+        "public/games/five-card-draw/evidence/ante-6-allin-draw-mobil.png",
+        "public/games/five-card-draw/evidence/ante-6-showdown-desktop.png",
+        "public/games/five-card-draw/evidence/ante-6-showdown-mobil.png",
+        "public/games/five-card-draw/evidence/draw-selection-desktop.png",
+        "public/games/five-card-draw/evidence/draw-selection-mobil.png",
+        "public/games/five-card-draw/evidence/omaha-chips-after-desktop.png",
+        "public/games/five-card-draw/evidence/omaha-chips-after-mobil.png",
+        "public/games/five-card-draw/evidence/omaha-chips-before-desktop.png",
+        "public/games/five-card-draw/evidence/omaha-chips-before-mobil.png",
+        "public/games/five-card-draw/evidence/poker-chips-after-desktop.png",
+        "public/games/five-card-draw/evidence/poker-chips-after-mobil.png",
+        "public/games/five-card-draw/evidence/poker-chips-before-desktop.png",
+        "public/games/five-card-draw/evidence/poker-chips-before-mobil.png",
+        "public/games/five-card-draw/evidence/showdown-desktop.png",
+        "public/games/five-card-draw/evidence/showdown-mobil.png",
+        "public/games/five-card-draw/evidence/side-pots-desktop.png",
+        "public/games/five-card-draw/evidence/side-pots-mobil.png",
+        "public/games/five-card-draw/evidence/side-pots-paid-desktop.png",
+        "public/games/five-card-draw/evidence/side-pots-paid-mobil.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test games/five-card-draw/rules.test.js",
+          "passed": 16,
+          "failed": 0,
+          "bot_hands": 300
+        },
+        {
+          "command": "playwright test --config games/five-card-draw/playwright.config.js",
+          "passed": 10,
+          "failed": 0,
+          "log": "games/five-card-draw/_artifacts/browser-release.log"
+        },
+        {
+          "command": "npm test",
+          "total": 1031,
+          "passed": 1028,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 45.739,
+          "log": "games/five-card-draw/_artifacts/full-node-release.log"
+        },
+        {
+          "command": "final shared UI recheck including network reconnect",
+          "passed": 10,
+          "failed": 0,
+          "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
+        }
+      ],
+      "commits": [
+        "d29b2e0acf244438c9638aaebce6266970149aea"
+      ],
+      "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea",
+      "completed_at": "2026-11-01",
+      "source_audit_commit": "d29b2e0acf244438c9638aaebce6266970149aea",
+      "dependency_note": "Actual Poker engine and chip helpers reused and regression-tested; the separately planned VIS-002 redesign was not required or implemented."
     },
     {
       "id": "VIS-069",

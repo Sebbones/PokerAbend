@@ -1,72 +1,75 @@
 {
   "game_id": "hearts",
   "captured_at": "2026-11-01",
-  "implementation_commit": null,
+  "implementation_commit": "a79bcf41033d83c13925cabe274aa538244ef51f",
   "kind": "first functional and visual implementation; no prior playable frontend existed",
   "screenshots": [
     {
       "path": "public/games/hearts/evidence/1440x900.png",
-      "sha256": "421d25ce276e821d89d1a58e3e40fc02f9ef6961a0085bd256547a7f1824a593"
+      "sha256": "40b1baf3bca9a768cf3d86ce080083bd75c9d1741acb1271ce519dba8862b68e"
     },
     {
       "path": "public/games/hearts/evidence/1920x1080.png",
-      "sha256": "463382502a0f34ad3dd2eceef181145e1ef4cc79c8caedf915dbe2fafa8cc085"
+      "sha256": "eef22a9ba986c7653bf4d1ce8848b0158876474d2a7c72581b1248edf5484f53"
     },
     {
       "path": "public/games/hearts/evidence/360x800.png",
-      "sha256": "ef65fbcc856499705cb06c868e8be9e48c1d2c4947cb3210e4b7d613bf8e3feb"
+      "sha256": "86c57511ca03a3d65c23d92dff269613fa987cbab4fefa62eb8b285182875acb"
     },
     {
       "path": "public/games/hearts/evidence/390x844.png",
-      "sha256": "db9e1770c4b45adae55e0274c6213ff8e070f3f4482eb87632879e22706d5470"
+      "sha256": "151da3138a0802c8eadc38ba4b0e58fe1cec3aa4b2fd583f65a9b390b9759ddd"
     },
     {
       "path": "public/games/hearts/evidence/768x1024.png",
-      "sha256": "84ea5b410195850621fdbdcfdd6ebf3fc57896e9aacc4f0de0f229e5b4575bbc"
+      "sha256": "9a0ef7e3fed0f182a863e461caaeec397e3faf2456d68da741e421a5061303c8"
     },
     {
       "path": "public/games/hearts/evidence/900x450.png",
-      "sha256": "1ac079174968030bf9398473647bc1440bf73eca4ac27bf98ecdeb7a2c244ed0"
+      "sha256": "e4525ac4505e75030fc92cf9a473009291ddaf72e7b2487a3b603cc4d4feae9f"
     },
     {
       "path": "public/games/hearts/evidence/deal-scored-desktop.png",
-      "sha256": "2ee88293d5c696e10fbd9682612d077350048aba230ad6293b3eae2c821c1dcc"
+      "sha256": "1e30da386ff7147037fcba37338556fbc6d6072d1cfd991c3348efe1c0b6199d"
     },
     {
       "path": "public/games/hearts/evidence/deal-scored-mobil.png",
-      "sha256": "8d5bc8c755c8ebea39cc73180e27b30813b88254d9eb37ea3417a3ed4d7ce2d6"
+      "sha256": "0ba79a4f7599227ee62d3a1ae092d98bb22efe4ebc0a6742d7296960add13422"
     },
     {
       "path": "public/games/hearts/evidence/house-3-desktop.png",
-      "sha256": "13cea51e9becc27ab2208c78ef04a9b6fc32b7d7c61927a1da05d45fd37150c9"
+      "sha256": "ddb9cb223dc411fd85c3180870ae9cf8c84f66ed9d53e1425b1256710033e668"
     },
     {
       "path": "public/games/hearts/evidence/house-3-mobil.png",
-      "sha256": "00a1a519865ed87837b81617b54a95b5d7aceb27ba3c11349f524d88d66e8f4b"
+      "sha256": "06aa5940ff049a0e1c542414bbd680dea179c4129a779e10afe34ce170f55d6d"
     },
     {
       "path": "public/games/hearts/evidence/house-5-desktop.png",
-      "sha256": "6301e3f1ddbfcb48711eb53c643067a51f7f8ab48195858fab81a9480d7f0783"
+      "sha256": "dda25b8cad2e88c1b67b095206af757459c47c53b1ff5961f85314e94ce516a4"
     },
     {
       "path": "public/games/hearts/evidence/house-5-mobil.png",
-      "sha256": "52f4267c7f1ec696b3723c9c83180800beaee26b5b1a217a26fba59687c26ccd"
+      "sha256": "df79ce7128bda8c257fe6950e1b4e0767e0dfa8f214e41499ae6825c1edc5b0a"
     },
     {
       "path": "public/games/hearts/evidence/match-end-desktop.png",
-      "sha256": "67891bd11044c7afe35a7673e5fd362b3375fb9a74442790dc6aed29fd9ed6a9"
+      "sha256": "eb02c883878ad56ccd27cbf889808ae9b8ecc2304805a67a08cb0ee774b91cb3"
     },
     {
       "path": "public/games/hearts/evidence/match-end-mobil.png",
-      "sha256": "91e27bc15e9239ef92209c566f0ef7032f3e3d59ee764a031c8eabaa9b84a8b6"
+      "sha256": "b037debf76e154b2ae8d1c2ce7bb23df2b60d8f2567acf8455855a84380a8482"
     },
     {
       "path": "public/games/hearts/evidence/playing-desktop.png",
-      "sha256": "fc0881d70ccc80432148a094b6a6b9367c42be6b38781523bfa62a93141f8e1c"
+      "sha256": "722669d6ca4da715c175522a7857fcfd8cb082a5371384740fcedf7b0ddfaf85"
     },
     {
       "path": "public/games/hearts/evidence/playing-mobil.png",
-      "sha256": "fae1431e61ace57ace333a777037785fee77f19b855102f2325a07abce23a189"
+      "sha256": "381de4be90523bd8f7336f1102c8ed95b4792708366f5bc5346747fb09aac377"
     }
-  ]
+  ],
+  "capture_command": "CLASSIC_CAPTURE_EVIDENCE=1 playwright test --config games/hearts/playwright.config.js",
+  "reproduction": "Default test runs write ignored _artifacts/screenshots; explicit capture updates permanent evidence, then refresh hashes. Local isolated test rooms, no production data.",
+  "shared_compatibility_commit": "d29b2e0acf244438c9638aaebce6266970149aea"
 }

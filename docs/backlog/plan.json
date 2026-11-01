@@ -129,10 +129,45 @@
         "hearts",
         "five-card-draw"
       ],
-      "status": "in_progress",
-      "implementation_commit": null,
-      "test_results": [],
-      "completed_at": null
+      "status": "done",
+      "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea",
+      "test_results": [
+        {
+          "command": "npm test (final proof included)",
+          "total": 1032,
+          "passed": 1029,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 45.832,
+          "log": "games/five-card-draw/_artifacts/full-node-proof-release.log"
+        },
+        {
+          "command": "playwright test test/ui/new-games.spec.js",
+          "passed": 22,
+          "failed": 0,
+          "coverage": "16 new-game/shared-chip cases plus 6 existing Scotland Yard/Hex/Dice Duel cases; desktop and touch",
+          "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
+        },
+        {
+          "command": "playwright test --config games/five-card-draw/playwright.config.js --grep \"Poker shared chip regression\"",
+          "passed": 4,
+          "failed": 0,
+          "coverage": "Exact hash-verified repository baseline fixtures; works without old Git history",
+          "log": "games/five-card-draw/_artifacts/poker-fixture-release.log"
+        }
+      ],
+      "completed_at": "2026-11-01",
+      "implementation_commits": {
+        "backgammon": "9f0511779efc0ca03e759cb92b5b00605611fdaf",
+        "hearts": "a79bcf41033d83c13925cabe274aa538244ef51f",
+        "five-card-draw": "d29b2e0acf244438c9638aaebce6266970149aea"
+      },
+      "commits": [
+        "9f0511779efc0ca03e759cb92b5b00605611fdaf",
+        "a79bcf41033d83c13925cabe274aa538244ef51f",
+        "d29b2e0acf244438c9638aaebce6266970149aea"
+      ],
+      "scope": "Only the explicitly authorised three games, bots, individual visual worlds and necessary compatibility fixes. Stop after completion. No V2 packages."
     }
   ],
   "games": [
@@ -702,9 +737,9 @@
     {
       "id": "backgammon",
       "name": "Backgammon",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-03",
-      "implementation_commit": null,
+      "implementation_commit": "9f0511779efc0ca03e759cb92b5b00605611fdaf",
       "test_results": [
         {
           "command": "node --test games/backgammon/rules.test.js",
@@ -725,6 +760,12 @@
           "failed": 0,
           "skipped": 3,
           "log": "games/backgammon/_artifacts/full-node-final.log"
+        },
+        {
+          "command": "final shared UI recheck including network reconnect",
+          "passed": 2,
+          "failed": 0,
+          "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
         }
       ],
       "screenshots": [
@@ -740,6 +781,29 @@
         "public/games/backgammon/evidence/match-end-mobil.png",
         "public/games/backgammon/evidence/playing-desktop.png",
         "public/games/backgammon/evidence/playing-mobil.png"
+      ],
+      "completed_at": "2026-11-01",
+      "source_audit": [
+        {
+          "path": "games/backgammon/index.js",
+          "sha256": "ad020f5d86eaa9cdf2f7118b7e91576ebf41bbdae7c49d942a5e6198605e4369"
+        },
+        {
+          "path": "games/backgammon/room.js",
+          "sha256": "aa5a68628455312ffd9b1a9d2c6830590bf2a8ff2327b945c7ca646269cd09f3"
+        },
+        {
+          "path": "games/backgammon/rules.js",
+          "sha256": "c4418459b4c4762c05663f64854e759d63b749e9fab07b1a9ace8577280a13ca"
+        },
+        {
+          "path": "public/games/backgammon/backgammon.js",
+          "sha256": "aff20c8a5ac563b843cbf26aeda115d9ab4c292be8b4031236ece4eae68c8041"
+        },
+        {
+          "path": "public/games/backgammon/backgammon.css",
+          "sha256": "f08aac07dc7ddfe8d2e030486ee6d1fc81767051e27de88b2837d013143f0ed0"
+        }
       ]
     },
     {
@@ -754,9 +818,9 @@
     {
       "id": "hearts",
       "name": "Hearts",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-03",
-      "implementation_commit": null,
+      "implementation_commit": "a79bcf41033d83c13925cabe274aa538244ef51f",
       "test_results": [
         {
           "command": "node --test games/hearts/rules.test.js",
@@ -783,6 +847,12 @@
           "failed": 0,
           "skipped": 3,
           "log": "games/hearts/_artifacts/full-node-release.log"
+        },
+        {
+          "command": "final shared UI recheck including network reconnect",
+          "passed": 4,
+          "failed": 0,
+          "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
         }
       ],
       "screenshots": [
@@ -802,14 +872,37 @@
         "public/games/hearts/evidence/match-end-mobil.png",
         "public/games/hearts/evidence/playing-desktop.png",
         "public/games/hearts/evidence/playing-mobil.png"
+      ],
+      "completed_at": "2026-11-01",
+      "source_audit": [
+        {
+          "path": "games/hearts/index.js",
+          "sha256": "950b3c858b56686b06492df2247ab56148d82930e6fb56710889fbe9c04e2012"
+        },
+        {
+          "path": "games/hearts/room.js",
+          "sha256": "2aa5d65229ff47c40d06a48236dbee87a940e5b7e31f5406b31537134b5dbad5"
+        },
+        {
+          "path": "games/hearts/rules.js",
+          "sha256": "7a06e411679ea1fcd78813dcc70c396df998d3e45989c5b2204723c41a4235f4"
+        },
+        {
+          "path": "public/games/hearts/hearts.js",
+          "sha256": "c6e4c31d7ad0d43fbe230fbe26aedb379b14ebfff3ec1e6b5e2878663688a57f"
+        },
+        {
+          "path": "public/games/hearts/hearts.css",
+          "sha256": "eff7e185958ba9fca894d3b5db19b81f67851cc5872cc4c35ae65b8959c68c95"
+        }
       ]
     },
     {
       "id": "five-card-draw",
       "name": "Five Card Draw",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-03",
-      "implementation_commit": null,
+      "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea",
       "test_results": [
         {
           "command": "node --test games/five-card-draw/rules.test.js",
@@ -831,6 +924,12 @@
           "skipped": 3,
           "duration_seconds": 45.739,
           "log": "games/five-card-draw/_artifacts/full-node-release.log"
+        },
+        {
+          "command": "final shared UI recheck including network reconnect",
+          "passed": 10,
+          "failed": 0,
+          "log": "games/five-card-draw/_artifacts/standard-ui-release.log"
         }
       ],
       "screenshots": [
@@ -864,6 +963,29 @@
         "public/games/five-card-draw/evidence/side-pots-mobil.png",
         "public/games/five-card-draw/evidence/side-pots-paid-desktop.png",
         "public/games/five-card-draw/evidence/side-pots-paid-mobil.png"
+      ],
+      "completed_at": "2026-11-01",
+      "source_audit": [
+        {
+          "path": "games/five-card-draw/index.js",
+          "sha256": "1a9fb07c09f9727a479e10ccb45e8e83c30172651714f0e40496f76602ace30d"
+        },
+        {
+          "path": "games/five-card-draw/room.js",
+          "sha256": "8a595066a65040ea7c2293719ccf6a72d7a54f10227de7779a7daf944fd5b080"
+        },
+        {
+          "path": "games/five-card-draw/table.js",
+          "sha256": "7867a3564704b51caa3269cf71a725bcc35b9969b733b0a69676c076abaf0aee"
+        },
+        {
+          "path": "public/games/five-card-draw/five-card-draw.js",
+          "sha256": "ba16a204cd71823112f3ab4dc227c2c157b4aa42a0ae2124f91caf4dc5d02d98"
+        },
+        {
+          "path": "public/games/five-card-draw/five-card-draw.css",
+          "sha256": "5f869afe9766a451b3be044fea6ec8b09c175838f3c8f3cc8a4326765a5d4b17"
+        }
       ]
     },
     {

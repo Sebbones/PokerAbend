@@ -1,7 +1,7 @@
 {
   "game_id": "five-card-draw",
   "captured_at": "2026-11-01",
-  "implementation_commit": null,
+  "implementation_commit": "d29b2e0acf244438c9638aaebce6266970149aea",
   "kind": "First game implementation plus eight same-table baseline/current Poker and Omaha chip comparisons; isolated local rooms only",
   "baseline_comparison_commit": "5667b850e76cc8ccc1f064f0b21650d463beb592",
   "screenshots": [
@@ -125,5 +125,8 @@
       "path": "public/games/five-card-draw/evidence/side-pots-paid-mobil.png",
       "sha256": "d8b5cdef32138da542d2f69ac311199401cf939c87ba9da7d5667ec787854e48"
     }
-  ]
+  ],
+  "capture_command": "CLASSIC_CAPTURE_EVIDENCE=1 playwright test --config games/five-card-draw/playwright.config.js",
+  "reproduction": "Default test runs write ignored _artifacts/screenshots; explicit capture updates permanent evidence, then refresh hashes. Local isolated test rooms, no production data.",
+  "shared_compatibility_commit": "d29b2e0acf244438c9638aaebce6266970149aea"
 }

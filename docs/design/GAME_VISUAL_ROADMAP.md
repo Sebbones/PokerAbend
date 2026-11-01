@@ -2,9 +2,11 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**58 spielbare Spiele, 49 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 7 done, 100 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10 sowie die ausdrücklich beauftragten neuen Solo-Spiele Sudoku, 2048 und Wellenwacht sind visuell abgeschlossen. Risiko-Würfeln, Story-Chaos und Zahlenreihe sind anschließend als neue Spiele implementiert; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 51 bestehenden Spieloberflächen und 49 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
+**Stand 01.11.2026: 61 spielbare Spiele, 46 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 10 done, 97 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10, Sudoku, 2048 und Wellenwacht sowie die ausdrücklich beauftragten neuen Spielwelten Backgammon, Hearts und Five Card Draw sind visuell abgeschlossen. Die ersten sechs kleinen Backlog-Spiele sind spielbar; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 51 bestehenden Spieloberflächen und 46 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
 
-Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) inventarisiert alle 13 registrierten Kartenspiele; zehn Folgepakete bleiben geplant. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
+Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Mit den gesondert beauftragten Hearts und Five Card Draw gibt es aktuell 15 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
+
+BACKLOG-03 ist mit Bots, eigenen Materialien, sechs Bildschirmgrößen, echten Mehrspieler-/Zuschaueransichten, Pause und Reconnect geprüft. Die dauerhaften Bilder und tatsächlichen Spiel-Commits stehen in den Manifesten für [Backgammon / VIS-065](../../games/backgammon/evidence.json), [Hearts / VIS-067](../../games/hearts/evidence.json) und [Five Card Draw / VIS-068](../../games/five-card-draw/evidence.json). Bei Draw kommen acht Aufnahmen derselben Poker-/Omaha-Tische vor/nach der gemeinsamen Chip-Auslagerung hinzu. Es gab zuvor keine spielbaren Frontends dieser drei Spiele; die neuen Oberflächen sind Erstimplementierungen. Keine weiteren VIS- oder V2-Pakete sind dadurch freigegeben.
 
 ## Verbindliche Arbeitsweise
 
@@ -95,8 +97,6 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | VIS-075 | Stillgestanden! | 10–15 h |
 | VIS-091 | Turmbauer | 10–15 h |
 | VIS-054 | Exploding-Deck | 11–17 h |
-| VIS-067 | Hearts | 11–17 h |
-| VIS-068 | Five Card Draw | 12–18 h |
 | VIS-062 | Infektionsjagd | 12–18 h |
 | VIS-063 | Letzter Schutzplatz | 12–18 h |
 | VIS-077 | Minenlauf | 12–18 h |
@@ -112,7 +112,6 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | VIS-061 | Jäger & Schatten | 16–24 h |
 | VIS-078 | Labyrinth-Chaos | 16–24 h |
 | VIS-080 | Scheinwerfer-Flucht | 16–24 h |
-| VIS-065 | Backgammon | 18–27 h |
 | VIS-095 | Bomben-Duell | 18–27 h |
 | VIS-093 | Fallenbauer | 18–27 h |
 | VIS-058 | Labyrinth-Brett | 18–27 h |
@@ -1912,28 +1911,28 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-065 – Backgammon
 
 - **Spiel-ID/Kategorie:** `backgammon` / Brettspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 18–27 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Planung 18–27 h.
+- **Frontend:** `public/games/backgammon/backgammon.js`, `public/games/backgammon/backgammon.css`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/backlog-kit.js`, `public/game-design.js`.
+- **Aktueller Stand:** Individually implemented wooden board, large internally scrollable points, legal target list, cube and reversible turn preview.
+- **Optische Verbesserungsziele:** Phone board intentionally scrolls internally to preserve point size; equivalent legal target buttons remain accessible.
 - **Stil:** Edles klappbares Turnierbrett aus Holz und Leder.
 - **Hintergrund:** Schlichte Spieltischfläche.
 - **Spielfeld:** 24 Spitzen, Bar und Abtragbereich exakt nach späterer Engine.
 - **Figuren/Karten/Objekte:** Steine mit Stapelzähler, zwei Würfel und eindeutige Zugmarkierung.
 - **Status und Aktionen:** Würfeln, Einsetzen und Abtragen klar trennen.
 - **Mobil:** Brett proportional, Stapel nicht zu winzigen Einzelsteinen verkleinern.
-- **Technische Grenzen:** Zugpflichten und Regelvarianten nicht aus bekannten Fremdversionen ableiten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Zugpflichten und Regelvarianten nicht aus bekannten Fremdversionen ableiten. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von backgammon.
+- **Abhängigkeiten:** VIS-001; Gameplay im ausdrücklichen BACKLOG-03-Auftrag implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Bar, Stapel und Abtragen auf Handy verständlich.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Implementierungscommit `9f0511779efc0ca03e759cb92b5b00605611fdaf`; Regeln und Testergebnisse: [Spielbericht](../../games/backgammon/README.md), permanente PNGs und SHA-256: [Manifest](../../games/backgammon/evidence.json). Desktop/Touch, sechs Größen, Pause, Reconnect und Zuschauer geprüft.
 
 <a id="vis-066"></a>
 ### VIS-066 – Scrabble
@@ -1966,55 +1965,55 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-067 – Hearts
 
 - **Spiel-ID/Kategorie:** `hearts` / Kartenspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 11–17 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Planung 11–17 h.
+- **Frontend:** `public/games/hearts/hearts.js`, `public/games/hearts/hearts.css`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/backlog-kit.js`, `public/game-design.js`.
+- **Aktueller Stand:** Burgundy card room with private explicit card selection, public trick centre and paper score ledger.
+- **Optische Verbesserungsziele:** Small screens intentionally use internal hand scrolling and vertical result ledgers; action controls remain accessible.
 - **Stil:** Klassischer Stichspiel-Salon mit ruhiger Strafpunktwertung.
 - **Hintergrund:** Dunkles Kartentuch mit dezentem Herzakzent.
 - **Spielfeld:** Aktueller Stich und Strafpunktleiste getrennt.
 - **Figuren/Karten/Objekte:** Karten, Herz-/Pik-Dame-Hinweise und Ergebniszettel.
 - **Status und Aktionen:** Kartentausch, Stichspiel und Rundenauswertung unterschiedlich zeigen.
 - **Mobil:** Eigene Hand groß; Strafpunkte als kompakte Liste.
-- **Technische Grenzen:** Verdeckte Hände und Tauschentscheidungen nicht vorzeitig zeigen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Verdeckte Hände und Tauschentscheidungen nicht vorzeitig zeigen. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von hearts.
+- **Abhängigkeiten:** VIS-001; Gameplay im ausdrücklichen BACKLOG-03-Auftrag implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Strafkarten und gewöhnlicher Stich klar auseinanderhalten.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Implementierungscommit `a79bcf41033d83c13925cabe274aa538244ef51f`; Regeln und Testergebnisse: [Spielbericht](../../games/hearts/README.md), permanente PNGs und SHA-256: [Manifest](../../games/hearts/evidence.json). Desktop/Touch, sechs Größen, Pause, Reconnect und Zuschauer geprüft.
 
 <a id="vis-068"></a>
 ### VIS-068 – Five Card Draw
 
 - **Spiel-ID/Kategorie:** `five-card-draw` / Kartenspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 12–18 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Planung 12–18 h.
+- **Frontend:** `public/games/five-card-draw/five-card-draw.js`, `public/games/five-card-draw/five-card-draw.css`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/backlog-kit.js`, `public/games/five-card-draw/poker-chips.js`, `public/games/five-card-draw/poker-chips.css`.
+- **Aktueller Stand:** Individual green saloon table with private draw selection, denomination chip stacks, open bets, side-pot labels and a showdown ledger.
+- **Optische Verbesserungsziele:** Small screens intentionally use internal hand scrolling and vertical result ledgers; action controls remain accessible.
 - **Stil:** Privater Fünf-Karten-Pokertisch im gemeinsamen Casino-Stil.
 - **Hintergrund:** Ruhiger bestehender Pokerraum mit eigener Variantenplakette.
 - **Spielfeld:** Persönliche Fünferhand und Austauschzone statt Community-Board.
 - **Figuren/Karten/Objekte:** Ausgewählte Tauschkarten markieren, fremde Kartenrücken gleich halten.
 - **Status und Aktionen:** Setzen und einmaliger Kartentausch klar getrennte Zustände.
 - **Mobil:** Fünf Handkarten lesbar mit Mehrfachauswahl.
-- **Technische Grenzen:** Keine Austausch-/Deckinformationen an andere Spieler vorab ausgeben. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Keine Austausch-/Deckinformationen an andere Spieler vorab ausgeben. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001, VIS-002; zuerst separate Gameplay-Freigabe und Implementierung von five-card-draw.
+- **Abhängigkeiten:** VIS-001; Gameplay im ausdrücklichen BACKLOG-03-Auftrag implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Fünf Karten, Tauschwahl und Showdown ohne Community-Verwechslung.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Implementierungscommit `d29b2e0acf244438c9638aaebce6266970149aea`; Regeln und Testergebnisse: [Spielbericht](../../games/five-card-draw/README.md), permanente PNGs und SHA-256: [Manifest](../../games/five-card-draw/evidence.json). Desktop/Touch, sechs Größen, Pause, Reconnect und Zuschauer geprüft.
 
 <a id="vis-069"></a>
 ### VIS-069 – Schatzinsel

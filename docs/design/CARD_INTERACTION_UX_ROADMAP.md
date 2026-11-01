@@ -1,6 +1,8 @@
 # Karten-UX – individuelle Folgeplanung
 
-Stand: 31.10.2026. Maschinenlesbare Quelle: [card-interaction-roadmap.json](card-interaction-roadmap.json). Vollständige Inventur aus `games/index.js`: **13 registrierte Kartenspiele**. UNO, Skip-Bo und Phase 10 sind die drei ausdrücklich beauftragten Piloten. Alle folgenden zehn Pakete bleiben **planned**, ohne Implementierungsfreigabe.
+Stand der ursprünglichen Inventur: 31.10.2026, **13 registrierte Kartenspiele**. Maschinenlesbare Quelle: [card-interaction-roadmap.json](card-interaction-roadmap.json). UNO, Skip-Bo und Phase 10 sind die drei ausdrücklich beauftragten Piloten. Alle folgenden zehn Pakete bleiben **planned**, ohne Implementierungsfreigabe.
+
+Nachtrag 01.11.2026: Der gesonderte Auftrag BACKLOG-03 ergänzt Hearts und Five Card Draw; aktuell gibt es **15 registrierte Kartenspiele**. Die neuen Spiele verwenden ausdrücklich bestätigte Kartenauswahl und sind als `post_baseline_games` erfasst. Die ursprünglichen 13 CUX-Pakete und ihre zehn geplanten Folgeaufträge bleiben erhalten. Die beauftragte Wiederverwendung der Poker-Chipanimationen ist eine eng begrenzte gemeinsame Auslagerung für Hold’em, Omaha und Draw, kein abgeschlossenes Poker-/Omaha-UX-Paket. Originale Quellhashes bleiben im JSON erhalten; aktuelle Hashes und vier echte Browserregressionen dokumentieren die Auslagerung. Details: [Five Card Draw](../../games/five-card-draw/README.md).
 
 Diese Prüfung ist ein individueller Quellcode-Audit gegen `18451f45110be4773565466db8b4715779d5cfe1`, keine behauptete manuelle Safari-Abnahme der weiteren Spiele. Die konkrete Umsetzung und Browserabnahme der Piloten steht in [CARD_INTERACTION_UX.md](CARD_INTERACTION_UX.md). CUX-IDs sind unabhängig von bestehenden VIS-/V2-IDs. Gleiche Renderer (Poker/Omaha) erhalten eigene game_id-bezogene Abnahmen; nicht implementierte Backlog-Spiele wie Solitaire sind kein registriertes Kartenspiel in dieser Inventur.
 

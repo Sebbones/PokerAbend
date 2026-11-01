@@ -2,7 +2,40 @@
 
 Stand: 31.10.2026. Ausgangsstand `2dd1d4b12a9b9c03991272ca654b60f614c919ab`. Nutzerauftrag: die vorhandene Roadmap-Rubrik **„Weitere Spiele – 0 von 41 erledigt“** umsetzen. Ausdrücklich gewählte Reihenfolge: **zuerst Risiko-Würfeln, Story-Chaos und Zahlenreihe**. Fortschritt und tatsächliche Implementierungscommits: [plan.json](plan.json). Das ist ein Ausführungsprotokoll der bestehenden 41 IDs, keine zweite Quelle für neue Spielideen; Beschreibungen des verbleibenden Backlogs stehen weiterhin in `games/planned.js`.
 
-**Aktueller Fortschritt: 6 von 41 implementiert, 35 offen.** 55 Raumspiele plus drei lokale Einzelspieler ergeben 58 spielbare Spiele.
+**Aktueller Fortschritt am 01.11.2026: 9 von 41 implementiert, 32 offen.** 58 Raumspiele plus drei lokale Einzelspieler ergeben 61 spielbare Spiele. Der aktuelle Auftrag umfasst ausschließlich BACKLOG-03; danach stoppen. Keine V2-Pakete.
+
+## BACKLOG-03 – Backgammon, Hearts und Five Card Draw
+
+Alle drei sind reguläre Räume mit optionalen Bots, Host-Pause, Wiederverbindung, Zuschauern und deutschen/englischen Beschriftungen. Ihre eigenen Spielwelten wurden auf Desktop und Touch sowie in sechs Bildschirmgrößen geprüft. Neue Dateien liegen ausschließlich unter ihren eigenen `games/<id>/`- und `public/games/<id>/`-Ordnern; `server/`, `scripts/`, `.github/` und die Admin-Seite wurden nicht bearbeitet.
+
+| Spiel | Regeln und Umsetzung | Bilder mit SHA-256 |
+| --- | --- | --- |
+| Backgammon | [Holzbrett, legale Zugfolge, Bar, Abtragen, Verdopplung und Match](../../games/backgammon/README.md) | [12 Originalaufnahmen](../../games/backgammon/evidence.json) |
+| Hearts / Herzjagd | [Tausch, Stichregeln, Mond und genehmigte 3/5-Spieler-Hausregeln](../../games/hearts/README.md) | [16 Originalaufnahmen](../../games/hearts/evidence.json) |
+| Five Card Draw | [Ante/Blinds, Tausch, geerbte Poker-Pots und Showdown](../../games/five-card-draw/README.md) | [30 Originalaufnahmen einschließlich Poker-/Omaha-Vergleich](../../games/five-card-draw/evidence.json) |
+
+Backgammon verlangt die maximal nutzbare Würfelfolge und gegebenenfalls den höheren Würfel. Rückgängig bleibt bis zur ausdrücklichen Zugbestätigung möglich, auch beim letzten abgetragenen Stein. Der Verdopplungswürfel ist standardmäßig aktiv; Matches gehen über 3/5/7 Punkte einschließlich Gammon, Backgammon und Crawford-Partie. Auf Handy ist das große Brett intern verschiebbar; erlaubte Ziele bleiben zusätzlich als große Knöpfe erreichbar.
+
+Hearts verwendet standardmäßig vier Spieler mit 13 Karten. Die ausdrücklich genehmigte Hausregel entfernt bei drei Spielern Karo 2 (17 Karten), bei fünf Spielern Karo 2 und Pik 2 (10 Karten). Kreuz 2 und alle Wertungskarten bleiben enthalten. Bei ungerader Spielerzahl ersetzt eine weitere Runde ohne Weitergeben das Weitergeben gegenüber. Karo-Bube −10 ist optional. Fremde Hände und noch geheime Tauschentscheidungen fehlen auch im übertragenen JSON.
+
+Draw erbt die tatsächliche Poker-Setz-, Pot-, Side-Pot- und Auszahlungslogik sowie die Handauswertung. Ein kleiner Board-Abschluss-Haken erhält Hold’em/Omaha und lässt Draw ohne Gemeinschaftskarten auszahlen. Auch All-in-Spieler tauschen einmal. Die Ass-Hausregel erlaubt vier Tauschkarten nur bei einem behaltenen Ass. Chipanimationen und ihre Styles sind gemeinsam ausgelagert; Vergleichstests verwenden denselben echten Poker-/Omaha-Tisch vor/nach der Auslagerung. Der erste frische Zustand nach einem Websocket-Reconnect zeichnet die zuvor gesperrten Backlog-Knöpfe jetzt erneut; ein Regressionstest und alle drei neuen Spiele sichern das ab.
+
+Regeltests enthalten **50 vollständige Backgammon-Bot-Matches, 60 Hearts-Partien und 300 Draw-Hände**. Sie prüfen Karten-/Steinerhaltung, Punkte bzw. Chips, private Roh-JSON-Ansichten, veraltete Aktionen, Pause, Abbruch und die wesentlichen Regelgrenzen. Die 16 neuen Browserfälle umfassen vollständige Mehrspieler-Partien, Zuschauer, Reconnect, sechs Größen, Side Pots, Ante-All-ins und vier Poker-/Omaha-Regressionen. Normale Läufe schreiben Screenshots nur nach `_artifacts/`; `CLASSIC_CAPTURE_EVIDENCE=1` erneuert bewusst die permanenten Bilder. Die lokalen Rohprotokolle sind ignorierte Arbeitsartefakte, keine auf GitHub verfügbaren Log-Downloads.
+
+Die neuen Regel- und Browserfälle sind über bestehende Testdateien in `npm test` und `npm run test:ui` eingebunden. Die drei neuen individuellen Spielwelten schließen **VIS-065, VIS-067 und VIS-068** ab. Die älteren sechs Backlog-Spiele erhalten damit keine nachträgliche visuelle Freigabe. Alle 107 VIS-IDs bleiben erhalten. Reale Implementierungscommits und abschließende Laufzahlen stehen im folgenden Abschlussnachweis sowie in [plan.json](plan.json).
+
+### Abschlussnachweis BACKLOG-03
+
+| Prüfung | Tatsächliches Ergebnis | Lokales Rohprotokoll |
+| --- | --- | --- |
+| Vollständiger Node-Bestand einschließlich Bild-/Quellhash-Nachweis | **1029 bestanden, 0 fehlgeschlagen, 3 bestehende Umgebungsprüfungen ausgelassen**, 1032 insgesamt; 45,83 s | `games/five-card-draw/_artifacts/full-node-proof-release.log` |
+| Neue und bestehende Regeln, CUX- und VIS-Inventur sowie Abschlussnachweise | **78 bestanden, 0 fehlgeschlagen** | `games/five-card-draw/_artifacts/final-proof-tests.log` |
+| Regulärer Mehrspieler-UI-Lauf: 16 neue und 6 bestehende Fälle | **22 bestanden, 0 fehlgeschlagen**, Desktop und Touch; 5,0 min | `games/five-card-draw/_artifacts/standard-ui-release.log` |
+| Erneuter Poker-/Omaha-Vergleich mit hashgeprüften Original-Testdateien | **4 bestanden, 0 fehlgeschlagen**, 20,1 s | `games/five-card-draw/_artifacts/poker-fixture-release.log` |
+
+Der erste gemeinsame Browserlauf bestand 20 von 22 Fällen; die zu schnelle Backgammon-Testautomatik traf den unveränderten produktiven Socket-Limiter. Der Test sendet jetzt mit mindestens 140 ms Abstand und besteht auf Desktop und Touch. Die abschließenden 22 und die gesonderten vier Vergleichsfälle sind vollständig grün. Die bestehenden drei lokalen Node-Auslassungen sind im Rohprotokoll begründet; sie wurden für diesen Auftrag nicht neu eingeführt.
+
+Ein Implementierungscommit pro Spiel: **Backgammon [`9f05117`](https://github.com/TTLPSCWA/PokerAbend/commit/9f0511779efc0ca03e759cb92b5b00605611fdaf)**, **Hearts [`a79bcf4`](https://github.com/TTLPSCWA/PokerAbend/commit/a79bcf41033d83c13925cabe274aa538244ef51f)**, **Five Card Draw [`d29b2e0`](https://github.com/TTLPSCWA/PokerAbend/commit/d29b2e0acf244438c9638aaebce6266970149aea)**. Der abschließende Nachweis-Commit ergänzt ausschließlich Dokumentation, Status, Bildmanifest-Hashes und deren Prüfung. Kein Produktivdeployment; der autorisierte Push kann den vorhandenen GHCR-Workflow auslösen. BACKLOG-03 ist fertig; hier endet der Auftrag.
 
 ## BACKLOG-01 – Die ersten drei kleinen Spiele
 
@@ -66,7 +99,7 @@ Der ausgelassene Touch-Fall vermeidet nur eine zweite Ausführung derselben voll
 | Würfeljagd | [Eigene Würfel](screenshots/dice/desktop/hunt-playing.png) · [Auflösung](screenshots/dice/desktop/hunt-reveal.png) | [Eigene Würfel](screenshots/dice/mobil/hunt-playing.png) |
 | Würfel-Auktion | [Geheime Gebote](screenshots/dice/desktop/auction-private.png) · [Auflösung](screenshots/dice/desktop/auction-reveal.png) | [Auflösung](screenshots/dice/mobil/auction-reveal.png) |
 
-## Gemeinsame Anbindung
+## Gemeinsame Anbindung der ersten beiden Päckchen (historischer Stand)
 
 Die Spiele verwenden die vorhandenen Räume, Anmeldung, Spieler-IDs, Socket.IO-Ereignisse, Host-Einstellungen, Zuschauer, Bots, Abendprogramme, Pause und Wiederverbindung. `turnGame`, `TurnRoom` und `PartyRoom` bleiben die Grundlage. Der bestehende Katalog und seine bisherigen Spielregeln bleiben erhalten; die sechs fertig implementierten Einträge verlassen `games/planned.js`. Ihre erledigten Roadmap-Punkte bleiben im ursprünglichen 41er-Abschnitt, damit der Nenner nicht schrumpft.
 
@@ -74,7 +107,7 @@ Die Spiele verwenden die vorhandenen Räume, Anmeldung, Spieler-IDs, Socket.IO-E
 
 Die sechs neuen Spiele haben DE/EN-Beschriftungen und eigene Regeln. Technische IDs bleiben unverändert. Bestehende gemeinsame Altmeldungen können weiterhin unter „English (Beta)“ deutsch sein. Die neuen Oberflächen nutzen das bestehende Szenensystem und lokale SVG-Motive; es gibt keine neue Demo-Seite, zusätzliche Fotohintergründe oder 3D-Funktionen.
 
-Die visuellen Pakete **VIS-055, VIS-056, VIS-057, VIS-059, VIS-084 und VIS-085 bleiben `planned`**. Sie sind jetzt als spielbar inventarisiert, aber ihr separates individuelles Redesign wird durch eine erste funktionierende Oberfläche nicht als erledigt ausgegeben. Alle 107 VIS-IDs bleiben stabil; sieben visuelle Pakete sind erledigt, 100 geplant. Keine V2-Funktionen wurden freigegeben oder umgesetzt.
+Die visuellen Pakete **VIS-055, VIS-056, VIS-057, VIS-059, VIS-084 und VIS-085 bleiben `planned`**. Sie sind als spielbar inventarisiert, aber ihr separates individuelles Redesign wird durch eine erste funktionierende Oberfläche nicht als erledigt ausgegeben. Nach BACKLOG-02 waren sieben visuelle Pakete erledigt und 100 geplant; nach BACKLOG-03 sind es zehn bzw. 97. Alle 107 VIS-IDs bleiben stabil. Keine V2-Funktionen wurden freigegeben oder umgesetzt.
 
 ## Tatsächliche Prüfungen
 
@@ -110,6 +143,6 @@ Implementierungscommit für BACKLOG-02: **[`8751c0baa542083eb0a9b7fb5bb35e55b6ed
 
 Implementierungscommit für BACKLOG-01: **[`69b46d6c98aaf5b9cc402a41782110f5386129c7`](https://github.com/TTLPSCWA/PokerAbend/commit/69b46d6c98aaf5b9cc402a41782110f5386129c7)**. Der folgende Nachweis-Commit verknüpft genau dieses bestehende Git-Objekt mit den tatsächlichen Quellhashes, 26 PNGs und Testergebnissen. Beide werden direkt auf `main` geführt.
 
-Die verbleibenden **35 Spiele** stehen unverändert mit ihren bestehenden IDs und Regeln im Backlog. `plan.json` hält den Gesamtauftrag als `in_progress` fest; weitere Spiele werden erst nach ihrer tatsächlichen Implementierung und Prüfung als fertig vermerkt. Die neun separat geplanten lokalen Solo-Spiele, die großen Projekte und die V2-Pakete gehören nicht zu dieser 41er-Rubrik.
+Die verbleibenden **32 Spiele** stehen unverändert mit ihren bestehenden IDs und Regeln im Backlog. `plan.json` hält den Gesamtbestand als `in_progress` fest; der aktuelle Auftrag endet nach BACKLOG-03. Weitere Spiele benötigen einen neuen Auftrag. Die neun separat geplanten lokalen Solo-Spiele, die großen Projekte und die V2-Pakete gehören nicht zu dieser 41er-Rubrik.
 
 Pushes auf `main` starten den bestehenden Test-/GHCR-Workflow. Eine Image-Veröffentlichung ist kein Produktivdeployment. Auf dem Produktivserver werden in diesem Auftrag keine Befehle ausgeführt und keine Daten geändert.
