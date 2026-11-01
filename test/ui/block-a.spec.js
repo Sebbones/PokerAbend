@@ -40,6 +40,7 @@ test('Spieleabend in Login, Manifest und Sitzung; technische Schlüssel bleiben'
 });
 
 test('Hosten-Panel zeigt nur die Felder des gewählten Spiels und übernimmt die Werte', async ({ page, app }) => {
+  test.setTimeout(90000); // The catalog now contains 65 games, each opened and verified.
   await login(page, app);
   for (const game of gameList()) {
     await selectGame(page, game.id);

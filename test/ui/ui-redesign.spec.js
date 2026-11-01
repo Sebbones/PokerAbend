@@ -2,6 +2,7 @@ import { test, expect, login } from './helpers.js';
 import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { GAMES } from '../../games/index.js';
+import {independentPlayer} from './independent-player.js';
 
 test.use({ createLimit: '100' });
 
@@ -101,7 +102,8 @@ for (let offset = 0; offset < Object.keys(GAMES).length; offset += 5) test(`Alle
   expect(games).toHaveLength(Object.keys(GAMES).length);
   const output = resolve('artifacts/ui-redesign/games', info.project.name);
   mkdirSync(output, { recursive: true });
-  for (const { id, minPlayers } of games.slice(offset, offset + 5)) {
+  const guests=[];
+  try{for (const { id, minPlayers } of games.slice(offset, offset + 5)) {
     const reply = await page.evaluate(async (game) => {
       prefs.sound = false; savePrefs();
       const r = await send('create', { game, name: profile.name, avatar: profile.avatar });
@@ -112,20 +114,9 @@ for (let offset = 0; offset < Object.keys(GAMES).length; offset += 5) test(`Alle
     await page.goto(app.url + '/?t=' + reply.code);
     const poker = ['poker', 'omaha'].includes(id), frame = page.locator(poker ? '#game' : '#kg');
     await expect(frame).toBeVisible();
-    const started = await page.evaluate(async ({ code, count }) => {
-      const emit = (s, event, data = {}) => s.timeout(7000).emitWithAck(event, data);
-      const check = (r) => { if (!r.ok) throw new Error(r.error); return r; };
-      check(await send('sit', { seat: 0 }));
-      window.redesignGuests = [];
-      for (let i = 1; i < count; i++) {
-        const guest = io({ forceNew: true, transports: ['websocket'] });
-        window.redesignGuests.push(guest);
-        await new Promise((resolve, reject) => { guest.once('connect', resolve); guest.once('connect_error', reject); });
-        check(await emit(guest, 'join', { code, name: 'Testgast ' + i, avatar: '🐻' }));
-        check(await emit(guest, 'sit', { seat: i }));
-      }
-      return send('start');
-    }, { code: reply.code, count: minPlayers });
+    expect((await page.evaluate(()=>send('sit',{seat:0}))).ok,id).toBe(true);
+    for(let i=1;i<minPlayers;i++)guests.push(await independentPlayer(app,reply.code,'Testgast '+i,i));
+    const started=await page.evaluate(()=>send('start'));
     expect(started.ok, id + ': ' + started.error).toBe(true);
     await expect.poll(() => page.evaluate(() => lastState.phase === 'playing' || !!lastState.hand)).toBe(true);
     await expect(page.locator(poker ? '#dock' : '#kg-dock')).toBeVisible();
@@ -167,6 +158,6 @@ for (let offset = 0; offset < Object.keys(GAMES).length; offset += 5) test(`Alle
     await page.locator('[data-end="close"]').click();
     await page.locator('#dlg-ok').click();
     await expect(page.locator('#hub')).toBeVisible();
-    await page.evaluate(() => window.redesignGuests.forEach((guest) => guest.disconnect()));
   }
+  }finally{for(const guest of guests)await guest.close();}
 });

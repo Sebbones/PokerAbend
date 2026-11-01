@@ -46,11 +46,15 @@ export const test = base.extend({
       }
     }
   },
-  page: async ({ page }, use) => {
+  page: async ({ page, app }, use) => {
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
     await use(page);
+    // Keep the isolated server alive until the page is closed. Otherwise a
+    // late presence/background request races app teardown and reports a false
+    // ERR_CONNECTION_REFUSED in the browser-error assertion.
+    if(!page.isClosed())await page.close();
     expect(errors, 'JavaScript- und Browserfehler').toEqual([]);
   },
 });

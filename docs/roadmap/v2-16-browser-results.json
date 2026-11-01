@@ -1,0 +1,257 @@
+{
+  "task": "V2-16",
+  "date": "2026-11-01",
+  "full_run": {
+    "command": "playwright test --workers=2",
+    "collected": 542,
+    "passed": 491,
+    "failed": 33,
+    "skipped": 18,
+    "duration": "36.0m"
+  },
+  "followup": {
+    "command": "playwright test --workers=2 --output=artifacts/v2-16-followup-output --grep 'English game surfaces|Alle registrierten Spiele, Teil|stapelrennen/team|zehnetappen/team|Alle Spiele laden|Hosten-Panel|luegenwuerfel: hosten|three real unequal'",
+    "passed": 68,
+    "failed": 2,
+    "duration": "14.0m"
+  },
+  "final_rechecks": {
+    "command": "playwright test test/ui/paeckchen10.spec.js test/ui/language.spec.js test/ui/uno-ultimate.spec.js test/ui/bot-difficulty.spec.js test/ui/roadmap-presence.spec.js --grep 'P10 stapelrennen/team|English game surfaces, group 2$|UNO Ultimate no-mercy|V2-16|Roadmap: Navigation' --workers=1 --output=artifacts/v2-16-final-output",
+    "passed": 12,
+    "failed": 0,
+    "duration": "57.6s"
+  },
+  "last_known_results": {
+    "executed_cases": 524,
+    "passed": 524,
+    "unresolved_failures": 0,
+    "skipped_in_full_run": 18,
+    "note": "Full run was not green. All failures were subsequently checked successfully; no claim of a second clean full run."
+  },
+  "rechecked_failures": [
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/block-a.spec.js",
+      "title": "Hosten-Panel zeigt nur die Felder des gewählten Spiels und übernimmt die Werte"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/cards-visual.spec.js",
+      "title": "Card worlds stapelrennen/team: states, sizes, privacy and reconnect"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/cards-visual.spec.js",
+      "title": "Card worlds zehnetappen/team: states, sizes, privacy and reconnect"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/game-design.spec.js",
+      "title": "Spielmotive › Alle Spiele laden mit eigenem Motiv ohne Browserfehler"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 1"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 2"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 3"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 4"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 5"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 6"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 7"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 8"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 9"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 10"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 11"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 12"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 13"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/paeckchen5.spec.js",
+      "title": "luegenwuerfel: hosten, Bots, starten, Zug sichtbar"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "games/five-card-draw/ui.spec.js",
+      "title": "Draw poker: three real unequal buy-ins create visible side pots and conserve all 600 chips"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 1: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 2: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 3: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 4: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 5: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 6: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 7: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 8: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 9: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 10: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 11: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 12: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/ui-redesign.spec.js",
+      "title": "Alle registrierten Spiele, Teil 13: echter Start, Panels, Regeln und Tischende"
+    },
+    {
+      "status": "passed",
+      "project": "mobil",
+      "file": "test/ui/uno-ultimate.spec.js",
+      "title": "UNO Ultimate no-mercy: real room, material, six sizes, privacy, controls and reconnect"
+    },
+    {
+      "status": "passed",
+      "project": "desktop",
+      "file": "test/ui/paeckchen10.spec.js",
+      "title": "P10 stapelrennen/team: auswählen, mit Bots anspielen, wiederverbinden"
+    },
+    {
+      "status": "passed",
+      "project": "mobil",
+      "file": "test/ui/language.spec.js",
+      "title": "English game surfaces, group 2"
+    }
+  ],
+  "logs": [
+    {
+      "path": "artifacts/v2-16-playwright-full.log",
+      "sha256": "d4e03f6cef646e8d93ebbfe44c8f84da714ee4bd8289a0844efcc579571352bd"
+    },
+    {
+      "path": "artifacts/v2-16-playwright-followup.log",
+      "sha256": "d9d8ebfcd77b39bfc27413755e0a90973ecd8a698e0f4e80d7c1ee44abf3cff6"
+    },
+    {
+      "path": "artifacts/v2-16-playwright-final.log",
+      "sha256": "404016cc770a141af928b58edfb376ba692da87dadf7f6dc6172a993105aed9c"
+    }
+  ]
+}

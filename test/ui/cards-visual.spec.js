@@ -1,6 +1,7 @@
 import { test, expect, login, selectGame } from './helpers.js';
 import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
+import {independentPlayer} from './independent-player.js';
 
 const cases = [
   ['farbenchaos', 'classic'], ['farbenchaos', 'flip'], ['farbenchaos', 'no-mercy'], ['farbenchaos', 'all-wild'],
@@ -13,7 +14,7 @@ for (const [game, variant] of cases) test(`Card worlds ${game}/${variant}: state
   test.setTimeout(120000);
   const output = resolve('artifacts/cards-redesign', process.env.CARD_CAPTURE || 'after', info.project.name, `${game}-${variant}`);
   mkdirSync(output, { recursive: true });
-  const contexts = [], errors = [];
+  const contexts = [], errors = [], teamPlayers=[];
   const emit = async (target, event, data = {}) => {
     const reply = await target.evaluate(({ event, data }) => send(event, data), { event, data });
     expect(reply.ok, `${event}: ${reply.error}`).toBe(true); return reply;
@@ -41,19 +42,7 @@ for (const [game, variant] of cases) test(`Card worlds ${game}/${variant}: state
       await expect.poll(() => guest.evaluate(() => lastState?.code)).toBe(code); guests.push(guest);
     }
     if (variant === 'team') {
-      const replies = await page.evaluate(async (code) => {
-        window.cardGuests = [];
-        const ask = (socket, event, data) => new Promise((resolve) => socket.emit(event, data, resolve));
-        const result = [];
-        for (const name of ['Cem', 'Dana']) {
-          const peer = io({ transports: ['websocket'], forceNew: true }); window.cardGuests.push(peer);
-          await new Promise((resolve) => peer.once('connect', resolve));
-          result.push(await ask(peer, 'join', { code, name, avatar: '🦊' }));
-          result.push(await ask(peer, 'sit', {}));
-        }
-        return result.map((r) => r.ok);
-      }, code);
-      expect(replies.every(Boolean)).toBe(true);
+      for(const name of ['Cem','Dana'])teamPlayers.push(await independentPlayer(app,code,name));
     }
     await shot(page, 'lobby-ready'); await emit(page, 'start');
     const [guest, watcher] = guests;
@@ -200,7 +189,7 @@ for (const [game, variant] of cases) test(`Card worlds ${game}/${variant}: state
     await expect(guest.locator('.kg-over')).toBeVisible(); await shot(guest, 'result');
     expect(errors).toEqual([]);
   } finally {
-    await page.evaluate(() => window.cardGuests?.forEach((peer) => peer.disconnect())).catch(() => {});
+    for(const guest of teamPlayers)await guest.close();
     for (const context of contexts) await context.close();
   }
 });

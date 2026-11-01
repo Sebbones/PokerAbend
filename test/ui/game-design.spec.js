@@ -128,6 +128,9 @@ test.describe('Spielmotive', () => {
         await expect(page.locator('.cw-lobby')).toBeVisible();
         expect(await page.locator('.cw-lobby-art .kc').count()).toBeGreaterThan(0);
       } else if (!['poker', 'omaha'].includes(id)) await expect(page.locator('.scene-hero > svg')).toBeVisible();
+      const closed=await page.evaluate(()=>send('closeTable'));
+      expect(closed.ok,id).toBe(true);
+      await expect(page.locator('#hub')).toBeVisible();
     }
   });
 });

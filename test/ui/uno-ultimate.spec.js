@@ -86,7 +86,7 @@ for (const variant of modes) test(`UNO Ultimate ${variant}: real room, material,
       }
       await shot(page, `material-${side}`);
     }
-    await page.reload(); await expect.poll(() => page.evaluate(() => lastState?.phase)).toBe('playing');
+    await page.reload(); await expect.poll(() => page.evaluate(() => lastState?.phase === 'playing' && !!current?.onState)).toBe(true);
     for (const target of [page,...guests]) await target.setViewportSize(info.project.name === 'desktop' ? { width:1440,height:900 } : { width:390,height:844 });
     if (variant === 'no-mercy') {
       await page.evaluate(() => {
@@ -98,7 +98,7 @@ for (const variant of modes) test(`UNO Ultimate ${variant}: real room, material,
       });
       await expect(page.locator('.fc-penalty-meter')).toContainText('+16');
       await expect(page.locator('.fc-eliminated')).toContainText('Ben'); await shot(page, 'penalty-and-elimination');
-      await page.reload(); await expect.poll(() => page.evaluate(() => lastState?.phase)).toBe('playing');
+      await page.reload(); await expect.poll(() => page.evaluate(() => lastState?.phase === 'playing' && !!current?.onState)).toBe(true);
     }
     if (variant === 'flip') {
       const flip = () => page.evaluate(() => {
@@ -115,7 +115,7 @@ for (const variant of modes) test(`UNO Ultimate ${variant}: real room, material,
       await page.locator('[data-kit-panel=me]').click(); await page.locator('[data-pref=calm]').check();
       await page.locator('#kg-panel .panel-head [data-kit=close]').click(); expect((await flip()).animations).toBe(0);
       await page.emulateMedia({ reducedMotion:'reduce' });
-      await page.reload(); await expect.poll(() => page.evaluate(() => lastState?.phase)).toBe('playing');
+      await page.reload(); await expect.poll(() => page.evaluate(() => lastState?.phase === 'playing' && !!current?.onState)).toBe(true);
     }
     await emit(page, 'gamePause', { paused: true }); await expect(watcher.locator('#game-pause-banner')).toBeVisible();
     await shot(page, 'paused');

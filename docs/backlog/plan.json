@@ -1115,6 +1115,10 @@
         {
           "path": "public/games/backgammon/backgammon.css",
           "sha256": "f08aac07dc7ddfe8d2e030486ee6d1fc81767051e27de88b2837d013143f0ed0"
+        },
+        {
+          "path": "games/backgammon/rule-summary.js",
+          "sha256": "0cdabe49341ba0a7bc6845afb4f4cfa0d6e0677254583276acc555313e635c07"
         }
       ],
       "pre_v2_16_rule_audit": {
@@ -1144,8 +1148,9 @@
       },
       "v2_16_rule_summary": {
         "scope": "Public nine-point rule summary for the existing roadmap dialog; no rule changes",
-        "implementation_commit": null
-      }
+        "implementation_commit": "3e3cd3f"
+      },
+      "source_audit_commit": "3e3cd3f"
     },
     {
       "id": "scrabble",
@@ -1196,7 +1201,7 @@
         "public/games/scrabble/evidence/vote-desktop.png",
         "public/games/scrabble/evidence/vote-mobil.png"
       ],
-      "source_audit_commit": "bb962270a086a4edaf306db1d4f7e1fb987eabd8",
+      "source_audit_commit": "4127b5a",
       "source_audit": [
         {
           "path": "games/scrabble/index.js",
@@ -1263,7 +1268,7 @@
       },
       "v2_16_bot_search": {
         "scope": "Optional cooperative deadline and word subset for Easy/Hard. Default Medium uses original full word search unchanged.",
-        "implementation_commit": null
+        "implementation_commit": "4127b5a"
       }
     },
     {

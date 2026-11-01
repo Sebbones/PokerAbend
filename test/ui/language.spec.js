@@ -2,6 +2,7 @@ import { test, expect, login, selectGame } from './helpers.js';
 import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { GAMES } from '../../games/index.js';
+import {independentPlayer} from './independent-player.js';
 
 test('Englische Anmeldung: Sprachwahl vor dem Login und übersetzter Passwortfehler', async ({ browser, app }, info) => {
   // A wrong password deliberately produces HTTP 401. Verify that response explicitly;
@@ -130,8 +131,8 @@ for (let offset = 0; offset < Object.keys(GAMES).length; offset += 5) test(`Engl
   await login(page, app);
   await page.locator('#hub-language select').selectOption('en');
   const games = await page.evaluate(() => account.games.map(({ id, minPlayers }) => ({ id, minPlayers })));
-  let opened = false;
-  for (const { id, minPlayers } of games.slice(offset, offset + 5)) {
+  let opened = false;const guests=[];
+  try{for (const { id, minPlayers } of games.slice(offset, offset + 5)) {
     const reply = await page.evaluate((game) => new Promise((resolve) => socket.emit('create', { game, name: profile.name, avatar: profile.avatar }, resolve)), id);
     expect(reply.ok, id).toBe(true);
     // The next module is mounted through a full reload. Wait for that navigation
@@ -143,33 +144,20 @@ for (let offset = 0; offset < Object.keys(GAMES).length; offset += 5) test(`Engl
     opened = true;
     const poker = id === 'poker' || id === 'omaha';
     await expect(page.locator(poker ? '#game' : '#kg')).toBeVisible();
-    const started = await page.evaluate(async ({ code, count }) => {
-      const emit = (s, e, d = {}) => new Promise((resolve) => s.emit(e, d, resolve));
-      const check = (r) => { if (!r.ok) throw new Error(r.error); return r; };
-      check(await send('sit', { seat: 0 }));
-      window.languageGuests = [];
-      for (let i = 1; i < count; i++) {
-        const guest = io({ transports: ['websocket'], forceNew: true }); window.languageGuests.push(guest);
-        await new Promise((resolve, reject) => { guest.once('connect', resolve); guest.once('connect_error', reject); });
-        check(await emit(guest, 'join', { code, name: 'Guest ' + i, avatar: '🐻' }));
-        check(await emit(guest, 'sit', { seat: i }));
-      }
-      return send('start');
-    }, { code: reply.code, count: minPlayers });
+    expect((await page.evaluate(()=>send('sit',{seat:0}))).ok,id).toBe(true);
+    for(let i=1;i<minPlayers;i++)guests.push(await independentPlayer(app,reply.code,'Guest '+i,i));
+    const started=await page.evaluate(()=>send('start'));
     expect(started.ok, id + ': ' + started.error).toBe(true);
     await expect(page.locator(poker ? '#dock' : '#kg-dock')).toBeVisible();
     await page.locator(poker ? '[data-panel="me"]' : '[data-kit-panel="me"]').click();
     await expect(page.locator(poker ? '#panel [data-language]' : '#kg-panel [data-language]')).toHaveValue('en');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), id).toBe(true);
-    const closed = await page.evaluate(async () => {
-      const r = await send('closeTable');
-      for (const guest of window.languageGuests) guest.disconnect();
-      return r;
-    });
+    const closed = await page.evaluate(() => send('closeTable'));
     expect(closed.ok, id).toBe(true);
     await expect(page.locator('#hub')).toBeVisible();
   }
   // The hub background is requested again after the last table is closed. Finish
   // that request before the isolated test server is stopped by the app fixture.
   await page.waitForLoadState('networkidle');
+  }finally{for(const guest of guests)await guest.close();}
 });

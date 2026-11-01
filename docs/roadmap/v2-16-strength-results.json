@@ -1,0 +1,117 @@
+[
+  {
+    "game": "viergewinnt",
+    "games": 200,
+    "hardWins": 199,
+    "easyWins": 1,
+    "draws": 0,
+    "searchNodeCap": 600,
+    "scenario": "complete games from standard opening"
+  },
+  {
+    "game": "reversi",
+    "games": 200,
+    "hardWins": 200,
+    "easyWins": 0,
+    "draws": 0,
+    "searchNodeCap": 120,
+    "scenario": "complete games from standard opening"
+  },
+  {
+    "game": "backgammon",
+    "games": 200,
+    "hardWins": 151,
+    "easyWins": 49,
+    "draws": 0,
+    "searchNodeCap": 600,
+    "scenario": "complete games from seeded legal home-board positions"
+  },
+  {
+    "game": "monopoly",
+    "games": 200,
+    "hardWins": 177,
+    "easyWins": 23,
+    "draws": 0,
+    "hardMean": 9718.915,
+    "easyMean": 2396.84,
+    "metric": "final wealth (higher better)",
+    "scenario": "existing one-minute timed games; virtual test clock 50 ms/action"
+  },
+  {
+    "game": "scrabble",
+    "games": 200,
+    "hardWins": 149,
+    "easyWins": 51,
+    "draws": 0,
+    "hardMean": 53.545,
+    "easyMean": 26.515,
+    "metric": "final points (higher better)",
+    "scenario": "complete games with full seeded 102-tile bag"
+  },
+  {
+    "game": "kniffel",
+    "games": 200,
+    "hardWins": 198,
+    "easyWins": 2,
+    "draws": 0,
+    "hardMean": 232.575,
+    "easyMean": 112.25,
+    "metric": "final points (higher better)",
+    "scenario": "complete 13-category games, seeded dice"
+  },
+  {
+    "game": "poker",
+    "games": 200,
+    "hardWins": 79,
+    "easyWins": 119,
+    "draws": 2,
+    "hardMean": 4.34,
+    "easyMean": -4.34,
+    "metric": "net chips per hand",
+    "scenario": "two players, complete hand/round"
+  },
+  {
+    "game": "omaha",
+    "games": 200,
+    "hardWins": 102,
+    "easyWins": 95,
+    "draws": 3,
+    "hardMean": 10.005,
+    "easyMean": -10.005,
+    "metric": "net chips per hand",
+    "scenario": "two players, complete hand/round"
+  },
+  {
+    "game": "farbenchaos",
+    "games": 200,
+    "hardWins": 125,
+    "easyWins": 75,
+    "draws": 0,
+    "hardMean": 0.625,
+    "easyMean": 0.375,
+    "metric": "round win rate",
+    "scenario": "two players, complete hand/round"
+  },
+  {
+    "game": "hearts",
+    "games": 200,
+    "hardWins": 184,
+    "easyWins": 13,
+    "draws": 3,
+    "hardMean": 1.9375,
+    "easyMean": 11.8425,
+    "metric": "penalty per deal (lower better)",
+    "scenario": "four players, two per level, one complete deal"
+  },
+  {
+    "game": "sechs-nimmt",
+    "games": 200,
+    "hardWins": 165,
+    "easyWins": 33,
+    "draws": 2,
+    "hardMean": 6.005,
+    "easyMean": 14.755,
+    "metric": "penalty per deal (lower better)",
+    "scenario": "two players, one complete ten-card deal"
+  }
+]
