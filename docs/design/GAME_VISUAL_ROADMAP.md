@@ -2,11 +2,13 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 01.11.2026: 61 spielbare Spiele, 46 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 10 done, 97 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10, Sudoku, 2048 und Wellenwacht sowie die ausdrücklich beauftragten neuen Spielwelten Backgammon, Hearts und Five Card Draw sind visuell abgeschlossen. Die ersten sechs kleinen Backlog-Spiele sind spielbar; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 51 bestehenden Spieloberflächen und 46 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
+**Stand 01.11.2026: 65 spielbare Spiele, 42 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 14 done, 93 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10, Sudoku, 2048 und Wellenwacht sowie die ausdrücklich beauftragten neuen Spielwelten Backgammon, Hearts und Five Card Draw sowie Scrabble, Omaha Hi/Lo, Short Deck Poker und Seven Card Stud sind visuell abgeschlossen. Die ersten sechs kleinen Backlog-Spiele sind spielbar; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 51 bestehenden Spieloberflächen und 42 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
 
-Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Mit den gesondert beauftragten Hearts und Five Card Draw gibt es aktuell 15 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
+Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
 BACKLOG-03 ist mit Bots, eigenen Materialien, sechs Bildschirmgrößen, echten Mehrspieler-/Zuschaueransichten, Pause und Reconnect geprüft. Die dauerhaften Bilder und tatsächlichen Spiel-Commits stehen in den Manifesten für [Backgammon / VIS-065](../../games/backgammon/evidence.json), [Hearts / VIS-067](../../games/hearts/evidence.json) und [Five Card Draw / VIS-068](../../games/five-card-draw/evidence.json). Bei Draw kommen acht Aufnahmen derselben Poker-/Omaha-Tische vor/nach der gemeinsamen Chip-Auslagerung hinzu. Es gab zuvor keine spielbaren Frontends dieser drei Spiele; die neuen Oberflächen sind Erstimplementierungen. Keine weiteren VIS- oder V2-Pakete sind dadurch freigegeben.
+
+BACKLOG-04 ergänzt die ausdrücklich freigegebenen Spielwelten VIS-050, VIS-051, VIS-052 und VIS-066 mit 64 Originalbildern, Regeltests und echter Mehrspieler-/Bot-Abnahme. Details und echte Commits: [Backlog-Protokoll](../backlog/WEITERE_SPIELE.md). Die hier implementierten Spiele benutzen vorhandene Raum-Spieler-IDs; parallele Identitäts- und V2-Arbeiten bleiben getrennt. Keine weitere Freigabe.
 
 ## Verbindliche Arbeitsweise
 
@@ -91,7 +93,6 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | VIS-060 | Regelwahnsinn | 8–12 h |
 | VIS-081 | Doppelagent | 9–14 h |
 | VIS-071 | Geschenkfänger | 9–14 h |
-| VIS-052 | Short Deck Poker | 9–14 h |
 | VIS-074 | Wortjagd | 9–14 h |
 | VIS-053 | Stichmeister | 10–15 h |
 | VIS-075 | Stillgestanden! | 10–15 h |
@@ -100,13 +101,11 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | VIS-062 | Infektionsjagd | 12–18 h |
 | VIS-063 | Letzter Schutzplatz | 12–18 h |
 | VIS-077 | Minenlauf | 12–18 h |
-| VIS-050 | Omaha Hi/Lo | 12–18 h |
 | VIS-094 | Reaktor-Notfall | 12–18 h |
 | VIS-092 | Geschenkdiebe | 13–20 h |
 | VIS-072 | Rhythmus-Rausch | 14–21 h |
 | VIS-076 | Schatzgräber | 14–21 h |
 | VIS-069 | Schatzinsel | 14–21 h |
-| VIS-051 | Seven Card Stud | 14–21 h |
 | VIS-064 | Kistenchaos | 15–23 h |
 | VIS-079 | Schubsarena | 15–23 h |
 | VIS-061 | Jäger & Schatten | 16–24 h |
@@ -116,7 +115,6 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | VIS-093 | Fallenbauer | 18–27 h |
 | VIS-058 | Labyrinth-Brett | 18–27 h |
 | VIS-088 | Schach | 20–30 h |
-| VIS-066 | Scrabble | 20–30 h |
 | VIS-086 | Skat | 22–33 h |
 | VIS-087 | Doppelkopf | 24–36 h |
 | VIS-090 | Gebietskampf (Risiko-inspiriert) | 28–42 h |
@@ -1506,82 +1504,82 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-050 – Omaha Hi/Lo
 
 - **Spiel-ID/Kategorie:** `omaha-hi-lo` / Kartenspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 12–18 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Planung 12–18 h.
+- **Frontend:** `public/games/omaha-hi-lo/omaha-hi-lo.js`, `public/games/omaha-hi-lo/omaha-hi-lo.css`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/backlog-kit.js`, `public/game-design.js`, `public/games/omaha-hi-lo/poker-world.js`, `public/games/omaha-hi-lo/poker-world.css`, `public/games/five-card-draw/poker-chips.js`, `public/games/five-card-draw/poker-chips.css`.
+- **Aktueller Stand:** Individual poker world using the existing betting and chip components.
+- **Optische Verbesserungsziele:** Many seated players use a vertical table ledger on phones; private cards and betting controls remain in the dock.
 - **Stil:** Casino-Salon mit klar getrennter High-/Low-Wertung.
 - **Hintergrund:** Ruhiger gemeinsamer Pokerraum mit eigenem Hi/Lo-Akzent.
 - **Spielfeld:** Community-Board und zwei Wertungsbereiche; keine neue Tischgeometrie vor Gameplayfreigabe.
 - **Figuren/Karten/Objekte:** Vier Handkarten und getrennte High-/Low-Potmarkierungen.
 - **Status und Aktionen:** High, qualifiziertes Low und geteilte Pots verständlich anzeigen.
 - **Mobil:** Vier Karten und zwei Wertungen vertikal lesbar.
-- **Technische Grenzen:** Low-Qualifikation erst nach freigegebener Regelimplementierung spezifizieren; keine fremden Hände zeigen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Low-Qualifikation erst nach freigegebener Regelimplementierung spezifizieren; keine fremden Hände zeigen. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001, VIS-002, VIS-024; zuerst separate Gameplay-Freigabe und Implementierung von omaha-hi-lo.
+- **Abhängigkeiten:** VIS-001; tatsächliches Gameplay im ausdrücklichen BACKLOG-04-Auftrag umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - High-/Low-Aufteilung und fehlendes qualifiziertes Low unterscheidbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Implementierungscommit `b4968176fa08a046a1aa34694bef919c5e8c50ba`; [Regeln und Prüfungen](../../games/omaha-hi-lo/README.md), [Originalbilder und SHA-256](../../games/omaha-hi-lo/evidence.json). Desktop/Touch, sechs Größen, Zuschauer, Pause, Reconnect und Ende geprüft.
 
 <a id="vis-051"></a>
 ### VIS-051 – Seven Card Stud
 
 - **Spiel-ID/Kategorie:** `seven-card-stud` / Kartenspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 14–21 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Planung 14–21 h.
+- **Frontend:** `public/games/seven-card-stud/seven-card-stud.js`, `public/games/seven-card-stud/seven-card-stud.css`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/backlog-kit.js`, `public/game-design.js`, `public/games/omaha-hi-lo/poker-world.js`, `public/games/omaha-hi-lo/poker-world.css`, `public/games/five-card-draw/poker-chips.js`, `public/games/five-card-draw/poker-chips.css`.
+- **Aktueller Stand:** Individual poker world using the existing betting and chip components.
+- **Optische Verbesserungsziele:** Many seated players use a vertical table ledger on phones; private cards and betting controls remain in the dock.
 - **Stil:** Eleganter privater Kartenclub für offene und verdeckte persönliche Karten.
 - **Hintergrund:** Dunkles Leder und ruhiger Filz.
 - **Spielfeld:** Sitzplätze mit ausreichend Raum für sieben Karten je Spieler.
 - **Figuren/Karten/Objekte:** Offene Karten anders behandeln als verdeckte Rücken, ohne Werte zu verraten.
 - **Status und Aktionen:** Setzrunden und sichtbare persönliche Kartenreihen klar markieren.
 - **Mobil:** Persönliche Kartenreihen scrollbar, eigene Karten priorisieren.
-- **Technische Grenzen:** Öffentliche/verdeckte Stud-Karten strikt nach künftigem Serverzustand trennen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Öffentliche/verdeckte Stud-Karten strikt nach künftigem Serverzustand trennen. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001, VIS-002; zuerst separate Gameplay-Freigabe und Implementierung von seven-card-stud.
+- **Abhängigkeiten:** VIS-001; tatsächliches Gameplay im ausdrücklichen BACKLOG-04-Auftrag umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Jede offene und verdeckte Kartenphase separat erfassbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Implementierungscommit `8b6c982c53728b890750ec096b88d9a5d3687bf2`; [Regeln und Prüfungen](../../games/seven-card-stud/README.md), [Originalbilder und SHA-256](../../games/seven-card-stud/evidence.json). Desktop/Touch, sechs Größen, Zuschauer, Pause, Reconnect und Ende geprüft.
 
 <a id="vis-052"></a>
 ### VIS-052 – Short Deck Poker
 
 - **Spiel-ID/Kategorie:** `short-deck` / Kartenspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 9–14 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Planung 9–14 h.
+- **Frontend:** `public/games/short-deck/short-deck.js`, `public/games/short-deck/short-deck.css`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/backlog-kit.js`, `public/game-design.js`, `public/games/omaha-hi-lo/poker-world.js`, `public/games/omaha-hi-lo/poker-world.css`, `public/games/five-card-draw/poker-chips.js`, `public/games/five-card-draw/poker-chips.css`.
+- **Aktueller Stand:** Individual poker world using the existing betting and chip components.
+- **Optische Verbesserungsziele:** Many seated players use a vertical table ledger on phones; private cards and betting controls remain in the dock.
 - **Stil:** Kompakter Casino-Tisch mit eigener 36-Karten-Kennzeichnung.
 - **Hintergrund:** Pokerraum mit dezentem eigenem Variantenakzent.
 - **Spielfeld:** Bestehende Poker-Tischsprache erst nach implementierter Variante übernehmen.
 - **Figuren/Karten/Objekte:** Reduzierter Kartensatz, klare Ränge und gleichartige verdeckte Rücken.
 - **Status und Aktionen:** Variantenregeln und aktive Wertung sichtbar, ohne Regelhinweise als Ergebnis auszugeben.
 - **Mobil:** Eigene Hand, Board und Setzaktion bleiben gleichzeitig bedienbar.
-- **Technische Grenzen:** Sonderrangfolge und Kartensatz nicht als bloße CSS-Variante implementieren. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Sonderrangfolge und Kartensatz nicht als bloße CSS-Variante implementieren. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001, VIS-002; zuerst separate Gameplay-Freigabe und Implementierung von short-deck.
+- **Abhängigkeiten:** VIS-001; tatsächliches Gameplay im ausdrücklichen BACKLOG-04-Auftrag umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - 36-Karten-Variante und besondere Wertungsfolge klar ausgewiesen.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Implementierungscommit `23c2dbf4cf91954716dfe96d173d5d1d028e923b`; [Regeln und Prüfungen](../../games/short-deck/README.md), [Originalbilder und SHA-256](../../games/short-deck/evidence.json). Desktop/Touch, sechs Größen, Zuschauer, Pause, Reconnect und Ende geprüft.
 
 <a id="vis-053"></a>
 ### VIS-053 – Stichmeister
@@ -1938,28 +1936,28 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-066 – Scrabble
 
 - **Spiel-ID/Kategorie:** `scrabble` / Brettspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 20–30 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Planung 20–30 h.
+- **Frontend:** `public/games/scrabble/scrabble.js`, `public/games/scrabble/scrabble.css`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/backlog-kit.js`, `public/game-design.js`.
+- **Aktueller Stand:** Own wooden word workshop, 15 by 15 scroll/zoom board, private large tile rack and authoritative score preview.
+- **Optische Verbesserungsziele:** Phone board scrolls internally and zooms to preserve 44-pixel squares; use Centre board to navigate.
 - **Stil:** Eigene hochwertige Wortspiel-Werkbank.
 - **Hintergrund:** Ruhiger Holz-/Filztisch ohne Wörter im Hintergrund.
 - **Spielfeld:** 15×15-Brett mit beschrifteten Prämienfeldern nach freigegebenen Daten.
 - **Figuren/Karten/Objekte:** Eigene Buchstabensteine und Wertindizes, keine Originalgrafik.
 - **Status und Aktionen:** Entwurf, bestätigtes Wort und Punktvorschau klar trennen.
 - **Mobil:** Verschiebbares Brett und große Buchstabenablage.
-- **Technische Grenzen:** Keine Wörterbuch-/Wertungslogik in Dekoration oder Client neu erfinden. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Keine Wörterbuch-/Wertungslogik in Dekoration oder Client neu erfinden. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von scrabble.
+- **Abhängigkeiten:** VIS-001; tatsächliches Gameplay im ausdrücklichen BACKLOG-04-Auftrag umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Prämienfelder und unbestätigte Wortentwürfe eindeutig.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Implementierungscommit `bb962270a086a4edaf306db1d4f7e1fb987eabd8`; [Regeln und Prüfungen](../../games/scrabble/README.md), [Originalbilder und SHA-256](../../games/scrabble/evidence.json). Desktop/Touch, sechs Größen, Zuschauer, Pause, Reconnect und Ende geprüft.
 
 <a id="vis-067"></a>
 ### VIS-067 – Hearts

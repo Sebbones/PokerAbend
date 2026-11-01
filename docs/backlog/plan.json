@@ -177,10 +177,122 @@
         "short-deck",
         "seven-card-stud"
       ],
-      "status": "in_progress",
-      "implementation_commit": null,
-      "test_results": [],
-      "completed_at": null
+      "status": "done",
+      "implementation_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
+      "test_results": [
+        {
+          "command": "Four isolated Playwright configs, desktop and touch",
+          "passed": 20,
+          "failed": 0,
+          "by_game": {
+            "scrabble": 4,
+            "omaha-hi-lo": 4,
+            "short-deck": 6,
+            "seven-card-stud": 6
+          }
+        },
+        {
+          "command": "Existing Draw browser cases",
+          "passed": 6,
+          "failed": 0,
+          "log": "games/seven-card-stud/_artifacts/poker-draw-regression.log",
+          "selection": "Six Draw ui.spec.js cases passed in the combined run. Four separate baseline cases initially failed and were repaired/rechecked as recorded below."
+        },
+        {
+          "command": "Holdem/Omaha same-participant chip and motion regression with full test-profile transfer",
+          "passed": 4,
+          "failed": 0,
+          "log": "games/seven-card-stud/_artifacts/poker-regression-release.log"
+        },
+        {
+          "command": "npm test (final source/image proof included)",
+          "total": 1098,
+          "passed": 1095,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 52.129,
+          "skip_reason": "Three existing restore tests require bash, unavailable on the local Windows runner.",
+          "log": "games/seven-card-stud/_artifacts/full-node-final.log"
+        },
+        {
+          "command": "node --test test/new-games.test.js test/game-visual-roadmap.test.js test/card-interaction.test.js",
+          "passed": 108,
+          "failed": 0,
+          "log": "games/seven-card-stud/_artifacts/final-proof-tests.log"
+        }
+      ],
+      "completed_at": "2026-11-01",
+      "implementation_commits": {
+        "scrabble": "bb962270a086a4edaf306db1d4f7e1fb987eabd8",
+        "omaha-hi-lo": "b4968176fa08a046a1aa34694bef919c5e8c50ba",
+        "short-deck": "23c2dbf4cf91954716dfe96d173d5d1d028e923b",
+        "seven-card-stud": "8b6c982c53728b890750ec096b88d9a5d3687bf2"
+      },
+      "commits": [
+        "bb962270a086a4edaf306db1d4f7e1fb987eabd8",
+        "b4968176fa08a046a1aa34694bef919c5e8c50ba",
+        "23c2dbf4cf91954716dfe96d173d5d1d028e923b",
+        "8b6c982c53728b890750ec096b88d9a5d3687bf2"
+      ],
+      "scope": "Only the four expressly authorised games, bots, visual worlds and directly necessary reuse/compatibility tests. Stop here. No V2 implementation in these game commits.",
+      "shared_source_audit_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
+      "shared_source_audit": [
+        {
+          "path": "games/poker/engine/table.js",
+          "sha256": "218554472156f7533886f45664950d124d0cf0add82fc62494db065a8cb0f318"
+        },
+        {
+          "path": "games/poker/engine/cards.js",
+          "sha256": "4c3ba71c72940bda54861019b204aaa7b5696436b285ad9f6c5590c7b3e5372b"
+        },
+        {
+          "path": "games/bots.js",
+          "sha256": "9f42c3fbe0397d3a5594783f8938f8f89fbbd19f5a33800fb36010f1dcb72c32"
+        },
+        {
+          "path": "games/five-card-draw/room.js",
+          "sha256": "67230f584ccf5b506986d4ad99d0a7e8a674fd21a0598556ec070bde09d7cac3"
+        },
+        {
+          "path": "games/five-card-draw/table.js",
+          "sha256": "a8267dc82b18fe1e6096985ebd292936e689a8278d8576cab1f9ab3b7c035cd6"
+        },
+        {
+          "path": "games/omaha-hi-lo/poker-room.js",
+          "sha256": "7100c6c570a4678962c6cfa98873b1bb7a0f3335828b5c864453004a7e47c00d"
+        },
+        {
+          "path": "games/omaha-hi-lo/bot.js",
+          "sha256": "eb347d2023df6f92b68dd85d3dac758e0cf15877b3b82490511d67d1d701ed28"
+        },
+        {
+          "path": "public/games/omaha-hi-lo/poker-world.js",
+          "sha256": "e29afe58c160625d739e2660e52b07e081370633b0e80daf03b108ea80f719ca"
+        },
+        {
+          "path": "public/games/omaha-hi-lo/poker-world.css",
+          "sha256": "977c4b07b8cda93539be8383303b285b03413aa7dd2502d1cf1542832bf50de4"
+        },
+        {
+          "path": "public/games/five-card-draw/poker-chips.js",
+          "sha256": "dd5454e96f250b7aa1dbb198d1402f079ffb6dd7ab4138f995d1305ce88dfb09"
+        },
+        {
+          "path": "public/games/five-card-draw/poker-chips.css",
+          "sha256": "f4787f1bb135b611077eead8e2d15d4b855fca19fb1cfb8a92a54cecc25373cd"
+        }
+      ],
+      "permanent_screenshots": 64,
+      "logs_policy": "Ignored local _artifacts logs are reproduction pointers, not committed GitHub downloads.",
+      "initial_poker_comparison": {
+        "passed": 6,
+        "failed": 4,
+        "reason": "Room token alone transferred into a different authenticated test profile after parallel identity binding.",
+        "log": "games/seven-card-stud/_artifacts/poker-draw-regression.log",
+        "follow_up_passed": 4,
+        "follow_up_failed": 0,
+        "follow_up_log": "games/seven-card-stud/_artifacts/poker-regression-release.log"
+      }
     }
   ],
   "games": [
@@ -445,9 +557,9 @@
     {
       "id": "omaha-hi-lo",
       "name": "Omaha Hi/Lo",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-04",
-      "implementation_commit": null,
+      "implementation_commit": "b4968176fa08a046a1aa34694bef919c5e8c50ba",
       "test_results": [
         {
           "command": "node --test games/omaha-hi-lo/rules.test.js",
@@ -486,14 +598,38 @@
         "public/games/omaha-hi-lo/evidence/playing-mobil.png",
         "public/games/omaha-hi-lo/evidence/showdown-desktop.png",
         "public/games/omaha-hi-lo/evidence/showdown-mobil.png"
-      ]
+      ],
+      "source_audit_commit": "b4968176fa08a046a1aa34694bef919c5e8c50ba",
+      "source_audit": [
+        {
+          "path": "games/omaha-hi-lo/index.js",
+          "sha256": "8be638c4bd6fbfdc7363440cd712022327f9b65c1f799664b3c6f5644ed48a9c"
+        },
+        {
+          "path": "games/omaha-hi-lo/room.js",
+          "sha256": "c1fa721ca1b5201549804228c9bca863b9db9d925528ae6650012203d1319a3c"
+        },
+        {
+          "path": "games/omaha-hi-lo/table.js",
+          "sha256": "3bc0d6a8ec3e5330eb28c903734558086e3ca6be3f5e68b3326272ca05306df0"
+        },
+        {
+          "path": "public/games/omaha-hi-lo/omaha-hi-lo.js",
+          "sha256": "8e49d9291236cd218aa720602a35b7076025739db8eac4e3f620a874064134bb"
+        },
+        {
+          "path": "public/games/omaha-hi-lo/omaha-hi-lo.css",
+          "sha256": "774ba47ddec1fb38637b8428a2d3e5b9d48d1fa2854556a0b215bb2278ffdbf1"
+        }
+      ],
+      "completed_at": "2026-11-01"
     },
     {
       "id": "seven-card-stud",
       "name": "Seven Card Stud",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-04",
-      "implementation_commit": null,
+      "implementation_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
       "test_results": [
         {
           "command": "node --test games/seven-card-stud/rules.test.js",
@@ -534,14 +670,38 @@
         "public/games/seven-card-stud/evidence/seven-common-mobil.png",
         "public/games/seven-card-stud/evidence/showdown-desktop.png",
         "public/games/seven-card-stud/evidence/showdown-mobil.png"
-      ]
+      ],
+      "source_audit_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
+      "source_audit": [
+        {
+          "path": "games/seven-card-stud/index.js",
+          "sha256": "f23c76d8832b6934c198448f0a4432daba2c1842c2573c397217841a6c1f1cea"
+        },
+        {
+          "path": "games/seven-card-stud/room.js",
+          "sha256": "1dab555f22c646402dd990ee6907f63873c52222ac608154a14cee94722588d7"
+        },
+        {
+          "path": "games/seven-card-stud/table.js",
+          "sha256": "9c693baf1111bc0b27fdaeab0d5303f5523d10a23fe3ff78e4a4521c26124df2"
+        },
+        {
+          "path": "public/games/seven-card-stud/seven-card-stud.js",
+          "sha256": "2cacfec477175e7937aab0ad1323e47caf86dfec0aef51c30d063a008ef11a6c"
+        },
+        {
+          "path": "public/games/seven-card-stud/seven-card-stud.css",
+          "sha256": "2445052e4ae36eed066db72951db1be90a7940beb3c6e687c83583e13f4df1c5"
+        }
+      ],
+      "completed_at": "2026-11-01"
     },
     {
       "id": "short-deck",
       "name": "Short Deck Poker",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-04",
-      "implementation_commit": null,
+      "implementation_commit": "23c2dbf4cf91954716dfe96d173d5d1d028e923b",
       "test_results": [
         {
           "command": "node --test games/short-deck/rules.test.js",
@@ -582,7 +742,31 @@
         "public/games/short-deck/evidence/playing-mobil.png",
         "public/games/short-deck/evidence/showdown-desktop.png",
         "public/games/short-deck/evidence/showdown-mobil.png"
-      ]
+      ],
+      "source_audit_commit": "23c2dbf4cf91954716dfe96d173d5d1d028e923b",
+      "source_audit": [
+        {
+          "path": "games/short-deck/index.js",
+          "sha256": "1439d4750ae6ce3987e380dc49484e028062d52b9e3a731671d577dd3e061135"
+        },
+        {
+          "path": "games/short-deck/room.js",
+          "sha256": "e915d3445ad7f86f685e66593e39e52b0de2d69af009a0bcebbde8c3e95839a1"
+        },
+        {
+          "path": "games/short-deck/table.js",
+          "sha256": "2c164c7fda828f8ebbd68d2b7796079eef9a4634226f0d74b88b96bd2b5c36c1"
+        },
+        {
+          "path": "public/games/short-deck/short-deck.js",
+          "sha256": "3c5705fcfdbd0bfd15f38a8553fb3c016b8f22bdce121ab1a8131d80ea4a3c42"
+        },
+        {
+          "path": "public/games/short-deck/short-deck.css",
+          "sha256": "a60c6e080d8b5c978f4c41d3828172b29cdfa07076daac42e0acb8f4a85a89b8"
+        }
+      ],
+      "completed_at": "2026-11-01"
     },
     {
       "id": "stichmeister",
@@ -937,9 +1121,9 @@
     {
       "id": "scrabble",
       "name": "Scrabble",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-04",
-      "implementation_commit": null,
+      "implementation_commit": "bb962270a086a4edaf306db1d4f7e1fb987eabd8",
       "test_results": [
         {
           "command": "node --test games/scrabble/rules.test.js",
@@ -982,7 +1166,39 @@
         "public/games/scrabble/evidence/review-mobil.png",
         "public/games/scrabble/evidence/vote-desktop.png",
         "public/games/scrabble/evidence/vote-mobil.png"
-      ]
+      ],
+      "source_audit_commit": "bb962270a086a4edaf306db1d4f7e1fb987eabd8",
+      "source_audit": [
+        {
+          "path": "games/scrabble/index.js",
+          "sha256": "c3a5eecd368425eafb0dc8522844fd678e1845b5d30588612ceecc1f8776d8f4"
+        },
+        {
+          "path": "games/scrabble/room.js",
+          "sha256": "e5192bbb98805d15591bd008f6c74a396c82397a285a9d8606fbd32aed2acc0e"
+        },
+        {
+          "path": "games/scrabble/rules.js",
+          "sha256": "f464de82c76c227204b7537735c7e733867f16a7e96a5cd486766f83f394896f"
+        },
+        {
+          "path": "public/games/scrabble/scrabble.js",
+          "sha256": "9fc23ffdd92ab1a6467b66934a9b987cae61975649c13316098765fc5b947d9a"
+        },
+        {
+          "path": "public/games/scrabble/scrabble.css",
+          "sha256": "6f80249a7f63fbcbdab3ea3db42d8be2e584aa83c3bdec5fd0a3ff401df7acf4"
+        },
+        {
+          "path": "games/scrabble/bot.js",
+          "sha256": "85a26f4e4f50eea43d5045fb8ef6cb530dd5e79da4b50e0333240a8edad52e6a"
+        },
+        {
+          "path": "games/scrabble/words.js",
+          "sha256": "792162986cc34344f4673fbb9d6c63be7c778eb4d8b3719994e90d8714ccd4c0"
+        }
+      ],
+      "completed_at": "2026-11-01"
     },
     {
       "id": "hearts",
@@ -1182,9 +1398,15 @@
         ]
       },
       "shared_variant_reuse": {
-        "authorization": "Explicit BACKLOG-04 reuse of chip accounts and settlement",
-        "implementation_commit": null
-      }
+        "authorization": "Explicit BACKLOG-04 reuse of chip accounts, antes and settlement",
+        "implementation_commit": "23c2dbf4cf91954716dfe96d173d5d1d028e923b",
+        "commits": [
+          "b4968176fa08a046a1aa34694bef919c5e8c50ba",
+          "23c2dbf4cf91954716dfe96d173d5d1d028e923b"
+        ],
+        "test_profile_compatibility_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2"
+      },
+      "source_audit_commit": "23c2dbf4cf91954716dfe96d173d5d1d028e923b"
     },
     {
       "id": "schatzinsel",

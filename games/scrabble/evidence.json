@@ -1,7 +1,7 @@
 {
   "game_id": "scrabble",
   "captured_at": "2026-11-01",
-  "implementation_commit": null,
+  "implementation_commit": "bb962270a086a4edaf306db1d4f7e1fb987eabd8",
   "kind": "Original isolated local rooms, first playable frontend; own CSS materials and no original logo",
   "screenshots": [
     {
@@ -76,5 +76,7 @@
       "path": "public/games/scrabble/evidence/vote-mobil.png",
       "sha256": "b64848093a75ae47b9f7dae50a312d5d641571caa830542504445ba33a6e3867"
     }
-  ]
+  ],
+  "capture_command": "CLASSIC_CAPTURE_EVIDENCE=1 playwright test --config games/scrabble/playwright.config.js",
+  "reproduction": "Isolated local rooms. Normal runs write ignored _artifacts/screenshots; explicit capture updates permanent images and requires refreshed manifest hashes."
 }

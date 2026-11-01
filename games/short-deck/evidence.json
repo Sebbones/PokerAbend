@@ -1,7 +1,7 @@
 {
   "game_id": "short-deck",
   "captured_at": "2026-11-01",
-  "implementation_commit": null,
+  "implementation_commit": "23c2dbf4cf91954716dfe96d173d5d1d028e923b",
   "kind": "First playable frontend, own ruby table, original isolated multi-client/bot/house-rule rooms",
   "screenshots": [
     {
@@ -68,5 +68,7 @@
       "path": "public/games/short-deck/evidence/showdown-mobil.png",
       "sha256": "100c5e49775fa916178abfce6585fdd727c467ec4667945f04ab744fad09681d"
     }
-  ]
+  ],
+  "capture_command": "CLASSIC_CAPTURE_EVIDENCE=1 playwright test --config games/short-deck/playwright.config.js",
+  "reproduction": "Isolated local rooms. Normal runs write ignored _artifacts/screenshots; explicit capture updates permanent images and requires refreshed manifest hashes."
 }

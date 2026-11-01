@@ -1,7 +1,7 @@
 {
   "game_id": "seven-card-stud",
   "captured_at": "2026-11-01",
-  "implementation_commit": null,
+  "implementation_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
   "kind": "First playable frontend; original isolated multi-client, bot and seven-human common-river test rooms",
   "screenshots": [
     {
@@ -68,5 +68,7 @@
       "path": "public/games/seven-card-stud/evidence/showdown-mobil.png",
       "sha256": "e1c341dd21a4eacdcc294e46688bb081ebe34b8d8f0b53b3d46e131b259ff813"
     }
-  ]
+  ],
+  "capture_command": "CLASSIC_CAPTURE_EVIDENCE=1 playwright test --config games/seven-card-stud/playwright.config.js",
+  "reproduction": "Isolated local rooms. Normal runs write ignored _artifacts/screenshots; explicit capture updates permanent images and requires refreshed manifest hashes."
 }

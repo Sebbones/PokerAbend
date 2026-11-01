@@ -1,7 +1,7 @@
 {
   "game_id": "omaha-hi-lo",
   "captured_at": "2026-11-01",
-  "implementation_commit": null,
+  "implementation_commit": "b4968176fa08a046a1aa34694bef919c5e8c50ba",
   "kind": "First playable frontend, original local multiplayer and bot test rooms; own CSS world",
   "screenshots": [
     {
@@ -60,5 +60,7 @@
       "path": "public/games/omaha-hi-lo/evidence/showdown-mobil.png",
       "sha256": "892f8e5e9d2ffb1ee2704ad37f51b6288c9010131f7ad76fd3385d8a7db03627"
     }
-  ]
+  ],
+  "capture_command": "CLASSIC_CAPTURE_EVIDENCE=1 playwright test --config games/omaha-hi-lo/playwright.config.js",
+  "reproduction": "Isolated local rooms. Normal runs write ignored _artifacts/screenshots; explicit capture updates permanent images and requires refreshed manifest hashes."
 }

@@ -872,19 +872,22 @@
       "game_id": "omaha-hi-lo",
       "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
       "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
-      "documentation": "games/omaha-hi-lo/README.md"
+      "documentation": "games/omaha-hi-lo/README.md",
+      "implementation_commit": "b4968176fa08a046a1aa34694bef919c5e8c50ba"
     },
     {
       "game_id": "short-deck",
       "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
       "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
-      "documentation": "games/short-deck/README.md"
+      "documentation": "games/short-deck/README.md",
+      "implementation_commit": "23c2dbf4cf91954716dfe96d173d5d1d028e923b"
     },
     {
       "game_id": "seven-card-stud",
       "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
       "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
-      "documentation": "games/seven-card-stud/README.md"
+      "documentation": "games/seven-card-stud/README.md",
+      "implementation_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2"
     }
   ]
 }

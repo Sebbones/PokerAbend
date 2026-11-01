@@ -2,7 +2,45 @@
 
 Stand: 31.10.2026. Ausgangsstand `2dd1d4b12a9b9c03991272ca654b60f614c919ab`. Nutzerauftrag: die vorhandene Roadmap-Rubrik **„Weitere Spiele – 0 von 41 erledigt“** umsetzen. Ausdrücklich gewählte Reihenfolge: **zuerst Risiko-Würfeln, Story-Chaos und Zahlenreihe**. Fortschritt und tatsächliche Implementierungscommits: [plan.json](plan.json). Das ist ein Ausführungsprotokoll der bestehenden 41 IDs, keine zweite Quelle für neue Spielideen; Beschreibungen des verbleibenden Backlogs stehen weiterhin in `games/planned.js`.
 
-**Aktueller Fortschritt am 01.11.2026: 9 von 41 implementiert, 32 offen.** 58 Raumspiele plus drei lokale Einzelspieler ergeben 61 spielbare Spiele. Der aktuelle Auftrag umfasst ausschließlich BACKLOG-03; danach stoppen. Keine V2-Pakete.
+**Aktueller Fortschritt am 01.11.2026: 13 von 41 implementiert, 28 offen.** 62 Raumspiele plus drei lokale Einzelspieler ergeben 65 spielbare Spiele. Der aktuelle Spieleauftrag umfasst ausschließlich BACKLOG-04; danach stoppen. Diese Spiel-Commits implementieren keine V2-Pakete. Parallel entstandene Plattform-/Identitäts-Commits anderer Autoren bleiben erhalten.
+
+## BACKLOG-04 – Scrabble und drei Poker-Varianten
+
+Ausdrücklich freigegeben: genau Scrabble, Omaha Hi/Lo, Short Deck Poker und Seven Card Stud mit Bots, Tests und eigenen Spielwelten. Die Spieler werden weiterhin ausschließlich über die bestehenden Raum-Spieler-IDs angesprochen. Kein neuer Identitätsmechanismus im Spielcode. `server/`, Bestenliste, Presence, Erfolge, Cookies, „Ich“-Dialog und `docker-compose.prod.yml` wurden in diesen vier Spiel-Commits nicht bearbeitet. Neue Dateien liegen ausschließlich in den vier Spielordnern unter `games/` und `public/games/`.
+
+| Spiel | Tatsächlicher Umfang | Dauerhafte Nachweise |
+| --- | --- | --- |
+| Scrabble | 102 deutsche Steine, Standard-Prämien, Kreuzwörter, Server-Vorschau, Anzweifeln/Mehrheit, Endabrechnung, Drag/Touch und Zoombrett | [Regeln und Tests](../../games/scrabble/README.md) · [18 Bilder](../../games/scrabble/evidence.json) |
+| Omaha Hi/Lo | Genau 2+3, 8-or-better Low, Scoop, geviertelte Pots, getrennte Low-Berechtigung je Side Pot, Pot Limit | [Regeln und Tests](../../games/omaha-hi-lo/README.md) · [14 Bilder](../../games/omaha-hi-lo/evidence.json) |
+| Short Deck Poker | 36 Karten, Flush vor Full House, Ass–6-Straße, umschaltbare Drilling-Hausregel, Ante allein oder mit Blinds | [Regeln und Tests](../../games/short-deck/README.md) · [16 Bilder](../../games/short-deck/evidence.json) |
+| Seven Card Stud | 2–7 Spieler, Ante/Bring-in, feste kleine/große Wette, offene Startreihenfolge, private 7th und echte gemeinsame Notfallkarte | [Regeln und Tests](../../games/seven-card-stud/README.md) · [16 Bilder](../../games/seven-card-stud/evidence.json) |
+
+Die Poker-Varianten erben die vorhandenen Setz-, Rückzahlungs-, Pot-, Side-Pot- und Auszahlungsfunktionen. Kleine Haken ermöglichen Pot-Aufteilung, Ante-Zwangseinsätze, ersten Akteur und unterschiedliche Decks; bestehende Standardpfade behalten ihre bisherigen Entscheidungen. Draws Chipraum, Nachkauf, Abbruch, Dealerwechsel und Snapshots werden ebenfalls wiederverwendet. Die gemeinsame bestehende Poker-Bot-Setzentscheidung verwendet variantengerechte Stichproben aus unbekannten Karten. Der bereits vorhandene Chipstapel-/Animationshelfer bleibt die visuelle Grundlage. Der neue gemeinsame Poker-Welt-Renderer gilt nur für die drei neuen Varianten; jede hat eigene Materialien. Alte Controller bleiben erhalten.
+
+**29 neue Regeltests** enthalten **30 vollständige Scrabble-Partien und 240 Poker-Bot-Hände**. Nach jeder Aktion werden physische Steine/Karten, Chips und Netto-Gewinne geprüft. Zuschauer-JSON wird nach privaten Karten durchsucht; bei Stud zusätzlich nach Deck und Burn Cards und nach der privaten siebten Karte. Änderungen fremder verdeckter Karten verändern die öffentliche Stud-Ansicht nicht. Die Wortliste ist eine unabhängig erstellte Bot-Hilfe, kein Wörterbuch und kein automatischer Ausschluss menschlicher Wörter.
+
+**20 neue Browserfälle bestanden**: Scrabble 4, Hi/Lo 4, Short Deck 6 und Stud 6. Desktop und Touch, sechs Bildschirmgrößen, getrennte menschliche Kontexte, Zuschauer, Host-Pause, echter Disconnect/Connect, erhaltene Eingabeentwürfe, Endzustände und Live-Bots sind abgedeckt. Sieben echte Stud-Spieler erreichen die gemeinsame siebte Karte auf Desktop und Handy, ohne ihre privaten Anfangskarten an Zuschauer auszuliefern. Zusätzlich sind die sechs bestehenden Draw-Browserfälle und vier Hold’em-/Omaha-Chipvergleiche nachgeprüft.
+
+Der erste Scrabble-Browserlauf fand einen Lobby-Nullzugriff und eine schlecht erreichbare Querformat-Bestätigung; beide sind korrigiert. Bildkontrolle führte zu dunkleren Premium- und Stud-Personenbeschriftungen. Beim Poker-Vergleich genügte die frühere Übernahme nur des Raumtokens nach der parallel eingeführten Identitätsbindung nicht mehr. Der Test übernimmt jetzt das vollständige isolierte Testprofil, ohne Cookie-Namen oder Konto-IDs zu interpretieren. Dieselbe Raum-Spieler-ID, dieselbe Hand, unveränderte Chipmaße und beide Bewegungseinstellungen bleiben harte Assertions. Die vier Nachprüfungen bestehen; die Identitätsimplementierung wurde nicht geändert.
+
+Ein Spiel-Commit pro Umsetzung: Scrabble [`bb96227`](https://github.com/TTLPSCWA/PokerAbend/commit/bb962270a086a4edaf306db1d4f7e1fb987eabd8), Hi/Lo [`b496817`](https://github.com/TTLPSCWA/PokerAbend/commit/b4968176fa08a046a1aa34694bef919c5e8c50ba), Short Deck [`23c2dbf`](https://github.com/TTLPSCWA/PokerAbend/commit/23c2dbf4cf91954716dfe96d173d5d1d028e923b), Stud [`8b6c982`](https://github.com/TTLPSCWA/PokerAbend/commit/8b6c982c53728b890750ec096b88d9a5d3687bf2). Der Abschlussnachweis verknüpft die vorhandenen Git-Objekte, Quellhashes und **64 Original-PNGs**. Alte Draw-Quellhashes bleiben als `pre_variant_reuse_audit` erhalten; die freigegebenen gemeinsamen Änderungen bekommen eigene Commit-/Hashreferenzen.
+
+Die individuellen Spielwelten **VIS-050, VIS-051, VIS-052 und VIS-066** sind abgeschlossen: jetzt 14 visuelle Pakete fertig, 93 geplant. Die ursprünglichen 13 CUX-Pakete bleiben unverändert in ihrer Freigabe; die drei neuen Poker-Spiele ergänzen nur die aktuelle Inventur. Bestehende V2-Statusangaben anderer Autoren werden nicht zurückgesetzt. Nach BACKLOG-04 endet dieser Auftrag. Kein Produktivdeployment.
+
+### Abschließende Laufzahlen BACKLOG-04
+
+| Prüfung | Ergebnis | Lokales Rohprotokoll |
+| --- | --- | --- |
+| Vollständiger Node-Bestand einschließlich Quell-/Bildnachweisen | **1095 bestanden, 0 fehlgeschlagen, 3 bestehende Bash-Restore-Auslassungen**, 1098 insgesamt; 52,13 s | `games/seven-card-stud/_artifacts/full-node-final.log` |
+| Neue Regeln und bestehende CUX-/VIS-/Katalog-Nachweise | **108 bestanden, 0 fehlgeschlagen** | `games/seven-card-stud/_artifacts/final-proof-tests.log` |
+| Scrabble Desktop/Touch | **4 bestanden** | `games/scrabble/_artifacts/browser-final.log` |
+| Omaha Hi/Lo Desktop/Touch | **4 bestanden** | `games/omaha-hi-lo/_artifacts/browser-release.log` |
+| Short Deck einschließlich Hausregeln Desktop/Touch | **6 bestanden** | `games/short-deck/_artifacts/browser-release.log` |
+| Stud einschließlich sieben realer Spieler Desktop/Touch | **6 bestanden** | `games/seven-card-stud/_artifacts/browser-final.log` |
+| Bestehende Draw-Fälle im gemeinsamen Nachlauf | **6 bestanden**; vier damalige Poker-Vergleichsfehler getrennt nachgeprüft | `games/seven-card-stud/_artifacts/poker-draw-regression.log` |
+| Hold’em-/Omaha-Vergleich nach Testprofil-Korrektur | **4 bestanden, 0 fehlgeschlagen**, 22,0 s | `games/seven-card-stud/_artifacts/poker-regression-release.log` |
+
+`playwright ... --list` findet alle **42** Fälle der bestehenden Mehrspieler-Suite einschließlich der 20 neuen; dies ist ein Discovery-Nachweis und kein behaupteter vollständiger 42-Fall-Neulauf. Regeln und Browserfälle sind über bestehende Testdateien in `npm test` und `npm run test:ui` eingebunden. Die Rohlogs unter `_artifacts/` sind lokale ignorierte Reproduktionshinweise; dauerhaft committed sind Ergebniszahlen, Quell-/Bildhashes und die Original-PNGs. Die drei Node-Auslassungen betreffen bestehende Restore-Skripte bei lokal fehlendem Bash, keine neuen Spiele.
 
 ## BACKLOG-03 – Backgammon, Hearts und Five Card Draw
 
@@ -143,6 +181,6 @@ Implementierungscommit für BACKLOG-02: **[`8751c0baa542083eb0a9b7fb5bb35e55b6ed
 
 Implementierungscommit für BACKLOG-01: **[`69b46d6c98aaf5b9cc402a41782110f5386129c7`](https://github.com/TTLPSCWA/PokerAbend/commit/69b46d6c98aaf5b9cc402a41782110f5386129c7)**. Der folgende Nachweis-Commit verknüpft genau dieses bestehende Git-Objekt mit den tatsächlichen Quellhashes, 26 PNGs und Testergebnissen. Beide werden direkt auf `main` geführt.
 
-Die verbleibenden **32 Spiele** stehen unverändert mit ihren bestehenden IDs und Regeln im Backlog. `plan.json` hält den Gesamtbestand als `in_progress` fest; der aktuelle Auftrag endet nach BACKLOG-03. Weitere Spiele benötigen einen neuen Auftrag. Die neun separat geplanten lokalen Solo-Spiele, die großen Projekte und die V2-Pakete gehören nicht zu dieser 41er-Rubrik.
+Die verbleibenden **28 Spiele** stehen unverändert mit ihren bestehenden IDs und Regeln im Backlog. `plan.json` hält den Gesamtbestand als `in_progress` fest; der aktuelle Auftrag endet nach BACKLOG-04. Weitere Spiele benötigen einen neuen Auftrag. Die neun separat geplanten lokalen Solo-Spiele, die großen Projekte und die V2-Pakete gehören nicht zu dieser 41er-Rubrik.
 
 Pushes auf `main` starten den bestehenden Test-/GHCR-Workflow. Eine Image-Veröffentlichung ist kein Produktivdeployment. Auf dem Produktivserver werden in diesem Auftrag keine Befehle ausgeführt und keine Daten geändert.
