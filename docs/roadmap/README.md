@@ -5,7 +5,7 @@
 
 ## Wichtige Dateien
 
-- **Separate visuelle Planung:** [Design-Roadmap für alle Spiele](../design/GAME_VISUAL_ROADMAP.md), [JSON-Pakete](../design/game-visual-roadmap.json) und [Designstandard](../design/GAME_VISUAL_GUIDELINES.md). Scotland Yard ist der geprüfte Pilot; auch die anschließend beauftragten Kartenwelten UNO, Skip-Bo und Phase 10 sind abgeschlossen. Die weiteren 91 VIS-Pakete benötigen eigene Freigaben und ändern keine V2-Statusangaben.
+- **Separate visuelle Planung:** [Design-Roadmap für alle Spiele](../design/GAME_VISUAL_ROADMAP.md), [JSON-Pakete](../design/game-visual-roadmap.json) und [Designstandard](../design/GAME_VISUAL_GUIDELINES.md). Scotland Yard ist der geprüfte Pilot; auch die anschließend beauftragten Kartenwelten UNO, Skip-Bo und Phase 10 sind abgeschlossen. Die weiteren 100 VIS-Pakete (51 spielbare Spiele und 49 Konzepte; Stand der Prüfung 01.11.2026) benötigen eigene Freigaben und ändern keine V2-Statusangaben.
 - `docs/roadmap/V2_ADDENDUM_2026-10-30.md`: Sieben ergänzte Vorhaben zu Risiko, Catan-artigem Spiel, mehr Erfolgen, Presence, Einstellungen, Bot-Schwierigkeit und Adminverwaltung. Teil der verbindlichen Planung.
 - `docs/roadmap/plan.json`: Maschinenlesbare Master-Roadmap mit stabilen Arbeitspaket-IDs, Abhängigkeiten, Sicherheit, Akzeptanz und Status.
 - `docs/roadmap/POKERABEND_V2_ROADMAP.md`: Menschenlesbare Zusammenfassung, Prioritäten und Arbeitsanweisung.
