@@ -11,3 +11,21 @@ for(const game of ['viergewinnt','reversi','backgammon'])test(`V2-16 ${game}: 20
     }finally{r.dispose();}
   }record(t,{game,games:200,hardWins:hard,easyWins:easy,draws:draw,searchNodeCap:game==='reversi'?120:600,scenario:game==='backgammon'?'complete games from seeded legal home-board positions':'complete games from standard opening'});assert.ok(hard>easy+20,`${hard} vs ${easy}, draws ${draw}`);
 });
+
+for(const game of ['poker','omaha','farbenchaos','hearts','sechs-nimmt'])test(`V2-16 ${game}: 200 seeded deals/hands, alternating levels, real rules and conserved scores/chips`,t=>{
+  let hard=0,easy=0,hardPoints=0,easyPoints=0,draw=0;
+  for(let n=0;n<200;n++){
+    const levels=game==='hearts'?(n%2?['easy','hard','easy','hard']:['hard','easy','hard','easy']):n%2?['easy','hard']:['hard','easy'];
+    const f=botFixture(game,levels,40000+n,{startStack:200,smallBlind:5,bigBlind:10}),{r,bots}=f;
+    try{let moves=0;const chips=r.table?.totalChips();while((r.table?!r.table.hand.done:r.phase==='playing'&&(game!=='hearts'||!r.lastDeal)&&(game!=='sechs-nimmt'||r.deal===1))&&moves++<3000)f.step();assert.ok(moves<3000,game+' finishes');
+      const hi=bots.filter(p=>p.botDifficulty==='hard'),lo=bots.filter(p=>p.botDifficulty==='easy');let h,e;
+      if(r.table){assert.equal(r.table.totalChips(),chips);h=r.table.seats[r.players.get(hi[0].id).seat].stack-r.settings.startStack;e=-h;}
+      else if(game==='hearts'){assert.equal(Object.values(r.lastDeal.raw).reduce((a,b)=>a+b,0),26);h=hi.reduce((s,p)=>s+r.lastDeal.points[p.id],0)/hi.length;e=lo.reduce((s,p)=>s+r.lastDeal.points[p.id],0)/lo.length;}
+      else if(game==='sechs-nimmt'){h=r.totals[hi[0].id];e=r.totals[lo[0].id];}
+      else{h=r.result.winners.includes(hi[0].id)?1:0;e=1-h;}
+      hardPoints+=h;easyPoints+=e;const low=['hearts','sechs-nimmt'].includes(game);if(h===e)draw++;else if(low?h<e:h>e)hard++;else easy++;
+    }finally{r.dispose();}
+  }
+  const low=['hearts','sechs-nimmt'].includes(game),better=low?hardPoints<easyPoints:hardPoints>easyPoints;
+  record(t,{game,games:200,hardWins:hard,easyWins:easy,draws:draw,hardMean:hardPoints/200,easyMean:easyPoints/200,metric:game==='hearts'||game==='sechs-nimmt'?'penalty per deal (lower better)':game==='farbenchaos'?'round win rate':'net chips per hand',scenario:game==='hearts'?'four players, two per level, one complete deal':game==='sechs-nimmt'?'two players, one complete ten-card deal':'two players, complete hand/round'});assert.ok(better,`${game}: Hard ${hardPoints} vs Easy ${easyPoints}`);
+});
