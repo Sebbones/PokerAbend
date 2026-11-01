@@ -90,12 +90,8 @@ export class Table {
       toAct: -1, lastAggressor: -1, done: false, result: null, shown: new Set(),
     };
     this.log({ type: 'hand', no: this.handNo });
-    this.post(sb, this.smallBlind, 'sb');
-    this.post(bb, this.bigBlind, 'bb');
-    this.hand.currentBet = this.bigBlind; // Wer nicht foldet, muss den vollen Big Blind bringen
-    this.hand.lastAggressor = bb;
-
-    const first = headsUp ? sb : this.nextActor(bb);
+    this.postForcedBets(sb, bb);
+    const first = this.firstToAct(sb, bb);
     this.hand.toAct = first;
     this.afterAction();
     return this.hand;
@@ -109,6 +105,24 @@ export class Table {
     if (s.stack === 0) p.allIn = true;
     p.lastAction = kind === 'sb' ? 'Small Blind' : 'Big Blind';
     this.log({ type: kind, seat, amount: a });
+  }
+
+  postForcedBets(sb, bb) {
+    this.post(sb, this.smallBlind, 'sb');
+    this.post(bb, this.bigBlind, 'bb');
+    this.hand.currentBet = this.bigBlind;
+    this.hand.lastAggressor = bb;
+  }
+
+  firstToAct(sb, bb) { return this.hand.headsUp ? sb : this.nextActor(bb); }
+
+  postAntes(amount) {
+    const h = this.hand;
+    for (const i of h.seats) {
+      const ante = Math.min(amount, this.seats[i].stack);
+      this.put(i, ante); h.players[i].bet = 0; h.players[i].lastAction = 'Ante';
+      this.log({ type: 'ante', seat: i, amount: ante });
+    }
   }
 
   canAct(seat) {
@@ -302,7 +316,7 @@ export class Table {
     const idx = STREETS.indexOf(h.street);
     if (idx === STREETS.length - 1) { this.finish(); return; }
     h.street = STREETS[idx + 1];
-    h.deck.pop(); // Burn Card
+    this.burnCard();
     const n = h.street === 'flop' ? 3 : 1;
     for (let k = 0; k < n; k++) h.board.push(h.deck.pop());
     this.log({ type: 'street', street: h.street, board: h.board.slice() });
@@ -345,6 +359,8 @@ export class Table {
 
   createDeck() { return shuffle(newDeck(), this.rng); }
 
+  burnCard() { return this.hand.deck.pop(); }
+
   // A split-pot variant may partition an already computed main/side pot.
   // The actual refunds, chip division, tie order and payouts remain below.
   splitPot(pot) { return [pot]; }
@@ -352,7 +368,7 @@ export class Table {
   // Flop games complete the board; draw poker overrides only this hook.
   completeBoard() {
     const h = this.hand;
-    while (h.board.length < 5) { h.deck.pop(); h.board.push(h.deck.pop()); }
+    while (h.board.length < 5) { this.burnCard(); h.board.push(h.deck.pop()); }
   }
 
   finish() {

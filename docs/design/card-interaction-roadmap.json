@@ -20,9 +20,10 @@
       "monopoly-deal",
       "hearts",
       "five-card-draw",
-      "omaha-hi-lo"
+      "omaha-hi-lo",
+      "short-deck"
     ],
-    "registered_count": 16,
+    "registered_count": 17,
     "authorized_pilots": 3,
     "planned_followups": 10,
     "baseline_registered_card_games": [
@@ -871,6 +872,12 @@
       "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
       "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
       "documentation": "games/omaha-hi-lo/README.md"
+    },
+    {
+      "game_id": "short-deck",
+      "authorization": "Explicit BACKLOG-04 gameplay and visual-world request, 2026-11-01",
+      "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
+      "documentation": "games/short-deck/README.md"
     }
   ]
 }

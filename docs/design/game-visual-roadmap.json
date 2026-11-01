@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 63,
-    "not_implemented_count": 44,
+    "playable_count": 64,
+    "not_implemented_count": 43,
     "completed_visual_count": 10,
-    "open_playable_visual_count": 53,
+    "open_playable_visual_count": 54,
     "planned_visual_count": 97,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -94,6 +94,7 @@
       "five-card-draw",
       "scrabble",
       "omaha-hi-lo",
+      "short-deck",
       "sudoku",
       "wellenwacht"
     ],
@@ -108,7 +109,6 @@
       "mahjong-solitaire",
       "match-3",
       "seven-card-stud",
-      "short-deck",
       "stichmeister",
       "exploding-deck",
       "labyrinth-brett",
@@ -342,6 +342,7 @@
     "VIS-037",
     "VIS-043",
     "VIS-084",
+    "VIS-052",
     "VIS-041",
     "VIS-057",
     "VIS-045",
@@ -408,7 +409,8 @@
     "VIS-057",
     "VIS-084",
     "VIS-066",
-    "VIS-050"
+    "VIS-050",
+    "VIS-052"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -418,7 +420,6 @@
     "VIS-060",
     "VIS-081",
     "VIS-071",
-    "VIS-052",
     "VIS-074",
     "VIS-053",
     "VIS-075",
@@ -7430,24 +7431,31 @@
       "game_name": "Short Deck Poker",
       "category": "karten",
       "category_name": "Kartenspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/short-deck/index.js",
       "existing_visual_work": {
         "level": "no_frontend",
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/games/short-deck/short-deck.js",
+        "public/games/short-deck/short-deck.css"
+      ],
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
       "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
+      "current_design": "Individual poker world using the existing betting and chip components.",
       "known_visual_weaknesses": [
         "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "assessment_method": "Explicit BACKLOG-04 gameplay, bot and world authorization; real engine and browser checks required before completion.",
       "gameplay_summary": "Poker mit 36 Karten: Kleine Ränge fehlen, ein Flush schlägt ein Full House.",
       "planned_style": "Kompakter Casino-Tisch mit eigener 36-Karten-Kennzeichnung.",
       "background_concept": "Pokerraum mit dezentem eigenem Variantenakzent.",
@@ -7500,9 +7508,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "short-deck",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/short-deck/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],

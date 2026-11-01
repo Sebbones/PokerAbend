@@ -1,0 +1,72 @@
+{
+  "game_id": "short-deck",
+  "captured_at": "2026-11-01",
+  "implementation_commit": null,
+  "kind": "First playable frontend, own ruby table, original isolated multi-client/bot/house-rule rooms",
+  "screenshots": [
+    {
+      "path": "public/games/short-deck/evidence/1440x900.png",
+      "sha256": "6b49482319b9fc3970a1491a5082334ebb9f38163b09e8dd3468bbc407a24c1e"
+    },
+    {
+      "path": "public/games/short-deck/evidence/1920x1080.png",
+      "sha256": "483febbac5cff3849a5a703873e43f09252f955d58edcd69157dac37711d3244"
+    },
+    {
+      "path": "public/games/short-deck/evidence/360x800.png",
+      "sha256": "f19895291a0e2a24fec12c8971c5f6ad790e8b2117b3ab7781c853deb5773aed"
+    },
+    {
+      "path": "public/games/short-deck/evidence/390x844.png",
+      "sha256": "2ce5817c2ab732dbd83971d9c235a7428bc22191cea34bcf6c2d905fead22e73"
+    },
+    {
+      "path": "public/games/short-deck/evidence/768x1024.png",
+      "sha256": "cf95fe9e6240c7ee96b57eb57891ab14f0d1b78dddbdbde54421f7c9b8141f74"
+    },
+    {
+      "path": "public/games/short-deck/evidence/900x450.png",
+      "sha256": "e2d57ccbbadddadaa8ff89763fe14f1821403673d0f14658cc70b407b51410e4"
+    },
+    {
+      "path": "public/games/short-deck/evidence/bots-desktop.png",
+      "sha256": "70cd10ed0f6ebc5716d627c583045322925fbf3ab6caa78f51c16999bc9239f6"
+    },
+    {
+      "path": "public/games/short-deck/evidence/bots-mobil.png",
+      "sha256": "1d65b0d86172532a8bd96a2c698d8379370cadd50bcfefde18540597a7d94043"
+    },
+    {
+      "path": "public/games/short-deck/evidence/house-desktop.png",
+      "sha256": "450da8d6004d13edb2e2086ed545c23743e27d7fe9534eb72f239a678b36439b"
+    },
+    {
+      "path": "public/games/short-deck/evidence/house-mobil.png",
+      "sha256": "95015f1b31513eaf7fc45404e8758cb0a821f0f784696f67ab502cb379c38226"
+    },
+    {
+      "path": "public/games/short-deck/evidence/middle-desktop.png",
+      "sha256": "fcb627b5f477975f1ebb2167ac63129dbce35b7a1f8b1ee38134805c2c49a76d"
+    },
+    {
+      "path": "public/games/short-deck/evidence/middle-mobil.png",
+      "sha256": "a76bc26d2128cf93a5076401651975f0aee93fe9f7452966d13b688ef487a78b"
+    },
+    {
+      "path": "public/games/short-deck/evidence/playing-desktop.png",
+      "sha256": "6b49482319b9fc3970a1491a5082334ebb9f38163b09e8dd3468bbc407a24c1e"
+    },
+    {
+      "path": "public/games/short-deck/evidence/playing-mobil.png",
+      "sha256": "7c09ee1f1d195d972a8a32a6d2cdfad3809abc7c9032d8b12ab2453b92be037f"
+    },
+    {
+      "path": "public/games/short-deck/evidence/showdown-desktop.png",
+      "sha256": "1aea3505936d21a40364bab9ccafc4e35d5002c7cf6afc08d87d97839d50b266"
+    },
+    {
+      "path": "public/games/short-deck/evidence/showdown-mobil.png",
+      "sha256": "100c5e49775fa916178abfce6585fdd727c467ec4667945f04ab744fad09681d"
+    }
+  ]
+}

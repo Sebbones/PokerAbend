@@ -29,10 +29,7 @@ export const PLANNED = [
     description: "Sieben Karten pro Spieler, davon einige offen: Setzen und die beste Fünferhand bilden.",
     rules: ["Jeder beginnt mit zwei verdeckten und einer offenen Karte, danach wird reihum gesetzt.","Weitere offene Karten folgen mit Setzrunden, die siebte Karte bleibt verdeckt.","Zum Schluss zählt die beste Pokerhand aus fünf der sieben eigenen Karten."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),
   }),
-  spiel({ id: 'short-deck', name: 'Short Deck Poker', category: 'karten', minPlayers: 2, maxPlayers: 9, duration: 25, paeckchen: 'spaeter',
-    description: "Poker mit 36 Karten: Kleine Ränge fehlen, ein Flush schlägt ein Full House.",
-    rules: ["Gespielt wird mit den Rängen Sechs bis Ass, also insgesamt 36 Karten.","Jeder bekommt zwei eigene Karten und nutzt bis zu fünf Gemeinschaftskarten.","Die Setzrunden folgen Hold’em; ein Flush steht hier über einem Full House."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),
-  }),
+
   spiel({ id: 'stichmeister', name: 'Stichmeister', category: 'karten', minPlayers: 3, maxPlayers: 6, duration: 20, paeckchen: 'spaeter',
     description: "Vorher ansagen, wie viele Stiche man holt – nur genaue Vorhersagen bringen Bonuspunkte.",
     rules: ["Alle erhalten gleich viele Karten und sagen vor der Runde ihre Stichzahl an.","Wer eine angespielte Farbe auf der Hand hat, muss diese Farbe bedienen.","Die höchste Karte der Farbe gewinnt den Stich; ein vereinbarter Trumpf kann sie schlagen.","Nach der Runde gibt es Punkte für die Stiche und einen Bonus für eine genaue Ansage."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),

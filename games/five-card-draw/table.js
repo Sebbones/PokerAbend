@@ -12,7 +12,7 @@ export class DrawTable extends Table {
     this.smallBlind=0;this.bigBlind=0;
     try{super.startHand();}finally{this.smallBlind=sb;this.bigBlind=bb;}
     const h=this.hand;
-    for(const i of h.seats){const amount=Math.min(this.ante,this.seats[i].stack);this.put(i,amount);h.players[i].bet=0;h.players[i].lastAction='Ante';this.log({type:'ante',seat:i,amount});}
+    this.postAntes(this.ante);
     h.currentBet=0;h.lastRaise=bb;h.raises=0;h.lastAggressor=-1;h.toAct=this.nextActor(h.button);this.afterAction();return h;
   }
   evaluate(cards){return bestHand(cards);}

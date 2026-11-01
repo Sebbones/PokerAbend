@@ -6,7 +6,7 @@ import {variantDecision} from './bot.js';
 export class PokerVariantRoom extends ChipRoom {
   constructor(code,settings,onChange){super(code,settings,onChange);this.opts.maxPlayers=this.constructor.MAX_PLAYERS||9;}
   gameView(id){const g=super.gameView(id),t=this.drawTable,h=t?.hand;return {...g,viewerId:id,board:h?[...h.board]:[],pots:h?structuredClone(h.done?h.result.pots:t.potsDisplay()):[],openCards:h?Object.fromEntries(h.seats.map(i=>[t.seats[i].id,t.exposedCards?t.exposedCards(i):[]])):{},bringIn:h?.bringIn??null,smallBet:this.settings.smallBet,bigBet:this.settings.bigBet};}
-  botStep(id,rng=Math.random){const view=this.gameView(id),action=variantDecision(view,{players:this.order.map(p=>({id:p,folded:!!this.drawTable.hand.players[this.seat(p)]?.folded}))},this.constructor.botRules,rng);if(action)this.wager(id,action.type,action.amount,this.revision,this.handKey);}
+  botStep(id,rng=Math.random){const view=this.gameView(id),action=variantDecision(view,{players:this.order.map(p=>({id:p,folded:!!this.drawTable.hand.players[this.seat(p)]?.folded}))},this.botRules||this.constructor.botRules,rng);if(action)this.wager(id,action.type,action.amount,this.revision,this.handKey);}
   resultText(h){return h.result.showdown?'Showdown – Pots und Gewinnhände sind abgerechnet':'Alle anderen haben gefoldet';}
 }
 export const CHIP_OPTIONS=ChipRoom.OPTIONS.filter(o=>['startStack','smallBlind','bigBlind','turnTime'].includes(o.key));
