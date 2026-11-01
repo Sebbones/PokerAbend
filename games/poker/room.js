@@ -6,6 +6,7 @@ import { bestHand, omahaBest, compareScores, outlook, equity } from './engine/ca
 import { BLIND_MODES, BLIND_PRESETS, blindLevels, levelIndex, untilNext, parseBlindList } from './blinds.js';
 import { cleanText } from '../../server/security.js';
 import { BaseRoom, AVATARS, HISTORY_ROUNDS } from '../../server/base-room.js';
+import { maintenance } from '../../server/maintenance.js';
 import { isSebastian } from './sebastian.js';
 
 export const DEFAULT_SETTINGS = {
@@ -411,6 +412,11 @@ export class Room extends BaseRoom {
   startNext(force = false) {
     this.clock.clearTimeout(this.nextTimer); this.nextTimer = null; this.nextAt = null;
     if (this.handRunning || (!this.started && !force) || (this.paused && !force)) return false;
+    if (maintenance.active) { // Update angekündigt: keine neue Hand, auch nicht per Timer
+      if (!this.updateNoted) { this.updateNoted = true; this.say('Update angekündigt – die nächste Hand startet erst nach dem Neustart'); }
+      return false;
+    }
+    this.updateNoted = false;
     if (force) this.started = true;
     this.cleanupAfterHand();
     this.applyBlinds();

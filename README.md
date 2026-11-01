@@ -416,14 +416,14 @@ Dafür gibt es `public/manifest.webmanifest`, Icons in `public/icons/` und einen
 | Extras | Gewinnmoment mit Chip-Regen und großem Betrag (stärker ab 50 BB oder Full House), Reaktionen (👍 😂 GG …), Abendstand mit Plus/Minus, größter Pot, beste Hand |
 | Handy | Eigene Hochformat-Ansicht mit großen Buttons |
 
-## Backups
+## Backup & Wiederherstellen
 
-`scripts/backup.sh` sichert das Daten-Volume (Tische, Verläufe, Bestenliste, Schlüssel) als `spieleabend-JJJJ-MM-TT_HHMM.tar.gz` und löscht eigene Sicherungen, die älter als 14 Tage sind. Das Volume wird automatisch gefunden (Docker Compose nennt es z. B. `webseite_poker_poker-data`).
+`scripts/backup.sh` sichert das Daten-Volume (Tische, Verläufe, Bestenliste, Tickets, Schlüssel) als `spieleabend-JJJJ-MM-TT_HHMM.tar.gz` und löscht eigene Sicherungen, die älter als 14 Tage sind. Das Volume wird automatisch gefunden (Docker Compose nennt es z. B. `webseite_poker_poker-data`).
 
 Auf dem Server einmal einrichten:
 
 ```bash
-chmod +x scripts/backup.sh
+chmod +x scripts/backup.sh scripts/restore-test.sh
 sudo mkdir -p /var/backups/spieleabend
 scripts/backup.sh            # einmal von Hand testen
 crontab -e                   # und diese Zeile eintragen – täglich um 4:30 Uhr:
@@ -431,6 +431,22 @@ crontab -e                   # und diese Zeile eintragen – täglich um 4:30 Uh
 ```
 
 Einstellbar über Umgebungsvariablen: `BACKUP_DIR` (Standard `/var/backups/spieleabend`), `KEEP_DAYS` (14), `VOLUME` (falls die Suche nicht passt).
+
+**Zweites Ziel außer Haus (optional):** Ist `BACKUP_RSYNC_TARGET` (z. B. `user@host:/pfad/spieleabend/`) oder `BACKUP_RCLONE_TARGET` (z. B. `meinremote:spieleabend`) gesetzt, kopiert `backup.sh` das neue Archiv nach dem Sichern dorthin. Ohne diese Variablen passiert nichts. Scheitert die Kopie, endet das Skript mit Fehler (und schreibt ihn ins Log); die lokale Sicherung bleibt erhalten.
+
+```bash
+BACKUP_RCLONE_TARGET=meinremote:spieleabend scripts/backup.sh
+```
+
+**Wiederherstellung prüfen:** Ein Backup, das sich nicht einspielen lässt, ist wertlos. `scripts/restore-test.sh` entpackt das neueste Backup (oder ein angegebenes Archiv) in einen temporären Ordner, startet den Server mit `DATA_DIR` darauf, prüft `/health` und das Laden von Bestenliste, Tickets und Tischen und räumt anschließend alles wieder auf. Die echten Daten und das laufende System bleiben unberührt. Es braucht Node 20+ und `tar` und endet mit 0 nur, wenn alles gelesen werden konnte.
+
+```bash
+scripts/restore-test.sh                                   # neuestes Backup in /var/backups/spieleabend
+BACKUP_DIR=/srv/backup scripts/restore-test.sh
+scripts/restore-test.sh /pfad/spieleabend-2026-11-01_0430.tar.gz
+# wöchentlich, sonntags um 5:00 Uhr:
+0 5 * * 0 /pfad/zum/repo/scripts/restore-test.sh >> /var/log/spieleabend-restore-test.log 2>&1
+```
 
 **Zurückspielen:** Container stoppen, Archiv ins Volume entpacken, Container starten:
 
@@ -440,6 +456,49 @@ docker run --rm -v webseite_poker_poker-data:/data -v /var/backups/spieleabend:/
   sh -c "rm -rf /data/* && tar xzf /backup/spieleabend-2026-10-25_0430.tar.gz -C /data"
 docker compose -f docker-compose.yml -f docker-compose.prod.yml start poker
 ```
+
+## Betrieb & Wartung
+
+### Update ankündigen und sauber beenden
+
+Vor einem Neustart rechtzeitig Bescheid sagen: Über die Admin-Seite (**Update ankündigen**, 1 bis 180 Minuten) oder per Signal `docker kill -s USR2 <container>` (Vorlauf `UPDATE_ANNOUNCE_MIN`, Standard 5 Minuten) erscheint bei allen ein Banner **„Update in X Minuten“**. Ab der Ankündigung starten **keine neuen Runden** mehr (Starten, nächste Hand, Abendprogramm; auch Pokers Automatik); laufende Runden und Züge gehen normal weiter, Tische bleiben nutzbar. Die Ankündigung kann zurückgenommen werden.
+
+Ist die Frist abgelaufen und keine Runde mehr aktiv, **speichert der Server alles und beendet sich** (Ende 0; `restart: unless-stopped` startet ihn wieder, ein neues Image kommt mit `docker compose pull && docker compose up -d`). Läuft nach der Frist noch eine Runde, wartet er höchstens `UPDATE_DRAIN_MAX_MIN` Minuten (Standard 15). Der Ablauf steht im Admin-Protokoll.
+
+Bei **SIGTERM** (`docker stop`) und **SIGINT** wird ebenfalls sofort alles gespeichert (Tische, Verläufe, Bestenliste); alle offenen Verbindungen erhalten **„Server startet neu – gleich wieder da“**. Der Browser verbindet sich selbst neu (Socket.IO-Wiederverbindung), meldet Tisch und Startseite automatisch wieder an und zeigt nach dem Neustart bei Bedarf **„Neue Version – Neu laden“**. Eine Runde, die beim Neustart gerade lief, muss der Host wie bisher neu starten (Speichern mitten in der Runde ist noch offen).
+
+### Version und „Was ist neu“
+
+Die Version steht in `package.json` (jetzt **2.0.0**), der Commit-Hash kommt als Build-Argument ins Image: Der Workflow übergibt `GIT_COMMIT` automatisch, lokal `docker build --build-arg GIT_COMMIT=$(git rev-parse HEAD) .`. Beides steht unter **Ich** und auf `/health` (`{"ok":true,"version":"2.0.0","commit":"abc1234","uptime":…}`).
+
+**Was ist neu** zeigt die neuesten erledigten Einträge aus `games/roadmap.js` – automatisch, sobald dort etwas auf erledigt gesetzt wird (mit Datum). Jeder Browser sieht den Hinweis **einmal pro neuer Version** (gemerkt in `poker:seenVersion`; ein ganz neuer Browser bekommt ihn nicht), außerdem jederzeit über **Ich → Was ist neu?**.
+
+### Admin-Seite (`/admin`)
+
+Zugang nur über die eigene Umgebungsvariable **`ADMIN_PASSWORD`** (in der `.env`). Sie hat nichts mit dem Gruppenpasswort oder `TICKET_ADMIN_PASSWORD` zu tun; **ohne `ADMIN_PASSWORD` gibt es `/admin` nicht** (404). Die Seite liegt zusätzlich hinter der normalen Seitenanmeldung. Eigener signierter Cookie (`pa_admin`, `HttpOnly`, `SameSite=Strict`, nur für `/admin`, 8 Stunden), nach 8 Fehlversuchen 15 Minuten gesperrt, alle Änderungen verlangen zusätzlich Herkunft und Anfrage-Header der Seite.
+
+- **Anzeigen:** offene Räume (Code, Spiel, Spieler mit Namen, Laufzeit, letzte Aktivität, Rundenstatus), Verbindungen und Spieler online, Laufzeit, Speicher, CPU, Größe der Datendateien, Fehler aus dem Browser (gruppiert), Admin-Protokoll.
+- **Aktionen** (jeweils mit Bestätigungsdialog): hängenden Raum schließen (alle Spieler landen mit Hinweis auf der Startseite), Update ankündigen oder zurücknehmen; Link zur Tickets-Verwaltung.
+- **Admin-Protokoll:** `DATA_DIR/admin-log.json` (letzte 500 Einträge: Anmeldung, fehlgeschlagene Anmeldung, geschlossene Räume, Update-Ankündigung und -Beenden). Die Datei gehört ins Daten-Backup. Eine beschädigte Datei bleibt unverändert; das Protokoll läuft dann nur im Speicher.
+
+### Fehler aus dem Browser
+
+`window.onerror` und `unhandledrejection` melden an den Server, höchstens **10 pro Minute und Verbindung**. Gespeichert wird nur ein auf 200 Zeichen gekürzter Text ohne URL-Parameter, ohne Namen der Mitspieler und ohne Chat-Inhalte, dazu Dateiname:Zeile und das Spiel (am Tisch vom Server bestimmt). Die Admin-Seite gruppiert nach Meldung mit Anzahl und Spiel; die Liste liegt nur im Speicher (nach einem Neustart leer). **Ich → Fehler melden** öffnet das Ticket-Formular als „Fehler“ und hängt die letzten fünf Meldungen an.
+
+### Ausfall-Wächter (Uptime)
+
+`/health` ist ohne Anmeldung erreichbar und liefert `200` mit JSON, solange der Server läuft. Ein externer Wächter (nicht auf demselben Server!) meldet Ausfälle, z. B. mit [Uptime Kuma](https://github.com/louislam/uptime-kuma): Monitor-Typ **HTTP(s) – Keyword**, URL `https://<domain>/health`, Keyword `"ok":true`, Intervall 60 Sekunden, bei 2–3 Fehlversuchen benachrichtigen (Discord, Telegram, E-Mail). Zusätzlich lohnt ein zweiter Monitor auf die Startseite. Beim angekündigten Update ist ein kurzer Ausfall zu erwarten.
+
+### Tests und CI
+
+| Befehl | Was |
+| --- | --- |
+| `npm run test:fast` | alle Node-Tests außer Simulationen und Langläufern (`scripts/test-fast.mjs`, unter etwa einer Minute) |
+| `npm test` | alle Node-Tests, auch die Simulationen |
+| `npm run test:smoke` | kleine Browser-Rauchprobe: Startseite, Kartenspiel, Brettspiel, jeweils Desktop und Handy |
+| `npm run test:ui` | alle Playwright-Prüfungen |
+
+Der Workflow `.github/workflows/docker.yml` führt bei jedem Push auf `main` erst `test:fast` und die Rauchprobe aus; **nur bei grünem Lauf wird das Image gebaut** (mit `GIT_COMMIT`). Jede Nacht (02:17 UTC) laufen alle Node-Tests und alle Playwright-Prüfungen ohne Image-Bau; Bericht (JUnit, HTML) als Artefakt `nachtlauf-bericht`.
 
 ## Zugangsschutz
 
@@ -497,7 +556,7 @@ public/            Browser
   games/kit.js       gemeinsamer Rahmen der Rundenspiele (Kopfzeile, Spielerleiste, Seitenleiste, Ablegespiel-Bedienung)
   games/party-kit.*  gemeinsamer Baustein der Partyspiele: Fortschritt, Fragekarte, Eingabezeile, Rangliste (baut auf kit.js auf)
   games/<spiel>/     <spiel>.js und <spiel>.css – nur der eigene Tisch und die Aktionen
-scripts/           backup.sh – tägliche Sicherung des Daten-Volumes (siehe „Backups“)
+scripts/           backup.sh – tägliche Sicherung (siehe „Backup & Wiederherstellen“), restore-test.sh – Wiederherstellungsprobe, test-fast.mjs – schnelle Tests
 test/              node:test – Engine inkl. 100.000 Zufallshänden, Räume, Server, Sicherheit, Plattform
 ```
 

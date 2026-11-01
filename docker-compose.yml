@@ -10,6 +10,7 @@ services:
       # Lokal leer lassen = ohne Passwort. Auf dem Server Pflicht (siehe docker-compose.prod.yml)
       SITE_PASSWORD: ${SITE_PASSWORD:-}
       TICKET_ADMIN_PASSWORD: ${TICKET_ADMIN_PASSWORD:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}   # leer = Admin-Seite /admin aus
     volumes:
       - poker-data:/app/data
 

@@ -82,14 +82,14 @@ function ticketDialog(id, title) {
   dialog.dataset.title = title;
   return dialog;
 }
-function openTicketEditor(ticket = null) {
+function openTicketEditor(ticket = null, prefill = null) { // prefill: { type, description } aus „Fehler melden“
   const data = ticketCache.data;
   if (!profile.name) { openProfile(true); return; }
   const dialog = ticketDialog('ticket-editor', ticket ? 'Ticket bearbeiten' : 'Ticket erstellen');
   dialog.innerHTML = I18n.html`<form id="ticket-edit-form" data-id="${ticket?.id || ''}" data-revision="${ticket?.revision || ''}"><h2 id="ticket-editor-title">${dialog.dataset.title}</h2><p>Beschreibe, was du dir wünschst oder wie sich der Fehler nachvollziehen lässt.</p>
     <label class="field"><span>Titel</span><input class="input" name="title" minlength="4" maxlength="100" required value="${esc(ticket?.title || '')}" placeholder="Eine kurze, konkrete Überschrift"></label>
-    <div class="ticket-edit-selects"><label class="field"><span>Art</span><select class="input" name="type" aria-label="Art">${ticketOptions(data.types, ticket?.type || 'idea')}</select></label><label class="field"><span>Spiel</span><select class="input" name="game" aria-label="Spiel">${ticketOptions({ '': 'Allgemein / Hub', ...Object.fromEntries(data.games.map((g) => [g.id, g.name])) }, ticket?.game || '')}</select></label></div>
-    <label class="field"><span>Beschreibung</span><textarea class="input" name="description" aria-label="Beschreibung" minlength="10" maxlength="4000" rows="8" required placeholder="Was soll passieren? Was passiert stattdessen?">${esc(ticket?.description || '')}</textarea></label>
+    <div class="ticket-edit-selects"><label class="field"><span>Art</span><select class="input" name="type" aria-label="Art">${ticketOptions(data.types, ticket?.type || prefill?.type || 'idea')}</select></label><label class="field"><span>Spiel</span><select class="input" name="game" aria-label="Spiel">${ticketOptions({ '': 'Allgemein / Hub', ...Object.fromEntries(data.games.map((g) => [g.id, g.name])) }, ticket?.game || '')}</select></label></div>
+    <label class="field"><span>Beschreibung</span><textarea class="input" name="description" aria-label="Beschreibung" minlength="10" maxlength="4000" rows="8" required placeholder="Was soll passieren? Was passiert stattdessen?">${esc(ticket?.description ?? prefill?.description ?? '')}</textarea></label>
     <p class="error" id="ticket-edit-error" role="alert"></p><div class="dlg-actions"><button type="button" class="btn btn-ghost" data-ticket-close>Abbrechen</button><button class="btn btn-brass" type="submit">${ticket ? 'Änderungen speichern' : 'Ticket erstellen'}</button></div></form>`;
   dialog.showModal(); dialog.querySelector('[name="title"]').focus();
 }

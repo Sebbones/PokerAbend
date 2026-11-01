@@ -8,7 +8,10 @@ import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, unlinkS
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GAMES, DEFAULT_GAME, gameList, singleplayerGameList, gameEvents, PLANNED, plannedGames } from '../games/index.js';
-import { resolvedRoadmap } from '../games/roadmap.js';
+import { maintenance, assertNewRoundAllowed } from './maintenance.js';
+import { versionInfo, createAdminLog, createClientErrors, createSystemSampler, cleanClientError } from './ops.js';
+import { createAdmin } from './admin.js';
+import { resolvedRoadmap, whatsNew } from '../games/roadmap.js';
 import { createPresence } from './presence.js';
 import { createTicketAPI } from './ticket-api.js';
 import { configureProgram, beginProgram, nextProgramStep, recordProgramResult, publicProgram, restoreProgram, programActive, programGames, programDefaults, programOptions, programSeats, validateProgramPlayers } from './party-program.js';
@@ -46,6 +49,10 @@ const AWAY_MIN = Number(process.env.PLAYER_TIMEOUT_MIN || 5); // wer so lange of
 
 const PUBLIC_DIR = join(__dirname, '..', 'public');
 const SITE_PASSWORD = process.env.SITE_PASSWORD || '';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || ''; // eigener Zugang für /admin; leer = Admin-Seite aus
+const VERSION = versionInfo();
+const UPDATE_DEFAULT_MIN = Number(process.env.UPDATE_ANNOUNCE_MIN || 5); // Vorlauf bei Ankündigung per Signal (SIGUSR2)
+const UPDATE_DRAIN_MAX_MIN = Number(process.env.UPDATE_DRAIN_MAX_MIN || 15); // so lange darf eine laufende Runde nach Fristende noch fertig werden
 const TRUST_PROXY = ['1', 'true', 'yes'].includes(String(process.env.TRUST_PROXY || '').toLowerCase());
 const MAX_CONN_PER_IP = Number(process.env.MAX_CONN_PER_IP || 30);
 
@@ -70,7 +77,7 @@ const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', TRUST_PROXY);
 app.use(securityHeaders);
-app.get('/health', (_req, res) => res.json({ ok: true }));
+app.get('/health', (_req, res) => res.json({ ok: true, version: VERSION.version, commit: VERSION.short, uptime: Math.round(process.uptime()) }));
 
 const isSecure = (req) => req.secure || (TRUST_PROXY && req.headers['x-forwarded-proto'] === 'https');
 const loggedIn = (req) => auth.valid(parseCookies(req.headers.cookie)[COOKIE]);
@@ -129,8 +136,23 @@ app.use((req, res, next) => {
 });
 app.get('/me', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  res.json({ mode: MODE, games: gameList(), singleplayerGames: singleplayerGameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
+  res.json({ mode: MODE, version: VERSION.version, commit: VERSION.short, games: gameList(), singleplayerGames: singleplayerGameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
 });
+app.get('/api/whats-new', (_req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.json({ version: VERSION.version, commit: VERSION.short, entries: whatsNew() });
+});
+// Admin-Seite: nur mit ADMIN_PASSWORD, eigener Cookie – das Gruppenpasswort gibt hier keinen Zugang
+const adminLog = createAdminLog(DATA_DIR);
+const clientErrors = createClientErrors();
+const sampler = createSystemSampler();
+if (ADMIN_PASSWORD) {
+  app.use('/admin', createAdmin({
+    password: ADMIN_PASSWORD, secret: SECRET, dataDir: DATA_DIR, secure: isSecure, trustProxy: TRUST_PROXY, log: adminLog, errors: clientErrors,
+    system: sampler, version: VERSION, rooms: () => adminRooms(), closeRoom: (code) => adminCloseRoom(code), online: () => adminOnline(),
+    announce: (minutes, by) => announceUpdate(minutes, by), cancelUpdate: () => cancelUpdate(),
+  }).router);
+} else console.log('Admin-Seite aus (kein ADMIN_PASSWORD gesetzt)');
 app.get('/roadmap', (_req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.json(resolvedRoadmap());
@@ -256,6 +278,7 @@ function load() {
       const r = game.restore(d, (kind, data) => onRoomChange(r, kind, data));
       r.game = game.id;
       r.unlisted = d.unlisted === true;
+      r.openedAt = Date.now();
       r.partyProgram = restoreProgram(d.partyProgram);
       r.lastSnapshot = d;
       archiveReview(r, { restoring: true });
@@ -324,6 +347,7 @@ function switchRoom(old, game, settings = {}, prepare = null) {
   }
   next.hostId = next.players.has(old.hostId) ? old.hostId : [...next.players.keys()][0];
   next.unlisted = !!old.unlisted;
+  next.openedAt = old.openedAt || Date.now();
   next.say(`Jetzt: ${variantName(game.id, game.name, next.variant)} (vorher ${before}${summary ? ` – ${summary}` : ''})`, 'summary');
   // Menschen zuerst hinsetzen; Bots, für die kein Platz mehr ist, verlassen den Raum (zuschauen bringt ihnen nichts)
   const isBot = (id) => next.players.get(id)?.bot;
@@ -448,6 +472,16 @@ function closeRoom(room) {
   presence.changed();
   save();
 }
+// Alle am Tisch landen mit einer Meldung auf der Startseite
+function sendHome(room, text) {
+  for (const sid of [...(io.sockets.adapter.rooms.get(room.code) || [])]) {
+    const s = io.sockets.sockets.get(sid);
+    if (!s) continue;
+    s.emit('closed', { text });
+    s.leave(room.code);
+    s.data.code = null; s.data.playerId = null;
+  }
+}
 const humansIn = (room) => [...room.players.values()].filter((p) => !p.bot && !p.kicked);
 
 function attach(socket, room, player) {
@@ -466,6 +500,9 @@ function attach(socket, room, player) {
 // ---------- Socket-Ereignisse ----------
 io.on('connection', (socket) => {
   const ip = clientIp(socket.request, TRUST_PROXY);
+  // Version und laufende Update-Ankündigung gleich beim Verbinden (auch nach einem Neustart)
+  socket.emit('version', { version: VERSION.version, commit: VERSION.short });
+  if (maintenance.active) socket.emit('maintenance', maintenance.state());
   connections.set(ip, (connections.get(ip) || 0) + 1);
   socket.on('disconnect', () => {
     presence.disconnect(socket.id);
@@ -522,6 +559,7 @@ io.on('connection', (socket) => {
       room.unlisted = unlisted === true;
       p = room.addPlayer(name, avatar);
     } catch (e) { codes.release(code); throw e; }
+    room.openedAt = Date.now();
     rooms.set(code, room);
     attach(socket, room, p);
     return { room, reply: { code, token: p.token, game: game.id } };
@@ -574,6 +612,7 @@ io.on('connection', (socket) => {
   // Ereignisse der Spiele: jedes Spiel bekommt nur seine eigenen
   for (const event of gameEvents()) {
     on(event, (d, room, p) => {
+      if (NEW_ROUND_EVENTS.includes(event)) assertNewRoundAllowed(); // Update angekündigt
       const program = room.partyProgram;
       if (event === 'start' && (program?.status === 'ready' || programActive(room))) {
         const next = program.status === 'ready' ? beginProgram(room, p.id) : nextProgramStep(room, p.id);
@@ -606,8 +645,8 @@ io.on('connection', (socket) => {
     if (seated.length > (v.maxPlayers || GAMES[room.game].maxPlayers)) throw new Error('Für diese Variante sitzen zu viele Spieler am Tisch');
     return { room: switchRoom(room, GAMES[room.game], { variant, ...(room.game === 'monopoly' && variant !== 'junior' ? { board: room.settings.board || 'default', theme: room.settings.theme || 'modern' } : {}) }) };
   });
-  on('programStart', (_data, room, p) => ({ room: startProgramStep(room, p.id, beginProgram(room, p.id)) }));
-  on('programNext', (_data, room, p) => ({ room: startProgramStep(room, p.id, nextProgramStep(room, p.id)) }));
+  on('programStart', (_data, room, p) => (assertNewRoundAllowed(), { room: startProgramStep(room, p.id, beginProgram(room, p.id)) }));
+  on('programNext', (_data, room, p) => (assertNewRoundAllowed(), { room: startProgramStep(room, p.id, nextProgramStep(room, p.id)) }));
   on('programStop', (_data, room, p) => {
     room.requireHost(p.id);
     if (room.busy) throw new Error('Beende oder brich zuerst die laufende Partie ab');
@@ -639,13 +678,7 @@ io.on('connection', (socket) => {
   // Host: Tisch schließen. Alle landen auf der Startseite, der Raum ist weg und der Code frei. Ergebnisse stehen schon in der Bestenliste.
   on('closeTable', (_d, room, p) => {
     room.requireHost(p.id);
-    for (const sid of [...(io.sockets.adapter.rooms.get(room.code) || [])]) {
-      const s = io.sockets.sockets.get(sid);
-      if (!s) continue;
-      s.emit('closed', { text: 'Der Host hat den Tisch geschlossen' });
-      s.leave(room.code);
-      s.data.code = null; s.data.playerId = null;
-    }
+    sendHome(room, 'Der Host hat den Tisch geschlossen');
     closeRoom(room);
     return { closed: true };
   }, { needRoom: true });
@@ -661,6 +694,22 @@ io.on('connection', (socket) => {
     const room = rooms.get(socket.data.code);
     if (!room?.players.get(socket.data.playerId)) return cb({ ok: false, error: 'Du bist an keinem Tisch' });
     cb({ ok: true, entries: room.historyAfter(data?.after), seq: room.logSeq });
+  });
+
+  // Fehler aus dem Browser: höchstens 10 pro Minute und Verbindung, Text gekürzt, ohne Namen
+  let errorTimes = [];
+  socket.on('clientError', (data) => {
+    const now = Date.now();
+    errorTimes = errorTimes.filter((t) => now - t < 60000);
+    if (errorTimes.length >= 10 || !data || typeof data !== 'object' || typeof data.message !== 'string') return;
+    errorTimes.push(now);
+    const room = rooms.get(socket.data.code);
+    const names = room ? [...room.players.values()].map((pl) => pl.name) : [];
+    const message = cleanClientError(data.message, names);
+    const where = typeof data.where === 'string' ? cleanClientError(data.where.split(/[?#]/)[0].split('/').pop(), names, 60) : '';
+    const claimed = typeof data.game === 'string' ? data.game : '';
+    const game = room?.game || (gameById(claimed) || singleplayerGameList().some((g) => g.id === claimed) ? claimed : 'hub');
+    clientErrors.record({ message, where, game });
   });
 
   // Kleine Reaktionen am Tisch
@@ -702,8 +751,11 @@ setInterval(() => {
 process.on('uncaughtException', (e) => console.error('Unerwarteter Fehler:', e));
 process.on('unhandledRejection', (e) => console.error('Unerwarteter Fehler:', e));
 
+// Ereignisse, mit denen eine neue Runde beginnt – während einer Update-Ankündigung gesperrt
+const NEW_ROUND_EVENTS = ['start', 'nextHand'];
+
 // Ein Spiel darf keine Plattform-Ereignisse überschreiben
-const RESERVED = ['create', 'join', 'kick', 'makeHost', 'history', 'react', 'switchGame', 'setVariant', 'disconnect', 'addBot', 'removeBot', 'lobby', 'peek', 'unlisted', 'park', 'leave', 'abortRound', 'closeTable', 'look', 'presence', 'programSave', 'programStart', 'programNext', 'programStop'];
+const RESERVED = ['create', 'join', 'kick', 'makeHost', 'history', 'react', 'switchGame', 'setVariant', 'disconnect', 'addBot', 'removeBot', 'lobby', 'peek', 'unlisted', 'park', 'leave', 'abortRound', 'closeTable', 'look', 'presence', 'programSave', 'programStart', 'programNext', 'programStop', 'clientError'];
 for (const g of Object.values(GAMES)) {
   const clash = Object.keys(g.events).filter((e) => RESERVED.includes(e));
   if (clash.length) throw new Error(`Spiel ${g.id}: Ereignisse ${clash.join(', ')} gehören der Plattform`);
@@ -712,16 +764,83 @@ for (const g of Object.values(GAMES)) {
 load();
 http.listen(PORT, () => console.log(`Spieleabend läuft auf http://localhost:${PORT}`));
 
-for (const sig of ['SIGINT', 'SIGTERM']) {
-  process.on(sig, () => {
-    for (const r of rooms.values()) { if (!r.busy) r.lastSnapshot = snapshotOf(r); else if (r.lastSnapshot) r.lastSnapshot.unlisted = !!r.unlisted; } // Privat-Schalter gilt auch mitten in der Runde
-    try {
-      mkdirSync(DATA_DIR, { recursive: true });
-      writeFileSync(SAVE_FILE, JSON.stringify([...rooms.values()].map((r) => r.lastSnapshot).filter(Boolean)));
-      for (const r of rooms.values()) saveHistory(r);
-      leaderboard.save();
-    } catch { /* egal */ }
-    process.exit(0);
+// ---------- Admin-Hilfen ----------
+function adminRooms() {
+  return [...rooms.values()].map((r) => {
+    const humans = [...r.players.values()].filter((p) => !p.bot && !p.kicked);
+    return {
+      code: r.code, game: r.game, gameName: GAMES[r.game]?.name || r.game, private: !!r.unlisted,
+      humans: humans.length, online: humans.filter((p) => p.connected).length, bots: [...r.players.values()].filter((p) => p.bot && !p.kicked).length,
+      names: humans.map((p) => p.name), openedAt: r.openedAt || Date.now(), lastActivity: r.lastActivity, busy: !!r.busy, paused: !!r.gamePaused,
+    };
+  }).sort((a, b) => b.lastActivity - a.lastActivity);
+}
+function adminOnline() {
+  const players = [...rooms.values()].reduce((n, r) => n + [...r.players.values()].filter((p) => !p.bot && p.connected).length, 0);
+  return { connections: io.of('/').sockets.size, players };
+}
+function adminCloseRoom(code) {
+  const room = rooms.get(code);
+  if (!room) return null;
+  const info = { code: room.code, gameName: GAMES[room.game]?.name || room.game, humans: humansIn(room).length };
+  sendHome(room, 'Der Admin hat den Tisch geschlossen');
+  closeRoom(room);
+  return info;
+}
+
+// ---------- Update-Ankündigung und sauberes Beenden ----------
+let updateDueSent = false;
+function announceUpdate(minutes, by) {
+  const state = maintenance.announce(minutes, by);
+  updateDueSent = false;
+  io.emit('maintenance', state);
+  return state;
+}
+function cancelUpdate() {
+  const was = maintenance.cancel();
+  if (was) io.emit('maintenance', null);
+  return was;
+}
+// Nach Fristende: sobald keine Runde mehr läuft (höchstens UPDATE_DRAIN_MAX_MIN danach) speichern und beenden
+setInterval(() => {
+  if (!maintenance.active || shuttingDown) return;
+  const now = Date.now();
+  if (!maintenance.due(now)) return;
+  if (!updateDueSent) { updateDueSent = true; io.emit('maintenance', maintenance.state(now)); }
+  const running = [...rooms.values()].some((r) => r.busy && [...r.players.values()].some((p) => !p.bot && p.connected));
+  if (!running || now >= maintenance.at + UPDATE_DRAIN_MAX_MIN * 60000) {
+    adminLog.add('Update: Server beendet', running ? 'Frist für laufende Runden abgelaufen' : 'keine Runde mehr aktiv');
+    shutdown('update');
+  }
+}, 2000).unref();
+
+function saveNow() {
+  for (const r of rooms.values()) { if (!r.busy) r.lastSnapshot = snapshotOf(r); else if (r.lastSnapshot) r.lastSnapshot.unlisted = !!r.unlisted; } // Privat-Schalter gilt auch mitten in der Runde
+  try {
+    mkdirSync(DATA_DIR, { recursive: true });
+    writeFileSync(SAVE_FILE + '.tmp', JSON.stringify([...rooms.values()].map((r) => r.lastSnapshot).filter(Boolean)));
+    renameSync(SAVE_FILE + '.tmp', SAVE_FILE);
+    for (const r of rooms.values()) saveHistory(r);
+    leaderboard.save();
+  } catch (e) { console.error('Speichern fehlgeschlagen:', e.message); }
+}
+let shuttingDown = false;
+// Alles speichern, allen Verbindungen Bescheid geben, dann beenden. Die Browser verbinden sich nach dem Neustart selbst neu.
+function shutdown(reason) {
+  if (shuttingDown) return;
+  shuttingDown = true;
+  console.log(`Server wird beendet (${reason})`);
+  saveNow();
+  io.emit('restarting', { text: 'Server startet neu – gleich wieder da' });
+  setTimeout(() => process.exit(0), 400);
+}
+
+for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => shutdown(sig));
+// Update per Signal ankündigen (docker kill -s USR2 <container>): Standard-Vorlauf UPDATE_ANNOUNCE_MIN
+if (process.platform !== 'win32') {
+  process.on('SIGUSR2', () => {
+    try { announceUpdate(UPDATE_DEFAULT_MIN, 'signal'); adminLog.add('Update angekündigt', `per Signal, in ${UPDATE_DEFAULT_MIN} Minuten`); }
+    catch (e) { console.error('Update-Ankündigung per Signal:', e.message); }
   });
 }
 

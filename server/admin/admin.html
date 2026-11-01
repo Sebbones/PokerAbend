@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin · Spieleabend</title>
+<style>
+  :root { color-scheme: dark; --bg:#101a18; --card:#16241f; --line:#2c4039; --text:#f4efe2; --muted:#a9b8b0; --brass:#c99a45; --bad:#e5766b; --good:#7cc59a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; } h2 { font-size: 1.1rem; margin: 0 0 10px; color: var(--brass); }
+  .top { display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  section { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; min-width:0; }
+  section.wide { grid-column: 1 / -1; }
+  table { width:100%; border-collapse:collapse; font-size:14px; } th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { color:var(--muted); font-weight:600; } .scroll { overflow-x:auto; }
+  .muted { color:var(--muted); } .bad { color:var(--bad); } .good { color:var(--good); }
+  button, input { font:inherit; } input { background:#0c1412; color:var(--text); border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
+  button { background:var(--brass); color:#1b1408; border:0; border-radius:8px; padding:8px 14px; font-weight:600; cursor:pointer; }
+  button.ghost { background:transparent; color:var(--text); border:1px solid var(--line); } button.danger { background:var(--bad); color:#2b0d09; }
+  button:disabled { opacity:.5; cursor:default; }
+  .row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .stat { display:flex; justify-content:space-between; gap:12px; padding:4px 0; border-bottom:1px solid var(--line); } .stat:last-child { border:0; }
+  dialog { background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:12px; padding:18px; max-width:min(440px, 92vw); } dialog::backdrop { background:#000a; }
+  #login { max-width: 380px; margin: 12vh auto; } #login form { display:grid; gap:10px; }
+  #msg { min-height:1.4em; } a { color:var(--brass); }
+</style>
+</head>
+<body>
+<main>
+  <div id="login" hidden>
+    <h1>Admin</h1>
+    <p class="muted">Eigenes Admin-Passwort – das Gruppenpasswort reicht hier nicht.</p>
+    <form id="login-form"><input type="password" id="pw" placeholder="Admin-Passwort" autocomplete="current-password" required maxlength="200"><button type="submit">Anmelden</button><p id="login-error" class="bad" role="alert"></p></form>
+  </div>
+  <div id="app" hidden>
+    <div class="top">
+      <div><h1>Admin</h1><div class="muted" id="version"></div></div>
+      <div class="row"><a href="/#tickets">Tickets-Verwaltung</a><a href="/">Zur Startseite</a><button class="ghost" id="refresh" type="button">Aktualisieren</button><button class="ghost" id="logout" type="button">Abmelden</button></div>
+    </div>
+    <p id="msg" role="status"></p>
+    <div class="grid">
+      <section><h2>Zustand</h2><div id="system"></div></section>
+      <section><h2>Update ankündigen</h2><div id="update"></div></section>
+      <section class="wide"><h2>Offene Räume</h2><div class="scroll" id="rooms"></div></section>
+      <section><h2>Datendateien</h2><div id="files"></div></section>
+      <section><h2>Fehler aus dem Browser</h2><div class="scroll" id="errors"></div></section>
+      <section class="wide"><h2>Admin-Protokoll</h2><div class="scroll" id="log"></div></section>
+    </div>
+  </div>
+  <dialog id="confirm"><form method="dialog"><h2 id="confirm-title"></h2><p id="confirm-text"></p><div class="row"><button class="ghost" value="cancel">Abbrechen</button><button class="danger" value="ok" id="confirm-ok">Bestätigen</button></div></form></dialog>
+</main>
+<script src="/admin/app.js"></script>
+</body>
+</html>

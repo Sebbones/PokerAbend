@@ -7,8 +7,10 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
+    "test:fast": "node scripts/test-fast.mjs",
     "test": "node --test \"test/*.test.js\"",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "test:smoke": "playwright test test/ui/smoke.spec.js"
   },
   "engines": {
     "node": ">=20"

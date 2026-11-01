@@ -10,6 +10,11 @@ COPY games ./games
 COPY server ./server
 COPY public ./public
 
+# Commit-Hash des Builds, sichtbar unter „Ich“ und auf /health (docker build --build-arg GIT_COMMIT=$(git rev-parse HEAD) .).
+# Bewusst erst nach den Installations-Schichten, damit ein neuer Commit den Abhängigkeits-Cache nicht ungültig macht.
+ARG GIT_COMMIT=unbekannt
+ENV APP_COMMIT=$GIT_COMMIT
+
 RUN mkdir -p /app/data && chown -R node:node /app/data
 USER node
 VOLUME /app/data

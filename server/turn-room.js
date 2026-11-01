@@ -1,6 +1,7 @@
 // Grundlage für rundenbasierte Spiele (Karten, Würfel, Brett): Mitspieler, Reihenfolge, Runden, Punkte des Abends.
 // Ein Spiel erweitert diese Klasse und füllt die Haken: setupRound, onTurnStart, onDropOut, gameView, publicPlayer.
 import { BaseRoom } from './base-room.js';
+import { assertNewRoundAllowed } from './maintenance.js';
 
 export class TurnRoom extends BaseRoom {
   // opts: { minPlayers, maxPlayers, lowWins (wenig Punkte = gut), scoreLabel, winPoints (Punkte für einen Sieg, wenn Punkte = Siege) }
@@ -141,6 +142,7 @@ export class TurnRoom extends BaseRoom {
   start(id) {
     this.requireHost(id);
     if (this.phase === 'playing') throw new Error('Die Runde läuft schon');
+    assertNewRoundAllowed(); // Update angekündigt: neue Runden erst nach dem Neustart
     const ids = this.seats.filter((x) => this.players.has(x));
     if (ids.length < this.opts.minPlayers) throw new Error(`Es müssen mindestens ${this.opts.minPlayers} mitspielen`);
     this.validateStart(ids);

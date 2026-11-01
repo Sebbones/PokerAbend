@@ -1,19 +1,23 @@
-
 name: Docker-Image
 
+# Bei Push: schnelle Tests + kleine Browser-Rauchprobe, erst bei Grün wird das Image gebaut.
+# Nachts: alle Tests und alle Browser-Prüfungen (ohne Image), Bericht als Artefakt.
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '17 2 * * *'
 
 permissions:
   contents: read
   packages: write
 
 jobs:
-  build:
+  fast:
+    name: Schnelle Tests und Rauchprobe
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
-
     steps:
       - name: Repository herunterladen
         uses: actions/checkout@v4
@@ -27,8 +31,34 @@ jobs:
       - name: Abhängigkeiten installieren
         run: npm ci
 
-      - name: Tests ausführen
-        run: npm test
+      - name: Schnelle Tests (ohne Simulationen und Langläufer)
+        run: npm run test:fast
+
+      - name: Browser für die Rauchprobe installieren
+        run: npx playwright install --with-deps chromium
+
+      - name: Rauchprobe (Startseite, Kartenspiel, Brettspiel, Handy-Ansicht)
+        run: npm run test:smoke
+        env:
+          PLAYWRIGHT_CHANNEL: chromium
+
+      - name: Bericht bei Fehlern sichern
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rauchprobe-fehler
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  build:
+    name: Image bauen und veröffentlichen
+    needs: fast
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
 
       - name: Bei GitHub Container Registry anmelden
         uses: docker/login-action@v3
@@ -43,3 +73,62 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/ttlpscwa/pokerabend:latest
+          # Commit-Hash ins Image: sichtbar unter „Ich“ und auf /health
+          build-args: |
+            GIT_COMMIT=${{ github.sha }}
+
+  nightly:
+    name: Nächtlicher Volllauf
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
+
+      - name: Alle Node-Tests (inklusive Simulationen)
+        id: node
+        continue-on-error: true
+        run: |
+          mkdir -p reports
+          node --test --test-reporter=spec --test-reporter-destination=stdout \
+            --test-reporter=junit --test-reporter-destination=reports/node-tests.xml "test/*.test.js"
+
+      - name: Browser installieren
+        run: npx playwright install --with-deps chromium
+
+      - name: Alle Playwright-Prüfungen
+        id: ui
+        continue-on-error: true
+        run: npx playwright test --reporter=list,html,junit
+        env:
+          PLAYWRIGHT_CHANNEL: chromium
+          PLAYWRIGHT_HTML_OPEN: never
+          PLAYWRIGHT_JUNIT_OUTPUT_NAME: reports/playwright.xml
+
+      - name: Bericht als Artefakt speichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nachtlauf-bericht
+          path: |
+            reports/
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Ergebnis prüfen
+        if: steps.node.outcome == 'failure' || steps.ui.outcome == 'failure'
+        run: |
+          echo "Node-Tests: ${{ steps.node.outcome }}, Playwright: ${{ steps.ui.outcome }}"
+          exit 1

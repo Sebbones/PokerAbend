@@ -463,7 +463,9 @@
       "status": "planned",
       "implementation_commit": null,
       "completed_at": null,
-      "notes": [],
+      "notes": [
+        "Teillieferung „Betrieb & Wartung“ (2026-11-01) siehe partial_deliveries[BETRIEB-WARTUNG]; das Paket selbst bleibt planned."
+      ],
       "public_roadmap_ids": [
         "v2-security-tests"
       ],
@@ -501,7 +503,9 @@
       "status": "planned",
       "implementation_commit": null,
       "completed_at": null,
-      "notes": [],
+      "notes": [
+        "Teillieferung „Betrieb & Wartung“ (2026-11-01) siehe partial_deliveries[BETRIEB-WARTUNG]; das Paket selbst bleibt planned."
+      ],
       "public_roadmap_ids": [
         "v2-release-migration"
       ],
@@ -805,7 +809,9 @@
       "status": "planned",
       "implementation_commit": null,
       "completed_at": null,
-      "notes": [],
+      "notes": [
+        "Teillieferung „Betrieb & Wartung“ (2026-11-01) siehe partial_deliveries[BETRIEB-WARTUNG]; das Paket selbst bleibt planned."
+      ],
       "public_roadmap_ids": [
         "v2-admin-rueckblicke",
         "v2-admin-bestenlisten",
@@ -815,7 +821,7 @@
       "commits": []
     }
   ],
-  "updated_date": "2026-10-30",
+  "updated_date": "2026-11-01",
   "addenda": [
     {
       "file": "docs/roadmap/V2_ADDENDUM_2026-10-30.md",
@@ -826,7 +832,8 @@
   ],
   "notes": [
     "PR #3 und #4 werden durch gezielte direkte Commits auf main konsolidiert; Herkunft und verworfene Altstände siehe consolidation.json und CONSOLIDATION_2026-10-30.md.",
-    "Alle 18 V2-Pakete bleiben planned. Der bereits vorhandene Liquid-Glass-Hub ist die Ausgangsbasis für spätere V2-Integration, keine Freigabe oder Fertigmeldung für V2-06."
+    "Alle 18 V2-Pakete bleiben planned. Der bereits vorhandene Liquid-Glass-Hub ist die Ausgangsbasis für spätere V2-Integration, keine Freigabe oder Fertigmeldung für V2-06.",
+    "Teillieferung „Betrieb & Wartung“ (2026-11-01, siehe partial_deliveries): nur die dort genannten Teile von V2-09, V2-10 und V2-17 sind umgesetzt; alle 18 Pakete bleiben planned."
   ],
   "workflow": {
     "branch": "main",
@@ -836,5 +843,85 @@
     "remote_check_before_write": true,
     "package_authorization_required": true,
     "production_deployment_authorized": false
-  }
+  },
+  "partial_deliveries": [
+    {
+      "id": "BETRIEB-WARTUNG",
+      "title": "Betrieb & Wartung (Pflichtenheft V5 C + D)",
+      "authorization": "Ausdrückliche Freigabe vom 2026-11-01; nur die hier genannten Teile. Die übrigen Teile der Pakete bleiben planned.",
+      "completed_at": "2026-11-01",
+      "implementation_commit": null,
+      "public_roadmap_ids": [
+        "betrieb-1",
+        "betrieb-2",
+        "betrieb-3",
+        "betrieb-4",
+        "betrieb-5",
+        "betrieb-6"
+      ],
+      "still_open": [
+        "betrieb-7 „Speichern mitten in der Runde“"
+      ],
+      "tasks": {
+        "V2-17": {
+          "delivered": [
+            "Eigene Admin-Seite /admin mit ADMIN_PASSWORD (eigener signierter Cookie pa_admin, Rate-Limit, ohne Variable aus; kein Zugang über Gruppen- oder Ticket-Passwort)",
+            "Anzeige offener Räume, Online-Zahlen, Speicher/CPU/Laufzeit, Dateigrößen und gruppierter Browser-Fehler",
+            "Aktionen Raum schließen und Update ankündigen mit Bestätigungsdialog und Admin-Protokoll (DATA_DIR/admin-log.json)",
+            "Link zur bestehenden Ticket-Verwaltung"
+          ],
+          "remains_planned": "Moderation von Rückblicken, Bestenlisten und Spielerprofilen, Soft-Delete/Restore, Rollenmodell/MFA, Audit mit vorher/nachher, Discord-Rechtegrenzen.",
+          "files": [
+            "server/admin.js",
+            "server/admin/admin.html",
+            "server/admin/admin.js",
+            "server/ops.js",
+            "test/ops.test.js",
+            "test/ui/ops.spec.js"
+          ]
+        },
+        "V2-09": {
+          "delivered": [
+            "npm-Skripte test:fast (ohne Simulationen/Langläufer, unter etwa einer Minute), test, test:ui, test:smoke",
+            "Workflow: test:fast und Playwright-Rauchprobe (Startseite, Kartenspiel, Brettspiel, Handy-Ansicht) vor dem Image-Bau; nächtlicher Volllauf mit allen Node- und Playwright-Tests und Bericht-Artefakt"
+          ],
+          "remains_planned": "Sicherheits-/Datenschutz-Audits zu Identität, Discord-Auth, Rangliste, Video und WebRTC; vollständige V2-Regressionstests; Docker-Build-Prüfung.",
+          "files": [
+            "scripts/test-fast.mjs",
+            "test/ui/smoke.spec.js",
+            ".github/workflows/docker.yml",
+            "package.json"
+          ]
+        },
+        "V2-10": {
+          "delivered": [
+            "Version 2.0.0 und Commit-Hash im Image (Build-Arg GIT_COMMIT in Dockerfile und Workflow), sichtbar unter „Ich“ und auf /health",
+            "Update-Ankündigung mit Banner, Sperre neuer Runden und sauberem Beenden; Speichern und Verbindungshinweis bei SIGTERM",
+            "Backup mit optionalem zweiten Ziel (rsync/rclone) und scripts/restore-test.sh; README „Backup & Wiederherstellen“",
+            "Anleitung für einen externen Wächter auf /health (Uptime Kuma)",
+            "Image wird nur bei grünem Testlauf gebaut"
+          ],
+          "remains_planned": "Feature-Flags mit sicheren Defaults, Deployment-/Rollback-Plan für die V2-Funktionen, Übergabe-Dokumentation; kein Produktivdeployment.",
+          "files": [
+            "Dockerfile",
+            ".github/workflows/docker.yml",
+            "scripts/backup.sh",
+            "scripts/restore-test.sh",
+            "README.md",
+            ".env.example",
+            "docker-compose.yml"
+          ]
+        }
+      },
+      "test_results": [
+        "node --test test/ops.test.js: 14 von 14 grün (Update-Ankündigung blockiert neue Runden, laufende endet normal und danach wird gespeichert und beendet; SIGTERM-Handler speichert und meldet den Neustart; /admin ohne ADMIN_PASSWORD aus, ohne/mit falschem Passwort gesperrt, Rate-Limit, Aktionen nur mit Admin-Cookie; Browser-Fehler gedrosselt, gekürzt, ohne Namen)",
+        "node --test test/restore-test.test.js: 3 von 3 grün (scripts/restore-test.sh läuft lokal grün; kaputtes Archiv, fehlendes Backup und defekte Ticket-Datei schlagen fehl)",
+        "npm run test:fast: 884 Tests grün in etwa 30 bis 55 Sekunden (ohne Simulationen und Langläufer)",
+        "npm test: 997 Tests grün (ein früherer Lauf zeigte einmal den bekannten Zufallsfehler in test/abort.test.js für Durak, der beim Wiederholen nicht auftrat)",
+        "npx playwright test test/ui/smoke.spec.js test/ui/ops.spec.js: Rauchprobe und Betriebs-Oberfläche in Desktop und Handy grün (Version, Was ist neu, Update-Banner, Neustart-Hinweis, Fehler melden, Admin-Seite mit Bestätigungsdialogen)",
+        "npx playwright test test/ui/tickets.spec.js test/ui/lobby-menu.spec.js test/ui/ui-redesign.spec.js: 29 grün; 12 Mobil-Läufe von „Alle registrierten Spiele“ scheitern an der erwarteten Spielezahl (56 erwartet, 57 vorhanden) durch parallel entstehende, noch nicht eingecheckte Spiele – unabhängig von diesem Paket",
+        "Nicht geprüft: Ausführung des GitHub-Workflows (Rauchprobe, Nachtlauf, Build-Arg), echtes SIGTERM-Signal unter Linux (lokal unter Windows über den registrierten Handler ausgelöst), Docker-Build, /admin hinter Traefik."
+      ]
+    }
+  ]
 }

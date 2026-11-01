@@ -10,6 +10,9 @@ const punkt = (id, titel, art, text, erledigt = false) => ({ id, titel, art, tex
 const liste = (prefix, art, rows, erledigt = false) => rows.map(([titel, text], i) => punkt(`${prefix}-${i + 1}`, titel, art, text, erledigt));
 const spiele = (ids) => ids.map((id) => punkt(id, GAMES[id].name, 'spiel', GAMES[id].description, true));
 
+// Betrieb & Wartung: Update-Hinweis, Admin-Seite, Version, Browser-Fehler, Ausfall-Wächter, Backups (Speichern mitten in der Runde bleibt offen)
+const BETRIEB_FERTIG = ['betrieb-1', 'betrieb-2', 'betrieb-3', 'betrieb-4', 'betrieb-5', 'betrieb-6'];
+
 export const ROADMAP = [
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
   { id: 'einzelspieler-zukunft', titel: 'Weitere Einzelspieler-Spiele', satz: 'Neun einzeln geplante Arbeitspakete. Umsetzung jeweils erst nach eigener Freigabe.', stufe: 'spaeter', eintraege: ['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3'], punkte: [] },
@@ -84,7 +87,7 @@ export const ROADMAP = [
     ['Ausfall-Wächter', 'Den vorhandenen /health-Endpunkt von außen überwachen.'],
     ['Backups & Restore-Test', 'Backups außer Haus speichern und ihre Wiederherstellung regelmäßig prüfen.'],
     ['Speichern mitten in der Runde', 'Laufende Spielstände nach einem Neustart fortsetzen.'],
-  ]) },
+  ]).map((p) => (BETRIEB_FERTIG.includes(p.id) ? { ...p, erledigt: true, datum: '2026-11-01' } : p)) },
   { id: 'technik', titel: 'Technik aufräumen', satz: 'Eine klare Grundlage für weitere Spiele und verlässliche Spielerdaten.', stufe: 'spaeter', punkte: liste('technik', 'betrieb', [
     ['Tests aufteilen', 'Die gewachsene Testsammlung in überschaubare Bereiche gliedern.'],
     ['SQLite', 'Persistente Daten strukturiert in einer Datenbank halten.'],
@@ -161,6 +164,16 @@ export const ROADMAP = [
   { id: 'bots-fertig', titel: 'Computer-Mitspieler, Mühle & Zehntausend', satz: 'Optionale Computer-Mitspieler und zwei weitere Spiele.', stufe: 'erledigt', datum: '2026-10-25', punkte: [...spiele(['muehle', 'zehntausend']), punkt('computer-mitspieler', 'Computer-Mitspieler', 'funktion', 'Bots im Host-Menü hinzufügen oder entfernen; eigene Strategien für unterstützte Spiele.', true)] },
   { id: 'v1-fertig', titel: 'V1 Poker', satz: 'Der erste gemeinsame Pokertisch im Browser.', stufe: 'erledigt', datum: '2026-10-24', punkte: spiele(['poker']) },
 ];
+
+// „Was ist neu“: die neuesten erledigten Punkte (mit Datum), neueste zuerst; bei gleichem Datum gilt die Reihenfolge der Roadmap
+export function whatsNew(limit = 8, roadmap = resolvedRoadmap()) {
+  const rows = [];
+  roadmap.forEach((etappe, order) => etappe.punkte.forEach((p) => {
+    const datum = p.datum || (etappe.stufe === 'erledigt' ? etappe.datum : null);
+    if (p.erledigt && datum) rows.push({ id: p.id, titel: p.titel, text: p.text, art: p.art, datum, order });
+  }));
+  return rows.sort((a, b) => b.datum.localeCompare(a.datum) || a.order - b.order).slice(0, limit).map(({ order, ...row }) => row);
+}
 
 export function resolvedRoadmap(planned = PLANNED) {
   const used = new Set();

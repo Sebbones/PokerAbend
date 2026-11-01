@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="/game-design.css">
   <link rel="stylesheet" href="/ui-theme.css">
   <link rel="stylesheet" href="/game-pause.css">
+  <link rel="stylesheet" href="/ops.css">
   <link rel="stylesheet" href="/singleplayer/singleplayer.css">
 </head>
 <body>
@@ -69,6 +70,7 @@
       <fieldset class="field"><legend>Avatar</legend><div id="p-avatars" class="avatars"></div></fieldset>
       <label class="toggle"><span><span data-i18n>Mich nicht als online zeigen</span><small data-i18n>Du siehst andere weiterhin. Dein Name erscheint weder online noch unter „Zuletzt online“.</small></span><input type="checkbox" role="switch" id="p-presence-hidden"></label>
       <details class="profile-preferences"><summary data-i18n>Darstellung & Töne</summary><div id="p-preferences"></div><p class="hint" data-i18n>Gilt nur in diesem Browser. Änderungen werden sofort gespeichert.</p></details>
+      <div class="ops-about"><small id="p-version"></small><span class="ops-about-actions"><button type="button" class="btn btn-ghost" id="p-whatsnew" data-i18n>Was ist neu?</button><button type="button" class="btn btn-ghost" id="p-bugreport" data-i18n>Fehler melden</button></span></div>
       <p id="p-error" class="error" role="alert"></p>
       <button type="button" class="btn" id="p-achievements" data-achievements-open data-i18n>Meine Erfolge & Abzeichen</button>
       <div class="dlg-actions"><button type="button" class="btn btn-ghost" id="p-cancel" data-i18n>Abbrechen</button><button class="btn btn-brass" type="submit" data-i18n>Speichern</button></div>
@@ -118,6 +120,7 @@
   <!-- Startseite: Profil, Navigation, Tische, Spiele -->
   <script src="/singleplayer.js"></script>
   <script src="/hub.js"></script>
+  <script src="/ops.js"></script>
   <!-- Gemeinsamer Rahmen der Rundenspiele (Mau-Mau, Würfel, Brett …) -->
   <script src="/games/card-interaction.js"></script>
   <script src="/games/card-shedding.js"></script>
