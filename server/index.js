@@ -426,7 +426,7 @@ function goOffline(room, p, message) {
   if (room.hostId === p.id) {
     setTimeout(() => {
       if (room.hostId === p.id && !p.connected) { room.transferHost(); broadcast(room); }
-    }, 30000);
+    }, 30000).unref();
   }
 }
 // Die Verbindung gehört danach zu keinem Tisch mehr (Startseite, Raum verlassen)
