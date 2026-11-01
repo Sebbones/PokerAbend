@@ -33,7 +33,7 @@ const Achievements = (() => {
     cards();
   }
   async function load(name, g) {
-    try { const result = await request('?' + new URLSearchParams({ name })); if (active(g)) render(result); }
+    try { const result = await request('?' + new URLSearchParams({ name, ...(name === profile.name ? { me: '1' } : {}) })); if (active(g)) render(result); }
     catch (error) { if (active(g)) $('#achievement-body').innerHTML = I18n.html`<p class="error" role="alert">${esc(error.message)}</p><button class="btn" data-achievements-refresh>Erneut versuchen</button>`; }
   }
   function page() {

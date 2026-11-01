@@ -39,9 +39,13 @@ export function achievementProgress(profile, games) {
 }
 export function createAchievements({ leaderboard, games }) {
   return {
+    // Nach Name: alle Gleichnamigen zusammen. Für genau ein Konto: detailFor.
     detail(name = '') {
       if (typeof name !== 'string' || name.length > 16) throw Object.assign(new Error('Bitte einen Spielernamen mit höchstens 16 Zeichen angeben'), { status: 400 });
       return achievementProgress(leaderboard.profile(cleanName(name)), games);
+    },
+    detailFor(accountId, name = '') {
+      return achievementProgress(leaderboard.profile({ accountId, name: cleanName(String(name)) }), games);
     },
     players(query = '') { return leaderboard.names(typeof query === 'string' ? cleanName(query) : '').slice(0, 20); },
   };

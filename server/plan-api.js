@@ -33,7 +33,11 @@ export function createPlanAPI({ dir, games, secret, secure = () => false, trustP
     if (req.body !== undefined && (!req.body || typeof req.body !== 'object' || Array.isArray(req.body))) return res.status(400).json({ error: 'Ungültige Anfrage' });
     req.body ||= {};
     let id = identity(parseCookies(req.headers.cookie)[cookieName]);
-    if (!id) {
+    if (req.accountId) {
+      // V2-01: die Konto-ID ersetzt die Besucher-ID; eigene Planungen und Stimmen wandern einmalig mit
+      if (id) { store.rebind(id, req.accountId); res.append('Set-Cookie', `${cookieName}=; Path=/api/plans; HttpOnly; SameSite=Strict; Max-Age=0${secure(req) ? '; Secure' : ''}`); }
+      id = req.accountId;
+    } else if (!id) {
       const payload = randomBytes(16).toString('hex') + '.' + (Date.now() + 365 * 86400000), token = payload + '.' + sign(payload); id = identity(token);
       res.append('Set-Cookie', `${cookieName}=${encodeURIComponent(token)}; Path=/api/plans; HttpOnly; SameSite=Strict; Max-Age=31536000${secure(req) ? '; Secure' : ''}`);
     }
@@ -64,5 +68,6 @@ export function createPlanAPI({ dir, games, secret, secure = () => false, trustP
     if (status === 500) console.error('Abendplanung:', error.message);
     res.status(status).json({ error: status === 500 ? 'Die Änderung konnte nicht gespeichert werden. Bitte versuche es später erneut' : error.type === 'entity.parse.failed' ? 'Ungültiges JSON' : status === 413 ? 'Die Anfrage ist zu groß' : error.message });
   });
+  router.rebind = (from, to) => store?.rebind(from, to) || 0;
   return router;
 }

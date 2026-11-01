@@ -50,7 +50,11 @@ export function createTicketAPI({ dir, games, secret, adminPassword = '', secure
     req.body ||= {};
     const cookies = parseCookies(req.headers.cookie);
     let id = identity(VISITOR, cookies[VISITOR]);
-    if (!id) {
+    if (req.accountId) {
+      // V2-01: die Konto-ID ersetzt die Besucher-ID; frühere Tickets und Stimmen wandern einmalig mit
+      if (id && store) { store.rebind(id, req.accountId); res.append('Set-Cookie', cookie(req, VISITOR, '', 0)); }
+      id = req.accountId;
+    } else if (!id) {
       const token = issue(VISITOR, 24 * 365); id = identity(VISITOR, token);
       res.append('Set-Cookie', cookie(req, VISITOR, token, 365 * 86400));
     }
@@ -93,5 +97,5 @@ export function createTicketAPI({ dir, games, secret, adminPassword = '', secure
     if (status === 500) console.error('Ticket-Board:', err.message);
     res.status(status).json({ error: status === 413 ? 'Die Anfrage ist zu groß' : status === 500 ? 'Die Änderung konnte nicht gespeichert werden. Bitte versuche es später erneut' : err.type === 'entity.parse.failed' ? 'Ungültiges JSON' : err.message });
   });
-  return { router, clearAdmin };
+  return { router, clearAdmin, rebind: (from, to) => store?.rebind(from, to) || 0 };
 }

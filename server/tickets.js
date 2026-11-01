@@ -1,5 +1,6 @@
 // Persistentes Ticket-Board. Browser-Identitäten sind privat; Namen verleihen keine Rechte.
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { rebindIds } from './rebind.js';
 import { join } from 'node:path';
 import { cleanName, cleanText } from './security.js';
 import { AVATARS } from './base-room.js';
@@ -95,6 +96,12 @@ export function createTicketStore({ dir, games = [], now = Date.now, persist = a
         counts: { total: state.tickets.length, open: state.tickets.filter((t) => !['done', 'rejected'].includes(t.status)).length, done: state.tickets.filter((t) => t.status === 'done').length } };
     },
     detail: (id, actor) => view(get(id), actor),
+    // V2-01: Besucher-ID → Konto-ID (Autoren, Stimmen); gibt die Zahl der ersetzten Stellen zurück
+    rebind(from, to) {
+      const { value, count } = rebindIds(clone(state), from, to);
+      if (count) { persist(file, value); state = value; }
+      return count;
+    },
     create(data, actor) {
       const who = person(actor), content = fields(data, games);
       return mutate((next) => {

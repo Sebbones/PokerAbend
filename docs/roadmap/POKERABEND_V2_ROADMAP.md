@@ -9,8 +9,8 @@ Ein dauerhaftes, optionales Discord-Accountsystem mit verifizierter Identität f
 ## Arbeitspakete
 | ID | Priorität | Inhalt | Voraussetzung | Status |
 |---|---|---|---|---|
-| V2-00 | critical | Bestandsaufnahme, Sicherheitsmodell und Daten-Sicherung | – | Geplant |
-| V2-01 | critical | Plattformidentität: Accounts, Gäste, Bots und persistente IDs | V2-00 | Geplant |
+| V2-00 | critical | Bestandsaufnahme, Sicherheitsmodell und Daten-Sicherung | – | Umgesetzt (01.11.2026) |
+| V2-01 | critical | Plattformidentität: Accounts, Gäste, Bots und persistente IDs | V2-00 | Umgesetzt (01.11.2026) |
 | V2-02 | critical | Discord OAuth2 und Sitzungssicherheit | V2-01 | Geplant |
 | V2-03 | critical | Ranked-Ergebnisse und historische Bestenlisten | V2-01, V2-02 | Geplant |
 | V2-04 | high | Spielerprofile, Erfolge und Game-ID | V2-03 | Geplant |

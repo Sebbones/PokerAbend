@@ -45,6 +45,7 @@ function render(s) {
     <td>${dur(s.now - r.openedAt)}</td><td>vor ${dur(s.now - r.lastActivity)}</td><td>${r.busy ? 'Runde läuft' : 'wartet'}${r.paused ? ' · pausiert' : ''}</td>
     <td><button class="danger" type="button" data-close="${esc(r.code)}" data-label="${esc(r.gameName)}">Schließen</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine offenen Räume.</p>';
   $('#files').innerHTML = s.data.files.map((f) => `<div class="stat"><span>${esc(f.name)}</span><b>${size(f.size)}</b></div>`).join('') + `<div class="stat"><span class="muted">Gesamt</span><b>${size(s.data.total)}</b></div>`;
+  $('#claims').innerHTML = s.claims.length ? `<table><thead><tr><th>Alter Name</th><th>Übernommen von</th><th>Wann</th><th></th></tr></thead><tbody>${s.claims.map((c) => `<tr><td>${esc(c.name)}</td><td>${esc(c.gameId || '?')} <span class="muted">${esc(c.by)}</span></td><td class="muted">${esc(time(c.claimedAt))}</td><td><button class="danger" type="button" data-undo-claim="${esc(c.key)}" data-label="${esc(c.name)}">Rückgängig</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted">Noch hat niemand alte Statistiken übernommen.</p>';
   $('#errors').innerHTML = s.errors.length ? `<table><thead><tr><th>Meldung</th><th>Spiel</th><th>Anzahl</th><th>Zuletzt</th></tr></thead><tbody>${s.errors.map((e) => `<tr><td>${esc(e.message)}</td><td>${esc(e.game)}</td><td>${e.count}</td><td>${esc(time(e.last))}</td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine Fehler gemeldet.</p>';
   $('#log').innerHTML = s.log.length ? `<table><tbody>${s.log.map((l) => `<tr><td class="muted">${esc(time(l.at))}</td><td>${esc(l.action)}</td><td class="muted">${esc(l.detail)}</td></tr>`).join('')}</tbody></table>` : '<p class="muted">Noch keine Einträge.</p>';
 }
@@ -75,6 +76,10 @@ document.addEventListener('click', async (e) => {
   if (b.dataset.close) {
     if (!await confirmDialog('Raum schließen?', `Raum ${b.dataset.close} (${b.dataset.label}) wird sofort geschlossen. Alle Spieler landen auf der Startseite.`, 'Raum schließen')) return;
     try { await call(`/rooms/${encodeURIComponent(b.dataset.close)}/close`, 'POST', {}); say(`Raum ${b.dataset.close} geschlossen`); } catch (err) { say(err.message, true); }
+    load();
+  } else if (b.dataset.undoClaim) {
+    if (!await confirmDialog('Zuordnung rückgängig machen?', `Die alte Statistik „${b.dataset.label}“ gehört danach wieder niemandem und kann neu übernommen werden. Gespielte Partien gehen nicht verloren.`, 'Rückgängig')) return;
+    try { await call('/identity/claims/undo', 'POST', { key: b.dataset.undoClaim }); say('Zuordnung rückgängig gemacht'); } catch (err) { say(err.message, true); }
     load();
   } else if (b.hasAttribute('data-cancel-update')) {
     if (!await confirmDialog('Ankündigung zurücknehmen?', 'Das Banner verschwindet, neue Runden starten wieder.', 'Zurücknehmen')) return;

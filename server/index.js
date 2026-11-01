@@ -21,9 +21,13 @@ import {
 } from './security.js';
 import { createCodes, normalize } from './codes.js';
 import { createLeaderboard } from './leaderboard.js';
+import { createAccountStore } from './account-store.js';
+import { createIdentity, GUEST_COOKIE } from './identity.js';
+import { createIdentityAPI } from './identity-api.js';
+import { backupBeforeIdentityMigration } from './data-migration.js';
 import { addBot, removeBot, createBotRunner } from './bots.js';
 import { BOTS } from '../games/bots.js';
-import { configureBoards } from '../games/monopoly/boards.js';
+import { configureBoards, boardStore } from '../games/monopoly/boards.js';
 import { createReviewStore, reviewMarkdown } from './evening-reviews.js';
 import { createPlanAPI } from './plan-api.js';
 import { createAchievements } from './achievements.js';
@@ -32,6 +36,11 @@ import { variantOf, variantName, scoreKey } from '../games/variants.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 3000);
 const DATA_DIR = process.env.DATA_DIR || join(__dirname, '..', 'data');
+// V2-01: vor der ersten Nutzung des neuen Formats die vorhandenen Dateien einmalig sichern (nur kopieren)
+try {
+  const backup = backupBeforeIdentityMigration(DATA_DIR);
+  if (backup.created) console.log(`Sicherung vor der Konto-Umstellung: ${backup.files.length} Datei(en) in backups/pre-v2-01`);
+} catch (error) { console.error('Sicherung vor der Konto-Umstellung fehlgeschlagen:', error.message); }
 configureBoards(DATA_DIR);
 let reviews = null;
 try { reviews = createReviewStore({ dir: DATA_DIR, games: GAMES }); }
@@ -60,6 +69,9 @@ const MAX_CONN_PER_IP = Number(process.env.MAX_CONN_PER_IP || 30);
 const MODE = SITE_PASSWORD ? 'password' : 'open';
 const SECRET = loadSecret(DATA_DIR);
 const auth = createAuth({ password: SITE_PASSWORD, secret: SECRET });
+const accounts = createAccountStore(DATA_DIR, { onChange: () => save() });   // interne Konto-IDs und öffentliche Game-IDs
+const identity = createIdentity({ secret: SECRET });
+const leaderboard = createLeaderboard(DATA_DIR); // Bestenliste über alle Abende
 const ticketAPI = createTicketAPI({ dir: DATA_DIR, games: Object.values(GAMES), secret: SECRET, adminPassword: process.env.TICKET_ADMIN_PASSWORD || '', secure: (req) => isSecure(req), trustProxy: TRUST_PROXY });
 if (MODE === 'password') console.log('Anmeldung: Seitenpasswort');
 else console.warn('⚠ Kein SITE_PASSWORD eingerichtet – jeder mit dem Link kommt auf die Seite. Nur lokal zum Testen!');
@@ -134,6 +146,19 @@ app.use((req, res, next) => {
   }
   res.status(401).json({ error: 'Nicht angemeldet' });
 });
+// Gast-Identität: signiertes Cookie mit der internen Konto-ID. Es entsteht beim Seitenaufruf (nicht bei Bildern oder Skripten,
+// die parallel kommen) und wird bei jedem Besuch erneuert. Ohne gültiges Cookie gibt es keine Konto-ID – der Client kann keine behaupten.
+const accountOf = (cookieHeader) => { const id = identity.verify(parseCookies(cookieHeader)[GUEST_COOKIE]); return id ? accounts.ensure(id) : null; };
+app.use((req, res, next) => {
+  let account = accountOf(req.headers.cookie);
+  const issues = isPage(req) || req.path.startsWith('/api/identity');
+  if (!account && issues) account = accounts.ensure(accounts.newId());
+  if (account) {
+    req.accountId = account.id;
+    if (issues) res.append('Set-Cookie', identity.cookie(identity.issue(account.id), { secure: isSecure(req) }));
+  }
+  next();
+});
 app.get('/me', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.json({ mode: MODE, version: VERSION.version, commit: VERSION.short, games: gameList(), singleplayerGames: singleplayerGameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
@@ -151,6 +176,8 @@ if (ADMIN_PASSWORD) {
     password: ADMIN_PASSWORD, secret: SECRET, dataDir: DATA_DIR, secure: isSecure, trustProxy: TRUST_PROXY, log: adminLog, errors: clientErrors,
     system: sampler, version: VERSION, rooms: () => adminRooms(), closeRoom: (code) => adminCloseRoom(code), online: () => adminOnline(),
     announce: (minutes, by) => announceUpdate(minutes, by), cancelUpdate: () => cancelUpdate(),
+    claims: () => leaderboard.claims().map((c) => ({ key: c.key, name: c.name, by: c.by, gameId: accounts.get(c.claimedBy)?.gameId || '', claimedAt: c.claimedAt })),
+    undoClaim: (key) => { const info = leaderboard.unclaim(key); if (!info) return null; save(); return { name: info.name, gameId: accounts.get(info.claimedBy)?.gameId || '' }; },
   }).router);
 } else console.log('Admin-Seite aus (kein ADMIN_PASSWORD gesetzt)');
 app.get('/roadmap', (_req, res) => {
@@ -158,14 +185,27 @@ app.get('/roadmap', (_req, res) => {
   res.json(resolvedRoadmap());
 });
 app.use('/api/tickets', ticketAPI.router);
-app.use('/api/plans', createPlanAPI({ dir: DATA_DIR, games: Object.values(GAMES), secret: SECRET, secure: isSecure, trustProxy: TRUST_PROXY }));
+const planAPI = createPlanAPI({ dir: DATA_DIR, games: Object.values(GAMES), secret: SECRET, secure: isSecure, trustProxy: TRUST_PROXY });
+app.use('/api/plans', planAPI);
+// Zwei Geräte werden eine Person: alles, was dem alten Konto gehörte, gehört danach dem Ziel
+function mergeAccounts(from, to) {
+  ticketAPI.rebind(from, to); planAPI.rebind(from, to); boardStore().rebind(from, to);
+  for (const room of rooms.values()) for (const p of room.players.values()) if (p.accountId === from) p.accountId = to;
+  for (const s of io.sockets.sockets.values()) if (s.data.accountId === from) s.data.accountId = to;
+  presence.changed();
+}
+app.use('/api/identity', createIdentityAPI({ identity, accounts, leaderboard, secure: isSecure, trustProxy: TRUST_PROXY, onMerge: mergeAccounts, onChange: () => save() }));
 app.get('/api/achievements/players', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.json({ names: achievements.players(req.query.q) });
 });
 app.get('/api/achievements', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  try { res.json(achievements.detail(req.query.name)); }
+  try {
+    // me=1: die Erfolge genau dieses Kontos (gleiche Namen bleiben getrennt); sonst nach Name
+    const account = req.query.me === '1' ? accounts.get(req.accountId) : null;
+    res.json(account ? achievements.detailFor(account.id, account.name || req.query.name) : achievements.detail(req.query.name));
+  }
   catch (error) { res.status(error.status || 500).json({ error: error.message }); }
 });
 app.get('/api/evenings', (req, res) => {
@@ -238,7 +278,6 @@ const presence = createPresence({
 });
 const bots = createBotRunner({ isCurrent: (r) => rooms.get(r.code) === r, notify: (r) => { broadcast(r); if (!r.busy) save(); } });
 const codes = createCodes(); // gemeinsam für alle Spiele
-const leaderboard = createLeaderboard(DATA_DIR); // Bestenliste über alle Abende
 const achievements = createAchievements({ leaderboard, games: Object.values(GAMES) });
 
 // ---------- Speichern ----------
@@ -264,6 +303,7 @@ function save() {
       renameSync(SAVE_FILE + '.tmp', SAVE_FILE);
       for (const r of rooms.values()) saveHistory(r);
       leaderboard.save();
+      accounts.save();
     } catch (e) { console.error('Speichern fehlgeschlagen:', e.message); }
   }, 300);
 }
@@ -278,6 +318,10 @@ function load() {
       const r = game.restore(d, (kind, data) => onRoomChange(r, kind, data));
       r.game = game.id;
       r.unlisted = d.unlisted === true;
+      for (const [pid, accountId] of Object.entries(d.playerAccounts && typeof d.playerAccounts === 'object' ? d.playerAccounts : {})) {
+        const p = r.players.get(pid), resolved = accounts.resolve(accountId);
+        if (p && !p.bot && resolved) p.accountId = resolved;
+      }
       r.openedAt = Date.now();
       r.partyProgram = restoreProgram(d.partyProgram);
       r.lastSnapshot = d;
@@ -315,15 +359,18 @@ function onRoomChange(room, kind, data) {
   // Ergebnis einer Partie: in die Bestenliste (gespeichert wird mit dem nächsten Speichern)
   if (kind === 'result') {
     if (recordProgramResult(room)) archiveReview(room);
+    // Computer-Mitspieler sind keine Personen; Menschen werden über ihr Konto gezählt (ohne Konto: wie früher über den Namen)
     const botNames = new Set([...room.players.values()].filter((p) => p.bot).map((p) => p.name));
-    const entries = data?.entries?.filter((p) => !botNames.has(p.name)) || [];
-    const before = new Map(entries.map((p) => [p.name, new Set(achievements.detail(p.name).badges.filter((b) => b.unlocked).map((b) => b.id))]));
+    const humans = new Map([...room.players.values()].filter((p) => !p.bot).map((p) => [p.name, p]));
+    const entries = (data?.entries?.filter((p) => !botNames.has(p.name)) || []).map((p) => ({ ...p, accountId: humans.get(p.name)?.accountId || null }));
+    const detailOf = (entry) => (entry.accountId ? achievements.detailFor(entry.accountId, entry.name) : achievements.detail(entry.name));
+    const before = new Map(entries.map((p) => [p.name, new Set(detailOf(p).badges.filter((b) => b.unlocked).map((b) => b.id))]));
     leaderboard.record(room.game, entries, room.variant || 'classic');
     // Erst dauerhaft speichern, dann die neuen Abzeichen melden.
     try {
       leaderboard.save();
       for (const entry of entries) {
-        const earned = achievements.detail(entry.name).badges.filter((b) => b.unlocked && !before.get(entry.name).has(b.id));
+        const earned = detailOf(entry).badges.filter((b) => b.unlocked && !before.get(entry.name).has(b.id));
         const player = [...room.players.values()].find((p) => !p.bot && p.name === entry.name);
         if (earned.length && player?.socketId) io.to(player.socketId).emit('achievements', { names: earned.map((b) => b.title), name: entry.name });
       }
@@ -339,7 +386,9 @@ function onRoomChange(room, kind, data) {
   if (kind === 'handDone') save();
   broadcast(room);
 }
-const snapshotOf = (r) => ({ ...r.snapshot(), game: r.game, code: r.code, unlisted: !!r.unlisted, ...(r.partyProgram ? { partyProgram: r.partyProgram } : {}) });
+// playerAccounts: welcher Spieler zu welchem Konto gehört (nur Menschen), damit die Bindung einen Neustart überlebt
+const accountsOf = (r) => Object.fromEntries([...r.players.values()].filter((p) => p.accountId && !p.bot).map((p) => [p.id, p.accountId]));
+const snapshotOf = (r) => ({ ...r.snapshot(), game: r.game, code: r.code, unlisted: !!r.unlisted, playerAccounts: accountsOf(r), ...(r.partyProgram ? { partyProgram: r.partyProgram } : {}) });
 
 function broadcastFrame(room) {
   if (!room.frame || rooms.get(room.code) !== room) return;
@@ -360,7 +409,7 @@ function switchRoom(old, game, settings = {}, prepare = null) {
   for (const op of old.players.values()) {
     if (op.kicked) continue;
     next.players.set(op.id, { ...next.playerFields(op), id: op.id, token: op.token, name: op.name, avatar: op.avatar,
-      bot: !!op.bot, connected: op.connected, socketId: op.socketId, offlineSince: op.offlineSince });
+      bot: !!op.bot, connected: op.connected, socketId: op.socketId, offlineSince: op.offlineSince, ...(op.accountId ? { accountId: op.accountId } : {}) });
   }
   next.hostId = next.players.has(old.hostId) ? old.hostId : [...next.players.keys()][0];
   next.unlisted = !!old.unlisted;
@@ -501,6 +550,13 @@ function sendHome(room, text) {
 }
 const humansIn = (room) => [...room.players.values()].filter((p) => !p.bot && !p.kicked);
 
+// Spieler an das Konto der Verbindung binden (nur Menschen; Bots haben nie ein Konto)
+function bindAccount(socket, player) {
+  const account = accounts.get(socket.data.accountId);
+  if (!account || player.bot) return;
+  player.accountId = account.id;
+  accounts.touch(account.id, { name: player.name, avatar: player.avatar });
+}
 function attach(socket, room, player) {
   if (player.socketId && player.socketId !== socket.id) {
     // Zweiter Tab: nur die neueste Verbindung darf spielen
@@ -519,6 +575,8 @@ io.on('connection', (socket) => {
   const ip = clientIp(socket.request, TRUST_PROXY);
   // Version und laufende Update-Ankündigung gleich beim Verbinden (auch nach einem Neustart)
   socket.emit('version', { version: VERSION.version, commit: VERSION.short });
+  // Konto aus dem signierten Cookie der Verbindung; Clients ohne Cookie (z. B. Skripte) haben keins und spielen wie früher
+  socket.data.accountId = accountOf(socket.request.headers.cookie)?.id || null;
   if (maintenance.active) socket.emit('maintenance', maintenance.state());
   connections.set(ip, (connections.get(ip) || 0) + 1);
   socket.on('disconnect', () => {
@@ -575,6 +633,7 @@ io.on('connection', (socket) => {
       room.game = game.id;
       room.unlisted = unlisted === true;
       p = room.addPlayer(name, avatar);
+      bindAccount(socket, p);
     } catch (e) { codes.release(code); throw e; }
     room.openedAt = Date.now();
     rooms.set(code, room);
@@ -586,14 +645,19 @@ io.on('connection', (socket) => {
     if (limits.badCode.blocked(ip)) throw new Error('Zu viele falsche Codes. Warte ein paar Minuten.');
     let room;
     try { room = getRoom(code); } catch (e) { limits.badCode.hit(ip); throw e; }
-    // Wiedererkennung über das Token aus dem Browser (localStorage)
+    // Wiedererkennung über das Token aus dem Browser (localStorage) – und über die Konto-ID, wenn das Token fehlt (z. B. zweites Gerät).
+    // Gehört der Platz zu einem anderen Konto, gilt das Token nicht: kein fremder Platz.
     let p = typeof token === 'string' && token ? room.byToken(token) : null;
     if (p?.bot) throw new Error('Computer-Mitspieler haben keinen Browser-Zugang');
+    if (p?.accountId && socket.data.accountId && p.accountId !== socket.data.accountId) p = null;
+    if (!p && socket.data.accountId) p = [...room.players.values()].find((x) => !x.bot && !x.kicked && x.accountId === socket.data.accountId) || null;
     if (p) {
+      if (!p.accountId) bindAccount(socket, p); // Platz aus der Zeit vor den Konten: jetzt binden
       if (!p.connected) room.say(`${p.name} ist wieder online`);
     } else {
       if (limits.newPlayer.blocked(ip)) throw new Error('Zu viele neue Namen von deinem Anschluss. Warte ein paar Minuten.');
       p = room.addPlayer(name, avatar);
+      bindAccount(socket, p);
       limits.newPlayer.hit(ip);
     }
     attach(socket, room, p);
@@ -607,7 +671,12 @@ io.on('connection', (socket) => {
     return { reply: { tables: lobbyList(), presence: presence.snapshot() } };
   }, { needRoom: false });
 
-  on('presence', (data) => ({ reply: { accepted: presence.update(socket.id, data) } }), { needRoom: false });
+  on('presence', (data) => {
+    const account = accounts.get(socket.data.accountId);
+    const accepted = presence.update(socket.id, data, account?.gameId || null);
+    if (accepted && account) accounts.touch(account.id, data);
+    return { reply: { accepted } };
+  }, { needRoom: false });
 
   // Startseite „Weiterspielen“: gibt es meinen Tisch noch? Nur mit gültigem Token, zeigt dasselbe wie die Liste
   on('peek', ({ code, token }) => {
@@ -839,6 +908,7 @@ function saveNow() {
     renameSync(SAVE_FILE + '.tmp', SAVE_FILE);
     for (const r of rooms.values()) saveHistory(r);
     leaderboard.save();
+    accounts.save();
   } catch (e) { console.error('Speichern fehlgeschlagen:', e.message); }
 }
 let shuttingDown = false;

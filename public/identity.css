@@ -1,0 +1,10 @@
+/* „Ich“ → Identität & Geräte */
+.profile-identity { border-block: 1px solid var(--line); padding-block: 2px; }
+.profile-identity summary { cursor: pointer; padding-block: 14px; min-height: 48px; }
+.identity-block { display: grid; gap: 8px; padding-block: 10px 14px; }
+.identity-block + .identity-block { border-top: 1px solid var(--line); }
+.identity-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.identity-row .input { flex: 1 1 160px; min-width: 0; text-transform: uppercase; letter-spacing: .12em; }
+.identity-id { font: 700 1.25rem/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: .12em; }
+.identity-legacy { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.identity-legacy li { display: flex; justify-content: space-between; gap: 8px; align-items: center; min-height: 44px; }

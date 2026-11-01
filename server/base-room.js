@@ -56,14 +56,15 @@ export class BaseRoom {
 
   // ---------- Spieler ----------
   // Name und Emoji-Avatar kommen aus der Lobby
-  addPlayer(name, avatar) {
+  // bot: Computer-Mitspieler bekommen eine eigene ID mit Präfix „bot_“ und nie eine Konto-ID (V2-01)
+  addPlayer(name, avatar, { bot = false } = {}) {
     if (typeof name !== 'string') throw new Error('Bitte gib einen Namen ein');
     name = cleanName(name);
     if (!name) throw new Error('Bitte gib einen Namen ein');
     if (this.nameTaken(name)) throw Object.assign(new Error('Der Name ist schon vergeben'), { extra: { suggestion: this.uniqueName(name) } });
     if (this.players.size >= MAX_PEOPLE) throw new Error('Der Raum ist voll');
     const p = {
-      id: randomBytes(6).toString('hex'), token: randomBytes(24).toString('hex'), name,
+      id: bot ? `bot_${randomBytes(5).toString('hex')}` : randomBytes(6).toString('hex'), token: randomBytes(24).toString('hex'), name,
       avatar: AVATARS.includes(avatar) ? avatar : AVATARS[this.players.size % AVATARS.length],
       connected: false, socketId: null,
     };

@@ -63,7 +63,7 @@ export function normalizeProgram(input) {
   });
   const teams = {};
   if (input.mode === 'team' && input.teams && typeof input.teams === 'object') for (const [id, team] of Object.entries(input.teams).slice(0, 30)) {
-    if (/^[a-f0-9]{12}$/.test(id) && ['a', 'b'].includes(team)) teams[id] = team;
+    if (/^(?:[a-f0-9]{12}|bot_[a-f0-9]{10})$/.test(id) && ['a', 'b'].includes(team)) teams[id] = team;
   }
   return { name: cleanText(typeof input.name === 'string' ? input.name : '', 40) || (input.mode === 'abend' ? 'Unser Spieleabend' : 'Unser Party-Abend'), mode: input.mode, entries, teams };
 }

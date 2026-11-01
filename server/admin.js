@@ -14,7 +14,7 @@ const HOURS = 8;
 const dir = join(dirname(fileURLToPath(import.meta.url)), 'admin');
 const equal = (a, b) => { const x = Buffer.from(String(a)), y = Buffer.from(String(b)); return x.length === y.length && timingSafeEqual(x, y); };
 
-export function createAdmin({ password, secret, dataDir, secure = () => false, trustProxy = false, log, errors, system, version, rooms, closeRoom, online, announce, cancelUpdate }) {
+export function createAdmin({ password, secret, dataDir, secure = () => false, trustProxy = false, log, errors, system, version, rooms, closeRoom, online, announce, cancelUpdate, claims = () => [], undoClaim = () => null }) {
   const router = express.Router();
   const pwHash = createHash('sha256').update('admin:' + password).digest('hex');
   const sign = (payload) => createHmac('sha256', secret).update(`admin:${pwHash}:${payload}`).digest('base64url');
@@ -74,13 +74,21 @@ export function createAdmin({ password, secret, dataDir, secure = () => false, t
     const list = rooms(), data = dataFiles(dataDir);
     res.json({
       version: version.version, commit: version.commit, now: Date.now(), system: system.stats(), online: online(), rooms: list,
-      data, errors: errors.list(50), log: log.recent(50), update: maintenance.state(), maxUpdateMinutes: MAX_UPDATE_MINUTES,
+      data, claims: claims(), errors: errors.list(50), log: log.recent(50), update: maintenance.state(), maxUpdateMinutes: MAX_UPDATE_MINUTES,
     });
   });
   api.post('/rooms/:code/close', (req, res) => {
     const info = closeRoom(String(req.params.code || '').toUpperCase());
     if (!info) return res.status(404).json({ error: 'Diesen Tisch gibt es nicht (mehr)' });
     log.add('Raum geschlossen', `${info.code} (${info.gameName}, ${info.humans} Spieler)`);
+    res.json({ ok: true });
+  });
+  // Falsche Zuordnung einer alten Statistik zu einem Konto rückgängig machen (V2-01); der alte Eintrag war nie verändert
+  api.post('/identity/claims/undo', (req, res) => {
+    const key = typeof req.body.key === 'string' && req.body.key.length <= 40 ? req.body.key : '';
+    const info = key && undoClaim(key);
+    if (!info) return res.status(404).json({ error: 'Diese Zuordnung gibt es nicht (mehr)' });
+    log.add('Statistik-Zuordnung rückgängig', `${info.name}${info.gameId ? ' von ' + info.gameId : ''}`);
     res.json({ ok: true });
   });
   api.post('/update', (req, res) => {

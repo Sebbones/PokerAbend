@@ -1,4 +1,5 @@
-// Anwesenheit und zuletzt gesehen ausschließlich im Speicher. Namen wie in der Bestenliste bündeln.
+// Anwesenheit und zuletzt gesehen ausschließlich im Speicher. Eine Person ist ihre öffentliche Game-ID (V2-01);
+// ohne Konto (Clients ohne Cookie) bündelt weiterhin der Name wie in der Bestenliste. Computer-Mitspieler erscheinen nie.
 import { cleanName } from './security.js';
 import { nameKey } from './leaderboard.js';
 import { AVATARS } from './base-room.js';
@@ -53,12 +54,13 @@ export function createPresence({ location = () => ({ kind: 'home' }), emit = () 
   }
   return {
     snapshot, changed,
-    update(id, data) {
+    // person: öffentliche Game-ID des Kontos oder null. Die interne Konto-ID gehört nie hierher.
+    update(id, data, person = null) {
       if (!data || typeof data !== 'object' || Array.isArray(data) || typeof data.name !== 'string') return false;
       if (data.visible !== undefined && typeof data.visible !== 'boolean' || data.active !== undefined && typeof data.active !== 'boolean') return false;
       const name = cleanName(data.name);
       if (!name) return false;
-      const p = { id, name, key: nameKey(name), avatar: AVATARS.includes(data.avatar) ? data.avatar : AVATARS[0], visible: data.visible !== false, active: data.active !== false, parked: false };
+      const p = { id, name, key: typeof person === 'string' && person ? person : nameKey(name), avatar: AVATARS.includes(data.avatar) ? data.avatar : AVATARS[0], visible: data.visible !== false, active: data.active !== false, parked: false };
       const old = connections.get(id);
       connections.set(id, p);
       if (old?.key !== p.key) remember(old);

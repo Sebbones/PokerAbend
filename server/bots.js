@@ -9,7 +9,7 @@ export function addBot(room, hostId) {
   if (seats.filter(Boolean).length >= max) throw new Error('Der Tisch ist voll');
   let n = 1;
   while ([...room.players.values()].some((p) => p.name.toLowerCase() === `bot ${n}`)) n++;
-  const p = room.addPlayer(`Bot ${n}`, '🦉');
+  const p = room.addPlayer(`Bot ${n}`, '🦉', { bot: true });
   p.bot = true;
   p.connected = true;
   try {

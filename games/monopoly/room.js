@@ -30,7 +30,7 @@ export class Room extends TurnRoom {
   validateStart() { this.board = boardStore().get(this.settings.board); }
   fieldName(i) { const at = PROPERTIES.indexOf(i); return at < 0 ? BOARD[i].name : this.board.names[at]; }
   chooseBoard(id, board) { this.requireHost(id); if (this.busy) throw new Error('Brettwechsel nur zwischen Partien'); this.board = boardStore().get(board); this.settings.board = board; this.say(`Brett: ${this.board.title}`); }
-  saveBoard(id, input) { this.requireHost(id); if (this.busy) throw new Error('Bretter zwischen Partien anlegen'); const b = boardStore().save(input); this.chooseBoard(id, b.id); return b; }
+  saveBoard(id, input) { this.requireHost(id); if (this.busy) throw new Error('Bretter zwischen Partien anlegen'); const b = boardStore().save(input, this.players.get(id)?.accountId); this.chooseBoard(id, b.id); return b; }
   setupRound() {
     const available = Object.keys(TOKENS).filter((t) => !this.order.some((id) => this.tokens[id] === t));
     for (const id of this.order) if (!this.tokens[id]) this.tokens[id] = available.shift();

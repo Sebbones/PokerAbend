@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/evening-reviews.css">
   <link rel="stylesheet" href="/evening-plans.css">
   <link rel="stylesheet" href="/achievements.css">
+  <link rel="stylesheet" href="/identity.css">
   <link rel="stylesheet" href="/variants.css">
   <link rel="stylesheet" href="/games/party-kit.css">
   <link rel="stylesheet" href="/games/solo/solo-kit.css">
@@ -69,6 +70,7 @@
       <label class="field"><span data-i18n>Dein Name</span><input id="p-name" maxlength="16" required placeholder="z. B. Tobi" data-i18n-attrs="placeholder"></label>
       <fieldset class="field"><legend>Avatar</legend><div id="p-avatars" class="avatars"></div></fieldset>
       <label class="toggle"><span><span data-i18n>Mich nicht als online zeigen</span><small data-i18n>Du siehst andere weiterhin. Dein Name erscheint weder online noch unter „Zuletzt online“.</small></span><input type="checkbox" role="switch" id="p-presence-hidden"></label>
+      <details class="profile-identity" id="p-identity"><summary data-i18n>Identität & Geräte</summary><div id="p-identity-body"></div></details>
       <details class="profile-preferences"><summary data-i18n>Darstellung & Töne</summary><div id="p-preferences"></div><p class="hint" data-i18n>Gilt nur in diesem Browser. Änderungen werden sofort gespeichert.</p></details>
       <div class="ops-about"><small id="p-version"></small><span class="ops-about-actions"><button type="button" class="btn btn-ghost" id="p-whatsnew" data-i18n>Was ist neu?</button><button type="button" class="btn btn-ghost" id="p-bugreport" data-i18n>Fehler melden</button></span></div>
       <p id="p-error" class="error" role="alert"></p>
@@ -117,6 +119,7 @@
   <script src="/evening-reviews.js"></script>
   <script src="/evening-plans.js"></script>
   <script src="/achievements.js"></script>
+  <script src="/identity.js"></script>
   <!-- Startseite: Profil, Navigation, Tische, Spiele -->
   <script src="/singleplayer.js"></script>
   <script src="/hub.js"></script>

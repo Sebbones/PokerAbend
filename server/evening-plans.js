@@ -1,5 +1,6 @@
 // Terminfindung und Spielewahl: Namen sind Anzeige, Rechte gehören zur Browser-Kennung.
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { rebindIds } from './rebind.js';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { cleanName, cleanText } from './security.js';
@@ -122,6 +123,12 @@ export function createPlanStore({ dir, games, now = Date.now, persist = atomic }
     remove(id, revision, actor) {
       const p = get(id); own(p, actor); if (p.revision !== revision) throw planError(409, 'Die Planung wurde inzwischen geändert. Aktualisiere die Ansicht');
       const next = { version: 1, plans: state.plans.filter((v) => v.id !== id) }; persist(file, next); state = next;
+    },
+    // V2-01: Besucher-ID → Konto-ID (Ersteller, Stimmen, Spielvorschläge)
+    rebind(from, to) {
+      const { value, count } = rebindIds(structuredClone(state), from, to);
+      if (count) { mkdirSync(dir, { recursive: true }); persist(file, value); state = value; }
+      return count;
     },
     program(id) {
       const p = get(id); if (p.status !== 'fixed') throw planError(409, 'Lege zuerst Termin und Spiele fest');

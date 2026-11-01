@@ -31,6 +31,7 @@ function openProfile(first = false) {
   $('#profile-title').textContent = first ? I18n.t('Wie heißt du?') : I18n.t('Ich');
   $('#p-name').value = profile.name;
   $('#p-error').textContent = '';
+  window.Identity?.open();
   $('#p-cancel').hidden = first;
   $('#p-achievements').hidden = first;
   $('#p-presence-hidden').checked = !!store.get('poker:presenceHidden', false);
@@ -613,7 +614,7 @@ function relativeSeen(at) {
   return mins < 1 ? I18n.t('gerade eben') : mins < 60 ? I18n.html`vor ${mins} Min.` : I18n.html`vor ${Math.floor(mins / 60)} Std.`;
 }
 function presenceHTML() {
-  const me = profile.name.trim().toLowerCase();
+  const me = (typeof Identity !== 'undefined' && Identity.gameId) || profile.name.trim().toLowerCase(); // Personen laufen über die Game-ID, Clients ohne Konto über den Namen
   const recentlySeen = hubPresence.recent.filter((p) => Date.now() - p.at < 86400000);
   const people = [...hubPresence.online].sort((a, b) => (b.key === me) - (a.key === me) || a.name.localeCompare(b.name, 'de'));
   const list = `<ul class="presence-list">${people.map((p) => `<li><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${esc(p.name)}${p.key === me ? I18n.t(' (du)') : ''}</b><small>${uiText(p.status)}</small></div>
@@ -636,6 +637,7 @@ function refreshPresence() {
   if (focusedSummary) $$('details', slot).find((el) => el.dataset.presenceDetails === focusedSummary)?.querySelector('summary').focus({ preventScroll: true });
 }
 socket.on('presence', (data) => { hubPresence = data; refreshPresence(); });
+window.addEventListener('identityready', () => refreshPresence());
 document.addEventListener('visibilitychange', () => { if (!document.hidden) lastInput = Date.now(); reportPresence(); });
 ['pointerdown', 'keydown', 'input'].forEach((event) => document.addEventListener(event, () => { lastInput = Date.now(); reportPresence(); }, { passive: true }));
 setInterval(() => { reportPresence(); refreshPresence(); }, 30000);

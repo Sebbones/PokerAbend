@@ -13,6 +13,9 @@ const spiele = (ids) => ids.map((id) => punkt(id, GAMES[id].name, 'spiel', GAMES
 // Betrieb & Wartung: Update-Hinweis, Admin-Seite, Version, Browser-Fehler, Ausfall-Wächter, Backups (Speichern mitten in der Runde bleibt offen)
 const BETRIEB_FERTIG = ['betrieb-1', 'betrieb-2', 'betrieb-3', 'betrieb-4', 'betrieb-5', 'betrieb-6'];
 
+// V2-00 und V2-01 (Bestandsaufnahme, Plattformidentität) sind umgesetzt; Discord (V2-02) und alles Übrige bleibt geplant.
+const V2_FERTIG = ['v2-audit', 'v2-backup-migration', 'v2-account-identity', 'technik-3', 'discord-3', 'discord-4'];
+
 export const ROADMAP = [
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
   { id: 'einzelspieler-zukunft', titel: 'Weitere Einzelspieler-Spiele', satz: 'Neun einzeln geplante Arbeitspakete. Umsetzung jeweils erst nach eigener Freigabe.', stufe: 'spaeter', eintraege: ['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3'], punkte: [] },
@@ -121,7 +124,7 @@ export const ROADMAP = [
     punkt('v2-admin-sicherheit', 'Sichere Adminrechte', 'betrieb', 'Admin-Aktionen nur mit eigener Berechtigung, Bestätigung und protokollierten Änderungen.'),
   ] },
   { id: 'v2-profile', titel: 'Dauerhafte Konten, Profile & Privatsphäre', satz: 'Auf Wunsch wiedererkannt werden und selbst über sichtbare Daten entscheiden.', stufe: 'spaeter', punkte: [
-    punkt('v2-account-identity', 'Dauerhafte Konten & Spieler-IDs', 'funktion', 'Menschliche Gäste, registrierte Konten und Computergegner zuverlässig unterscheiden; bestehende Spiel-IDs beibehalten.'),
+    punkt('v2-account-identity', 'Feste Spieler-ID & Game-ID', 'funktion', 'Jeder Browser ist ein identifizierter Gast mit fester interner ID und kurzer öffentlicher Game-ID; Computergegner sind getrennt, zwei Geräte lassen sich verbinden. Registrierte Konten (Discord) folgen später.'),
     punkt('v2-player-profiles', 'Eigene Spielerprofile', 'funktion', 'Ein Profil über die öffentliche Game-ID finden; ein Namenswechsel trennt die eigene Geschichte nicht mehr.'),
     punkt('v2-account-achievements', 'Erfolge dem Konto zuordnen', 'funktion', 'Bestätigte neue Erfolge eindeutig dem jeweiligen Konto zuordnen, ohne alte Namensstatistiken ungeprüft zu übernehmen.'),
     punkt('v2-profile-preferences', 'Einstellungen auf mehreren Geräten', 'funktion', 'Kontoeinstellungen geräteübergreifend nutzen; Gäste behalten ihre lokale Browser-Auswahl.'),
@@ -163,7 +166,7 @@ export const ROADMAP = [
   { id: 'schutz-fertig', titel: 'Passwortschutz & HTTPS über Traefik', satz: 'Geschützter Zugang und verschlüsselte Verbindung im Server-Betrieb.', stufe: 'erledigt', datum: '2026-10-27', punkte: [punkt('passwort-https', 'Gruppenpasswort & Traefik', 'betrieb', 'Passwortschutz vorhanden; Traefik ersetzt Caddy im Deployment.', true)] },
   { id: 'bots-fertig', titel: 'Computer-Mitspieler, Mühle & Zehntausend', satz: 'Optionale Computer-Mitspieler und zwei weitere Spiele.', stufe: 'erledigt', datum: '2026-10-25', punkte: [...spiele(['muehle', 'zehntausend']), punkt('computer-mitspieler', 'Computer-Mitspieler', 'funktion', 'Bots im Host-Menü hinzufügen oder entfernen; eigene Strategien für unterstützte Spiele.', true)] },
   { id: 'v1-fertig', titel: 'V1 Poker', satz: 'Der erste gemeinsame Pokertisch im Browser.', stufe: 'erledigt', datum: '2026-10-24', punkte: spiele(['poker']) },
-];
+].map((section) => ({ ...section, punkte: section.punkte.map((p) => (V2_FERTIG.includes(p.id) ? { ...p, erledigt: true, datum: '2026-11-01' } : p)) }));
 
 // „Was ist neu“: die neuesten erledigten Punkte (mit Datum), neueste zuerst; bei gleichem Datum gilt die Reihenfolge der Roadmap
 export function whatsNew(limit = 8, roadmap = resolvedRoadmap()) {
