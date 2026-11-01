@@ -71,16 +71,26 @@
         "Sicherungs-/Rollback-Checkliste dokumentiert",
         "Altbestände und Tests inventarisiert"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "22af4c8",
+      "completed_at": "2026-11-01",
+      "notes": [
+        "Ausdrückliche Freigabe vom 2026-11-01 (zusammen mit V2-01). Ergebnis: docs/roadmap/V2-00_BESTANDSAUFNAHME.md (Architektur, Datenbestände in DATA_DIR, Cookies, Threat Model T1–T11, Test-Inventar, Sicherungs-/Rollback-Checkliste).",
+        "Keine Änderung an Produktivdaten; geprüft wurde der Quellcode."
+      ],
       "public_roadmap_ids": [
         "v2-audit",
         "v2-backup-migration"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/data-safety.test.js test/code-review-2026-11.test.js test/identity.test.js",
+          "result": "grün (Sicherung unlesbarer Dateien, Aufräumen verwaister Verläufe, Migration mit Sicherung und Rückfall)"
+        }
+      ],
+      "commits": [
+        "22af4c8"
+      ]
     },
     {
       "id": "V2-01",
@@ -115,17 +125,36 @@
         "mehrere Tabs/Reconnect dürfen keine Identität übernehmen",
         "vorhandene Räume und Tokens bleiben soweit möglich kompatibel"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "22af4c8",
+      "completed_at": "2026-11-01",
+      "notes": [
+        "Ausdrückliche Freigabe vom 2026-11-01. Umgesetzt: Gast-Cookie pa_guest mit interner AccountId, öffentliche Game-ID, Geräte-Code, Übernahme alter Statistiken (Admin kann zurücknehmen), Bindung an Räume, Bots mit bot_-IDs, schemaVersion, Sicherung backups/pre-v2-01. Dokumentation: docs/roadmap/V2-01_IDENTITAET.md.",
+        "Nicht Teil: Discord (V2-02, nur Schnittstelle accounts.linkExternal), registrierte Konten, Profile/Datenschutz (V2-05), serverseitige Playlists, Nennung von Konten in archivierten Rückblicken. Keine serverseitigen Sitzungen und keine Datenbank (kein SQLite-Treiber nötig).",
+        "Produktivdaten wurden nicht angefasst; Produktivdeployment ist nicht Teil des Auftrags."
+      ],
       "public_roadmap_ids": [
         "v2-account-identity",
         "discord-3",
         "discord-4"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/identity.test.js",
+          "result": "22 Prüfungen grün"
+        },
+        {
+          "command": "node --test \"test/*.test.js\" (Arbeitskopie vom 2026-11-01)",
+          "result": "1068 Prüfungen, 1067 grün; 1 rot: BACKLOG-03 in test/new-games.test.js wegen einer nicht eingecheckten Änderung an games/five-card-draw/room.js aus paralleler Arbeit (nicht Teil von V2-01)"
+        },
+        {
+          "command": "npx playwright test test/ui/{smoke,identity,roadmap-presence,tickets,evening-plans,ops,realtime,paeckchen9,block-a,bots,leave}.spec.js (Desktop + Handy)",
+          "result": "84 grün; roadmap-presence „Konsolidierte V2-Roadmap“ danach auf den neuen Stand angepasst und einzeln grün; „Roadmap: Navigation … Spielregeln“ (Backgammon-Regeln) war schon vor V2-01 rot (e43ed72) und ist nicht Teil dieser Lieferung"
+        }
+      ],
+      "commits": [
+        "22af4c8"
+      ]
     },
     {
       "id": "V2-02",
@@ -833,7 +862,8 @@
   "notes": [
     "PR #3 und #4 werden durch gezielte direkte Commits auf main konsolidiert; Herkunft und verworfene Altstände siehe consolidation.json und CONSOLIDATION_2026-10-30.md.",
     "Alle 18 V2-Pakete bleiben planned. Der bereits vorhandene Liquid-Glass-Hub ist die Ausgangsbasis für spätere V2-Integration, keine Freigabe oder Fertigmeldung für V2-06.",
-    "Teillieferung „Betrieb & Wartung“ (2026-11-01, siehe partial_deliveries): nur die dort genannten Teile von V2-09, V2-10 und V2-17 sind umgesetzt; alle 18 Pakete bleiben planned."
+    "Teillieferung „Betrieb & Wartung“ (2026-11-01, siehe partial_deliveries): nur die dort genannten Teile von V2-09, V2-10 und V2-17 sind umgesetzt; alle 18 Pakete bleiben planned.",
+    "V2-00 und V2-01 wurden am 2026-11-01 ausdrücklich freigegeben und umgesetzt; alle übrigen Pakete (u. a. V2-02 Discord) bleiben planned."
   ],
   "workflow": {
     "branch": "main",

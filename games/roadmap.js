@@ -124,7 +124,7 @@ export const ROADMAP = [
     punkt('v2-admin-sicherheit', 'Sichere Adminrechte', 'betrieb', 'Admin-Aktionen nur mit eigener Berechtigung, Bestätigung und protokollierten Änderungen.'),
   ] },
   { id: 'v2-profile', titel: 'Dauerhafte Konten, Profile & Privatsphäre', satz: 'Auf Wunsch wiedererkannt werden und selbst über sichtbare Daten entscheiden.', stufe: 'spaeter', punkte: [
-    punkt('v2-account-identity', 'Feste Spieler-ID & Game-ID', 'funktion', 'Jeder Browser ist ein identifizierter Gast mit fester interner ID und kurzer öffentlicher Game-ID; Computergegner sind getrennt, zwei Geräte lassen sich verbinden. Registrierte Konten (Discord) folgen später.'),
+    punkt('v2-account-identity', 'Dauerhafte Konten & Spieler-IDs', 'funktion', 'Jeder Browser ist ein identifizierter Gast mit fester interner ID und kurzer öffentlicher Game-ID; Computergegner sind getrennt, zwei Geräte lassen sich verbinden. Registrierte Konten (Discord) folgen später.'),
     punkt('v2-player-profiles', 'Eigene Spielerprofile', 'funktion', 'Ein Profil über die öffentliche Game-ID finden; ein Namenswechsel trennt die eigene Geschichte nicht mehr.'),
     punkt('v2-account-achievements', 'Erfolge dem Konto zuordnen', 'funktion', 'Bestätigte neue Erfolge eindeutig dem jeweiligen Konto zuordnen, ohne alte Namensstatistiken ungeprüft zu übernehmen.'),
     punkt('v2-profile-preferences', 'Einstellungen auf mehreren Geräten', 'funktion', 'Kontoeinstellungen geräteübergreifend nutzen; Gäste behalten ihre lokale Browser-Auswahl.'),

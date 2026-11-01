@@ -9,6 +9,8 @@ import { ROADMAP, resolvedRoadmap } from '../games/roadmap.js';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const plan = JSON.parse(read('docs/roadmap/plan.json'));
 const inventory = JSON.parse(read('docs/roadmap/consolidation.json'));
+const DONE = ['V2-00', 'V2-01'];
+const V2_DONE_POINTS = ['v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-3', 'discord-4']; // ausdrücklich freigegebene und umgesetzte Pakete
 
 test('V2-Plan: 18 vollständige, eindeutig geplante Pakete mit gültigen Abhängigkeiten', () => {
   const ids = Array.from({ length: 18 }, (_, i) => `V2-${String(i).padStart(2, '0')}`);
@@ -30,11 +32,20 @@ test('V2-Plan: 18 vollständige, eindeutig geplante Pakete mit gültigen Abhäng
   for (const t of plan.tasks) {
     assert.ok(t.title && t.goal && ['critical', 'high', 'medium', 'later'].includes(t.priority), t.id);
     for (const field of ['files', 'security', 'acceptance', 'public_roadmap_ids']) assert.ok(Array.isArray(t[field]) && t[field].length, `${t.id}: ${field}`);
-    assert.equal(t.status, 'planned');
-    assert.equal(t.implementation_commit, null);
-    assert.equal(t.completed_at, null);
-    assert.deepEqual(t.commits, []);
-    assert.deepEqual(t.test_results, []);
+    if (DONE.includes(t.id)) {
+      // Nur ausdrücklich freigegebene und wirklich umgesetzte Pakete tragen Nachweise (V2-00, V2-01 am 01.11.2026)
+      assert.equal(t.status, 'done', t.id);
+      assert.match(t.implementation_commit, /^[0-9a-f]{7,40}$/, t.id);
+      assert.match(t.completed_at, /^\d{4}-\d{2}-\d{2}$/, t.id);
+      assert.ok(t.commits.length && t.commits.every((c) => /^[0-9a-f]{7,40}$/.test(c)), t.id);
+      assert.ok(t.test_results.length && t.test_results.every((r) => r.command && r.result), t.id);
+    } else {
+      assert.equal(t.status, 'planned');
+      assert.equal(t.implementation_commit, null);
+      assert.equal(t.completed_at, null);
+      assert.deepEqual(t.commits, []);
+      assert.deepEqual(t.test_results, []);
+    }
     visit(t.id);
   }
 });
@@ -45,7 +56,8 @@ test('Alle V2-Pakete sind über echte, noch offene Besucher-Einträge mit der ö
   for (const t of plan.tasks) for (const id of t.public_roadmap_ids) {
     const found = points.filter(p => p.id === id);
     assert.equal(found.length, 1, `${t.id}: ${id}`);
-    assert.ok(!found[0].erledigt, id + ' darf durch Planung nicht erledigt werden');
+    // V2-00/V2-01 sind umgesetzt; ihre Roadmap-Einträge dürfen erledigt sein, alle anderen nicht
+    assert.equal(!!found[0].erledigt, DONE.includes(t.id) && V2_DONE_POINTS.includes(id), id + ' darf nur durch echte Umsetzung erledigt werden');
     assert.ok(['spaeter', 'gross'].includes(found[0].stage), id);
   }
   for (const [taskId, gameId] of [['V2-11', 'gebietskampf'], ['V2-12', 'staedtehandel']]) {
