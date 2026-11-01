@@ -161,6 +161,8 @@ app.get(['/api/evenings/:id', '/api/evenings/:id/export'], (req, res) => {
   } catch (error) { res.status(error.status || 500).json({ error: error.message }); }
 });
 // Bestenliste über alle Abende: ?game=maumau&period=all|2026-10 (nur angemeldet)
+// Nur echte Spiel-IDs – „__proto__“ oder „constructor“ sind keine Spiele
+const gameById = (id) => (typeof id === 'string' && Object.hasOwn(GAMES, id) ? GAMES[id] : null);
 const GAME_INFO = Object.fromEntries(Object.values(GAMES).map((g) => {
   const r = g.create('INFO', {}, () => {}); const info = { id: g.id, name: g.name, lowWins: !!r.opts?.lowWins, scoreLabel: r.opts?.scoreLabel || 'Chips' }; r.dispose?.();
   return [g.id, info];
@@ -171,7 +173,7 @@ for (const game of Object.values(GAMES)) for (const v of game.variants || []) if
 }
 app.get('/api/leaderboard', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  const game = GAME_INFO[req.query.game] ? String(req.query.game) : DEFAULT_GAME;
+  const game = typeof req.query.game === 'string' && Object.hasOwn(GAME_INFO, req.query.game) ? req.query.game : DEFAULT_GAME;
   const months = leaderboard.months();
   const period = req.query.period === 'all' || months.includes(req.query.period) ? String(req.query.period) : 'all';
   const info = GAME_INFO[game];
@@ -507,14 +509,15 @@ io.on('connection', (socket) => {
   };
 
   on('create', ({ game: gameId = DEFAULT_GAME, name, avatar, settings, unlisted, variant }) => {
-    const game = GAMES[gameId];
+    const game = gameById(gameId);
     if (!game) throw new Error(notPlayable(gameId));
     if (rooms.size >= MAX_ROOMS) throw new Error('Gerade sind zu viele Tische offen');
     if (!limits.create.hit(ip)) throw new Error('Du hast gerade sehr viele Tische erstellt. Warte ein paar Minuten.');
+    const cfg = settings && typeof settings === 'object' && !Array.isArray(settings) ? settings : {};
     const code = codes.take(game.id);
     let room, p;
     try {
-      room = game.create(code, variant ? { ...settings, variant } : settings, (kind, data) => onRoomChange(room, kind, data));
+      room = game.create(code, variant ? { ...cfg, variant } : cfg, (kind, data) => onRoomChange(room, kind, data));
       room.game = game.id;
       room.unlisted = unlisted === true;
       p = room.addPlayer(name, avatar);
@@ -588,7 +591,7 @@ io.on('connection', (socket) => {
   on('switchGame', ({ game: gameId }, room, p) => {
     room.requireHost(p.id);
     if (programActive(room)) throw new Error('Nutze „Nächstes Programm-Spiel“ oder beende zuerst das Abendprogramm');
-    const game = GAMES[String(gameId || '')];
+    const game = gameById(gameId);
     if (!game) throw new Error(notPlayable(gameId));
     if (game.id === room.game) throw new Error('Das wird hier schon gespielt');
     if (room.busy) throw new Error('Wechseln geht erst, wenn die Runde vorbei ist');

@@ -4,6 +4,7 @@ import { nameKey } from './leaderboard.js';
 import { AVATARS } from './base-room.js';
 
 const DAY = 24 * 60 * 60 * 1000;
+const MAX_REMEMBERED = 200; // „zuletzt online“ und versteckte Namen: Obergrenze gegen ständig wechselnde Namen
 const priority = { playing: 4, watching: 3, home: 2, away: 1 };
 export function createPresence({ location = () => ({ kind: 'home' }), emit = () => {}, now = Date.now, delay = 2000, setTimer = setTimeout, clearTimer = clearTimeout } = {}) {
   const connections = new Map(), recent = new Map(), hidden = new Map();
@@ -46,7 +47,9 @@ export function createPresence({ location = () => ({ kind: 'home' }), emit = () 
     if (!p || !p.visible || hidden.has(p.key) || [...connections.values()].some((other) => other.key === p.key)) return;
     const place = location(p.id);
     if (place?.bot) return;
+    recent.delete(p.key);
     recent.set(p.key, { key: p.key, name: p.name, avatar: p.avatar, at: now() });
+    while (recent.size > MAX_REMEMBERED) recent.delete(recent.keys().next().value);
   }
   return {
     snapshot, changed,
@@ -59,7 +62,10 @@ export function createPresence({ location = () => ({ kind: 'home' }), emit = () 
       const old = connections.get(id);
       connections.set(id, p);
       if (old?.key !== p.key) remember(old);
-      if (!p.visible) { hidden.set(p.key, now()); recent.delete(p.key); }
+      if (!p.visible) {
+        hidden.delete(p.key); hidden.set(p.key, now()); recent.delete(p.key);
+        while (hidden.size > MAX_REMEMBERED) hidden.delete(hidden.keys().next().value);
+      }
       else if (![...connections.values()].some((other) => other.key === p.key && !other.visible)) hidden.delete(p.key);
       changed();
       return true;

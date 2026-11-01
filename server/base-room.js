@@ -57,6 +57,7 @@ export class BaseRoom {
   // ---------- Spieler ----------
   // Name und Emoji-Avatar kommen aus der Lobby
   addPlayer(name, avatar) {
+    if (typeof name !== 'string') throw new Error('Bitte gib einen Namen ein');
     name = cleanName(name);
     if (!name) throw new Error('Bitte gib einen Namen ein');
     if (this.nameTaken(name)) throw Object.assign(new Error('Der Name ist schon vergeben'), { extra: { suggestion: this.uniqueName(name) } });

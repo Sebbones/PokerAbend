@@ -147,8 +147,10 @@ export class GuessRoom extends DrawingRoom {
   }
 }
 
+// Nicht jede Zeichenrunde kennt jeden Befehl (z. B. hat „Malen & Raten“ keine Abstimmung)
+const supported = (room, action) => { if (typeof room[action] !== 'function') throw new Error('Das gibt es in diesem Spiel nicht'); return room; };
 export const drawingEvents = {
-  drawing: (room, p, { key, strokes, done }) => room.drawing(p.id, key, strokes, done === true),
-  answer: (room, p, { key, text }) => room.answer(p.id, key, typeof text === 'string' ? text : ''),
-  vote: (room, p, { key, choice }) => room.vote(p.id, key, choice),
+  drawing: (room, p, { key, strokes, done }) => supported(room, 'drawing').drawing(p.id, key, strokes, done === true),
+  answer: (room, p, { key, text }) => supported(room, 'answer').answer(p.id, key, typeof text === 'string' ? text : ''),
+  vote: (room, p, { key, choice }) => supported(room, 'vote').vote(p.id, key, choice),
 };

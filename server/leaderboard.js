@@ -1,7 +1,7 @@
 // Bestenliste über alle Abende (data/leaderboard.json): pro Person und Spiel gespielte Partien, Siege und Punkte –
 // insgesamt und je Monat. Wiedererkennung über den Namen (Groß/Klein egal, Leerzeichen am Rand egal).
 // Eine Partie ist beim Poker eine Hand (Punkte = gewonnene/verlorene Chips), sonst eine Runde (Punkte der Runde).
-import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { scoreKey } from '../games/variants.js';
 
@@ -17,9 +17,16 @@ function add(t, e) {
 export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
   const file = join(dataDir, 'leaderboard.json');
   let data = { players: {} };
+  let unreadable = null;
   try { if (existsSync(file)) data = JSON.parse(readFileSync(file, 'utf8')); }
-  catch (e) { console.error('Bestenliste nicht lesbar:', e.message); }
-  if (!data || !data.players || typeof data.players !== 'object' || Array.isArray(data.players)) data = { players: {} };
+  catch (e) { unreadable = e.message; }
+  if (!data || !data.players || typeof data.players !== 'object' || Array.isArray(data.players)) { unreadable ||= 'unerwartete Struktur'; data = { players: {} }; }
+  // Die nächste Speicherung ersetzt die Datei: eine unlesbare Datei vorher sichern, damit kein Verlauf verloren geht.
+  if (unreadable) {
+    console.error('Bestenliste nicht lesbar:', unreadable);
+    try { copyFileSync(file, `${file}.unlesbar-${new Date().toISOString().replace(/[:.]/g, '-')}`); }
+    catch (e) { console.error('Sicherung der Bestenliste fehlgeschlagen:', e.message); }
+  }
   // Spielernamen dürfen auch „constructor“ oder „__proto__“ heißen – ebenso nach dem Laden.
   data.players = Object.assign(Object.create(null), data.players);
   let dirty = false;
