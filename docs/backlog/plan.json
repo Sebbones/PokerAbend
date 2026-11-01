@@ -1220,14 +1220,51 @@
         },
         {
           "path": "games/scrabble/bot.js",
-          "sha256": "85a26f4e4f50eea43d5045fb8ef6cb530dd5e79da4b50e0333240a8edad52e6a"
+          "sha256": "85f16c3314a9ec02345b158edbc48857ffd2eebacfa90185e6a299ba5bcf9dd9"
         },
         {
           "path": "games/scrabble/words.js",
           "sha256": "792162986cc34344f4673fbb9d6c63be7c778eb4d8b3719994e90d8714ccd4c0"
         }
       ],
-      "completed_at": "2026-11-01"
+      "completed_at": "2026-11-01",
+      "pre_v2_16_bot_audit": {
+        "source_audit_commit": "bb962270a086a4edaf306db1d4f7e1fb987eabd8",
+        "source_audit": [
+          {
+            "path": "games/scrabble/index.js",
+            "sha256": "c3a5eecd368425eafb0dc8522844fd678e1845b5d30588612ceecc1f8776d8f4"
+          },
+          {
+            "path": "games/scrabble/room.js",
+            "sha256": "e5192bbb98805d15591bd008f6c74a396c82397a285a9d8606fbd32aed2acc0e"
+          },
+          {
+            "path": "games/scrabble/rules.js",
+            "sha256": "f464de82c76c227204b7537735c7e733867f16a7e96a5cd486766f83f394896f"
+          },
+          {
+            "path": "public/games/scrabble/scrabble.js",
+            "sha256": "9fc23ffdd92ab1a6467b66934a9b987cae61975649c13316098765fc5b947d9a"
+          },
+          {
+            "path": "public/games/scrabble/scrabble.css",
+            "sha256": "6f80249a7f63fbcbdab3ea3db42d8be2e584aa83c3bdec5fd0a3ff401df7acf4"
+          },
+          {
+            "path": "games/scrabble/bot.js",
+            "sha256": "85a26f4e4f50eea43d5045fb8ef6cb530dd5e79da4b50e0333240a8edad52e6a"
+          },
+          {
+            "path": "games/scrabble/words.js",
+            "sha256": "792162986cc34344f4673fbb9d6c63be7c778eb4d8b3719994e90d8714ccd4c0"
+          }
+        ]
+      },
+      "v2_16_bot_search": {
+        "scope": "Optional cooperative deadline and word subset for Easy/Hard. Default Medium uses original full word search unchanged.",
+        "implementation_commit": null
+      }
     },
     {
       "id": "hearts",
