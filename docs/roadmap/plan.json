@@ -187,16 +187,34 @@
         "Discord-Identität ist serverseitig verifiziert",
         "Discord-Login ohne konfigurierte Secrets sauber deaktiviert"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "a06505d",
+      "completed_at": "2026-11-01",
+      "notes": [
+        "Ausdrückliche Freigabe vom 2026-11-01. Umgesetzt in server/auth-discord.js: Authorization Code mit PKCE, einmaliger browsergebundener state, feste Redirect-URI aus PUBLIC_URL, serverseitiger Code-Austausch, eigene Sitzung (Hash, HttpOnly, Rotation, Widerruf, Ablauf), verschlüsselter Refresh-Token, Mitgliedschaftsprüfung alle 24 h ohne Aussperren bei Discord-Ausfall. Dokumentation: docs/roadmap/V2-02_DISCORD.md, Einrichtung im README.",
+        "Nicht Teil: Discord-Avatar (Emoji-Avatare, CSP), Tisch-Nachrichten, Activity, Kamera, Ranglisten-Verifizierung. Discord ist nie Admin. Nur gegen ein nachgebautes Discord getestet; echter Discord-Ablauf (Developer Portal, Redirect-URI) muss nach dem Deployment einmal von Hand geprüft werden."
+      ],
       "public_roadmap_ids": [
         "discord-1",
         "v2-session-security"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/discord.test.js",
+          "result": "11 Prüfungen grün (ohne Secrets aus, Mitglied/Nicht-Mitglied/Abbruch, state-Fälschung und Replay, abgelaufener Code, Verknüpfen/Trennen/Zusammenführen, Cookie-Verlust, Recheck und Discord-Ausfall, Logout/überall abmelden/Rotation, kein Admin, Sitzungen gehasht, Rate-Limit)"
+        },
+        {
+          "command": "npx playwright test test/ui/{smoke,identity,block-a,discord}.spec.js (Desktop + Handy)",
+          "result": "32 grün (Login-Seite mit beiden Wegen, Verknüpfen-Dialog und Zusammenführen unter „Ich“)"
+        },
+        {
+          "command": "node --test \"test/*.test.js\"",
+          "result": "1109 Prüfungen; rot nur BACKLOG-03 (nicht eingecheckte Arbeit an games/five-card-draw aus paralleler Arbeit) und der V2-Plan-Test vor dem Eintrag dieser Nachweise"
+        }
+      ],
+      "commits": [
+        "a06505d"
+      ]
     },
     {
       "id": "V2-03",

@@ -3,6 +3,7 @@ import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
 import { mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { io } from 'socket.io-client';
@@ -10,7 +11,6 @@ import { createLeaderboard } from '../server/leaderboard.js';
 import { createPresence } from '../server/presence.js';
 import { GAMES } from '../games/index.js';
 import { BaseRoom } from '../server/base-room.js';
-import { freePort } from './free-port.js';
 
 test('Bestenliste: eine unlesbare Datei wird gesichert, bevor die nächste Speicherung sie ersetzt', () => {
   const dir = mkdtempSync(join(tmpdir(), 'lb-corrupt-'));
@@ -66,6 +66,10 @@ test('Zeichenspiele: der Abstimm-Befehl ist nur dort wirksam, wo es ihn gibt', (
 });
 
 // ---------- echter Server ----------
+const freePort = () => new Promise((resolve, reject) => {
+  const probe = createServer(); probe.once('error', reject);
+  probe.listen(0, () => { const { port } = probe.address(); probe.close(() => resolve(port)); });
+});
 let server, URL;
 before(async () => {
   const port = await freePort(); URL = `http://localhost:${port}`;
