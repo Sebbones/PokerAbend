@@ -92,6 +92,14 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
       state.externals[key] = t; audit('Externe Identität verknüpft', provider);
       return true;
     },
+    unlinkExternal(id, provider) {
+      const t = resolve(id); let removed = false;
+      for (const [key, owner] of Object.entries(state.externals)) if (key.startsWith(`${provider}:`) && resolve(owner) === t) { delete state.externals[key]; removed = true; }
+      if (removed) { state.accounts[t].discord = null; audit('Externe Identität getrennt', provider); }
+      return removed;
+    },
+    // Anzeigedaten des Anbieters (z. B. Discord-Name); die ID selbst steht nur in externals
+    setExternalProfile(id, data) { const t = resolve(id); if (!t) return false; state.accounts[t].discord = data; touched(); return true; },
     findExternal: (provider, externalId) => resolve(state.externals[`${provider}:${externalId}`]),
     audit,
     auditLog: (n = 50) => state.audit.slice(-n).reverse(),

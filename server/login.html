@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='6' y='6' width='52' height='52' rx='13' fill='%23F7F3E8' stroke='%23C99A45' stroke-width='4'/><g fill='%23101a18'><circle cx='21' cy='21' r='5'/><circle cx='43' cy='21' r='5'/><circle cx='32' cy='32' r='5'/><circle cx='21' cy='43' r='5'/><circle cx='43' cy='43' r='5'/></g></svg>">
   <link rel="stylesheet" href="/style.css">
+  <style>.lobby-alt{display:grid;margin-top:14px}.lobby-alt .btn{text-align:center;text-decoration:none}</style>
 </head>
 <body>
   <main class="lobby">
@@ -25,9 +26,11 @@
         <button class="btn btn-brass btn-big" type="submit" data-i18n>Reinkommen</button>
         <p class="error" role="alert" data-i18n>{{ERROR}}</p>
       </form>
+      {{DISCORD}}
     </div>
   </main>
   <script src="/i18n-en.js"></script>
+  <script src="/discord-en.js"></script>
   <script src="/i18n.js"></script>
   <script src="/login.js"></script>
 </body>

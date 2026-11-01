@@ -6,7 +6,7 @@ import { GUEST_COOKIE, LINK_CODE_MINUTES } from './identity.js';
 
 const MAX_CLAIMS_PER_ACCOUNT = 10;
 
-export function createIdentityAPI({ identity, accounts, leaderboard, secure = () => false, trustProxy = false, onMerge = () => {}, onChange = () => {} }) {
+export function createIdentityAPI({ identity, accounts, leaderboard, secure = () => false, trustProxy = false, onMerge = () => {}, onChange = () => {}, discordEnabled = false }) {
   const router = express.Router();
   const linkFails = limiter({ windowMs: 10 * 60000, max: 8 });        // falsche Codes je IP
   const linkFailsAll = limiter({ windowMs: 10 * 60000, max: 60 });    // falsche Codes insgesamt (verteiltes Raten)
@@ -32,7 +32,7 @@ export function createIdentityAPI({ identity, accounts, leaderboard, secure = ()
 
   router.get('/', call((req, res) => {
     const a = mine(req);
-    res.json({ gameId: a.gameId, name: a.name, claimed: claimed(a.id).map((c) => c.name), legacyAvailable: leaderboard.legacyNames().length, linkMinutes: LINK_CODE_MINUTES });
+    res.json({ gameId: a.gameId, name: a.name, claimed: claimed(a.id).map((c) => c.name), legacyAvailable: leaderboard.legacyNames().length, linkMinutes: LINK_CODE_MINUTES, discord: !!discordEnabled });
   }));
 
   router.post('/link/create', call((req, res) => {

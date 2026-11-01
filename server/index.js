@@ -25,6 +25,7 @@ import { createAccountStore } from './account-store.js';
 import { createIdentity, GUEST_COOKIE } from './identity.js';
 import { createIdentityAPI } from './identity-api.js';
 import { backupBeforeIdentityMigration } from './data-migration.js';
+import { createDiscordAuth, discordConfig } from './auth-discord.js';
 import { addBot, removeBot, createBotRunner } from './bots.js';
 import { BOTS } from '../games/bots.js';
 import { configureBoards, boardStore } from '../games/monopoly/boards.js';
@@ -92,19 +93,36 @@ app.use(securityHeaders);
 app.get('/health', (_req, res) => res.json({ ok: true, version: VERSION.version, commit: VERSION.short, uptime: Math.round(process.uptime()) }));
 
 const isSecure = (req) => req.secure || (TRUST_PROXY && req.headers['x-forwarded-proto'] === 'https');
-const loggedIn = (req) => auth.valid(parseCookies(req.headers.cookie)[COOKIE]);
+const passwordOk = (req) => auth.valid(parseCookies(req.headers.cookie)[COOKIE]);
+// Zugang: Gruppenpasswort-Cookie oder eine gültige Discord-Sitzung (nur mit DISCORD_GUILD_ID und Mitgliedschaft; nie Admin)
+const hasAccess = (cookieHeader) => auth.valid(parseCookies(cookieHeader)[COOKIE]) || !!discord?.hasAccess(cookieHeader);
+const loggedIn = (req) => hasAccess(req.headers.cookie);
+const discord = createDiscordAuth({
+  config: discordConfig(), secret: SECRET, dataDir: DATA_DIR, accounts, identity, accountOf: (cookieHeader) => accountOf(cookieHeader),
+  siteAccess: (req) => loggedIn(req), secure: (req) => isSecure(req), trustProxy: TRUST_PROXY, onChange: () => save(),
+  merge: (from, to) => { accounts.merge(from, to); leaderboard.merge(from, to, accounts.get(to)?.name || ''); mergeAccounts(from, to); save(); },
+});
+if (discord) console.log(`Discord-Anmeldung: an${discord.config.guildId ? ' (Zugang für Mitglieder des Servers)' : ' (nur Konto verknüpfen)'}`);
+const DISCORD_ERRORS = {
+  nomember: 'Du bist nicht Mitglied des Discord-Servers (oder dir fehlt die nötige Rolle). Nutze das Gruppenpasswort.',
+  denied: 'Die Discord-Anmeldung wurde abgebrochen.',
+  state: 'Die Discord-Anmeldung ist abgelaufen oder ungültig. Bitte versuche es noch einmal.',
+  expired: 'Der Discord-Code ist abgelaufen. Bitte versuche es noch einmal.',
+  failed: 'Die Discord-Anmeldung hat nicht geklappt. Du kannst das Gruppenpasswort nutzen.',
+};
 const escHtml = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const loginTpl = readFileSync(join(__dirname, 'login.html'), 'utf8');
 function renderLogin(res, status, error, next) {
   res.status(status).type('html').setHeader('Cache-Control', 'no-store');
   const n = safeNext(next);
-  res.send(loginTpl.replace('{{ERROR}}', escHtml(error)).replace('{{NEXT}}', escHtml(n)));
+  const button = discord?.config.guildId ? `<div class="lobby-alt"><a class="btn btn-big" id="discord-login" href="/auth/discord/login?next=${escHtml(encodeURIComponent(n))}" data-i18n>Mit Discord anmelden</a></div>` : '';
+  res.send(loginTpl.replace('{{ERROR}}', escHtml(error)).replace('{{NEXT}}', escHtml(n)).replace('{{DISCORD}}', button));
 }
 
 // ---------- Anmelde-Routen ----------
 app.get('/login', (req, res) => {
   if (MODE === 'open' || loggedIn(req)) return res.redirect(safeNext(req.query.next));
-  renderLogin(res, 200, '', req.query.next);
+  renderLogin(res, 200, DISCORD_ERRORS[req.query.discord] || '', req.query.next);
 });
 app.post('/login', express.urlencoded({ extended: false, limit: '2kb' }), (req, res) => {
   if (MODE !== 'password') return res.redirect(303, '/');
@@ -126,19 +144,23 @@ app.post('/login', express.urlencoded({ extended: false, limit: '2kb' }), (req, 
 
 app.post('/logout', (req, res) => {
   res.setHeader('Set-Cookie', cookieHeader('', { secure: isSecure(req), maxAgeDays: 0 }));
+  if (discord) { discord.revokeCurrent(req.headers.cookie); discord.clearCookie(req, res); }
   ticketAPI.clearAdmin(req, res);
   res.redirect(303, '/login');
 });
 
+// Discord: Anmelde- und Rückkehr-Routen müssen vor der Anmeldeprüfung liegen (eigene Prüfungen darin). Ohne Einrichtung: 404.
+app.use('/auth/discord', discord ? discord.router : (_req, res) => res.status(404).type('text').send('Nicht gefunden'));
+
 // Alles ab hier nur angemeldet. Offen bleibt nur, was die Login-Seite braucht.
 // Manifest und Icons auch ohne Login – sonst kann das Handy die Seite nicht als App ablegen (sie verraten nichts)
-const OPEN = new Set(['/style.css', '/login.js', '/i18n.js', '/i18n-en.js', '/fonts/bricolage.woff2', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png']);
+const OPEN = new Set(['/style.css', '/login.js', '/i18n.js', '/i18n-en.js', '/discord-en.js', '/fonts/bricolage.woff2', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png']);
 const isPage = (req) => req.method === 'GET' && (req.path === '/' || req.path === '/index.html');
 app.use((req, res, next) => {
   if (MODE === 'open' || OPEN.has(req.path)) return next();
   if (loggedIn(req)) {
     // Bei jedem Seitenaufruf verlängern – wer regelmäßig spielt, muss nie neu eingeben
-    if (isPage(req)) res.setHeader('Set-Cookie', cookieHeader(auth.issue(), { secure: isSecure(req) }));
+    if (isPage(req) && passwordOk(req)) res.setHeader('Set-Cookie', cookieHeader(auth.issue(), { secure: isSecure(req) }));
     return next();
   }
   if (req.method === 'GET' && !req.path.includes('.') && req.path !== '/me') {
@@ -161,7 +183,7 @@ app.use((req, res, next) => {
 });
 app.get('/me', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  res.json({ mode: MODE, version: VERSION.version, commit: VERSION.short, games: gameList(), singleplayerGames: singleplayerGameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
+  res.json({ mode: MODE, discord: { enabled: !!discord, login: !!discord?.config.guildId }, version: VERSION.version, commit: VERSION.short, games: gameList(), singleplayerGames: singleplayerGameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
 });
 app.get('/api/whats-new', (_req, res) => {
   res.setHeader('Cache-Control', 'no-store');
@@ -194,7 +216,7 @@ function mergeAccounts(from, to) {
   for (const s of io.sockets.sockets.values()) if (s.data.accountId === from) s.data.accountId = to;
   presence.changed();
 }
-app.use('/api/identity', createIdentityAPI({ identity, accounts, leaderboard, secure: isSecure, trustProxy: TRUST_PROXY, onMerge: mergeAccounts, onChange: () => save() }));
+app.use('/api/identity', createIdentityAPI({ identity, accounts, leaderboard, secure: isSecure, trustProxy: TRUST_PROXY, onMerge: mergeAccounts, onChange: () => save(), discordEnabled: !!discord }));
 app.get('/api/achievements/players', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.json({ names: achievements.players(req.query.q) });
@@ -255,7 +277,7 @@ const io = new Server(http, {
     if (!sameOrigin(req)) return cb('Fremde Herkunft', false);
     const ip = clientIp(req, TRUST_PROXY);
     if ((connections.get(ip) || 0) >= MAX_CONN_PER_IP) return cb('Zu viele Verbindungen', false);
-    if (!auth.valid(parseCookies(req.headers.cookie)[COOKIE])) return cb('Nicht angemeldet', false);
+    if (!hasAccess(req.headers.cookie)) return cb('Nicht angemeldet', false);
     cb(null, true);
   },
 });
@@ -304,6 +326,7 @@ function save() {
       for (const r of rooms.values()) saveHistory(r);
       leaderboard.save();
       accounts.save();
+      discord?.save();
     } catch (e) { console.error('Speichern fehlgeschlagen:', e.message); }
   }, 300);
 }
@@ -909,6 +932,7 @@ function saveNow() {
     for (const r of rooms.values()) saveHistory(r);
     leaderboard.save();
     accounts.save();
+    discord?.save();
   } catch (e) { console.error('Speichern fehlgeschlagen:', e.message); }
 }
 let shuttingDown = false;

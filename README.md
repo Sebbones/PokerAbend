@@ -515,6 +515,29 @@ Zugang nur über die eigene Umgebungsvariable **`ADMIN_PASSWORD`** (in der `.env
 
 Der Workflow `.github/workflows/docker.yml` führt bei jedem Push auf `main` erst `test:fast` und die Rauchprobe aus; **nur bei grünem Lauf wird das Image gebaut** (mit `GIT_COMMIT`). Jede Nacht (02:17 UTC) laufen alle Node-Tests und alle Playwright-Prüfungen ohne Image-Bau; Bericht (JUnit, HTML) als Artefakt `nachtlauf-bericht`.
 
+## Discord-Anmeldung einrichten (optional, V2-02)
+
+Discord ist eine zweite Anmeldung neben dem Gruppenpasswort und hängt sich an dein Konto (Game-ID, siehe oben). Ohne die Variablen unten ist Discord aus: kein Knopf, `/auth/discord/*` antwortet 404, alles andere läuft wie bisher. Discord gibt nie Admin-Rechte.
+
+1. Im [Discord Developer Portal](https://discord.com/developers/applications) die vorhandene Anwendung öffnen (Anwendungs-ID `1563578924007694346`).
+2. **OAuth2 → Redirects → Add Redirect** und genau diese Adressen eintragen (ohne Schrägstrich am Ende, Schreibweise exakt):
+   * Server: `https://DEINE-DOMAIN/auth/discord/callback`
+   * lokal zum Testen: `http://localhost:3000/auth/discord/callback`
+3. **OAuth2 → Client Secret → Reset Secret**, den Wert kopieren und nur in die `.env` auf dem Server schreiben (`DISCORD_CLIENT_SECRET`). Nie in Git, nie in Chats. Scopes muss man im Portal nicht einstellen; die Seite fragt `identify` und `guilds.members.read` selbst an. Einen Bot braucht es nicht.
+4. Server-ID holen: in Discord *Benutzereinstellungen → Erweitert → Entwicklermodus* an, dann Rechtsklick auf den Server → *Server-ID kopieren*. Für eine Rollenbeschränkung genauso die Rollen-ID (*Servereinstellungen → Rollen → Rolle → ID kopieren*).
+5. In der `.env` (Vorlage: `.env.example`) setzen:
+   ```
+   DISCORD_CLIENT_ID=1563578924007694346
+   DISCORD_CLIENT_SECRET=…        # aus Schritt 3
+   PUBLIC_URL=https://DEINE-DOMAIN
+   DISCORD_GUILD_ID=…             # Schritt 4; leer = Discord nur zum Verknüpfen, kein Zugang ohne Passwort
+   DISCORD_ROLE_ID=               # optional
+   ```
+   Danach `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d`. Auf der Login-Seite erscheint „Mit Discord anmelden“ (nur mit `DISCORD_GUILD_ID`); unter *Ich → Identität & Geräte* gibt es „Discord verknüpfen“.
+6. Prüfen: Mit einem Discord-Konto, das Mitglied des Servers ist, anmelden; mit einem Nicht-Mitglied muss „Du bist nicht Mitglied …“ erscheinen. Meldet Discord „Invalid OAuth2 redirect_uri“, stimmt die Adresse in Schritt 2 nicht exakt mit `PUBLIC_URL` + `/auth/discord/callback` überein.
+
+Mitglieder, die den Discord-Server verlassen, verlieren den Discord-Zugang spätestens nach 24 Stunden; das Gruppenpasswort-Cookie bleibt davon unberührt. Ist Discord kurz nicht erreichbar, wird niemand ausgesperrt. Unter *Ich* gibt es „Trennen“ und „Überall abmelden“. Technische Details: [V2-02](docs/roadmap/V2-02_DISCORD.md).
+
 ## Zugangsschutz
 
 | Schutz | Wie |

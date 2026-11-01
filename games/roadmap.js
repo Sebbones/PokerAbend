@@ -13,8 +13,8 @@ const spiele = (ids) => ids.map((id) => punkt(id, GAMES[id].name, 'spiel', GAMES
 // Betrieb & Wartung: Update-Hinweis, Admin-Seite, Version, Browser-Fehler, Ausfall-Wächter, Backups (Speichern mitten in der Runde bleibt offen)
 const BETRIEB_FERTIG = ['betrieb-1', 'betrieb-2', 'betrieb-3', 'betrieb-4', 'betrieb-5', 'betrieb-6'];
 
-// V2-00 und V2-01 (Bestandsaufnahme, Plattformidentität) sind umgesetzt; Discord (V2-02) und alles Übrige bleibt geplant.
-const V2_FERTIG = ['v2-audit', 'v2-backup-migration', 'v2-account-identity', 'technik-3', 'discord-3', 'discord-4'];
+// V2-00, V2-01 und V2-02 (Bestandsaufnahme, Plattformidentität, Discord-Anmeldung) sind umgesetzt; alles Übrige bleibt geplant.
+const V2_FERTIG = ['v2-audit', 'v2-backup-migration', 'v2-account-identity', 'technik-3', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'];
 
 export const ROADMAP = [
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
