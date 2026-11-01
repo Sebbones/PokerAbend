@@ -8,7 +8,7 @@ import {GAMES,PLAYABLE_GAMES,singleplayerGameList,gameEvents,PLANNED} from '../g
 import {resolvedRoadmap} from '../games/roadmap.js';
 
 test('single player is a separate catalog; only registered multiplayer games provide room events and programs',()=>{
-  assert.equal(Object.keys(GAMES).length,56);assert.equal(Object.keys(PLAYABLE_GAMES).length,59);
+  assert.equal(Object.keys(GAMES).length,57);assert.equal(Object.keys(PLAYABLE_GAMES).length,60);
   assert.deepEqual(singleplayerGameList().map((g)=>g.id).sort(),['2048','sudoku','wellenwacht']);
   for(const g of singleplayerGameList()){assert.equal(g.local,true);assert.equal(g.minPlayers,1);assert.equal(g.maxPlayers,1);assert.equal(GAMES[g.id],undefined);assert.equal(g.create,undefined);assert.ok(g.art.includes('<svg'));}
   assert.ok(!gameEvents().some((e)=>e.startsWith('singleplayer')));

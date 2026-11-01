@@ -789,5 +789,13 @@
       "test_results": [],
       "screenshots": []
     }
+  ],
+  "post_baseline_games": [
+    {
+      "game_id": "hearts",
+      "authorization": "Explicit separate gameplay and game-world request, 2026-11-01",
+      "scope": "Explicit card selection and confirmation in the new game; does not change the thirteen original UX packages",
+      "documentation": "games/hearts/README.md"
+    }
   ]
 }

@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 59,
-    "not_implemented_count": 48,
+    "playable_count": 60,
+    "not_implemented_count": 47,
     "completed_visual_count": 7,
-    "open_playable_visual_count": 52,
+    "open_playable_visual_count": 53,
     "planned_visual_count": 100,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -91,7 +91,8 @@
       "wuerfel-auktion",
       "backgammon",
       "sudoku",
-      "wellenwacht"
+      "wellenwacht",
+      "hearts"
     ],
     "not_implemented_game_ids": [
       "omaha-hi-lo",
@@ -106,7 +107,6 @@
       "letzter-schutzplatz",
       "kistenchaos",
       "scrabble",
-      "hearts",
       "five-card-draw",
       "schatzinsel",
       "gummiband-challenge",
@@ -341,6 +341,7 @@
     "VIS-084",
     "VIS-041",
     "VIS-057",
+    "VIS-067",
     "VIS-045",
     "VIS-007",
     "VIS-011",
@@ -403,7 +404,8 @@
     "VIS-056",
     "VIS-057",
     "VIS-084",
-    "VIS-065"
+    "VIS-065",
+    "VIS-067"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -419,7 +421,6 @@
     "VIS-075",
     "VIS-091",
     "VIS-054",
-    "VIS-067",
     "VIS-068",
     "VIS-062",
     "VIS-063",
@@ -8725,7 +8726,7 @@
       "game_name": "Hearts",
       "category": "karten",
       "category_name": "Kartenspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
@@ -8735,14 +8736,21 @@
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/games/hearts/hearts.js",
+        "public/games/hearts/hearts.css"
+      ],
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
       "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
+      "current_design": "Burgundy card room with private explicit card selection, public trick centre and paper score ledger.",
       "known_visual_weaknesses": [
         "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "assessment_method": "Explicit gameplay and game-world authorization on 2026-11-01; new rule, privacy and bot simulation checks.",
       "gameplay_summary": "Stiche vermeiden: Herzen und die Pik-Dame sind Strafpunkte.",
       "planned_style": "Klassischer Stichspiel-Salon mit ruhiger Strafpunktwertung.",
       "background_concept": "Dunkles Kartentuch mit dezentem Herzakzent.",
@@ -8794,9 +8802,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "hearts",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/hearts/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],

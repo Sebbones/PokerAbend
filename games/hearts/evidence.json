@@ -1,0 +1,72 @@
+{
+  "game_id": "hearts",
+  "captured_at": "2026-11-01",
+  "implementation_commit": null,
+  "kind": "first functional and visual implementation; no prior playable frontend existed",
+  "screenshots": [
+    {
+      "path": "public/games/hearts/evidence/1440x900.png",
+      "sha256": "421d25ce276e821d89d1a58e3e40fc02f9ef6961a0085bd256547a7f1824a593"
+    },
+    {
+      "path": "public/games/hearts/evidence/1920x1080.png",
+      "sha256": "463382502a0f34ad3dd2eceef181145e1ef4cc79c8caedf915dbe2fafa8cc085"
+    },
+    {
+      "path": "public/games/hearts/evidence/360x800.png",
+      "sha256": "ef65fbcc856499705cb06c868e8be9e48c1d2c4947cb3210e4b7d613bf8e3feb"
+    },
+    {
+      "path": "public/games/hearts/evidence/390x844.png",
+      "sha256": "db9e1770c4b45adae55e0274c6213ff8e070f3f4482eb87632879e22706d5470"
+    },
+    {
+      "path": "public/games/hearts/evidence/768x1024.png",
+      "sha256": "84ea5b410195850621fdbdcfdd6ebf3fc57896e9aacc4f0de0f229e5b4575bbc"
+    },
+    {
+      "path": "public/games/hearts/evidence/900x450.png",
+      "sha256": "1ac079174968030bf9398473647bc1440bf73eca4ac27bf98ecdeb7a2c244ed0"
+    },
+    {
+      "path": "public/games/hearts/evidence/deal-scored-desktop.png",
+      "sha256": "2ee88293d5c696e10fbd9682612d077350048aba230ad6293b3eae2c821c1dcc"
+    },
+    {
+      "path": "public/games/hearts/evidence/deal-scored-mobil.png",
+      "sha256": "8d5bc8c755c8ebea39cc73180e27b30813b88254d9eb37ea3417a3ed4d7ce2d6"
+    },
+    {
+      "path": "public/games/hearts/evidence/house-3-desktop.png",
+      "sha256": "13cea51e9becc27ab2208c78ef04a9b6fc32b7d7c61927a1da05d45fd37150c9"
+    },
+    {
+      "path": "public/games/hearts/evidence/house-3-mobil.png",
+      "sha256": "00a1a519865ed87837b81617b54a95b5d7aceb27ba3c11349f524d88d66e8f4b"
+    },
+    {
+      "path": "public/games/hearts/evidence/house-5-desktop.png",
+      "sha256": "6301e3f1ddbfcb48711eb53c643067a51f7f8ab48195858fab81a9480d7f0783"
+    },
+    {
+      "path": "public/games/hearts/evidence/house-5-mobil.png",
+      "sha256": "52f4267c7f1ec696b3723c9c83180800beaee26b5b1a217a26fba59687c26ccd"
+    },
+    {
+      "path": "public/games/hearts/evidence/match-end-desktop.png",
+      "sha256": "67891bd11044c7afe35a7673e5fd362b3375fb9a74442790dc6aed29fd9ed6a9"
+    },
+    {
+      "path": "public/games/hearts/evidence/match-end-mobil.png",
+      "sha256": "91e27bc15e9239ef92209c566f0ef7032f3e3d59ee764a031c8eabaa9b84a8b6"
+    },
+    {
+      "path": "public/games/hearts/evidence/playing-desktop.png",
+      "sha256": "fc0881d70ccc80432148a094b6a6b9367c42be6b38781523bfa62a93141f8e1c"
+    },
+    {
+      "path": "public/games/hearts/evidence/playing-mobil.png",
+      "sha256": "fae1431e61ace57ace333a777037785fee77f19b855102f2325a07abce23a189"
+    }
+  ]
+}

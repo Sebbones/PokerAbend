@@ -36,7 +36,7 @@ test('Unknown acknowledgements never unlock another submission before a delibera
 });
 test('Card UX roadmap covers every registered card game once and keeps all ten follow-ups planned',()=>{
   const plan=JSON.parse(readFileSync(new URL('../docs/design/card-interaction-roadmap.json',import.meta.url),'utf8'));
-  assert.deepEqual(plan.packages.map((p)=>p.game_id).sort(),Object.values(GAMES).filter((g)=>g.category==='karten').map((g)=>g.id).sort());assert.equal(new Set(plan.packages.map((p)=>p.id)).size,13);
+  const inventory=[...plan.packages,...(plan.post_baseline_games||[])];assert.equal(new Set(inventory.map(p=>p.game_id)).size,inventory.length);assert.deepEqual(inventory.map((p)=>p.game_id).sort(),Object.values(GAMES).filter((g)=>g.category==='karten').map((g)=>g.id).sort());assert.equal(new Set(plan.packages.map((p)=>p.id)).size,13);
   const future=plan.packages.filter((p)=>p.requires_separate_authorization);assert.equal(future.length,10);
   for(const p of future){assert.equal(p.status,'planned');assert.equal(p.implementation_commit,null);assert.equal(p.completed_at,null);assert.deepEqual(p.test_results,[]);assert.deepEqual(p.screenshots,[]);assert.ok(p.findings.length>=3&&p.proposal.length>=3&&p.acceptance_criteria.length>=3);assert.ok(p.effort_hours.min>0);}
   const pilots=plan.packages.filter((p)=>!p.requires_separate_authorization);assert.deepEqual(pilots.map((p)=>p.game_id).sort(),['farbenchaos','stapelrennen','zehnetappen']);

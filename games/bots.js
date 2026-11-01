@@ -516,3 +516,5 @@ Object.assign(BOTS, { 'risiko-wuerfeln':(room,id)=>room.botStep(id),'story-chaos
 Object.assign(BOTS, {wuerfeljagd:(room,id)=>room.botStep(id),monsterwuerfel:(room,id)=>room.botStep(id),'wuerfel-auktion':(room,id,rng)=>room.botStep(id,rng)});
 
 Object.assign(BOTS,{backgammon:(room,id)=>room.botStep(id)});
+
+Object.assign(BOTS,{hearts:(room,id)=>room.botStep(id)});

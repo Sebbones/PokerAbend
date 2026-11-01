@@ -90,20 +90,6 @@ export const PLANNED = [
     art: glyph('letters', '#8A6A2F'),
   }),
   spiel({
-    id: 'hearts', name: 'Hearts', category: 'karten', minPlayers: 4, maxPlayers: 4, duration: 25, paeckchen: 'spaeter',
-    description: 'Stiche vermeiden: Herzen und die Pik-Dame sind Strafpunkte.',
-    rules: [
-      'Ein 52er-Blatt, vier Spieler mit je 13 Karten; vor dem Spiel gibt man drei Karten weiter (links, rechts, gegenüber, keine).',
-      'Wer die Kreuz-Zwei hat, beginnt; es herrscht Farbzwang.',
-      'Jede Herz-Karte in einem Stich zählt einen Strafpunkt, die Pik-Dame 13.',
-      'Herzen dürfen erst ausgespielt werden, wenn schon eine Herz-Karte gefallen ist (oder man nur noch Herzen hat).',
-      'Holt ein Spieler alle Herzen und die Pik-Dame („Shooting the Moon“), bekommen die anderen je 26 Punkte.',
-      'Bei 100 Punkten endet die Partie; wer dann am wenigsten hat, gewinnt.',
-    ],
-    houseRules: ['Pik-Dame 13 oder 25', 'Karo-Bube zieht 10 Punkte ab', 'Spiel bis 50 oder 150 Punkte'],
-    art: fan([{ ...CARD, kind: 'heart' }, { ...CARD, kind: 'heart' }, { ...CARD, kind: 'heart' }]),
-  }),
-  spiel({
     id: 'five-card-draw', name: 'Five Card Draw', category: 'karten', minPlayers: 2, maxPlayers: 6, duration: 30, paeckchen: 'spaeter',
     description: 'Der Poker-Klassiker: fünf Karten, einmal tauschen, dann Showdown.',
     rules: [
