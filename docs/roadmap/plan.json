@@ -850,7 +850,7 @@
       "title": "Betrieb & Wartung (Pflichtenheft V5 C + D)",
       "authorization": "Ausdrückliche Freigabe vom 2026-11-01; nur die hier genannten Teile. Die übrigen Teile der Pakete bleiben planned.",
       "completed_at": "2026-11-01",
-      "implementation_commit": null,
+      "implementation_commit": "e062374",
       "public_roadmap_ids": [
         "betrieb-1",
         "betrieb-2",
