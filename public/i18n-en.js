@@ -502,6 +502,7 @@ Object.assign(window.EN, {
   'Sehr groß': 'Extra large', 'Ton ausprobieren': 'Try sound',
 });
 Object.assign(window.EN_GAMES, {
+  backgammon:{name:'Backgammon',description:'Race your checkers home on a wooden board: bar entry, doubles, gammons and match play with a doubling cube.'},
   'risiko-wuerfeln': {name:'Risk Dice',description:'Roll again or bank your points. A one loses your turn points; the first to reach the target wins.'},
   'story-chaos': {name:'Story Chaos',description:'Take turns writing a shared story. Each player sees only the last sentence; read everything together at the end.'},
   wuerfeljagd:{name:'Dice Hunt',description:'Everyone chases the same dice combination. Keep matching dice and earn 100 points within the shared time limit.'},

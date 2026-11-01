@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 6,
-  "remaining_count": 35,
+  "completed_count": 7,
+  "remaining_count": 34,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -121,6 +121,18 @@
         }
       ],
       "completed_at": "2026-10-31"
+    },
+    {
+      "id": "BACKLOG-03",
+      "games": [
+        "backgammon",
+        "hearts",
+        "five-card-draw"
+      ],
+      "status": "in_progress",
+      "implementation_commit": null,
+      "test_results": [],
+      "completed_at": null
     }
   ],
   "games": [
@@ -690,11 +702,45 @@
     {
       "id": "backgammon",
       "name": "Backgammon",
-      "status": "planned",
-      "package_id": null,
+      "status": "verified",
+      "package_id": "BACKLOG-03",
       "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "test_results": [
+        {
+          "command": "node --test games/backgammon/rules.test.js",
+          "passed": 13,
+          "failed": 0,
+          "bot_matches": 50
+        },
+        {
+          "command": "playwright test --config games/backgammon/playwright.config.js",
+          "passed": 2,
+          "failed": 0,
+          "full_match": true
+        },
+        {
+          "command": "npm test with parallel platform work",
+          "total": 997,
+          "passed": 994,
+          "failed": 0,
+          "skipped": 3,
+          "log": "games/backgammon/_artifacts/full-node-final.log"
+        }
+      ],
+      "screenshots": [
+        "public/games/backgammon/evidence/1440x900.png",
+        "public/games/backgammon/evidence/1920x1080.png",
+        "public/games/backgammon/evidence/360x800.png",
+        "public/games/backgammon/evidence/390x844.png",
+        "public/games/backgammon/evidence/768x1024.png",
+        "public/games/backgammon/evidence/900x450.png",
+        "public/games/backgammon/evidence/double-desktop.png",
+        "public/games/backgammon/evidence/double-mobil.png",
+        "public/games/backgammon/evidence/match-end-desktop.png",
+        "public/games/backgammon/evidence/match-end-mobil.png",
+        "public/games/backgammon/evidence/playing-desktop.png",
+        "public/games/backgammon/evidence/playing-mobil.png"
+      ]
     },
     {
       "id": "scrabble",

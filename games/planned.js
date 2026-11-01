@@ -75,20 +75,6 @@ export const PLANNED = [
 
   // ---------- Später ----------
   spiel({
-    id: 'backgammon', name: 'Backgammon', category: 'brett', minPlayers: 2, maxPlayers: 2, duration: 30, paeckchen: 'spaeter',
-    description: 'Das klassische Würfel-Brettspiel: eigene Steine nach Hause bringen und Gegner schlagen.',
-    rules: [
-      'Jeder hat 15 Steine auf den 24 Spitzen; man zieht in entgegengesetzter Richtung zum Heimfeld.',
-      'Gewürfelt wird mit zwei Würfeln; jede Augenzahl darf einzeln gezogen werden, ein Pasch zählt vierfach.',
-      'Eine Spitze mit zwei oder mehr gegnerischen Steinen ist gesperrt; ein einzelner Stein wird geschlagen und kommt auf die Bar.',
-      'Geschlagene Steine müssen zuerst wieder eingesetzt werden, bevor man weiterziehen darf.',
-      'Sind alle Steine im Heimfeld, werden sie hinausgewürfelt; wer zuerst alle draußen hat, gewinnt.',
-      'Gammon zählt doppelt, Backgammon dreifach.',
-    ],
-    houseRules: ['Verdopplerwürfel', 'Jacoby-Regel', 'Spiel auf mehrere Gewinnspiele'],
-    art: flapBox(),
-  }),
-  spiel({
     id: 'scrabble', name: 'Scrabble', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 60, paeckchen: 'spaeter',
     vorbild: 'Wortlegespiele wie Scrabble – nur die Mechanik, eigene Gestaltung',
     description: 'Wörter auf dem 15×15-Brett legen und mit Buchstabenwerten und Prämienfeldern Punkte sammeln.',
