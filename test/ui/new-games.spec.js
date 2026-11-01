@@ -1,3 +1,7 @@
+import '../../games/backgammon/ui.spec.js';
+import '../../games/hearts/ui.spec.js';
+import '../../games/five-card-draw/ui.spec.js';
+import '../../games/five-card-draw/poker-regression.spec.js';
 import { test, expect, login, selectGame } from './helpers.js';
 import { mkdirSync } from 'node:fs';
 import { resolve } from 'node:path';

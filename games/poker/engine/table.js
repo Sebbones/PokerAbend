@@ -343,6 +343,12 @@ export class Table {
     return pots;
   }
 
+  // Flop games complete the board; draw poker overrides only this hook.
+  completeBoard() {
+    const h = this.hand;
+    while (h.board.length < 5) { h.deck.pop(); h.board.push(h.deck.pop()); }
+  }
+
   finish() {
     const h = this.hand;
     this.refundUncalled();
@@ -352,7 +358,7 @@ export class Table {
     // Siegerhand-Bewertung
     const evals = {};
     if (showdown) {
-      while (h.board.length < 5) { h.deck.pop(); h.board.push(h.deck.pop()); }
+      this.completeBoard();
       for (const i of live) evals[i] = this.evaluate(h.players[i].cards, h.board);
       for (const i of live) h.shown.add(i);
     }

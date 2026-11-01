@@ -1,3 +1,4 @@
+@import url('/games/five-card-draw/poker-chips.css');
 /* Texas Hold'em: Tisch, Karten, Plätze, Chips, Aktionsleiste. Baut auf /style.css auf (Tokens, Buttons, Leisten, Dialoge). */
 
 /* ---------- Tisch ---------- */
@@ -185,21 +186,12 @@
 .empty-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px dashed rgba(255,255,255,.15); }
 
 /* ---------- Chips ---------- */
-.chip {
-  position: relative; display: inline-block; width: 18px; height: 18px; border-radius: 50%; flex: none;
-  background: repeating-conic-gradient(var(--c, #B8433F) 0 30deg, rgba(255,255,255,.85) 30deg 45deg);
-  box-shadow: 0 1px 2px rgba(0,0,0,.5);
-}
-.chip::after { content: ''; position: absolute; inset: 22%; border-radius: 50%; background: var(--c, #B8433F); box-shadow: 0 0 0 1px rgba(255,255,255,.45); }
-.chip.c1 { --c: #B8433F; } .chip.c2 { --c: #2E5FB8; } .chip.c3 { --c: #2A2A2A; } .chip.c4 { --c: #6E3FB0; } .chip.c5 { --c: #C99A45; }
-.stack { display: inline-flex; flex-direction: column-reverse; }
-.stack .chip + .chip { margin-bottom: -14px; }
 .bet {
   position: absolute; transform: translate(-50%, -50%); z-index: 2; display: flex; align-items: center; gap: 6px;
   font-weight: 700; font-size: 14px; color: var(--text); background: rgba(8,18,15,.7); padding: 3px 10px 3px 5px;
   border-radius: 999px; white-space: nowrap; box-shadow: 0 1px 3px rgba(0,0,0,.35);
 }
-.flying { position: fixed; z-index: 50; pointer-events: none; transition: transform .38s cubic-bezier(.3,.7,.3,1), opacity .38s; }
+
 
 .reaction { position: absolute; transform: translate(-50%, -150%); z-index: 6; background: var(--paper); color: var(--ink); font-weight: 700; padding: 6px 12px; border-radius: 14px; font-size: 15px; white-space: nowrap; animation: pop 2.6s ease forwards; pointer-events: none; }
 .reaction::after { content: ''; position: absolute; bottom: -6px; left: 50%; margin-left: -6px; border: 6px solid transparent; border-bottom: 0; border-top-color: var(--paper); }

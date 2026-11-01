@@ -502,6 +502,7 @@ Object.assign(window.EN, {
   'Sehr groß': 'Extra large', 'Ton ausprobieren': 'Try sound',
 });
 Object.assign(window.EN_GAMES, {
+  'five-card-draw':{name:'Five Card Draw',description:'Five private cards, two betting rounds and one confirmed draw. Poker with blinds or antes, real side pots and saved chip balances.'},
   hearts:{name:'Hearts',description:'Pass cards privately, avoid hearts and the queen of spades, or try to shoot the moon. Lowest score wins.'},
   backgammon:{name:'Backgammon',description:'Race your checkers home on a wooden board: bar entry, doubles, gammons and match play with a doubling cube.'},
   'risiko-wuerfeln': {name:'Risk Dice',description:'Roll again or bank your points. A one loses your turn points; the first to reach the target wins.'},

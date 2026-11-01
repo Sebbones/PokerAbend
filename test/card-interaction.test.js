@@ -42,7 +42,7 @@ test('Card UX roadmap covers every registered card game once and keeps all ten f
   const pilots=plan.packages.filter((p)=>!p.requires_separate_authorization);assert.deepEqual(pilots.map((p)=>p.game_id).sort(),['farbenchaos','stapelrennen','zehnetappen']);
   for(const p of pilots){assert.ok(['in_progress','done'].includes(p.status));if(p.status==='done'){assert.match(p.implementation_commit,/^[a-f0-9]{40}$/);assert.match(p.completed_at,/^\d{4}-\d{2}-\d{2}$/);assert.ok(p.test_results.length&&p.screenshots.length);for(const source of p.source_audit){const text=readFileSync(new URL('../'+source.path,import.meta.url),'utf8').replaceAll('\r\n','\n');assert.equal(createHash('sha256').update(text).digest('hex'),source.sha256,p.game_id);}}}
 });
-test('Other card-game frontend sources remain unchanged from their documented LF source audits',()=>{
+test('Card-game frontend sources match their original or explicitly approved shared-chip LF audits',()=>{
   const plan=JSON.parse(readFileSync(new URL('../docs/design/card-interaction-roadmap.json',import.meta.url),'utf8'));
   for(const p of plan.packages.filter((p)=>p.requires_separate_authorization))for(const source of p.source_audit){const text=readFileSync(new URL('../'+source.path,import.meta.url),'utf8').replaceAll('\r\n','\n');assert.equal(createHash('sha256').update(text).digest('hex'),source.sha256,p.game_id);}
 });

@@ -8,7 +8,7 @@ window.BacklogKit=(()=>{
     const render=()=>{if(active())getKit()?.render();};
     const gate=CardInteraction.gate(send,render,()=>{const S=getKit()?.S;return !!(active()&&fresh&&socket.connected&&S&&!S.gamePaused&&S.phase==='playing'&&allowed(S));});
     socket.on('disconnect',()=>{if(active()){fresh=false;gate.invalidate();render();}});
-    socket.on('state',(S)=>{if(active()&&S.game===id){fresh=true;}});
+    socket.on('state',(S)=>{if(active()&&S.game===id){const reconnecting=!fresh;fresh=true;if(reconnecting)render();}});
     return {get busy(){return gate.busy;},run:(event,data)=>gate.run(event,data),
       refresh(){socket.disconnect();socket.connect();},
       blocked(S){return !fresh||!socket.connected||S.gamePaused||gate.busy;},

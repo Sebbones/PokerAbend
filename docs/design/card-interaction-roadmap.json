@@ -715,7 +715,7 @@
       "source_audit": [
         {
           "path": "public/games/poker/poker.js",
-          "sha256": "08c585e3efc39724c96dfa1158af13ef58730bb02a1e882a2f5ce5ea919ced77"
+          "sha256": "93cc7d676d04833b3ef31ae8a111e0b8d35c59c7603f838907647b306c73434b"
         }
       ],
       "current_interaction": "Hole-Cards werden angezeigt. Fold/Check/Call/Raise sind eigene Aktionen; Raise hat einen lokalen Betragsentwurf, Aktionen haben bereits eindeutige IDs, Fold statt kostenlosem Check fragt nach.",
@@ -744,7 +744,20 @@
       "implementation_commit": null,
       "completed_at": null,
       "test_results": [],
-      "screenshots": []
+      "screenshots": [],
+      "pre_shared_chip_source_audit": [
+        {
+          "path": "public/games/poker/poker.js",
+          "sha256": "08c585e3efc39724c96dfa1158af13ef58730bb02a1e882a2f5ce5ea919ced77"
+        }
+      ],
+      "shared_chip_extraction": {
+        "authorization": "Explicit user request to reuse the existing poker chip animation for Five Card Draw",
+        "date": "2026-11-01",
+        "implementation_commit": null,
+        "test_results": [],
+        "scope": "Move the unchanged stack/flight behavior to one shared helper; no hand or betting UI redesign"
+      }
     },
     {
       "id": "CUX-013",
@@ -758,7 +771,7 @@
       "source_audit": [
         {
           "path": "public/games/poker/poker.js",
-          "sha256": "08c585e3efc39724c96dfa1158af13ef58730bb02a1e882a2f5ce5ea919ced77"
+          "sha256": "93cc7d676d04833b3ef31ae8a111e0b8d35c59c7603f838907647b306c73434b"
         }
       ],
       "current_interaction": "Die eigene technische Spiel-ID nutzt über GAME_FILES.omaha denselben Poker-Renderer. Vier Hole-Cards und Pot-Limit unterscheiden die Aufgabe; genau zwei eigene Karten zählen bei der Wertung.",
@@ -787,7 +800,20 @@
       "implementation_commit": null,
       "completed_at": null,
       "test_results": [],
-      "screenshots": []
+      "screenshots": [],
+      "pre_shared_chip_source_audit": [
+        {
+          "path": "public/games/poker/poker.js",
+          "sha256": "08c585e3efc39724c96dfa1158af13ef58730bb02a1e882a2f5ce5ea919ced77"
+        }
+      ],
+      "shared_chip_extraction": {
+        "authorization": "Explicit user request to reuse the existing poker chip animation for Five Card Draw",
+        "date": "2026-11-01",
+        "implementation_commit": null,
+        "test_results": [],
+        "scope": "Move the unchanged stack/flight behavior to one shared helper; no hand or betting UI redesign"
+      }
     }
   ],
   "post_baseline_games": [
@@ -796,6 +822,12 @@
       "authorization": "Explicit separate gameplay and game-world request, 2026-11-01",
       "scope": "Explicit card selection and confirmation in the new game; does not change the thirteen original UX packages",
       "documentation": "games/hearts/README.md"
+    },
+    {
+      "game_id": "five-card-draw",
+      "authorization": "Explicit separate gameplay/game-world request on 2026-11-01",
+      "scope": "New draw selection and explicit confirmation; original thirteen UX packages remain separate",
+      "documentation": "games/five-card-draw/README.md"
     }
   ]
 }

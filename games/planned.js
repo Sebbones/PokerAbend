@@ -89,19 +89,6 @@ export const PLANNED = [
     houseRules: ['Zeitlimit pro Zug', 'Joker (Blanko-Steine) mit oder ohne', 'Tauschen von Steinen statt Legen'],
     art: glyph('letters', '#8A6A2F'),
   }),
-  spiel({
-    id: 'five-card-draw', name: 'Five Card Draw', category: 'karten', minPlayers: 2, maxPlayers: 6, duration: 30, paeckchen: 'spaeter',
-    description: 'Der Poker-Klassiker: fünf Karten, einmal tauschen, dann Showdown.',
-    rules: [
-      'Jeder zahlt ein Ante (oder Blinds) und bekommt fünf verdeckte Karten.',
-      'Es folgt eine Setzrunde: schieben, setzen, mitgehen, erhöhen oder aussteigen.',
-      'Danach darf jeder bis zu fünf Karten tauschen.',
-      'In der zweiten Setzrunde wird noch einmal geboten.',
-      'Beim Showdown gewinnt die beste Fünf-Karten-Hand den Pot.',
-    ],
-    houseRules: ['Mit Joker', 'Eröffnen nur mit Buben oder besser (Jacks or better)', 'Limit statt No Limit'],
-    art: cardsChip({ kind: 'dot', color: '#1A1A1A' }, { kind: 'diamond' }, '#1C7A43'),
-  }),
 
   spiel({
     id: 'schatzinsel', name: 'Schatzinsel', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 15, paeckchen: 'spaeter',

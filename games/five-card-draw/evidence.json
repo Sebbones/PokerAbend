@@ -1,0 +1,129 @@
+{
+  "game_id": "five-card-draw",
+  "captured_at": "2026-11-01",
+  "implementation_commit": null,
+  "kind": "First game implementation plus eight same-table baseline/current Poker and Omaha chip comparisons; isolated local rooms only",
+  "baseline_comparison_commit": "5667b850e76cc8ccc1f064f0b21650d463beb592",
+  "screenshots": [
+    {
+      "path": "public/games/five-card-draw/evidence/1440x900.png",
+      "sha256": "f133404c5c1188c7bbd39215b4df565d0b7b1085486ff9f09a7d0ded9624a4b0"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/1920x1080.png",
+      "sha256": "ef447ea8b21668a45ec8f16e2b28aa4ccd78898d65edb2fcca51e3408a2683a0"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/360x800.png",
+      "sha256": "03171d7b9f5c0c2e28bc75d4ae95175ee8e37ebf567bd623cc080b39b712fb66"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/390x844.png",
+      "sha256": "535cbb95ee49c48f823a1222229ab2890c8bbd4e900aef098e852a9f3ce8968a"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/768x1024.png",
+      "sha256": "34e6d2379b0ec5ae43c26614d667f711b1974270f02e539b6df742b0482ef8a3"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/900x450.png",
+      "sha256": "bd01c31e3f51e07219f52fbe91140f70506f80ff5557aa0004e5c48cf9ede094"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-3-allin-draw-desktop.png",
+      "sha256": "b167093b66d9764329dc2ea526831a7026fadcd9fde1d67141da9512c4fdd69c"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-3-allin-draw-mobil.png",
+      "sha256": "0da134c32e69354341c9a7302e55a56d6838811571a5c7f992f95891d113d1d5"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-3-showdown-desktop.png",
+      "sha256": "3e0758339a59d9904ddb6af90aafa2a9699e4d91e9f102ac5399beeb69eb8765"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-3-showdown-mobil.png",
+      "sha256": "b57f9653a388ecf75ce8ec9bfa8fb2ec562624b0433587cc6f6b35e9adadd284"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-6-allin-draw-desktop.png",
+      "sha256": "d402a818f39f5183e69e4a71bc7be272c26e892199d7ef02ef98ea2f4c100a89"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-6-allin-draw-mobil.png",
+      "sha256": "d62c13176f32b88a295c6449795372c705c421f7e8001f5d7a17e8bdb9674007"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-6-showdown-desktop.png",
+      "sha256": "fad1201f70057c1172498dda572bd6116c5341a13716438b0a76b7b93ac87329"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/ante-6-showdown-mobil.png",
+      "sha256": "eb5c4cdb9bb89b481c46ffb195bab955df2112e2071c87127e9b99d1ce14e8d1"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/draw-selection-desktop.png",
+      "sha256": "823af737a5f89b36fe4739d81fc701f9c352cdbbda5ec891a8cf746e98eb5a84"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/draw-selection-mobil.png",
+      "sha256": "988b9d276aebd8a1317b5a3af85b0bf767f3bad333f3baeb6c76ac0d82fb6b58"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/omaha-chips-after-desktop.png",
+      "sha256": "47592dfe6177b68e2b1d15c516a2829d0158713ba3b2566bc3ce82ad6d4f48e7"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/omaha-chips-after-mobil.png",
+      "sha256": "005f97c943d1e556a4755c0407f667ece35e689356b9509f8a2fdd554974d0a9"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/omaha-chips-before-desktop.png",
+      "sha256": "47592dfe6177b68e2b1d15c516a2829d0158713ba3b2566bc3ce82ad6d4f48e7"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/omaha-chips-before-mobil.png",
+      "sha256": "005f97c943d1e556a4755c0407f667ece35e689356b9509f8a2fdd554974d0a9"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/poker-chips-after-desktop.png",
+      "sha256": "a140a9567422ff57bbedcf3968d763442df4691ae0e2410ae8e296df19eb42b7"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/poker-chips-after-mobil.png",
+      "sha256": "3e73d19f7bbfa3a981abca21596c49619b0aeef8fa58fbe155f09b5ee961c147"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/poker-chips-before-desktop.png",
+      "sha256": "a140a9567422ff57bbedcf3968d763442df4691ae0e2410ae8e296df19eb42b7"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/poker-chips-before-mobil.png",
+      "sha256": "3e73d19f7bbfa3a981abca21596c49619b0aeef8fa58fbe155f09b5ee961c147"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/showdown-desktop.png",
+      "sha256": "fc3b65c9e0939bd77cd14737fef4a6b6c90d6e97f51a3aba134ef616fa660a8d"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/showdown-mobil.png",
+      "sha256": "bfb983dc8464aa7906a8c92a27f3e36d48f154f2e2eea0ae8ec84afa8aadcc14"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/side-pots-desktop.png",
+      "sha256": "48b644c0ac941085a5b62b33d5dadc62655a23af95dff6560d81f67677e3c8c1"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/side-pots-mobil.png",
+      "sha256": "1a655580234d102427b3a5b030088760a43e8d4736619ebd19e02ba59a974f28"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/side-pots-paid-desktop.png",
+      "sha256": "7ad1fc63d579bb932a8b1179a98ccb4f2994c27d36df11c723eb5546d484b902"
+    },
+    {
+      "path": "public/games/five-card-draw/evidence/side-pots-paid-mobil.png",
+      "sha256": "d8b5cdef32138da542d2f69ac311199401cf939c87ba9da7d5667ec787854e48"
+    }
+  ]
+}
