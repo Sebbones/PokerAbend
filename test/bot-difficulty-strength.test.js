@@ -12,6 +12,12 @@ for(const game of ['viergewinnt','reversi','backgammon'])test(`V2-16 ${game}: 20
   }record(t,{game,games:200,hardWins:hard,easyWins:easy,draws:draw,searchNodeCap:game==='reversi'?120:600,scenario:game==='backgammon'?'complete games from seeded legal home-board positions':'complete games from standard opening'});assert.ok(hard>easy+20,`${hard} vs ${easy}, draws ${draw}`);
 });
 
+test('V2-16 kniffel: 200 seeded complete games, expected-value holds versus recreational play',t=>{
+  let hard=0,easy=0,draw=0,hp=0,ep=0;
+  for(let n=0;n<200;n++){const f=botFixture('kniffel',n%2?['easy','hard']:['hard','easy'],60000+n),{r,bots}=f;try{let moves=0;while(r.phase==='playing'&&moves++<200)f.step();assert.ok(moves<200);const h=bots.find(p=>p.botDifficulty==='hard').id,e=bots.find(p=>p.botDifficulty==='easy').id,a=r.result.points[h],b=r.result.points[e];hp+=a;ep+=b;if(a>b)hard++;else if(b>a)easy++;else draw++;}finally{r.dispose();}}
+  record(t,{game:'kniffel',games:200,hardWins:hard,easyWins:easy,draws:draw,hardMean:hp/200,easyMean:ep/200,metric:'final points (higher better)',scenario:'complete 13-category games, seeded dice'});assert.ok(hp>ep);assert.ok(hard>easy+20);
+});
+
 for(const game of ['poker','omaha','farbenchaos','hearts','sechs-nimmt'])test(`V2-16 ${game}: 200 seeded deals/hands, alternating levels, real rules and conserved scores/chips`,t=>{
   let hard=0,easy=0,hardPoints=0,easyPoints=0,draw=0;
   for(let n=0;n<200;n++){

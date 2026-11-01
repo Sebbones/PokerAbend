@@ -1,6 +1,6 @@
 // Public capability metadata, independent of accounts, names or strategy internals.
 export const BOT_LEVELS=Object.freeze(['easy','medium','hard']);
-export const BOT_PILOTS=Object.freeze(['viergewinnt','reversi','backgammon','poker','omaha','farbenchaos','hearts','sechs-nimmt']);
+export const BOT_PILOTS=Object.freeze(['viergewinnt','reversi','backgammon','poker','omaha','farbenchaos','hearts','sechs-nimmt','kniffel']);
 export function botLevels(game,variant='classic',settings={}){
   const classic=!variant||variant==='classic';
   const supported=BOT_PILOTS.includes(game)&&(game==='poker'||game==='omaha'||classic)&&(game!=='monopoly'||!settings.board||settings.board==='default');
