@@ -1,0 +1,111 @@
+{
+  "task": "BACKLOG-05",
+  "game": "exploding-deck",
+  "implementation_commit": null,
+  "date": "2026-11-03",
+  "tests": [
+    {
+      "command": "npm.cmd test",
+      "passed": 1171,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 127.52,
+      "log": "artifacts/backlog-05-exploding-green-node.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog-05.spec.js --grep Exploding-Deck",
+      "passed": 2,
+      "failed": 0,
+      "duration_seconds": 28.9,
+      "log": "artifacts/backlog-05-exploding-ui-fixed.log"
+    },
+    {
+      "command": "node --test games/exploding-deck/rules.test.js",
+      "passed": 10,
+      "failed": 0,
+      "coverage": "80 full games, all player counts and levels, secret JSON and deterministic worker projection"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-english-rules.png",
+      "sha256": "20a4e1810f2eb6758e5e3ae94ced33b3714b4a2d6fa2a9b12f5f1506cbf9d177"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-hand.png",
+      "sha256": "38c00a563c09da5d63f14fe1d5e7de55061840572735265f63d8e47b9d2a73fb"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-in-play.png",
+      "sha256": "c5351440bcac2211e3ab5a727727e77997cfb9f85e3bd80d83ae58d027210ed2"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-lobby.png",
+      "sha256": "4dd94ff5dc578b5b874cdb5cc934201295f869d8274509007c1f154bd40ae06d"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-paused.png",
+      "sha256": "392f643164e1b30c9322f50e63e128f2ba9aae827809ab9b3df273565622aa69"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-reconnect.png",
+      "sha256": "7929b7a0b567c8395ac100d8df215566d5d8f1bb20c94243484cddf4ef8cbd4d"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-spectator.png",
+      "sha256": "07c10a6a13bfe9295cd8ea59e59127dda69995a5a286e175c1e8aad15d70b78e"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-workshop-1440x900.png",
+      "sha256": "c5351440bcac2211e3ab5a727727e77997cfb9f85e3bd80d83ae58d027210ed2"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-workshop-1920x1080.png",
+      "sha256": "5459008317b06236e32b98b898aae8eda32e4e2b21c68d548d0ff94cbdfb4949"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-workshop-360x800.png",
+      "sha256": "256233ecbae16d6cd0fdecb1429e42f09a0fcb337f81150cb57480a971cb2f4c"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-workshop-390x844.png",
+      "sha256": "2ea8c679b306944027bb3ff7221f3314a4d0cd1e48976415dbf5aadf171b3922"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-workshop-768x1024.png",
+      "sha256": "7726c8fbb33b9b33d84e848c257f2af4bc8c8dca069f2d8a98425f7115d57a71"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-workshop-900x450.png",
+      "sha256": "1a43e6824e8e5d4575e22ed3d18f543f299a89c8e211f92a3238257dc7c01d8e"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-english-rules.png",
+      "sha256": "ba33faf9e1e13408464597ea39dcd824e8b3d30d283374ee602c2374a3c10565"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-hand.png",
+      "sha256": "5858d72be4b59a7e87e3261b4a65ee5826e5c43dd1c70c971b5f64e11d7f117f"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-in-play.png",
+      "sha256": "10b397092d08ebf4c2184e8391cfb3da7417a44e6ab00f5c35dfd9e2d9f1d0b4"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-lobby.png",
+      "sha256": "c749b25a7ce95d78c4f7e8bf5e172c3192d5cdb44bbef620baa27f4afb461fb4"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-paused.png",
+      "sha256": "5ee94f00923eb255c996c7644f78bbfe603b74c505a254d3a21d434d43543482"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-reconnect.png",
+      "sha256": "10b397092d08ebf4c2184e8391cfb3da7417a44e6ab00f5c35dfd9e2d9f1d0b4"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-spectator.png",
+      "sha256": "7796809492c65f7b37fd9e81fac08329e97e35303549c0f073b135fd802d3669"
+    }
+  ]
+}

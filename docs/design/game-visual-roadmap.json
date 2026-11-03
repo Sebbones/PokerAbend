@@ -26,8 +26,8 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 66,
-    "not_implemented_count": 41,
+    "playable_count": 67,
+    "not_implemented_count": 40,
     "completed_visual_count": 14,
     "open_playable_visual_count": 51,
     "planned_visual_count": 93,
@@ -348,6 +348,7 @@
     "VIS-084",
     "VIS-041",
     "VIS-057",
+    "VIS-054",
     "VIS-045",
     "VIS-007",
     "VIS-011",
@@ -410,7 +411,8 @@
     "VIS-056",
     "VIS-057",
     "VIS-084",
-    "VIS-088"
+    "VIS-088",
+    "VIS-054"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -424,7 +426,6 @@
     "VIS-053",
     "VIS-075",
     "VIS-091",
-    "VIS-054",
     "VIS-062",
     "VIS-063",
     "VIS-077",
@@ -7831,7 +7832,7 @@
       "game_name": "Exploding-Deck",
       "category": "karten",
       "category_name": "Kartenspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
@@ -7841,7 +7842,11 @@
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
+      "current_frontend_files": [
+        "public/games/exploding-deck/exploding-deck.js",
+        "public/games/exploding-deck/exploding-deck.css",
+        "public/games/exploding-deck/cards.js"
+      ],
       "shared_frontend_files": [],
       "source_audit": [],
       "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
@@ -7871,7 +7876,9 @@
         "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
-      "existing_variants": [],
+      "existing_variants": [
+        "classic"
+      ],
       "effort": {
         "min_hours": 11,
         "max_hours": 17,

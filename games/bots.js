@@ -536,3 +536,4 @@ Object.assign(BOTS,{'short-deck':(room,id,rng)=>room.botStep(id,rng)});
 Object.assign(BOTS,{'seven-card-stud':(room,id,rng)=>room.botStep(id,rng)});
 
 Object.assign(BOTS,{schach:(room,id,rng)=>room.botStep(id,rng)});
+Object.assign(BOTS,{'exploding-deck':(room,id,rng)=>room.botStep(id,rng)});

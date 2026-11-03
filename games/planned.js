@@ -31,10 +31,6 @@ export const PLANNED = [
     description: "Vorher ansagen, wie viele Stiche man holt – nur genaue Vorhersagen bringen Bonuspunkte.",
     rules: ["Alle erhalten gleich viele Karten und sagen vor der Runde ihre Stichzahl an.","Wer eine angespielte Farbe auf der Hand hat, muss diese Farbe bedienen.","Die höchste Karte der Farbe gewinnt den Stich; ein vereinbarter Trumpf kann sie schlagen.","Nach der Runde gibt es Punkte für die Stiche und einen Bonus für eine genaue Ansage."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),
   }),
-  spiel({ id: 'exploding-deck', name: 'Exploding-Deck', category: 'karten', minPlayers: 2, maxPlayers: 6, duration: 15, paeckchen: 'spaeter',
-    description: "Karten ziehen, Gefahren entschärfen und den richtigen Moment zum Ausweichen wählen.",
-    rules: ["Wer dran ist, darf Aktionskarten spielen und zieht zum Abschluss eine Karte.","Eine Gefahrenkarte lässt dich ausscheiden, wenn du keine Entschärfung hast.","Mit einer Entschärfung bleibt man dabei und legt die Gefahr zurück in den Stapel.","Der letzte verbliebene Spieler gewinnt; Karten und Gestaltung sind eigenständig."], art: glyph('bomb'),
-  }),
 
   spiel({ id: 'labyrinth-brett', name: 'Labyrinth-Brett', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 20, paeckchen: 'spaeter',
     description: "Gänge verschieben, Wege öffnen und die eigenen Schätze einsammeln.",

@@ -22,9 +22,10 @@
       "five-card-draw",
       "omaha-hi-lo",
       "short-deck",
-      "seven-card-stud"
+      "seven-card-stud",
+      "exploding-deck"
     ],
-    "registered_count": 18,
+    "registered_count": 19,
     "authorized_pilots": 3,
     "planned_followups": 10,
     "baseline_registered_card_games": [
@@ -998,6 +999,13 @@
       "scope": "New variant with the existing confirmed poker actions; original thirteen CUX packages stay unchanged",
       "documentation": "games/seven-card-stud/README.md",
       "implementation_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2"
+    },
+    {
+      "game_id": "exploding-deck",
+      "authorization": "Explicit BACKLOG-05 request, 2026-11-03",
+      "scope": "Physical-card selection, explicit confirmation, private insertion and reaction chains in the new game only",
+      "documentation": "games/exploding-deck/README.md",
+      "implementation_commit": null
     }
   ]
 }

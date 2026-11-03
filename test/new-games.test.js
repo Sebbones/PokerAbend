@@ -14,7 +14,7 @@ import { BOTS } from '../games/bots.js';
 
 test('BACKLOG-04: four real game commits, private game roots and 64 original images back the completed packet',()=>{
   const read=p=>readFileSync(new URL('../'+p,import.meta.url)),plan=JSON.parse(read('docs/backlog/plan.json')),packet=plan.packages.find(p=>p.id==='BACKLOG-04');
-  assert.equal(plan.total_count,41);assert.equal(plan.completed_count,plan.games.filter(g=>g.status==='done').length);assert.equal(plan.remaining_count,41-plan.completed_count);assert.equal(packet.status,'done');
+  assert.equal(plan.total_count,41);assert.equal(plan.completed_count,plan.games.filter(g=>['done','verified'].includes(g.status)).length);assert.equal(plan.remaining_count,41-plan.completed_count);assert.equal(packet.status,'done');
   assert.deepEqual(packet.games,['scrabble','omaha-hi-lo','short-deck','seven-card-stud']);let images=0;
   for(const id of packet.games){const game=plan.games.find(g=>g.id===id),manifest=JSON.parse(read(`games/${id}/evidence.json`));assert.equal(game.status,'done');assert.match(game.implementation_commit,/^[a-f0-9]{40}$/);assert.equal(game.implementation_commit,packet.implementation_commits[id]);assert.equal(manifest.implementation_commit,game.implementation_commit);assert.equal(manifest.screenshots.length,{scrabble:18,'omaha-hi-lo':14,'short-deck':16,'seven-card-stud':16}[id]);images+=manifest.screenshots.length;
     for(const source of game.source_audit)assert.equal(createHash('sha256').update(read(source.path).toString('utf8').replaceAll('\r\n','\n')).digest('hex'),source.sha256,source.path);

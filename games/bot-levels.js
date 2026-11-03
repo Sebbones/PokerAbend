@@ -2,11 +2,11 @@
 export const BOT_LEVELS=Object.freeze(['easy','medium','hard']);
 export const BOT_PILOTS=Object.freeze(['viergewinnt','reversi','backgammon','poker','omaha','farbenchaos','hearts','sechs-nimmt','kniffel','monopoly','scrabble']);
 // New game registration, separate from the historical V2-16 pilot evidence.
-export const WORKER_MEDIUM_GAMES=Object.freeze(['schach']);
+export const WORKER_MEDIUM_GAMES=Object.freeze(['schach','exploding-deck']);
 export function botLevels(game,variant='classic',settings={}){
   const classic=!variant||variant==='classic';
   const supported=BOT_PILOTS.includes(game)&&(game==='poker'||game==='omaha'||classic)&&(game!=='monopoly'||!settings.board||settings.board==='default');
-  return supported||game==='schach'&&(classic||variant==='chess960')?[...BOT_LEVELS]:['medium'];
+  return supported||game==='schach'&&(classic||variant==='chess960')||game==='exploding-deck'?[...BOT_LEVELS]:['medium'];
 }
 export const savedBotLevel=p=>BOT_LEVELS.includes(p?.botDifficulty)?p.botDifficulty:'medium';
 export const effectiveBotLevel=(room,p)=>botLevels(room.game,room.variant,room.settings).includes(savedBotLevel(p))?savedBotLevel(p):'medium';

@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 13,
-  "remaining_count": 28,
+  "completed_count": 14,
+  "remaining_count": 27,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "356e75492b79d3299c2e1f5090ec63975ac9a179ec1a132aa47ea41f42a58be6"
+          "sha256": "b5af7714a1019e9b62756735854592ac81358fd51d0a7c6601579fb57dbdab5b"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -833,8 +833,8 @@
     {
       "id": "exploding-deck",
       "name": "Exploding-Deck",
-      "status": "planned",
-      "package_id": null,
+      "status": "verified",
+      "package_id": "BACKLOG-05",
       "implementation_commit": null,
       "test_results": [],
       "screenshots": []
