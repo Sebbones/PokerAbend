@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+<!-- Original hand-drawn vector set for PokerAbend, 2026. No third-party artwork. -->
+<defs><style>.piece{fill:var(--piece-fill,#eee0bf);stroke:var(--piece-edge,#37251b);stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}</style></defs>
+<symbol id="p" viewBox="0 0 80 80"><g class="piece"><circle cx="40" cy="22" r="10"/><path d="M31 33h18l-5 12 5 15H31l5-15zM25 61h30l5 8H20z"/><path d="M32 36h16M29 59h22" fill="none"/></g></symbol>
+<symbol id="r" viewBox="0 0 80 80"><g class="piece"><path d="M22 14h10v9h6v-9h5v9h6v-9h10v21l-8 6v19H29V41l-7-6zM24 60h32l6 9H18z"/><path d="M25 34h31M31 43h18M32 56h16" fill="none"/></g></symbol>
+<symbol id="n" viewBox="0 0 80 80"><g class="piece"><path d="M26 59c1-13 13-17 17-29l-12 8-13-4 11-17 13-5 6-7 2 10c20 8 18 29 6 44zM23 60h36l4 9H19z"/><path d="M32 27h2M50 22c8 11 6 21-1 31M29 17l8 7" fill="none"/></g></symbol>
+<symbol id="b" viewBox="0 0 80 80"><g class="piece"><circle cx="40" cy="9" r="4"/><path d="M40 14c-18 13-23 26-8 34l-5 12h26l-5-12c15-8 10-21-8-34zM25 61h30l7 8H18z"/><path d="M46 24 35 38M30 49h20" fill="none"/></g></symbol>
+<symbol id="q" viewBox="0 0 80 80"><g class="piece"><path d="m18 23 13 13 9-19 9 19 13-13-10 32H28zM27 56h26v5H27zM23 62h34l6 7H17z"/><circle cx="17" cy="19" r="4"/><circle cx="40" cy="12" r="4"/><circle cx="63" cy="19" r="4"/><path d="M29 49h22" fill="none"/></g></symbol>
+<symbol id="k" viewBox="0 0 80 80"><g class="piece"><path d="M36 6h8v8h8v7h-8v9h-8v-9h-8v-7h8zM40 33c-27-16-30 15-11 22h22c19-7 16-38-11-22zM28 56h24v6H28zM24 63h32l6 7H18z"/><path d="M40 33v17M30 51h20" fill="none"/></g></symbol>
+</svg>

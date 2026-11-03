@@ -1,0 +1,140 @@
+{
+  "task": "BACKLOG-05",
+  "game": "schach",
+  "implementation_commit": null,
+  "commit_note": "Set to the actual game commit in the final packet proof, never a fabricated self reference.",
+  "date": "2026-11-03",
+  "tests": [
+    {
+      "command": "npm.cmd test",
+      "passed": 1158,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 148.53
+    },
+    {
+      "command": "Schach desktop/mobile browser cases",
+      "distinct_passed": 6,
+      "failed": 0
+    },
+    {
+      "command": "English rules recheck",
+      "passed": 2,
+      "failed": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/design/screenshots/schach/desktop-board-1440x900.png",
+      "sha256": "2f3f68d00b46bc92269001bfb76260a3c750a88edb415d16c3de782f8dec8302"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-board-1920x1080.png",
+      "sha256": "2ad1aa0492f5465811feaa2d55e9f87807fe96b5fd27ab630d13f728aa53e6da"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-board-360x800.png",
+      "sha256": "7cb5535ca5afdb7a81fe28dc40c962819064c8347fa02939484b992c4a65efd9"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-board-390x844.png",
+      "sha256": "d52221552d60f3f5d152480959bbec22adbe795b07f9c9c30b6571f36bb82c5c"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-board-768x1024.png",
+      "sha256": "bbbc32a7905583cd4693fbd05e3a9826c152ee0555f7db8a142eb94bb6ec4f66"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-board-900x450.png",
+      "sha256": "41a9faa90b7c23f7e2d2e9a2ee2fc482769fc0420feada1fd5ea07a367243495"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-bot-reply.png",
+      "sha256": "ec7aaaef05f425abd48b499584232ec6552b632a55df3ede85ca5ff1410a5ab7"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-chess960-english.png",
+      "sha256": "3b71fdabcbbc122a0592073d012a11d0ce2aa718919685d43e0485c89ca32ae4"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-english-rules.png",
+      "sha256": "6ffa5f11c9c559822ac6f55bcc54569fe639f5c217621fc35ae5b1a15a874afe"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-history-rotation.png",
+      "sha256": "35f16119e31ae7be98060aa6a27034217f8edc80b018fbc86326b4f5af616c92"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-lobby.png",
+      "sha256": "0651fad10851763cd218b97af364694609c3707390b02327f68b77fa1d24f131"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-own-turn.png",
+      "sha256": "4cebe4c9f4375bb35891eb603277cb72fbb54d101354f777b7aaa80a561c82c9"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-pause.png",
+      "sha256": "3f40372343c59953dc0aa026d849dd0a4818b1531f83534ede2d92120f6c0d23"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-promotion.png",
+      "sha256": "0397f3916d997e8246809692b5764dadfcf15509fcc04a39c4e14d6d029252c0"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-reconnect.png",
+      "sha256": "1fd2d28a0950f4c296087df45a62e5c296b545d6b54412811af146b6be5a123c"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-result.png",
+      "sha256": "0615eda11914e85bc60f870a358bb52104730bd112993ae0bf144c2229917f10"
+    },
+    {
+      "path": "docs/design/screenshots/schach/desktop-spectator.png",
+      "sha256": "52cc7a8fad5f469c892a33fd7a1dd22b04269b079ca436b188be217a27851edb"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-bot-reply.png",
+      "sha256": "c181348ae2398f1cc27d4d2e0955b7248dfc7b348618c0e2939ec6444d962e13"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-chess960-english.png",
+      "sha256": "3a1c8e8318d1bc0bdb0b1debe510356e5e90b1f186c2b2507df37bde1282e529"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-english-rules.png",
+      "sha256": "7e4c4697188035f84636914d5940fcd2916dbeb7238d27ce243aceca156f5f45"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-history-rotation.png",
+      "sha256": "bda19ace6c4c0c8fde9e0f65bec2283c3df299b6b28590471be793dac7e131f5"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-lobby.png",
+      "sha256": "b4ffa04a21909a5f41c226c551079bb7a376da5475b67436b473e8dd4ad2c28b"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-own-turn.png",
+      "sha256": "2f833214713d6be026b16eae8fd30f161f05fdf382acc5c50728274ca267d080"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-pause.png",
+      "sha256": "b0f611733d886ea9580bb14aaad53c753bbf9f2013c140bfc196e60ed1a17273"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-promotion.png",
+      "sha256": "38478c297affcdf9024321b3f4ea247c8e47ae7492fe1051fbbc17ce4426b848"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-reconnect.png",
+      "sha256": "3d7bfebf6c0b2fc6dd50d9327deb4d1265c26b2c1dfc783ea7bcac6b7150754e"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-result.png",
+      "sha256": "335691d3140b7d676756063928c288c751d7e97ca8e8ec4ed1ffce0606927233"
+    },
+    {
+      "path": "docs/design/screenshots/schach/mobil-spectator.png",
+      "sha256": "45d23d6d7b4067c8b88d9a8514b634f2ecd8946b48b0142ec2d8d12ce3024698"
+    }
+  ]
+}

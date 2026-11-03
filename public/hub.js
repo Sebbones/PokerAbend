@@ -346,7 +346,7 @@ function openPlan(id) {
   const g = plannedAll().find((x) => x.id === id) || roadmapData?.flatMap((e) => e.punkte).find((p) => p.id === id)?.spiel;
   if (!g) return;
   if (g.local) { location.hash = '#solo/' + g.id; return; }
-  const list = (items) => `<ul class="plan-rules">${items.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>`;
+  const list = (items) => `<ul class="plan-rules">${items.map((r) => `<li>${esc(I18n.t(r))}</li>`).join('')}</ul>`;
   const d = $('#host-dlg');
   d.innerHTML = I18n.html`<div class="plan-detail">
       <button type="button" class="host-close" data-host-close aria-label="Schließen">✕</button>

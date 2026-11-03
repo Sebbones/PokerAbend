@@ -285,19 +285,6 @@ export const PLANNED = [
   }),
 
   spiel({
-    id: 'schach', name: 'Schach', category: 'brett', minPlayers: 2, maxPlayers: 2, duration: 30, paeckchen: 'gross',
-    description: 'Das Brettspiel der Könige: Matt setzen, bevor man selbst matt gesetzt wird.',
-    rules: [
-      'Auf 8×8 Feldern hat jeder 16 Figuren; Weiß beginnt, danach zieht man abwechselnd.',
-      'Bauern ziehen vorwärts und schlagen diagonal, Türme gerade, Läufer diagonal, Dame in alle Richtungen, Springer im L, König ein Feld.',
-      'Besondere Züge: Rochade, en passant, Bauernumwandlung.',
-      'Steht der König im Schach, muss man es sofort beenden; kann man es nicht, ist man matt.',
-      'Remis durch Patt, dreifache Stellungswiederholung, 50-Züge-Regel oder Einigung.',
-    ],
-    houseRules: ['Schachuhr mit Zeitlimit', 'Chess960'],
-    art: chess(),
-  }),
-  spiel({
     id: 'staedtehandel', name: 'Städtehandel (Catan-inspiriert)', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 60, paeckchen: 'gross',
     description: 'Rohstoffe erwürfeln, tauschen und eine eigene Stadt aufbauen.',
     rules: [

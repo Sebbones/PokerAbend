@@ -1,5 +1,5 @@
 import { BOTS } from '../games/bots.js';
-import {BOT_LEVELS,botLevels,effectiveBotLevel} from '../games/bot-levels.js';
+import {BOT_LEVELS,botLevels,effectiveBotLevel,WORKER_MEDIUM_GAMES} from '../games/bot-levels.js';
 import {botObservation,applyBotAction} from './bot-observation.js';
 import {createDecisionService} from './bot-decisions.js';
 
@@ -97,7 +97,7 @@ export function createBotRunner({ isCurrent, notify, delay = 800, decisions=crea
       const controller=new AbortController();running.set(room,controller);
       try {
         const level=effectiveBotLevel(room,room.players.get(id));
-        if(level==='medium')BOTS[room.game](room, id, Math.random);
+        if(level==='medium'&&!WORKER_MEDIUM_GAMES.includes(room.game))BOTS[room.game](room, id, Math.random);
         else{
           const observation=botObservation(room,id),fingerprint=JSON.stringify(observation);
           const action=await decisions.decide(observation,level,{signal:controller.signal});

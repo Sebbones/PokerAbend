@@ -2,6 +2,7 @@
 import { unoPreview } from './farbenchaos/art.js';
 const v = (id, name, extra = {}) => ({ id, name, ...extra });
 export const VARIANTS = {
+  schach: [v('classic', 'Klassisch'), v('chess960', 'Chess960')],
   monopoly: [v('classic', 'Klassisch'), v('speed', 'Tempowürfel'), v('junior', 'Junior', { minPlayers: 2, maxPlayers: 4 })],
   farbenchaos: [
     v('classic', 'Klassisch', { art: unoPreview('classic'), description: 'Modern Card Table · Gleiche Farbe oder Zahl, mit wählbaren Classic-Hausregeln.' }),

@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "9f42c3fbe0397d3a5594783f8938f8f89fbbd19f5a33800fb36010f1dcb72c32"
+          "sha256": "356e75492b79d3299c2e1f5090ec63975ac9a179ec1a132aa47ea41f42a58be6"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -292,6 +292,59 @@
         "follow_up_passed": 4,
         "follow_up_failed": 0,
         "follow_up_log": "games/seven-card-stud/_artifacts/poker-regression-release.log"
+      },
+      "pre_backlog_05_shared_audit": {
+        "commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
+        "sources": [
+          {
+            "path": "games/poker/engine/table.js",
+            "sha256": "218554472156f7533886f45664950d124d0cf0add82fc62494db065a8cb0f318"
+          },
+          {
+            "path": "games/poker/engine/cards.js",
+            "sha256": "4c3ba71c72940bda54861019b204aaa7b5696436b285ad9f6c5590c7b3e5372b"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "9f42c3fbe0397d3a5594783f8938f8f89fbbd19f5a33800fb36010f1dcb72c32"
+          },
+          {
+            "path": "games/five-card-draw/room.js",
+            "sha256": "67230f584ccf5b506986d4ad99d0a7e8a674fd21a0598556ec070bde09d7cac3"
+          },
+          {
+            "path": "games/five-card-draw/table.js",
+            "sha256": "a8267dc82b18fe1e6096985ebd292936e689a8278d8576cab1f9ab3b7c035cd6"
+          },
+          {
+            "path": "games/omaha-hi-lo/poker-room.js",
+            "sha256": "7100c6c570a4678962c6cfa98873b1bb7a0f3335828b5c864453004a7e47c00d"
+          },
+          {
+            "path": "games/omaha-hi-lo/bot.js",
+            "sha256": "eb347d2023df6f92b68dd85d3dac758e0cf15877b3b82490511d67d1d701ed28"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.js",
+            "sha256": "e29afe58c160625d739e2660e52b07e081370633b0e80daf03b108ea80f719ca"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.css",
+            "sha256": "977c4b07b8cda93539be8383303b285b03413aa7dd2502d1cf1542832bf50de4"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.js",
+            "sha256": "dd5454e96f250b7aa1dbb198d1402f079ffb6dd7ab4138f995d1305ce88dfb09"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.css",
+            "sha256": "f4787f1bb135b611077eead8e2d15d4b855fca19fb1cfb8a92a54cecc25373cd"
+          }
+        ]
+      },
+      "backlog_05_registration": {
+        "scope": "Only bot registration for explicitly authorized new games; existing strategies unchanged",
+        "implementation_commit": null
       }
     }
   ],

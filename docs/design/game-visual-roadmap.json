@@ -26,8 +26,8 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 65,
-    "not_implemented_count": 42,
+    "playable_count": 66,
+    "not_implemented_count": 41,
     "completed_visual_count": 14,
     "open_playable_visual_count": 51,
     "planned_visual_count": 93,
@@ -355,7 +355,8 @@
     "VIS-036",
     "VIS-002",
     "VIS-047",
-    "VIS-046"
+    "VIS-046",
+    "VIS-088"
   ],
   "suggested_development_order": [
     "VIS-027",
@@ -408,7 +409,8 @@
     "VIS-085",
     "VIS-056",
     "VIS-057",
-    "VIS-084"
+    "VIS-084",
+    "VIS-088"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -439,7 +441,6 @@
     "VIS-095",
     "VIS-093",
     "VIS-058",
-    "VIS-088",
     "VIS-086",
     "VIS-087",
     "VIS-090",
@@ -11076,24 +11077,32 @@
       "game_name": "Schach",
       "category": "brett",
       "category_name": "Brettspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/schach/index.js",
       "existing_visual_work": {
         "level": "no_frontend",
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/games/schach/schach.js",
+        "public/games/schach/schach.css",
+        "public/games/schach/pieces.svg"
+      ],
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/game-design.js",
+        "public/ui-theme.css"
+      ],
       "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
+      "current_design": "Eigene klassische SVG-Figuren auf einem Holzbrett mit Koordinaten, Uhren und SAN-Partieprotokoll.",
       "known_visual_weaknesses": [
         "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "assessment_method": "Aktuelle Implementierung des freigegebenen BACKLOG-05; Browserabnahme und Bildnachweise werden nach bestandenen Pr?fungen eingetragen.",
       "gameplay_summary": "Das Brettspiel der Könige: Matt setzen, bevor man selbst matt gesetzt wird.",
       "planned_style": "Reduziertes Turnierbrett mit eigenen hochwertigen 2D-Figuren.",
       "background_concept": "Ruhige matte Turnierfläche ohne 3D.",
@@ -11116,7 +11125,10 @@
         "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
-      "existing_variants": [],
+      "existing_variants": [
+        "classic",
+        "chess960"
+      ],
       "effort": {
         "min_hours": 20,
         "max_hours": 30,
