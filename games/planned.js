@@ -211,20 +211,6 @@ export const PLANNED = [
     art: glyph('spotlight', '#2A2A2A'),
   }),
   spiel({
-    id: 'doppelagent', name: 'Doppelagent', category: 'party', bauart: 'A', minPlayers: 4, maxPlayers: 10, duration: 15, paeckchen: 'spaeter',
-    vorbild: 'Spyfall – nur die Mechanik: ein Eingeweihter fehlt',
-    description: 'Alle kennen den Ort außer dem Doppelagenten – der muss unentdeckt bleiben.',
-    rules: [
-      'Alle bekommen dasselbe geheime Thema, nur der Doppelagent nicht.',
-      'Reihum stellt man Fragen und gibt kurze Antworten, die das Thema andeuten, ohne es zu verraten.',
-      'Danach stimmen alle ab, wer der Doppelagent sein könnte.',
-      'Wird er erwischt, darf er das Thema noch raten und kann damit gewinnen; bleibt er unentdeckt, gewinnt er.',
-      'Punkte für Entdecken, Überleben und richtiges Raten.',
-    ],
-    houseRules: ['Zwei Doppelagenten', 'Eigene Themen des Hosts'],
-    art: glyph('agent', '#2A2A2A'),
-  }),
-  spiel({
     id: 'luegenbaron', name: 'Lügenbaron', category: 'party', bauart: 'A', minPlayers: 3, maxPlayers: 8, duration: 15, paeckchen: 'spaeter',
     description: 'Eine Geschichte wahr oder erfunden? Die anderen müssen es erraten.',
     rules: [

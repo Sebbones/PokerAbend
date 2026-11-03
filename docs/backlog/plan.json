@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 14,
-  "remaining_count": 27,
+  "completed_count": 15,
+  "remaining_count": 26,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "b5af7714a1019e9b62756735854592ac81358fd51d0a7c6601579fb57dbdab5b"
+          "sha256": "75881b7bb1d30afb2adf7160c7a0a10ae055d23447af713ff64c32a4213934dd"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -1643,8 +1643,8 @@
     {
       "id": "doppelagent",
       "name": "Doppelagent",
-      "status": "planned",
-      "package_id": null,
+      "status": "verified",
+      "package_id": "BACKLOG-05",
       "implementation_commit": null,
       "test_results": [],
       "screenshots": []

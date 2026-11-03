@@ -10,7 +10,7 @@ import { variantOf } from '../games/variants.js';
 
 export const PROGRAM_MODES = ['mix', 'turnier', 'playlist', 'team', 'abend'];
 export const MAX_PROGRAM_GAMES = 12;
-const NO_TEAM = new Set(['werwolf', 'wer-bin-ich']);
+const NO_TEAM = new Set(['werwolf', 'wer-bin-ich', 'doppelagent']);
 export const programGames = (team = false) => Object.values(GAMES).filter((g) => g.category === 'party' && (!team || !NO_TEAM.has(g.id)));
 export const eveningGames = () => Object.values(GAMES);
 export const programSeats = (room) => room.table ? room.table.seats.filter(Boolean).map((s) => s.id) : [...room.seats];

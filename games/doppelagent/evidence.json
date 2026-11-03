@@ -1,0 +1,120 @@
+{
+  "task": "BACKLOG-05",
+  "game": "doppelagent",
+  "implementation_commit": null,
+  "date": "2026-11-03",
+  "tests": [
+    {
+      "command": "npm.cmd test",
+      "passed": 1182,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 153.36,
+      "log": "artifacts/backlog-05-agent-full-node.log",
+      "note": "Full run before the additional explicit party-program registration test; final targeted run includes it."
+    },
+    {
+      "command": "node --test test/doppelagent.test.js",
+      "passed": 9,
+      "failed": 0,
+      "log": "artifacts/backlog-05-agent-final-node.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog-05.spec.js --grep Doppelagent",
+      "passed": 2,
+      "failed": 0,
+      "duration_seconds": 26.4,
+      "log": "artifacts/backlog-05-agent-ui-green.log"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-accusation.png",
+      "sha256": "79aa88cffc8134f79b10b7037e2f35c3b557831b19d79f6dadbf2577daefff06"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-bot-answer.png",
+      "sha256": "ec3584a1c67cd93a6ea441f3851686c27f5613634172c3e1cf0f0d15a77a74e5"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-case-1440x900.png",
+      "sha256": "e9e6477197b316e00df12c5432b8fe243afae44fe1000947d316b9a17a137113"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-case-1920x1080.png",
+      "sha256": "a683351493bca0125d6bcae98fe9304adc6af769d56db8b43f018714c740c90e"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-case-360x800.png",
+      "sha256": "d29aede0c6c9a53da4c8e509a3ac1737d4f8802c70292b536a3a2f4bad4e2c6e"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-case-390x844.png",
+      "sha256": "47dcec2a6325023f83450d0ea1d0b019570c4c7323282a46413b11cfd00f1127"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-case-768x1024.png",
+      "sha256": "2800a4f4fb6c13fc809b74808c0330e6e6139f985b75ab6d6d19e52a317edc1c"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-case-900x450.png",
+      "sha256": "ebccd60765d5ecb2619f9f38d855b269b8717e1c656f7c18f71a88fe13fc60e9"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-english-rules.png",
+      "sha256": "332b65260a06d95aff093b796676b3fb7c270e2724a135dc75539e9563c5f34e"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-lobby.png",
+      "sha256": "b337c6341ef95247b19e11d0fb332afe14fc47703d81cc948fc782fd60f69ae4"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-pause.png",
+      "sha256": "f28e7ebebe5489376d709e35172b91a801c3323401f4ebded7d6013a2b63331b"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-private-card.png",
+      "sha256": "9f64a0f8c7f216a039875b32720f731969ff200b5796572caf08b67010755caa"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-reconnect.png",
+      "sha256": "1e5af449e64f3cb3458381dfe5010c895046241e609407871b6d62de5a9968e4"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-spectator.png",
+      "sha256": "4eadb02a56a5363a16ea90f6780f7bde708bcd21424acaa2db7e08a6b1cad076"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-accusation.png",
+      "sha256": "e491d29ac31d38281ef6ec9d72adf9f021ad4c71ab350421023612ad60818f4b"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-bot-answer.png",
+      "sha256": "8b567dffa6280d8c585fe7cf5d4af74384069aee0db7232a39faf7bb2d1a4b6a"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-english-rules.png",
+      "sha256": "edd9a8aabc88af2f1841393174b212d14dfbf87423ba4e531048a4d40ce570c8"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-lobby.png",
+      "sha256": "7b233009149912e3505c028bbbe69f2f68576483edaa264c66f84233825186a0"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-pause.png",
+      "sha256": "4a16ea1d4e6c23af77e70c6bd60a537321f0a2b9cbc769b64e304ac0071a1782"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-private-card.png",
+      "sha256": "9285f27d590305cdc0d04f661e14e1f1265d3133775063c16c7595274f007009"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-reconnect.png",
+      "sha256": "ef519f6a42bb8e43f56316d76d1199a9d532df405c326044e6c9ca5ef03f7c35"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-spectator.png",
+      "sha256": "e4d3b30a7d3e48277d77a5eb0f3c340b94b61bec156e6da76a9f58ce51b81815"
+    }
+  ]
+}
