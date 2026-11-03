@@ -123,7 +123,8 @@ function partyGame(def) {
   };
 
   const kit = kitGame({
-    id: def.id, name: def.name, rules: def.rules, short: def.short, intro: def.intro,
+    id: def.id, get name(){return def.name;}, get rules(){return def.rules;}, get short(){return def.short;}, intro: def.intro,
+    lobby: def.lobby,
     keepMain: def.keepMain, noBots: def.noBots,
     roundWord: 'Partie', direction: false, ring: false,
     look: (S) => (S.g?.past || []).length ? [{ title: I18n.t('Frühere Runden'), note: I18n.t('Die Auflösungen der Fragen davor.'), html: (S.g.past || []).slice().reverse().map((p) => I18n.html`<details><summary>Frage ${p.q}</summary>${def.reveal({ ...S, g: { ...S.g, ...p, stage: 'reveal' } })}</details>`).join('') }] : [],

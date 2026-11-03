@@ -539,3 +539,5 @@ Object.assign(BOTS,{schach:(room,id,rng)=>room.botStep(id,rng)});
 Object.assign(BOTS,{'exploding-deck':(room,id,rng)=>room.botStep(id,rng)});
 
 Object.assign(BOTS,{doppelagent:(room,id,rng)=>room.botStep(id,rng)});
+
+Object.assign(BOTS,{luegenbaron:(room,id,rng)=>room.botStep(id,rng)});

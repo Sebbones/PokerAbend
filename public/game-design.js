@@ -14,7 +14,7 @@ const GameDesign = (() => {
     cards: 'poker omaha maumau farbenchaos zehnetappen stapelrennen schwimmen blackjack mogeln praesident durak sechs-nimmt monopoly-deal hearts five-card-draw omaha-hi-lo short-deck seven-card-stud exploding-deck',
     dice: 'maexchen schocken kniffel shutthebox zehntausend wuerfelpoker luegenwuerfel chicago wuerfelduell risiko-wuerfeln wuerfeljagd monsterwuerfel wuerfel-auktion',
     board: 'huetchen schiffe viergewinnt muehle reversi dame domino monopoly spiel-des-lebens scotland-yard hex backgammon scrabble schach',
-    party: 'schaetzmeister schlagfertig werhatdasgesagt tickendes-paket werwolf wer-bin-ich story-chaos zahlenreihe doppelagent',
+    party: 'schaetzmeister schlagfertig werhatdasgesagt tickendes-paket werwolf wer-bin-ich story-chaos zahlenreihe doppelagent luegenbaron',
     solo: 'zahlenzoo gedaechtnis-kueche pfeilfieber sortierstation',
     drawing: 'kritzelpost bildunterschrift malen-raten',
     arena: 'broeckelboden kronenjagd laser-huepfer',

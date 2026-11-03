@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 68,
-    "not_implemented_count": 39,
+    "playable_count": 69,
+    "not_implemented_count": 38,
     "completed_visual_count": 14,
-    "open_playable_visual_count": 54,
+    "open_playable_visual_count": 55,
     "planned_visual_count": 93,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -95,6 +95,7 @@
       "hearts",
       "five-card-draw",
       "doppelagent",
+      "luegenbaron",
       "wuerfel-auktion",
       "zahlenreihe",
       "schach",
@@ -122,7 +123,6 @@
       "labyrinth-chaos",
       "schubsarena",
       "scheinwerfer-flucht",
-      "luegenbaron",
       "brueckenroulette",
       "skat",
       "doppelkopf",
@@ -335,6 +335,7 @@
     "VIS-024",
     "VIS-028",
     "VIS-040",
+    "VIS-082",
     "VIS-012",
     "VIS-029",
     "VIS-038",
@@ -414,11 +415,11 @@
     "VIS-084",
     "VIS-088",
     "VIS-054",
-    "VIS-081"
+    "VIS-081",
+    "VIS-082"
   ],
   "future_concepts_order": [
     "VIS-083",
-    "VIS-082",
     "VIS-073",
     "VIS-070",
     "VIS-060",
@@ -10551,18 +10552,24 @@
       "game_name": "Lügenbaron",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
         "level": "no_frontend",
         "evidence": [],
         "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/games/luegenbaron/luegenbaron.js",
+        "public/games/luegenbaron/luegenbaron.css"
+      ],
+      "shared_frontend_files": [
+        "public/games/party-kit.js",
+        "public/games/kit.js"
+      ],
       "source_audit": [],
       "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
       "known_visual_weaknesses": [
@@ -10621,7 +10628,7 @@
       "gameplay_prerequisite": {
         "game_id": "luegenbaron",
         "source": "games/planned.js",
-        "status": "not_implemented",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],

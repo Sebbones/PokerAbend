@@ -211,18 +211,6 @@ export const PLANNED = [
     art: glyph('spotlight', '#2A2A2A'),
   }),
   spiel({
-    id: 'luegenbaron', name: 'Lügenbaron', category: 'party', bauart: 'A', minPlayers: 3, maxPlayers: 8, duration: 15, paeckchen: 'spaeter',
-    description: 'Eine Geschichte wahr oder erfunden? Die anderen müssen es erraten.',
-    rules: [
-      'Jede Runde bekommt einer ein Stichwort und schreibt dazu eine kurze Geschichte – wahr oder frei erfunden.',
-      'Alle anderen stimmen ab, ob es wahr oder gelogen ist.',
-      'Wer richtig tippt, bekommt Punkte; der Erzähler bekommt Punkte für jeden, den er getäuscht hat.',
-      'Nach allen Runden gewinnt, wer die meisten Punkte hat.',
-    ],
-    houseRules: ['Mit Nachfragen vor der Abstimmung', 'Nur eigene Stichwörter des Hosts'],
-    art: glyph('mask', '#5A468F'),
-  }),
-  spiel({
     id: 'brueckenroulette', name: 'Brückenroulette', category: 'party', bauart: 'A', minPlayers: 3, maxPlayers: 8, duration: 10, paeckchen: 'spaeter',
     description: 'Alle wählen gleichzeitig eine Planke – die vollste bricht.',
     rules: [

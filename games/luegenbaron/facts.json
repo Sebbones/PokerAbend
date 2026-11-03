@@ -1,0 +1,2519 @@
+[
+  {
+    "id": "lb-001",
+    "type": "number",
+    "de": "Ein Jahr auf Merkur dauert rund ___ Erdtage.",
+    "en": "A year on Mercury lasts about ___ Earth days.",
+    "truth": {
+      "de": "88",
+      "en": "88"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mercury facts",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-002",
+    "type": "number",
+    "de": "Merkurs großer Metallkern erreicht ungefähr ___ Prozent seines Planetenradius.",
+    "en": "Mercury's large metallic core reaches about ___ percent of its radius.",
+    "truth": {
+      "de": "85",
+      "en": "85"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mercury facts",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-003",
+    "type": "name",
+    "de": "Ein riesiges Einschlagbecken auf Merkur heißt ___.",
+    "en": "One huge impact basin on Mercury is called ___.",
+    "truth": {
+      "de": "Caloris",
+      "en": "Caloris"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mercury facts",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-004",
+    "type": "name",
+    "de": "Ein Merkur-Einschlagbecken trägt den Namen des Komponisten ___.",
+    "en": "A Mercurian impact basin bears the name of composer ___.",
+    "truth": {
+      "de": "Rachmaninow",
+      "en": "Rachmaninoff"
+    },
+    "aliases": [
+      "Rachmaninov",
+      "Sergei Rachmaninoff",
+      "Sergei Rachmaninow"
+    ],
+    "quelle": {
+      "title": "NASA · Mercury facts",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-005",
+    "type": "thing",
+    "de": "Merkurs dünne äußere Gashülle wird ___ genannt.",
+    "en": "Mercury's thin outer gas envelope is called an ___.",
+    "truth": {
+      "de": "Exosphäre",
+      "en": "exosphere"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mercury facts",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-006",
+    "type": "number",
+    "de": "Nach der Erde ist Merkur in der Dichte-Rangliste der Planeten die Nummer ___.",
+    "en": "After Earth, Mercury ranks number ___ among planets by density.",
+    "truth": {
+      "de": "2",
+      "en": "2"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mercury facts",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-007",
+    "type": "number",
+    "de": "Der Luftdruck an der Venusoberfläche beträgt ungefähr das ___-Fache des irdischen Meeresspiegeldrucks.",
+    "en": "Surface pressure on Venus is about ___ times Earth's sea-level pressure.",
+    "truth": {
+      "de": "93",
+      "en": "93"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Venus facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-008",
+    "type": "thing",
+    "de": "Die dichten Venuswolken enthalten vor allem Tröpfchen aus ___.",
+    "en": "Venus's dense clouds contain droplets mainly of ___.",
+    "truth": {
+      "de": "Schwefelsäure",
+      "en": "sulfuric acid"
+    },
+    "aliases": [
+      "sulphuric acid"
+    ],
+    "quelle": {
+      "title": "NASA · Venus facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-009",
+    "type": "name",
+    "de": "Die NASA-Sonde ___ kartierte die Venusoberfläche mit Radar.",
+    "en": "NASA's ___ spacecraft mapped Venus's surface with radar.",
+    "truth": {
+      "de": "Magellan",
+      "en": "Magellan"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Venus facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-010",
+    "type": "name",
+    "de": "Das sowjetische Venussonden-Programm hieß ___.",
+    "en": "The Soviet Venus probe programme was called ___.",
+    "truth": {
+      "de": "Venera",
+      "en": "Venera"
+    },
+    "aliases": [
+      "Wenera"
+    ],
+    "quelle": {
+      "title": "NASA · Venus facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-011",
+    "type": "name",
+    "de": "Das große Venushochland nahe dem Nordpol heißt ___ Terra.",
+    "en": "The large Venus highland near the north pole is called ___ Terra.",
+    "truth": {
+      "de": "Ishtar",
+      "en": "Ishtar"
+    },
+    "aliases": [
+      "Ischtar"
+    ],
+    "quelle": {
+      "title": "NASA · Venus facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-012",
+    "type": "name",
+    "de": "Ein tiefer Venus-Canyon ist nach der römischen Jagdgöttin ___ benannt.",
+    "en": "A deep Venus canyon is named after the Roman hunt goddess ___.",
+    "truth": {
+      "de": "Diana",
+      "en": "Diana"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Venus facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-013",
+    "type": "number",
+    "de": "Für eine Drehung relativ zu den Sternen benötigt Venus rund ___ Erdtage.",
+    "en": "One Venus rotation relative to the stars takes about ___ Earth days.",
+    "truth": {
+      "de": "243",
+      "en": "243"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA Space Place · Venus",
+      "url": "https://spaceplace.nasa.gov/all-about-venus/en/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-014",
+    "type": "thing",
+    "de": "Auf Venus geht die Sonne im ___ auf.",
+    "en": "On Venus, the Sun rises in the ___.",
+    "truth": {
+      "de": "Westen",
+      "en": "west"
+    },
+    "aliases": [
+      "West"
+    ],
+    "quelle": {
+      "title": "NASA Space Place · Venus",
+      "url": "https://spaceplace.nasa.gov/all-about-venus/en/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-015",
+    "type": "number",
+    "de": "Ein Marsjahr dauert ungefähr ___ Erdtage.",
+    "en": "A Martian year lasts about ___ Earth days.",
+    "truth": {
+      "de": "687",
+      "en": "687"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars facts",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-016",
+    "type": "thing",
+    "de": "Der gebräuchliche Name für einen Marstag lautet ___.",
+    "en": "The usual name for a Martian day is ___.",
+    "truth": {
+      "de": "Sol",
+      "en": "sol"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars facts",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-017",
+    "type": "thing",
+    "de": "Die rote Marsfarbe entsteht vor allem durch oxidiertes ___.",
+    "en": "The red colour of Mars mainly comes from oxidised ___.",
+    "truth": {
+      "de": "Eisen",
+      "en": "iron"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars facts",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-018",
+    "type": "name",
+    "de": "Das gewaltige Mars-Canyonsystem heißt Valles ___.",
+    "en": "The vast Martian canyon system is called Valles ___.",
+    "truth": {
+      "de": "Marineris",
+      "en": "Marineris"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars facts",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-019",
+    "type": "name",
+    "de": "Der größte Vulkan des Sonnensystems heißt ___ Mons.",
+    "en": "The largest volcano in the Solar System is ___ Mons.",
+    "truth": {
+      "de": "Olympus",
+      "en": "Olympus"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars facts",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-020",
+    "type": "number",
+    "de": "Sonnenlicht braucht bis zum Mars im Mittel ungefähr ___ Minuten.",
+    "en": "Sunlight takes about ___ minutes to reach Mars on average.",
+    "truth": {
+      "de": "13",
+      "en": "13"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars facts",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-021",
+    "type": "name",
+    "de": "Die beiden Marsmonde entdeckte 1877 der Astronom ___.",
+    "en": "The astronomer who discovered both Martian moons in 1877 was ___.",
+    "truth": {
+      "de": "Asaph Hall",
+      "en": "Asaph Hall"
+    },
+    "aliases": [
+      "Hall"
+    ],
+    "quelle": {
+      "title": "NASA · Mars moons",
+      "url": "https://science.nasa.gov/mars/moons/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-022",
+    "type": "name",
+    "de": "Der kleinere Marsmond heißt ___.",
+    "en": "The smaller Martian moon is called ___.",
+    "truth": {
+      "de": "Deimos",
+      "en": "Deimos"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars moons",
+      "url": "https://science.nasa.gov/mars/moons/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-023",
+    "type": "name",
+    "de": "Der große Krater auf Phobos heißt ___.",
+    "en": "The prominent large crater on Phobos is called ___.",
+    "truth": {
+      "de": "Stickney",
+      "en": "Stickney"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars moons",
+      "url": "https://science.nasa.gov/mars/moons/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-024",
+    "type": "number",
+    "de": "Zwischen Halls Entdeckung von Deimos und Phobos lagen ___ Nächte.",
+    "en": "Hall found Phobos ___ nights after finding Deimos.",
+    "truth": {
+      "de": "6",
+      "en": "6"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Mars moons",
+      "url": "https://science.nasa.gov/mars/moons/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-025",
+    "type": "number",
+    "de": "Jupiter dreht sich in ungefähr ___ Stunden einmal um seine Achse.",
+    "en": "Jupiter spins once on its axis in about ___ hours.",
+    "truth": {
+      "de": "9,9",
+      "en": "9.9"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Jupiter facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-026",
+    "type": "thing",
+    "de": "Die dunkleren Wolkenbänder Jupiters heißen auf Englisch ___.",
+    "en": "The darker cloud bands of Jupiter are called ___.",
+    "truth": {
+      "de": "belts",
+      "en": "belts"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Jupiter facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-027",
+    "type": "thing",
+    "de": "Die helleren Wolkenbänder Jupiters heißen auf Englisch ___.",
+    "en": "The lighter cloud bands of Jupiter are called ___.",
+    "truth": {
+      "de": "zones",
+      "en": "zones"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Jupiter facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-028",
+    "type": "thing",
+    "de": "Neben Wasser enthalten Jupiters sichtbare Wolken unter anderem ___.",
+    "en": "Alongside water, Jupiter's visible clouds contain ___.",
+    "truth": {
+      "de": "Ammoniak",
+      "en": "ammonia"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Jupiter facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-029",
+    "type": "number",
+    "de": "Um Jupiters nördlichen Polarwirbel beobachtete Juno ___ Wirbel in einer achteckigen Anordnung.",
+    "en": "Juno saw ___ cyclones in an octagonal arrangement around Jupiter's northern polar cyclone.",
+    "truth": {
+      "de": "8",
+      "en": "8"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Jupiter facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-030",
+    "type": "number",
+    "de": "Um Jupiters südlichen Polarwirbel beobachtete Juno ___ Wirbel in einer fünfeckigen Anordnung.",
+    "en": "Juno saw ___ cyclones in a pentagonal arrangement around Jupiter's southern polar cyclone.",
+    "truth": {
+      "de": "5",
+      "en": "5"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Jupiter facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-031",
+    "type": "number",
+    "de": "Saturns auffälliger Jetstream am Nordpol hat ___ Seiten.",
+    "en": "Saturn's striking north-polar jet stream has ___ sides.",
+    "truth": {
+      "de": "6",
+      "en": "6"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Saturn facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-032",
+    "type": "name",
+    "de": "Die große Lücke zwischen Saturns A- und B-Ring heißt ___-Teilung.",
+    "en": "The large gap between Saturn's A and B rings is the ___ Division.",
+    "truth": {
+      "de": "Cassini",
+      "en": "Cassini"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Saturn facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-033",
+    "type": "name",
+    "de": "Der Planet mit einer mittleren Dichte unter der von Wasser ist ___.",
+    "en": "The planet with an average density lower than water is ___.",
+    "truth": {
+      "de": "Saturn",
+      "en": "Saturn"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Saturn facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-034",
+    "type": "number",
+    "de": "Saturn benötigt für eine Umdrehung ungefähr ___ Stunden.",
+    "en": "Saturn takes about ___ hours to rotate once.",
+    "truth": {
+      "de": "10,7",
+      "en": "10.7"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Saturn facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-035",
+    "type": "number",
+    "de": "Ein Saturnjahr dauert ungefähr ___ Erdenjahre.",
+    "en": "A Saturnian year lasts about ___ Earth years.",
+    "truth": {
+      "de": "29,4",
+      "en": "29.4"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Saturn facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-036",
+    "type": "name",
+    "de": "Der Saturnmond mit den bekannten Wasserfontänen heißt ___.",
+    "en": "The Saturnian moon famous for water jets is ___.",
+    "truth": {
+      "de": "Enceladus",
+      "en": "Enceladus"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Saturn facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-037",
+    "type": "name",
+    "de": "Der Saturnmond mit Seen aus Methan heißt ___.",
+    "en": "The Saturnian moon with methane lakes is ___.",
+    "truth": {
+      "de": "Titan",
+      "en": "Titan"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Saturn facts",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-038",
+    "type": "number",
+    "de": "Uranus wurde als neuer Planet im Jahr ___ entdeckt.",
+    "en": "Uranus was discovered as a new planet in ___.",
+    "truth": {
+      "de": "1781",
+      "en": "1781"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-039",
+    "type": "name",
+    "de": "Der Entdecker von Uranus war ___.",
+    "en": "The discoverer of Uranus was ___.",
+    "truth": {
+      "de": "William Herschel",
+      "en": "William Herschel"
+    },
+    "aliases": [
+      "Herschel",
+      "Wilhelm Herschel"
+    ],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-040",
+    "type": "name",
+    "de": "Herschel wollte Uranus zunächst ___ Sidus nennen.",
+    "en": "Herschel initially wanted to call Uranus ___ Sidus.",
+    "truth": {
+      "de": "Georgium",
+      "en": "Georgium"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-041",
+    "type": "thing",
+    "de": "Das Gas ___ trägt zur blaugrünen Farbe von Uranus bei.",
+    "en": "The gas ___ contributes to Uranus's blue-green colour.",
+    "truth": {
+      "de": "Methan",
+      "en": "methane"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-042",
+    "type": "name",
+    "de": "Neben Shakespeare liefern Figuren von Alexander ___ Namen für Uranusmonde.",
+    "en": "Alongside Shakespeare, characters created by Alexander ___ supply names for Uranian moons.",
+    "truth": {
+      "de": "Pope",
+      "en": "Pope"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-043",
+    "type": "number",
+    "de": "Ein Jahr auf Uranus dauert ungefähr ___ Erdenjahre.",
+    "en": "A year on Uranus lasts about ___ Earth years.",
+    "truth": {
+      "de": "84",
+      "en": "84"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-044",
+    "type": "number",
+    "de": "Ein dunkler Polarwinter auf Uranus dauert ungefähr ___ Erdenjahre.",
+    "en": "A dark polar winter on Uranus lasts about ___ Earth years.",
+    "truth": {
+      "de": "21",
+      "en": "21"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-045",
+    "type": "number",
+    "de": "Uranus' Achsenneigung beträgt ungefähr ___ Grad.",
+    "en": "Uranus's axial tilt is about ___ degrees.",
+    "truth": {
+      "de": "97,77",
+      "en": "97.77"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Uranus facts",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-046",
+    "type": "number",
+    "de": "Neptun wurde im Jahr ___ entdeckt.",
+    "en": "Neptune was discovered in ___.",
+    "truth": {
+      "de": "1846",
+      "en": "1846"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-047",
+    "type": "name",
+    "de": "Neptun fand nach einer mathematischen Vorhersage der Astronom Johann Gottfried ___.",
+    "en": "After a mathematical prediction, Neptune was found by Johann Gottfried ___.",
+    "truth": {
+      "de": "Galle",
+      "en": "Galle"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-048",
+    "type": "name",
+    "de": "Die entscheidende Vorhersage für Neptuns Position lieferte Urbain Le ___.",
+    "en": "The crucial prediction for Neptune's position came from Urbain Le ___.",
+    "truth": {
+      "de": "Verrier",
+      "en": "Verrier"
+    },
+    "aliases": [
+      "Le Verrier"
+    ],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-049",
+    "type": "place",
+    "de": "Neptuns Entdeckung gelang an einer Sternwarte in ___.",
+    "en": "Neptune was discovered at an observatory in ___.",
+    "truth": {
+      "de": "Berlin",
+      "en": "Berlin"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-050",
+    "type": "name",
+    "de": "Neptuns größter Mond, der rückläufig umläuft, heißt ___.",
+    "en": "Neptune's largest moon, which orbits retrograde, is called ___.",
+    "truth": {
+      "de": "Triton",
+      "en": "Triton"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-051",
+    "type": "name",
+    "de": "Triton wurde von William ___ entdeckt.",
+    "en": "Triton was discovered by William ___.",
+    "truth": {
+      "de": "Lassell",
+      "en": "Lassell"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-052",
+    "type": "number",
+    "de": "Triton wurde nur ___ Tage nach Neptun entdeckt.",
+    "en": "Triton was discovered only ___ days after Neptune.",
+    "truth": {
+      "de": "17",
+      "en": "17"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-053",
+    "type": "name",
+    "de": "Die Ringbögen Liberté und Courage liegen in Neptuns ___-Ring.",
+    "en": "The arcs Liberté and Courage lie in Neptune's ___ ring.",
+    "truth": {
+      "de": "Adams",
+      "en": "Adams"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-054",
+    "type": "name",
+    "de": "Der Mond ___ trägt vermutlich zur Stabilisierung von Neptuns Ringbögen bei.",
+    "en": "The moon ___ is thought to help stabilise Neptune's ring arcs.",
+    "truth": {
+      "de": "Galatea",
+      "en": "Galatea"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-055",
+    "type": "number",
+    "de": "Ein Neptunjahr dauert ungefähr ___ Erdenjahre.",
+    "en": "A Neptunian year lasts about ___ Earth years.",
+    "truth": {
+      "de": "165",
+      "en": "165"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Neptune facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-056",
+    "type": "name",
+    "de": "Den Namen Pluto schlug 1930 die Schülerin Venetia ___ vor.",
+    "en": "The schoolgirl who suggested Pluto's name in 1930 was Venetia ___.",
+    "truth": {
+      "de": "Burney",
+      "en": "Burney"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-057",
+    "type": "number",
+    "de": "Venetia Burney war bei ihrem Namensvorschlag für Pluto ___ Jahre alt.",
+    "en": "Venetia Burney was ___ years old when she suggested Pluto's name.",
+    "truth": {
+      "de": "11",
+      "en": "11"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-058",
+    "type": "name",
+    "de": "Die Sonde, die 2015 an Pluto vorbeiflog, heißt New ___.",
+    "en": "The spacecraft that flew past Pluto in 2015 is New ___.",
+    "truth": {
+      "de": "Horizons",
+      "en": "Horizons"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-059",
+    "type": "name",
+    "de": "Plutos größter Mond heißt ___.",
+    "en": "Pluto's largest moon is called ___.",
+    "truth": {
+      "de": "Charon",
+      "en": "Charon"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-060",
+    "type": "number",
+    "de": "Ein Umlauf Plutos um die Sonne dauert ungefähr ___ Erdenjahre.",
+    "en": "Pluto takes about ___ Earth years to orbit the Sun.",
+    "truth": {
+      "de": "248",
+      "en": "248"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-061",
+    "type": "number",
+    "de": "Eine Umdrehung Plutos dauert ungefähr ___ Stunden.",
+    "en": "Pluto takes about ___ hours to spin once.",
+    "truth": {
+      "de": "153",
+      "en": "153"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-062",
+    "type": "name",
+    "de": "Der Pluto-Mond mit dem Namen des dreiköpfigen Höllenhundes heißt ___.",
+    "en": "The Plutonian moon named after the three-headed underworld dog is ___.",
+    "truth": {
+      "de": "Kerberos",
+      "en": "Kerberos"
+    },
+    "aliases": [
+      "Cerberus",
+      "Zerberus"
+    ],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-063",
+    "type": "name",
+    "de": "Der Pluto-Mond mit dem Namen eines Unterweltflusses heißt ___.",
+    "en": "The Plutonian moon named after an underworld river is ___.",
+    "truth": {
+      "de": "Styx",
+      "en": "Styx"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Pluto facts",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-064",
+    "type": "number",
+    "de": "Erste Bilder der Mondrückseite erreichten die Menschheit im Jahr ___.",
+    "en": "Humanity first saw images of the lunar far side in ___.",
+    "truth": {
+      "de": "1959",
+      "en": "1959"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Moon facts",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-065",
+    "type": "number",
+    "de": "Apollo-Astronauten brachten insgesamt rund ___ Kilogramm Mondgestein und Boden zurück.",
+    "en": "Apollo astronauts brought back about ___ kilograms of lunar rocks and soil.",
+    "truth": {
+      "de": "382",
+      "en": "382"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Moon facts",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-066",
+    "type": "thing",
+    "de": "Die Schicht aus Staub und Gesteinstrümmern auf dem Mond heißt ___.",
+    "en": "The layer of dust and rock debris on the Moon is called ___.",
+    "truth": {
+      "de": "Regolith",
+      "en": "regolith"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Moon facts",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-067",
+    "type": "thing",
+    "de": "Die dunklen basaltgefüllten Becken des Mondes heißen mit lateinischem Namen ___.",
+    "en": "The dark lava-filled basins on the Moon have the Latin name ___.",
+    "truth": {
+      "de": "Maria",
+      "en": "maria"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Moon facts",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-068",
+    "type": "number",
+    "de": "Die Schwerkraft an der Mondoberfläche ist ungefähr ein ___ der irdischen.",
+    "en": "Lunar surface gravity is about one ___ of Earth's.",
+    "truth": {
+      "de": "Sechstel",
+      "en": "sixth"
+    },
+    "aliases": [
+      "6",
+      "sechster",
+      "six"
+    ],
+    "quelle": {
+      "title": "NASA · Moon facts",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-069",
+    "type": "name",
+    "de": "Die indische Mission mit dem Wassernachweis 2008 hieß ___-1.",
+    "en": "The Indian mission that detected lunar water in 2008 was ___-1.",
+    "truth": {
+      "de": "Chandrayaan",
+      "en": "Chandrayaan"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Moon facts",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-070",
+    "type": "name",
+    "de": "Ceres entdeckte 1801 Giuseppe ___.",
+    "en": "Ceres was discovered in 1801 by Giuseppe ___.",
+    "truth": {
+      "de": "Piazzi",
+      "en": "Piazzi"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Ceres facts",
+      "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-071",
+    "type": "number",
+    "de": "Ceres wurde im Jahr ___ entdeckt.",
+    "en": "Ceres was discovered in ___.",
+    "truth": {
+      "de": "1801",
+      "en": "1801"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Ceres facts",
+      "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-072",
+    "type": "name",
+    "de": "Die erste Sonde bei Ceres hieß ___.",
+    "en": "The first spacecraft to visit Ceres was ___.",
+    "truth": {
+      "de": "Dawn",
+      "en": "Dawn"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Ceres facts",
+      "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-073",
+    "type": "number",
+    "de": "Dawn erreichte Ceres im Jahr ___.",
+    "en": "Dawn arrived at Ceres in ___.",
+    "truth": {
+      "de": "2015",
+      "en": "2015"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Ceres facts",
+      "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-074",
+    "type": "number",
+    "de": "Ceres enthält ungefähr ___ Prozent der Gesamtmasse des Asteroidengürtels.",
+    "en": "Ceres accounts for about ___ percent of the asteroid belt's total mass.",
+    "truth": {
+      "de": "25",
+      "en": "25"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NASA · Ceres facts",
+      "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-075",
+    "type": "thing",
+    "de": "Ceres wurde nach der römischen Göttin der Ernte und des ___ benannt.",
+    "en": "Ceres was named after the Roman goddess of harvests and ___.",
+    "truth": {
+      "de": "Getreides",
+      "en": "grain"
+    },
+    "aliases": [
+      "Getreide",
+      "corn"
+    ],
+    "quelle": {
+      "title": "NASA · Ceres facts",
+      "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-076",
+    "type": "name",
+    "de": "Der Berggipfel mit dem größten Abstand zum Erdmittelpunkt ist ___.",
+    "en": "The mountain summit farthest from Earth's centre is ___.",
+    "truth": {
+      "de": "Chimborazo",
+      "en": "Chimborazo"
+    },
+    "aliases": [
+      "Mount Chimborazo"
+    ],
+    "quelle": {
+      "title": "NOAA · Highest point from Earth's centre",
+      "url": "https://oceanservice.noaa.gov/facts/highestpoint.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-077",
+    "type": "place",
+    "de": "Der Chimborazo liegt im Staat ___.",
+    "en": "Mount Chimborazo is in ___.",
+    "truth": {
+      "de": "Ecuador",
+      "en": "Ecuador"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NOAA · Highest point from Earth's centre",
+      "url": "https://oceanservice.noaa.gov/facts/highestpoint.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-078",
+    "type": "name",
+    "de": "Vom untermeerischen Fuß bis zur Spitze übertrifft ___ den Mount Everest.",
+    "en": "Measured from its underwater base to its summit, ___ exceeds Mount Everest.",
+    "truth": {
+      "de": "Mauna Kea",
+      "en": "Mauna Kea"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NOAA · Highest point from Earth's centre",
+      "url": "https://oceanservice.noaa.gov/facts/highestpoint.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-079",
+    "type": "number",
+    "de": "Die Krone der Freiheitsstatue hat ___ Fenster.",
+    "en": "The Statue of Liberty's crown has ___ windows.",
+    "truth": {
+      "de": "25",
+      "en": "25"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-080",
+    "type": "number",
+    "de": "Die Krone der Freiheitsstatue hat ___ Strahlen.",
+    "en": "The Statue of Liberty's crown has ___ rays.",
+    "truth": {
+      "de": "7",
+      "en": "7"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-081",
+    "type": "thing",
+    "de": "Die Freiheitsstatue blickt nach ___.",
+    "en": "The Statue of Liberty faces ___.",
+    "truth": {
+      "de": "Südosten",
+      "en": "southeast"
+    },
+    "aliases": [
+      "southeastward",
+      "Südost"
+    ],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-082",
+    "type": "number",
+    "de": "Die heutige Fackel der Freiheitsstatue wurde ___ eingesetzt.",
+    "en": "The Statue of Liberty's current torch was installed in ___.",
+    "truth": {
+      "de": "1986",
+      "en": "1986"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-083",
+    "type": "thing",
+    "de": "Die neue Fackel der Freiheitsstatue ist mit Blatt___ überzogen.",
+    "en": "The Statue of Liberty's new torch is covered in ___ leaf.",
+    "truth": {
+      "de": "Gold",
+      "en": "gold"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-084",
+    "type": "thing",
+    "de": "Zu Füßen der Freiheitsstatue liegt eine zerbrochene ___.",
+    "en": "At the Statue of Liberty's feet lies a broken ___.",
+    "truth": {
+      "de": "Fessel",
+      "en": "shackle"
+    },
+    "aliases": [
+      "Kette",
+      "chain"
+    ],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-085",
+    "type": "number",
+    "de": "Die Nase der Freiheitsstatue ist laut NPS ungefähr ___ Meter lang.",
+    "en": "According to the NPS, the Statue of Liberty's nose is about ___ metres long.",
+    "truth": {
+      "de": "1,37",
+      "en": "1.37"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-086",
+    "type": "number",
+    "de": "Auf der Tafel der Freiheitsstatue steht das Unabhängigkeitsjahr ___.",
+    "en": "The Statue of Liberty's tablet shows the independence year ___.",
+    "truth": {
+      "de": "1776",
+      "en": "1776"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Statue statistics",
+      "url": "https://www.nps.gov/stli/learn/historyculture/statue-statistics.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-087",
+    "type": "number",
+    "de": "Ein Oktopus besitzt ___ Herzen.",
+    "en": "An octopus has ___ hearts.",
+    "truth": {
+      "de": "3",
+      "en": "3"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian · Cephalopods",
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-088",
+    "type": "thing",
+    "de": "Das Blut der Kopffüßer ist wegen seines Sauerstofftransporters ___.",
+    "en": "Cephalopod blood is ___ because of its oxygen carrier.",
+    "truth": {
+      "de": "blau",
+      "en": "blue"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian · Cephalopods",
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-089",
+    "type": "thing",
+    "de": "Das Metall im Sauerstofftransporter Hämocyanin ist ___.",
+    "en": "The metal in the oxygen carrier haemocyanin is ___.",
+    "truth": {
+      "de": "Kupfer",
+      "en": "copper"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian · Cephalopods",
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-090",
+    "type": "number",
+    "de": "Von den drei Herzen eines Kopffüßers versorgen ___ direkt die Kiemen.",
+    "en": "Of a cephalopod's three hearts, ___ directly serve the gills.",
+    "truth": {
+      "de": "2",
+      "en": "2"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian · Cephalopods",
+      "url": "https://ocean.si.edu/ocean-life/invertebrates/octopuses-squids-and-relatives",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-091",
+    "type": "thing",
+    "de": "Pfeilschwanzkrebse sind näher mit Spinnen und ___ verwandt als mit echten Krebsen.",
+    "en": "Horseshoe crabs are closer relatives of spiders and ___ than of true crabs.",
+    "truth": {
+      "de": "Skorpionen",
+      "en": "scorpions"
+    },
+    "aliases": [
+      "Skorpion",
+      "scorpion"
+    ],
+    "quelle": {
+      "title": "NOAA · Horseshoe crabs",
+      "url": "https://oceanservice.noaa.gov/facts/horseshoe-crab.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-092",
+    "type": "thing",
+    "de": "Pfeilschwanzkrebse nutzen ihren langen Schwanz unter anderem zum ___, wenn sie auf dem Rücken liegen.",
+    "en": "Horseshoe crabs use their long tails to ___ when overturned.",
+    "truth": {
+      "de": "Umdrehen",
+      "en": "right themselves"
+    },
+    "aliases": [
+      "Aufrichten",
+      "flip themselves"
+    ],
+    "quelle": {
+      "title": "NOAA · Horseshoe crabs",
+      "url": "https://oceanservice.noaa.gov/facts/horseshoe-crab.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-093",
+    "type": "thing",
+    "de": "Die charakteristische Blutfarbe von Pfeilschwanzkrebsen ist ___.",
+    "en": "The characteristic blood colour of horseshoe crabs is ___.",
+    "truth": {
+      "de": "blau",
+      "en": "blue"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NOAA · Horseshoe crabs",
+      "url": "https://oceanservice.noaa.gov/facts/horseshoe-crab.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-094",
+    "type": "thing",
+    "de": "Pfeilschwanzkrebs-Blut reagiert durch Gerinnung auf bakterielle ___.",
+    "en": "Horseshoe crab blood clots in response to bacterial ___.",
+    "truth": {
+      "de": "Toxine",
+      "en": "toxins"
+    },
+    "aliases": [
+      "Endotoxine",
+      "endotoxins"
+    ],
+    "quelle": {
+      "title": "NOAA · Horseshoe crabs",
+      "url": "https://oceanservice.noaa.gov/facts/horseshoe-crab.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-095",
+    "type": "thing",
+    "de": "Nacktmulle graben ihre Gänge vor allem mit ihren ___.",
+    "en": "Naked mole-rats dig tunnels mainly with their ___.",
+    "truth": {
+      "de": "Schneidezähnen",
+      "en": "incisors"
+    },
+    "aliases": [
+      "Zähnen",
+      "teeth"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Naked mole-rat",
+      "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-096",
+    "type": "thing",
+    "de": "Bei Nacktmullen schließen sich die Lippen beim Graben hinter den ___.",
+    "en": "When naked mole-rats dig, their lips close behind their ___.",
+    "truth": {
+      "de": "Schneidezähnen",
+      "en": "incisors"
+    },
+    "aliases": [
+      "Zähnen",
+      "teeth"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Naked mole-rat",
+      "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-097",
+    "type": "thing",
+    "de": "Das einzige sich fortpflanzende Weibchen einer Nacktmullkolonie heißt ___.",
+    "en": "The single breeding female of a naked mole-rat colony is the ___.",
+    "truth": {
+      "de": "Königin",
+      "en": "queen"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Naked mole-rat",
+      "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-098",
+    "type": "place",
+    "de": "Das natürliche Verbreitungsgebiet der Nacktmulle liegt in ___afrika.",
+    "en": "The native range of naked mole-rats lies in ___ Africa.",
+    "truth": {
+      "de": "Ost",
+      "en": "East"
+    },
+    "aliases": [
+      "Osten",
+      "eastern"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Naked mole-rat",
+      "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-099",
+    "type": "thing",
+    "de": "Das Wasser, das Nacktmulle benötigen, bekommen sie über ihre ___.",
+    "en": "Naked mole-rats obtain the water they need from their ___.",
+    "truth": {
+      "de": "Nahrung",
+      "en": "food"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Naked mole-rat",
+      "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-100",
+    "type": "thing",
+    "de": "Zum Warmhalten kuscheln Nacktmulle sich ___.",
+    "en": "To keep warm, naked mole-rats ___ together.",
+    "truth": {
+      "de": "zusammen",
+      "en": "huddle"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Naked mole-rat",
+      "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-101",
+    "type": "number",
+    "de": "Alfred Nobel hielt am Ende seines Lebens ___ Patente.",
+    "en": "Alfred Nobel held ___ patents by the end of his life.",
+    "truth": {
+      "de": "355",
+      "en": "355"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NobelPrize.org · Alfred Nobel",
+      "url": "https://www.nobelprize.org/alfred-nobel/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-102",
+    "type": "number",
+    "de": "Alfred Nobel wurde ___ geboren.",
+    "en": "Alfred Nobel was born in ___.",
+    "truth": {
+      "de": "1833",
+      "en": "1833"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NobelPrize.org · Alfred Nobel",
+      "url": "https://www.nobelprize.org/alfred-nobel/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-103",
+    "type": "number",
+    "de": "Alfred Nobel schrieb sein letztes Testament im Jahr ___.",
+    "en": "Alfred Nobel wrote his final will in ___.",
+    "truth": {
+      "de": "1895",
+      "en": "1895"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NobelPrize.org · Alfred Nobel",
+      "url": "https://www.nobelprize.org/alfred-nobel/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-104",
+    "type": "number",
+    "de": "Die ersten Nobelpreise wurden im Jahr ___ verliehen.",
+    "en": "The first Nobel Prizes were awarded in ___.",
+    "truth": {
+      "de": "1901",
+      "en": "1901"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NobelPrize.org · Alfred Nobel",
+      "url": "https://www.nobelprize.org/alfred-nobel/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-105",
+    "type": "thing",
+    "de": "Die besonders bekannte Sprengstofferfindung Alfred Nobels heißt ___.",
+    "en": "Alfred Nobel's best-known explosive invention is ___.",
+    "truth": {
+      "de": "Dynamit",
+      "en": "dynamite"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NobelPrize.org · Alfred Nobel",
+      "url": "https://www.nobelprize.org/alfred-nobel/",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-106",
+    "type": "thing",
+    "de": "Der Pseudodaumen des Großen Pandas ist ein umgebildeter ___.",
+    "en": "The giant panda's pseudo-thumb is a modified ___.",
+    "truth": {
+      "de": "Handwurzelknochen",
+      "en": "wrist bone"
+    },
+    "aliases": [
+      "Handwurzel",
+      "wristbone"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Giant panda",
+      "url": "https://nationalzoo.si.edu/animals/giant-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-107",
+    "type": "number",
+    "de": "Große Pandas verbringen täglich bis zu ___ Stunden mit Futtersuche und Fressen.",
+    "en": "Giant pandas spend up to ___ hours daily foraging and eating.",
+    "truth": {
+      "de": "16",
+      "en": "16"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Giant panda",
+      "url": "https://nationalzoo.si.edu/animals/giant-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-108",
+    "type": "thing",
+    "de": "Pandas markieren ihr Revier vor allem mit ___.",
+    "en": "Pandas mark their territory mainly using ___.",
+    "truth": {
+      "de": "Duftstoffen",
+      "en": "scents"
+    },
+    "aliases": [
+      "Duftmarken",
+      "scent marks",
+      "Geruchsstoffen"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Giant panda",
+      "url": "https://nationalzoo.si.edu/animals/giant-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-109",
+    "type": "place",
+    "de": "Neben Shaanxi und Gansu leben wilde Große Pandas in der Provinz ___.",
+    "en": "Besides Shaanxi and Gansu, wild giant pandas live in the province of ___.",
+    "truth": {
+      "de": "Sichuan",
+      "en": "Sichuan"
+    },
+    "aliases": [
+      "Szechuan",
+      "Szechwan"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Giant panda",
+      "url": "https://nationalzoo.si.edu/animals/giant-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-110",
+    "type": "thing",
+    "de": "Die schwierig zu verdauende Hauptnahrung des Großen Pandas ist ___.",
+    "en": "The giant panda's hard-to-digest staple food is ___.",
+    "truth": {
+      "de": "Bambus",
+      "en": "bamboo"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Giant panda",
+      "url": "https://nationalzoo.si.edu/animals/giant-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-111",
+    "type": "thing",
+    "de": "Die gegabelte Zunge des Komodowarans ist ___.",
+    "en": "A Komodo dragon's forked tongue is ___.",
+    "truth": {
+      "de": "gelb",
+      "en": "yellow"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Komodo dragon",
+      "url": "https://nationalzoo.si.edu/animals/komodo-dragon",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-112",
+    "type": "number",
+    "de": "Ein Komodowaran kann mit einer Mahlzeit bis zu ___ Prozent seines Gewichts aufnehmen.",
+    "en": "A Komodo dragon can eat up to ___ percent of its weight in one meal.",
+    "truth": {
+      "de": "80",
+      "en": "80"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Komodo dragon",
+      "url": "https://nationalzoo.si.edu/animals/komodo-dragon",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-113",
+    "type": "thing",
+    "de": "Um leichter fliehen zu können, können Komodowarane ihren Mageninhalt ___.",
+    "en": "To escape more easily, Komodo dragons can ___ their stomach contents.",
+    "truth": {
+      "de": "erbrechen",
+      "en": "regurgitate"
+    },
+    "aliases": [
+      "auswürgen",
+      "throw up",
+      "vomit"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Komodo dragon",
+      "url": "https://nationalzoo.si.edu/animals/komodo-dragon",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-114",
+    "type": "name",
+    "de": "Die Geruchsauswertung im Mund des Komodowarans erfolgt in den ___-Organen.",
+    "en": "A Komodo dragon analyses scents in the mouth using ___'s organs.",
+    "truth": {
+      "de": "Jacobson",
+      "en": "Jacobson"
+    },
+    "aliases": [
+      "Jacobsons",
+      "Jacobsonsche"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Komodo dragon",
+      "url": "https://nationalzoo.si.edu/animals/komodo-dragon",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-115",
+    "type": "place",
+    "de": "Komodowarane sind auf wenigen Inseln des Staates ___ heimisch.",
+    "en": "Komodo dragons are native to a few islands in ___.",
+    "truth": {
+      "de": "Indonesien",
+      "en": "Indonesia"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Komodo dragon",
+      "url": "https://nationalzoo.si.edu/animals/komodo-dragon",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-116",
+    "type": "name",
+    "de": "Die eigene Tierfamilie der Roten Pandas heißt ___.",
+    "en": "The red panda's own taxonomic family is called ___.",
+    "truth": {
+      "de": "Ailuridae",
+      "en": "Ailuridae"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Red panda",
+      "url": "https://nationalzoo.si.edu/animals/red-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-117",
+    "type": "number",
+    "de": "Bambus macht ungefähr ___ Prozent der Nahrung Roter Pandas aus.",
+    "en": "Bamboo makes up about ___ percent of a red panda's diet.",
+    "truth": {
+      "de": "95",
+      "en": "95"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Red panda",
+      "url": "https://nationalzoo.si.edu/animals/red-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-118",
+    "type": "thing",
+    "de": "Rote Pandas können einen Baumstamm ___ voran hinabklettern.",
+    "en": "Red pandas can climb down tree trunks ___ first.",
+    "truth": {
+      "de": "Kopf",
+      "en": "head"
+    },
+    "aliases": [
+      "kopfüber",
+      "headfirst"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Red panda",
+      "url": "https://nationalzoo.si.edu/animals/red-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-119",
+    "type": "thing",
+    "de": "Wie beim Großen Panda besteht der Pseudodaumen des Roten Pandas aus einem ___.",
+    "en": "Like the giant panda's, the red panda's pseudo-thumb is a modified ___.",
+    "truth": {
+      "de": "Handwurzelknochen",
+      "en": "wrist bone"
+    },
+    "aliases": [
+      "Handwurzel",
+      "wristbone"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Red panda",
+      "url": "https://nationalzoo.si.edu/animals/red-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-120",
+    "type": "thing",
+    "de": "Rote Pandas sind überwiegend in der ___ aktiv.",
+    "en": "Red pandas are mainly active around ___.",
+    "truth": {
+      "de": "Dämmerung",
+      "en": "dawn and dusk"
+    },
+    "aliases": [
+      "twilight",
+      "Morgen- und Abenddämmerung"
+    ],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Red panda",
+      "url": "https://nationalzoo.si.edu/animals/red-panda",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-121",
+    "type": "thing",
+    "de": "Den grünlichen Schimmer im Faultierfell verursachen ___.",
+    "en": "The greenish tint in a sloth's fur is caused by ___.",
+    "truth": {
+      "de": "Algen",
+      "en": "algae"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Two-toed sloth",
+      "url": "https://nationalzoo.si.edu/animals/two-toed-sloth",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-122",
+    "type": "thing",
+    "de": "Beim Faultier wachsen die Haare vom Bauch in Richtung ___.",
+    "en": "A sloth's hair grows from its belly towards its ___.",
+    "truth": {
+      "de": "Rücken",
+      "en": "back"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Two-toed sloth",
+      "url": "https://nationalzoo.si.edu/animals/two-toed-sloth",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-123",
+    "type": "number",
+    "de": "Zweifingerfaultiere setzen gewöhnlich nur einmal pro ___ Woche Kot ab.",
+    "en": "Two-toed sloths typically defecate only once every ___ week.",
+    "truth": {
+      "de": "1",
+      "en": "1"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Two-toed sloth",
+      "url": "https://nationalzoo.si.edu/animals/two-toed-sloth",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-124",
+    "type": "number",
+    "de": "Nahrung bleibt beim Zweifingerfaultier ungefähr ___ Monat im Verdauungstrakt.",
+    "en": "Food stays in a two-toed sloth's digestive tract for about ___ month.",
+    "truth": {
+      "de": "1",
+      "en": "1"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Two-toed sloth",
+      "url": "https://nationalzoo.si.edu/animals/two-toed-sloth",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-125",
+    "type": "thing",
+    "de": "Trotz langsamer Bewegung am Boden sind Faultiere erstaunlich gute ___.",
+    "en": "Despite slow movement on land, sloths are surprisingly good ___.",
+    "truth": {
+      "de": "Schwimmer",
+      "en": "swimmers"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Smithsonian National Zoo · Two-toed sloth",
+      "url": "https://nationalzoo.si.edu/animals/two-toed-sloth",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-126",
+    "type": "number",
+    "de": "Der Eiffelturm sollte ursprünglich nur ___ Jahre stehen.",
+    "en": "The Eiffel Tower was originally intended to stand for only ___ years.",
+    "truth": {
+      "de": "20",
+      "en": "20"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Eiffel Tower operator · Key figures",
+      "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-127",
+    "type": "number",
+    "de": "Für den Eiffelturm wurden ___ Nieten verwendet.",
+    "en": "The Eiffel Tower used ___ rivets.",
+    "truth": {
+      "de": "2500000",
+      "en": "2500000"
+    },
+    "aliases": [
+      "2,5 Millionen",
+      "2.5 million",
+      "2 500 000",
+      "2.500.000",
+      "2,500,000"
+    ],
+    "quelle": {
+      "title": "Eiffel Tower operator · Key figures",
+      "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-128",
+    "type": "number",
+    "de": "Der Eiffelturm besteht aus ___ Eisenteilen.",
+    "en": "The Eiffel Tower contains ___ iron parts.",
+    "truth": {
+      "de": "18038",
+      "en": "18038"
+    },
+    "aliases": [
+      "18 038",
+      "18.038",
+      "18,038"
+    ],
+    "quelle": {
+      "title": "Eiffel Tower operator · Key figures",
+      "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-129",
+    "type": "number",
+    "de": "Das Metallgerüst des Eiffelturms wiegt ___ Tonnen.",
+    "en": "The Eiffel Tower's metal framework weighs ___ tonnes.",
+    "truth": {
+      "de": "7300",
+      "en": "7300"
+    },
+    "aliases": [
+      "7 300",
+      "7.300",
+      "7,300"
+    ],
+    "quelle": {
+      "title": "Eiffel Tower operator · Key figures",
+      "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-130",
+    "type": "number",
+    "de": "Der Eiffelturm entstand für die Weltausstellung im Jahr ___.",
+    "en": "The Eiffel Tower was built for the World's Fair in ___.",
+    "truth": {
+      "de": "1889",
+      "en": "1889"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Eiffel Tower operator · Key figures",
+      "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-131",
+    "type": "number",
+    "de": "Vom Eiffelturm wurde ___ das erste öffentliche Radioprogramm ausgestrahlt.",
+    "en": "The Eiffel Tower broadcast its first public radio programme in ___.",
+    "truth": {
+      "de": "1925",
+      "en": "1925"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "Eiffel Tower operator · Key figures",
+      "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-132",
+    "type": "name",
+    "de": "Das Meer ohne Landgrenzen heißt ___.",
+    "en": "The sea without land boundaries is the ___.",
+    "truth": {
+      "de": "Sargassosee",
+      "en": "Sargasso Sea"
+    },
+    "aliases": [
+      "Sargasso",
+      "Sargassomeer"
+    ],
+    "quelle": {
+      "title": "NOAA · Sargasso Sea",
+      "url": "https://oceanservice.noaa.gov/facts/sargassosea.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-133",
+    "type": "place",
+    "de": "Die Sargassosee liegt vollständig im ___.",
+    "en": "The Sargasso Sea lies entirely within the ___.",
+    "truth": {
+      "de": "Atlantik",
+      "en": "Atlantic Ocean"
+    },
+    "aliases": [
+      "Atlantic",
+      "Atlantischen Ozean"
+    ],
+    "quelle": {
+      "title": "NOAA · Sargasso Sea",
+      "url": "https://oceanservice.noaa.gov/facts/sargassosea.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-134",
+    "type": "thing",
+    "de": "Die namensgebenden Sargassum-Algen gehören zu den ___algen.",
+    "en": "The Sargassum giving the sea its name is a ___ alga.",
+    "truth": {
+      "de": "Braun",
+      "en": "brown"
+    },
+    "aliases": [
+      "Braunalgen",
+      "brown algae"
+    ],
+    "quelle": {
+      "title": "NOAA · Sargasso Sea",
+      "url": "https://oceanservice.noaa.gov/facts/sargassosea.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-135",
+    "type": "name",
+    "de": "Die westliche Begrenzung der Sargassosee bildet der ___.",
+    "en": "The Sargasso Sea's western boundary is formed by the ___.",
+    "truth": {
+      "de": "Golfstrom",
+      "en": "Gulf Stream"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NOAA · Sargasso Sea",
+      "url": "https://oceanservice.noaa.gov/facts/sargassosea.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-136",
+    "type": "name",
+    "de": "Die östliche Begrenzung der Sargassosee bildet der ___strom.",
+    "en": "The Sargasso Sea's eastern boundary is formed by the ___ Current.",
+    "truth": {
+      "de": "Kanaren",
+      "en": "Canary"
+    },
+    "aliases": [
+      "Kanarenstrom",
+      "Canary Current"
+    ],
+    "quelle": {
+      "title": "NOAA · Sargasso Sea",
+      "url": "https://oceanservice.noaa.gov/facts/sargassosea.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-137",
+    "type": "number",
+    "de": "Das rätselhafte Unterwassergeräusch Bloop wurde ___ aufgezeichnet.",
+    "en": "The mysterious underwater Bloop sound was recorded in ___.",
+    "truth": {
+      "de": "1997",
+      "en": "1997"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NOAA · Bloop",
+      "url": "https://oceanservice.noaa.gov/facts/bloop.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-138",
+    "type": "thing",
+    "de": "Das Bloop-Geräusch stammte nach NOAA-Erkenntnissen von einem ___.",
+    "en": "NOAA identified the Bloop sound as coming from an ___.",
+    "truth": {
+      "de": "Eisbeben",
+      "en": "icequake"
+    },
+    "aliases": [
+      "ice quake"
+    ],
+    "quelle": {
+      "title": "NOAA · Bloop",
+      "url": "https://oceanservice.noaa.gov/facts/bloop.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-139",
+    "type": "place",
+    "de": "Die Eisquelle des Bloop-Geräuschs lag bei der ___.",
+    "en": "The Bloop sound's icy source was near ___.",
+    "truth": {
+      "de": "Antarktis",
+      "en": "Antarctica"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NOAA · Bloop",
+      "url": "https://oceanservice.noaa.gov/facts/bloop.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-140",
+    "type": "thing",
+    "de": "Unterwassermikrofone, die den Bloop aufnahmen, heißen ___.",
+    "en": "The underwater microphones that recorded the Bloop are called ___.",
+    "truth": {
+      "de": "Hydrophone",
+      "en": "hydrophones"
+    },
+    "aliases": [
+      "Hydrofone",
+      "Hydrophon",
+      "hydrophone"
+    ],
+    "quelle": {
+      "title": "NOAA · Bloop",
+      "url": "https://oceanservice.noaa.gov/facts/bloop.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-141",
+    "type": "number",
+    "de": "NOAA nennt ___ als Jahr der Aufklärung der Bloop-Quelle.",
+    "en": "NOAA gives ___ as the year the Bloop's source was discovered.",
+    "truth": {
+      "de": "2005",
+      "en": "2005"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NOAA · Bloop",
+      "url": "https://oceanservice.noaa.gov/facts/bloop.html",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-142",
+    "type": "number",
+    "de": "Die Arbeiten an Mount Rushmore begannen ___.",
+    "en": "Carving work at Mount Rushmore began in ___.",
+    "truth": {
+      "de": "1927",
+      "en": "1927"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Mount Rushmore carving history",
+      "url": "https://www.nps.gov/moru/learn/historyculture/carving-history.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-143",
+    "type": "number",
+    "de": "Die Arbeiten an Mount Rushmore endeten ___.",
+    "en": "Carving work at Mount Rushmore ended in ___.",
+    "truth": {
+      "de": "1941",
+      "en": "1941"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Mount Rushmore carving history",
+      "url": "https://www.nps.gov/moru/learn/historyculture/carving-history.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-144",
+    "type": "number",
+    "de": "Mount Rushmores Bauzeit betrug ___ Jahre.",
+    "en": "Mount Rushmore's construction lasted ___ years.",
+    "truth": {
+      "de": "14",
+      "en": "14"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Mount Rushmore carving history",
+      "url": "https://www.nps.gov/moru/learn/historyculture/carving-history.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-145",
+    "type": "number",
+    "de": "Rund ___ Prozent des Felsabtrags am Mount Rushmore erfolgten mit Dynamit.",
+    "en": "About ___ percent of Mount Rushmore's rock carving used dynamite.",
+    "truth": {
+      "de": "90",
+      "en": "90"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Mount Rushmore carving history",
+      "url": "https://www.nps.gov/moru/learn/historyculture/carving-history.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-146",
+    "type": "number",
+    "de": "Die Beschäftigten am Mount Rushmore stiegen täglich ___ Stufen hinauf.",
+    "en": "Mount Rushmore workers climbed ___ steps each day.",
+    "truth": {
+      "de": "700",
+      "en": "700"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Mount Rushmore carving history",
+      "url": "https://www.nps.gov/moru/learn/historyculture/carving-history.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-147",
+    "type": "number",
+    "de": "An Mount Rushmore arbeiteten ungefähr ___ Menschen.",
+    "en": "About ___ people worked on Mount Rushmore.",
+    "truth": {
+      "de": "400",
+      "en": "400"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Mount Rushmore carving history",
+      "url": "https://www.nps.gov/moru/learn/historyculture/carving-history.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-148",
+    "type": "number",
+    "de": "Laut NPS gab es bei den Bauarbeiten am Mount Rushmore ___ tödliche Unfälle.",
+    "en": "According to the NPS, Mount Rushmore's construction had ___ fatal accidents.",
+    "truth": {
+      "de": "0",
+      "en": "0"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Mount Rushmore carving history",
+      "url": "https://www.nps.gov/moru/learn/historyculture/carving-history.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-149",
+    "type": "number",
+    "de": "Yellowstone wurde im Jahr ___ als Nationalpark gegründet.",
+    "en": "Yellowstone was established as a national park in ___.",
+    "truth": {
+      "de": "1872",
+      "en": "1872"
+    },
+    "aliases": [],
+    "quelle": {
+      "title": "NPS · Yellowstone history",
+      "url": "https://www.nps.gov/yell/learn/historyculture/index.htm",
+      "checked": "2026-11-03"
+    }
+  },
+  {
+    "id": "lb-150",
+    "type": "number",
+    "de": "Menschen hielten sich laut NPS schon vor mehr als ___ Jahren in der Yellowstone-Region auf.",
+    "en": "According to the NPS, people spent time in Yellowstone over ___ years ago.",
+    "truth": {
+      "de": "11000",
+      "en": "11000"
+    },
+    "aliases": [
+      "11 000",
+      "11.000",
+      "11,000"
+    ],
+    "quelle": {
+      "title": "NPS · Yellowstone history",
+      "url": "https://www.nps.gov/yell/learn/historyculture/index.htm",
+      "checked": "2026-11-03"
+    }
+  }
+]
