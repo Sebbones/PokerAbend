@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-07",
+  "game": "regelwahnsinn",
+  "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+  "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+  "artwork": "Original inline SVG and Canvas/CSS authored for this game; no external images, logos or assets.",
+  "tests": [
+    {
+      "command": "node --test test/backlog07.test.js test/party-program.test.js",
+      "passed": 19,
+      "failed": 0,
+      "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+    },
+    {
+      "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 189.457,
+      "report": "artifacts/backlog07-ui-verified-report.json",
+      "log": "artifacts/backlog07-ui-verified.log",
+      "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+    },
+    {
+      "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+      "passed": 66,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 484.843,
+      "report": "artifacts/backlog07-ui-final-report.json",
+      "log": "artifacts/backlog07-ui-final.log",
+      "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+    },
+    {
+      "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+      "passed": 116,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 24.112,
+      "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+      "tests": 1481,
+      "passed": 1478,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 270.7,
+      "log": "artifacts/backlog07-final-node.log",
+      "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/regelwahnsinn/index.js",
+      "sha256": "6ad462b7159401d753ed5d7fd4c2d888ecf62b1bdbaeb4ad95e6fc5abbde0240"
+    },
+    {
+      "path": "games/regelwahnsinn/room.js",
+      "sha256": "de8128f242997f2d53f249afa22b84bce425a664b3c33170e3f4a2c2e413dfc5"
+    },
+    {
+      "path": "games/regelwahnsinn/rules.js",
+      "sha256": "aeb82652966ece9ddc60c00e1ea53086b79850ce5052b59eb9f761112c96ee08"
+    },
+    {
+      "path": "public/games/regelwahnsinn/regelwahnsinn.css",
+      "sha256": "12a5c9130aa95ec6691fd75cdbb8fa5ccf0871ef960e7eca0b9d77435671e7a6"
+    },
+    {
+      "path": "public/games/regelwahnsinn/regelwahnsinn.js",
+      "sha256": "e8f87c0670d988940c477130d528c3dbd12c067e8aa5e78cec488b246ddaf470"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-1440x900.png",
+      "sha256": "2f8eb6c4c487023f22633d131da638d1b88cc7f7fcbcb5539abc213f0c61f9f5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-1920x1080.png",
+      "sha256": "94af42715c57cbec9ac377eeb74a501b9c76f00cfacdf86708cf6db6821780e1"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-360x800.png",
+      "sha256": "876bb13dd0aa1b9038f5bab47661b2c4f26ca434053a67dc8abadb235a6d40ad"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-390x844.png",
+      "sha256": "a4c8542a13c65d067c2702414e9f88e71929970de912d1e353bb4f835257fcc6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-768x1024.png",
+      "sha256": "1660942f6de3d7d5e0520608788454cddb1cee7cb11e02b22a6e0b5dc6cf8360"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-900x450.png",
+      "sha256": "4e446a01c31160bb6a05e1a62b51c7f6445f52c1a0cbb754e19f9d3a49ff789f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-english-rules.png",
+      "sha256": "021be49b255329919acd84d35a2700c1ba05764b128162bf942f1e3bf2b53619"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-lobby.png",
+      "sha256": "b8756642df894d2fcc020ed5bce6eb9c40f67eda5db0ccb49a034f7265c06777"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-paused.png",
+      "sha256": "2f8eb6c4c487023f22633d131da638d1b88cc7f7fcbcb5539abc213f0c61f9f5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-reconnect.png",
+      "sha256": "2f8eb6c4c487023f22633d131da638d1b88cc7f7fcbcb5539abc213f0c61f9f5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-result.png",
+      "sha256": "3415cab25a37c0adc924b09ce619580a2654565a4283b94984de028217a04e3e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-reveal.png",
+      "sha256": "6fc492ea40ea3363c56439591b17753c06b7253e8906c3e3ed0538079ff3460b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-spectator.png",
+      "sha256": "de7d3937b14adb861e0ff7e9b69bc56d8831534a4718659e886c9dd8f0b19ab7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-english-rules.png",
+      "sha256": "ad093b7ce00f29e89674a3b73d2869ea5a40ef2c99c446645b15d228c1ed8502"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-lobby.png",
+      "sha256": "c5ea27963f80f136ca28dec564cf01fed4a11585a87cf2baea141507172a03ed"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-paused.png",
+      "sha256": "0f6112cf91ab8ab07b8b43db8f78e94c1e79e859d3553316198bd00e72ddd935"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-reconnect.png",
+      "sha256": "0f6112cf91ab8ab07b8b43db8f78e94c1e79e859d3553316198bd00e72ddd935"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-result.png",
+      "sha256": "01e5ee05983c5c31eef4165acc926580babae3a4bfb13c3c8c45ea297ef09e85"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-reveal.png",
+      "sha256": "535afd7a918c64a69a0dc74286a83b9e1e55bfd3a0dce79258eab10d69d333a3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-spectator.png",
+      "sha256": "26422d356b1c33fdac7ec2da98ec27a52715470710bcc55d15128a6991090799"
+    }
+  ]
+}

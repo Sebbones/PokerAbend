@@ -26,11 +26,11 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 85,
-    "not_implemented_count": 22,
-    "completed_visual_count": 32,
+    "playable_count": 89,
+    "not_implemented_count": 18,
+    "completed_visual_count": 36,
     "open_playable_visual_count": 53,
-    "planned_visual_count": 75,
+    "planned_visual_count": 71,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -92,6 +92,10 @@
       "monsterwuerfel",
       "labyrinth-brett",
       "story-chaos",
+      "regelwahnsinn",
+      "jaeger-schatten",
+      "infektionsjagd",
+      "letzter-schutzplatz",
       "backgammon",
       "scrabble",
       "hearts",
@@ -104,6 +108,8 @@
       "skat",
       "doppelkopf",
       "schach",
+      "staedtehandel",
+      "gebietskampf",
       "sudoku",
       "2048",
       "wellenwacht",
@@ -115,15 +121,9 @@
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
-      "match-3",
-      "gebietskampf",
-      "staedtehandel"
+      "match-3"
     ],
     "not_implemented_game_ids": [
-      "regelwahnsinn",
-      "jaeger-schatten",
-      "infektionsjagd",
-      "letzter-schutzplatz",
       "kistenchaos",
       "gummiband-challenge",
       "geschenkfaenger",
@@ -145,15 +145,30 @@
     ],
     "completed_visual_game_ids": [
       "scotland-yard",
+      "maumau",
       "farbenchaos",
       "zehnetappen",
       "stapelrennen",
+      "shutthebox",
+      "schaetzmeister",
+      "werhatdasgesagt",
+      "mogeln",
+      "wuerfelpoker",
+      "chicago",
+      "gedaechtnis-kueche",
+      "pfeilfieber",
+      "tickendes-paket",
+      "wuerfelduell",
       "omaha-hi-lo",
       "seven-card-stud",
       "short-deck",
       "stichmeister",
       "exploding-deck",
       "labyrinth-brett",
+      "regelwahnsinn",
+      "jaeger-schatten",
+      "infektionsjagd",
+      "letzter-schutzplatz",
       "backgammon",
       "scrabble",
       "hearts",
@@ -164,18 +179,7 @@
       "schach",
       "sudoku",
       "2048",
-      "wellenwacht",
-      "chicago",
-      "tickendes-paket",
-      "wuerfelduell",
-      "wuerfelpoker",
-      "mogeln",
-      "pfeilfieber",
-      "schaetzmeister",
-      "shutthebox",
-      "gedaechtnis-kueche",
-      "maumau",
-      "werhatdasgesagt"
+      "wellenwacht"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -436,13 +440,10 @@
     "VIS-083",
     "VIS-073",
     "VIS-070",
-    "VIS-060",
     "VIS-071",
     "VIS-074",
     "VIS-075",
     "VIS-091",
-    "VIS-062",
-    "VIS-063",
     "VIS-077",
     "VIS-094",
     "VIS-092",
@@ -450,7 +451,6 @@
     "VIS-076",
     "VIS-064",
     "VIS-079",
-    "VIS-061",
     "VIS-078",
     "VIS-080",
     "VIS-095",
@@ -767,6 +767,57 @@
       ],
       "permanent_screenshots": 60,
       "documentation": "docs/backlog/BACKLOG-06.md"
+    },
+    "backlog07": {
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "permanent_screenshots": 80,
+      "report": "docs/backlog/BACKLOG-07.md"
     }
   },
   "packages": [
@@ -9015,24 +9066,41 @@
       "game_name": "Regelwahnsinn",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/regelwahnsinn/evidence.json",
+          "docs/backlog/BACKLOG-07.md"
+        ],
+        "assessment": "Eigenes Regelpult mit Papierkarten für Grundzahl und kumulative Regeln, privater Eingabe und getrennter Auflösung."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/regelwahnsinn/regelwahnsinn.css",
+        "public/games/regelwahnsinn/regelwahnsinn.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/party-kit.js",
+        "public/games/party-kit.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/regelwahnsinn/regelwahnsinn.css",
+          "sha256": "12a5c9130aa95ec6691fd75cdbb8fa5ccf0871ef960e7eca0b9d77435671e7a6"
+        },
+        {
+          "path": "public/games/regelwahnsinn/regelwahnsinn.js",
+          "sha256": "e8f87c0670d988940c477130d528c3dbd12c067e8aa5e78cec488b246ddaf470"
+        }
+      ],
+      "current_design": "Eigenes Regelpult mit Papierkarten für Grundzahl und kumulative Regeln, privater Eingabe und getrennter Auflösung.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six viewport sizes, independent personal views and spectator, pause/reconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Jede Runde eine neue Regel: Wer den Überblick behält, sammelt Punkte.",
       "planned_style": "Grafische Regelbühne mit auffälliger aktueller Regelkarte.",
       "background_concept": "Statische dunkle Bühne, keine Ablenkung hinter Regelfeldern.",
@@ -9052,7 +9120,6 @@
       ],
       "technical_constraints": [
         "Design darf keine zusätzlichen Regeln oder unerlaubten Vorabhinweise erzeugen.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -9062,8 +9129,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktive Regel, Aufgabe und sichtbare Regelhistorie getrennt. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-07 order implemented and tested.",
       "acceptance_criteria": [
         "Aktuelle und abgelaufene Regeln nicht verwechselbar."
       ],
@@ -9084,15 +9151,86 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "regelwahnsinn",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-reveal.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-reveal.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "commits": [
+        "2eb4b136683f8c8d363540e02269108a71aa936d",
+        "9c09e88980fe6cde8674e3fb691026af839259b1",
+        "630805a922620574828991de86c1c44d11a820d1"
+      ],
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "VIS-061",
@@ -9100,29 +9238,47 @@
       "game_name": "Jäger & Schatten",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/jaeger-schatten/evidence.json",
+          "docs/backlog/BACKLOG-07.md"
+        ],
+        "assessment": "Eigene Nachtwache mit abstrakten Hofsäulen, neutralen Spielermarkern und ausschließlich eigener Rollenanzeige."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/jaeger-schatten/jaeger-schatten.css",
+        "public/games/jaeger-schatten/jaeger-schatten.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/realtime-kit.js",
+        "public/games/realtime.css",
+        "public/games/party-arena-kit.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/jaeger-schatten/jaeger-schatten.css",
+          "sha256": "46566afdf2ffe9e1503fbcb536890ac61deab84a717235f3421c777028247d2f"
+        },
+        {
+          "path": "public/games/jaeger-schatten/jaeger-schatten.js",
+          "sha256": "77a55c23a9becae7e321ce00f966c9846ff9edf0d17b0caeb49020e96e62a9f2"
+        }
+      ],
+      "current_design": "Eigene Nachtwache mit abstrakten Hofsäulen, neutralen Spielermarkern und ausschließlich eigener Rollenanzeige.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six viewport sizes, independent personal views and spectator, pause/reconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Im gemeinsamen Echtzeitfeld jagen, ausweichen und unerkannt entkommen.",
       "planned_style": "Eigene grafische Verfolgungsarena mit klaren Sicht-/Schattengrenzen.",
       "background_concept": "Statische dunkle Stadt-/Hofkulisse außerhalb der Arena.",
       "board_concept": "Tatsächliche Arena und erlaubte Sicht nur aus Serverframes.",
-      "objects_concept": "Unterscheidbare Jäger-/Schattenfiguren gemäß Rollenfreigabe.",
+      "objects_concept": "Eigene neutrale Spielerfiguren und private Jäger-/Schattenkarte.",
       "status_and_actions": "Öffentliche Jagdphase, eigene Rolle und zulässiger Status.",
       "mobile_concept": "Touch-Richtungspad ohne verdeckte Gefahrenzonen.",
       "individual_complex_board": false,
@@ -9137,7 +9293,6 @@
       ],
       "technical_constraints": [
         "Keine verborgene Position über Schatten, Partikel oder Kamera verraten.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -9147,8 +9302,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Tatsächliche Arena und erlaubte Sicht nur aus Serverframes. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-07 order implemented and tested.",
       "acceptance_criteria": [
         "Verborgene Spieler erzeugen keine verräterischen Effekte."
       ],
@@ -9169,15 +9324,86 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "jaeger-schatten",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-playing.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-playing.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "commits": [
+        "2eb4b136683f8c8d363540e02269108a71aa936d",
+        "9c09e88980fe6cde8674e3fb691026af839259b1",
+        "630805a922620574828991de86c1c44d11a820d1"
+      ],
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "VIS-062",
@@ -9185,29 +9411,47 @@
       "game_name": "Infektionsjagd",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/infektionsjagd/evidence.json",
+          "docs/backlog/BACKLOG-07.md"
+        ],
+        "assessment": "Eigene Quarantänearena mit grafischen Kontrollpunkten, neutralen Spielermarkern und privater aktueller Infektionsanzeige."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/infektionsjagd/infektionsjagd.css",
+        "public/games/infektionsjagd/infektionsjagd.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/realtime-kit.js",
+        "public/games/realtime.css",
+        "public/games/party-arena-kit.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/infektionsjagd/infektionsjagd.css",
+          "sha256": "41a213a651cb8e2df5d088ab8498c183336486cd67646cde051a0d626dff291b"
+        },
+        {
+          "path": "public/games/infektionsjagd/infektionsjagd.js",
+          "sha256": "61dd38e2ea174eec271ad2a76b322c8e11760d6cb764248d95e9c1d6bc12f42c"
+        }
+      ],
+      "current_design": "Eigene Quarantänearena mit grafischen Kontrollpunkten, neutralen Spielermarkern und privater aktueller Infektionsanzeige.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six viewport sizes, independent personal views and spectator, pause/reconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Eine Berührung steckt an – bleibt jemand bis zum Schluss unentdeckt?",
       "planned_style": "Abstrakte farb- und symbolcodierte Fangarena.",
       "background_concept": "Ruhiger dunkler Hintergrund ohne realistische Krankheitsdarstellung.",
       "board_concept": "Kollisionsarena unverändert, Statuszonen nur nach Gameplaykonzept.",
-      "objects_concept": "Figuren mit zusätzlichem Infektionssymbol statt nur Farbwechsel.",
+      "objects_concept": "Eigene neutrale Spielerfiguren und private Infektionsanzeige; fremde Rollen bleiben verborgen.",
       "status_and_actions": "Übertragung, aktive Phase und verbleibende Spieler klar führen.",
       "mobile_concept": "Figurenumrisse bleiben neben Touch-Tasten erkennbar.",
       "individual_complex_board": false,
@@ -9222,7 +9466,6 @@
       ],
       "technical_constraints": [
         "Übertragungen und Zeitpunkte ausschließlich aus künftigem Serverzustand.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -9232,8 +9475,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Kollisionsarena unverändert, Statuszonen nur nach Gameplaykonzept. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-07 order implemented and tested.",
       "acceptance_criteria": [
         "Statuswechsel bleibt auch ohne Farbwahrnehmung verständlich."
       ],
@@ -9254,15 +9497,86 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "infektionsjagd",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-playing.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-playing.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "commits": [
+        "2eb4b136683f8c8d363540e02269108a71aa936d",
+        "9c09e88980fe6cde8674e3fb691026af839259b1",
+        "630805a922620574828991de86c1c44d11a820d1"
+      ],
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "VIS-063",
@@ -9270,24 +9584,42 @@
       "game_name": "Letzter Schutzplatz",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/letzter-schutzplatz/evidence.json",
+          "docs/backlog/BACKLOG-07.md"
+        ],
+        "assessment": "Eigene Sturmwarnungsarena mit nummerierten Schutzkreisen, sichtbarer Frist und neutralen Spielermarkern."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/letzter-schutzplatz/letzter-schutzplatz.css",
+        "public/games/letzter-schutzplatz/letzter-schutzplatz.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/realtime-kit.js",
+        "public/games/realtime.css",
+        "public/games/party-arena-kit.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/letzter-schutzplatz/letzter-schutzplatz.css",
+          "sha256": "3b4e969299d6f26c81687e5f15f5786e13e73ac0925b4b4c254660fcc896413c"
+        },
+        {
+          "path": "public/games/letzter-schutzplatz/letzter-schutzplatz.js",
+          "sha256": "4247afb3cf5158d4efa055c78f9e9f72eb8d09ad1797ad7af4c169e2952a253d"
+        }
+      ],
+      "current_design": "Eigene Sturmwarnungsarena mit nummerierten Schutzkreisen, sichtbarer Frist und neutralen Spielermarkern.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six viewport sizes, independent personal views and spectator, pause/reconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Rechtzeitig einen sicheren Platz erreichen, bevor die nächste Gefahr kommt.",
       "planned_style": "Übersichtliche Rettungsarena mit deutlich markierten Schutzinseln.",
       "background_concept": "Statische dunkle Umgebungsfläche.",
@@ -9307,7 +9639,6 @@
       ],
       "technical_constraints": [
         "Keine visuellen Zusatzplätze oder verlängerten Schutzzeiten.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -9317,8 +9648,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Sichere Plätze und Gefahr nur in ihrer echten Geometrie. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-07 order implemented and tested.",
       "acceptance_criteria": [
         "Schutzbereich und Gefahrenphase sind ohne Animation erkennbar."
       ],
@@ -9339,15 +9670,86 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "letzter-schutzplatz",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-playing.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-playing.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "commits": [
+        "2eb4b136683f8c8d363540e02269108a71aa936d",
+        "9c09e88980fe6cde8674e3fb691026af839259b1",
+        "630805a922620574828991de86c1c44d11a820d1"
+      ],
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "VIS-064",

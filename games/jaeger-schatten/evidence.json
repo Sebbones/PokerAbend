@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-07",
+  "game": "jaeger-schatten",
+  "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+  "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+  "artwork": "Original inline SVG and Canvas/CSS authored for this game; no external images, logos or assets.",
+  "tests": [
+    {
+      "command": "node --test test/backlog07.test.js test/party-program.test.js",
+      "passed": 19,
+      "failed": 0,
+      "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+    },
+    {
+      "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 189.457,
+      "report": "artifacts/backlog07-ui-verified-report.json",
+      "log": "artifacts/backlog07-ui-verified.log",
+      "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+    },
+    {
+      "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+      "passed": 66,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 484.843,
+      "report": "artifacts/backlog07-ui-final-report.json",
+      "log": "artifacts/backlog07-ui-final.log",
+      "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+    },
+    {
+      "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+      "passed": 116,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 24.112,
+      "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+      "tests": 1481,
+      "passed": 1478,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 270.7,
+      "log": "artifacts/backlog07-final-node.log",
+      "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/jaeger-schatten/index.js",
+      "sha256": "2a2280133fce99133f6418b908585fe20b2fa8e9d839b563c90b6b3bd8a120c6"
+    },
+    {
+      "path": "games/jaeger-schatten/room.js",
+      "sha256": "2b208cccf6fbc9dca037aeaf438e800f6700517ac4869ecb4505c86ac6eadd0e"
+    },
+    {
+      "path": "public/games/jaeger-schatten/jaeger-schatten.css",
+      "sha256": "46566afdf2ffe9e1503fbcb536890ac61deab84a717235f3421c777028247d2f"
+    },
+    {
+      "path": "public/games/jaeger-schatten/jaeger-schatten.js",
+      "sha256": "77a55c23a9becae7e321ce00f966c9846ff9edf0d17b0caeb49020e96e62a9f2"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-1440x900.png",
+      "sha256": "f0aadd762bf9145ccd5f089ea496cea56bb98f1e736a855b04ebd66923d95a29"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-1920x1080.png",
+      "sha256": "85edf172bb1cb85846a9ef1304497076cc6817785ac9e3f61519978de25e72b7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-360x800.png",
+      "sha256": "c8dfcd21f809a10a9c5ccf440f3e12b61831979d6ad52eca94bcd8c607e85484"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-390x844.png",
+      "sha256": "3c5848e9ee31615ccaf212b42b20e3f400fb86c3733105560b5648d7e25d318c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-768x1024.png",
+      "sha256": "88b99252cdd6e8a2cecb5df6d407e067eadf5404faa3da0ea4c403d9a0a84a94"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-900x450.png",
+      "sha256": "7d04729a1e249d38fda58529e92db91ebe4d267634968c56857d8ac25c4ab5fb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-english-rules.png",
+      "sha256": "5f2d1cb64caa59ba09b5adbceb9237f48b175a9831091834b1b2ae7e46aafb55"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-lobby.png",
+      "sha256": "411b0588c3dea19888701eca3401cadd765771b89022c18677a421e04e2f91d7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-paused.png",
+      "sha256": "18baf86630fcbd277e8809355e03c76e957578469841f869236720b2728d8432"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-playing.png",
+      "sha256": "93cdcb275860cbdf44acd825ce29ac331e2ae85b91cbd9928f2cbafd1a23723e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-reconnect.png",
+      "sha256": "f0aadd762bf9145ccd5f089ea496cea56bb98f1e736a855b04ebd66923d95a29"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-result.png",
+      "sha256": "0721cc3770d26c9f68febdc546df450a1b1c3dfc1a07cd144c529381afb63e0c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-spectator.png",
+      "sha256": "a97579730fb6381267d143dcda4d900ae4c6b161863708d1a8b62e5bf81f4ed3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-english-rules.png",
+      "sha256": "0f0dc5480f2096659a5646e3b4274f0d2dd73de48ae75e1a8e79c2a2d1c9ed4e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-lobby.png",
+      "sha256": "2d1e7df686e717604120030427347bdb5cde84be892e03dd44ceae5a42ec5f39"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-paused.png",
+      "sha256": "be5e17f90bc47fc94dcf9160c90d316e490bca0840cb89284d29a7622def898b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-playing.png",
+      "sha256": "86efc2d99b38ffce3ca382c46ea1aecb63191f65a626dafcb57af8c9be691606"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-reconnect.png",
+      "sha256": "9dfb9c23f36a5edec12178a852ae09f4f4f2c13dfc33ab727a6ee9d2f6f838a6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-result.png",
+      "sha256": "97f73c4e692aa913cf4a2ccffc8437789216c2285f240d65f6a774110900824c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-spectator.png",
+      "sha256": "0c59ffb3f9f9de0abf0a0f6bf6921b72e3f7cf133cb01b8560be95d94a70520b"
+    }
+  ]
+}

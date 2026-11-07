@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Ausgangsstand `2dd1d4b12a9b9c03991272ca654b60f614c919ab`. Nutzerauftrag: die vorhandene Roadmap-Rubrik **„Weitere Spiele – 0 von 41 erledigt“** umsetzen. Ausdrücklich gewählte Reihenfolge: **zuerst Risiko-Würfeln, Story-Chaos und Zahlenreihe**. Fortschritt und tatsächliche Implementierungscommits: [plan.json](plan.json). Das ist ein Ausführungsprotokoll der bestehenden 41 IDs, keine zweite Quelle für neue Spielideen; Beschreibungen des verbleibenden Backlogs stehen weiterhin in `games/planned.js`.
 
-**Aktueller Fortschritt am 07.11.2026: 19 von 41 verifiziert, 22 offen.** 71 Raumspiele plus zwölf lokale Einzelspieler ergeben 83 spielbare Spiele. [BACKLOG-06](BACKLOG-06.md) ergänzt Stichmeister, Labyrinth-Brett und Schatzinsel. Die historische 41er-Basis bleibt unverändert. Nach diesem Päckchen stoppen; keine V2-Pakete. Die folgenden älteren Abschlussprotokolle bleiben historische Nachweise.
+**Aktueller Fortschritt am 07.11.2026: 23 von 41 verifiziert, 18 offen.** 77 Raumspiele plus zwölf lokale Einzelspieler ergeben 89 spielbare Spiele. [BACKLOG-07](BACKLOG-07.md) ergänzt Jäger & Schatten, Infektionsjagd, Letzter Schutzplatz und Regelwahnsinn. Die historische 41er-Basis bleibt unverändert. Nach diesem Päckchen stoppen; keine V2-Pakete. Die folgenden älteren Abschlussprotokolle bleiben historische Nachweise.
 
 ## BACKLOG-05 – Schach, Exploding-Deck, Doppelagent und Lügenbaron
 

@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 19,
-  "remaining_count": 22,
+  "completed_count": 23,
+  "remaining_count": 18,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -235,7 +235,7 @@
         "8b6c982c53728b890750ec096b88d9a5d3687bf2"
       ],
       "scope": "Only the four expressly authorised games, bots, visual worlds and directly necessary reuse/compatibility tests. Stop here. No V2 implementation in these game commits.",
-      "shared_source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "shared_source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
       "shared_source_audit": [
         {
           "path": "games/poker/engine/table.js",
@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "5fb02d76591b55ac9d8f38ae88ccca54cbcfe06bb2448f9155fcb267caa35930"
+          "sha256": "5fad65fa5c47ee81e1f190c546dc16acc436ef5d0f73b9cf3ce93e287742ce93"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -360,6 +360,55 @@
           {
             "path": "games/bots.js",
             "sha256": "0059140ea7389ec3cbb3d859baa243a18001241ae4d6ecfa2316d0ce6c355d5b"
+          },
+          {
+            "path": "games/five-card-draw/room.js",
+            "sha256": "67230f584ccf5b506986d4ad99d0a7e8a674fd21a0598556ec070bde09d7cac3"
+          },
+          {
+            "path": "games/five-card-draw/table.js",
+            "sha256": "a8267dc82b18fe1e6096985ebd292936e689a8278d8576cab1f9ab3b7c035cd6"
+          },
+          {
+            "path": "games/omaha-hi-lo/poker-room.js",
+            "sha256": "7100c6c570a4678962c6cfa98873b1bb7a0f3335828b5c864453004a7e47c00d"
+          },
+          {
+            "path": "games/omaha-hi-lo/bot.js",
+            "sha256": "eb347d2023df6f92b68dd85d3dac758e0cf15877b3b82490511d67d1d701ed28"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.js",
+            "sha256": "e29afe58c160625d739e2660e52b07e081370633b0e80daf03b108ea80f719ca"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.css",
+            "sha256": "977c4b07b8cda93539be8383303b285b03413aa7dd2502d1cf1542832bf50de4"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.js",
+            "sha256": "dd5454e96f250b7aa1dbb198d1402f079ffb6dd7ab4138f995d1305ce88dfb09"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.css",
+            "sha256": "f4787f1bb135b611077eead8e2d15d4b855fca19fb1cfb8a92a54cecc25373cd"
+          }
+        ]
+      },
+      "pre_backlog_07_shared_audit": {
+        "commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+        "sources": [
+          {
+            "path": "games/poker/engine/table.js",
+            "sha256": "218554472156f7533886f45664950d124d0cf0add82fc62494db065a8cb0f318"
+          },
+          {
+            "path": "games/poker/engine/cards.js",
+            "sha256": "4c3ba71c72940bda54861019b204aaa7b5696436b285ad9f6c5590c7b3e5372b"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "5fb02d76591b55ac9d8f38ae88ccca54cbcfe06bb2448f9155fcb267caa35930"
           },
           {
             "path": "games/five-card-draw/room.js",
@@ -896,6 +945,139 @@
       ],
       "remaining_tasks": [],
       "completion_note": "Three complete verified games, original names/art, private views, three bot levels, DE/EN rules, normal browser results, 60 screenshots and green complete Node release source. Stop after BACKLOG-06; no V2 package changed."
+    },
+    {
+      "id": "BACKLOG-07",
+      "games": [
+        "jaeger-schatten",
+        "infektionsjagd",
+        "letzter-schutzplatz",
+        "regelwahnsinn"
+      ],
+      "status": "verified",
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "completed_at": "2026-11-07",
+      "report": "docs/backlog/BACKLOG-07.md",
+      "shared_source_audit_commit": "630805a922620574828991de86c1c44d11a820d1",
+      "shared_source_audit": [
+        {
+          "path": "games/party-arena-room.js",
+          "sha256": "8ad2d1bfaccfed767a70cac209332b0887f12c5b0ef1a4b8fd6edc4fa7fdc2f0"
+        },
+        {
+          "path": "games/party-arena-bot.js",
+          "sha256": "bbda45bfaa2199d345edacbc0aff63ea38f3f73012d246f6978d8d89aad44e71"
+        },
+        {
+          "path": "games/index.js",
+          "sha256": "1b2d59f27fe7841a124de45554305b86535d9cd63461a3e950dc192f66f94dae"
+        },
+        {
+          "path": "games/bots.js",
+          "sha256": "5fad65fa5c47ee81e1f190c546dc16acc436ef5d0f73b9cf3ce93e287742ce93"
+        },
+        {
+          "path": "public/games/party-arena-kit.js",
+          "sha256": "59a5a688d5590490bbddaa55f7e2b8dd25e3bc1244455a960f71731e3e0fb526"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "39c9a21aa6c1331914412a79055a9ec3568e0a74f26b9282be66446fb46cd711"
+        },
+        {
+          "path": "public/i18n-en.js",
+          "sha256": "e53edf72b86a66ef242bdf95317d84a575171a3d1a4242ee3783f3ad62bfe5ad"
+        },
+        {
+          "path": "public/index.html",
+          "sha256": "17a24a8709d1d2d42b6e70be78921813560c07f15b6ff6ae930678160ed58266"
+        },
+        {
+          "path": "server/index.js",
+          "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+        },
+        {
+          "path": "server/party-program.js",
+          "sha256": "57b55bd967300e3e06f81e79471aff4ef2074faa771567ae6ec53ecb1e2c5850"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "4d69f28c4a15ad22dfd991518b8c8f3843fcb88ce7e2b6b4c5f13fe76d10b8ab"
+        }
+      ],
+      "permanent_screenshots": 80,
+      "followup_commits": [
+        "9c09e88980fe6cde8674e3fb691026af839259b1",
+        "630805a922620574828991de86c1c44d11a820d1"
+      ],
+      "verification_history": [
+        {
+          "command": "First complete isolated Node run (--test-concurrency=2)",
+          "passed": 1475,
+          "failed": 3,
+          "skipped": 3,
+          "duration_seconds": 306.353,
+          "log": "artifacts/backlog07-full-node.log",
+          "fixes": [
+            "Register four actual game scenes",
+            "Refresh real screenshot hashes after final capture",
+            "Archive and refresh BACKLOG-04 shared bot-registration source hash"
+          ]
+        },
+        {
+          "command": "Live-label follow-up: new and existing arenas, desktop + mobil",
+          "passed": 15,
+          "failed": 1,
+          "report": "artifacts/backlog07-ui-labels-report.json",
+          "reason": "Mobile infection start progress exceeded the 7-second test wait under concurrent Node load; test start tolerance raised to 12 seconds. Final eight-case run passed."
+        }
+      ]
     }
   ],
   "games": [
@@ -1920,38 +2102,382 @@
     {
       "id": "regelwahnsinn",
       "name": "Regelwahnsinn",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-07",
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-reveal.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-reveal.png",
+        "docs/backlog/screenshots/backlog07/regelwahnsinn/mobil-spectator.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/regelwahnsinn/index.js",
+          "sha256": "6ad462b7159401d753ed5d7fd4c2d888ecf62b1bdbaeb4ad95e6fc5abbde0240"
+        },
+        {
+          "path": "games/regelwahnsinn/room.js",
+          "sha256": "de8128f242997f2d53f249afa22b84bce425a664b3c33170e3f4a2c2e413dfc5"
+        },
+        {
+          "path": "games/regelwahnsinn/rules.js",
+          "sha256": "aeb82652966ece9ddc60c00e1ea53086b79850ce5052b59eb9f761112c96ee08"
+        },
+        {
+          "path": "public/games/regelwahnsinn/regelwahnsinn.css",
+          "sha256": "12a5c9130aa95ec6691fd75cdbb8fa5ccf0871ef960e7eca0b9d77435671e7a6"
+        },
+        {
+          "path": "public/games/regelwahnsinn/regelwahnsinn.js",
+          "sha256": "e8f87c0670d988940c477130d528c3dbd12c067e8aa5e78cec488b246ddaf470"
+        }
+      ],
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "jaeger-schatten",
       "name": "Jäger & Schatten",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-07",
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-playing.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-playing.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/jaeger-schatten/mobil-spectator.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/jaeger-schatten/index.js",
+          "sha256": "2a2280133fce99133f6418b908585fe20b2fa8e9d839b563c90b6b3bd8a120c6"
+        },
+        {
+          "path": "games/jaeger-schatten/room.js",
+          "sha256": "2b208cccf6fbc9dca037aeaf438e800f6700517ac4869ecb4505c86ac6eadd0e"
+        },
+        {
+          "path": "public/games/jaeger-schatten/jaeger-schatten.css",
+          "sha256": "46566afdf2ffe9e1503fbcb536890ac61deab84a717235f3421c777028247d2f"
+        },
+        {
+          "path": "public/games/jaeger-schatten/jaeger-schatten.js",
+          "sha256": "77a55c23a9becae7e321ce00f966c9846ff9edf0d17b0caeb49020e96e62a9f2"
+        }
+      ],
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "infektionsjagd",
       "name": "Infektionsjagd",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-07",
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-playing.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-playing.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-spectator.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/infektionsjagd/index.js",
+          "sha256": "21facf7a57413434d33fd89186ba8c00956e515cfab8123941ace4d4229577de"
+        },
+        {
+          "path": "games/infektionsjagd/room.js",
+          "sha256": "cda6469e60a37bf0db3e6301abbfedd818657847d14bf152f5080a96fa2ec907"
+        },
+        {
+          "path": "public/games/infektionsjagd/infektionsjagd.css",
+          "sha256": "41a213a651cb8e2df5d088ab8498c183336486cd67646cde051a0d626dff291b"
+        },
+        {
+          "path": "public/games/infektionsjagd/infektionsjagd.js",
+          "sha256": "61dd38e2ea174eec271ad2a76b322c8e11760d6cb764248d95e9c1d6bc12f42c"
+        }
+      ],
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "letzter-schutzplatz",
       "name": "Letzter Schutzplatz",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-07",
+      "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "test_results": [
+        {
+          "command": "node --test test/backlog07.test.js test/party-program.test.js",
+          "passed": 19,
+          "failed": 0,
+          "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.457,
+          "report": "artifacts/backlog07-ui-verified-report.json",
+          "log": "artifacts/backlog07-ui-verified.log",
+          "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+        },
+        {
+          "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+          "passed": 66,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 484.843,
+          "report": "artifacts/backlog07-ui-final-report.json",
+          "log": "artifacts/backlog07-ui-final.log",
+          "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+        },
+        {
+          "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 116,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 24.112,
+          "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+          "tests": 1481,
+          "passed": 1478,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 270.7,
+          "log": "artifacts/backlog07-final-node.log",
+          "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-paused.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-playing.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-result.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-paused.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-playing.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-result.png",
+        "docs/backlog/screenshots/backlog07/letzter-schutzplatz/mobil-spectator.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/letzter-schutzplatz/index.js",
+          "sha256": "3564f3b64ccb38b5e01a14dbea30909791ca271ff97d5f9b453ed0689827b02d"
+        },
+        {
+          "path": "games/letzter-schutzplatz/room.js",
+          "sha256": "533cf94497c29f315facc312645f982aed8b2c9641f96cbb23144887f5f6dc43"
+        },
+        {
+          "path": "public/games/letzter-schutzplatz/letzter-schutzplatz.css",
+          "sha256": "3b4e969299d6f26c81687e5f15f5786e13e73ac0925b4b4c254660fcc896413c"
+        },
+        {
+          "path": "public/games/letzter-schutzplatz/letzter-schutzplatz.js",
+          "sha256": "4247afb3cf5158d4efa055c78f9e9f72eb8d09ad1797ad7af4c169e2952a253d"
+        }
+      ],
+      "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d"
     },
     {
       "id": "kistenchaos",
@@ -2998,11 +3524,12 @@
   "latest_authorization": {
     "date": "2026-11-07",
     "games": [
-      "stichmeister",
-      "labyrinth-brett",
-      "schatzinsel"
+      "jaeger-schatten",
+      "infektionsjagd",
+      "letzter-schutzplatz",
+      "regelwahnsinn"
     ],
-    "scope": "Only BACKLOG-06: original three games, own worlds/lobbies/rules, DE/EN, three-level bots and tests. Schatzinsel explicitly follows the private 8x8 digging entry without dice or movement. Stop afterwards; no V2 work."
+    "scope": "Only these four PartyRoom games, own worlds, DE/EN, bots, adjustable clocks, reconnect and private per-player views. No V2 packages; stop after completion."
   },
   "extra_games": [
     {
@@ -3127,6 +3654,16 @@
         "luegenbaron"
       ],
       "scope": "Only these four complete games, own worlds, DE/EN, bots and tests. Schach belongs to grosse-projekte, three games to the historical 41-item section. No V2 work or server changes beyond necessary registration. Stop after this packet."
+    },
+    {
+      "date": "2026-11-07",
+      "games": [
+        "jaeger-schatten",
+        "infektionsjagd",
+        "letzter-schutzplatz",
+        "regelwahnsinn"
+      ],
+      "scope": "Only these four PartyRoom games, own worlds, DE/EN, bots, adjustable clocks, reconnect and private per-player views. No V2 packages; stop after completion."
     }
   ]
 }

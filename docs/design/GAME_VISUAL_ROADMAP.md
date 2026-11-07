@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 07.11.2026: 83 spielbare Spiele, 24 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 21 done, 86 planned.** BACKLOG-06 schließt Stichmeister (VIS-053), Labyrinth-Brett (VIS-058) und Schatzinsel (VIS-069) mit eigenen Spielwelten ab. 62 spielbare Oberflächen und 24 Backlog-Konzepte bleiben visuell geplant. Nachweise: [Abschlussbericht](../backlog/BACKLOG-06.md). Keine weiteren VIS- oder V2-Pakete freigegeben.
+**Stand 07.11.2026: 89 spielbare Spiele, 18 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 36 done, 71 planned.** BACKLOG-07 schließt Regelwahnsinn (VIS-060), Jäger & Schatten (VIS-061), Infektionsjagd (VIS-062) und Letzter Schutzplatz (VIS-063) mit eigenen Spielwelten ab. 53 spielbare Oberflächen und 18 Konzepte bleiben visuell geplant. [Abschlussbericht](../backlog/BACKLOG-07.md). Keine weiteren Pakete freigegeben.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -1774,109 +1774,109 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-060 – Regelwahnsinn
 
 - **Spiel-ID/Kategorie:** `regelwahnsinn` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 8–12 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 8–12 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/regelwahnsinn/regelwahnsinn.css`, `public/games/regelwahnsinn/regelwahnsinn.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/party-kit.js`, `public/games/party-kit.css`.
+- **Aktueller Stand:** Eigenes Regelpult mit Papierkarten für Grundzahl und kumulative Regeln, privater Eingabe und getrennter Auflösung.
+- **Optische Verbesserungsziele:** Umgesetzt und mit dauerhaften Desktop-/Handyaufnahmen geprüft.
 - **Stil:** Grafische Regelbühne mit auffälliger aktueller Regelkarte.
 - **Hintergrund:** Statische dunkle Bühne, keine Ablenkung hinter Regelfeldern.
 - **Spielfeld:** Aktive Regel, Aufgabe und sichtbare Regelhistorie getrennt.
 - **Figuren/Karten/Objekte:** Eigene Symbolkarten mit gleichbleibender Regeltypografie.
 - **Status und Aktionen:** Regelwechsel und korrekte aktuelle Handlung klar hervorheben.
 - **Mobil:** Aktuelle Regel bleibt vor dem Aktionsbereich sichtbar.
-- **Technische Grenzen:** Design darf keine zusätzlichen Regeln oder unerlaubten Vorabhinweise erzeugen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Design darf keine zusätzlichen Regeln oder unerlaubten Vorabhinweise erzeugen. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von regelwahnsinn.
+- **Abhängigkeiten:** VIS-001; Gameplay und Spielwelt mit BACKLOG-07 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Aktuelle und abgelaufene Regeln nicht verwechselbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code-Commit `2eb4b136683f8c8d363540e02269108a71aa936d`, [Manifest](../../games/regelwahnsinn/evidence.json), [Tests und Regeln](../backlog/BACKLOG-07.md). 20 Originalaufnahmen mit SHA-256, Desktop/Handy, sechs Größen, private Sicht, Pause, Reconnect, englische Regeln und Ergebnis.
 
 <a id="vis-061"></a>
 ### VIS-061 – Jäger & Schatten
 
 - **Spiel-ID/Kategorie:** `jaeger-schatten` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 16–24 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 16–24 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/jaeger-schatten/jaeger-schatten.css`, `public/games/jaeger-schatten/jaeger-schatten.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/realtime-kit.js`, `public/games/realtime.css`, `public/games/party-arena-kit.js`.
+- **Aktueller Stand:** Eigene Nachtwache mit abstrakten Hofsäulen, neutralen Spielermarkern und ausschließlich eigener Rollenanzeige.
+- **Optische Verbesserungsziele:** Umgesetzt und mit dauerhaften Desktop-/Handyaufnahmen geprüft.
 - **Stil:** Eigene grafische Verfolgungsarena mit klaren Sicht-/Schattengrenzen.
 - **Hintergrund:** Statische dunkle Stadt-/Hofkulisse außerhalb der Arena.
 - **Spielfeld:** Tatsächliche Arena und erlaubte Sicht nur aus Serverframes.
-- **Figuren/Karten/Objekte:** Unterscheidbare Jäger-/Schattenfiguren gemäß Rollenfreigabe.
+- **Figuren/Karten/Objekte:** Eigene neutrale Spielerfiguren und private Jäger-/Schattenkarte.
 - **Status und Aktionen:** Öffentliche Jagdphase, eigene Rolle und zulässiger Status.
 - **Mobil:** Touch-Richtungspad ohne verdeckte Gefahrenzonen.
-- **Technische Grenzen:** Keine verborgene Position über Schatten, Partikel oder Kamera verraten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Keine verborgene Position über Schatten, Partikel oder Kamera verraten. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von jaeger-schatten.
+- **Abhängigkeiten:** VIS-001; Gameplay und Spielwelt mit BACKLOG-07 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Verborgene Spieler erzeugen keine verräterischen Effekte.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code-Commit `2eb4b136683f8c8d363540e02269108a71aa936d`, [Manifest](../../games/jaeger-schatten/evidence.json), [Tests und Regeln](../backlog/BACKLOG-07.md). 20 Originalaufnahmen mit SHA-256, Desktop/Handy, sechs Größen, private Sicht, Pause, Reconnect, englische Regeln und Ergebnis.
 
 <a id="vis-062"></a>
 ### VIS-062 – Infektionsjagd
 
 - **Spiel-ID/Kategorie:** `infektionsjagd` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 12–18 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 12–18 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/infektionsjagd/infektionsjagd.css`, `public/games/infektionsjagd/infektionsjagd.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/realtime-kit.js`, `public/games/realtime.css`, `public/games/party-arena-kit.js`.
+- **Aktueller Stand:** Eigene Quarantänearena mit grafischen Kontrollpunkten, neutralen Spielermarkern und privater aktueller Infektionsanzeige.
+- **Optische Verbesserungsziele:** Umgesetzt und mit dauerhaften Desktop-/Handyaufnahmen geprüft.
 - **Stil:** Abstrakte farb- und symbolcodierte Fangarena.
 - **Hintergrund:** Ruhiger dunkler Hintergrund ohne realistische Krankheitsdarstellung.
 - **Spielfeld:** Kollisionsarena unverändert, Statuszonen nur nach Gameplaykonzept.
-- **Figuren/Karten/Objekte:** Figuren mit zusätzlichem Infektionssymbol statt nur Farbwechsel.
+- **Figuren/Karten/Objekte:** Eigene neutrale Spielerfiguren und private Infektionsanzeige; fremde Rollen bleiben verborgen.
 - **Status und Aktionen:** Übertragung, aktive Phase und verbleibende Spieler klar führen.
 - **Mobil:** Figurenumrisse bleiben neben Touch-Tasten erkennbar.
-- **Technische Grenzen:** Übertragungen und Zeitpunkte ausschließlich aus künftigem Serverzustand. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Übertragungen und Zeitpunkte ausschließlich aus künftigem Serverzustand. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von infektionsjagd.
+- **Abhängigkeiten:** VIS-001; Gameplay und Spielwelt mit BACKLOG-07 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Statuswechsel bleibt auch ohne Farbwahrnehmung verständlich.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code-Commit `2eb4b136683f8c8d363540e02269108a71aa936d`, [Manifest](../../games/infektionsjagd/evidence.json), [Tests und Regeln](../backlog/BACKLOG-07.md). 20 Originalaufnahmen mit SHA-256, Desktop/Handy, sechs Größen, private Sicht, Pause, Reconnect, englische Regeln und Ergebnis.
 
 <a id="vis-063"></a>
 ### VIS-063 – Letzter Schutzplatz
 
 - **Spiel-ID/Kategorie:** `letzter-schutzplatz` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 12–18 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 12–18 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/letzter-schutzplatz/letzter-schutzplatz.css`, `public/games/letzter-schutzplatz/letzter-schutzplatz.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/realtime-kit.js`, `public/games/realtime.css`, `public/games/party-arena-kit.js`.
+- **Aktueller Stand:** Eigene Sturmwarnungsarena mit nummerierten Schutzkreisen, sichtbarer Frist und neutralen Spielermarkern.
+- **Optische Verbesserungsziele:** Umgesetzt und mit dauerhaften Desktop-/Handyaufnahmen geprüft.
 - **Stil:** Übersichtliche Rettungsarena mit deutlich markierten Schutzinseln.
 - **Hintergrund:** Statische dunkle Umgebungsfläche.
 - **Spielfeld:** Sichere Plätze und Gefahr nur in ihrer echten Geometrie.
 - **Figuren/Karten/Objekte:** Spieler und Schutzplätze mit eindeutigen Symbolen.
 - **Status und Aktionen:** Warnung, Schutzphase und Ergebnis ohne irreführenden Countdown.
 - **Mobil:** Schutzplätze nicht mit großen Namenslabels überdecken.
-- **Technische Grenzen:** Keine visuellen Zusatzplätze oder verlängerten Schutzzeiten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Keine visuellen Zusatzplätze oder verlängerten Schutzzeiten. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von letzter-schutzplatz.
+- **Abhängigkeiten:** VIS-001; Gameplay und Spielwelt mit BACKLOG-07 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Schutzbereich und Gefahrenphase sind ohne Animation erkennbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code-Commit `2eb4b136683f8c8d363540e02269108a71aa936d`, [Manifest](../../games/letzter-schutzplatz/evidence.json), [Tests und Regeln](../backlog/BACKLOG-07.md). 20 Originalaufnahmen mit SHA-256, Desktop/Handy, sechs Größen, private Sicht, Pause, Reconnect, englische Regeln und Ergebnis.
 
 <a id="vis-064"></a>
 ### VIS-064 – Kistenchaos

@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-07",
+  "game": "infektionsjagd",
+  "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+  "source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+  "artwork": "Original inline SVG and Canvas/CSS authored for this game; no external images, logos or assets.",
+  "tests": [
+    {
+      "command": "node --test test/backlog07.test.js test/party-program.test.js",
+      "passed": 19,
+      "failed": 0,
+      "note": "14 new rule tests; 300 complete arena bot rounds and 100 Rule Cascade bot matches, plus five existing program tests."
+    },
+    {
+      "command": "playwright test test/ui/backlog07.spec.js --workers=1 (desktop + mobil; final labels and badge preservation)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 189.457,
+      "report": "artifacts/backlog07-ui-verified-report.json",
+      "log": "artifacts/backlog07-ui-verified.log",
+      "note": "Three independent contexts; running round before pause/reload; own roles/answers and watcher privacy, true touch input, live English labels and preserved Bot Medium badge, normal results and six sizes."
+    },
+    {
+      "command": "playwright test test/ui/backlog07.spec.js test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js --workers=1",
+      "passed": 66,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 484.843,
+      "report": "artifacts/backlog07-ui-final-report.json",
+      "log": "artifacts/backlog07-ui-final.log",
+      "note": "66 cases including all English game-surface groups; final live-label follow-up is recorded separately."
+    },
+    {
+      "command": "node --test test/backlog07.test.js test/backlog07-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+      "passed": 116,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 24.112,
+      "note": "Final actual screenshot hashes, four new worlds, preserved 41-game denominator, historical BACKLOG-03/04 source audits and rules."
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated main at 630805a plus only Backlog-07 metadata)",
+      "tests": 1481,
+      "passed": 1478,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 270.7,
+      "log": "artifacts/backlog07-final-node.log",
+      "note": "All Node test files; three existing restore-test.sh cases skipped because bash is unavailable on Windows. Parallel V2-06 reversions and other visual changes excluded without touching them."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/infektionsjagd/index.js",
+      "sha256": "21facf7a57413434d33fd89186ba8c00956e515cfab8123941ace4d4229577de"
+    },
+    {
+      "path": "games/infektionsjagd/room.js",
+      "sha256": "cda6469e60a37bf0db3e6301abbfedd818657847d14bf152f5080a96fa2ec907"
+    },
+    {
+      "path": "public/games/infektionsjagd/infektionsjagd.css",
+      "sha256": "41a213a651cb8e2df5d088ab8498c183336486cd67646cde051a0d626dff291b"
+    },
+    {
+      "path": "public/games/infektionsjagd/infektionsjagd.js",
+      "sha256": "61dd38e2ea174eec271ad2a76b322c8e11760d6cb764248d95e9c1d6bc12f42c"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-1440x900.png",
+      "sha256": "339f1e56f6ea3fea3f404e0d9e3ae37cbd18cdd39a2f0766766a9b46da824415"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-1920x1080.png",
+      "sha256": "47f67e1a529c59bb1e387268483dacd3a52874c328ed5a58d74cb123e28ef184"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-360x800.png",
+      "sha256": "4e970b749a790bf471ef61b2aa3d7a4eb6e1fa9438bdc06edcf64ff629d0b411"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-390x844.png",
+      "sha256": "5a55b2284a07e0394f7a2bcc24aeb050e524887ab0a88077c5b5e49413b3173a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-768x1024.png",
+      "sha256": "b1f837cf5f284a444a8bbf10c2cc5d91873c70af5b634542c9532c0e9f8475f4"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-900x450.png",
+      "sha256": "b6f76d291f401dd1a0feb5ed17cd2128ef194481fbe4b6ff254775f0fc556b32"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-english-rules.png",
+      "sha256": "7c28a2a214232c9e39e1bebe06450f1ee63ac137bea42f244a13ed1ac19d7a47"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-lobby.png",
+      "sha256": "6f60fa4906b2aed2550269632d139cabb4583b6fa502f1153fbd2b53492951b0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-paused.png",
+      "sha256": "c04606a3601f57bf77df7f17f726c4df79204608e948f05985c24863fb0782cf"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-playing.png",
+      "sha256": "89ad3bf5e744456b216ffc9294b372ea775a4a490f8e4c8322977fb82a9ed75a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-reconnect.png",
+      "sha256": "339f1e56f6ea3fea3f404e0d9e3ae37cbd18cdd39a2f0766766a9b46da824415"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-result.png",
+      "sha256": "4a9ba2413585ba70eb499a46983d27a907168b0f5cfb3a8e24c55a125591f06c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/desktop-spectator.png",
+      "sha256": "57b730563365169742f0719a880f199092a73c3cf37318d1f46f22eb16f3408b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-english-rules.png",
+      "sha256": "099928ec465d5bea81c4c2b5422f742dbb5e5235535a2f4cfed66753aab85c17"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-lobby.png",
+      "sha256": "9f5829f360f438897c8273622ea289283b5e5b8f9cd71b9add233a269aa2894c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-paused.png",
+      "sha256": "42a5e5e02d560bcea7a82e7510ac287b7bd50089b2571672b1a945668e898301"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-playing.png",
+      "sha256": "48d72bd134ffbb0bd11ab1e19d3c2b63dad09a27fb908d1f3f06c2d4d974e66c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-reconnect.png",
+      "sha256": "9e2a973005ce7be322b7b7aabe0d061bc2009fe5cdaaaada4c93b3be7246cae8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-result.png",
+      "sha256": "63ad9c267d8cacc349e0440b36093e2862c31a3eb295a6027c8bca4129d5ad82"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog07/infektionsjagd/mobil-spectator.png",
+      "sha256": "054ea34b54fb93c4291e6e7991e731d02f45e7e4297a7a1edba85b4deec500b5"
+    }
+  ]
+}
