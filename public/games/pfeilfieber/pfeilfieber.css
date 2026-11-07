@@ -1,10 +1,18 @@
-/* Pfeilfieber: aktuelle Folge groß, vier Knöpfe */
-.pf-wrap { display: grid; justify-items: center; gap: 14px; width: 100%; }
-.pf-info { display: flex; gap: 18px; align-items: baseline; color: var(--text-2); }
-.pf-seq { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; padding: 14px 18px; border-radius: var(--r-l); background: rgba(0,0,0,.3); }
-.pf-seq i { font-style: normal; font-size: 40px; line-height: 1; width: 52px; text-align: center; opacity: .55; }
-.pf-seq i.now { opacity: 1; color: var(--gold-text); transform: scale(1.2); }
-.pf-seq i.done { opacity: 1; color: #7FD39A; }
-.pf-seq.locked { filter: grayscale(1); outline: 3px solid #D9534F; }
-.pf-pad button { width: 76px; height: 76px; font-size: 38px; user-select: none; -webkit-user-select: none; }
-.pf-first { font-size: 34px; letter-spacing: .15em; }
+@import url('/games/world-kit.css');
+/* Pfeilfieber: präzise Signalstation in Blau, Creme und warmem Orange – statische Linientafel, keine blinkenden Flächen */
+.pf-wrap { --wk-bg: repeating-linear-gradient(0deg,#16294a 0 31px,#1b3158 31px 32px); --wk-edge:#b9cdf055; --wk-accent:#f0a766; --wk-max:760px; border:2px solid #f2ead2; }
+.pf-seq { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; padding:14px; border-radius:14px; background:#0b1730aa; border:1px solid #b9cdf044; }
+.pf-seq i { font-style:normal; display:grid; justify-items:center; gap:2px; width:56px; opacity:.6; }
+.pf-seq i span { display:grid; place-items:center; width:52px; height:52px; font-size:34px; line-height:1; border:2px solid #f2ead2; border-radius:10px; color:#f2ead2; }
+.pf-seq i small { height:14px; font-size:12px; color:#f2ead2; }
+.pf-seq i.now { opacity:1; } .pf-seq i.now span { border-color:#f0a766; color:#f0a766; background:#f0a76622; box-shadow:0 0 0 3px #f0a76655; }
+.pf-seq i.done { opacity:1; } .pf-seq i.done span { background:#f2ead2; color:#16294a; }
+.pf-seq.locked { outline:3px solid #e68f86; filter:saturate(.4); }
+.pf-lock { margin:0; color:#f3b3ab; text-align:center; font-weight:600; }
+.pf-pad { display:grid; grid-template-columns:repeat(3,78px); grid-template-areas:". up ." "left down right"; gap:8px; justify-content:center; }
+.pf-pad .up { grid-area:up; } .pf-pad .left { grid-area:left; } .pf-pad .down { grid-area:down; } .pf-pad .right { grid-area:right; }
+.pf-pad button { width:78px; height:78px; font-size:38px; border:2px solid #f2ead2; border-radius:14px; background:#10213f; color:#f2ead2; user-select:none; -webkit-user-select:none; touch-action:manipulation; }
+.pf-pad button:active:not(:disabled) { background:#f2ead2; color:#10213f; }
+.pf-pad button:disabled { opacity:.45; }
+.pf-first { font-size:34px; letter-spacing:.15em; }
+@media (max-width:480px) { .pf-pad { grid-template-columns:repeat(3,72px); } .pf-pad button { width:72px; height:72px; } .pf-seq i { width:46px; } .pf-seq i span { width:42px; height:42px; font-size:28px; } }

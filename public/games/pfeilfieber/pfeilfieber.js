@@ -35,12 +35,15 @@
       const left = Math.max(0, Math.ceil((c.round.playMs - c.t) / 1000));
       const locked = c.t < st.lockUntil;
       const rev = !!c.S.settings.reverse;
-      const seq = st.seq.map((a, k) => `<i class="${k < st.pos ? 'done' : ''} ${k === st.pos ? 'now' : ''}" aria-hidden="true">${c.L.ARROWS[rev ? a ^ 1 : a]}</i>`).join('');
-      const btns = c.L.ARROWS.map((a, k) => `<button type="button" class="pf-btn" data-pf="${k}" ${locked ? 'disabled' : ''} aria-label="${['Hoch', 'Runter', 'Links', 'Rechts'][k]}">${a}</button>`).join('');
-      return I18n.html`<div class="pf-wrap"><div class="so-bar" role="progressbar" aria-label="Zeit" aria-valuemin="0" aria-valuemax="${Math.round(c.round.playMs / 1000)}" aria-valuenow="${left}"><i style="width:${Math.max(0, 100 - (c.t / c.round.playMs) * 100)}%"></i></div>
-        <div class="pf-info"><b class="so-score">${st.completed} Folge${st.completed === 1 ? '' : 'n'}</b><span>${st.errors} Fehler</span><span>${left} s</span></div>
-        <div class="pf-seq ${locked ? 'locked' : ''}" role="status" aria-label="Folge ${rev ? '(Pfeile umkehren)' : ''}">${seq}</div>
-        <div class="so-btns pf-pad">${btns}</div>${rev ? I18n.html('<small>Rückwärts-Modus: tipp jeweils den entgegengesetzten Pfeil</small>') : ''}</div>`;
+      const W = WorldKit, t = W.t, names = [t('Hoch', 'Up'), t('Runter', 'Down'), t('Links', 'Left'), t('Rechts', 'Right')];
+      const seq = st.seq.map((a, k) => `<i class="${k < st.pos ? 'done' : ''} ${k === st.pos ? 'now' : ''}" aria-hidden="true"><span>${c.L.ARROWS[rev ? a ^ 1 : a]}</span><small>${k < st.pos ? '✓' : k === st.pos ? '▲' : ''}</small></i>`).join('');
+      const btn = (k, cls) => `<button type="button" class="pf-btn ${cls}" data-pf="${k}" ${locked ? 'disabled' : ''} aria-label="${names[k]}">${c.L.ARROWS[k]}</button>`;
+      const pad = `<div class="so-btns pf-pad" role="group" aria-label="${t('Richtungen', 'Directions')}">${btn(0, 'up')}${btn(2, 'left')}${btn(1, 'down')}${btn(3, 'right')}</div>`;
+      const chips = [W.chip('✔', `${st.completed} ${t(st.completed === 1 ? 'Folge' : 'Folgen', st.completed === 1 ? 'sequence' : 'sequences')}`, st.completed ? 'good' : ''), W.chip('✕', `${st.errors} ${t(st.errors === 1 ? 'Fehler' : 'Fehler', st.errors === 1 ? 'error' : 'errors')}`, st.errors ? 'bad' : ''), W.chip('⏱', `${left} s`)];
+      return `<div class="wk-stage pf-wrap"><div class="so-bar" role="progressbar" aria-label="${t('Zeit', 'Time')}" aria-valuemin="0" aria-valuemax="${Math.round(c.round.playMs / 1000)}" aria-valuenow="${left}"><i style="width:${Math.max(0, 100 - (c.t / c.round.playMs) * 100)}%"></i></div>
+        <div class="pf-info">${W.head({ eyebrow: t('Signalstation', 'Signal station'), title: locked ? t('Kurz gesperrt', 'Briefly locked') : t('Tipp die Folge nach', 'Repeat the sequence'), chips })}</div>
+        <div class="pf-seq ${locked ? 'locked' : ''}" role="status" aria-label="${t('Folge', 'Sequence')}${rev ? ' ' + t('(Pfeile umkehren)', '(reverse arrows)') : ''}">${seq}</div>${locked ? `<p class="pf-lock" role="status">✕ ${t('Fehler – die Folge beginnt von vorn.', 'Mistake – the sequence starts again.')}</p>` : ''}
+        ${pad}<small class="wk-sub">${t('Pfeiltasten, Wischen oder Knöpfe', 'Arrow keys, swipe or buttons')}${rev ? ' · ' + t('Rückwärts-Modus: tipp jeweils den entgegengesetzten Pfeil', 'Reverse mode: tap the opposite arrow') : ''}</small></div>`;
     },
     hint: () => 'Tipp die Pfeile nach – Pfeiltasten oder Knöpfe',
     press(c, tok) {
