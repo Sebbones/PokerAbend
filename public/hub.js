@@ -382,23 +382,24 @@ function pageTables() {
 // ---------- Bestenliste (Seite) ----------
 // Filter nach Spiel und Monat; Daten wie im Dialog am Tisch (/api/leaderboard). Das Spiel wird gemerkt.
 let boardGame = store.get('poker:boardgame', 'poker');
-let boardPeriod = 'all';
+let boardPeriod = 'all', boardView = 'ranked';
 let boardToken = 0;
 function pageBoard() {
   loadBoard();
-  return I18n.html`<section class="hub-head"><h1>Bestenliste</h1><p>Alle Abende, nach Siegen sortiert. Wiedererkannt wird man am Namen.</p><div class="plan-actions"><a class="btn" href="#rueckblick">Abend-Rückblicke öffnen</a><a class="btn btn-brass" href="#erfolge">Erfolge & Abzeichen ansehen</a></div></section><div id="board-body" class="board" aria-live="polite"><p class="hint">Lade …</p></div>`;
+  return I18n.html`<section class="hub-head"><h1>Bestenliste</h1><p>Gewertet zählen nur Partien zwischen registrierten Menschen; die unbestätigte Statistik aller Partien steht in der anderen Ansicht.</p><div class="plan-actions"><a class="btn" href="#rueckblick">Abend-Rückblicke öffnen</a><a class="btn btn-brass" href="#erfolge">Erfolge & Abzeichen ansehen</a></div></section><div id="board-body" class="board" aria-live="polite"><p class="hint">Lade …</p></div>`;
 }
 async function loadBoard() {
   const token = ++boardToken;
-  const r = await fetchLeaderboard(boardGame, boardPeriod);
+  const r = await fetchLeaderboard(boardGame, boardPeriod, boardView);
   if (!r || token !== boardToken || route.page !== 'bestenliste' || !$('#board-body')) return;
-  boardGame = r.game; boardPeriod = r.period;
+  boardGame = r.game === 'all' ? boardGame : r.game; boardPeriod = r.period;
   store.set('poker:boardgame', boardGame);
   $('#board-body').innerHTML = leaderboardInner(r, 'lbp');
 }
 document.addEventListener('change', (e) => {
   if (!e.target.matches('[data-lbp]')) return;
-  boardGame = $('#lbp-game').value; boardPeriod = $('#lbp-period').value;
+  const next = $('#lbp-view').value;
+  boardGame = $('#lbp-game').value; boardPeriod = next === boardView ? $('#lbp-period').value : 'all'; boardView = next;
   loadBoard();
 });
 

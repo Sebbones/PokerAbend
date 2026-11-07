@@ -67,6 +67,8 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
       return a;
     },
     get(id) { const t = resolve(id); return t ? state.accounts[t] : null; },
+    // V2-03: „registriert“ = mit einer Discord-Identität verknüpft (Gäste und Bots sind es nie). Die ID kommt vom Server, nie vom Client.
+    isRegistered(id) { const t = resolve(id); return !!t && Object.entries(state.externals).some(([key, owner]) => key.startsWith('discord:') && resolve(owner) === t); },
     byGameId: (gameId) => { const id = byGameId.get(gameId); return id ? state.accounts[id] : null; },
     // Der zuletzt benutzte Anzeigename; er ist nie die Identität
     touch(id, { name, avatar } = {}) {

@@ -43,7 +43,14 @@ const GameDesign = (() => {
     if (motionOff()) effect?.cancel();
   }
   const art = (id) => account.games.find((g) => g.id === id)?.art || '';
-  const backdrop = (id) => `<div class="scene-backdrop" aria-hidden="true">${art(id)}</div>`;
+  // V2-03: ehrliche Kennzeichnung, ob diese Runde in die gewertete Bestenliste zählt (der Server entscheidet und friert beim Start ein)
+  const rankedChip = () => {
+    const r = typeof lastState === 'object' && lastState?.ranked;
+    if (!r || lastState.phase === 'over') return '';
+    const why = ({ bots: I18n.t('Computer-Mitspieler dabei'), gast: I18n.t('Gäste ohne Discord-Verknüpfung dabei'), 'zu-wenige': I18n.t('zu wenige registrierte Menschen'), teilnehmer: I18n.t('Teilnehmerkreis änderte sich') })[r.reason] || '';
+    return r.ranked ? I18n.html`<p class="rank-chip on" data-ranked="on">${I18n.t('Gewertet')} · ${I18n.t('zählt für die Bestenliste')}</p>` : I18n.html`<p class="rank-chip off" data-ranked="off">${I18n.t('Nicht gewertet')}${why ? ` · ${why}` : ''} · ${I18n.t('zählt nur für die Statistik')}</p>`;
+  };
+  const backdrop = (id) => `<div class="scene-backdrop" aria-hidden="true">${art(id)}</div>${rankedChip()}`;
   const hero = (id) => `<div class="scene-hero" aria-hidden="true">${art(id)}<span>${scene(id).label}</span></div>`;
   const cardPreference = () => I18n.html`<label class="field scene-preference"><span>Kartengröße</span><select class="input" data-pref="cardSize" aria-label="Kartengröße">${[['normal', I18n.t('Normal')], ['large', I18n.t('Groß')], ['xl', I18n.t('Sehr groß')]].map(([v, label]) => `<option value="${v}" ${prefs.cardSize === v ? 'selected' : ''}>${label}</option>`).join('')}</select><small>Vergrößert deine Handkarten. Die Einstellung wird in diesem Browser für alle Kartenspiele gespeichert.</small></label>`;
   const soundPreference = () => I18n.html`<button type="button" class="btn btn-ghost" data-scene-sound ${prefs.sound ? '' : 'disabled'}>Ton ausprobieren</button>`;

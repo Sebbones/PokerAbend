@@ -6,6 +6,8 @@ import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, unlinkSync, copyFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
+import { randomBytes } from 'node:crypto';
+import { createRanked } from './ranked.js';
 import { fileURLToPath } from 'node:url';
 import { GAMES, DEFAULT_GAME, gameList, singleplayerGameList, gameEvents, PLANNED, plannedGames } from '../games/index.js';
 import { maintenance, assertNewRoundAllowed } from './maintenance.js';
@@ -20,7 +22,7 @@ import {
   securityHeaders, sameOrigin, clientIp, safeNext,
 } from './security.js';
 import { createCodes, normalize } from './codes.js';
-import { createLeaderboard } from './leaderboard.js';
+import { createLeaderboard, RANK_PERIODS } from './leaderboard.js';
 import { createAccountStore } from './account-store.js';
 import { createIdentity, GUEST_COOKIE } from './identity.js';
 import { createIdentityAPI } from './identity-api.js';
@@ -266,6 +268,13 @@ app.get('/api/leaderboard', (req, res) => {
   const rows = leaderboard.table(game, period).sort((a, b) => b.wins - a.wins || b.wins / b.played - a.wins / a.played || (info.lowWins ? a.points / a.played - b.points / b.played : b.points - a.points));
   res.json({ game, period, months, current: leaderboard.currentMonth(), games: Object.values(GAME_INFO), rows });
 });
+// V2-03: nur qualifizierte (Ranked-)Ergebnisse; period: week | month | all. Die alte Namensstatistik bleibt unter /api/leaderboard.
+app.get('/api/ranked', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  const game = typeof req.query.game === 'string' && Object.hasOwn(GAME_INFO, req.query.game) ? req.query.game : 'all';
+  const period = RANK_PERIODS.includes(req.query.period) ? req.query.period : 'all';
+  res.json({ view: 'ranked', game, period, games: Object.values(GAME_INFO), rows: leaderboard.rankedTable(game, period, !!GAME_INFO[game]?.lowWins), summary: leaderboard.rankedSummary(game, period) });
+});
 app.use(express.static(PUBLIC_DIR, { extensions: ['html'] }));
 app.use((_req, res) => res.status(404).send('Nicht gefunden'));
 
@@ -380,6 +389,8 @@ function removeOrphanHistory() {
 // Meldungen eines Raums: mit data.to nur an diesen Spieler (z. B. Anstupsen), sonst alle neu zeichnen
 function onRoomChange(room, kind, data) {
   if (kind === 'frame') { broadcastFrame(room); return; }
+  if (kind === 'roundStart') { ranked.freeze(room, data?.ids); return; }
+  if (kind === 'roundAbort') { ranked.abort(room); return; }
   // Ergebnis einer Partie: in die Bestenliste (gespeichert wird mit dem nächsten Speichern)
   if (kind === 'result') {
     if (recordProgramResult(room)) archiveReview(room);
@@ -390,6 +401,7 @@ function onRoomChange(room, kind, data) {
     const detailOf = (entry) => (entry.accountId ? achievements.detailFor(entry.accountId, entry.name) : achievements.detail(entry.name));
     const before = new Map(entries.map((p) => [p.name, new Set(detailOf(p).badges.filter((b) => b.unlocked).map((b) => b.id))]));
     leaderboard.record(room.game, entries, room.variant || 'classic');
+    ranked.record(room, data);
     // Erst dauerhaft speichern, dann die neuen Abzeichen melden.
     try {
       leaderboard.save();
@@ -411,6 +423,9 @@ function onRoomChange(room, kind, data) {
   broadcast(room);
 }
 // playerAccounts: welcher Spieler zu welchem Konto gehört (nur Menschen), damit die Bindung einen Neustart überlebt
+
+// ---------- Ranked-Wertung (V2-03): Logik in server/ranked.js ----------
+const ranked = createRanked({ accounts, leaderboard, lowWins: (room) => GAME_INFO[scoreKey(room.game, room.variant || 'classic')]?.lowWins, newId: () => randomBytes(8).toString('hex') });
 const accountsOf = (r) => Object.fromEntries([...r.players.values()].filter((p) => p.accountId && !p.bot).map((p) => [p.id, p.accountId]));
 const snapshotOf = (r) => ({ ...r.snapshot(), game: r.game, code: r.code, unlisted: !!r.unlisted, playerAccounts: accountsOf(r), ...(r.partyProgram ? { partyProgram: r.partyProgram } : {}) });
 
@@ -483,7 +498,7 @@ function broadcast(room) {
   bots.sync(room);
   const botPlayers = [...room.players.values()].filter((p) => p.bot && !p.kicked).map((p) => botMetadata(room,p));
   for (const p of room.players.values()) {
-    if (p.socketId) io.to(p.socketId).emit('state', { ...room.view(p.id), game: room.game, bots: botPlayers, unlisted: !!room.unlisted, ...(room.partyProgram ? { partyProgram: publicProgram(room) } : {}) });
+    if (p.socketId) io.to(p.socketId).emit('state', { ...room.view(p.id), game: room.game, bots: botPlayers, ranked: ranked.state(room), unlisted: !!room.unlisted, ...(room.partyProgram ? { partyProgram: publicProgram(room) } : {}) });
   }
   scheduleLobby();
 }

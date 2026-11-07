@@ -1,6 +1,8 @@
 // Reviewed English UI messages; German source text is the fallback for missing entries.
 'use strict';
 window.EN = {
+  'Nonogramm':'Nonogram',
+  'Fünf weitere Klassiker sind spielbar. Vier weitere Pakete benötigen eine eigene Freigabe.':'Five more classics are playable. Four further packages require separate approval.',
   'Einzelspieler': 'Single player', 'Spielen': 'Play',
   'Eine ruhige Zahlenpause: eindeutige Rätsel, Notizen und vier Schwierigkeitsstufen.': 'A quiet number break: unique puzzles, notes and four difficulty levels.',
   'Schiebe, verbinde und plane voraus. Wie weit kommst du nach 2048?': 'Slide, merge and plan ahead. How far can you go beyond 2048?',
@@ -581,5 +583,19 @@ Object.assign(window.EN,{'Doppeltes Deck (bis zehn Spieler)':'Double deck (up to
 'Werkzeug leihen: Der gewählte Mitspieler bestimmt seine abzugebende Karte. Ein Paar gleicher Sammelkarten klaut blind; ein Drilling verlangt eine Kartenart.':'Borrow a tool: the target chooses the card to give. Matching pairs steal randomly; triples request a type.',
 'Einspruch stoppt eine Aktion, ein weiterer Einspruch hebt ihn auf. Jeder Einspruch öffnet das Reaktionsfenster neu. Bomben und Sicherungen sind davon ausgenommen.':'Objection cancels an action; another restores it and reopens the reaction window. Crates and fuses are exempt.',
 'Wer zuletzt übrig ist, gewinnt. Ein Deck reicht für 2–5; mit doppeltem Deck spielen bis zu zehn mit.':'Last survivor wins. One deck supports two to five; double deck supports up to ten.'});
+// V2-03: Ranked-Bestenliste
+Object.assign(window.EN, {
+  'mit Computer-Mitspielern': 'with computer players', 'mit Gästen ohne Discord-Verknüpfung': 'with guests without a Discord link',
+  'mit zu wenigen registrierten Menschen': 'with too few registered people', 'Teilnehmerkreis änderte sich': 'players changed during the round',
+  'ohne gesicherte Wertung': 'without a secured result', 'nicht gewertet': 'not ranked',
+  'Diese Woche': 'This week', 'Dieser Monat': 'This month', 'Alles': 'All time', 'Alle Spiele zusammen': 'All games combined',
+  'Gewertet (Ranked)': 'Ranked', 'Statistik, unbestätigt (alle Partien)': 'Statistics, unconfirmed (all games)',
+  'Gewertet: nur vollständig beendete Partien zwischen mindestens zwei registrierten Menschen, ohne Gäste und Computer.': 'Ranked: only completed games between at least two registered people, without guests and computers.',
+  'Durchschnittliche Platzierung': 'Average placement', 'Gewertet': 'Ranked', 'Nicht gewertet': 'Not ranked',
+  'Nicht gewertete Partien zählen weiter in der Statistik.': 'Games that are not ranked still count in the statistics.', 'Sortiert nach Siegen.': 'Sorted by wins.',
+  'Unbestätigt: Statistik aller Partien, auch mit Computern, Gästen und nach altem Namen. Sie bestimmt keine gewertete Rangliste.': 'Unconfirmed: statistics of all games, including computers, guests and old names. They do not decide a ranked leaderboard.',
+  'Computer-Mitspieler dabei': 'computer players present', 'Gäste ohne Discord-Verknüpfung dabei': 'guests without a Discord link present', 'zu wenige registrierte Menschen': 'too few registered people',
+  'zählt für die Bestenliste': 'counts for the leaderboard', 'zählt nur für die Statistik': 'counts for statistics only',
+});
 Object.assign(window.EN_GAMES,{skat:{name:'Skat',description:'The German card game for three: bid, take or skip the Skat, call a suit, Grand or Null and win 61 card points – with Ramsch and Bock rounds.'},doppelkopf:{name:'Doppelkopf',description:'Four players, two parties: Re against Kontra for 121 of 240 card points – with weddings, solos and calls.'}});
 Object.assign(window.EN,{'Spiele pro Serie':'Games per series','3 Spiele':'3 games','6 Spiele':'6 games','12 Spiele':'12 games','24 Spiele':'24 games','36 Spiele':'36 games','4 Spiele':'4 games','8 Spiele':'8 games','16 Spiele':'16 games','Ramsch, wenn alle passen':'Ramsch when everyone passes','Bockrunden':'Bock rounds','Mit Neunen (48 statt 40 Karten)':'With nines (48 instead of 40 cards)','Schweinchen (zwei Karo-Asse sind höchster Trumpf)':'Pigs (two aces of diamonds are the highest trump)','Skat braucht genau drei Spieler':'Skat needs exactly three players','Doppelkopf braucht genau vier Spieler':'Doppelkopf needs exactly four players'});

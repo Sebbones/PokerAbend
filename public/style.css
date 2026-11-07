@@ -537,6 +537,17 @@ button.die { cursor: pointer; }
 .lb-filters { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .lb-scroll { max-height: min(52dvh, 460px); overflow-y: auto; }
 .lb-table small { color: var(--text-2); font-weight: 400; }
+/* V2-03: Gewertet (Ranked) und unbestätigte Statistik sind sichtbar getrennt */
+.lb-wide { grid-column: 1 / -1; }
+.lb-badge { margin: 4px 0; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--line, #8886); font-size: 14px; line-height: 1.4; }
+.lb-badge-ranked { border-color: #3f8f5f; }
+.lb-badge-stats { border-style: dashed; border-color: #b9893a; }
+.lb-empty { padding: 14px 0; }
+/* Overlay in der Ecke des Spielfelds: nimmt dem Brett keinen Platz weg */
+.rank-chip { position: absolute; top: 6px; left: 8px; z-index: 3; display: inline-flex; align-items: center; gap: 6px; max-width: calc(100% - 64px); padding: 2px 10px; border-radius: 999px; border: 1px solid #8886; background: #000a; color: #fff; font-size: 11px; line-height: 1.4; margin: 0; pointer-events: none; }
+.rank-chip.on { border-color: #3f8f5f; }
+.rank-chip.off { border-style: dashed; border-color: #b9893a; }
+@media (max-width: 520px) { .lb-filters { grid-template-columns: 1fr; } .lb-table th, .lb-table td { padding: 6px 4px; font-size: 14px; } .lb-table small { display: block; font-size: 12px; } .lb-table th { font-size: 13px; letter-spacing: 0; } }
 
 /* ---------- Kurzregeln: „?“ am Tisch ---------- */
 .help-btn { position: absolute; top: 12px; right: 12px; z-index: 5; width: 44px; height: 44px; border-radius: 50%;

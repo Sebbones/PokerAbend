@@ -160,6 +160,7 @@ export class TurnRoom extends BaseRoom {
     if (this.variant !== 'classic') this.say(`Variante: ${this.variantLabel || this.variant}`);
     this.setupRound();
     this.roundPlayers = [...this.order]; // für die Bestenliste (auch wer unterwegs ausscheidet)
+    this.onChange('roundStart', { ids: [...this.order] }); // V2-03: Ranked-Berechtigung wird hier eingefroren
     if (this.phase === 'playing') this.onTurnStart();
   }
 
@@ -188,7 +189,7 @@ export class TurnRoom extends BaseRoom {
     for (const w of winners) this.wins[w] = (this.wins[w] || 0) + 1;
     const players = (this.roundPlayers || this.order).filter((id) => this.players.has(id));
     this.result = { text, winners, points, players };
-    this.onChange('result', { entries: players.map((id) => ({ name: this.name(id), win: winners.includes(id), points: points[id] || 0 })) });
+    this.onChange('result', { entries: players.map((id) => ({ name: this.name(id), win: winners.includes(id), points: points[id] || 0 })), ids: players });
     this.say(text, 'win');
     this.onChange('handDone');
   }
@@ -198,6 +199,7 @@ export class TurnRoom extends BaseRoom {
     this.requireHost(id);
     if (this.phase !== 'playing') throw new Error('Gerade läuft keine Runde');
     this.onAbort();
+    this.onChange('roundAbort');
     this.phase = 'lobby';
     this.roundNo = Math.max(0, this.roundNo - 1); // die abgebrochene Runde zählt nicht (auch nicht für den Startspieler)
     this.result = null; this.acts = {}; this.moves = [];

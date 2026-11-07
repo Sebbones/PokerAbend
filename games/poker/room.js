@@ -426,6 +426,7 @@ export class Room extends BaseRoom {
     this.handNames = Object.fromEntries(this.table.eligibleSeats().map((seat) => [seat, this.table.seats[seat].name]));
     this.handIds = Object.fromEntries(this.table.eligibleSeats().map((seat) => [seat, this.table.seats[seat].id]));
     this.table.startHand();
+    this.onChange('roundStart', { ids: Object.values(this.handIds) });
     this.flushEvents();
     this.afterChange();
     return true;
@@ -637,7 +638,7 @@ export class Room extends BaseRoom {
       // total enthält nur die tatsächlichen Einsätze, nicht gecallte Überschüsse sind bereits erstattet.
       points: h.result.pots.reduce((sum, pot) => sum + (pot.payouts[seat] || 0), 0) - h.players[seat].total,
     })).filter((e) => e.name);
-    this.onChange('result', { entries });
+    this.onChange('result', { entries, ids: h.seats.filter((seat) => this.handNames[seat]).map((seat) => this.handIds?.[seat]) }); // ids: gleiche Reihenfolge wie entries
   }
 
   recordStats(h) {

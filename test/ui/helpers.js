@@ -1,6 +1,6 @@
 import { test as base, expect } from '@playwright/test';
 import { spawn } from 'node:child_process';
-import { mkdtempSync, mkdirSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,15 +13,19 @@ const password = 'BlockA-Testpasswort';
 export const test = base.extend({
   ticketAdminPassword: ['', { option: true }],
   adminPassword: ['', { option: true }],
+  // Dateien (Name → JSON-Inhalt), die vor dem Serverstart im Datenordner liegen sollen (z. B. eine vorbefüllte Bestenliste)
+  seedFiles: [{}, { option: true }],
   createLimit: ['6', { option: true }],
-  app: async ({ ticketAdminPassword, adminPassword, createLimit }, use) => {
+  app: async ({ ticketAdminPassword, adminPassword, createLimit, seedFiles }, use) => {
+    const dataDir = mkdtempSync(join(tmpdir(), 'spieleabend-ui-'));
+    for (const [name, content] of Object.entries(seedFiles)) writeFileSync(join(dataDir, name), JSON.stringify(content));
     const child = spawn(process.execPath, ['--input-type=module', '-e', `
       const { http } = await import('./server/index.js');
       const ready = () => console.log('TEST_READY:' + http.address().port);
       if (http.listening) ready(); else http.once('listening', ready);
     `], {
       cwd: root,
-      env: { ...process.env, PORT: '0', DATA_DIR: mkdtempSync(join(tmpdir(), 'spieleabend-ui-')), POKER_NO_DOTENV: '1', SITE_PASSWORD: password, TICKET_ADMIN_PASSWORD: ticketAdminPassword, ADMIN_PASSWORD: adminPassword, CREATE_LIMIT: createLimit },
+      env: { ...process.env, PORT: '0', DATA_DIR: dataDir, POKER_NO_DOTENV: '1', SITE_PASSWORD: password, TICKET_ADMIN_PASSWORD: ticketAdminPassword, ADMIN_PASSWORD: adminPassword, CREATE_LIMIT: createLimit },
       stdio: ['ignore', 'pipe', 'pipe'],
     });
     let output = '';

@@ -126,7 +126,7 @@ test('Bestenliste: Version 2 wird gespeichert, ein Stand von vor V2-01 bleibt un
   assert.deepEqual(rowsOf(lb), ['Anna:3/2']);
   lb.record('maumau', [{ name: 'Anna', accountId: ID_A, win: true, points: 1 }]); lb.save();
   const saved = JSON.parse(readFileSync(join(dir, 'leaderboard.json'), 'utf8'));
-  assert.equal(saved.schemaVersion, 2);
+  assert.equal(saved.schemaVersion, 3, 'Version 3 seit V2-03 (Rundenspeicher); Version 2 (Konto-IDs) ist darin enthalten');
   assert.deepEqual(saved.players.anna, v1.players.anna, 'der alte Eintrag ist nicht verändert worden');
   assert.deepEqual(rowsOf(lb), ['Anna:1/1', 'Anna:3/2'], 'bis zur Übernahme getrennt');
 });

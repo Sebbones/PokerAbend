@@ -521,34 +521,63 @@ socket.on('state', (st) => {
 });
 
 // ---------- Bestenliste über alle Abende ----------
-// Daten von /api/leaderboard; Spiel und Zeitraum (alle Abende oder ein Monat) wählbar
+// Daten von /api/ranked (view 'ranked': nur qualifizierte Ergebnisse) oder /api/leaderboard (view 'stats': alte, namensbasierte Statistik)
 // Daten holen und als HTML-Teil bauen (Filter + Tabelle) – gleich für den Dialog am Tisch und die Seite #bestenliste der Startseite.
 // pre = Präfix der Element-IDs (lb im Dialog, lbp auf der Seite), damit beide nie dieselben IDs haben.
-async function fetchLeaderboard(game, period = 'all') {
+async function fetchLeaderboard(game, period = 'all', view = 'ranked') {
   try {
-    const res = await fetch(`/api/leaderboard?game=${encodeURIComponent(game || '')}&period=${encodeURIComponent(period)}`, { credentials: 'same-origin' });
-    return await res.json();
+    const url = view === 'stats' ? '/api/leaderboard' : '/api/ranked';
+    const res = await fetch(`${url}?game=${encodeURIComponent(game || '')}&period=${encodeURIComponent(period)}`, { credentials: 'same-origin' });
+    const r = await res.json();
+    r.view = view === 'stats' ? 'stats' : 'ranked';
+    return r;
   } catch { toast(I18n.t('Die Bestenliste ist gerade nicht erreichbar'), true); return null; }
 }
+// Warum eine Runde nicht gewertet wird (Gründe aus server/ranked.js)
+function rankedReasonText(reason) {
+  return ({ bots: I18n.t('mit Computer-Mitspielern'), gast: I18n.t('mit Gästen ohne Discord-Verknüpfung'), 'zu-wenige': I18n.t('mit zu wenigen registrierten Menschen'), teilnehmer: I18n.t('Teilnehmerkreis änderte sich'), unbekannt: I18n.t('ohne gesicherte Wertung') })[reason] || I18n.t('nicht gewertet');
+}
 function leaderboardInner(r, pre = 'lb') {
+  const ranked = r.view === 'ranked';
   const info = r.games.find((g) => g.id === r.game);
   const isPoker = r.game === 'poker' || r.game === 'omaha';
   const monthName = (m) => new Date(m + '-15T12:00:00').toLocaleDateString(I18n.locale, { month: 'long', year: 'numeric' });
-  const months = r.months.includes(r.current) ? r.months : [r.current, ...r.months];
   const fmtPoints = (n) => (isPoker ? `${n > 0 ? '+' : n < 0 ? '−' : '±'}${Math.abs(n).toLocaleString(I18n.locale)}` : n.toLocaleString(I18n.locale));
+  const periods = ranked
+    ? [['week', I18n.t('Diese Woche')], ['month', I18n.t('Dieser Monat')], ['all', I18n.t('Alles')]]
+    : [['all', I18n.t('Alle Abende')], ...(r.months.includes(r.current) ? r.months : [r.current, ...r.months]).map((m) => [m, monthName(m)])];
+  const games = ranked ? [{ id: 'all', name: I18n.t('Alle Spiele zusammen') }, ...r.games] : r.games;
+  const filters = I18n.html`<div class="lb-filters">
+      <label class="field lb-wide"><span>Ansicht</span><select id="${pre}-view" class="input" data-${pre}><option value="ranked" ${ranked ? 'selected' : ''}>${I18n.t('Gewertet (Ranked)')}</option><option value="stats" ${ranked ? '' : 'selected'}>${I18n.t('Statistik, unbestätigt (alle Partien)')}</option></select></label>
+      <label class="field"><span>Spiel</span><select id="${pre}-game" class="input" data-${pre}>${games.map((g) => `<option value="${esc(g.id)}" ${g.id === r.game ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select></label>
+      <label class="field"><span>Zeitraum</span><select id="${pre}-period" class="input" data-${pre}>${periods.map(([v, label]) => `<option value="${v}" ${v === r.period ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select></label>
+    </div>`;
+  if (ranked) {
+    const rows = r.rows.map((x, k) => I18n.html`<tr><td><span class="rank ${k < 3 ? 'r' + (k + 1) : ''}" aria-label="Platz ${k + 1}">${k + 1}</span></td>
+      <td>${esc(x.name)}</td><td class="num">${x.played}</td>
+      <td class="num">${x.wins} <small>(${Math.round((100 * x.wins) / x.played)} %)</small></td>
+      <td class="num">${x.avgPlace.toLocaleString(I18n.locale)}</td>${r.game === 'all' ? '' : `<td class="num ${isPoker ? (x.points > 0 ? 'pos' : x.points < 0 ? 'neg' : '') : ''}">${fmtPoints(x.points)}</td>`}</tr>`).join('');
+    const s = r.summary || { ranked: 0, notRanked: 0, reasons: {} };
+    const why = Object.entries(s.reasons).map(([k, n]) => `${n}× ${rankedReasonText(k)}`).join(', ');
+    return I18n.html`${filters}
+      <p class="lb-badge lb-badge-ranked">${I18n.t('Gewertet: nur vollständig beendete Partien zwischen mindestens zwei registrierten Menschen, ohne Gäste und Computer.')}</p>
+      ${rows ? I18n.html`<div class="lb-scroll"><table class="standings lb-table"><thead><tr><th></th><th>Name</th><th class="num">${isPoker ? I18n.t('Hände') : 'Partien'}</th><th class="num">Siege</th><th class="num" title="${I18n.t('Durchschnittliche Platzierung')}">Ø Platz</th>${r.game === 'all' ? '' : `<th class="num">${esc(info?.scoreLabel || I18n.t('Punkte'))}</th>`}</tr></thead><tbody>${rows}</tbody></table></div>`
+        : I18n.html('<p class="hint lb-empty">In diesem Zeitraum gibt es noch keine gewerteten Partien. Gewertet wird erst, wenn mindestens zwei Discord-verknüpfte Menschen zusammen spielen.</p>')}
+      <p class="hint" style="margin:0">${I18n.t('Gewertet')}: ${s.ranked} · ${I18n.t('nicht gewertet')}: ${s.notRanked}${why ? ` (${esc(why)})` : ''}. ${I18n.t('Nicht gewertete Partien zählen weiter in der Statistik.')} ${I18n.t('Sortiert nach Siegen.')}</p>`;
+  }
   const rows = r.rows.map((x, k) => I18n.html`<tr><td><span class="rank ${k < 3 ? 'r' + (k + 1) : ''}" aria-label="Platz ${k + 1}">${k + 1}</span></td>
     <td>${esc(x.name)}</td><td class="num">${x.played}</td>
     <td class="num">${x.wins} <small>(${Math.round((100 * x.wins) / x.played)} %)</small></td>
     <td class="num ${isPoker ? (x.points > 0 ? 'pos' : x.points < 0 ? 'neg' : '') : ''}">${fmtPoints(x.points)}</td></tr>`).join('');
-  return I18n.html`<div class="lb-filters">
-      <label class="field"><span>Spiel</span><select id="${pre}-game" class="input" data-${pre}>${r.games.map((g) => `<option value="${esc(g.id)}" ${g.id === r.game ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}</select></label>
-      <label class="field"><span>Zeitraum</span><select id="${pre}-period" class="input" data-${pre}><option value="all">Alle Abende</option>${months.map((m) => `<option value="${m}" ${m === r.period ? 'selected' : ''}>${monthName(m)}</option>`).join('')}</select></label>
-    </div>
+  return I18n.html`${filters}
+    <p class="lb-badge lb-badge-stats">${I18n.t('Unbestätigt: Statistik aller Partien, auch mit Computern, Gästen und nach altem Namen. Sie bestimmt keine gewertete Rangliste.')}</p>
     ${rows ? I18n.html`<div class="lb-scroll"><table class="standings lb-table"><thead><tr><th></th><th>Name</th><th class="num">${isPoker ? I18n.t('Hände') : 'Partien'}</th><th class="num">Siege</th><th class="num">${esc(info?.scoreLabel || I18n.t('Punkte'))}</th></tr></thead><tbody>${rows}</tbody></table></div>`
       : I18n.html('<p class="hint">In diesem Zeitraum wurde das noch nicht gespielt.</p>')}
     <p class="hint" style="margin:0">Sortiert nach Siegen. ${isPoker ? I18n.t('Eine Partie ist eine Hand, gezählt werden gewonnene und verlorene Chips.') : I18n.html`Eine Partie ist eine Runde. ${info?.lowWins ? I18n.t('Punkte: wenig ist gut.') : ''}`} Wiedererkannt wird man am Namen.</p>`;
 }
-async function showLeaderboard(game, period = 'all') {
+let lbView = 'ranked';
+async function showLeaderboard(game, period, view = lbView) {
+  lbView = view;
   let d = $('#lb-dlg');
   if (!d) {
     d = document.createElement('dialog');
@@ -556,11 +585,15 @@ async function showLeaderboard(game, period = 'all') {
     d.setAttribute('aria-labelledby', 'lb-title');
     document.body.append(d);
     d.addEventListener('click', (e) => { if (e.target === d || e.target.closest('[data-lb-close]')) d.close(); });
-    d.addEventListener('change', (e) => { if (e.target.matches('[data-lb]')) showLeaderboard($('#lb-game').value, $('#lb-period').value); });
+    d.addEventListener('change', (e) => {
+      if (!e.target.matches('[data-lb]')) return;
+      const next = $('#lb-view').value;
+      showLeaderboard($('#lb-game').value, next === lbView ? $('#lb-period').value : 'all', next);
+    });
   }
-  const r = await fetchLeaderboard(game, period);
+  const r = await fetchLeaderboard(game, period || 'all', view);
   if (!r) return;
-  d.innerHTML = I18n.html`<div class="help-body"><h2 id="lb-title">Bestenliste aller Abende</h2>${leaderboardInner(r, 'lb')}
+  d.innerHTML = I18n.html`<div class="help-body"><h2 id="lb-title">Bestenliste</h2>${leaderboardInner(r, 'lb')}
     <div class="dlg-actions"><span></span><button class="btn btn-brass" data-lb-close>Schließen</button></div></div>`;
   if (!d.open) d.showModal();
 }
