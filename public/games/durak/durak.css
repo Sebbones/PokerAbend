@@ -15,3 +15,13 @@
 .kg-durak .kg-hand .kc { --w: 48px; }
 .kg-durak .kg-hand .kc.trump { box-shadow: 0 0 0 2px rgba(240, 195, 90, .6); }
 @media (max-width: 640px) { .kg-durak .kg-hand .kc { --w: 42px; } }
+
+/* VIS-023: präziser taktischer Kartentisch – rot/blaue Bereichsakzente: Angriff (rot) und Abwehr (blau) deckungsgleich, Trumpf/Vorrat daneben */
+.kg-durak .kg-main { background: radial-gradient(120% 90% at 50% 0, #26384f, #0f1823); }
+.du-table { border: 2px solid #ffffff22; background: linear-gradient(180deg, #0b1624aa, #1c0f14aa); }
+.du-atk .kc { box-shadow: 0 0 0 3px #d9534f, 0 2px 4px #0008; border-radius: 8px; }
+.du-def .kc { box-shadow: 0 0 0 3px #4a8fd8, 0 2px 4px #0008; border-radius: 8px; }
+.du-deck { padding: 8px 14px; border-radius: 12px; background: #00000040; border: 1px dashed #ffffff33; }
+.du-trump-card { outline: 2px solid #e8c36a; outline-offset: 2px; }
+.kg-durak .kg-hand .kc { min-height: 44px; }
+@media (max-width: 640px) { .du-table { flex-direction: column; align-items: center; } .du-pair { margin-bottom: 4px; } }
