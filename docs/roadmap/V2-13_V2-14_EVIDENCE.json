@@ -21,7 +21,7 @@
     },
     {
       "path": "server/index.js",
-      "sha256": "c716bacf8f416065300cde9db09e5e67d9708608f33ba0caeb6e6bce58ff2a5b"
+      "sha256": "179b54f3c2daf371e1b148b68989de8b2b0a48c2c14e80ce0ef9f7f7f9319b5a"
     },
     {
       "path": "server/presence.js",
