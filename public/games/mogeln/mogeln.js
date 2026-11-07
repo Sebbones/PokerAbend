@@ -34,28 +34,24 @@
       return I18n.html`Du bist dran: leg Karten verdeckt ab und sag „${rn(g.need)}“ – egal, was es wirklich ist`;
     },
     main(S) {
-      const g = S.g;
-      const L = g.last;
-      const last = L ? I18n.html`<div class="kg-chip">${nameOf(S, L.by)} hat ${L.count} × ${rn(L.rank)} abgelegt</div>` : I18n.html('<div class="kg-chip">Der Stapel ist leer</div>');
+      const g = S.g, W = WorldKit, t = W.t, L = g.last, myTurn = S.turnId === S.you?.id && S.phase === 'playing';
+      const claim = L ? `<div class="mg-claim wk-panel"><span class="wk-label">${t('Behauptung (verdeckt gelegt)', 'Claim (laid face down)')}</span><b>${nameOf(S, L.by)}: ${L.count} × ${rn(L.rank)}</b><small>${t('Ob es stimmt, sieht man nur nach „Mogeln!“.', 'You only find out after “Cheat!”.')}</small></div>` : `<div class="mg-claim wk-panel"><span class="wk-label">${t('Behauptung', 'Claim')}</span><b>${t('Der Stapel ist leer', 'The pile is empty')}</b></div>`;
       let reveal = '';
       if (g.reveal) {
         const R = g.reveal;
-        reveal = I18n.html`<div class="mg-reveal ${R.truth ? 'true' : 'lie'}" role="status"><b>${nameOf(S, R.caller)} ruft „Mogeln!“</b>
+        reveal = `<div class="mg-reveal ${R.truth ? 'true' : 'lie'}" role="status"><b>${R.truth ? '✓' : '✗'} ${nameOf(S, R.caller)} ${t('ruft „Mogeln!“', 'calls “Cheat!”')}</b>
           <span class="mg-cards">${R.cards.map((c) => frenchCard(c, { attrs: 'disabled tabindex="-1"' })).join('')}</span>
-          <span>${R.truth ? 'Es stimmte' : 'Gelogen'} – ${nameOf(S, R.taker)} nimmt den Stapel</span></div>`;
+          <span>${R.truth ? t('Es stimmte', 'It was true') : t('Gelogen', 'A lie')} – ${nameOf(S, R.taker)} ${t('nimmt den Stapel', 'takes the pile')}</span></div>`;
       }
-      return I18n.html`<div class="kg-table mg-table">
-        <div class="mg-need" role="status"><small>Angesagt</small><b>${rn(g.need)}</b></div>
-        <div class="mg-pile" aria-label="Stapel: ${g.pile} Karten"><span class="mg-stack">${fanHTML(Math.min(g.pile, 5))}</span><small>${g.pile} Karte${g.pile === 1 ? '' : 'n'} im Stapel</small></div>
-        <div class="kg-chips">${last}</div>
-        ${reveal}
-      </div>`;
+      return `<div class="kg-table wk-stage mg-stage">${W.head({ eyebrow: t('Mogeln', 'Cheat'), title: myTurn ? t(`Du sagst: ${rn(g.need)}`, `You announce: ${rn(g.need)}`) : t(`Angesagt: ${rn(g.need)}`, `Announced: ${rn(g.need)}`), chips: [W.chip('🂠', t(`${g.pile} im Stapel`, `${g.pile} in the pile`))] })}
+        <div class="mg-board"><div class="mg-need" role="status"><span class="wk-label">${t('Angesagt', 'Announced')}</span><b>${rn(g.need)}</b></div>
+          <div class="mg-pile" aria-label="${t('Stapel', 'Pile')}: ${g.pile}"><span class="mg-stack">${fanHTML(Math.min(g.pile, 5))}</span><small>${g.pile} ${t('verdeckt', 'face down')}</small></div>${claim}</div>${reveal}</div>`;
     },
     dock(S, myTurn) {
       const g = S.g;
       const hand = sortHand(g.hand || []).map((c) => frenchCard(c, { cls: sel.has(c) ? 'sel' : '', attrs: myTurn ? `data-g="pick" data-c="${c}"` : 'disabled' })).join('');
       const n = sel.size;
-      const acts = `${myTurn ? `<button class="btn btn-brass" data-g="play" ${n && n <= g.maxCards ? '' : 'disabled'}>${n ? I18n.html`${n} Karte${n === 1 ? '' : 'n'} als ${rn(g.need)} ablegen` : 'Karten wählen'}</button>` : ''}
+      const acts = `${myTurn ? `<span class="wk-chip mg-count" data-i="🂠" role="status">${n}/${g.maxCards} ${I18n.content('gewählt', 'selected')}</span><button class="btn btn-brass" data-g="play" ${n && n <= g.maxCards ? '' : 'disabled'}>${n ? I18n.html`${n} Karte${n === 1 ? '' : 'n'} als ${rn(g.need)} ablegen` : 'Karten wählen'}</button>` : ''}
         ${g.canCall ? I18n.html('<button class="btn btn-danger" data-g="call">Mogeln!</button>') : ''}`;
       return I18n.html`<div class="kg-hand" role="group" aria-label="Deine Karten">${hand}</div><div class="kg-acts">${acts}</div>`;
     },

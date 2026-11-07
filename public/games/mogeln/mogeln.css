@@ -1,15 +1,17 @@
-/* Mogeln: angesagter Wert groß, verdeckter Stapel, aufgedeckte Gruppe nach „Mogeln!“ */
-.kg-mogeln .kg-main { background: radial-gradient(120% 90% at 50% 25%, #3A2B52, #1C1530); }
-.mg-table { display: grid; justify-items: center; gap: 14px; }
-.mg-need { display: grid; justify-items: center; padding: 10px 26px; border-radius: var(--r-l); background: rgba(0,0,0,.3); }
-.mg-need small { color: #D9CCEF; text-transform: uppercase; letter-spacing: .06em; font-size: 12px; }
-.mg-need b { font-size: 38px; line-height: 1.1; color: var(--gold-text); }
-.mg-pile { display: grid; justify-items: center; gap: 6px; }
-.mg-pile small { color: #D9CCEF; }
-.mg-reveal { display: grid; justify-items: center; gap: 6px; padding: 10px 16px; border-radius: var(--r-m); background: rgba(0,0,0,.3); border: 2px solid var(--gold); }
-.mg-reveal.lie { border-color: #D9534F; }
-.mg-reveal.true { border-color: #4FA36B; }
-.mg-cards { display: flex; gap: 6px; }
-.mg-cards .kc { --w: 44px; box-shadow: none; }
-.kg-mogeln .kg-hand .kc { --w: 46px; }
-@media (max-width: 640px) { .mg-need b { font-size: 30px; } .kg-mogeln .kg-hand .kc { --w: 42px; } }
+@import url('/games/world-kit.css');
+/* Mogeln: geheimer Kartentisch in Bordeaux und Creme, schmale Messingkante */
+.kg-mogeln .kg-main { background: radial-gradient(120% 90% at 50% 15%, #4a1f2c, #1c0c13); }
+.mg-stage { --wk-bg: linear-gradient(165deg,#3b1722,#1a0b11); --wk-edge:#d4b06a66; --wk-accent:#e9c98b; --wk-paper:#f3e9d2; --wk-max:860px; border:2px solid #b8963f66; }
+.mg-board { display:grid; grid-template-columns:auto auto minmax(0,1fr); gap:16px; align-items:center; }
+.mg-need { display:grid; justify-items:center; padding:12px 24px; border-radius:14px; background:#0004; border:1px solid #d4b06a55; }
+.mg-need b { font:700 clamp(34px,6vw,48px)/1.1 var(--wk-font); color:#f0d48a; }
+.mg-pile { display:grid; justify-items:center; gap:6px; }
+.mg-pile small { color:var(--wk-muted); }
+.mg-claim { display:grid; gap:4px; }
+.mg-claim b { overflow-wrap:anywhere; } .mg-claim small { color:var(--wk-muted); }
+.mg-reveal { display:grid; justify-items:center; gap:8px; padding:12px 16px; border-radius:12px; background:#0004; border:2px solid #d4b06a; text-align:center; }
+.mg-reveal.lie { border-color:#e68f86; } .mg-reveal.true { border-color:#8fd3a2; }
+.mg-cards { display:flex; flex-wrap:wrap; justify-content:center; gap:6px; } .mg-cards .kc { --w:44px; box-shadow:none; }
+.kg-mogeln .kg-hand .kc { --w:46px; }
+.mg-count { margin-right:8px; }
+@media (max-width:640px) { .mg-board { grid-template-columns:1fr 1fr; } .mg-claim { grid-column:1/-1; } .kg-mogeln .kg-hand .kc { --w:42px; } }

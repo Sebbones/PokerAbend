@@ -649,7 +649,8 @@
       "source_audit": [
         {
           "path": "public/games/mogeln/mogeln.js",
-          "sha256": "ccbd7a9a6c8f72faa7b8e5a5d2864f4942fcdb3867cd3971a0a6398419c3093e"
+          "sha256": "4b17e6d2e755ad9d833595854459f2714245eee1f39fe271ae964a6bab421f11",
+          "visual_update": "VIS-021 (ausdrücklich freigegebene visuelle Spielwelt, 2026-11-07): Markup der Mogeln-Oberfläche erweitert, Spiellogik unverändert; ursprünglicher Hash ccbd7a9a…3093e"
         }
       ],
       "current_interaction": "Mehrere Karten über Set auswählen, dann als geforderten Rang ablegen. Mogeln! ist ein separates Reaktionsfenster. Volle Kartenwerte dienen als eindeutige Schlüssel im einzelnen Deck.",
