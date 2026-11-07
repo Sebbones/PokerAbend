@@ -1,1 +1,11 @@
 @import url('/games/backlog-dice.css');
+
+/* VIS-056: grafische Würfel-Challenge – Zielkombination als Zielscheibe-Plakette, bleibt auf dem Handy sichtbar */
+.kg-wuerfeljagd .kg-main { background: radial-gradient(120% 90% at 50% 0, #4a2a52, #170f22); }
+.kg-wuerfeljagd .pk-q { border: 2px solid #f0b86a; border-radius: 16px; background: linear-gradient(160deg, #5a2f66, #2a1736); position: relative; }
+.kg-wuerfeljagd .pk-q::before { content: '🎯 Ziel'; position: absolute; top: -12px; left: 16px; padding: 0 10px; border-radius: 99px; background: #f0b86a; color: #2a1736; font-size: 12px; font-weight: 800; }
+.kg-wuerfeljagd .dg-target .die { outline: 3px solid #f0b86a; outline-offset: 2px; }
+.kg-wuerfeljagd .dg-panel { border: 1px solid #ffffff2a; border-radius: 16px; background: #00000040; }
+.kg-wuerfeljagd .dg-dice button { min-width: 56px; min-height: 56px; }
+@media (max-width: 640px) { .kg-wuerfeljagd .pk-q { position: sticky; top: 0; z-index: 2; } }
+html[lang='en'] .kg-wuerfeljagd .pk-q::before { content: '🎯 Target'; }
