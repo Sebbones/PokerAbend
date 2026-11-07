@@ -10,7 +10,7 @@ Alle künftigen Pakete benötigen DE/EN, Desktop/Touch, Tastatur soweit sinnvoll
 
 ## SOLO-004 – Snake
 
-ID: `snake` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/5) · Aufwand: **M**.
+ID: `snake` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/5) · Aufwand: **M**.
 
 Lenke eine Schlange, sammle Nahrung und vermeide Kollisionen.
 
@@ -33,7 +33,7 @@ Akzeptanzkriterien:
 
 ## SOLO-005 – Memory
 
-ID: `memory` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/6) · Aufwand: **S**.
+ID: `memory` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/6) · Aufwand: **S**.
 
 Finde passende Kartenpaare in deinem eigenen Tempo.
 
@@ -57,7 +57,7 @@ Akzeptanzkriterien:
 
 ## SOLO-006 – Minesweeper
 
-ID: `minesweeper` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/7) · Aufwand: **M**.
+ID: `minesweeper` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/7) · Aufwand: **M**.
 
 Entschärfe ein Minenfeld mit Logik und Markierungen.
 
@@ -81,7 +81,7 @@ Akzeptanzkriterien:
 
 ## SOLO-007 – Nonogramm
 
-ID: `nonogramm` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/8) · Aufwand: **L**.
+ID: `nonogramm` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/8) · Aufwand: **L**.
 
 Entschlüssle ein Pixelmotiv anhand von Zahlen am Rand.
 
@@ -105,7 +105,7 @@ Akzeptanzkriterien:
 
 ## SOLO-008 – Sokoban
 
-ID: `sokoban` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/9) · Aufwand: **M**.
+ID: `sokoban` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/9) · Aufwand: **M**.
 
 Schiebe Kisten auf Zielmarkierungen und plane jeden Schritt.
 
@@ -129,7 +129,7 @@ Akzeptanzkriterien:
 
 ## SOLO-009 – Block Puzzle
 
-ID: `block-puzzle` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/10) · Aufwand: **M**.
+ID: `block-puzzle` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/10) · Aufwand: **M**.
 
 Setze Formen ein und räume vollständige Reihen ab.
 
@@ -153,7 +153,7 @@ Akzeptanzkriterien:
 
 ## SOLO-010 – Solitaire
 
-ID: `solitaire` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/11) · Aufwand: **L**.
+ID: `solitaire` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/11) · Aufwand: **L**.
 
 Ordne ein Kartendeck im klassischen Klondike-Solospiel.
 
@@ -177,7 +177,7 @@ Akzeptanzkriterien:
 
 ## SOLO-011 – Mahjong Solitaire
 
-ID: `mahjong-solitaire` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/12) · Aufwand: **L**.
+ID: `mahjong-solitaire` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/12) · Aufwand: **L**.
 
 Entferne freie gleiche Steinpaare in eigenen Anordnungen.
 
@@ -201,7 +201,7 @@ Akzeptanzkriterien:
 
 ## SOLO-012 – Match-3
 
-ID: `match-3` · Status: **planned** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/13) · Aufwand: **L**.
+ID: `match-3` · Status: **umgesetzt** · [GitHub-Issue](https://github.com/TTLPSCWA/PokerAbend/issues/13) · Aufwand: **L**.
 
 Tausche benachbarte Symbole und bilde Dreierreihen.
 

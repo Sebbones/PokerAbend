@@ -9,14 +9,14 @@ import {resolvedRoadmap} from '../games/roadmap.js';
 
 test('single player is a separate catalog; only registered multiplayer games provide room events and programs',()=>{
   assert.ok(Object.keys(GAMES).length>=58);assert.equal(Object.keys(PLAYABLE_GAMES).length,Object.keys(GAMES).length+singleplayerGameList().length);
-  assert.deepEqual(singleplayerGameList().map((g)=>g.id).sort(),['2048','memory','minesweeper','nonogramm','snake','sokoban','sudoku','wellenwacht']);
+  assert.deepEqual(singleplayerGameList().map((g)=>g.id).sort(),['2048','block-puzzle','mahjong-solitaire','match-3','memory','minesweeper','nonogramm','snake','sokoban','solitaire','sudoku','wellenwacht']);
   for(const g of singleplayerGameList()){assert.equal(g.local,true);assert.equal(g.minPlayers,1);assert.equal(g.maxPlayers,1);assert.equal(GAMES[g.id],undefined);assert.equal(g.create,undefined);assert.ok(g.art.includes('<svg'));}
   assert.ok(!gameEvents().some((e)=>e.startsWith('singleplayer')));
-  const planned=PLANNED.filter((p)=>p.paeckchen==='solo-zukunft');assert.equal(planned.length,4);
+  const planned=PLANNED.filter((p)=>p.paeckchen==='solo-zukunft');assert.equal(planned.length,0,'alle neun Solo-Pakete sind umgesetzt');
   for(const p of planned){assert.equal(p.status,'planned');assert.ok(!PLAYABLE_GAMES[p.id]);for(const k of ['features','dependencies','acceptance'])assert.ok(p[k].length);}
   for(const id of ['minenlauf','puzzle-panik','wortjagd'])assert.ok(PLANNED.some((p)=>p.id===id));
   const roadmap=resolvedRoadmap();assert.equal(roadmap.find((e)=>e.id==='einzelspieler-zukunft').punkte.length,9);
-  assert.equal(roadmap.find((e)=>e.id==='einzelspieler-zukunft').punkte.filter(p=>p.erledigt).length,5);
+  assert.equal(roadmap.find((e)=>e.id==='einzelspieler-zukunft').punkte.filter(p=>p.erledigt).length,9);
   assert.ok(roadmap.find((e)=>e.id==='einzelspieler-start').punkte.every((p)=>p.erledigt&&p.spiel.local));
 });
 for(const difficulty of Object.keys(sdk.DIFFICULTIES))test(`Sudoku ${difficulty}: 24 seeds generate unique, consistent and reproducible puzzles`,()=>{

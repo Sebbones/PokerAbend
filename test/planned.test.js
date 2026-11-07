@@ -9,7 +9,7 @@ const games = PLANNED.filter((e) => e.type !== 'feature');
 const features = PLANNED.filter((e) => e.type === 'feature');
 
 test('Spiel-Einträge haben alle Pflichtfelder', () => {
-  assert.ok(games.length >= 30);
+  assert.ok(games.length >= 25);
   for (const g of games) {
     const w = `${g.id}`;
     assert.match(g.id, /^[a-z0-9-]{1,30}$/, `${w}: id`);
@@ -54,7 +54,7 @@ test('IDs sind eindeutig und kollidieren nicht mit gebauten Spielen oder Spiel-E
 
 test('Alle Spiele und Funktionen der Liste sind eingetragen – im richtigen Päckchen', () => {
   const want = {
-    'solo-zukunft': ['block-puzzle','solitaire','mahjong-solitaire','match-3'],
+    'solo-zukunft': [],
     spaeter: ['stichmeister', 'labyrinth-brett', 'regelwahnsinn', 'jaeger-schatten', 'infektionsjagd', 'letzter-schutzplatz', 'kistenchaos', 'survival-abend', 'chaos-modus',  'schatzinsel', 'gummiband-challenge', 'geschenkfaenger', 'rhythmus-rausch', 'puzzle-panik', 'wortjagd', 'stillgestanden', 'schatzgraeber', 'minenlauf', 'labyrinth-chaos', 'schubsarena', 'scheinwerfer-flucht', 'brueckenroulette', 'modifikatoren', 'turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell'],
     gross: ['staedtehandel', 'gebietskampf', 'party-brett'],
   };

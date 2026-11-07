@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 76,
-    "not_implemented_count": 31,
+    "playable_count": 80,
+    "not_implemented_count": 27,
     "completed_visual_count": 18,
-    "open_playable_visual_count": 58,
+    "open_playable_visual_count": 62,
     "planned_visual_count": 89,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -108,7 +108,11 @@
       "nonogramm",
       "sokoban",
       "skat",
-      "doppelkopf"
+      "doppelkopf",
+      "block-puzzle",
+      "solitaire",
+      "mahjong-solitaire",
+      "match-3"
     ],
     "not_implemented_game_ids": [
       "stichmeister",
@@ -137,11 +141,7 @@
       "geschenkdiebe",
       "fallenbauer",
       "reaktor-notfall",
-      "bomben-duell",
-      "block-puzzle",
-      "solitaire",
-      "mahjong-solitaire",
-      "match-3"
+      "bomben-duell"
     ],
     "completed_visual_game_ids": [
       "scotland-yard",
@@ -338,6 +338,7 @@
     "VIS-099",
     "VIS-101",
     "VIS-103",
+    "VIS-104",
     "VIS-006",
     "VIS-016",
     "VIS-024",
@@ -358,6 +359,9 @@
     "VIS-057",
     "VIS-045",
     "VIS-102",
+    "VIS-105",
+    "VIS-106",
+    "VIS-107",
     "VIS-007",
     "VIS-011",
     "VIS-013",
@@ -426,7 +430,11 @@
     "VIS-102",
     "VIS-103",
     "VIS-086",
-    "VIS-087"
+    "VIS-087",
+    "VIS-104",
+    "VIS-105",
+    "VIS-106",
+    "VIS-107"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -455,11 +463,7 @@
     "VIS-093",
     "VIS-058",
     "VIS-090",
-    "VIS-089",
-    "VIS-104",
-    "VIS-105",
-    "VIS-106",
-    "VIS-107"
+    "VIS-089"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
   "verification": {
@@ -13041,24 +13045,34 @@
       "game_name": "Block Puzzle",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Flat tactile shapes on a dark blue grid with preview and hint highlights."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/singleplayer/blockpuzzle-logic.js",
+        "public/singleplayer/puzzles-runtime.js",
+        "public/singleplayer/puzzles.css"
+      ],
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/puzzle-art.js",
+        "public/singleplayer/singleplayer.css"
+      ],
       "source_audit": [],
-      "current_design": "Block Puzzle: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "current_design": "Flat tactile shapes on a dark blue grid with preview and hint highlights.",
       "known_visual_weaknesses": [
         "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Setze Formen ein und räume vollständige Reihen ab.",
       "planned_style": "Materialhafte flache Formen mit Muster zusätzlich zur Farbe.",
       "background_concept": "Block Puzzle: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
@@ -13110,8 +13124,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "block-puzzle",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],
@@ -13126,24 +13140,34 @@
       "game_name": "Solitaire",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Calm green card table using the existing accessible card values with foundations, stock and seven columns."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/singleplayer/solitaire-logic.js",
+        "public/singleplayer/puzzles-runtime.js",
+        "public/singleplayer/puzzles.css"
+      ],
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/puzzle-art.js",
+        "public/singleplayer/singleplayer.css"
+      ],
       "source_audit": [],
-      "current_design": "Solitaire: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "current_design": "Calm green card table using the existing accessible card values with foundations, stock and seven columns.",
       "known_visual_weaknesses": [
         "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Ordne ein Kartendeck im klassischen Klondike-Solospiel.",
       "planned_style": "Ruhiger eigener Kartentisch, vorhandene zugängliche Kartenwerte.",
       "background_concept": "Solitaire: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
@@ -13195,8 +13219,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "solitaire",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],
@@ -13211,24 +13235,34 @@
       "game_name": "Mahjong Solitaire",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Layered flat tiles with original line motifs, free and blocked tiles clearly distinguished."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/singleplayer/mahjong-logic.js",
+        "public/singleplayer/puzzles-runtime.js",
+        "public/singleplayer/puzzles.css"
+      ],
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/puzzle-art.js",
+        "public/singleplayer/singleplayer.css"
+      ],
       "source_audit": [],
-      "current_design": "Mahjong Solitaire: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "current_design": "Layered flat tiles with original line motifs, free and blocked tiles clearly distinguished.",
       "known_visual_weaknesses": [
         "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Entferne freie gleiche Steinpaare in eigenen Anordnungen.",
       "planned_style": "Deutliche flache Steinlagen mit lesbaren Symbolen.",
       "background_concept": "Mahjong Solitaire: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
@@ -13280,8 +13314,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "mahjong-solitaire",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],
@@ -13296,24 +13330,34 @@
       "game_name": "Match-3",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Original botanical symbol set with distinct silhouettes on a dark garden board."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
+      "current_frontend_files": [
+        "public/singleplayer/match3-logic.js",
+        "public/singleplayer/puzzles-runtime.js",
+        "public/singleplayer/puzzles.css"
+      ],
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/puzzle-art.js",
+        "public/singleplayer/singleplayer.css"
+      ],
       "source_audit": [],
-      "current_design": "Match-3: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
+      "current_design": "Original botanical symbol set with distinct silhouettes on a dark garden board.",
       "known_visual_weaknesses": [
         "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Tausche benachbarte Symbole und bilde Dreierreihen.",
       "planned_style": "Eigenes botanisches Symbolset ohne Farbzwang.",
       "background_concept": "Match-3: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
@@ -13365,8 +13409,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "match-3",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],

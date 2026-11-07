@@ -71,10 +71,11 @@ test('direct solo entry works without a profile or Discord and has no horizontal
   await page.goto(app.url+'/#solo/sudoku');await page.getByLabel('Passwort').fill(app.password);await page.getByRole('button',{name:'Reinkommen'}).click();await expect(page.locator('[data-solo=sudoku]')).toBeVisible();await expect(page.locator('#profile-dlg')).not.toBeVisible();await start(page);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
 
-test('remaining roadmap packages are planned, translated and linked to their individual GitHub issues',async({page,app})=>{
-  await login(page,app);await page.locator('#hub-language select').selectOption('en');await page.evaluate(()=>{location.hash='#roadmap';});await page.locator('[data-roadmap-stage=spaeter] > summary').click();
-  const section=page.locator('article[aria-labelledby=roadmap-einzelspieler-zukunft]');await expect(section).toContainText('More single-player games');await expect(section.locator('[data-plan]')).toHaveCount(9);
-  await section.locator('[data-plan=block-puzzle]').click();await expect(page.locator('#host-dlg')).toContainText('Place shapes and clear complete lines.');await expect(page.locator('#host-dlg')).toContainText('Place three offered shapes on a grid; complete lines disappear.');await expect(page.locator('#host-dlg')).toContainText('Acceptance criteria');await expect(page.locator('#host-dlg')).toContainText('Puzzle-Panik stays a separate planned party game');await expect(page.locator('#host-dlg a[href="https://github.com/TTLPSCWA/PokerAbend/issues/10"]')).toBeVisible();await expect(page.locator('#host-dlg [data-host]')).toHaveCount(0);
+test('all nine additional single-player games are completed on the roadmap and playable from the library',async({page,app})=>{
+  await login(page,app);await page.locator('#hub-language select').selectOption('en');await page.evaluate(()=>{location.hash='#roadmap';});
+  const section=page.locator('article[aria-labelledby=roadmap-einzelspieler-zukunft]');await expect(section).toContainText('More single-player games');
+  for(const name of ['Snake','Block Puzzle','Mahjong Solitaire','Match-3'])await expect(section).toContainText(name);
+  await expect(section.locator('[data-plan]')).toHaveCount(9);
 });
 
 test('blocked browser storage still allows local play and reduced motion prevents tile animations',async({page,app})=>{

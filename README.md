@@ -1,6 +1,6 @@
 # Spieleabend
 
-Spielesammlung mit 71 Spielen: 68 Online-/Partyspiele für die Freundesgruppe sowie Sudoku, 2048 und Wellenwacht als lokale Einzelspieler. Bei den Online-Spielen ist der Server Geber und Schiedsrichter: Er mischt, teilt aus, würfelt, prüft jeden Zug und rechnet ab.
+Spielesammlung mit 80 Spielen: 68 Online-/Partyspiele für die Freundesgruppe sowie die lokalen Einzelspieler Sudoku, 2048, Wellenwacht, Snake, Memory, Minesweeper, Nonogramm, Sokoban, Block Puzzle, Solitaire, Mahjong Solitaire und Match-3. Bei den Online-Spielen ist der Server Geber und Schiedsrichter: Er mischt, teilt aus, würfelt, prüft jeden Zug und rechnet ab.
 
 Der Ausbau von **„Weitere Spiele“** beginnt mit **Risiko-Würfeln, Story-Chaos und Zahlenreihe**. Das zweite Päckchen ergänzt **Würfeljagd, Monsterwürfel und Würfel-Auktion**, das dritte **Backgammon, Hearts und Five Card Draw** mit Bots und eigenen Spielwelten. Das vierte Päckchen ergänzt **Scrabble, Omaha Hi/Lo, Short Deck Poker und Seven Card Stud**. **BACKLOG-05** ergänzt **Exploding-Deck, Doppelagent und Lügenbaron** sowie separat **Schach mit Chess960** aus den großen Projekten. Die ursprüngliche 41er-Rubrik bleibt bei **16 von 41 erledigt**; Schach vergrößert ihren Nenner nicht. Regeln, Prüfungen, Bildnachweise und weiterer Fortschritt: [Backlog-Päckchen](docs/backlog/WEITERE_SPIELE.md).
 

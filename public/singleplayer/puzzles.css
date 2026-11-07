@@ -1,0 +1,74 @@
+/* Eigene Spielwelten für Block-Puzzle, Solitär, Mahjong-Solitär und Match-3; alle Selektoren sind auf diese vier Spiele begrenzt. */
+.solo-puzzle { min-width:0; }
+.solo-puzzle .sp-tools { margin-top:14px; }
+.solo-puzzle .sp-note { margin:10px 0 0; padding:8px 12px; border:1px solid var(--sp-edge); border-radius:8px; background:#ffffff0b; }
+.solo-puzzle button:focus-visible { outline:3px solid #eeb945; outline-offset:-3px; z-index:2; }
+
+/* ---------- Block-Puzzle ---------- */
+.singleplayer.solo-block-puzzle { background:#1c2538; --sp-edge:#9bb0d84d; --sp-muted:#c0cbe0; }
+.bp-layout { display:grid; grid-template-columns:minmax(0,560px) minmax(180px,1fr); gap:22px; align-items:start; justify-content:center; }
+.bp-board { display:grid; grid-template-columns:repeat(var(--n),minmax(0,1fr)); gap:3px; padding:8px; background:#0f1626; border:2px solid #7f95c4; border-radius:12px; width:100%; aspect-ratio:1; touch-action:manipulation; }
+.bp-cell { min-width:0; min-height:0; padding:0; border:0; border-radius:4px; background:#1d2a45; }
+.bp-cell.full { background:linear-gradient(145deg,#e8b45f,#c8803a); box-shadow:inset 0 0 0 2px #f4d79b99; }
+.bp-cell.preview { background:#7fc9a8; box-shadow:inset 0 0 0 2px #dcf5e8; }
+.bp-cell.bad { background:#c75a54; opacity:.85; }
+.bp-cell.hint { box-shadow:inset 0 0 0 3px #f5e08b; }
+.bp-cell.cleared { animation:bp-flash .5s ease-out; }
+@keyframes bp-flash { from { background:#fff3c4; } }
+.bp-trays { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.bp-piece { min-height:96px; padding:8px; display:grid; place-items:center; border:2px solid #7f95c4; border-radius:12px; background:#223052; }
+.bp-piece.selected { border-color:#f2cf7f; background:#2c3d68; box-shadow:0 0 0 3px #f2cf7f55; }
+.bp-piece.hint { border-color:#f5e08b; }
+.bp-piece.stuck { opacity:.55; }
+.bp-piece.used { border-style:dashed; opacity:.3; }
+.bp-mini { display:grid; grid-template-columns:repeat(var(--cols),14px); grid-auto-rows:14px; gap:2px; }
+.bp-mini i { border-radius:3px; }
+.bp-mini i.on { background:linear-gradient(145deg,#e8b45f,#c8803a); box-shadow:inset 0 0 0 1px #f4d79b99; }
+
+/* ---------- Solitär ---------- */
+.singleplayer.solo-solitaire { background:#17382e; --sp-edge:#a8cdb64d; }
+.sol-board { --w:clamp(38px,calc((min(100vw,1000px) - 96px)/7),104px); --gap:clamp(3px,1vw,12px); display:grid; gap:18px; max-width:980px; margin:auto; }
+.sol-top { display:flex; justify-content:space-between; gap:var(--gap); align-items:start; }
+.sol-stockwaste,.sol-found { display:flex; gap:var(--gap); align-items:start; }
+.sol-board .kc { width:var(--w); height:calc(var(--w)*1.4); min-width:0; font-size:calc(var(--w)*.34); padding:0; }
+.sol-board .kc-back { background:repeating-linear-gradient(45deg,#2d5d78 0 6px,#336a88 6px 12px); border:2px solid #cde0e8; border-radius:7px; display:grid; place-items:center; color:#f5f1d8; }
+.sol-slot { width:var(--w); height:calc(var(--w)*1.4); min-width:0; min-height:0; padding:0; display:grid; place-items:center; border:2px dashed #a8cdb680; border-radius:7px; background:#ffffff08; color:#cfe3d5; font-size:calc(var(--w)*.4); }
+.sol-waste { position:relative; display:flex; min-width:var(--w); }
+.sol-waste .sol-under { margin-right:calc(var(--w)*-.72); }
+.sol-cols { display:grid; grid-template-columns:repeat(7,minmax(0,var(--w))); gap:var(--gap); justify-content:space-between; }
+.sol-col { position:relative; height:calc((var(--span,0) + 1.4)*var(--w)); min-height:calc(var(--w)*1.4); }
+.sol-col .kc { position:absolute; left:0; top:calc(var(--t,0)*var(--w)); }
+.sol-board .sol-selected { outline:3px solid #f2cf7f; outline-offset:2px; transform:translateY(-3px); z-index:3; }
+.sol-board .hint:not(.sol-slot) { box-shadow:0 0 0 3px #f5e08b; }
+.sol-slot.hint { border-color:#f5e08b; border-style:solid; }
+.kc:disabled { opacity:1; }
+
+/* ---------- Mahjong-Solitär ---------- */
+.singleplayer.solo-mahjong-solitaire { background:#2c2a22; --sp-edge:#d3c2884d; --sp-muted:#d6cfb2; }
+.mj-board { --unit:calc(100%/var(--w)); position:relative; width:100%; min-width:calc(var(--w)*16px); max-width:900px; margin:0 auto; aspect-ratio:calc(var(--w)/(var(--h)*.74)); }
+.mj-tile { position:absolute; left:calc(var(--x)*100%/var(--w) - var(--z)*.3%); top:calc(var(--y)*100%/var(--h) - var(--z)*.5%); width:calc(2*100%/var(--w)); height:calc(2*100%/var(--h)); min-width:0; min-height:0; padding:3px; display:grid; place-items:center; border:1px solid #6e6a52; border-radius:6px; background:linear-gradient(160deg,#f7f1dc,#ddd2ae); color:#244a43; box-shadow:2px 3px 0 #8a8566,3px 5px 6px #0007; z-index:calc(var(--z)*10 + 1); }
+.mj-tile svg { width:100%; height:100%; max-height:100%; }
+.mj-tile.blocked { background:linear-gradient(160deg,#c9c2a5,#b3ab8a); color:#4b6a63; cursor:not-allowed; }
+.mj-tile.selected { background:linear-gradient(160deg,#fff0b3,#f1d77d); box-shadow:0 0 0 3px #f2b84b,2px 3px 6px #0007; }
+.mj-tile.hint { box-shadow:0 0 0 3px #7fc9a8,2px 3px 6px #0007; }
+.mj-tile:disabled { opacity:1; }
+
+/* ---------- Match-3 ---------- */
+.singleplayer.solo-match-3 { background:#1f3226; --sp-edge:#aed0a64d; }
+.m3-goal { max-width:520px; margin:0 auto 12px; display:grid; gap:4px; }
+.m3-bar { height:12px; border-radius:99px; background:#ffffff14; border:1px solid var(--sp-edge); overflow:hidden; }
+.m3-bar span { display:block; height:100%; background:linear-gradient(90deg,#7fc28a,#e6c24f); transition:width .25s; }
+.m3-board { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:3px; width:min(100%,520px); aspect-ratio:1; margin:auto; padding:6px; background:#122019; border:2px solid #7fae8a; border-radius:12px; touch-action:none; }
+.m3-cell { min-width:0; min-height:0; padding:12%; border:0; border-radius:8px; background:#2a4234; display:grid; place-items:center; }
+.m3-cell svg { width:100%; height:100%; }
+.m3-cell.selected { background:#476c55; box-shadow:inset 0 0 0 3px #f2cf7f; }
+.m3-cell.hint { box-shadow:inset 0 0 0 3px #f5e08b; }
+
+@media (max-width:740px) {
+  .bp-layout { grid-template-columns:1fr; }
+  .bp-piece { min-height:80px; }
+  .bp-mini { grid-template-columns:repeat(var(--cols),11px); grid-auto-rows:11px; }
+  .sol-top { gap:4px; }
+  .m3-cell { padding:8%; }
+}
+@media (prefers-reduced-motion:reduce) { .bp-cell.cleared,.m3-bar span { animation:none; transition:none; } }

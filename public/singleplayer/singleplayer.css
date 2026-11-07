@@ -1,4 +1,5 @@
 @import url('/singleplayer/collection.css');
+@import url('/singleplayer/puzzles.css');
 /* Isolated local game worlds. Shared hub typography and preferences remain authoritative. */
 .singleplayer { --sp-ink:#eee8d7; --sp-muted:#c0c9bb; --sp-edge:#b5bc9c4d; color:var(--sp-ink); background:#15251ff5; border:1px solid var(--sp-edge); border-radius:18px; padding:clamp(14px,2.5vw,30px); max-width:1250px; margin:auto; }
 .singleplayer h1 { margin:4px 0; font-size:clamp(30px,4vw,46px); }

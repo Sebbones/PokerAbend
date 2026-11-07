@@ -1,5 +1,5 @@
 export const VERSION=1;
-export const IDS=['sudoku','2048','wellenwacht','snake','memory','minesweeper','nonogramm','sokoban'];
+export const IDS=['sudoku','2048','wellenwacht','snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3'];
 export const key=(id)=>{if(!IDS.includes(id))throw Error('Unknown single-player game');return `poker:singleplayer:${id}`;};
 const MAX_BYTES=250000;
 export function load(storage,id,restore){
