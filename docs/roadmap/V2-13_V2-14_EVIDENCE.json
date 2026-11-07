@@ -5,7 +5,7 @@
     "V2-13",
     "V2-14"
   ],
-  "unchanged_other_tasks_sha256": "b989765b3792554b4592b7ab56eba9cee94e42041b7b58dc141dc7c07d14d2fa",
+  "unchanged_other_tasks_sha256": "21e1f5e696cadbb76ab62ccf3e601a8983af36e79b588e6c75e58b561ab4c4a9",
   "source_audit": [
     {
       "path": "server/achievements.js",
@@ -21,7 +21,7 @@
     },
     {
       "path": "server/index.js",
-      "sha256": "179b54f3c2daf371e1b148b68989de8b2b0a48c2c14e80ce0ef9f7f7f9319b5a"
+      "sha256": "c716bacf8f416065300cde9db09e5e67d9708608f33ba0caeb6e6bce58ff2a5b"
     },
     {
       "path": "server/presence.js",

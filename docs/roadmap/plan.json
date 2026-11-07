@@ -482,15 +482,46 @@
         "Presence verbirgt private Tische und unsichtbare Spieler",
         "keine Änderungen am Berechtigungsmodell ohne Test"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "3f3005f3942283b16be29bba6b68166b1eb2706c",
+      "completed_at": "2026-11-07",
+      "notes": [
+        "Ausdrückliche Freigabe 2026-11-07 (V2-17 und V2-07). Umfang und Grenzen: docs/roadmap/V2-17_V2-07_ADMIN_IDENTITAET.md.",
+        "Besitz bleibt an der Konto-/Cookie-Kennung (V2-01); Name, Avatar und öffentliche Game-ID kommen mit Konto vom Server, nicht aus der Anfrage. Rückblicke tragen die Game-ID bekannter Spieler. Versteckte Konten zeigen keine Game-ID; Zusammenführen und Löschen schreiben gespeicherte Game-IDs um bzw. entfernen sie. Altbestand ohne Game-ID bleibt gültig.",
+        "Presence nutzte die öffentliche Game-ID bereits (V2-14); jetzt zusätzlich per Test belegt."
+      ],
       "public_roadmap_ids": [
         "v2-platform-integration"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/v2-17-07.test.js test/ticket-api.test.js test/tickets.test.js test/plan-api.test.js test/evening-plans.test.js test/evening-reviews.test.js test/identity.test.js test/presence.test.js test/ops.test.js test/leaderboard.test.js test/ranked.test.js test/achievements.test.js test/profile.test.js",
+          "result": "134 passed, 0 failed; 12 neue Fälle zu Admin-Schutz, Login-Sperre, Rückblicke/Partien ausblenden, Spielerzusammenführung, Ticketverwaltung, Spieler-ID in Tickets/Planungen/Rückblicken und Presence.",
+          "passed": 134,
+          "failed": 0,
+          "log": "artifacts/v2-17-07-focus-node.log"
+        },
+        {
+          "command": "node --test test/*.test.js (HEAD d83268f plus V2-17/V2-07, ohne fremde Arbeitskopie-Änderungen)",
+          "result": "Vollständige Node-Suite auf dem sauberen Stand (HEAD d83268f plus V2-17/V2-07, ohne fremde Arbeitskopie-Änderungen): 1397 bestanden, 0 fehlgeschlagen.",
+          "passed": 1397,
+          "failed": 0,
+          "log": "artifacts/v2-17-07-full-node.log"
+        },
+        {
+          "command": "playwright test test/ui/v2-17-07.spec.js test/ui/ops.spec.js test/ui/tickets.spec.js test/ui/evening-plans.spec.js test/ui/evening-reviews.spec.js test/ui/roadmap-presence.spec.js test/ui/identity.spec.js test/ui/profile.spec.js test/ui/ranked-board.spec.js --workers=1",
+          "result": "58 bestanden, 2 fehlgeschlagen (nur mobil: Tickets-Verwaltung und Planung, Tab-Leiste verdeckt Knöpfe); beide Fälle schlagen unverändert auch auf dem sauberen Stand d83268f fehl und gehören nicht zu diesen Paketen. Neuer Fall v2-17-07 besteht auf Desktop und Handy.",
+          "passed": 58,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 287.348,
+          "report": "artifacts/v2-17-07-browser-report.json",
+          "log": "artifacts/v2-17-07-browser.log"
+        }
+      ],
+      "commits": [
+        "3f3005f3942283b16be29bba6b68166b1eb2706c"
+      ]
     },
     {
       "id": "V2-08",
@@ -1092,19 +1123,48 @@
         "Bestehende Ticketverwaltung funktioniert weiterhin",
         "Jede destruktive Änderung erfordert Bestätigung, protokolliert Grund und ist testbar"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
+      "status": "done",
+      "implementation_commit": "3f3005f3942283b16be29bba6b68166b1eb2706c",
+      "completed_at": "2026-11-07",
       "notes": [
-        "Teillieferung „Betrieb & Wartung“ (2026-11-01) siehe partial_deliveries[BETRIEB-WARTUNG]; das Paket selbst bleibt planned."
+        "Ausdrückliche Freigabe 2026-11-07 (V2-17 und V2-07). Umfang und Grenzen: docs/roadmap/V2-17_V2-07_ADMIN_IDENTITAET.md.",
+        "Umgesetzt: Rückblicke ausblenden/einblenden, Bestenliste und Partien ansehen, falsche Partie ausblenden/einblenden, Spieler per Game-ID zusammenführen, Tickets bearbeiten (Status, Kommentar, Löschen), Update-Ankündigung unverändert, Protokoll jeder Änderung, Login-Sperre. Ausgeblendet statt gelöscht (umkehrbar).",
+        "Nicht umgesetzt (offene Grenzen): Rückblicke bearbeiten oder endgültig löschen, Wiederherstellen von Tickets, Begründungsfeld, MFA, getrennte Admin-Rollen, Neuberechnung bereits vergebener Abzeichen, Korrektur der alten namensbasierten Gesamtstatistik."
       ],
       "public_roadmap_ids": [
         "v2-admin-rueckblicke",
         "v2-admin-bestenlisten",
         "v2-admin-sicherheit"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/v2-17-07.test.js test/ticket-api.test.js test/tickets.test.js test/plan-api.test.js test/evening-plans.test.js test/evening-reviews.test.js test/identity.test.js test/presence.test.js test/ops.test.js test/leaderboard.test.js test/ranked.test.js test/achievements.test.js test/profile.test.js",
+          "result": "134 passed, 0 failed; 12 neue Fälle zu Admin-Schutz, Login-Sperre, Rückblicke/Partien ausblenden, Spielerzusammenführung, Ticketverwaltung, Spieler-ID in Tickets/Planungen/Rückblicken und Presence.",
+          "passed": 134,
+          "failed": 0,
+          "log": "artifacts/v2-17-07-focus-node.log"
+        },
+        {
+          "command": "node --test test/*.test.js (HEAD d83268f plus V2-17/V2-07, ohne fremde Arbeitskopie-Änderungen)",
+          "result": "Vollständige Node-Suite auf dem sauberen Stand (HEAD d83268f plus V2-17/V2-07, ohne fremde Arbeitskopie-Änderungen): 1397 bestanden, 0 fehlgeschlagen.",
+          "passed": 1397,
+          "failed": 0,
+          "log": "artifacts/v2-17-07-full-node.log"
+        },
+        {
+          "command": "playwright test test/ui/v2-17-07.spec.js test/ui/ops.spec.js test/ui/tickets.spec.js test/ui/evening-plans.spec.js test/ui/evening-reviews.spec.js test/ui/roadmap-presence.spec.js test/ui/identity.spec.js test/ui/profile.spec.js test/ui/ranked-board.spec.js --workers=1",
+          "result": "58 bestanden, 2 fehlgeschlagen (nur mobil: Tickets-Verwaltung und Planung, Tab-Leiste verdeckt Knöpfe); beide Fälle schlagen unverändert auch auf dem sauberen Stand d83268f fehl und gehören nicht zu diesen Paketen. Neuer Fall v2-17-07 besteht auf Desktop und Handy.",
+          "passed": 58,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 287.348,
+          "report": "artifacts/v2-17-07-browser-report.json",
+          "log": "artifacts/v2-17-07-browser.log"
+        }
+      ],
+      "commits": [
+        "3f3005f3942283b16be29bba6b68166b1eb2706c"
+      ]
     }
   ],
   "updated_date": "2026-11-07",
