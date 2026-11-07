@@ -606,7 +606,8 @@
       "source_audit": [
         {
           "path": "public/games/schwimmen/schwimmen.js",
-          "sha256": "6dfb7a9e8a5ef038aaf4313accd6b1ce1ec8ae4ef74ae0e473c87f6350f1d0a8"
+          "sha256": "bb6e3dadc663d3c0c82957a426101fbafabf3c6e956ec6452409add19e92234c",
+          "visual_update": "P2-VIS (ausdrücklich freigegebene visuelle Spielwelt, 2026-11-07): Markup der Oberfläche erweitert, Spiellogik unverändert; vorheriger Hash 6dfb7a9e..d0a8"
         }
       ],
       "current_interaction": "Eine Quelle aus Hand oder Mitte wählen, danach eine Karte der anderen Seite antippen und sofort tauschen. Alle drei tauschen, Schieben und Klopfen sind eigene Knöpfe.",
@@ -693,7 +694,8 @@
       "source_audit": [
         {
           "path": "public/games/praesident/praesident.js",
-          "sha256": "c5f5787dd6ab6551cf15e0ad1230b7b9edd140926f1e39b50b502a0be4d312d6"
+          "sha256": "4485641c28bfc2d4d23db570982c087abb3f12387dbb0a80f0615fc01391e6dd",
+          "visual_update": "P2-VIS (ausdrücklich freigegebene visuelle Spielwelt, 2026-11-07): Markup der Oberfläche erweitert, Spiellogik unverändert; vorheriger Hash c5f5787d..12d6"
         }
       ],
       "current_interaction": "Karten gleichen Rangs auswählen, danach mit Mengenknopf ablegen. Ein anderer Rang ersetzt die Auswahl. Passen ist separat.",

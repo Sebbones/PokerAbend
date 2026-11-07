@@ -28,9 +28,9 @@
   "inventory": {
     "playable_count": 93,
     "not_implemented_count": 14,
-    "completed_visual_count": 40,
-    "open_playable_visual_count": 53,
-    "planned_visual_count": 67,
+    "completed_visual_count": 56,
+    "open_playable_visual_count": 37,
+    "planned_visual_count": 51,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -183,7 +183,23 @@
       "geschenkfaenger",
       "rhythmus-rausch",
       "stillgestanden",
-      "bomben-duell"
+      "bomben-duell",
+      "domino",
+      "luegenwuerfel",
+      "maexchen",
+      "praesident",
+      "schlagfertig",
+      "schwimmen",
+      "sortierstation",
+      "viergewinnt",
+      "zahlenzoo",
+      "reversi",
+      "schocken",
+      "zehntausend",
+      "dame",
+      "hex",
+      "kniffel",
+      "kritzelpost"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -334,15 +350,6 @@
     "VIS-100",
     "VIS-055",
     "VIS-059",
-    "VIS-005",
-    "VIS-010",
-    "VIS-014",
-    "VIS-019",
-    "VIS-022",
-    "VIS-026",
-    "VIS-030",
-    "VIS-031",
-    "VIS-034",
     "VIS-039",
     "VIS-056",
     "VIS-085",
@@ -350,17 +357,10 @@
     "VIS-101",
     "VIS-103",
     "VIS-104",
-    "VIS-006",
-    "VIS-016",
     "VIS-024",
-    "VIS-028",
     "VIS-040",
-    "VIS-012",
-    "VIS-029",
-    "VIS-038",
     "VIS-042",
     "VIS-044",
-    "VIS-048",
     "VIS-017",
     "VIS-023",
     "VIS-037",
@@ -386,22 +386,6 @@
     "VIS-089"
   ],
   "suggested_development_order": [
-    "VIS-030",
-    "VIS-026",
-    "VIS-005",
-    "VIS-022",
-    "VIS-019",
-    "VIS-010",
-    "VIS-034",
-    "VIS-014",
-    "VIS-031",
-    "VIS-028",
-    "VIS-006",
-    "VIS-016",
-    "VIS-029",
-    "VIS-048",
-    "VIS-012",
-    "VIS-038",
     "VIS-039",
     "VIS-040",
     "VIS-042",
@@ -1670,17 +1654,17 @@
       "category": "wuerfel",
       "category_name": "Würfelspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "existing_individual_material",
+        "level": "individual_world",
         "evidence": [
           "public/games/maexchen/maexchen.css",
           "public/games/maexchen/maexchen.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/maexchen/maexchen.css",
@@ -1726,9 +1710,9 @@
           "sha256": "c5f0c9aa825ef054d4cecd60f5e9df3500a991f9bc9b44d3a96a1342e4997fb6"
         }
       ],
-      "current_design": "Eigenes Becher-SVG, Würfel, Lebensmarker und animierte Aufdeckung.",
+      "current_design": "Kneipen-Blufftisch in Leder und Bernstein: zentraler Becherplatz, öffentliche Ansage und private Einsicht in getrennten Zonen, Zustands-Chips (Becher zu, privat, aufgedeckt).",
       "known_visual_weaknesses": [
-        "Der Becher ist bereits vorhanden; Ansage, Blick unter den Becher und Urteil brauchen eine stärkere gemeinsame Hierarchie."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Verdeckt würfeln, höher ansagen, bluffen oder anzweifeln. Wer alle Leben verliert, ist raus.",
@@ -1782,11 +1766,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/maexchen/desktop-english-rules.jpg",
+        "docs/design/screenshots/maexchen/desktop-lobby.jpg",
+        "docs/design/screenshots/maexchen/desktop-own-action.jpg",
+        "docs/design/screenshots/maexchen/desktop-paused.jpg",
+        "docs/design/screenshots/maexchen/desktop-reconnect.jpg",
+        "docs/design/screenshots/maexchen/desktop-spectator.jpg",
+        "docs/design/screenshots/maexchen/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/maexchen/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/maexchen/desktop-table-360x800.jpg",
+        "docs/design/screenshots/maexchen/desktop-table-390x844.jpg",
+        "docs/design/screenshots/maexchen/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/maexchen/desktop-table-900x450.jpg",
+        "docs/design/screenshots/maexchen/desktop-waiting.jpg",
+        "docs/design/screenshots/maexchen/mobil-english-rules.jpg",
+        "docs/design/screenshots/maexchen/mobil-lobby.jpg",
+        "docs/design/screenshots/maexchen/mobil-own-action.jpg",
+        "docs/design/screenshots/maexchen/mobil-paused.jpg",
+        "docs/design/screenshots/maexchen/mobil-reconnect.jpg",
+        "docs/design/screenshots/maexchen/mobil-spectator.jpg",
+        "docs/design/screenshots/maexchen/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "e1e3dbec74cb40c483dfb4c3f6754081bccb5248"
+      ],
+      "implementation_commit": "e1e3dbec74cb40c483dfb4c3f6754081bccb5248",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-006",
@@ -1795,17 +1806,17 @@
       "category": "wuerfel",
       "category_name": "Würfelspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "existing_individual_material",
+        "level": "individual_world",
         "evidence": [
           "public/games/schocken/schocken.css",
           "public/games/schocken/schocken.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/schocken/schocken.css",
@@ -1851,9 +1862,9 @@
           "sha256": "4888951e9821d3b1179efad54367573f0a8fe64c0240b108767f91493fececf5"
         }
       ],
-      "current_design": "Eigene Würfelschale und Deckelstapel, Halbzeit-/Finaleanzeige und Deckelflug.",
+      "current_design": "Kneipentisch aus patiniertem Holz mit dunkler Würfelmatte: Deckelvorrat, aktive Schale, Halbzeit-Chip und Wurfzähler getrennt.",
       "known_visual_weaknesses": [
-        "Deckelverteilung und Phasen sind vorhanden, aber Materialwirkung und Raumbezug uneinheitlich."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Drei Würfel, bis zu drei Würfe, 13 Deckel. Wer am Ende alle Deckel hat, verliert die Halbzeit.",
@@ -1907,11 +1918,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/schocken/desktop-english-rules.jpg",
+        "docs/design/screenshots/schocken/desktop-lobby.jpg",
+        "docs/design/screenshots/schocken/desktop-own-action.jpg",
+        "docs/design/screenshots/schocken/desktop-paused.jpg",
+        "docs/design/screenshots/schocken/desktop-reconnect.jpg",
+        "docs/design/screenshots/schocken/desktop-spectator.jpg",
+        "docs/design/screenshots/schocken/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/schocken/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/schocken/desktop-table-360x800.jpg",
+        "docs/design/screenshots/schocken/desktop-table-390x844.jpg",
+        "docs/design/screenshots/schocken/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/schocken/desktop-table-900x450.jpg",
+        "docs/design/screenshots/schocken/desktop-waiting.jpg",
+        "docs/design/screenshots/schocken/mobil-english-rules.jpg",
+        "docs/design/screenshots/schocken/mobil-lobby.jpg",
+        "docs/design/screenshots/schocken/mobil-own-action.jpg",
+        "docs/design/screenshots/schocken/mobil-paused.jpg",
+        "docs/design/screenshots/schocken/mobil-reconnect.jpg",
+        "docs/design/screenshots/schocken/mobil-spectator.jpg",
+        "docs/design/screenshots/schocken/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "6ac387c672b5b64db03fbafbed3e1d7e9f4ad519"
+      ],
+      "implementation_commit": "6ac387c672b5b64db03fbafbed3e1d7e9f4ad519",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-007",
@@ -2599,17 +2637,17 @@
       "category": "karten",
       "category_name": "Kartenspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/schwimmen/schwimmen.css",
           "public/games/schwimmen/schwimmen.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/schwimmen/schwimmen.css",
@@ -2649,9 +2687,9 @@
           "sha256": "6dfb7a9e8a5ef038aaf4313accd6b1ce1ec8ae4ef74ae0e473c87f6350f1d0a8"
         }
       ],
-      "current_design": "Drei mittlere Karten, Lebensmarker und Hinweise auf Klopfen/letzte Runde.",
+      "current_design": "Bistrotisch mit drei gestrichelten zentralen Auslageplätzen, Chips für Mittelkarten, Klopfen/letzte Chance und den eigenen Wert.",
       "known_visual_weaknesses": [
-        "Tauschauswahl und letzte Chance sind vorhanden, könnten aber als eigene Bistroszene schneller erfassbar sein."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Drei Karten, eine Farbe zählt: tauschen, schieben, klopfen. 31 gewinnt sofort, die Niedrigsten verlieren Leben.",
@@ -2705,11 +2743,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/schwimmen/desktop-english-rules.jpg",
+        "docs/design/screenshots/schwimmen/desktop-lobby.jpg",
+        "docs/design/screenshots/schwimmen/desktop-own-action.jpg",
+        "docs/design/screenshots/schwimmen/desktop-paused.jpg",
+        "docs/design/screenshots/schwimmen/desktop-reconnect.jpg",
+        "docs/design/screenshots/schwimmen/desktop-spectator.jpg",
+        "docs/design/screenshots/schwimmen/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/schwimmen/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/schwimmen/desktop-table-360x800.jpg",
+        "docs/design/screenshots/schwimmen/desktop-table-390x844.jpg",
+        "docs/design/screenshots/schwimmen/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/schwimmen/desktop-table-900x450.jpg",
+        "docs/design/screenshots/schwimmen/desktop-waiting.jpg",
+        "docs/design/screenshots/schwimmen/mobil-english-rules.jpg",
+        "docs/design/screenshots/schwimmen/mobil-lobby.jpg",
+        "docs/design/screenshots/schwimmen/mobil-own-action.jpg",
+        "docs/design/screenshots/schwimmen/mobil-paused.jpg",
+        "docs/design/screenshots/schwimmen/mobil-reconnect.jpg",
+        "docs/design/screenshots/schwimmen/mobil-spectator.jpg",
+        "docs/design/screenshots/schwimmen/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "9b555588dcfc11ef3b6dcfb11ce31adcfcfd723a"
+      ],
+      "implementation_commit": "9b555588dcfc11ef3b6dcfb11ce31adcfcfd723a",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-011",
@@ -2843,17 +2908,17 @@
       "category": "wuerfel",
       "category_name": "Würfelspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "existing_individual_material",
+        "level": "individual_world",
         "evidence": [
           "public/games/kniffel/kniffel.css",
           "public/games/kniffel/kniffel.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/kniffel/kniffel.css",
@@ -2897,9 +2962,9 @@
           "sha256": "2a4c5ef60fd933ace3fa53f97fc2e0445c6a763057b807fe9d746569a89d31e4"
         }
       ],
-      "current_design": "Würfeltablett und Punkteblatt, gehaltene Würfel sowie Drei-Spalten-Variante.",
+      "current_design": "Würfeltablett neben Papier-Punkteblatt: Chips für Wurf, offene Felder und Dreifachblatt, gestrichene Felder mit ✕, scrollbares Blatt.",
       "known_visual_weaknesses": [
-        "Funktionales Punkteblatt dominiert; Tablett und Auswahlvorschau können materiell und hierarchisch zusammengeführt werden."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Fünf Würfel, drei Würfe, 13 Felder: Pasch, Full House, Straßen, Kniffel. Die höchste Summe gewinnt.",
@@ -2956,11 +3021,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/kniffel/desktop-english-rules.jpg",
+        "docs/design/screenshots/kniffel/desktop-lobby.jpg",
+        "docs/design/screenshots/kniffel/desktop-own-action.jpg",
+        "docs/design/screenshots/kniffel/desktop-paused.jpg",
+        "docs/design/screenshots/kniffel/desktop-reconnect.jpg",
+        "docs/design/screenshots/kniffel/desktop-spectator.jpg",
+        "docs/design/screenshots/kniffel/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/kniffel/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/kniffel/desktop-table-360x800.jpg",
+        "docs/design/screenshots/kniffel/desktop-table-390x844.jpg",
+        "docs/design/screenshots/kniffel/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/kniffel/desktop-table-900x450.jpg",
+        "docs/design/screenshots/kniffel/desktop-waiting.jpg",
+        "docs/design/screenshots/kniffel/mobil-english-rules.jpg",
+        "docs/design/screenshots/kniffel/mobil-lobby.jpg",
+        "docs/design/screenshots/kniffel/mobil-own-action.jpg",
+        "docs/design/screenshots/kniffel/mobil-paused.jpg",
+        "docs/design/screenshots/kniffel/mobil-reconnect.jpg",
+        "docs/design/screenshots/kniffel/mobil-spectator.jpg",
+        "docs/design/screenshots/kniffel/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "a46ff63ac47691e04b8c6274c7069a2509f9aec5"
+      ],
+      "implementation_commit": "a46ff63ac47691e04b8c6274c7069a2509f9aec5",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-013",
@@ -3097,17 +3189,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/viergewinnt/viergewinnt.css",
           "public/games/viergewinnt/viergewinnt.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/viergewinnt/viergewinnt.css",
@@ -3150,9 +3242,9 @@
           "sha256": "4912dfe5c023744d3a088adb68a9fc28ebed7c6de4b54e8baf05802f3e0bc41b"
         }
       ],
-      "current_design": "Eigener blauer Rahmen, Scheiben, Zielvorschau und gewinnende Reihe.",
+      "current_design": "Physischer Spielrahmen mit Holz-Standfuß (dekorativ): Chips für Raster, Reihenlänge, Pop-Out und eigene Farbe; Gewinnreihe mit Stern und Rand auch ohne Animation.",
       "known_visual_weaknesses": [
-        "Brett bereits funktional gestaltet; Material, Standfuß und Variantenhinweise noch nicht als vollständiger Spielrahmen."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Steine in Spalten fallen lassen – wer zuerst vier in einer Reihe hat, gewinnt.",
@@ -3210,11 +3302,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/viergewinnt/desktop-english-rules.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-lobby.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-own-action.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-paused.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-reconnect.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-result.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-spectator.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-table-360x800.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-table-390x844.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-table-900x450.jpg",
+        "docs/design/screenshots/viergewinnt/desktop-waiting.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-english-rules.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-lobby.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-own-action.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-paused.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-reconnect.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-result.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-spectator.jpg",
+        "docs/design/screenshots/viergewinnt/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "baa493a3e02c40c250093156d2f4d2bda2ac57df"
+      ],
+      "implementation_commit": "baa493a3e02c40c250093156d2f4d2bda2ac57df",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-015",
@@ -3376,17 +3497,17 @@
       "category": "wuerfel",
       "category_name": "Würfelspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/zehntausend/zehntausend.css",
           "public/games/zehntausend/zehntausend.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/zehntausend/zehntausend.css",
@@ -3432,9 +3553,9 @@
           "sha256": "be5eca37d853646d2d28bc5b69be36f3aa869b4a61d1e2dfcf4b835f486acf97"
         }
       ],
-      "current_design": "Würfelauswahl, bereits herausgelegte Gruppen und Fortschrittsbalken bis zum Ziel.",
+      "current_design": "Würfelarena: gestrichelte Risikozone für die Zugpunkte, gesicherte Punkte als eigener Chip, Rangliste nachrangig unter den aktuellen Würfeln.",
       "known_visual_weaknesses": [
-        "Risiko, Zugpunkte und gesicherte Punkte teilen sich die Fläche ohne eigene Tischgeschichte."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Sechs Würfel: Einser, Fünfer und Päsche herauslegen, weiterzocken oder anschreiben. Wer zuerst 10.000 hat, gewinnt.",
@@ -3488,11 +3609,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/zehntausend/desktop-english-rules.jpg",
+        "docs/design/screenshots/zehntausend/desktop-lobby.jpg",
+        "docs/design/screenshots/zehntausend/desktop-own-action.jpg",
+        "docs/design/screenshots/zehntausend/desktop-paused.jpg",
+        "docs/design/screenshots/zehntausend/desktop-reconnect.jpg",
+        "docs/design/screenshots/zehntausend/desktop-spectator.jpg",
+        "docs/design/screenshots/zehntausend/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/zehntausend/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/zehntausend/desktop-table-360x800.jpg",
+        "docs/design/screenshots/zehntausend/desktop-table-390x844.jpg",
+        "docs/design/screenshots/zehntausend/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/zehntausend/desktop-table-900x450.jpg",
+        "docs/design/screenshots/zehntausend/desktop-waiting.jpg",
+        "docs/design/screenshots/zehntausend/mobil-english-rules.jpg",
+        "docs/design/screenshots/zehntausend/mobil-lobby.jpg",
+        "docs/design/screenshots/zehntausend/mobil-own-action.jpg",
+        "docs/design/screenshots/zehntausend/mobil-paused.jpg",
+        "docs/design/screenshots/zehntausend/mobil-reconnect.jpg",
+        "docs/design/screenshots/zehntausend/mobil-spectator.jpg",
+        "docs/design/screenshots/zehntausend/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "4bcd1752855e7510a1b40a2a876c45dcfd35f34e"
+      ],
+      "implementation_commit": "4bcd1752855e7510a1b40a2a876c45dcfd35f34e",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-017",
@@ -3779,17 +3927,17 @@
       "category": "party",
       "category_name": "Party Spiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/schlagfertig/schlagfertig.css",
           "public/games/schlagfertig/schlagfertig.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/schlagfertig/schlagfertig.css",
@@ -3837,9 +3985,9 @@
           "sha256": "97f235e0ce8efdbe3925cbad5ec9107789ff6fc8b8e9d7d330e5cbd414efacc3"
         }
       ],
-      "current_design": "Aufgabenkarten, verdeckte Texteingabe, Antwortduelle und Ergebnispaare.",
+      "current_design": "Comedy-Bühne im warmen Spotlicht: Aufgabe und zwei Antworten als Duellraum mit „VS“-Marke, Papierkarten, Stimm-Chips; Autorinformation erst bei der Auflösung.",
       "known_visual_weaknesses": [
-        "Antwortduelle haben Struktur, aber Schreibphase, Wahl und Pointe noch keine eigenständige Bühnenwirkung."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Lustige Aufgaben, zwei Antworten, alle stimmen ab, wer die bessere hatte.",
@@ -3893,11 +4041,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/schlagfertig/desktop-english-rules.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-lobby.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-own-action.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-paused.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-reconnect.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-result.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-spectator.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-table-360x800.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-table-390x844.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-table-900x450.jpg",
+        "docs/design/screenshots/schlagfertig/desktop-waiting.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-english-rules.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-lobby.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-own-action.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-paused.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-reconnect.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-result.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-spectator.jpg",
+        "docs/design/screenshots/schlagfertig/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "00c0ee13310f7ba485b211cd8af7619e43de52ac"
+      ],
+      "implementation_commit": "00c0ee13310f7ba485b211cd8af7619e43de52ac",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-020",
@@ -4203,17 +4380,17 @@
       "category": "karten",
       "category_name": "Kartenspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/praesident/praesident.css",
           "public/games/praesident/praesident.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/praesident/praesident.css",
@@ -4248,9 +4425,9 @@
           "sha256": "c5f5787dd6ab6551cf15e0ad1230b7b9edd140926f1e39b50b502a0be4d312d6"
         }
       ],
-      "current_design": "Zentrale Kartenkombination, Rangstatus und ausspielbare eigene Karten.",
+      "current_design": "Zurückhaltender weinroter Clubtisch: aktuelle Kombination, freie Ausspielrunde und offene Plätze als Chips getrennt von der Tischmitte.",
       "known_visual_weaknesses": [
-        "Die Kombination ist lesbar; Hierarchie der Plätze und Passrunde fehlt als eigene visuelle Identität."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Wer zuerst alle Karten los ist, wird Präsident – wer zuletzt übrig bleibt, hat das Nachsehen.",
@@ -4304,11 +4481,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/praesident/desktop-english-rules.jpg",
+        "docs/design/screenshots/praesident/desktop-lobby.jpg",
+        "docs/design/screenshots/praesident/desktop-own-action.jpg",
+        "docs/design/screenshots/praesident/desktop-paused.jpg",
+        "docs/design/screenshots/praesident/desktop-reconnect.jpg",
+        "docs/design/screenshots/praesident/desktop-spectator.jpg",
+        "docs/design/screenshots/praesident/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/praesident/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/praesident/desktop-table-360x800.jpg",
+        "docs/design/screenshots/praesident/desktop-table-390x844.jpg",
+        "docs/design/screenshots/praesident/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/praesident/desktop-table-900x450.jpg",
+        "docs/design/screenshots/praesident/desktop-waiting.jpg",
+        "docs/design/screenshots/praesident/mobil-english-rules.jpg",
+        "docs/design/screenshots/praesident/mobil-lobby.jpg",
+        "docs/design/screenshots/praesident/mobil-own-action.jpg",
+        "docs/design/screenshots/praesident/mobil-paused.jpg",
+        "docs/design/screenshots/praesident/mobil-reconnect.jpg",
+        "docs/design/screenshots/praesident/mobil-spectator.jpg",
+        "docs/design/screenshots/praesident/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "8bfb0311846bceb068df6ca3d1293b33588a7a2e"
+      ],
+      "implementation_commit": "8bfb0311846bceb068df6ca3d1293b33588a7a2e",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-023",
@@ -4707,17 +4911,17 @@
       "category": "wuerfel",
       "category_name": "Würfelspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/luegenwuerfel/luegenwuerfel.css",
           "public/games/luegenwuerfel/luegenwuerfel.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/luegenwuerfel/luegenwuerfel.css",
@@ -4758,9 +4962,9 @@
           "sha256": "1517314b614f48243423fb78acca43b6af12f0f9221f375c45ad8974268f4a68"
         }
       ],
-      "current_design": "Privater Würfelbecher, öffentliche Gebotsanzeige und gemeinsame spätere Aufdeckung.",
+      "current_design": "Geheimer Würfelclub in dunklem Leder: öffentliches Gebot als kupferne Plakette in der Mitte, eigener Becher als abgesetzte private Zone mit Schloss-Hinweis.",
       "known_visual_weaknesses": [
-        "Privates Wissen und öffentliches Gebot liegen nahe beieinander; Bechermaterial und Beweisphase können prägnanter sein."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Verdeckt würfeln, Gebote über alle Würfel am Tisch abgeben und Lügen aufdecken.",
@@ -4814,11 +5018,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/luegenwuerfel/desktop-english-rules.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-lobby.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-own-action.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-paused.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-reconnect.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-result.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-spectator.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-table-360x800.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-table-390x844.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-table-900x450.jpg",
+        "docs/design/screenshots/luegenwuerfel/desktop-waiting.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-english-rules.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-lobby.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-own-action.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-paused.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-reconnect.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-result.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-spectator.jpg",
+        "docs/design/screenshots/luegenwuerfel/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "97c47685dd42be0b83fd7d7ace45fd01954b7caa"
+      ],
+      "implementation_commit": "97c47685dd42be0b83fd7d7ace45fd01954b7caa",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-027",
@@ -4972,17 +5205,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "existing_individual_material",
+        "level": "individual_world",
         "evidence": [
           "public/games/reversi/reversi.css",
           "public/games/reversi/reversi.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/reversi/reversi.css",
@@ -5023,9 +5256,9 @@
           "sha256": "5f4533e5b16c8d90dae697240c74122b36affb5187061694256d937910e785eb"
         }
       ],
-      "current_design": "Eigenes zweifarbiges Brett mit legalen Zielen und Umdrehanimation.",
+      "current_design": "Turnierbrett in tiefem Grün: Zählung als Chips außerhalb des Rasters, letzter Stein mit Punkt, umgedrehte Steine gestrichelt markiert, Hinweis „aussetzen“.",
       "known_visual_weaknesses": [
-        "Brett ist bereits gestaltet; Raum, Randbeschriftung und Steinmaterial können ruhiger und einheitlicher werden."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Gegnerische Steine einschließen und umdrehen – am Ende zählt, wem mehr Steine gehören.",
@@ -5079,11 +5312,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/reversi/desktop-english-rules.jpg",
+        "docs/design/screenshots/reversi/desktop-lobby.jpg",
+        "docs/design/screenshots/reversi/desktop-own-action.jpg",
+        "docs/design/screenshots/reversi/desktop-paused.jpg",
+        "docs/design/screenshots/reversi/desktop-reconnect.jpg",
+        "docs/design/screenshots/reversi/desktop-result.jpg",
+        "docs/design/screenshots/reversi/desktop-spectator.jpg",
+        "docs/design/screenshots/reversi/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/reversi/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/reversi/desktop-table-360x800.jpg",
+        "docs/design/screenshots/reversi/desktop-table-390x844.jpg",
+        "docs/design/screenshots/reversi/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/reversi/desktop-table-900x450.jpg",
+        "docs/design/screenshots/reversi/desktop-waiting.jpg",
+        "docs/design/screenshots/reversi/mobil-english-rules.jpg",
+        "docs/design/screenshots/reversi/mobil-lobby.jpg",
+        "docs/design/screenshots/reversi/mobil-own-action.jpg",
+        "docs/design/screenshots/reversi/mobil-paused.jpg",
+        "docs/design/screenshots/reversi/mobil-reconnect.jpg",
+        "docs/design/screenshots/reversi/mobil-result.jpg",
+        "docs/design/screenshots/reversi/mobil-spectator.jpg",
+        "docs/design/screenshots/reversi/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "d5de30dc4563a0ad675e0fb0d7288c83ce6cf1b7"
+      ],
+      "implementation_commit": "d5de30dc4563a0ad675e0fb0d7288c83ce6cf1b7",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-029",
@@ -5092,17 +5354,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "existing_individual_material",
+        "level": "individual_world",
         "evidence": [
           "public/games/dame/dame.css",
           "public/games/dame/dame.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/dame/dame.css",
@@ -5146,9 +5408,9 @@
           "sha256": "e453b602597e9b0997f0b04c0e918f6f15e2b56b1a9a29c7dba0c62d4601c5be"
         }
       ],
-      "current_design": "8×8-Brett mit erlaubten Zielen, ausgewählter Figur und Damenkrone.",
+      "current_design": "Turnierbrett aus Nussbaum mit heller Einlage: Chips für Steine/Damen, Mehrfachschlag-Hinweis, gewählte Figur, Ziel und letzter Zug unterscheidbar.",
       "known_visual_weaknesses": [
-        "Figuren sind klar, aber Schlagefolgen und Aufstieg brauchen stärker erkennbare visuelle Zustände."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Deutsche Dame auf dem 8×8-Brett: schlagen, bis nichts mehr geht.",
@@ -5202,11 +5464,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/dame/desktop-english-rules.jpg",
+        "docs/design/screenshots/dame/desktop-lobby.jpg",
+        "docs/design/screenshots/dame/desktop-own-action.jpg",
+        "docs/design/screenshots/dame/desktop-paused.jpg",
+        "docs/design/screenshots/dame/desktop-reconnect.jpg",
+        "docs/design/screenshots/dame/desktop-spectator.jpg",
+        "docs/design/screenshots/dame/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/dame/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/dame/desktop-table-360x800.jpg",
+        "docs/design/screenshots/dame/desktop-table-390x844.jpg",
+        "docs/design/screenshots/dame/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/dame/desktop-table-900x450.jpg",
+        "docs/design/screenshots/dame/desktop-waiting.jpg",
+        "docs/design/screenshots/dame/mobil-english-rules.jpg",
+        "docs/design/screenshots/dame/mobil-lobby.jpg",
+        "docs/design/screenshots/dame/mobil-own-action.jpg",
+        "docs/design/screenshots/dame/mobil-paused.jpg",
+        "docs/design/screenshots/dame/mobil-reconnect.jpg",
+        "docs/design/screenshots/dame/mobil-spectator.jpg",
+        "docs/design/screenshots/dame/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "688b8c81a904b2f21e802483fa1806ff8e9b6440"
+      ],
+      "implementation_commit": "688b8c81a904b2f21e802483fa1806ff8e9b6440",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-030",
@@ -5215,17 +5504,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/domino/domino.css",
           "public/games/domino/domino.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/domino/domino.css",
@@ -5265,9 +5554,9 @@
           "sha256": "14c7fcd4b09bbc99723689f119d07f0bd3371358d5d71882876add98a139d68a"
         }
       ],
-      "current_design": "Steinkette mit Doppelsteinen, Augendarstellung und eigener Steinauswahl.",
+      "current_design": "Elfenbein-Dominotisch auf dunklem Textil: Kette im eigenen horizontalen Band mit beschrifteten Enden (links/rechts), Doppelsteine quer, Vorrat als getrennter Stapel.",
       "known_visual_weaknesses": [
-        "Lange Ketten sind funktional scrollbar, aber ohne gestaltete räumliche Führung."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Steine mit gleichen Augen aneinanderlegen – wer zuerst alle los ist, gewinnt die Runde.",
@@ -5321,11 +5610,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/domino/desktop-english-rules.jpg",
+        "docs/design/screenshots/domino/desktop-lobby.jpg",
+        "docs/design/screenshots/domino/desktop-own-action.jpg",
+        "docs/design/screenshots/domino/desktop-paused.jpg",
+        "docs/design/screenshots/domino/desktop-reconnect.jpg",
+        "docs/design/screenshots/domino/desktop-result.jpg",
+        "docs/design/screenshots/domino/desktop-spectator.jpg",
+        "docs/design/screenshots/domino/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/domino/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/domino/desktop-table-360x800.jpg",
+        "docs/design/screenshots/domino/desktop-table-390x844.jpg",
+        "docs/design/screenshots/domino/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/domino/desktop-table-900x450.jpg",
+        "docs/design/screenshots/domino/desktop-waiting.jpg",
+        "docs/design/screenshots/domino/mobil-english-rules.jpg",
+        "docs/design/screenshots/domino/mobil-lobby.jpg",
+        "docs/design/screenshots/domino/mobil-own-action.jpg",
+        "docs/design/screenshots/domino/mobil-paused.jpg",
+        "docs/design/screenshots/domino/mobil-reconnect.jpg",
+        "docs/design/screenshots/domino/mobil-result.jpg",
+        "docs/design/screenshots/domino/mobil-spectator.jpg",
+        "docs/design/screenshots/domino/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "71301e0299da3ebb075addf89080347f667aa412"
+      ],
+      "implementation_commit": "71301e0299da3ebb075addf89080347f667aa412",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-031",
@@ -5334,18 +5652,18 @@
       "category": "party",
       "category_name": "Party Spiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/zahlenzoo/logic.js",
           "public/games/zahlenzoo/zahlenzoo.css",
           "public/games/zahlenzoo/zahlenzoo.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/zahlenzoo/logic.js",
@@ -5384,9 +5702,9 @@
           "sha256": "eaac66653de6948f5c76bd165a1ddb3af68ac0c4a2051c30f605b99a731a9f3d"
         }
       ],
-      "current_design": "Solo-Aufgabe mit Tier-Icons in Reihen, laufender Aufgabe und Ergebnisanzeige.",
+      "current_design": "Freundlicher Tierpark: Gehege-Zeilen mit Tiernamen auf Papiergrund, Zeit- und Tierart-Chips, Rechenfrage getrennt von den Tieren.",
       "known_visual_weaknesses": [
-        "Tier-Icons sind vorhanden; die Szene bleibt ein kompaktes Symbolfeld ohne eigene Zoowelt."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Tiere huschen über das Bild – wer sie am besten zählt und verrechnet, gewinnt.",
@@ -5440,11 +5758,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/zahlenzoo/desktop-english-rules.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-lobby.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-own-action.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-paused.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-reconnect.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-result.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-spectator.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-table-360x800.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-table-390x844.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-table-900x450.jpg",
+        "docs/design/screenshots/zahlenzoo/desktop-waiting.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-english-rules.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-lobby.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-own-action.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-paused.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-reconnect.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-result.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-spectator.jpg",
+        "docs/design/screenshots/zahlenzoo/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "07112dfca17c48bf5fc195b9200614c3d0de433e"
+      ],
+      "implementation_commit": "07112dfca17c48bf5fc195b9200614c3d0de433e",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-032",
@@ -5753,18 +6100,18 @@
       "category": "party",
       "category_name": "Party Spiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/sortierstation/logic.js",
           "public/games/sortierstation/sortierstation.css",
           "public/games/sortierstation/sortierstation.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/sortierstation/logic.js",
@@ -5808,9 +6155,9 @@
           "sha256": "1412d611534e3cc540c111ec07f09fcf3b92487c9d667e49851318667ca253b6"
         }
       ],
-      "current_design": "Laufband mit Gegenständen, Regelhinweis und kategorisierten Kisten.",
+      "current_design": "Illustrierte Versandstation: Regelband (Warnstreifen) immer am gleichen Ort, Förderband und drei Zielkisten als feste Reihe, Punkte- und Zeit-Chips.",
       "known_visual_weaknesses": [
-        "Objekte und Kisten sind funktional, die Sortierwelt und Regeln könnten typografisch klarer sein."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Gegenstände auf einem Band in die richtigen Kisten sortieren, bevor sie vorbeigefahren sind.",
@@ -5864,11 +6211,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/sortierstation/desktop-english-rules.jpg",
+        "docs/design/screenshots/sortierstation/desktop-lobby.jpg",
+        "docs/design/screenshots/sortierstation/desktop-own-action.jpg",
+        "docs/design/screenshots/sortierstation/desktop-paused.jpg",
+        "docs/design/screenshots/sortierstation/desktop-reconnect.jpg",
+        "docs/design/screenshots/sortierstation/desktop-result.jpg",
+        "docs/design/screenshots/sortierstation/desktop-spectator.jpg",
+        "docs/design/screenshots/sortierstation/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/sortierstation/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/sortierstation/desktop-table-360x800.jpg",
+        "docs/design/screenshots/sortierstation/desktop-table-390x844.jpg",
+        "docs/design/screenshots/sortierstation/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/sortierstation/desktop-table-900x450.jpg",
+        "docs/design/screenshots/sortierstation/desktop-waiting.jpg",
+        "docs/design/screenshots/sortierstation/mobil-english-rules.jpg",
+        "docs/design/screenshots/sortierstation/mobil-lobby.jpg",
+        "docs/design/screenshots/sortierstation/mobil-own-action.jpg",
+        "docs/design/screenshots/sortierstation/mobil-paused.jpg",
+        "docs/design/screenshots/sortierstation/mobil-reconnect.jpg",
+        "docs/design/screenshots/sortierstation/mobil-result.jpg",
+        "docs/design/screenshots/sortierstation/mobil-spectator.jpg",
+        "docs/design/screenshots/sortierstation/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "332faeb76eef6005cf3975f306df54f9ef844de4"
+      ],
+      "implementation_commit": "332faeb76eef6005cf3975f306df54f9ef844de4",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-035",
@@ -6272,17 +6648,17 @@
       "category": "party",
       "category_name": "Party Spiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "shared_theme_with_custom_components",
+        "level": "individual_world",
         "evidence": [
           "public/games/kritzelpost/kritzelpost.css",
           "public/games/kritzelpost/kritzelpost.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/kritzelpost/kritzelpost.css",
@@ -6311,9 +6687,9 @@
           "sha256": "6d87157412e11f1d575e0dc785a23f8f9a0fdd4e9b9f199874e308fc252a4ba2"
         }
       ],
-      "current_design": "Gemeinsamer Zeicheneditor, Textphasen und aufklappbare aufgelöste Ketten.",
+      "current_design": "Postatelier: Aufgabe als Papierkarte mit Siegel, große Zeichenfläche im Papierrahmen, Ketten als Poststrecke (nur Kritzelpost; gemeinsame Zeichen-Bausteine unverändert).",
       "known_visual_weaknesses": [
-        "Gemeinsame Zeichenwerkzeuge sind gut bedienbar; die Brief-/Kettenerzählung ist visuell noch generisch."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Ein Begriff wandert als Bild und Beschreibung durch die Runde.",
@@ -6367,11 +6743,38 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/kritzelpost/desktop-english-rules.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-lobby.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-own-action.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-paused.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-reconnect.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-spectator.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-table-360x800.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-table-390x844.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-table-900x450.jpg",
+        "docs/design/screenshots/kritzelpost/desktop-waiting.jpg",
+        "docs/design/screenshots/kritzelpost/mobil-english-rules.jpg",
+        "docs/design/screenshots/kritzelpost/mobil-lobby.jpg",
+        "docs/design/screenshots/kritzelpost/mobil-own-action.jpg",
+        "docs/design/screenshots/kritzelpost/mobil-paused.jpg",
+        "docs/design/screenshots/kritzelpost/mobil-reconnect.jpg",
+        "docs/design/screenshots/kritzelpost/mobil-spectator.jpg",
+        "docs/design/screenshots/kritzelpost/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "e3356377004c0e01aeae3044be78ec2154008115"
+      ],
+      "implementation_commit": "e3356377004c0e01aeae3044be78ec2154008115",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-039",
@@ -7451,17 +7854,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "existing_individual_material",
+        "level": "individual_world",
         "evidence": [
           "public/games/hex/hex.css",
           "public/games/hex/hex.js"
         ],
-        "assessment": "Vorhandene Gestaltungsarbeit bleibt als Basis erhalten; das neue individuelle Paket ist noch nicht umgesetzt."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/hex/hex.css",
@@ -7501,9 +7904,9 @@
           "sha256": "8667e353bfa68b8ef3e69df578d707d8f3853d91793c8edaba16cf763b7e30d6"
         }
       ],
-      "current_design": "Eigenes verschiebbares 9×9-/11×11-Sechseckbrett mit Randzielen und Gewinnpfad.",
+      "current_design": "Geometrisches Strategiespiel in Blau/Rot und Stein: Zielränder als farbiger Schlüssel, Chips für Brettgröße, eigene Seite und Seitenwechsel, verschiebbares Brett.",
       "known_visual_weaknesses": [
-        "Geometrie ist bereits verbessert; Randziele, Material und Seitenwechsel können als Turnierbrett präziser werden."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Individueller Quellcode-/Komponentenaudit der angegebenen Dateien. Optische Verbesserungsziele sind Designbeurteilungen, keine nachgewiesenen Gameplay-Bugs. Eigene Vorher-Sichtprüfung ist vor der späteren Umsetzung erforderlich.",
       "gameplay_summary": "Verbinde deine beiden Ränder auf einem Hex-Brett. Jeder Stein zählt, ein Remis gibt es nicht.",
@@ -7557,11 +7960,40 @@
         "VIS-001"
       ],
       "gameplay_prerequisite": null,
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/hex/desktop-english-rules.jpg",
+        "docs/design/screenshots/hex/desktop-lobby.jpg",
+        "docs/design/screenshots/hex/desktop-own-action.jpg",
+        "docs/design/screenshots/hex/desktop-paused.jpg",
+        "docs/design/screenshots/hex/desktop-reconnect.jpg",
+        "docs/design/screenshots/hex/desktop-result.jpg",
+        "docs/design/screenshots/hex/desktop-spectator.jpg",
+        "docs/design/screenshots/hex/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/hex/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/hex/desktop-table-360x800.jpg",
+        "docs/design/screenshots/hex/desktop-table-390x844.jpg",
+        "docs/design/screenshots/hex/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/hex/desktop-table-900x450.jpg",
+        "docs/design/screenshots/hex/desktop-waiting.jpg",
+        "docs/design/screenshots/hex/mobil-english-rules.jpg",
+        "docs/design/screenshots/hex/mobil-lobby.jpg",
+        "docs/design/screenshots/hex/mobil-own-action.jpg",
+        "docs/design/screenshots/hex/mobil-paused.jpg",
+        "docs/design/screenshots/hex/mobil-reconnect.jpg",
+        "docs/design/screenshots/hex/mobil-result.jpg",
+        "docs/design/screenshots/hex/mobil-spectator.jpg",
+        "docs/design/screenshots/hex/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "1ed9f2d5e2f4d3287ba9d8999070efba86449720"
+      ],
+      "implementation_commit": "1ed9f2d5e2f4d3287ba9d8999070efba86449720",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-049",
@@ -14802,6 +15234,29 @@
       ],
       "implementation_commit": "a191c5dac26704e9ade536b65ce4969803c9f273",
       "note": "P1-Pakete in suggested_development_order; jedes Spiel mit eigenem Commit (siehe commits je Paket)."
+    },
+    {
+      "id": "2026-11-07-p2-first-half",
+      "implemented": [
+        "VIS-030",
+        "VIS-026",
+        "VIS-005",
+        "VIS-022",
+        "VIS-019",
+        "VIS-010",
+        "VIS-034",
+        "VIS-014",
+        "VIS-031",
+        "VIS-028",
+        "VIS-006",
+        "VIS-016",
+        "VIS-029",
+        "VIS-048",
+        "VIS-012",
+        "VIS-038"
+      ],
+      "implementation_commit": "71301e0299da3ebb075addf89080347f667aa412",
+      "note": "Erste Hälfte der P2-Pakete (16) in der Reihenfolge von suggested_development_order; jedes Spiel mit eigenem Commit (siehe commits je Paket)."
     }
   ]
 }

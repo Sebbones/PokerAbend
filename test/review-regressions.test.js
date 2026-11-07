@@ -169,7 +169,7 @@ test('Schocken-Oberfläche: Fertig erst nach dem Pflichtwurf, feste Würfel sind
   let def;
   runInNewContext(readFileSync(new URL('../public/games/schocken/schocken.js', import.meta.url), 'utf8'), i18nContext({
     kitGame: (d) => { def = d; return { render() {} }; },
-    esc: String, uiText: String,
+    esc: String, uiText: String, WorldKit: { t: (de) => de, chip: () => '', head: () => '' }, // Spielwelt-Kopf ist für diese Prüfung ohne Belang
     dieHTML: (_d, { attrs = '' }) => `<button ${attrs}></button>`,
   }));
   const r = new Schocken('UI', { sixToOne: true }, () => {});
