@@ -1,7 +1,7 @@
 {
   "task": "BACKLOG-05",
   "game": "exploding-deck",
-  "implementation_commit": null,
+  "implementation_commit": "79208e19d99f4526f405d4e7305bac2df6f582e2",
   "date": "2026-11-03",
   "tests": [
     {
@@ -24,88 +24,180 @@
       "passed": 10,
       "failed": 0,
       "coverage": "80 full games, all player counts and levels, secret JSON and deterministic worker projection"
+    },
+    {
+      "command": "playwright test test/ui/backlog-05-end.spec.js",
+      "passed_for_game": 2,
+      "total_passed": 4,
+      "failed": 0,
+      "log": "artifacts/backlog-05-end-ui.log",
+      "coverage": "Normal final survivor / correct accusation or location guess with real bots and human views, desktop and mobile"
+    },
+    {
+      "command": "Exploding-Deck desktop/mobile style final recheck",
+      "passed": 2,
+      "failed": 0,
+      "duration_seconds": 30.1,
+      "log": "artifacts/backlog-05-exploding-style-final.log"
+    },
+    {
+      "command": "Exploding-Deck desktop/mobile actual-draw test after corrected driver",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 19.346,
+      "log": "artifacts/backlog-05-exploding-current.log",
+      "report": "artifacts/backlog-05-exploding-current-report.json",
+      "date": "2026-11-07"
     }
   ],
   "screenshots": [
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-english-rules.png",
-      "sha256": "20a4e1810f2eb6758e5e3ae94ced33b3714b4a2d6fa2a9b12f5f1506cbf9d177"
+      "sha256": "69f89b97e457b916c80dcf6faf900ab0899342bdc59e620d547852e56f1f8560"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-hand.png",
-      "sha256": "38c00a563c09da5d63f14fe1d5e7de55061840572735265f63d8e47b9d2a73fb"
+      "sha256": "1f79f7690e1917b4912ffc6ba719c00fdf92af9597b5298e84d17f96bfaa91d7"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-in-play.png",
-      "sha256": "c5351440bcac2211e3ab5a727727e77997cfb9f85e3bd80d83ae58d027210ed2"
+      "sha256": "b4f8c4d61253c80c53b23312f09bafdec636069aad7243047c6271a207aea381"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-lobby.png",
-      "sha256": "4dd94ff5dc578b5b874cdb5cc934201295f869d8274509007c1f154bd40ae06d"
+      "sha256": "16f0ab82f48439758795f0800c5d2270a3531ab9d34a1d8ab6764224239d243b"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-paused.png",
-      "sha256": "392f643164e1b30c9322f50e63e128f2ba9aae827809ab9b3df273565622aa69"
+      "sha256": "3eb9616cc52c3016ee0cc121953c6e9222dd757e648dbb584f12cdd66cd01d33"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-reconnect.png",
-      "sha256": "7929b7a0b567c8395ac100d8df215566d5d8f1bb20c94243484cddf4ef8cbd4d"
+      "sha256": "1a808c048cefe1d8e86b86b131ab510e3356f1cf94e8a348dd4b60cbf4298815"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/desktop-result.png",
+      "sha256": "63752b315041761952bad1cf088b9d873ee5acdb4eda6fc685a6cb2abce615e7"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-spectator.png",
-      "sha256": "07c10a6a13bfe9295cd8ea59e59127dda69995a5a286e175c1e8aad15d70b78e"
+      "sha256": "57f649b37c5fdd1e45e472155a96533b859f17f7a00cd288c43ab1ec2b640fdf"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-workshop-1440x900.png",
-      "sha256": "c5351440bcac2211e3ab5a727727e77997cfb9f85e3bd80d83ae58d027210ed2"
+      "sha256": "50b72c760691b378fc56ef01f8a8c38946b1fd09880b4f28266062c44a695d27"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-workshop-1920x1080.png",
-      "sha256": "5459008317b06236e32b98b898aae8eda32e4e2b21c68d548d0ff94cbdfb4949"
+      "sha256": "a85add27b33586eb9170658146e0e39c319c1914ba26442c211dbdad2deb0caf"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-workshop-360x800.png",
-      "sha256": "256233ecbae16d6cd0fdecb1429e42f09a0fcb337f81150cb57480a971cb2f4c"
+      "sha256": "8187b7bdb9381cd272b3ee4ce602d156098f0f19f140f6d03e1c4c202aea4bf5"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-workshop-390x844.png",
-      "sha256": "2ea8c679b306944027bb3ff7221f3314a4d0cd1e48976415dbf5aadf171b3922"
+      "sha256": "1738da2101871a1afc0e51564c43237d7480f1dc9574f8e6693a61da49977f08"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-workshop-768x1024.png",
-      "sha256": "7726c8fbb33b9b33d84e848c257f2af4bc8c8dca069f2d8a98425f7115d57a71"
+      "sha256": "6bbb229bd289e2704889310ce24ddc3c2c126a563ea44e3b7a53d8a4af45900d"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/desktop-workshop-900x450.png",
-      "sha256": "1a43e6824e8e5d4575e22ed3d18f543f299a89c8e211f92a3238257dc7c01d8e"
+      "sha256": "6881c7abb03089b83a230f70b41158bc6b5ea2a5833d2bbcb0e41f6dec045559"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/mobil-english-rules.png",
-      "sha256": "ba33faf9e1e13408464597ea39dcd824e8b3d30d283374ee602c2374a3c10565"
+      "sha256": "2e2a87592fb2f902fcd3d67d9a866669f59b6cf42b1642bfe072bd4c3ccc8eab"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/mobil-hand.png",
-      "sha256": "5858d72be4b59a7e87e3261b4a65ee5826e5c43dd1c70c971b5f64e11d7f117f"
+      "sha256": "5ade14d2c8959a9c91d4b09a41704e2a43bc6e07afa832f66ff4407cdcac0af5"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/mobil-in-play.png",
-      "sha256": "10b397092d08ebf4c2184e8391cfb3da7417a44e6ab00f5c35dfd9e2d9f1d0b4"
+      "sha256": "fcb3f1b7a2bc11842c94ab89a9fe8b65edba18933b146206c761bdc84bbf057c"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/mobil-lobby.png",
-      "sha256": "c749b25a7ce95d78c4f7e8bf5e172c3192d5cdb44bbef620baa27f4afb461fb4"
+      "sha256": "e113c74edb4f38d580e0b598898f650c42e4a12b0d495da8db2de734b9a2e773"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/mobil-paused.png",
-      "sha256": "5ee94f00923eb255c996c7644f78bbfe603b74c505a254d3a21d434d43543482"
+      "sha256": "393bb70da7cc2f8762ef240dfe43b94fa7df9dbad024a0b826b6953ddbd3fdd8"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/mobil-reconnect.png",
-      "sha256": "10b397092d08ebf4c2184e8391cfb3da7417a44e6ab00f5c35dfd9e2d9f1d0b4"
+      "sha256": "260e5943997d0a469512e0d4c19df49778879605fb97aa94460fe8b9d4f9da50"
+    },
+    {
+      "path": "docs/design/screenshots/exploding-deck/mobil-result.png",
+      "sha256": "b5719cb53d7de02992f281f289f6332eb09703caf4284119d1081e69194ef2d5"
     },
     {
       "path": "docs/design/screenshots/exploding-deck/mobil-spectator.png",
-      "sha256": "7796809492c65f7b37fd9e81fac08329e97e35303549c0f073b135fd802d3669"
+      "sha256": "667548ce8091c6e2564b17b2a9025b6d27cb01fcca877e29448112bab897a5f6"
     }
-  ]
+  ],
+  "source_audit": [
+    {
+      "path": "games/exploding-deck/bot.js",
+      "sha256": "2b79270cc5e159c93b5a9405289f9407c31ff66c4eddc6cc8a4cb533998e44a7"
+    },
+    {
+      "path": "games/exploding-deck/cards.js",
+      "sha256": "9e3acc0f718f82d2cd48bfc942ab2241e5861c19353c3b05dde0c68ba4444ce4"
+    },
+    {
+      "path": "games/exploding-deck/index.js",
+      "sha256": "f96ccb7728012edf6d511e4235823808075b182bf212a7436711d56df1dc3e23"
+    },
+    {
+      "path": "games/exploding-deck/room.js",
+      "sha256": "85f79875900e0c39f0681d4fc5a5b9c9f32137fb5bd3173a2f6a2d2d3fad28db"
+    },
+    {
+      "path": "games/exploding-deck/rules.test.js",
+      "sha256": "f0f12b931c75b7d605814383f3230bca70cd692bb701ba71a45683483ebdf66e"
+    },
+    {
+      "path": "games/exploding-deck/ui.spec.js",
+      "sha256": "07e855f10ca17ba3e2f5bf7924c5631af8646cb020d1c8966c8d96751a310491"
+    },
+    {
+      "path": "public/games/exploding-deck/cards.js",
+      "sha256": "bb98290903836d6ec399c3fd8ac698a1cd738d9ad5153c809f03316e54a45750"
+    },
+    {
+      "path": "public/games/exploding-deck/exploding-deck.css",
+      "sha256": "f69b13a50d5543b88e4e9df68f2cf2e3b1357b873aed205c489d7a815c3250a3"
+    },
+    {
+      "path": "public/games/exploding-deck/exploding-deck.js",
+      "sha256": "0cf9f99dc7546382c383547be56d502a8813d7b40299978df6ee1687ae37aff7"
+    }
+  ],
+  "followup_commits": [
+    "9a4ed6b5c055aeba11de8b76e19c95618054bbab",
+    "68c6ca46f08996c146e4e01d728c8c9223de818d",
+    "67bae9724c7d88f76e0432b13b954f32c996fe4b"
+  ],
+  "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+  "visual_followup": {
+    "commit": "9a4ed6b5c055aeba11de8b76e19c95618054bbab",
+    "scope": "Load the existing card-interaction stylesheet and provide workshop colour tokens; no gameplay changes.",
+    "tests": {
+      "passed": 2,
+      "failed": 0,
+      "log": "artifacts/backlog-05-exploding-style-final.log"
+    }
+  },
+  "screenshots_refreshed_at": "2026-11-07",
+  "external_followup": {
+    "commit": "68c6ca46f08996c146e4e01d728c8c9223de818d",
+    "note": "Independently committed and pushed by the parallel author; preserved and reverified, not included in our code commits."
+  },
+  "screenshot_provenance": "Game-world captures refreshed on current main on 2026-11-07. The two normal-result captures for Exploding-Deck and Doppelagent remain from their earlier normal full-game checks; lobby-only hero changes do not change those result views."
 }

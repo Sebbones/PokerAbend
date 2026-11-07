@@ -28,9 +28,9 @@
   "inventory": {
     "playable_count": 69,
     "not_implemented_count": 38,
-    "completed_visual_count": 14,
-    "open_playable_visual_count": 55,
-    "planned_visual_count": 93,
+    "completed_visual_count": 18,
+    "open_playable_visual_count": 51,
+    "planned_visual_count": 89,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -151,10 +151,14 @@
       "omaha-hi-lo",
       "seven-card-stud",
       "short-deck",
+      "exploding-deck",
       "backgammon",
       "scrabble",
       "hearts",
       "five-card-draw",
+      "doppelagent",
+      "luegenbaron",
+      "schach",
       "sudoku",
       "2048",
       "wellenwacht"
@@ -335,7 +339,6 @@
     "VIS-024",
     "VIS-028",
     "VIS-040",
-    "VIS-082",
     "VIS-012",
     "VIS-029",
     "VIS-038",
@@ -347,10 +350,8 @@
     "VIS-037",
     "VIS-043",
     "VIS-084",
-    "VIS-081",
     "VIS-041",
     "VIS-057",
-    "VIS-054",
     "VIS-045",
     "VIS-007",
     "VIS-011",
@@ -358,8 +359,7 @@
     "VIS-036",
     "VIS-002",
     "VIS-047",
-    "VIS-046",
-    "VIS-088"
+    "VIS-046"
   ],
   "suggested_development_order": [
     "VIS-027",
@@ -412,11 +412,7 @@
     "VIS-085",
     "VIS-056",
     "VIS-057",
-    "VIS-084",
-    "VIS-088",
-    "VIS-054",
-    "VIS-081",
-    "VIS-082"
+    "VIS-084"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -7835,27 +7831,42 @@
       "category": "karten",
       "category_name": "Kartenspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/exploding-deck/evidence.json"
+        ],
+        "assessment": "Newly authorised gameplay and original visual world, no previous playable frontend."
       },
       "current_frontend_files": [
-        "public/games/exploding-deck/exploding-deck.js",
+        "public/games/exploding-deck/cards.js",
         "public/games/exploding-deck/exploding-deck.css",
-        "public/games/exploding-deck/cards.js"
+        "public/games/exploding-deck/exploding-deck.js"
       ],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "shared_frontend_files": [
+        "public/games/card-interaction.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "source_audit": [
+        {
+          "path": "public/games/exploding-deck/cards.js",
+          "sha256": "bb98290903836d6ec399c3fd8ac698a1cd738d9ad5153c809f03316e54a45750"
+        },
+        {
+          "path": "public/games/exploding-deck/exploding-deck.css",
+          "sha256": "f69b13a50d5543b88e4e9df68f2cf2e3b1357b873aed205c489d7a815c3250a3"
+        },
+        {
+          "path": "public/games/exploding-deck/exploding-deck.js",
+          "sha256": "0cf9f99dc7546382c383547be56d502a8813d7b40299978df6ee1687ae37aff7"
+        }
+      ],
+      "current_design": "Original workshop cards, hazard crate deck, private inspection strip and explicit reaction/insertion controls.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Real local desktop/touch browser sessions, six viewports, secret-view checks, pause/reconnect and permanent SHA-256 screenshots; see own evidence manifest.",
       "gameplay_summary": "Karten ziehen, Gefahren entschärfen und den richtigen Moment zum Ausweichen wählen.",
       "planned_style": "Spannungsvolles eigenes Kartenlabor mit klaren Gefahrensymbolen.",
       "background_concept": "Dunkler Arbeitstisch mit gedämpftem Warnakzent.",
@@ -7887,8 +7898,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Ziehstapel, Ablage und persönliche Schutzkarten räumlich ordnen. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-05 authorisation and actual game implementation.",
       "acceptance_criteria": [
         "Gefahr, gültige Schutzaktion und Ausscheiden eindeutig."
       ],
@@ -7909,15 +7920,94 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "exploding-deck",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/exploding-deck/desktop-english-rules.png",
+        "docs/design/screenshots/exploding-deck/desktop-hand.png",
+        "docs/design/screenshots/exploding-deck/desktop-in-play.png",
+        "docs/design/screenshots/exploding-deck/desktop-lobby.png",
+        "docs/design/screenshots/exploding-deck/desktop-paused.png",
+        "docs/design/screenshots/exploding-deck/desktop-reconnect.png",
+        "docs/design/screenshots/exploding-deck/desktop-result.png",
+        "docs/design/screenshots/exploding-deck/desktop-spectator.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-1440x900.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-1920x1080.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-360x800.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-390x844.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-768x1024.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-900x450.png",
+        "docs/design/screenshots/exploding-deck/mobil-english-rules.png",
+        "docs/design/screenshots/exploding-deck/mobil-hand.png",
+        "docs/design/screenshots/exploding-deck/mobil-in-play.png",
+        "docs/design/screenshots/exploding-deck/mobil-lobby.png",
+        "docs/design/screenshots/exploding-deck/mobil-paused.png",
+        "docs/design/screenshots/exploding-deck/mobil-reconnect.png",
+        "docs/design/screenshots/exploding-deck/mobil-result.png",
+        "docs/design/screenshots/exploding-deck/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1171,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 127.52,
+          "log": "artifacts/backlog-05-exploding-green-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05.spec.js --grep Exploding-Deck",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 28.9,
+          "log": "artifacts/backlog-05-exploding-ui-fixed.log"
+        },
+        {
+          "command": "node --test games/exploding-deck/rules.test.js",
+          "passed": 10,
+          "failed": 0,
+          "coverage": "80 full games, all player counts and levels, secret JSON and deterministic worker projection"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05-end.spec.js",
+          "passed_for_game": 2,
+          "total_passed": 4,
+          "failed": 0,
+          "log": "artifacts/backlog-05-end-ui.log",
+          "coverage": "Normal final survivor / correct accusation or location guess with real bots and human views, desktop and mobile"
+        },
+        {
+          "command": "Exploding-Deck desktop/mobile style final recheck",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 30.1,
+          "log": "artifacts/backlog-05-exploding-style-final.log"
+        },
+        {
+          "command": "Exploding-Deck desktop/mobile actual-draw test after corrected driver",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 19.346,
+          "log": "artifacts/backlog-05-exploding-current.log",
+          "report": "artifacts/backlog-05-exploding-current-report.json",
+          "date": "2026-11-07"
+        }
+      ],
+      "commits": [
+        "79208e19d99f4526f405d4e7305bac2df6f582e2",
+        "9a4ed6b5c055aeba11de8b76e19c95618054bbab"
+      ],
+      "implementation_commit": "79208e19d99f4526f405d4e7305bac2df6f582e2",
+      "completed_at": "2026-11-03",
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+      "followup_commits": [
+        "9a4ed6b5c055aeba11de8b76e19c95618054bbab",
+        "68c6ca46f08996c146e4e01d728c8c9223de818d",
+        "67bae9724c7d88f76e0432b13b954f32c996fe4b"
+      ]
     },
     {
       "id": "VIS-055",
@@ -10465,26 +10555,35 @@
       "category": "party",
       "category_name": "Party Spiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/doppelagent/evidence.json"
+        ],
+        "assessment": "Newly authorised gameplay and original visual world, no previous playable frontend."
       },
       "current_frontend_files": [
-        "public/games/doppelagent/doppelagent.js",
-        "public/games/doppelagent/doppelagent.css"
+        "public/games/doppelagent/doppelagent.css",
+        "public/games/doppelagent/doppelagent.js"
       ],
       "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "source_audit": [
+        {
+          "path": "public/games/doppelagent/doppelagent.css",
+          "sha256": "f2c3d01318cd5c17a78a0f4b45a197e68c2d027ab37087ab0e65fd2798b0b33a"
+        },
+        {
+          "path": "public/games/doppelagent/doppelagent.js",
+          "sha256": "6def5040b9e28e06da54b8c203071aa520c58b5f8d820fa0fa726fa0c84b247d"
+        }
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "current_design": "Confidential location dossier, original roles, public interview transcript and separate voting controls.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Real local desktop/touch browser sessions, six viewports, secret-view checks, pause/reconnect and permanent SHA-256 screenshots; see own evidence manifest.",
       "gameplay_summary": "Alle kennen den Ort außer dem Doppelagenten – der muss unentdeckt bleiben.",
       "planned_style": "Geheimer Gesprächssalon mit persönlicher Ortsakte.",
       "background_concept": "Ruhige elegante Raumkulisse ohne Hinweise auf den geheimen Ort.",
@@ -10514,8 +10613,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Persönliche Akte und öffentliche Abstimmung getrennt. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-05 authorisation and actual game implementation.",
       "acceptance_criteria": [
         "Agentenansicht enthält keinerlei Ortsinformation."
       ],
@@ -10536,15 +10635,88 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "doppelagent",
-        "source": "games/planned.js",
+        "source": "games/index.js",
         "status": "playable",
-        "requires_separate_authorization": true
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/doppelagent/desktop-accusation.png",
+        "docs/design/screenshots/doppelagent/desktop-bot-answer.png",
+        "docs/design/screenshots/doppelagent/desktop-case-1440x900.png",
+        "docs/design/screenshots/doppelagent/desktop-case-1920x1080.png",
+        "docs/design/screenshots/doppelagent/desktop-case-360x800.png",
+        "docs/design/screenshots/doppelagent/desktop-case-390x844.png",
+        "docs/design/screenshots/doppelagent/desktop-case-768x1024.png",
+        "docs/design/screenshots/doppelagent/desktop-case-900x450.png",
+        "docs/design/screenshots/doppelagent/desktop-english-rules.png",
+        "docs/design/screenshots/doppelagent/desktop-lobby.png",
+        "docs/design/screenshots/doppelagent/desktop-pause.png",
+        "docs/design/screenshots/doppelagent/desktop-private-card.png",
+        "docs/design/screenshots/doppelagent/desktop-reconnect.png",
+        "docs/design/screenshots/doppelagent/desktop-result.png",
+        "docs/design/screenshots/doppelagent/desktop-spectator.png",
+        "docs/design/screenshots/doppelagent/mobil-accusation.png",
+        "docs/design/screenshots/doppelagent/mobil-bot-answer.png",
+        "docs/design/screenshots/doppelagent/mobil-english-rules.png",
+        "docs/design/screenshots/doppelagent/mobil-lobby.png",
+        "docs/design/screenshots/doppelagent/mobil-pause.png",
+        "docs/design/screenshots/doppelagent/mobil-private-card.png",
+        "docs/design/screenshots/doppelagent/mobil-reconnect.png",
+        "docs/design/screenshots/doppelagent/mobil-result.png",
+        "docs/design/screenshots/doppelagent/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1182,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 153.36,
+          "log": "artifacts/backlog-05-agent-full-node.log",
+          "note": "Full run before the additional explicit party-program registration test; final targeted run includes it."
+        },
+        {
+          "command": "node --test test/doppelagent.test.js",
+          "passed": 9,
+          "failed": 0,
+          "log": "artifacts/backlog-05-agent-final-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05.spec.js --grep Doppelagent",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 26.4,
+          "log": "artifacts/backlog-05-agent-ui-green.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05-end.spec.js",
+          "passed_for_game": 2,
+          "total_passed": 4,
+          "failed": 0,
+          "log": "artifacts/backlog-05-end-ui.log",
+          "coverage": "Normal final survivor / correct accusation or location guess with real bots and human views, desktop and mobile"
+        },
+        {
+          "command": "Current-main four-game browser capture; this game passed every case",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 110.016,
+          "log": "artifacts/backlog-05-current-main-ui.log",
+          "report": "artifacts/backlog-05-current-main-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
+        }
+      ],
+      "commits": [
+        "073dd98b10ce66698cf67f1304e02ed9143138ef"
+      ],
+      "implementation_commit": "073dd98b10ce66698cf67f1304e02ed9143138ef",
+      "completed_at": "2026-11-03",
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+      "followup_commits": [
+        "68c6ca46f08996c146e4e01d728c8c9223de818d"
+      ]
     },
     {
       "id": "VIS-082",
@@ -10553,36 +10725,45 @@
       "category": "party",
       "category_name": "Party Spiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/luegenbaron/evidence.json"
+        ],
+        "assessment": "Newly authorised gameplay and original visual world, no previous playable frontend."
       },
       "current_frontend_files": [
-        "public/games/luegenbaron/luegenbaron.js",
-        "public/games/luegenbaron/luegenbaron.css"
+        "public/games/luegenbaron/luegenbaron.css",
+        "public/games/luegenbaron/luegenbaron.js"
       ],
       "shared_frontend_files": [
         "public/games/party-kit.js",
         "public/games/kit.js"
       ],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "source_audit": [
+        {
+          "path": "public/games/luegenbaron/luegenbaron.css",
+          "sha256": "8cb1883cd72e0bef2e8970de5766cd47e451b3c3b97be6fe654df731409a1052"
+        },
+        {
+          "path": "public/games/luegenbaron/luegenbaron.js",
+          "sha256": "5e89cc024c566ae9a3b0429b8429f1dabcae6f6cf984037210ba703037df0001"
+        }
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
-      "gameplay_summary": "Eine Geschichte wahr oder erfunden? Die anderen müssen es erraten.",
+      "current_design": "Paper quiz salon, anonymous full-width choices, explicit vote confirmation and sourced reveal.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Real local desktop/touch browser sessions, six viewports, secret-view checks, pause/reconnect and permanent SHA-256 screenshots; see own evidence manifest.",
+      "gameplay_summary": "Wahre kuriose Fakten mit einer Lücke, eigene plausible Lügen und anonyme Auswahl der echten Antwort.",
       "planned_style": "Erzählsalon mit typografischer Geschichtenkarte.",
       "background_concept": "Warme Papier-/Bibliothekskulisse ohne inhaltliche Hinweise.",
-      "board_concept": "Aktuelle Geschichte im Mittelpunkt, öffentliche Abstimmung darunter.",
-      "objects_concept": "Gleichartige Wahr-/Erfunden-Karten und späterer Beleg.",
+      "board_concept": "Fragekarte, anonyme Antwortkarten und ausdrückliche Tippbestätigung.",
+      "objects_concept": "Eigene Papierkarten, Feder, gesperrte eigene Lügen und Quellenbeleg erst bei Auflösung.",
       "status_and_actions": "Schreiben, Lesen, Abstimmen und Aufdecken trennen.",
-      "mobile_concept": "Lange Geschichte vollständig lesbar, Abstimmung bleibt zugänglich.",
+      "mobile_concept": "Readable question and anonymous touch-sized choices, explicit confirmation and sourced reveal.",
       "individual_complex_board": false,
       "required_states": [
         "lobby",
@@ -10605,10 +10786,10 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktuelle Geschichte im Mittelpunkt, öffentliche Abstimmung darunter. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-05 authorisation and actual game implementation.",
       "acceptance_criteria": [
-        "Wahre und erfundene Geschichte sehen vor der Auflösung gleich aus."
+        "True answers and player bluffs use the same anonymous presentation until the reveal."
       ],
       "common_acceptance_ids": [
         "G01",
@@ -10627,15 +10808,93 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "luegenbaron",
-        "source": "games/planned.js",
+        "source": "games/index.js",
         "status": "playable",
-        "requires_separate_authorization": true
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/luegenbaron/desktop-doubled-final.png",
+        "docs/design/screenshots/luegenbaron/desktop-english-rules.png",
+        "docs/design/screenshots/luegenbaron/desktop-lobby.png",
+        "docs/design/screenshots/luegenbaron/desktop-pause.png",
+        "docs/design/screenshots/luegenbaron/desktop-reconnect.png",
+        "docs/design/screenshots/luegenbaron/desktop-result.png",
+        "docs/design/screenshots/luegenbaron/desktop-reveal.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-1440x900.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-1920x1080.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-360x800.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-390x844.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-768x1024.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-900x450.png",
+        "docs/design/screenshots/luegenbaron/desktop-spectator.png",
+        "docs/design/screenshots/luegenbaron/desktop-truth-rejected.png",
+        "docs/design/screenshots/luegenbaron/desktop-vote.png",
+        "docs/design/screenshots/luegenbaron/mobil-doubled-final.png",
+        "docs/design/screenshots/luegenbaron/mobil-english-rules.png",
+        "docs/design/screenshots/luegenbaron/mobil-lobby.png",
+        "docs/design/screenshots/luegenbaron/mobil-pause.png",
+        "docs/design/screenshots/luegenbaron/mobil-reconnect.png",
+        "docs/design/screenshots/luegenbaron/mobil-result.png",
+        "docs/design/screenshots/luegenbaron/mobil-reveal.png",
+        "docs/design/screenshots/luegenbaron/mobil-spectator.png",
+        "docs/design/screenshots/luegenbaron/mobil-truth-rejected.png",
+        "docs/design/screenshots/luegenbaron/mobil-vote.png"
+      ],
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1199,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 155.89,
+          "log": "artifacts/backlog-05-bluff-green-node.log"
+        },
+        {
+          "command": "node --test test/luegenbaron.test.js",
+          "passed": 13,
+          "failed": 0,
+          "log": "artifacts/backlog-05-bluff-final-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05.spec.js --grep \"Lügenbaron\"",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 45.9,
+          "log": "artifacts/backlog-05-bluff-ui-layout.log"
+        },
+        {
+          "command": "Isolated release snapshot: Luegenbaron and all 66 custom lobbies, desktop/mobile, workers=1",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 183.44,
+          "log": "artifacts/backlog-05-isolated-ui.log",
+          "report": "artifacts/backlog-05-isolated-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Four cases: two Luegenbaron and two complete lobby-catalogue checks. Excludes parallel workflow, solo-test and four lobby edits."
+        },
+        {
+          "command": "Current-main four-game browser capture; this game passed every case",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 110.016,
+          "log": "artifacts/backlog-05-current-main-ui.log",
+          "report": "artifacts/backlog-05-current-main-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
+        }
+      ],
+      "commits": [
+        "c26f42553e98ed13e351a9f1fdfb4701a6bf6519"
+      ],
+      "implementation_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
+      "completed_at": "2026-11-03",
+      "followup_commits": [
+        "31a7b2755c134e1b9e0a0f968edfb1d54d92cc95",
+        "68c6ca46f08996c146e4e01d728c8c9223de818d"
+      ],
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b"
     },
     {
       "id": "VIS-083",
@@ -11096,31 +11355,44 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/schach/index.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/schach/evidence.json"
+        ],
+        "assessment": "Newly authorised gameplay and original visual world, no previous playable frontend."
       },
       "current_frontend_files": [
-        "public/games/schach/schach.js",
+        "public/games/schach/pieces.svg",
         "public/games/schach/schach.css",
-        "public/games/schach/pieces.svg"
+        "public/games/schach/schach.js"
       ],
       "shared_frontend_files": [
         "public/games/kit.js",
         "public/game-design.js",
         "public/ui-theme.css"
       ],
-      "source_audit": [],
-      "current_design": "Eigene klassische SVG-Figuren auf einem Holzbrett mit Koordinaten, Uhren und SAN-Partieprotokoll.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "source_audit": [
+        {
+          "path": "public/games/schach/pieces.svg",
+          "sha256": "687181e57f16f4b6d4c3c1139ba0f1b87275c86a1a9da4b480e7f9438f215d7d"
+        },
+        {
+          "path": "public/games/schach/schach.css",
+          "sha256": "f9bf650a94fbad4800fe3121e10f3194ad7437362f513423076cd1650a7afa2a"
+        },
+        {
+          "path": "public/games/schach/schach.js",
+          "sha256": "10c0a56c3fcd9154b56a0f53bad96e831cb14b24bc925e517b22be9257b6044e"
+        }
       ],
-      "assessment_method": "Aktuelle Implementierung des freigegebenen BACKLOG-05; Browserabnahme und Bildnachweise werden nach bestandenen Pr?fungen eingetragen.",
+      "current_design": "Wooden board, original classical SVG pieces, legal destination marks, clocks and SAN ledger.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Real local desktop/touch browser sessions, six viewports, secret-view checks, pause/reconnect and permanent SHA-256 screenshots; see own evidence manifest.",
       "gameplay_summary": "Das Brettspiel der Könige: Matt setzen, bevor man selbst matt gesetzt wird.",
       "planned_style": "Reduziertes Turnierbrett mit eigenen hochwertigen 2D-Figuren.",
       "background_concept": "Ruhige matte Turnierfläche ohne 3D.",
@@ -11153,8 +11425,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: 8×8-Koordinaten, echte legale Ziele und Stellung unverändert. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-05 authorisation and actual game implementation.",
       "acceptance_criteria": [
         "Rochade, Umwandlung und Spielende korrekt beschriftet."
       ],
@@ -11175,15 +11447,79 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "schach",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/schach/desktop-board-1440x900.png",
+        "docs/design/screenshots/schach/desktop-board-1920x1080.png",
+        "docs/design/screenshots/schach/desktop-board-360x800.png",
+        "docs/design/screenshots/schach/desktop-board-390x844.png",
+        "docs/design/screenshots/schach/desktop-board-768x1024.png",
+        "docs/design/screenshots/schach/desktop-board-900x450.png",
+        "docs/design/screenshots/schach/desktop-bot-reply.png",
+        "docs/design/screenshots/schach/desktop-chess960-english.png",
+        "docs/design/screenshots/schach/desktop-english-rules.png",
+        "docs/design/screenshots/schach/desktop-history-rotation.png",
+        "docs/design/screenshots/schach/desktop-lobby.png",
+        "docs/design/screenshots/schach/desktop-own-turn.png",
+        "docs/design/screenshots/schach/desktop-pause.png",
+        "docs/design/screenshots/schach/desktop-promotion.png",
+        "docs/design/screenshots/schach/desktop-reconnect.png",
+        "docs/design/screenshots/schach/desktop-result.png",
+        "docs/design/screenshots/schach/desktop-spectator.png",
+        "docs/design/screenshots/schach/mobil-bot-reply.png",
+        "docs/design/screenshots/schach/mobil-chess960-english.png",
+        "docs/design/screenshots/schach/mobil-english-rules.png",
+        "docs/design/screenshots/schach/mobil-history-rotation.png",
+        "docs/design/screenshots/schach/mobil-lobby.png",
+        "docs/design/screenshots/schach/mobil-own-turn.png",
+        "docs/design/screenshots/schach/mobil-pause.png",
+        "docs/design/screenshots/schach/mobil-promotion.png",
+        "docs/design/screenshots/schach/mobil-reconnect.png",
+        "docs/design/screenshots/schach/mobil-result.png",
+        "docs/design/screenshots/schach/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1158,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 148.53
+        },
+        {
+          "command": "Schach desktop/mobile browser cases",
+          "distinct_passed": 6,
+          "failed": 0
+        },
+        {
+          "command": "English rules recheck",
+          "passed": 2,
+          "failed": 0
+        },
+        {
+          "command": "Current-main four-game browser capture; this game passed every case",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 110.016,
+          "log": "artifacts/backlog-05-current-main-ui.log",
+          "report": "artifacts/backlog-05-current-main-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
+        }
+      ],
+      "commits": [
+        "d07f458f4ed13b78ad5d17fc7daabe435060041b"
+      ],
+      "implementation_commit": "d07f458f4ed13b78ad5d17fc7daabe435060041b",
+      "completed_at": "2026-11-03",
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+      "followup_commits": [
+        "68c6ca46f08996c146e4e01d728c8c9223de818d"
+      ]
     },
     {
       "id": "VIS-089",

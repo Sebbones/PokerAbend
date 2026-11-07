@@ -1,7 +1,7 @@
 {
   "task": "BACKLOG-05",
   "game": "luegenbaron",
-  "implementation_commit": null,
+  "implementation_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
   "date": "2026-11-03",
   "catalogue": {
     "questions": 150,
@@ -28,117 +28,192 @@
       "log": "artifacts/backlog-05-bluff-final-node.log"
     },
     {
-      "command": "playwright test test/ui/backlog-05.spec.js --grep Luegenbaron",
+      "command": "playwright test test/ui/backlog-05.spec.js --grep \"Lügenbaron\"",
       "passed": 2,
       "failed": 0,
       "duration_seconds": 45.9,
       "log": "artifacts/backlog-05-bluff-ui-layout.log"
+    },
+    {
+      "command": "Isolated release snapshot: Luegenbaron and all 66 custom lobbies, desktop/mobile, workers=1",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 183.44,
+      "log": "artifacts/backlog-05-isolated-ui.log",
+      "report": "artifacts/backlog-05-isolated-ui-report.json",
+      "date": "2026-11-07",
+      "note": "Four cases: two Luegenbaron and two complete lobby-catalogue checks. Excludes parallel workflow, solo-test and four lobby edits."
+    },
+    {
+      "command": "Current-main four-game browser capture; this game passed every case",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 110.016,
+      "log": "artifacts/backlog-05-current-main-ui.log",
+      "report": "artifacts/backlog-05-current-main-ui-report.json",
+      "date": "2026-11-07",
+      "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
     }
   ],
   "screenshots": [
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-doubled-final.png",
-      "sha256": "f79982ad5902e02fde07d8654f8831f852c18bd7db06df9dc19b06e148a6f7aa"
+      "sha256": "85d151dc04e6c727754a86f08a1b85a2219943b9faadb4dd4413883dc77971ef"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-english-rules.png",
-      "sha256": "73aff45176348fa75e37492ac80caab80234e8911567f390dec8657ba1d3e783"
+      "sha256": "cb09cabbf21ac8f79d5dc475d589581ee41b6ed8a97a7436c4bf9cb1abb4260c"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-lobby.png",
-      "sha256": "e1214062477b18ce241b24acd839f7d580fd25f32a09f0af1d93e4beadc8f797"
+      "sha256": "d308dd89ddd703227a8a76ba947b34793e023b84235de8cec382abb32510abcf"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-pause.png",
-      "sha256": "26ff995e05546f8e009d2852e67280c6d4a24258c2f7beb9406ed6e1ea268db7"
+      "sha256": "1d946f641de7cdf7a9fc1be34c57e8cbff919bea22e1c8901bae1c55b0b298d6"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-reconnect.png",
-      "sha256": "e38e34e61a2d39c9789c8236789cce7fa385a80d03cd40f7234b2f6902513d21"
+      "sha256": "05c01b6e62a9a8ff4315f58c8543052f2391794e6b11f3e73fcf9ee8f57d50d5"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-result.png",
-      "sha256": "0375f6df6e8a1614caccd47f41d7014ef88f182d1a2991d53126f22e8525e5b3"
+      "sha256": "e5ad1c92b5c3af0217f3a2ef741c9045cb5601df35a1ccf5260534af2b6a6207"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-reveal.png",
-      "sha256": "fa4027f410a83e62d28616c89c7a538fb4c892034ffdffd1586b450875ab3c48"
+      "sha256": "1439382c1fd29dd641f014c68e957be6d8d97e40bfd77ee0bbbb7b465963f38c"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-salon-1440x900.png",
-      "sha256": "4ff99c7ad832b321236b2c9131ea8ddba8f5e8c9a315809e548c4b4b504bebcf"
+      "sha256": "97387322477ada27d2ca53356e06f3dc02d0f013342112cac79f36684b07a67e"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-salon-1920x1080.png",
-      "sha256": "1e2d66c3913180abd4ef3667d420d887668e97ca783722824a629adb01117c4f"
+      "sha256": "55e890f9201553b4de027c2136b84d82901296b3a23f5f2893f3ae869b0c1939"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-salon-360x800.png",
-      "sha256": "e09c4db98eef9110097d18b5b938174bfc39112e9b3edd652c70ae01ce303e54"
+      "sha256": "4a254f992f34f9fbfd410b1eb953834375065cff69b1c162ddc7a0231e89020c"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-salon-390x844.png",
-      "sha256": "54f0d939970553c347c93c6b4f5915a33fc78141e08dabd1e4bbb0ed46df905e"
+      "sha256": "1eb901813a62b6c5be20e901669404ee167e6e21698818af480d1289d8dfe173"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-salon-768x1024.png",
-      "sha256": "aed4e0bece509bdc5ec0a578ea21e59fdfc81cb192f4431726835f742016ab79"
+      "sha256": "3d267475b5fe9f76d5210ca603cd6558f3f71019870346bac34c98ab44a9e840"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-salon-900x450.png",
-      "sha256": "e38e34e61a2d39c9789c8236789cce7fa385a80d03cd40f7234b2f6902513d21"
+      "sha256": "05c01b6e62a9a8ff4315f58c8543052f2391794e6b11f3e73fcf9ee8f57d50d5"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-spectator.png",
-      "sha256": "ff1937fb62f259ea8cec992b200debb8be36e41c55922d78dd07b29afc158802"
+      "sha256": "53fa953377406dcdafd4fb6a1ac58bc121d90559f09ac4df286a3a8b30130a8f"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-truth-rejected.png",
-      "sha256": "f1dc960b02544be68e36f21f35c30894067ed585ddeabf68d3d973baca92c7d0"
+      "sha256": "fc238e6ad24579b660fa4bffdd25fa2ff16f0f099329b822cab0f3bfff717e5b"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/desktop-vote.png",
-      "sha256": "2a3c5573a39d555b4b56d7781278790f6b86d70417634c1488bec20158220be6"
+      "sha256": "080ad145919940e3e59e731aec51c45f1e3675861756a083480466f7e72d33e7"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-doubled-final.png",
-      "sha256": "75bc448435faede5a93b35fb93ad81aa08d94e5365703dd2c810b174ce4537f3"
+      "sha256": "ddc5d4d6787d56d94b5b71f5510ace8f14737a44d09d4e59716010235a6553cb"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-english-rules.png",
-      "sha256": "bf0ee36d2da58ea1c6419e1a7f36d95fba4e4ac3b6eda736083368f601cd47e2"
+      "sha256": "1236bbda784163f2f6e02317c9b4529f1ee74ebeb6e7f9f70c1a6917be9768a4"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-lobby.png",
-      "sha256": "5fca71cd13a8df29601a64c9c896fd777b1baaba340781d8021b67af0d1eb71e"
+      "sha256": "9bb621c7b627a98f85850b37132f934f51dacd770ec6e71707e2bc374915c2af"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-pause.png",
-      "sha256": "31f4645baccf9cb7c3da679cf81d1fb3fe536575636126f92583fb61af6e5a3f"
+      "sha256": "27d1296e322d74bf7475ac0275b7fddc3366f94e53c6dd85bf85e9faa3917275"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-reconnect.png",
-      "sha256": "981177ffa6a6abee598d3e4134473833c77acf374a6b183b26d7e070774fc676"
+      "sha256": "a379a8a2ee6761377b206b01dbdb7465ab519758219f88114771449f7d88394b"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-result.png",
-      "sha256": "ec9a7fc4213f6128d7a28dfda5b936c45bca0def31b5e6a9bcb66e45933fabd0"
+      "sha256": "2a34442d16cb26a4f47262a71a4d3e492470e96ee734accafda2b33daf0b4bb6"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-reveal.png",
-      "sha256": "597401e7eaebe76551b5f9c9b91060bf5862354238b3f8a8e6b8afc126fae597"
+      "sha256": "092d9d2fefddd543225f9c1700686772a8df938a4b0ab59165f6565720ac9109"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-spectator.png",
-      "sha256": "bb5fe14669269143c5d4ba8706b062ab44fe1ed05bfbea5286d90503ec8ba97a"
+      "sha256": "1fb09999cc8301eefda479229632925cf9e1802ffdd88357e916a5fcfd25815d"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-truth-rejected.png",
-      "sha256": "33ee771f4761aed0c06aa426b654ce626bce2722feb99a1230642a1c2e79692b"
+      "sha256": "a0ba444cd52c861be0b2aed25bf2a617a25defa98f83f102cf437077b4e1a137"
     },
     {
       "path": "docs/design/screenshots/luegenbaron/mobil-vote.png",
-      "sha256": "a167fdec6da893e565e406adee837a279a4f6e76403ec447b9846809939f868f"
+      "sha256": "d9a3127f1a6e29f7bd66ba8637ce6014bba8c1f8a8f720b4ed21273ec3ef4ce5"
     }
-  ]
+  ],
+  "source_audit": [
+    {
+      "path": "games/luegenbaron/bot.js",
+      "sha256": "8684392c0e92530eff75aac9f8f3945ad08acb4f6e5ebea53da33ca836b85f65"
+    },
+    {
+      "path": "games/luegenbaron/build-catalog.js",
+      "sha256": "19accd032b29020da99c660d081de6ec70db2e89c9eb45c9daefb40516ad9971"
+    },
+    {
+      "path": "games/luegenbaron/facts.json",
+      "sha256": "ddb74624cc04d84ceb2cfa6948a9bc491a339877c570ec3e7dfd4093158626b0"
+    },
+    {
+      "path": "games/luegenbaron/index.js",
+      "sha256": "12b89b7b6ccdee2967203517d246d2f326869b06d0a8a88c467d6e62fd0a87f4"
+    },
+    {
+      "path": "games/luegenbaron/normalise.js",
+      "sha256": "3a801be79bdf14ee491f3bae58b0890a12388bd552d22753c024e3c51a4ecee1"
+    },
+    {
+      "path": "games/luegenbaron/room.js",
+      "sha256": "85b3d3725b487c44286d5b05469ad4bdc44db283962645b5dc1ee88e66b4146e"
+    },
+    {
+      "path": "games/luegenbaron/rules.test.js",
+      "sha256": "800f9ddf653347d676a5e59420d9354099499040b65c788c09bd7d1e8771b9f6"
+    },
+    {
+      "path": "games/luegenbaron/ui.spec.js",
+      "sha256": "8b6882eb98d702c06d9ab34a4b247297269416375fbec45fc5a6db81487ad65b"
+    },
+    {
+      "path": "public/games/luegenbaron/luegenbaron.css",
+      "sha256": "8cb1883cd72e0bef2e8970de5766cd47e451b3c3b97be6fe654df731409a1052"
+    },
+    {
+      "path": "public/games/luegenbaron/luegenbaron.js",
+      "sha256": "5e89cc024c566ae9a3b0429b8429f1dabcae6f6cf984037210ba703037df0001"
+    }
+  ],
+  "followup_commits": [
+    "31a7b2755c134e1b9e0a0f968edfb1d54d92cc95",
+    "68c6ca46f08996c146e4e01d728c8c9223de818d"
+  ],
+  "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+  "screenshots_refreshed_at": "2026-11-07",
+  "external_followup": {
+    "commit": "68c6ca46f08996c146e4e01d728c8c9223de818d",
+    "note": "Independently committed and pushed by the parallel author; preserved and reverified, not included in our code commits."
+  },
+  "screenshot_provenance": "Game-world captures refreshed on current main on 2026-11-07. The two normal-result captures for Exploding-Deck and Doppelagent remain from their earlier normal full-game checks; lobby-only hero changes do not change those result views."
 }

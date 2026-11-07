@@ -1,7 +1,7 @@
 {
   "task": "BACKLOG-05",
   "game": "schach",
-  "implementation_commit": null,
+  "implementation_commit": "d07f458f4ed13b78ad5d17fc7daabe435060041b",
   "commit_note": "Set to the actual game commit in the final packet proof, never a fabricated self reference.",
   "date": "2026-11-03",
   "tests": [
@@ -21,120 +21,179 @@
       "command": "English rules recheck",
       "passed": 2,
       "failed": 0
+    },
+    {
+      "command": "Current-main four-game browser capture; this game passed every case",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 110.016,
+      "log": "artifacts/backlog-05-current-main-ui.log",
+      "report": "artifacts/backlog-05-current-main-ui-report.json",
+      "date": "2026-11-07",
+      "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
     }
   ],
   "screenshots": [
     {
       "path": "docs/design/screenshots/schach/desktop-board-1440x900.png",
-      "sha256": "2f3f68d00b46bc92269001bfb76260a3c750a88edb415d16c3de782f8dec8302"
+      "sha256": "93f0cc5f966b9d3516fd415be8787e9a867587a0a1a39a9a98baacff88218647"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-board-1920x1080.png",
-      "sha256": "2ad1aa0492f5465811feaa2d55e9f87807fe96b5fd27ab630d13f728aa53e6da"
+      "sha256": "0bf12413e36338abef3fdcc637ccde62efb8415772485fae8170ab6fd057868a"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-board-360x800.png",
-      "sha256": "7cb5535ca5afdb7a81fe28dc40c962819064c8347fa02939484b992c4a65efd9"
+      "sha256": "00f1dbf4a47c045c5c55d8188889d26163930195a335688f39f18ef1ecd40906"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-board-390x844.png",
-      "sha256": "d52221552d60f3f5d152480959bbec22adbe795b07f9c9c30b6571f36bb82c5c"
+      "sha256": "f057c7f07f683a96b7ef8e7be473c8d5e25dd84c1ee7336c573c7000dd820316"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-board-768x1024.png",
-      "sha256": "bbbc32a7905583cd4693fbd05e3a9826c152ee0555f7db8a142eb94bb6ec4f66"
+      "sha256": "6c2cedf8fb7420b7282b65ae5cf27c75e27feb01a8353ae89c2b58e525b22f2a"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-board-900x450.png",
-      "sha256": "41a9faa90b7c23f7e2d2e9a2ee2fc482769fc0420feada1fd5ea07a367243495"
+      "sha256": "9b1d1a02e2cedfcc5fbcbf606c7cfa72b53a2f790c39006328fb23dc20081c36"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-bot-reply.png",
-      "sha256": "ec7aaaef05f425abd48b499584232ec6552b632a55df3ede85ca5ff1410a5ab7"
+      "sha256": "2e51a2aa8b17abc1f959c61466510a9ba64f6545500ae9ef340ea8cd9ebd2e88"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-chess960-english.png",
-      "sha256": "3b71fdabcbbc122a0592073d012a11d0ce2aa718919685d43e0485c89ca32ae4"
+      "sha256": "167496dc8466b9e5297d5b0133a80db51b1e4884442e9db78c258fc9515c91e9"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-english-rules.png",
-      "sha256": "6ffa5f11c9c559822ac6f55bcc54569fe639f5c217621fc35ae5b1a15a874afe"
+      "sha256": "7738644bfd28c5a262c10ca8e0ab2b7cb892ae99a30d2dbcb080f33d162998ab"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-history-rotation.png",
-      "sha256": "35f16119e31ae7be98060aa6a27034217f8edc80b018fbc86326b4f5af616c92"
+      "sha256": "c8fd617aec4cb3b20df8a391172d51b617fe86561f9cfab9d64a7e8d214e6969"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-lobby.png",
-      "sha256": "0651fad10851763cd218b97af364694609c3707390b02327f68b77fa1d24f131"
+      "sha256": "7fc955477a04afe9d729795c9119ff1c9e64ff0ea4b8b865e21830755332fc08"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-own-turn.png",
-      "sha256": "4cebe4c9f4375bb35891eb603277cb72fbb54d101354f777b7aaa80a561c82c9"
+      "sha256": "ea53d78e1006ac81aec1ede5990160deda4654154bcee3336ce0d8ca0816f87c"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-pause.png",
-      "sha256": "3f40372343c59953dc0aa026d849dd0a4818b1531f83534ede2d92120f6c0d23"
+      "sha256": "e47f17147097ee2485c255089187a5090403fffaccb35ecc2a54d2345d0086dc"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-promotion.png",
-      "sha256": "0397f3916d997e8246809692b5764dadfcf15509fcc04a39c4e14d6d029252c0"
+      "sha256": "377666c552cf22e389ff64350bd78cedb4a8ce5fe4c3d3e0c3194842c76e123d"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-reconnect.png",
-      "sha256": "1fd2d28a0950f4c296087df45a62e5c296b545d6b54412811af146b6be5a123c"
+      "sha256": "1153ddcf1732176b16c0f02a5eccd078f4de489c11d18dd5352bd8902d9f6a7e"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-result.png",
-      "sha256": "0615eda11914e85bc60f870a358bb52104730bd112993ae0bf144c2229917f10"
+      "sha256": "f93f353f96f9e1970e4e914972230384a119590869c5f83d4975382754d12381"
     },
     {
       "path": "docs/design/screenshots/schach/desktop-spectator.png",
-      "sha256": "52cc7a8fad5f469c892a33fd7a1dd22b04269b079ca436b188be217a27851edb"
+      "sha256": "7c340f6cef7ec40c831ba3ced46050d972ae025ef096d0548932b7c6ea23ec2b"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-bot-reply.png",
-      "sha256": "c181348ae2398f1cc27d4d2e0955b7248dfc7b348618c0e2939ec6444d962e13"
+      "sha256": "fbd13558341514b2577cd92fa6bc81288dcc752b732a4a4d7d110bd3e3dee68c"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-chess960-english.png",
-      "sha256": "3a1c8e8318d1bc0bdb0b1debe510356e5e90b1f186c2b2507df37bde1282e529"
+      "sha256": "8f12073a18718384e980374127de5f52a025b6d05e1263e73e31caafac3cdb0b"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-english-rules.png",
-      "sha256": "7e4c4697188035f84636914d5940fcd2916dbeb7238d27ce243aceca156f5f45"
+      "sha256": "30394e0728fdadf93cbf0a25dd04553b65b16d963a25295add41d7e1fbc53fd7"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-history-rotation.png",
-      "sha256": "bda19ace6c4c0c8fde9e0f65bec2283c3df299b6b28590471be793dac7e131f5"
+      "sha256": "b72fbb05fdfed94a1ddd44d4092096ab3fba15241acb654f8c1a5ff4ab63c107"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-lobby.png",
-      "sha256": "b4ffa04a21909a5f41c226c551079bb7a376da5475b67436b473e8dd4ad2c28b"
+      "sha256": "b7c335e8343dd20f8fee3472ec876c68fb5c325f841ce57e9734e94f68b8d1ef"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-own-turn.png",
-      "sha256": "2f833214713d6be026b16eae8fd30f161f05fdf382acc5c50728274ca267d080"
+      "sha256": "4496a0fc1b6227f5bcbdcaece0e58312380e2f42219b8b7a1bdb8cf9a9c5d477"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-pause.png",
-      "sha256": "b0f611733d886ea9580bb14aaad53c753bbf9f2013c140bfc196e60ed1a17273"
+      "sha256": "c58da29aa3412f58ab68d976e5d0d108f2a9585662e51fbcc2feb17ad2040b80"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-promotion.png",
-      "sha256": "38478c297affcdf9024321b3f4ea247c8e47ae7492fe1051fbbc17ce4426b848"
+      "sha256": "2be83962f3da48e2984ccc67b78fc826808c1625dbc401fb50f8f748509f2b42"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-reconnect.png",
-      "sha256": "3d7bfebf6c0b2fc6dd50d9327deb4d1265c26b2c1dfc783ea7bcac6b7150754e"
+      "sha256": "a7bd6ebe64e011102a364a57210a1141d00d74d2ae8b61bcbf906a9bbb2bf312"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-result.png",
-      "sha256": "335691d3140b7d676756063928c288c751d7e97ca8e8ec4ed1ffce0606927233"
+      "sha256": "0e0332cebc48fd14a31c773c4b1c7c57724516e548bfd5ae0590bf7528b7d1c7"
     },
     {
       "path": "docs/design/screenshots/schach/mobil-spectator.png",
-      "sha256": "45d23d6d7b4067c8b88d9a8514b634f2ecd8946b48b0142ec2d8d12ce3024698"
+      "sha256": "8beb16c682b19ce930cfd5922fb33f488c69ec64d5db90dd33a62cd135e245eb"
     }
-  ]
+  ],
+  "source_audit": [
+    {
+      "path": "games/schach/bot.js",
+      "sha256": "de9930f134aaa36505bce6e23a75d3741eccbd63a83f1fc3e2aed2a7b6ed713d"
+    },
+    {
+      "path": "games/schach/index.js",
+      "sha256": "0cd1d9e9520acb706512af0f0640db38fc42e98197a6918c951f4bb666859d60"
+    },
+    {
+      "path": "games/schach/room.js",
+      "sha256": "dda46762ade9754559ebaad2d12a87419f14eb3da1259b2cf0c93b524712e0fe"
+    },
+    {
+      "path": "games/schach/rules.js",
+      "sha256": "507cb5828002159a7a99009fd3eb3f2a35846c6d884a670dc1c61bb15aa8bbe2"
+    },
+    {
+      "path": "games/schach/rules.test.js",
+      "sha256": "82b29cbbcb06cfa780cbb4fbbee9ef5145575ef797158c7204eeda7966d79100"
+    },
+    {
+      "path": "games/schach/ui.spec.js",
+      "sha256": "640755b6d6690f0a5f67364ef64a6daf00b04f1d247bbe5bc452ef5e166f70c5"
+    },
+    {
+      "path": "public/games/schach/pieces.svg",
+      "sha256": "687181e57f16f4b6d4c3c1139ba0f1b87275c86a1a9da4b480e7f9438f215d7d"
+    },
+    {
+      "path": "public/games/schach/schach.css",
+      "sha256": "f9bf650a94fbad4800fe3121e10f3194ad7437362f513423076cd1650a7afa2a"
+    },
+    {
+      "path": "public/games/schach/schach.js",
+      "sha256": "10c0a56c3fcd9154b56a0f53bad96e831cb14b24bc925e517b22be9257b6044e"
+    }
+  ],
+  "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+  "followup_commits": [
+    "68c6ca46f08996c146e4e01d728c8c9223de818d"
+  ],
+  "screenshots_refreshed_at": "2026-11-07",
+  "external_followup": {
+    "commit": "68c6ca46f08996c146e4e01d728c8c9223de818d",
+    "note": "Independently committed and pushed by the parallel author; preserved and reverified, not included in our code commits."
+  },
+  "screenshot_provenance": "Game-world captures refreshed on current main on 2026-11-07. The two normal-result captures for Exploding-Deck and Doppelagent remain from their earlier normal full-game checks; lobby-only hero changes do not change those result views."
 }

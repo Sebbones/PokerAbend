@@ -34,7 +34,9 @@ test('Visual roadmap: individual concepts and real frontend files are complete, 
   const fields = ['current_design','planned_style','background_concept','board_concept','objects_concept','status_and_actions','mobile_concept','assessment_method'];
   for (const p of packages) {
     for (const field of fields) assert.ok(typeof p[field] === 'string' && p[field].length > 15, `${p.id}.${field}`);
-    assert.ok(p.known_visual_weaknesses.length); assert.ok(p.technical_constraints.length >= 2); assert.ok(p.acceptance_criteria.length);
+    assert.ok(Array.isArray(p.known_visual_weaknesses));
+    if(p.visual_status !== 'done') assert.ok(p.known_visual_weaknesses.length);
+    assert.ok(p.technical_constraints.length >= 2); assert.ok(p.acceptance_criteria.length);
     assert.ok(p.effort.min_hours >= 0 && p.effort.max_hours >= p.effort.min_hours);
     assert.equal(p.common_acceptance_ids.length, 10);
     for (const path of [...p.current_frontend_files, ...p.shared_frontend_files]) assert.ok(existsSync(new URL(path, root)), path);

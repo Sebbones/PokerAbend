@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 01.11.2026: 65 spielbare Spiele, 42 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 14 done, 93 planned.** Scotland Yard, UNO, Skip-Bo, Phase 10, Sudoku, 2048 und Wellenwacht sowie die ausdrücklich beauftragten neuen Spielwelten Backgammon, Hearts und Five Card Draw sowie Scrabble, Omaha Hi/Lo, Short Deck Poker und Seven Card Stud sind visuell abgeschlossen. Die ersten sechs kleinen Backlog-Spiele sind spielbar; ihre gesonderten VIS-Redesigns bleiben geplant. Die weiteren 51 bestehenden Spieloberflächen und 42 Backlog-Konzepte benötigen eigene visuelle Aufträge. Vorhandene Material-/Brettarbeit anderer Spiele wird erhalten.
+**Stand 03.11.2026: 69 spielbare Spiele, 38 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 18 done, 89 planned.** BACKLOG-05 schließt zusätzlich Schach (VIS-088), Exploding-Deck (VIS-054), Doppelagent (VIS-081) und Lügenbaron (VIS-082) mit eigenen Spielwelten und echten Nachweisen ab. 51 spielbare Oberflächen und 38 Backlog-Konzepte bleiben visuell geplant; daraus folgt keine weitere Freigabe.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -87,17 +87,14 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | Konzept | Spiel | Designaufwand nach Gameplay |
 | --- | --- | --- |
 | VIS-083 | Brückenroulette | 7–11 h |
-| VIS-082 | Lügenbaron | 7–11 h |
 | VIS-073 | Puzzle-Panik | 7–11 h |
 | VIS-070 | Gummiband-Challenge | 8–12 h |
 | VIS-060 | Regelwahnsinn | 8–12 h |
-| VIS-081 | Doppelagent | 9–14 h |
 | VIS-071 | Geschenkfänger | 9–14 h |
 | VIS-074 | Wortjagd | 9–14 h |
 | VIS-053 | Stichmeister | 10–15 h |
 | VIS-075 | Stillgestanden! | 10–15 h |
 | VIS-091 | Turmbauer | 10–15 h |
-| VIS-054 | Exploding-Deck | 11–17 h |
 | VIS-062 | Infektionsjagd | 12–18 h |
 | VIS-063 | Letzter Schutzplatz | 12–18 h |
 | VIS-077 | Minenlauf | 12–18 h |
@@ -114,7 +111,6 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 | VIS-095 | Bomben-Duell | 18–27 h |
 | VIS-093 | Fallenbauer | 18–27 h |
 | VIS-058 | Labyrinth-Brett | 18–27 h |
-| VIS-088 | Schach | 20–30 h |
 | VIS-086 | Skat | 22–33 h |
 | VIS-087 | Doppelkopf | 24–36 h |
 | VIS-090 | Gebietskampf (Risiko-inspiriert) | 28–42 h |
@@ -1612,12 +1608,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-054 – Exploding-Deck
 
 - **Spiel-ID/Kategorie:** `exploding-deck` / Kartenspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 11–17 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Aufwandsschätzung bleibt in der JSON-Datei erhalten.
+- **Frontend:** `public/games/exploding-deck/cards.js`, `public/games/exploding-deck/exploding-deck.css`, `public/games/exploding-deck/exploding-deck.js`
+- **Gemeinsame Komponenten:** Bestehender Raum-/Kit-Rahmen, GameDesign, Host-Pause und notwendige Bot-/Programm-Registrierung.
+- **Aktueller Stand:** Original workshop cards, hazard crate deck, private inspection strip and explicit reaction/insertion controls.
+- **Optische Verbesserungsziele:** Eigene Materialien und lesbare Touch-Aktionen implementiert; sechs Größen, geheime Ansichten, Pause, Reconnect und Ergebnis geprüft.
 - **Stil:** Spannungsvolles eigenes Kartenlabor mit klaren Gefahrensymbolen.
 - **Hintergrund:** Dunkler Arbeitstisch mit gedämpftem Warnakzent.
 - **Spielfeld:** Ziehstapel, Ablage und persönliche Schutzkarten räumlich ordnen.
@@ -1626,14 +1622,14 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Große Aktionskarten und bestätigte Entscheidungen bei wenig Platz.
 - **Technische Grenzen:** Keine Information über die nächste verdeckte Karte vor der erlaubten Aufdeckung. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von exploding-deck.
+- **Abhängigkeiten:** VIS-001 abgeschlossen; eigene Gameplay-Freigabe und Umsetzung in BACKLOG-05.
 
 **Individuelle Akzeptanz:**
 
 - Gefahr, gültige Schutzaktion und Ausscheiden eindeutig.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Tatsächlicher Code-Commit `79208e19d99f4526f405d4e7305bac2df6f582e2`; [Regeln und Grenzen](../../games/exploding-deck/README.md), [Bild-/Testmanifest mit SHA-256](../../games/exploding-deck/evidence.json). Neue Oberfläche ohne vorher spielbaren Frontend-Bestand.
 
 <a id="vis-055"></a>
 ### VIS-055 – Risiko-Würfeln
@@ -2341,12 +2337,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-081 – Doppelagent
 
 - **Spiel-ID/Kategorie:** `doppelagent` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 9–14 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Aufwandsschätzung bleibt in der JSON-Datei erhalten.
+- **Frontend:** `public/games/doppelagent/doppelagent.css`, `public/games/doppelagent/doppelagent.js`
+- **Gemeinsame Komponenten:** Bestehender Raum-/Kit-Rahmen, GameDesign, Host-Pause und notwendige Bot-/Programm-Registrierung.
+- **Aktueller Stand:** Confidential location dossier, original roles, public interview transcript and separate voting controls.
+- **Optische Verbesserungsziele:** Eigene Materialien und lesbare Touch-Aktionen implementiert; sechs Größen, geheime Ansichten, Pause, Reconnect und Ergebnis geprüft.
 - **Stil:** Geheimer Gesprächssalon mit persönlicher Ortsakte.
 - **Hintergrund:** Ruhige elegante Raumkulisse ohne Hinweise auf den geheimen Ort.
 - **Spielfeld:** Persönliche Akte und öffentliche Abstimmung getrennt.
@@ -2355,41 +2351,41 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Gesprächsstatus und Ziele groß, private Akte diskret.
 - **Technische Grenzen:** Geheimer Ort darf nicht in Hintergrund, Netzwerkdeko oder Alttext an den Agenten gelangen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von doppelagent.
+- **Abhängigkeiten:** VIS-001 abgeschlossen; eigene Gameplay-Freigabe und Umsetzung in BACKLOG-05.
 
 **Individuelle Akzeptanz:**
 
 - Agentenansicht enthält keinerlei Ortsinformation.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Tatsächlicher Code-Commit `073dd98b10ce66698cf67f1304e02ed9143138ef`; [Regeln und Grenzen](../../games/doppelagent/README.md), [Bild-/Testmanifest mit SHA-256](../../games/doppelagent/evidence.json). Neue Oberfläche ohne vorher spielbaren Frontend-Bestand.
 
 <a id="vis-082"></a>
 ### VIS-082 – Lügenbaron
 
 - **Spiel-ID/Kategorie:** `luegenbaron` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 7–11 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Aufwandsschätzung bleibt in der JSON-Datei erhalten.
+- **Frontend:** `public/games/luegenbaron/luegenbaron.css`, `public/games/luegenbaron/luegenbaron.js`
+- **Gemeinsame Komponenten:** Bestehender Raum-/Kit-Rahmen, GameDesign, Host-Pause und notwendige Bot-/Programm-Registrierung.
+- **Aktueller Stand:** Paper quiz salon, anonymous full-width choices, explicit vote confirmation and sourced reveal.
+- **Optische Verbesserungsziele:** Eigene Materialien und lesbare Touch-Aktionen implementiert; sechs Größen, geheime Ansichten, Pause, Reconnect und Ergebnis geprüft.
 - **Stil:** Erzählsalon mit typografischer Geschichtenkarte.
 - **Hintergrund:** Warme Papier-/Bibliothekskulisse ohne inhaltliche Hinweise.
-- **Spielfeld:** Aktuelle Geschichte im Mittelpunkt, öffentliche Abstimmung darunter.
-- **Figuren/Karten/Objekte:** Gleichartige Wahr-/Erfunden-Karten und späterer Beleg.
+- **Spielfeld:** Fragekarte, anonyme Antwortkarten und ausdrückliche Tippbestätigung.
+- **Figuren/Karten/Objekte:** Eigene Papierkarten, Feder, gesperrte eigene Lügen und Quellenbeleg erst bei Auflösung.
 - **Status und Aktionen:** Schreiben, Lesen, Abstimmen und Aufdecken trennen.
 - **Mobil:** Lange Geschichte vollständig lesbar, Abstimmung bleibt zugänglich.
 - **Technische Grenzen:** Wahrheitsentscheidung und Autorwissen nicht vor der Auflösung zeigen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von luegenbaron.
+- **Abhängigkeiten:** VIS-001 abgeschlossen; eigene Gameplay-Freigabe und Umsetzung in BACKLOG-05.
 
 **Individuelle Akzeptanz:**
 
 - Wahre und erfundene Geschichte sehen vor der Auflösung gleich aus.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Tatsächlicher Code-Commit `c26f42553e98ed13e351a9f1fdfb4701a6bf6519`; [Regeln und Grenzen](../../games/luegenbaron/README.md), [Bild-/Testmanifest mit SHA-256](../../games/luegenbaron/evidence.json). Neue Oberfläche ohne vorher spielbaren Frontend-Bestand.
 
 <a id="vis-083"></a>
 ### VIS-083 – Brückenroulette
@@ -2530,12 +2526,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-088 – Schach
 
 - **Spiel-ID/Kategorie:** `schach` / Brettspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 20–30 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** abgeschlossen; ursprüngliche Aufwandsschätzung bleibt in der JSON-Datei erhalten.
+- **Frontend:** `public/games/schach/pieces.svg`, `public/games/schach/schach.css`, `public/games/schach/schach.js`
+- **Gemeinsame Komponenten:** Bestehender Raum-/Kit-Rahmen, GameDesign, Host-Pause und notwendige Bot-/Programm-Registrierung.
+- **Aktueller Stand:** Wooden board, original classical SVG pieces, legal destination marks, clocks and SAN ledger.
+- **Optische Verbesserungsziele:** Eigene Materialien und lesbare Touch-Aktionen implementiert; sechs Größen, geheime Ansichten, Pause, Reconnect und Ergebnis geprüft.
 - **Stil:** Reduziertes Turnierbrett mit eigenen hochwertigen 2D-Figuren.
 - **Hintergrund:** Ruhige matte Turnierfläche ohne 3D.
 - **Spielfeld:** 8×8-Koordinaten, echte legale Ziele und Stellung unverändert.
@@ -2544,14 +2540,14 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Ganzes Brett einpassen; Umwandlung und Uhr nicht hinter Dock.
 - **Technische Grenzen:** Keine Zug-/Schachprüfung aus Grafik ableiten; Schachuhr erst nach Gameplayfreigabe. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von schach.
+- **Abhängigkeiten:** VIS-001 abgeschlossen; eigene Gameplay-Freigabe und Umsetzung in BACKLOG-05.
 
 **Individuelle Akzeptanz:**
 
 - Rochade, Umwandlung und Spielende korrekt beschriftet.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Tatsächlicher Code-Commit `d07f458f4ed13b78ad5d17fc7daabe435060041b`; [Regeln und Grenzen](../../games/schach/README.md), [Bild-/Testmanifest mit SHA-256](../../games/schach/evidence.json). Neue Oberfläche ohne vorher spielbaren Frontend-Bestand.
 
 <a id="vis-089"></a>
 ### VIS-089 – Städtehandel (Catan-inspiriert)

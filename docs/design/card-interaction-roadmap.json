@@ -1005,7 +1005,10 @@
       "authorization": "Explicit BACKLOG-05 request, 2026-11-03",
       "scope": "Physical-card selection, explicit confirmation, private insertion and reaction chains in the new game only",
       "documentation": "games/exploding-deck/README.md",
-      "implementation_commit": null
+      "implementation_commit": "79208e19d99f4526f405d4e7305bac2df6f582e2",
+      "followup_commits": [
+        "9a4ed6b5c055aeba11de8b76e19c95618054bbab"
+      ]
     }
   ]
 }

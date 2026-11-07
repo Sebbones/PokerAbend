@@ -294,7 +294,7 @@
         "follow_up_log": "games/seven-card-stud/_artifacts/poker-regression-release.log"
       },
       "pre_backlog_05_shared_audit": {
-        "commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
+        "commit": "cb1fec0f14e7c90a4a66c93280a9f50a250a3dda",
         "sources": [
           {
             "path": "games/poker/engine/table.js",
@@ -344,8 +344,323 @@
       },
       "backlog_05_registration": {
         "scope": "Only bot registration for explicitly authorized new games; existing strategies unchanged",
-        "implementation_commit": null
+        "implementation_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519"
       }
+    },
+    {
+      "id": "BACKLOG-05",
+      "games": [
+        "schach",
+        "exploding-deck",
+        "doppelagent",
+        "luegenbaron"
+      ],
+      "original_41_games": [
+        "exploding-deck",
+        "doppelagent",
+        "luegenbaron"
+      ],
+      "additional_games": [
+        "schach"
+      ],
+      "status": "done",
+      "implementation_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
+      "implementation_commits": {
+        "schach": "d07f458f4ed13b78ad5d17fc7daabe435060041b",
+        "exploding-deck": "79208e19d99f4526f405d4e7305bac2df6f582e2",
+        "doppelagent": "073dd98b10ce66698cf67f1304e02ed9143138ef",
+        "luegenbaron": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519"
+      },
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1199,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 155.89,
+          "log": "artifacts/backlog-05-bluff-green-node.log"
+        },
+        {
+          "command": "Distinct game-specific desktop/mobile browser cases",
+          "passed": 12,
+          "failed": 0,
+          "note": "Schach 6 plus 2 each for Exploding-Deck, Doppelagent and Luegenbaron. Four extra normal result cases also passed; complete final regression recorded separately."
+        },
+        {
+          "command": "playwright test test/ui/backlog-05-end.spec.js --output artifacts/backlog-05-end-ui-results",
+          "passed": 4,
+          "failed": 0,
+          "duration_minutes": 4.7,
+          "log": "artifacts/backlog-05-end-ui.log"
+        },
+        {
+          "command": "node --test test/backlog05-proof.test.js test/game-visual-roadmap.test.js test/backlog-small.test.js test/backlog-dice.test.js",
+          "passed": 32,
+          "failed": 0,
+          "log": "artifacts/backlog-05-proof-node.log"
+        },
+        {
+          "command": "npm.cmd test",
+          "passed": 1201,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 92.87,
+          "log": "artifacts/backlog-05-resumed-node.log",
+          "date": "2026-11-07"
+        },
+        {
+          "command": "Isolated release snapshot: Luegenbaron and all 66 custom lobbies, desktop/mobile, workers=1",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 183.44,
+          "log": "artifacts/backlog-05-isolated-ui.log",
+          "report": "artifacts/backlog-05-isolated-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Four cases: two Luegenbaron and two complete lobby-catalogue checks. Excludes parallel workflow, solo-test and four lobby edits."
+        },
+        {
+          "command": "playwright test --workers=2 --reporter=list,json",
+          "scope": "complete suite",
+          "scheduled": 562,
+          "passed": 530,
+          "failed": 14,
+          "skipped": 18,
+          "flaky": 0,
+          "duration_seconds": 3946.337,
+          "log": "artifacts/backlog-05-complete-ui.log",
+          "report": "artifacts/backlog-05-complete-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Complete report, not green. Dedicated isolated single-worker rechecks are recorded separately. The Luegenbaron timeout fix was verified independently in commit 31a7b2755c134e1b9e0a0f968edfb1d54d92cc95."
+        },
+        {
+          "command": "Original full-suite failures, isolated release snapshot, desktop, one worker",
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 101.752,
+          "log": "artifacts/backlog-05-recheck.log",
+          "report": "artifacts/backlog-05-recheck-desktop-report.json",
+          "date": "2026-11-07"
+        },
+        {
+          "command": "Original full-suite failures, isolated release snapshot, mobil, one worker",
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 33.76,
+          "log": "artifacts/backlog-05-recheck.log",
+          "report": "artifacts/backlog-05-recheck-mobil-report.json",
+          "date": "2026-11-07"
+        },
+        {
+          "command": "Current-main four-game capture after independent lobby followup (two Exploding test-driver failures, fixed separately)",
+          "passed": 10,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 110.016,
+          "log": "artifacts/backlog-05-current-main-ui.log",
+          "report": "artifacts/backlog-05-current-main-ui-report.json",
+          "date": "2026-11-07"
+        },
+        {
+          "command": "Corrected Exploding-Deck actual-draw driver, desktop/mobile, one worker",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 19.346,
+          "log": "artifacts/backlog-05-exploding-current.log",
+          "report": "artifacts/backlog-05-exploding-current-report.json",
+          "date": "2026-11-07"
+        },
+        {
+          "command": "Isolated source, 100 screenshot and roadmap proof tests",
+          "passed": 32,
+          "failed": 0,
+          "duration_seconds": 2.071,
+          "log": "artifacts/backlog-05-isolated-proof.log",
+          "date": "2026-11-07"
+        },
+        {
+          "command": "npm.cmd test",
+          "scope": "complete current-main suite including refreshed 100-image/source proof",
+          "passed": 1201,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 77.177,
+          "log": "artifacts/backlog-05-current-final-node.log",
+          "date": "2026-11-07"
+        }
+      ],
+      "permanent_screenshots": 100,
+      "shared_source_audit_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
+      "shared_source_audit": [
+        {
+          "path": "package.json",
+          "sha256": "7c6257fb2a3ed48d66efcc46838712ff581b98be037936d72ed58c37af5342ab"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "40ab451a17996dc79efdea2784788d6a45a0540e6ade7556617226edb0d2280d"
+        },
+        {
+          "path": "games/index.js",
+          "sha256": "6e20d6bbe1e720aff035ce7517bdbaafb68f280f902f823a68b591af587d7bc5"
+        },
+        {
+          "path": "games/bots.js",
+          "sha256": "0059140ea7389ec3cbb3d859baa243a18001241ae4d6ecfa2316d0ce6c355d5b"
+        },
+        {
+          "path": "games/variants.js",
+          "sha256": "d5e1b6d0214b5eccc1fab1b12fc166843f38edd0523669a85c456f8026454f09"
+        },
+        {
+          "path": "games/bot-levels.js",
+          "sha256": "f7c9d11dcd452bf4fa43ed5f7b77cfc19e733b342c771ac9b19f2e80240d748e"
+        },
+        {
+          "path": "games/bot-strategies/index.js",
+          "sha256": "061b33692794e909e3271df2825aac6e79969a16ac17425b6a8e83cc4bd3b5ac"
+        },
+        {
+          "path": "server/bots.js",
+          "sha256": "95d9fae8de94cdf14645098afe57a07d25bcd6f6fe0b1a9dbcd435164797f2cf"
+        },
+        {
+          "path": "server/bot-play.js",
+          "sha256": "861f2b908b273f7457ebc4ced6561036f98afe53b4566c9b2493fedd74f891dd"
+        },
+        {
+          "path": "server/bot-observation.js",
+          "sha256": "a6a3a38fd8739b3521a2a2c198f4bf5f7c4322162917ef4175085aa47c3f1f84"
+        },
+        {
+          "path": "server/party-program.js",
+          "sha256": "8ece043f1e8d406cdfbbe01c533506934e8f23efa57fc10b35fa1d1f3e2c19d3"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "5a254c5c9cdd5b4fa21318bf92ce7ebfde38e47642da8bb1712077ebe0940947"
+        },
+        {
+          "path": "public/hub.js",
+          "sha256": "7ec54f58c67e6b6a91375d7fc07ae2c52a473ffdea4df90ea5fde5465e08236b"
+        },
+        {
+          "path": "public/i18n-en.js",
+          "sha256": "e6ad1ee1aa1c38e719a00c5d7d5b7dfc355eadcf2486010ecd4a02a9ccc03d2f"
+        },
+        {
+          "path": "public/games/party-kit.js",
+          "sha256": "cf11732460737d7afe88a494775e1152d8d1cab437ffde90495007a9eb76db02"
+        }
+      ],
+      "completed_at": "2026-11-07",
+      "push_builds": [
+        {
+          "game": "schach",
+          "commit": "d07f458f4ed13b78ad5d17fc7daabe435060041b",
+          "run_id": 41694964567,
+          "workflow": "Docker-Image",
+          "conclusion": "success",
+          "url": "https://github.com/TTLPSCWA/PokerAbend/actions/runs/41694964567",
+          "checked_at": "2026-11-03"
+        },
+        {
+          "game": "exploding-deck",
+          "commit": "79208e19d99f4526f405d4e7305bac2df6f582e2",
+          "run_id": 41698242802,
+          "workflow": "Docker-Image",
+          "conclusion": "success",
+          "url": "https://github.com/TTLPSCWA/PokerAbend/actions/runs/41698242802",
+          "checked_at": "2026-11-03"
+        },
+        {
+          "game": "doppelagent",
+          "commit": "073dd98b10ce66698cf67f1304e02ed9143138ef",
+          "run_id": 41699379035,
+          "workflow": "Docker-Image",
+          "conclusion": "success",
+          "url": "https://github.com/TTLPSCWA/PokerAbend/actions/runs/41699379035",
+          "checked_at": "2026-11-03"
+        },
+        {
+          "game": "luegenbaron",
+          "commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
+          "run_id": 41702813522,
+          "workflow": "Docker-Image",
+          "conclusion": "success",
+          "url": "https://github.com/TTLPSCWA/PokerAbend/actions/runs/41702813522",
+          "checked_at": "2026-11-03"
+        },
+        {
+          "game": "exploding-deck-style-followup",
+          "commit": "9a4ed6b5c055aeba11de8b76e19c95618054bbab",
+          "run_id": 42355763337,
+          "workflow": "Docker-Image",
+          "conclusion": "success",
+          "url": "https://github.com/TTLPSCWA/PokerAbend/actions/runs/42355763337",
+          "checked_at": "2026-11-07"
+        },
+        {
+          "game": "browser-test-followup",
+          "commit": "31a7b2755c134e1b9e0a0f968edfb1d54d92cc95",
+          "run_id": 42359109969,
+          "workflow": "Docker-Image",
+          "conclusion": "success",
+          "url": "https://github.com/TTLPSCWA/PokerAbend/actions/runs/42359109969",
+          "checked_at": "2026-11-07"
+        }
+      ],
+      "followup_commits": {
+        "exploding-deck": [
+          "9a4ed6b5c055aeba11de8b76e19c95618054bbab",
+          "67bae9724c7d88f76e0432b13b954f32c996fe4b"
+        ],
+        "browser_tests": [
+          "31a7b2755c134e1b9e0a0f968edfb1d54d92cc95"
+        ],
+        "external_main": [
+          "68c6ca46f08996c146e4e01d728c8c9223de818d"
+        ]
+      },
+      "verification_resumed_at": "2026-11-07",
+      "interrupted_browser_runs": [
+        {
+          "log": "artifacts/backlog-05-full-playwright.log",
+          "date": "2026-11-03",
+          "scheduled": 558,
+          "finished_cases": 378,
+          "passed": 359,
+          "failed": 3,
+          "skipped": 16,
+          "completed": false,
+          "note": "Stopped during the usage-limit interruption. Two outdated generic-lobby assertions, plus one UNO No Mercy case; not a complete suite result."
+        },
+        {
+          "log": "artifacts/backlog-05-resumed-full-ui.log",
+          "date": "2026-11-07",
+          "completed": false,
+          "note": "Stopped and restarted cleanly after startup MODULE_NOT_FOUND errors in Playwright/Socket.IO dependencies. All three Playwright packages are 1.64.1 and imports were checked before the final run."
+        },
+        {
+          "log": "artifacts/backlog-05-final-full-ui.log",
+          "date": "2026-11-07",
+          "scheduled": 562,
+          "finished_cases": 137,
+          "passed": 133,
+          "failed": 1,
+          "skipped": 3,
+          "completed": false,
+          "note": "Tool-bound process ended without JSON report. One UNO Flip timeout; passed in the later complete run."
+        }
+      ],
+      "verification_base_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+      "remaining_tasks": [
+        "A single full browser run remains timing-sensitive: its 14 failures all passed in isolated one-worker rechecks. Stabilising unrelated existing fixtures needs a separate task; no reproducible new-game defect remains from these checks."
+      ],
+      "completion_note": "All four games implemented, registered, bot-tested and visually verified. Full browser run honestly recorded as 530 passed / 14 failed / 18 skipped; all 14 isolated rechecks passed. Current-main game worlds rechecked after independent lobby followup and final complete Node suite passed. Stop after BACKLOG-05."
     }
   ],
   "games": [
@@ -603,9 +918,22 @@
         },
         {
           "path": "public/games/party-kit.js",
-          "sha256": "a7e5b23583960abdaa2d7f03e4e4d5258e41801020bd823a83f30fabfb44be36"
+          "sha256": "cf11732460737d7afe88a494775e1152d8d1cab437ffde90495007a9eb76db02"
         }
-      ]
+      ],
+      "pre_backlog_05_source_audit": {
+        "commit": "cb1fec0f14e7c90a4a66c93280a9f50a250a3dda",
+        "sources": [
+          {
+            "path": "public/games/party-kit.js",
+            "sha256": "a7e5b23583960abdaa2d7f03e4e4d5258e41801020bd823a83f30fabfb44be36"
+          }
+        ]
+      },
+      "backlog_05_shared_change": {
+        "scope": "Only optional lobby and getter forwarding in the existing party renderer",
+        "implementation_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519"
+      }
     },
     {
       "id": "omaha-hi-lo",
@@ -833,11 +1161,125 @@
     {
       "id": "exploding-deck",
       "name": "Exploding-Deck",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-05",
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "implementation_commit": "79208e19d99f4526f405d4e7305bac2df6f582e2",
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1171,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 127.52,
+          "log": "artifacts/backlog-05-exploding-green-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05.spec.js --grep Exploding-Deck",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 28.9,
+          "log": "artifacts/backlog-05-exploding-ui-fixed.log"
+        },
+        {
+          "command": "node --test games/exploding-deck/rules.test.js",
+          "passed": 10,
+          "failed": 0,
+          "coverage": "80 full games, all player counts and levels, secret JSON and deterministic worker projection"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05-end.spec.js",
+          "passed_for_game": 2,
+          "total_passed": 4,
+          "failed": 0,
+          "log": "artifacts/backlog-05-end-ui.log",
+          "coverage": "Normal final survivor / correct accusation or location guess with real bots and human views, desktop and mobile"
+        },
+        {
+          "command": "Exploding-Deck desktop/mobile style final recheck",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 30.1,
+          "log": "artifacts/backlog-05-exploding-style-final.log"
+        },
+        {
+          "command": "Exploding-Deck desktop/mobile actual-draw test after corrected driver",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 19.346,
+          "log": "artifacts/backlog-05-exploding-current.log",
+          "report": "artifacts/backlog-05-exploding-current-report.json",
+          "date": "2026-11-07"
+        }
+      ],
+      "screenshots": [
+        "docs/design/screenshots/exploding-deck/desktop-english-rules.png",
+        "docs/design/screenshots/exploding-deck/desktop-hand.png",
+        "docs/design/screenshots/exploding-deck/desktop-in-play.png",
+        "docs/design/screenshots/exploding-deck/desktop-lobby.png",
+        "docs/design/screenshots/exploding-deck/desktop-paused.png",
+        "docs/design/screenshots/exploding-deck/desktop-reconnect.png",
+        "docs/design/screenshots/exploding-deck/desktop-result.png",
+        "docs/design/screenshots/exploding-deck/desktop-spectator.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-1440x900.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-1920x1080.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-360x800.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-390x844.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-768x1024.png",
+        "docs/design/screenshots/exploding-deck/desktop-workshop-900x450.png",
+        "docs/design/screenshots/exploding-deck/mobil-english-rules.png",
+        "docs/design/screenshots/exploding-deck/mobil-hand.png",
+        "docs/design/screenshots/exploding-deck/mobil-in-play.png",
+        "docs/design/screenshots/exploding-deck/mobil-lobby.png",
+        "docs/design/screenshots/exploding-deck/mobil-paused.png",
+        "docs/design/screenshots/exploding-deck/mobil-reconnect.png",
+        "docs/design/screenshots/exploding-deck/mobil-result.png",
+        "docs/design/screenshots/exploding-deck/mobil-spectator.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/exploding-deck/bot.js",
+          "sha256": "2b79270cc5e159c93b5a9405289f9407c31ff66c4eddc6cc8a4cb533998e44a7"
+        },
+        {
+          "path": "games/exploding-deck/cards.js",
+          "sha256": "9e3acc0f718f82d2cd48bfc942ab2241e5861c19353c3b05dde0c68ba4444ce4"
+        },
+        {
+          "path": "games/exploding-deck/index.js",
+          "sha256": "f96ccb7728012edf6d511e4235823808075b182bf212a7436711d56df1dc3e23"
+        },
+        {
+          "path": "games/exploding-deck/room.js",
+          "sha256": "85f79875900e0c39f0681d4fc5a5b9c9f32137fb5bd3173a2f6a2d2d3fad28db"
+        },
+        {
+          "path": "games/exploding-deck/rules.test.js",
+          "sha256": "f0f12b931c75b7d605814383f3230bca70cd692bb701ba71a45683483ebdf66e"
+        },
+        {
+          "path": "games/exploding-deck/ui.spec.js",
+          "sha256": "07e855f10ca17ba3e2f5bf7924c5631af8646cb020d1c8966c8d96751a310491"
+        },
+        {
+          "path": "public/games/exploding-deck/cards.js",
+          "sha256": "bb98290903836d6ec399c3fd8ac698a1cd738d9ad5153c809f03316e54a45750"
+        },
+        {
+          "path": "public/games/exploding-deck/exploding-deck.css",
+          "sha256": "f69b13a50d5543b88e4e9df68f2cf2e3b1357b873aed205c489d7a815c3250a3"
+        },
+        {
+          "path": "public/games/exploding-deck/exploding-deck.js",
+          "sha256": "0cf9f99dc7546382c383547be56d502a8813d7b40299978df6ee1687ae37aff7"
+        }
+      ],
+      "followup_commits": [
+        "9a4ed6b5c055aeba11de8b76e19c95618054bbab",
+        "68c6ca46f08996c146e4e01d728c8c9223de818d",
+        "67bae9724c7d88f76e0432b13b954f32c996fe4b"
+      ],
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b"
     },
     {
       "id": "wuerfeljagd",
@@ -1643,20 +2085,243 @@
     {
       "id": "doppelagent",
       "name": "Doppelagent",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-05",
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "implementation_commit": "073dd98b10ce66698cf67f1304e02ed9143138ef",
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1182,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 153.36,
+          "log": "artifacts/backlog-05-agent-full-node.log",
+          "note": "Full run before the additional explicit party-program registration test; final targeted run includes it."
+        },
+        {
+          "command": "node --test test/doppelagent.test.js",
+          "passed": 9,
+          "failed": 0,
+          "log": "artifacts/backlog-05-agent-final-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05.spec.js --grep Doppelagent",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 26.4,
+          "log": "artifacts/backlog-05-agent-ui-green.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05-end.spec.js",
+          "passed_for_game": 2,
+          "total_passed": 4,
+          "failed": 0,
+          "log": "artifacts/backlog-05-end-ui.log",
+          "coverage": "Normal final survivor / correct accusation or location guess with real bots and human views, desktop and mobile"
+        },
+        {
+          "command": "Current-main four-game browser capture; this game passed every case",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 110.016,
+          "log": "artifacts/backlog-05-current-main-ui.log",
+          "report": "artifacts/backlog-05-current-main-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
+        }
+      ],
+      "screenshots": [
+        "docs/design/screenshots/doppelagent/desktop-accusation.png",
+        "docs/design/screenshots/doppelagent/desktop-bot-answer.png",
+        "docs/design/screenshots/doppelagent/desktop-case-1440x900.png",
+        "docs/design/screenshots/doppelagent/desktop-case-1920x1080.png",
+        "docs/design/screenshots/doppelagent/desktop-case-360x800.png",
+        "docs/design/screenshots/doppelagent/desktop-case-390x844.png",
+        "docs/design/screenshots/doppelagent/desktop-case-768x1024.png",
+        "docs/design/screenshots/doppelagent/desktop-case-900x450.png",
+        "docs/design/screenshots/doppelagent/desktop-english-rules.png",
+        "docs/design/screenshots/doppelagent/desktop-lobby.png",
+        "docs/design/screenshots/doppelagent/desktop-pause.png",
+        "docs/design/screenshots/doppelagent/desktop-private-card.png",
+        "docs/design/screenshots/doppelagent/desktop-reconnect.png",
+        "docs/design/screenshots/doppelagent/desktop-result.png",
+        "docs/design/screenshots/doppelagent/desktop-spectator.png",
+        "docs/design/screenshots/doppelagent/mobil-accusation.png",
+        "docs/design/screenshots/doppelagent/mobil-bot-answer.png",
+        "docs/design/screenshots/doppelagent/mobil-english-rules.png",
+        "docs/design/screenshots/doppelagent/mobil-lobby.png",
+        "docs/design/screenshots/doppelagent/mobil-pause.png",
+        "docs/design/screenshots/doppelagent/mobil-private-card.png",
+        "docs/design/screenshots/doppelagent/mobil-reconnect.png",
+        "docs/design/screenshots/doppelagent/mobil-result.png",
+        "docs/design/screenshots/doppelagent/mobil-spectator.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/doppelagent/bot.js",
+          "sha256": "8dac887284dd4aa270136d43310b27bdb4385751a379c0fa3d60a2a805627c41"
+        },
+        {
+          "path": "games/doppelagent/index.js",
+          "sha256": "bc3e1ec39d54edf344cf01e21401ff5b60fd0fb6e8e82ff577b884cf30ce2ca8"
+        },
+        {
+          "path": "games/doppelagent/locations.js",
+          "sha256": "6e2d29eef152394d97d3b1d7777a92f08f70ce27b477d1259b15274c544f1094"
+        },
+        {
+          "path": "games/doppelagent/room.js",
+          "sha256": "4979967e1cbb4340c76946a42beecab7ba37daac774a9af0ef726296c92ff72e"
+        },
+        {
+          "path": "games/doppelagent/rules.test.js",
+          "sha256": "8138d26964fb29a48c352475bc46362623c428e0431b48f5d185467b12646993"
+        },
+        {
+          "path": "games/doppelagent/ui.spec.js",
+          "sha256": "132e24cc52ef34e3273a30f81e518a25988fffadff739d4d7db06100e287aece"
+        },
+        {
+          "path": "public/games/doppelagent/doppelagent.css",
+          "sha256": "f2c3d01318cd5c17a78a0f4b45a197e68c2d027ab37087ab0e65fd2798b0b33a"
+        },
+        {
+          "path": "public/games/doppelagent/doppelagent.js",
+          "sha256": "6def5040b9e28e06da54b8c203071aa520c58b5f8d820fa0fa726fa0c84b247d"
+        }
+      ],
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+      "followup_commits": [
+        "68c6ca46f08996c146e4e01d728c8c9223de818d"
+      ]
     },
     {
       "id": "luegenbaron",
       "name": "Lügenbaron",
-      "status": "verified",
+      "status": "done",
       "package_id": "BACKLOG-05",
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "implementation_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1199,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 155.89,
+          "log": "artifacts/backlog-05-bluff-green-node.log"
+        },
+        {
+          "command": "node --test test/luegenbaron.test.js",
+          "passed": 13,
+          "failed": 0,
+          "log": "artifacts/backlog-05-bluff-final-node.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog-05.spec.js --grep \"Lügenbaron\"",
+          "passed": 2,
+          "failed": 0,
+          "duration_seconds": 45.9,
+          "log": "artifacts/backlog-05-bluff-ui-layout.log"
+        },
+        {
+          "command": "Isolated release snapshot: Luegenbaron and all 66 custom lobbies, desktop/mobile, workers=1",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 183.44,
+          "log": "artifacts/backlog-05-isolated-ui.log",
+          "report": "artifacts/backlog-05-isolated-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Four cases: two Luegenbaron and two complete lobby-catalogue checks. Excludes parallel workflow, solo-test and four lobby edits."
+        },
+        {
+          "command": "Current-main four-game browser capture; this game passed every case",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 110.016,
+          "log": "artifacts/backlog-05-current-main-ui.log",
+          "report": "artifacts/backlog-05-current-main-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
+        }
+      ],
+      "screenshots": [
+        "docs/design/screenshots/luegenbaron/desktop-doubled-final.png",
+        "docs/design/screenshots/luegenbaron/desktop-english-rules.png",
+        "docs/design/screenshots/luegenbaron/desktop-lobby.png",
+        "docs/design/screenshots/luegenbaron/desktop-pause.png",
+        "docs/design/screenshots/luegenbaron/desktop-reconnect.png",
+        "docs/design/screenshots/luegenbaron/desktop-result.png",
+        "docs/design/screenshots/luegenbaron/desktop-reveal.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-1440x900.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-1920x1080.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-360x800.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-390x844.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-768x1024.png",
+        "docs/design/screenshots/luegenbaron/desktop-salon-900x450.png",
+        "docs/design/screenshots/luegenbaron/desktop-spectator.png",
+        "docs/design/screenshots/luegenbaron/desktop-truth-rejected.png",
+        "docs/design/screenshots/luegenbaron/desktop-vote.png",
+        "docs/design/screenshots/luegenbaron/mobil-doubled-final.png",
+        "docs/design/screenshots/luegenbaron/mobil-english-rules.png",
+        "docs/design/screenshots/luegenbaron/mobil-lobby.png",
+        "docs/design/screenshots/luegenbaron/mobil-pause.png",
+        "docs/design/screenshots/luegenbaron/mobil-reconnect.png",
+        "docs/design/screenshots/luegenbaron/mobil-result.png",
+        "docs/design/screenshots/luegenbaron/mobil-reveal.png",
+        "docs/design/screenshots/luegenbaron/mobil-spectator.png",
+        "docs/design/screenshots/luegenbaron/mobil-truth-rejected.png",
+        "docs/design/screenshots/luegenbaron/mobil-vote.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/luegenbaron/bot.js",
+          "sha256": "8684392c0e92530eff75aac9f8f3945ad08acb4f6e5ebea53da33ca836b85f65"
+        },
+        {
+          "path": "games/luegenbaron/build-catalog.js",
+          "sha256": "19accd032b29020da99c660d081de6ec70db2e89c9eb45c9daefb40516ad9971"
+        },
+        {
+          "path": "games/luegenbaron/facts.json",
+          "sha256": "ddb74624cc04d84ceb2cfa6948a9bc491a339877c570ec3e7dfd4093158626b0"
+        },
+        {
+          "path": "games/luegenbaron/index.js",
+          "sha256": "12b89b7b6ccdee2967203517d246d2f326869b06d0a8a88c467d6e62fd0a87f4"
+        },
+        {
+          "path": "games/luegenbaron/normalise.js",
+          "sha256": "3a801be79bdf14ee491f3bae58b0890a12388bd552d22753c024e3c51a4ecee1"
+        },
+        {
+          "path": "games/luegenbaron/room.js",
+          "sha256": "85b3d3725b487c44286d5b05469ad4bdc44db283962645b5dc1ee88e66b4146e"
+        },
+        {
+          "path": "games/luegenbaron/rules.test.js",
+          "sha256": "800f9ddf653347d676a5e59420d9354099499040b65c788c09bd7d1e8771b9f6"
+        },
+        {
+          "path": "games/luegenbaron/ui.spec.js",
+          "sha256": "8b6882eb98d702c06d9ab34a4b247297269416375fbec45fc5a6db81487ad65b"
+        },
+        {
+          "path": "public/games/luegenbaron/luegenbaron.css",
+          "sha256": "8cb1883cd72e0bef2e8970de5766cd47e451b3c3b97be6fe654df731409a1052"
+        },
+        {
+          "path": "public/games/luegenbaron/luegenbaron.js",
+          "sha256": "5e89cc024c566ae9a3b0429b8429f1dabcae6f6cf984037210ba703037df0001"
+        }
+      ],
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+      "followup_commits": [
+        "31a7b2755c134e1b9e0a0f968edfb1d54d92cc95",
+        "68c6ca46f08996c146e4e01d728c8c9223de818d"
+      ]
     },
     {
       "id": "brueckenroulette",
@@ -1818,13 +2483,126 @@
     }
   ],
   "latest_authorization": {
-    "date": "2026-11-01",
+    "date": "2026-11-03",
     "games": [
-      "scrabble",
-      "omaha-hi-lo",
-      "short-deck",
-      "seven-card-stud"
+      "schach",
+      "exploding-deck",
+      "doppelagent",
+      "luegenbaron"
     ],
-    "scope": "Only these four games, bots, individual worlds and necessary tests; stop after packet. No V2 implementation. Preserve parallel identity work; use only room player IDs."
-  }
+    "scope": "Only these four complete games, own worlds, DE/EN, bots and tests. Schach belongs to grosse-projekte, three games to the historical 41-item section. No V2 work or server changes beyond necessary registration. Stop after this packet."
+  },
+  "extra_games": [
+    {
+      "id": "schach",
+      "name": "Schach",
+      "origin_section": "grosse-projekte",
+      "counts_towards_original_41": false,
+      "status": "done",
+      "package_id": "BACKLOG-05",
+      "implementation_commit": "d07f458f4ed13b78ad5d17fc7daabe435060041b",
+      "test_results": [
+        {
+          "command": "npm.cmd test",
+          "passed": 1158,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 148.53
+        },
+        {
+          "command": "Schach desktop/mobile browser cases",
+          "distinct_passed": 6,
+          "failed": 0
+        },
+        {
+          "command": "English rules recheck",
+          "passed": 2,
+          "failed": 0
+        },
+        {
+          "command": "Current-main four-game browser capture; this game passed every case",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 110.016,
+          "log": "artifacts/backlog-05-current-main-ui.log",
+          "report": "artifacts/backlog-05-current-main-ui-report.json",
+          "date": "2026-11-07",
+          "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
+        }
+      ],
+      "screenshots": [
+        "docs/design/screenshots/schach/desktop-board-1440x900.png",
+        "docs/design/screenshots/schach/desktop-board-1920x1080.png",
+        "docs/design/screenshots/schach/desktop-board-360x800.png",
+        "docs/design/screenshots/schach/desktop-board-390x844.png",
+        "docs/design/screenshots/schach/desktop-board-768x1024.png",
+        "docs/design/screenshots/schach/desktop-board-900x450.png",
+        "docs/design/screenshots/schach/desktop-bot-reply.png",
+        "docs/design/screenshots/schach/desktop-chess960-english.png",
+        "docs/design/screenshots/schach/desktop-english-rules.png",
+        "docs/design/screenshots/schach/desktop-history-rotation.png",
+        "docs/design/screenshots/schach/desktop-lobby.png",
+        "docs/design/screenshots/schach/desktop-own-turn.png",
+        "docs/design/screenshots/schach/desktop-pause.png",
+        "docs/design/screenshots/schach/desktop-promotion.png",
+        "docs/design/screenshots/schach/desktop-reconnect.png",
+        "docs/design/screenshots/schach/desktop-result.png",
+        "docs/design/screenshots/schach/desktop-spectator.png",
+        "docs/design/screenshots/schach/mobil-bot-reply.png",
+        "docs/design/screenshots/schach/mobil-chess960-english.png",
+        "docs/design/screenshots/schach/mobil-english-rules.png",
+        "docs/design/screenshots/schach/mobil-history-rotation.png",
+        "docs/design/screenshots/schach/mobil-lobby.png",
+        "docs/design/screenshots/schach/mobil-own-turn.png",
+        "docs/design/screenshots/schach/mobil-pause.png",
+        "docs/design/screenshots/schach/mobil-promotion.png",
+        "docs/design/screenshots/schach/mobil-reconnect.png",
+        "docs/design/screenshots/schach/mobil-result.png",
+        "docs/design/screenshots/schach/mobil-spectator.png"
+      ],
+      "source_audit": [
+        {
+          "path": "games/schach/bot.js",
+          "sha256": "de9930f134aaa36505bce6e23a75d3741eccbd63a83f1fc3e2aed2a7b6ed713d"
+        },
+        {
+          "path": "games/schach/index.js",
+          "sha256": "0cd1d9e9520acb706512af0f0640db38fc42e98197a6918c951f4bb666859d60"
+        },
+        {
+          "path": "games/schach/room.js",
+          "sha256": "dda46762ade9754559ebaad2d12a87419f14eb3da1259b2cf0c93b524712e0fe"
+        },
+        {
+          "path": "games/schach/rules.js",
+          "sha256": "507cb5828002159a7a99009fd3eb3f2a35846c6d884a670dc1c61bb15aa8bbe2"
+        },
+        {
+          "path": "games/schach/rules.test.js",
+          "sha256": "82b29cbbcb06cfa780cbb4fbbee9ef5145575ef797158c7204eeda7966d79100"
+        },
+        {
+          "path": "games/schach/ui.spec.js",
+          "sha256": "640755b6d6690f0a5f67364ef64a6daf00b04f1d247bbe5bc452ef5e166f70c5"
+        },
+        {
+          "path": "public/games/schach/pieces.svg",
+          "sha256": "687181e57f16f4b6d4c3c1139ba0f1b87275c86a1a9da4b480e7f9438f215d7d"
+        },
+        {
+          "path": "public/games/schach/schach.css",
+          "sha256": "f9bf650a94fbad4800fe3121e10f3194ad7437362f513423076cd1650a7afa2a"
+        },
+        {
+          "path": "public/games/schach/schach.js",
+          "sha256": "10c0a56c3fcd9154b56a0f53bad96e831cb14b24bc925e517b22be9257b6044e"
+        }
+      ],
+      "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+      "followup_commits": [
+        "68c6ca46f08996c146e4e01d728c8c9223de818d"
+      ]
+    }
+  ]
 }

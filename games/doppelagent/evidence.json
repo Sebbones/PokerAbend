@@ -1,7 +1,7 @@
 {
   "task": "BACKLOG-05",
   "game": "doppelagent",
-  "implementation_commit": null,
+  "implementation_commit": "073dd98b10ce66698cf67f1304e02ed9143138ef",
   "date": "2026-11-03",
   "tests": [
     {
@@ -25,96 +25,167 @@
       "failed": 0,
       "duration_seconds": 26.4,
       "log": "artifacts/backlog-05-agent-ui-green.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog-05-end.spec.js",
+      "passed_for_game": 2,
+      "total_passed": 4,
+      "failed": 0,
+      "log": "artifacts/backlog-05-end-ui.log",
+      "coverage": "Normal final survivor / correct accusation or location guess with real bots and human views, desktop and mobile"
+    },
+    {
+      "command": "Current-main four-game browser capture; this game passed every case",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 110.016,
+      "log": "artifacts/backlog-05-current-main-ui.log",
+      "report": "artifacts/backlog-05-current-main-ui-report.json",
+      "date": "2026-11-07",
+      "note": "Per-game cases from the combined 12-case report; two failures there belonged to the old Exploding test driver and passed its corrected followup."
     }
   ],
   "screenshots": [
     {
       "path": "docs/design/screenshots/doppelagent/desktop-accusation.png",
-      "sha256": "79aa88cffc8134f79b10b7037e2f35c3b557831b19d79f6dadbf2577daefff06"
+      "sha256": "8c79d459d2ffac5a8885ad52f2552798db27d1dd0116d7c45be9689adb30cc34"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-bot-answer.png",
-      "sha256": "ec3584a1c67cd93a6ea441f3851686c27f5613634172c3e1cf0f0d15a77a74e5"
+      "sha256": "3812bf46ec9379653e205f6b67906e021789605f25f3be9fe9142ecee1e85617"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-case-1440x900.png",
-      "sha256": "e9e6477197b316e00df12c5432b8fe243afae44fe1000947d316b9a17a137113"
+      "sha256": "0265ff2115d61dbfacdd61fdec3112dd11faa19ba0616b27368aad70e6570e0f"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-case-1920x1080.png",
-      "sha256": "a683351493bca0125d6bcae98fe9304adc6af769d56db8b43f018714c740c90e"
+      "sha256": "ad32a0ad55ff3f02c4e6fe5cab9d4e8049f12924d3a406137acf0204dc9c149d"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-case-360x800.png",
-      "sha256": "d29aede0c6c9a53da4c8e509a3ac1737d4f8802c70292b536a3a2f4bad4e2c6e"
+      "sha256": "61cd5bd225a22398e3e2f050db9e94b2ad0136965d79ea667385bf6da2de4e71"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-case-390x844.png",
-      "sha256": "47dcec2a6325023f83450d0ea1d0b019570c4c7323282a46413b11cfd00f1127"
+      "sha256": "f45f12fa7864b497748c881dbefaa0383163f214f681e027f401dfc119b5032d"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-case-768x1024.png",
-      "sha256": "2800a4f4fb6c13fc809b74808c0330e6e6139f985b75ab6d6d19e52a317edc1c"
+      "sha256": "b623a6f6b076b5ef41a1d338f4685b2c5f0f4659fae4be35d10f5d755e5764e2"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-case-900x450.png",
-      "sha256": "ebccd60765d5ecb2619f9f38d855b269b8717e1c656f7c18f71a88fe13fc60e9"
+      "sha256": "e6e7489e0aeee37a26e071c29502acbeb6a3c8a1fb7e41890c26a09a591a84ed"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-english-rules.png",
-      "sha256": "332b65260a06d95aff093b796676b3fb7c270e2724a135dc75539e9563c5f34e"
+      "sha256": "379df2065ade054f356e1bbea3f3f76efb86f941622427cd7e3895120e8196f5"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-lobby.png",
-      "sha256": "b337c6341ef95247b19e11d0fb332afe14fc47703d81cc948fc782fd60f69ae4"
+      "sha256": "9475f1816d7a538fe62d4cc83ac9c9235f1826f0f40e2cb9db408bd1e135c527"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-pause.png",
-      "sha256": "f28e7ebebe5489376d709e35172b91a801c3323401f4ebded7d6013a2b63331b"
+      "sha256": "ebe751b31e0d277bcad78fec9d95c51c62428402a67e5eab58901400fbeb30f0"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-private-card.png",
-      "sha256": "9f64a0f8c7f216a039875b32720f731969ff200b5796572caf08b67010755caa"
+      "sha256": "3d61c2fa0866c6ca5cae4989e3c750aeefef35b12b7a1457710cec4036a56971"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-reconnect.png",
-      "sha256": "1e5af449e64f3cb3458381dfe5010c895046241e609407871b6d62de5a9968e4"
+      "sha256": "0265ff2115d61dbfacdd61fdec3112dd11faa19ba0616b27368aad70e6570e0f"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/desktop-result.png",
+      "sha256": "0a7838af76645df429f99873e315e913fbe16a845b05583dc8d9cf31c62d22b0"
     },
     {
       "path": "docs/design/screenshots/doppelagent/desktop-spectator.png",
-      "sha256": "4eadb02a56a5363a16ea90f6780f7bde708bcd21424acaa2db7e08a6b1cad076"
+      "sha256": "2f2e6e96ecaa0db03bb1f956908a03cc4bf0c26aa9a3c9f6379fac2ee363acc0"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-accusation.png",
-      "sha256": "e491d29ac31d38281ef6ec9d72adf9f021ad4c71ab350421023612ad60818f4b"
+      "sha256": "05d0b1c2836ed116f819279d9fa8ab0fad5d72e9f7ae145ca37806e433a7228d"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-bot-answer.png",
-      "sha256": "8b567dffa6280d8c585fe7cf5d4af74384069aee0db7232a39faf7bb2d1a4b6a"
+      "sha256": "0886e0ca9be6db54bcd0ee2bd0f18d18c5c5e00323c82b046bff2d2a802e6b3f"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-english-rules.png",
-      "sha256": "edd9a8aabc88af2f1841393174b212d14dfbf87423ba4e531048a4d40ce570c8"
+      "sha256": "33bb9fe4632fc12d5564ce3d0981d34b3056d327ecdc6fe0c5e9eeb8451754bf"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-lobby.png",
-      "sha256": "7b233009149912e3505c028bbbe69f2f68576483edaa264c66f84233825186a0"
+      "sha256": "de576b9544e2fadcd157016758f8bb63fdbe71e71b1d03a984d54b52d5521186"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-pause.png",
-      "sha256": "4a16ea1d4e6c23af77e70c6bd60a537321f0a2b9cbc769b64e304ac0071a1782"
+      "sha256": "890b90456cb54a1b5283d3935dcb5c8ae865f33af31301034f97edebbcee8271"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-private-card.png",
-      "sha256": "9285f27d590305cdc0d04f661e14e1f1265d3133775063c16c7595274f007009"
+      "sha256": "0f1ddd4df24a041fe0912f87f7bd2e4824eb1622e19bb897bea3f5c52dadadab"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-reconnect.png",
-      "sha256": "ef519f6a42bb8e43f56316d76d1199a9d532df405c326044e6c9ca5ef03f7c35"
+      "sha256": "f10f0e18fc032ff6ce777c9768fc15b5c4a316f98e74971fdaa863c07ee5e8c7"
+    },
+    {
+      "path": "docs/design/screenshots/doppelagent/mobil-result.png",
+      "sha256": "6839ae7850296052b96951cd593689788ee627b8c406387fdfe303821986552f"
     },
     {
       "path": "docs/design/screenshots/doppelagent/mobil-spectator.png",
-      "sha256": "e4d3b30a7d3e48277d77a5eb0f3c340b94b61bec156e6da76a9f58ce51b81815"
+      "sha256": "9aa72578184cdbd4a78eeb0e8825df805f5c1507374177ee88d85b65ecc68132"
     }
-  ]
+  ],
+  "source_audit": [
+    {
+      "path": "games/doppelagent/bot.js",
+      "sha256": "8dac887284dd4aa270136d43310b27bdb4385751a379c0fa3d60a2a805627c41"
+    },
+    {
+      "path": "games/doppelagent/index.js",
+      "sha256": "bc3e1ec39d54edf344cf01e21401ff5b60fd0fb6e8e82ff577b884cf30ce2ca8"
+    },
+    {
+      "path": "games/doppelagent/locations.js",
+      "sha256": "6e2d29eef152394d97d3b1d7777a92f08f70ce27b477d1259b15274c544f1094"
+    },
+    {
+      "path": "games/doppelagent/room.js",
+      "sha256": "4979967e1cbb4340c76946a42beecab7ba37daac774a9af0ef726296c92ff72e"
+    },
+    {
+      "path": "games/doppelagent/rules.test.js",
+      "sha256": "8138d26964fb29a48c352475bc46362623c428e0431b48f5d185467b12646993"
+    },
+    {
+      "path": "games/doppelagent/ui.spec.js",
+      "sha256": "132e24cc52ef34e3273a30f81e518a25988fffadff739d4d7db06100e287aece"
+    },
+    {
+      "path": "public/games/doppelagent/doppelagent.css",
+      "sha256": "f2c3d01318cd5c17a78a0f4b45a197e68c2d027ab37087ab0e65fd2798b0b33a"
+    },
+    {
+      "path": "public/games/doppelagent/doppelagent.js",
+      "sha256": "6def5040b9e28e06da54b8c203071aa520c58b5f8d820fa0fa726fa0c84b247d"
+    }
+  ],
+  "source_audit_commit": "67bae9724c7d88f76e0432b13b954f32c996fe4b",
+  "followup_commits": [
+    "68c6ca46f08996c146e4e01d728c8c9223de818d"
+  ],
+  "screenshots_refreshed_at": "2026-11-07",
+  "external_followup": {
+    "commit": "68c6ca46f08996c146e4e01d728c8c9223de818d",
+    "note": "Independently committed and pushed by the parallel author; preserved and reverified, not included in our code commits."
+  },
+  "screenshot_provenance": "Game-world captures refreshed on current main on 2026-11-07. The two normal-result captures for Exploding-Deck and Doppelagent remain from their earlier normal full-game checks; lobby-only hero changes do not change those result views."
 }
