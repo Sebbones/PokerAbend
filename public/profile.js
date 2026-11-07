@@ -4,14 +4,6 @@
 'use strict';
 const Profile = (() => {
   const tx = (de, en) => (I18n.language === 'en' ? en : de);
-  const SWITCHES = [
-    ['showDiscord', 'Discord-Namen zeigen', 'Show Discord name'],
-    ['showStats', 'Partien, Siege und Siegquote zeigen', 'Show games, wins and win rate'],
-    ['showFavorites', 'Lieblingsspiele zeigen', 'Show favourite games'],
-    ['showRecent', 'Letzte Partien zeigen', 'Show recent games'],
-    ['showAchievements', 'Erfolge zeigen', 'Show achievements'],
-    ['hidden', 'Mein Profil für andere ganz verbergen', 'Hide my profile from others entirely'],
-  ];
   let dlg = null, current = null, token = 0;
   const date = (at) => (at ? new Date(at).toLocaleDateString(I18n.locale || undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '');
   async function call(path, body) {
@@ -33,7 +25,7 @@ const Profile = (() => {
     const recent = p.recent ? (p.recent.length ? `<ul class="profile-list" data-profile-recent>${p.recent.map((r) => `<li><b>${esc(r.gameName)}</b><span>${r.win ? '🏆 ' + esc(tx('Sieg', 'Win')) : esc(tx('Platz', 'Place')) + ' ' + r.place + '/' + r.players}${r.ranked ? ' · ' + esc(tx('gewertet', 'ranked')) : ''} · <time datetime="${new Date(r.at).toISOString()}">${esc(date(r.at))}</time></span></li>`).join('')}</ul>` : `<p class="hint">${esc(tx('Noch keine Partien aufgezeichnet.', 'No games recorded yet.'))}</p>`) : hiddenNote();
     const a = p.achievements;
     const achievements = a ? `<p class="hint">${a.unlocked} ${esc(tx('von', 'of'))} ${a.total} ${esc(tx('Erfolgen freigeschaltet', 'achievements unlocked'))}</p>${a.badges.length ? `<ul class="profile-badges" data-profile-badges>${a.badges.map((b) => `<li class="tier-${esc(b.tier)}" title="${esc(b.description)}"><b>${esc(b.title)}</b>${b.at ? `<small>${esc(date(b.at))}</small>` : ''}</li>`).join('')}</ul>` : ''}` : hiddenNote();
-    const privacy = p.self ? section(tx('Wer sieht was?', 'Who sees what?'), `<p class="hint">${esc(tx('Andere sehen immer Avatar, Name und Game-ID – aber nur, wenn du mit Discord verknüpft bist. Alles andere steuerst du hier.', 'Others always see avatar, name and game ID – but only if you are linked with Discord. You control everything else here.'))}</p>${p.registered ? '' : `<p class="hint profile-guest">${esc(tx('Du bist nicht mit Discord verknüpft: Dein Profil ist für andere nicht öffentlich.', 'You are not linked with Discord: your profile is not public.'))}</p>`}${SWITCHES.map(([key, de, en]) => `<label class="toggle"><span>${esc(tx(de, en))}</span><input type="checkbox" role="switch" data-profile-privacy="${key}" ${p.privacy[key] ? 'checked' : ''}></label>`).join('')}`) : '';
+    const privacy = p.self ? section(tx('Wer sieht was?', 'Who sees what?'), `<p class="hint">${esc(tx('Andere sehen immer Avatar, Name und Game-ID – aber nur, wenn du mit Discord verknüpft bist. Alles andere steuerst du in den Einstellungen.', 'Others always see avatar, name and game ID – but only if you are linked with Discord. You control everything else in the settings.'))}</p>${p.registered ? '' : `<p class="hint profile-guest">${esc(tx('Du bist nicht mit Discord verknüpft: Dein Profil ist für andere nicht öffentlich.', 'You are not linked with Discord: your profile is not public.'))}</p>`}<a class="btn" href="#einstellungen/datenschutz" data-profile-close>${esc(tx('Datenschutz-Einstellungen', 'Privacy settings'))}</a>`) : '';
     return `<header class="profile-head"><span class="profile-avatar" aria-hidden="true">${esc(p.avatar || '🙂')}</span><div><h2 id="player-profile-title">${esc(p.name)}${p.self ? ` <small>${esc(tx('(du)', '(you)'))}</small>` : ''}</h2>
         <p class="profile-id"><output class="identity-id" data-profile-id>${esc(p.gameId)}</output>${p.discord ? ` · Discord: <strong data-profile-discord>${esc(p.discord.name)}</strong>` : ''}</p></div></header>
       ${section(tx('Statistik', 'Statistics'), stats)}${section(tx('Lieblingsspiele', 'Favourite games'), favorites)}${section(tx('Letzte Partien', 'Recent games'), recent)}${section(tx('Erfolge', 'Achievements'), achievements)}${privacy}`;

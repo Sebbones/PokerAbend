@@ -5,6 +5,7 @@ import { randomBytes, randomInt } from 'node:crypto';
 import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { cleanName } from './security.js';
+import { sanitizeSettings, mergeSettings } from './settings.js';
 
 export const SCHEMA_VERSION = 1;
 export const ACCOUNT_ID = /^[a-f0-9]{32}$/;
@@ -13,7 +14,7 @@ export const CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 export const GAME_ID = /^#[A-HJKMNP-Z2-9]{4,6}$/;
 const AUDIT_MAX = 200;
 // V2-04: Profil-Freigaben (Vorbereitung für V2-05). Standard: Statistik, Favoriten, letzte Partien und Erfolge sichtbar, Discord-Name nicht.
-export const PRIVACY_DEFAULTS = Object.freeze({ hidden: false, showDiscord: false, showStats: true, showFavorites: true, showRecent: true, showAchievements: true });
+export const PRIVACY_DEFAULTS = Object.freeze({ hidden: false, showDiscord: false, showStats: true, showFavorites: true, showRecent: true, showAchievements: true, showOnline: true });
 export const PRIVACY_KEYS = Object.keys(PRIVACY_DEFAULTS);
 const emptyState = () => ({ schemaVersion: SCHEMA_VERSION, accounts: {}, externals: {}, audit: [] });
 
@@ -86,6 +87,7 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
       const f = resolve(from), t = resolve(to);
       if (!f || !t || f === t) return false;
       { const src = state.accounts[f], dst = state.accounts[t]; if (src.achievements) { dst.achievements = dst.achievements || {}; for (const [k, v] of Object.entries(src.achievements)) if (!dst.achievements[k] || v < dst.achievements[k]) dst.achievements[k] = v; } }
+      if (state.accounts[f].settings && !state.accounts[t].settings) state.accounts[t].settings = state.accounts[f].settings;
       state.accounts[f].mergedInto = t; byGameId.delete(state.accounts[f].gameId);
       audit('Geräte verbunden', `${state.accounts[f].gameId} → ${state.accounts[t].gameId}`);
       return true;
@@ -123,6 +125,26 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
       for (const key of ids) if (/^[a-zäöüß-]{2,40}$/.test(String(key)) && !known[key]) { known[key] = at; fresh.push(key); }
       if (fresh.length) touched();
       return fresh;
+    },
+    // V2-05: Einstellungen hängen am Konto (alle verbundenen Geräte); at = letzte Änderung, 0 = noch nie gespeichert
+    settingsOf(id) { const a = this.get(id); return { settings: sanitizeSettings(a?.settings?.v), updatedAt: Number(a?.settings?.at) || 0 }; },
+    setSettings(id, patch) {
+      const a = this.get(id); if (!a) return null;
+      a.settings = { v: mergeSettings(a.settings?.v, patch), at: now() }; touched();
+      return this.settingsOf(id);
+    },
+    resetSettings(id) { const a = this.get(id); if (!a) return null; delete a.settings; touched(); return this.settingsOf(id); },
+    // V2-05: Konto-Daten löschen. Entfernt das Konto samt zusammengeführter Geräte, Einstellungen, Freigaben, Erfolge und der Discord-Verknüpfung.
+    // Gibt die entfernten Konto-IDs zurück, damit Ergebnisse anderer anonymisiert (nicht gelöscht) werden können.
+    deleteAccount(id) {
+      const target = resolve(id); if (!target) return [];
+      const removed = Object.keys(state.accounts).filter((key) => resolve(key) === target);
+      const ids = removed.map((key) => state.accounts[key].gameId);
+      for (const key of removed) { byGameId.delete(state.accounts[key].gameId); delete state.accounts[key]; }
+      state.audit = state.audit.filter((entry) => !ids.some((gid) => entry.detail.includes(gid))); // das Protokoll nennt die Game-ID nicht weiter
+      for (const [key, owner] of Object.entries(state.externals)) if (removed.includes(owner)) delete state.externals[key];
+      audit('Konto gelöscht', `${removed.length} Eintrag/Einträge`);
+      return removed;
     },
     audit,
     auditLog: (n = 50) => state.audit.slice(-n).reverse(),

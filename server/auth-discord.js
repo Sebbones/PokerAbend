@@ -250,6 +250,7 @@ export function createDiscordAuth({ config, secret, dataDir, accounts, identity,
       if (t - s.lastCheck >= config.recheckMs && t >= (s.nextTry || 0)) recheck(hash);
       return true;
     },
+    revokeAccount(accountId) { return revokeAll((s) => s.accountId === accountId); },
     revokeCurrent(cookieHeader) { const s = hasSession(cookieHeader); if (s) revoke(s.hash); },
     clearCookie: clearSession,
     recheckNow: (cookieHeader) => { const f = hasSession(cookieHeader); return f ? recheck(f.hash) : Promise.resolve(); },

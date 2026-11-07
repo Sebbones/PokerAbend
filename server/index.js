@@ -36,6 +36,7 @@ import { createReviewStore, reviewMarkdown } from './evening-reviews.js';
 import { createPlanAPI } from './plan-api.js';
 import { createAchievements } from './achievements.js';
 import { createProfiles, createProfileAPI } from './profile.js';
+import { createMeAPI } from './settings-api.js';
 import { variantOf, variantName, scoreKey } from '../games/variants.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -223,6 +224,8 @@ function mergeAccounts(from, to) {
 app.use('/api/identity', createIdentityAPI({ identity, accounts, leaderboard, secure: isSecure, trustProxy: TRUST_PROXY, onMerge: mergeAccounts, onChange: () => save(), discordEnabled: !!discord }));
 // V2-04: Spielerprofile (Router wird erst nach Bestenliste und Erfolgen angelegt)
 let profileRouter = (_req, _res, next) => next();
+let meRouter = (_req, _res, next) => next();
+app.use('/api/me', (req, res, next) => meRouter(req, res, next));
 app.use('/api/profile', (req, res, next) => profileRouter(req, res, next));
 app.get('/api/achievements/players', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
@@ -317,6 +320,17 @@ const codes = createCodes(); // gemeinsam für alle Spiele
 const achievements = createAchievements({ leaderboard, games: Object.values(GAMES) });
 const profiles = createProfiles({ accounts, leaderboard, achievements, games: Object.values(GAMES) });
 profileRouter = createProfileAPI({ profiles, accounts, trustProxy: TRUST_PROXY, onChange: () => save() });
+// V2-05: Konto-Daten löschen. Ergebnisse anderer bleiben anonymisiert; Tickets/Planungen/Bretter verlieren nur die Zuordnung zum Konto.
+const DELETED_ACCOUNT = '0'.repeat(32);
+function eraseAccount(accountId) {
+  const removed = accounts.deleteAccount(accountId);
+  leaderboard.forgetAccounts(removed);
+  for (const id of removed) { ticketAPI.rebind(id, DELETED_ACCOUNT); planAPI.rebind(id, DELETED_ACCOUNT); boardStore().rebind(id, DELETED_ACCOUNT); discord?.revokeAccount(id); }
+  for (const room of rooms.values()) for (const p of room.players.values()) if (removed.includes(p.accountId)) p.accountId = null;
+  for (const s of io.sockets.sockets.values()) if (removed.includes(s.data.accountId)) s.data.accountId = null;
+  leaderboard.save(); presence.changed(); save();
+}
+meRouter = createMeAPI({ accounts, leaderboard, achievements, games: Object.values(GAMES), erase: eraseAccount, secure: isSecure, trustProxy: TRUST_PROXY, onChange: () => save() });
 
 // ---------- Speichern ----------
 // Verlauf pro Tisch in eigener Datei – der Spielstand bleibt klein, der Verlauf wird nur bei Änderungen geschrieben
@@ -725,7 +739,9 @@ io.on('connection', (socket) => {
 
   on('presence', (data) => {
     const account = accounts.get(socket.data.accountId);
-    const accepted = presence.update(socket.id, data, account?.gameId || null);
+    // V2-05: „Online zeigen“ ist eine Freigabe des Kontos und gilt serverseitig, nicht nur im Browser
+    const shown = !account || accounts.privacyOf(account.id).showOnline;
+    const accepted = presence.update(socket.id, shown ? data : { ...data, visible: false }, account?.gameId || null);
     if (accepted && account) accounts.touch(account.id, data);
     return { reply: { accepted } };
   }, { needRoom: false });

@@ -33,9 +33,8 @@ function openProfile(first = false) {
   $('#p-error').textContent = '';
   window.Identity?.open();
   $('#p-cancel').hidden = first;
-  $('#p-achievements').hidden = first;
-  $('#p-presence-hidden').checked = !!store.get('poker:presenceHidden', false);
-  $('#p-preferences').innerHTML = UITheme.preferences();
+  $('#p-achievements').hidden = first || blockHidden('achievements');
+  $('#p-preferences').innerHTML = I18n.html`<p class="hint">Anzeige, Bedienung, Filter, Ton und Datenschutz stehen gesammelt auf einer Seite.</p><a class="btn" href="#einstellungen" data-close-profile>Alle Einstellungen öffnen</a>`;
   d.dataset.first = first ? '1' : '';
   $('#p-avatars').innerHTML = AVATARS.map((a) => I18n.html`<button type="button" class="avatar-opt" data-a="${a}" aria-pressed="${a === profileChoice}" aria-label="Avatar ${a}">${a}</button>`).join('');
   d.showModal();
@@ -51,7 +50,6 @@ $('#profile-form').addEventListener('submit', (e) => {
   const name = $('#p-name').value.replace(/[\u0000-\u001f\u007f-\u009f]/g, '').trim().slice(0, 16);
   if (!name) { $('#p-error').textContent = I18n.t('Bitte gib einen Namen ein.'); $('#p-name').focus(); return; }
   profile.save(name, profileChoice);
-  store.set('poker:presenceHidden', $('#p-presence-hidden').checked);
   reportPresence(true);
   $('#profile-dlg').close();
   renderProfileChip();
@@ -59,6 +57,12 @@ $('#profile-form').addEventListener('submit', (e) => {
   if (hubVisible()) renderHub();
 });
 $('#p-cancel').addEventListener('click', () => $('#profile-dlg').close());
+$('#profile-dlg').addEventListener('click', (e) => { if (e.target.closest('[data-close-profile]')) $('#profile-dlg').close(); });
+// V2-05: geänderte Einstellungen wirken sofort auf Navigation und Listen (auf der Einstellungsseite selbst nur auf die Navigation)
+window.addEventListener('settingschange', () => {
+  if (!hubVisible()) return;
+  if (route.page === 'einstellungen') { $('#side-nav').innerHTML = navHTML(); $('#hub-tabbar').innerHTML = tabbarHTML(); $('#hub-menu-nav').innerHTML = navHTML(); } else renderHub();
+});
 $('#profile-dlg').addEventListener('cancel', (e) => { if ($('#profile-dlg').dataset.first) e.preventDefault(); }); // Esc
 $('#profile-chip').addEventListener('click', () => openProfile(false));
 $('#profile-avatar').addEventListener('click', () => openProfile(false));
@@ -93,7 +97,8 @@ async function joinAndEnter(code, mode = '') {
 
 // ---------- Seiten und Navigation ----------
 const GAME_CATEGORIES = [['karten', 'Kartenspiele'], ['wuerfel', 'Würfelspiele'], ['brett', 'Brettspiele'], ['party', 'Party'], ['einzelspieler', 'Einzelspieler']]; // wie games/index.js
-const libraryGames = () => [...(account.games || []), ...(account.singleplayerGames || [])];
+// Ausgeblendete Kategorien fehlen in Bibliothek und Listen, bleiben aber über Adresse (#spiele/brett) und Einladungslinks erreichbar
+const libraryGames = () => [...(account.games || []), ...(account.singleplayerGames || [])].filter((g) => !Settings.categoryHidden(g.category || 'karten') || route.sub === (g.category || 'karten'));
 const hubVisible = () => !$('#hub').hidden;
 const ico = (d) => `<svg class="hub-ico" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
 const ICONS = {
@@ -112,13 +117,17 @@ const ICONS = {
   rueckblick: '<path d="M4 5h16v15H4zM8 3v4M16 3v4M4 10h16M8 14h3M8 17h7"/>',
   planung: '<path d="M4 5h16v15H4zM8 3v4M16 3v4M4 10h16m-9 4h6m-3-3v6"/>',
   tickets: '<path d="M4 4h16v5a3 3 0 0 0 0 6v5H4v-5a3 3 0 0 0 0-6z"/><path d="M12 7v2m0 3v2m0 3v1"/>',
+  einstellungen: '<circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4-2.1 2.1M8.7 15.3l-2.1 2.1m0-10.8 2.1 2.1m6.6 6.6 2.1 2.1"/>',
 };
-const PAGES = ['start', 'spiele', 'favoriten', 'tische', 'bestenliste', 'roadmap', 'tickets', 'rueckblick', 'planung', 'erfolge', 'solo'];
+const PAGES = ['start', 'spiele', 'favoriten', 'tische', 'bestenliste', 'roadmap', 'tickets', 'rueckblick', 'planung', 'erfolge', 'solo', 'einstellungen'];
+// V2-05/V2-15: ausgeblendete Bereiche betreffen nur die Anzeige; Adressen und Einladungslinks funktionieren weiter
+const blockHidden = (id) => Settings.blockHidden(id);
+const show = (id, html) => (blockHidden(id) ? '' : html);
 let route = { page: 'start', sub: '' };
 function parseRoute() {
   const [p = 'start', s = ''] = location.hash.replace(/^#/, '').split('/');
   const page = PAGES.includes(p) ? p : 'start';
-  return { page, sub: page === 'spiele' && GAME_CATEGORIES.some(([id]) => id === s) || page === 'solo' && Singleplayer.ids.includes(s) || page === 'tickets' && /^[1-9]\d{0,8}$/.test(s) || page === 'rueckblick' && EveningReviews.validId(s) || page === 'planung' && EveningPlans.validId(s) ? s : '' };
+  return { page, sub: page === 'spiele' && GAME_CATEGORIES.some(([id]) => id === s) || page === 'solo' && Singleplayer.ids.includes(s) || page === 'einstellungen' && Settings.SECTIONS.includes(s) || page === 'tickets' && /^[1-9]\d{0,8}$/.test(s) || page === 'rueckblick' && EveningReviews.validId(s) || page === 'planung' && EveningPlans.validId(s) ? s : '' };
 }
 const hashOf = (page, sub = '') => `#${page}${sub ? '/' + sub : ''}`;
 let hubTables = [];                      // offene Tische (vom Server, siehe Teil H3)
@@ -130,19 +139,19 @@ function navHTML() {
   const n = openTableCount();
   const badge = n ? I18n.html`<span class="badge" aria-label="${n} offene${n === 1 ? 'r' : ''} Tisch${n === 1 ? '' : 'e'}">${n}</span>` : '';
   const games = libraryGames();
-  return I18n.html`${item('#start', 'start', I18n.t('Start'))}${item('#spiele', 'spiele', I18n.t('Spielebibliothek'))}${item('#tische', 'tische', I18n.t('Offene Tische'), badge)}${item('#favoriten', 'favoriten', I18n.t('Favoriten'))}${item('#planung', 'planung', I18n.t('Abend planen'))}${item('#bestenliste', 'bestenliste', I18n.t('Bestenliste'))}${item('#erfolge', 'erfolge', I18n.t('Erfolge & Abzeichen'))}${item('#rueckblick', 'rueckblick', I18n.t('Rückblick'))}${item('#roadmap', 'roadmap', 'Roadmap')}${item('#tickets', 'tickets', 'Tickets')}
+  return I18n.html`${item('#start', 'start', I18n.t('Start'))}${item('#spiele', 'spiele', I18n.t('Spielebibliothek'))}${item('#tische', 'tische', I18n.t('Offene Tische'), badge)}${item('#favoriten', 'favoriten', I18n.t('Favoriten'))}${show('planning', item('#planung', 'planung', I18n.t('Abend planen')))}${show('leaderboard', item('#bestenliste', 'bestenliste', I18n.t('Bestenliste')))}${show('achievements', item('#erfolge', 'erfolge', I18n.t('Erfolge & Abzeichen')))}${show('reviews', item('#rueckblick', 'rueckblick', I18n.t('Rückblick')))}${show('roadmap', item('#roadmap', 'roadmap', 'Roadmap'))}${show('tickets', item('#tickets', 'tickets', 'Tickets'))}${item('#einstellungen', 'einstellungen', I18n.t('Einstellungen'))}
     <details class="side-categories" ${route.sub && route.page === 'spiele' ? 'open' : ''}><summary class="nav-item">${ico(ICONS.karten)}<span class="side-label">Spielarten</span></summary>
-    ${GAME_CATEGORIES.map(([id, title]) => item(I18n.html`#spiele/${id}`, id, title, I18n.html`<span class="count side-label" aria-label="${games.filter((g) => (g.category || 'karten') === id).length} Spiele">${games.filter((g) => (g.category || 'karten') === id).length}</span>`)).join('')}</details>`;
+    ${GAME_CATEGORIES.filter(([id]) => !Settings.categoryHidden(id)).map(([id, title]) => item(I18n.html`#spiele/${id}`, id, title, I18n.html`<span class="count side-label" aria-label="${games.filter((g) => (g.category || 'karten') === id).length} Spiele">${games.filter((g) => (g.category || 'karten') === id).length}</span>`)).join('')}</details>`;
 }
 function tabbarHTML() {
   const cur = route.page;
   const tab = (href, key, label, on, extra = '') => `<a class="tab-item" href="${href}" ${on ? 'aria-current="page"' : ''}>${ico(ICONS[key])}<span>${I18n.t(label)}</span>${extra}</a>`;
   const n = openTableCount();
   return tab('#start', 'start', I18n.t('Start'), cur === 'start' || cur === 'planung') + tab('#spiele', 'spiele', I18n.t('Spiele'), cur === 'spiele' || cur === 'favoriten')
-    + tab('#tische', 'tische', I18n.t('Tische'), cur === 'tische', n ? I18n.html`<span class="badge" aria-label="${n} offen">${n}</span>` : '') + tab('#bestenliste', 'bestenliste', I18n.t('Bestenliste'), ['bestenliste', 'rueckblick', 'erfolge'].includes(cur)) + tab('#roadmap', 'roadmap', 'Roadmap', cur === 'roadmap') + tab('#tickets', 'tickets', 'Tickets', cur === 'tickets');
+    + tab('#tische', 'tische', I18n.t('Tische'), cur === 'tische', n ? I18n.html`<span class="badge" aria-label="${n} offen">${n}</span>` : '') + (blockHidden('leaderboard') ? '' : tab('#bestenliste', 'bestenliste', I18n.t('Bestenliste'), ['bestenliste', 'rueckblick', 'erfolge'].includes(cur))) + (blockHidden('roadmap') ? '' : tab('#roadmap', 'roadmap', 'Roadmap', cur === 'roadmap')) + (blockHidden('tickets') ? '' : tab('#tickets', 'tickets', 'Tickets', cur === 'tickets')) + tab('#einstellungen', 'einstellungen', I18n.t('Einstellungen'), cur === 'einstellungen');
 }
 
-const TITLES = { start: 'Start', spiele: 'Spiele', favoriten: 'Favoriten', tische: 'Offene Tische', bestenliste: 'Bestenliste', roadmap: 'Roadmap', tickets: 'Tickets', rueckblick: 'Abend-Rückblick', planung: 'Abend planen', erfolge: 'Erfolge & Abzeichen' };
+const TITLES = { start: 'Start', spiele: 'Spiele', favoriten: 'Favoriten', tische: 'Offene Tische', bestenliste: 'Bestenliste', roadmap: 'Roadmap', tickets: 'Tickets', einstellungen: 'Einstellungen', rueckblick: 'Abend-Rückblick', planung: 'Abend planen', erfolge: 'Erfolge & Abzeichen' };
 let renderedPage = null;
 function renderHub(focus = false) {
   route = parseRoute();
@@ -152,7 +161,7 @@ function renderHub(focus = false) {
   $('#side-nav').innerHTML = navHTML();
   $('#hub-tabbar').innerHTML = tabbarHTML();
   $('#hub-menu-nav').innerHTML = navHTML();
-  const page = { start: pageStart, spiele: pageGames, favoriten: pageGames, tische: pageTables, bestenliste: pageBoard, roadmap: pageRoadmap, tickets: pageTickets, rueckblick: EveningReviews.page, planung: EveningPlans.page, erfolge: Achievements.page, solo: pageSolo }[route.page];
+  const page = { start: pageStart, spiele: pageGames, favoriten: pageGames, tische: pageTables, bestenliste: pageBoard, roadmap: pageRoadmap, tickets: pageTickets, rueckblick: EveningReviews.page, planung: EveningPlans.page, erfolge: Achievements.page, solo: pageSolo, einstellungen: Settings.page }[route.page];
   const main = $('#hub-main');
   $('#hub').dataset.page = route.page;
   const catalog = ['spiele', 'favoriten'].includes(route.page);
@@ -260,12 +269,12 @@ function pageStart() {
     ${categoryTabsHTML(false)}
     <div class="home-layout"><div class="home-primary">
       ${gamesPreviewHTML()}
-      ${localGamesHTML('recent')}
+      ${show('recent', localGamesHTML('recent'))}
       <section class="hub-block home-panel live-tables"><div class="hub-block-head"><h2>Am Tisch zusammenkommen</h2><a href="#tische">Alle Tische →</a></div><div data-tables="2">${tablesBlockHTML(2)}</div></section>
       <section class="hub-block home-panel evening-links"><div><span class="eyebrow">Eure Spieleabende</span><h2>Vorfreude & Erinnerungen</h2><p>Plant euren nächsten Abend oder schaut auf die letzten Runden zurück.</p></div><div class="plan-actions"><a class="btn" href="#planung">Nächsten Abend planen</a><a class="btn btn-ghost" href="#rueckblick">Abend-Rückblicke öffnen</a></div></section>
     </div><aside class="home-secondary" aria-label="Deine Runde">
-      ${localGamesHTML('favorites')}
-      <section class="hub-block home-panel" id="presence-slot">${presenceHTML()}</section>
+      ${show('favorites', localGamesHTML('favorites'))}
+      ${show('presence', `<section class="hub-block home-panel" id="presence-slot">${presenceHTML()}</section>`)}
       ${codeBoxHTML()}
     </aside></div>
     <p class="hub-foot">Ohne Benutzerkonto. Nur Spielgeld, kein Echtgeld.</p>`;
@@ -276,7 +285,7 @@ const favs = () => new Set(store.get('poker:favs', []));
 const recent = () => store.get('poker:recent', {}) || {};
 function markPlayed(id) { const r = recent(); r[id] = Date.now(); store.set('poker:recent', r); }
 function toggleFav(id) { const f = favs(); f.has(id) ? f.delete(id) : f.add(id); store.set('poker:favs', [...f]); }
-let gamesFilter = 'all';   // all | fav | p2 | p34 | p56 | p7 | short
+let gamesFilter = Settings.get().hub.defaultFilter || 'all';   // all | fav | p2 | p34 | p56 | p7 | short (Standard aus den Einstellungen)
 let gamesQuery = '';
 let gamesView = store.get('poker:view', 'tiles') === 'list' ? 'list' : 'tiles';
 const CHIPS = [['all', 'Alle'], ['fav', '★ Favoriten'], ['p2', '2 Spieler'], ['p34', '3–4 Spieler'], ['p56', '5–6 Spieler'], ['p7', '7+ Spieler'], ['short', 'Kurz (< 15 Min.)']];

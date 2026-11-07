@@ -11216,7 +11216,7 @@
       "source_audit": [
         {
           "path": "public/games/skat/skat.js",
-          "sha256": "46a37ba0426e75413d22d78e376093c83d6aa144f9b1a9795e9f574aea64de73"
+          "sha256": "ab4b8337a3b6720189139e8ad45c19d116178b395e4bf20e006d3555d1b0fd88"
         },
         {
           "path": "public/games/skat/skat.css",
@@ -11320,7 +11320,7 @@
       "source_audit": [
         {
           "path": "public/games/doppelkopf/doppelkopf.js",
-          "sha256": "14421fc4edac25337aaf95896e712a449b792d20789e379ba82861928a30af27"
+          "sha256": "14718854e479a405259b7b0b0a3575bdab45cc5774c7967e63ecb8014ab2e89f"
         },
         {
           "path": "public/games/doppelkopf/doppelkopf.css",

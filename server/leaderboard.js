@@ -168,6 +168,17 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
     round: (id) => data.rounds[id] || null,
     // Nur qualifizierte Ergebnisse. game 'all' = alle Spiele zusammen (dann ohne Punkte, weil Spiele nicht vergleichbar sind).
     // V2-04: Auswertung für ein einzelnes Konto aus der Rundenablage (zusammengeführte Konten zählen mit)
+    // V2-05: personenbezogene Einträge eines Kontos entfernen. Ergebnisse anderer bleiben: das Konto wird in den Runden anonymisiert.
+    forgetAccounts(ids) {
+      const gone = new Set(ids.filter((id) => ACCOUNT_ID.test(id))); if (!gone.size) return { removedPlayers: 0, anonymized: 0 };
+      let removedPlayers = 0, anonymized = 0;
+      const owned = (key) => gone.has(key) || gone.has(data.players[key]?.claimedBy) || gone.has(data.players[key]?.accountId);
+      for (const r of Object.values(data.rounds)) for (const p of r.players) if (p.a && (gone.has(p.a) || gone.has(rankedOwner(p.a)))) { p.a = null; p.n = 'Gelöschtes Konto'; anonymized++; }
+      for (const key of Object.keys(data.players)) if (owned(key)) { delete data.players[key]; removedPlayers++; }
+      for (const key of Object.keys(data.alias)) if (gone.has(key) || gone.has(data.alias[key])) delete data.alias[key];
+      if (removedPlayers || anonymized) dirty = true;
+      return { removedPlayers, anonymized };
+    },
     accountSummary(accountId) {
       const out = { played: 0, wins: 0 };
       for (const r of Object.values(data.rounds)) { if (!r.ranked) continue; for (const p of r.players) if (p.a && !p.bot && rankedOwner(p.a) === accountId) { out.played++; out.wins += p.win ? 1 : 0; } }

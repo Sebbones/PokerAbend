@@ -1,0 +1,16 @@
+/* Einstellungsseite (V2-05/V2-15) */
+.set-page { display: grid; gap: 16px; max-width: 760px; width: 100%; }
+.set-section { display: grid; gap: 12px; padding: 18px; }
+.set-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.set-head h2 { margin: 0; font-size: 18px; }
+.set-head .btn { min-height: 44px; }
+.set-toggle { min-height: 44px; }
+.set-toggle small { display: block; opacity: .75; font-size: 12px; font-weight: 400; margin-top: 2px; }
+.set-field select { min-height: 44px; max-width: 100%; }
+.set-group { border: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-radius: 10px; padding: 8px 12px; margin: 0; display: grid; gap: 2px; min-width: 0; }
+.set-group legend { padding: 0 6px; font-size: 13px; font-weight: 600; }
+.set-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.set-actions .btn { min-height: 44px; }
+.set-status { font-size: 13px; opacity: .85; margin: 4px 0 0; }
+.set-guest { font-style: italic; }
+@media (max-width: 600px) { .set-section { padding: 14px; } }

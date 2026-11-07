@@ -27,7 +27,7 @@ const store = {
 const prefs = store.get('poker:prefs', {});
 function usePrefs(defaults) { for (const [k, v] of Object.entries(defaults)) if (!(k in prefs)) prefs[k] = v; }
 usePrefs({ sound: true, calm: false, cardSize: 'normal' });
-function savePrefs() { store.set('poker:prefs', prefs); if (session) current?.onPrefs?.(); window.UITheme?.apply(); }
+function savePrefs() { store.set('poker:prefs', prefs); if (session) current?.onPrefs?.(); window.UITheme?.apply(); window.__settingsFromPrefs?.(); }
 
 let renderedLanguage = I18n.language;
 window.addEventListener('languagechange', () => {
@@ -43,7 +43,7 @@ window.addEventListener('languagechange', () => {
   if (typeof syncSideToggle === 'function') syncSideToggle();
   if ($('#profile-dlg')?.open) {
     $('#profile-title').textContent = I18n.t($('#profile-dlg').dataset.first ? 'Wie heißt du?' : 'Ich');
-    $('#p-preferences').innerHTML = UITheme.preferences();
+    if (!(typeof hubVisible === 'function' && hubVisible())) $('#p-preferences').innerHTML = UITheme.preferences(); // im Hub steht dort der Verweis auf die Einstellungen
   }
   I18n.staticText(document);
   for (const draft of drafts) {
@@ -126,6 +126,7 @@ const ICON = {
 // <dialog> hält den Fokus im Dialog, Esc schließt. Ergebnis: false, true oder der eingegebene Wert.
 // cancel/cancelValue: eigener Text für den linken Knopf; wer ihn drückt, bekommt cancelValue (Esc bleibt „nichts tun“).
 function ask({ title, text = '', ok = 'OK', danger = false, input = null, cancel = I18n.t('Abbrechen'), cancelValue }) {
+  if (!danger && !input && prefs.confirmations === false) return Promise.resolve(true); // V2-15: Alltagsbestätigungen abschaltbar; Gefährliches fragt immer
   const d = $('#dlg');
   if (d.open) d.close();
   $('#dlg-title').textContent = title;

@@ -76,26 +76,26 @@ test('Profil: Nicht freigegebenes wird nicht gezeigt, nicht öffentliche Profile
   await expect(dlg.locator('.profile-error')).toHaveText('Dieses Profil ist nicht öffentlich.');
 });
 
-test('Eigenes Profil: Gast sieht alles, Freigaben lassen sich ändern und bleiben nach dem Neuladen', async ({ page, app }, info) => {
+test('Eigenes Profil: Gast sieht alles, Freigaben liegen in den Einstellungen und wirken auf die eigene Sicht', async ({ page, app }, info) => {
   await login(page, app, 'Selbst');
   await page.evaluate(() => Profile.open('me'));
   const dlg = page.locator('#player-profile-dlg');
   await expect(dlg.locator('#player-profile-title')).toContainText('Selbst');
   await expect(dlg.locator('.profile-guest')).toContainText('nicht öffentlich');
-  await expect(dlg.locator('[data-profile-privacy]')).toHaveCount(6);
-  await expect(dlg.locator('[data-profile-privacy=showStats]')).toBeChecked();
-  await expect(dlg.locator('[data-profile-privacy=showDiscord]')).not.toBeChecked();
+  await expect(dlg.locator('[data-profile-privacy]')).toHaveCount(0);   // keine verstreuten Schalter mehr
+  await expect(dlg.locator('a[href="#einstellungen/datenschutz"]')).toBeVisible();
   expect(await dialogFits(page)).toBe(true);
-  await dlg.locator('[data-profile-privacy=showStats]').uncheck();
-  await expect(dlg.locator('[data-profile-privacy=showStats]')).not.toBeChecked();
   await page.screenshot({ path: info.outputPath('profil-eigen.png'), fullPage: true });
+  await dlg.locator('a[href="#einstellungen/datenschutz"]').click();
+  await expect(dlg).toBeHidden();
+  await expect(page.locator('[data-set-privacy="showStats"]')).toBeChecked();
+  await page.locator('[data-set-privacy="showStats"]').uncheck();
   await page.reload();
   await page.evaluate(() => Profile.open('me'));
-  await expect(page.locator('#player-profile-dlg [data-profile-privacy=showStats]')).not.toBeChecked();
+  await expect(page.locator('#player-profile-dlg .profile-stats')).toBeVisible();   // das eigene Profil zeigt immer alles
   await page.evaluate(() => { I18n.select('en'); });
   await expect(page.locator('#player-profile-dlg')).toContainText('Who sees what?');
 });
-
 test('Gerade online und Offene Tische: Personen mit Game-ID öffnen ihr Profil', async ({ page, app, browser }, info) => {
   const identity = createIdentity({ secret: SECRET });
   const context = await browser.newContext({ viewport: { width: 1000, height: 800 } });
