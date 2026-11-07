@@ -39,4 +39,4 @@ export class ExpeditionRoom extends RealtimeRoom {
  dropOut(){this.stopLoop();this.deadline=null;this.finishRound([],'Partie wegen Aussteigen abgebrochen – keine Wertung',{});}
  onAbort(){super.onAbort();this.commands.clear();this.cells.clear();this.advanceAt=null;}
 }
-export const expeditionEvents={steer:(r,p,d)=>{r.input(p.id,d);return {frameOnly:true};},expeditionAction:(r,p,d)=>{r.command(p.id,d);return {frameOnly:true};}};
+export const expeditionEvents={steer:(r,p,d)=>{r.input(p.id,d);return {frameOnly:true};},expeditionAction:(r,p,d)=>{r.command(p.id,d);return {frameOnly:true,reply:{tick:r.tickNo}};}};

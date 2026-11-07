@@ -1,10 +1,13 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {GAMES} from '../games/index.js';import {BOTS} from '../games/bots.js';import {RealtimeRoom,STEP_MS} from '../games/realtime-room.js';
 import {minefield,seeded,adjacent,path} from '../games/minenlauf/logic.js';import {maze,passages,route,edge} from '../games/labyrinth-chaos/logic.js';
+import {expeditionEvents} from '../games/expedition-room.js';
 const ids=['schubsarena','scheinwerfer-flucht','minenlauf','labyrinth-chaos'];
 function setup(game,n=2,settings={}){const r=GAMES[game].create('TEST',{playSecs:10,rounds:2,...settings},()=>{});r.game=game;r.rng=seeded(24);const people=Array.from({length:n},(_,i)=>{const p=r.addPlayer('Player '+i);p.connected=true;r.sit(p.id);return p.id;});const observer=r.addPlayer('Observer');observer.connected=true;r.start(people[0]);return {r,people,observer:observer.id};}
 const cmd=(r,id,action,cell,extra={})=>r.command(id,{runId:r.runId,round:r.roundNo,seq:(r.commands.get(id)||0)+1,action,cell,...extra});
 const steer=(r,id,data={})=>r.input(id,{runId:r.runId,round:r.roundNo,seq:(r.inputs.get(id)?.seq||0)+1,x:0,y:0,...data});
+test('Grid reference geometry: corner/centre orthogonal neighbours, eight clue neighbours and only true horizontal/vertical maze edges',()=>{assert.deepEqual(adjacent(0,3,3),[1,3]);assert.deepEqual(adjacent(4,3,3),[1,3,5,7]);assert.deepEqual(adjacent(4,3,3,true),[0,1,2,3,5,6,7,8]);for(const e of maze(11,7,seeded(3)).base){const [a,b]=e.split(':').map(Number);assert.ok(a>=0&&b<77);assert.equal(Math.abs(a%11-b%11)+Math.abs(Math.floor(a/11)-Math.floor(b/11)),1);}});
+test('Action acknowledgement exposes the actual post-command server tick, ignores a forged client tick and rejects a replay',()=>{const {r,people:[a]}=setup('schubsarena');try{r.elapsed=0;r.tickNo=23;const d={runId:r.runId,round:r.roundNo,seq:1,action:'push',tick:99999};const ack=expeditionEvents.expeditionAction(r,{id:a},d);assert.deepEqual(ack,{frameOnly:true,reply:{tick:23}});assert.throws(()=>expeditionEvents.expeditionAction(r,{id:a},d));assert.equal(r.bodies[0].readyAt,1100);}finally{r.dispose();}});
 
 test('BACKLOG-09: all four games extend RealtimeRoom, share referee transport and have optional medium bots',()=>{for(const game of ids){const {r}=setup(game);try{assert.ok(r instanceof RealtimeRoom);assert.equal(typeof BOTS[game],'function');assert.equal(r.personalFrames,true);assert.equal(r.bodies.length,2);}finally{r.dispose();}}});
 

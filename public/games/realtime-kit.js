@@ -112,6 +112,7 @@ function realtimeGame(def) {
     bodies.forEach((p, i) => {
       if (!p.alive) return;
       const person = kit.S.players.find((player) => player.id === p.id);
+      if (def.body) { def.body(ctx,p,i,{person,frame,palette,isMe:p.id===kit.S.you?.id}); return; }
       const t = frame.elapsed - (p.jumpUntil - 550), height = t >= 0 && t < 550 ? Math.sin(t / 550 * Math.PI) * 35 : 0;
       ctx.save(); ctx.globalAlpha = p.immuneUntil > frame.elapsed ? .65 : 1;
       ctx.fillStyle = '#0007'; ctx.beginPath(); ctx.ellipse(p.x, p.y + 13, 24, 10, 0, 0, Math.PI * 2); ctx.fill();
