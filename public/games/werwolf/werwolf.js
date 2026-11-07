@@ -74,7 +74,9 @@
         ${g.nightLog ? `<ol class="ww-nlog">${g.nightLog.slice(-14).map((t) => `<li>${esc(t)}</li>`).join('')}</ol>` : ''}</details>` : '';
       const seen = g.seen && g.seen.length ? I18n.html`<div class="ww-seen"><small>Deine Visionen:</small> ${g.seen.map((x) => `<i>${nm(S, x.id)}: ${role(x.role)}</i>`).join('')}</div>` : '';
       const alive = I18n.html`<div class="ww-alive" aria-label="Lebende Spieler"><small>Am Leben (${g.alive.length}):</small> ${g.alive.map((id) => `<i>${nm(S, id)}</i>`).join('')}</div>`;
-      return `<div class="kg-table ww-wrap">${me}${stageBox}${seen}${alive}${deaths}${lv}${secret}</div>`;
+      const W = WorldKit, t = W.t;
+      const chips = [W.chip(g.stage === 'night' ? '🌙' : g.stage === 'day' ? '☀' : g.stage === 'vote' ? '🗳' : '🏹', { night: t('Nacht', 'Night'), day: `${t('Tag', 'Day')} ${g.day}`, vote: t('Abstimmung', 'Vote'), hunter: t('Der Jäger schießt', 'The hunter fires') }[g.stage] || '', g.stage === 'night' ? '' : 'warn'), W.chip('♥', `${g.alive.length} ${t('am Leben', 'alive')}`), g.role ? W.chip('🔒', t('Deine Rolle ist privat', 'Your role is private'), 'good') : ''].filter(Boolean);
+      return `<div class="kg-table ww-wrap wk-stage ww-village">${W.head({ eyebrow: t('Dorfplatz', 'Village square'), title: g.stage === 'night' ? t('Das Dorf schläft', 'The village sleeps') : t('Das Dorf berät sich', 'The village deliberates'), chips })}${me}${stageBox}${seen}${alive}${deaths}${lv}${secret}</div>`;
     },
     dock(S, myTurn, ui) {
       const g = S.g;

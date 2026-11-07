@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Werwolf: dunkle Dorfnacht, Rollenkarte, Zielknöpfe */
 .kg-werwolf .kg-main { background: radial-gradient(120% 90% at 50% 20%, #3A2F5A, #120F22); }
 .ww-wrap { display: grid; justify-items: center; gap: 12px; width: 100%; max-width: 640px; margin: 0 auto; }
@@ -24,3 +25,10 @@
 .ww-target.sel { border-color: var(--gold); background: rgba(240, 195, 90, .2); }
 .ww-target.skip { border-style: dashed; }
 .ww-av { display: inline-grid; place-items: center; width: 28px; height: 28px; }
+
+/* VIS-036: Dorfplatz bei Nacht und Tag – eigene Rolle als private Karte, Phase als Chip; Rollen Toter getrennt */
+.ww-village { --wk-bg: linear-gradient(170deg, #1d2a3f, #0d1220); --wk-edge:#b3c4e866; --wk-accent:#ffd98a; --wk-max:860px; justify-items: stretch; }
+.ww-village .ww-role { border: 2px dashed #ffd98a99; border-radius: 12px; }
+.ww-village .ww-stage.day { background: linear-gradient(160deg, #7a5a28, #3b2a12); }
+.ww-village .ww-stage.night { background: linear-gradient(160deg, #1b2a4a, #0b1226); }
+.ww-village button { min-height: 44px; }
