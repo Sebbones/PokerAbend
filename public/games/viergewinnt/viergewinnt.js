@@ -56,7 +56,9 @@
       }).join('');
       if (fresh) seenLast = g.last;
       const filled = g.board.filter((x) => x !== null).length;
-      return I18n.html`<div class="kg-table vg-wrap"><div class="vg-board" style="grid-template-columns:repeat(${g.cols},minmax(0,1fr))" role="grid" aria-label="Spielfeld, ${filled} von ${g.cols * g.rows} Feldern belegt">${cols}</div>
+      const W = WorldKit, t = W.t, need = g.need || 4;
+      const chips = [W.chip('◎', `${g.cols} × ${g.rows}`), W.chip('▬', `${need} ${t('in einer Reihe', 'in a row')}`, need > 4 ? 'warn' : ''), S.variant === 'popout' ? W.chip('⇩', t('Pop Out: unten herausziehen', 'Pop Out: pull from the bottom')) : '', mine !== undefined && mine !== null ? W.chip(MARK[mine] ? '●' : '●', `${t('Du', 'You')}: ${t(mine === 0 ? 'Rot' : 'Gelb', mine === 0 ? 'Red' : 'Yellow')}`) : ''].filter(Boolean);
+      return I18n.html`<div class="kg-table vg-wrap wk-stage vg-stage">${W.head({ eyebrow: t('Spielrahmen', 'Game frame'), title: g.win ? t('Reihe gelegt!', 'Line completed!') : myTurn ? t('Du bist dran', 'Your turn') : t('Am Zug', 'On the move'), chips })}<div class="vg-frame"><div class="vg-board" style="grid-template-columns:repeat(${g.cols},minmax(0,1fr))" role="grid" aria-label="Spielfeld, ${filled} von ${g.cols * g.rows} Feldern belegt">${cols}</div><span class="vg-foot" aria-hidden="true"></span></div>
         ${g.win ? I18n.html`<p class="vg-banner" role="status">${g.need || 4} in einer Reihe: ${nameOf(S, g.board[g.win[0]])}!</p>` : ''}</div>`;
     },
     dock: (S) => (S.g.canPop || []).map((c) => I18n.html`<button class="btn" data-g="pop" data-c="${c}">Spalte ${c + 1} unten herausziehen</button>`).join(''),

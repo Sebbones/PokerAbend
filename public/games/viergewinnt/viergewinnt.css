@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Vier gewinnt: blauer Rahmen mit Löchern, rote und gelbe Steine (mit Form für Farbenblinde), Spalten als Knöpfe */
 .kg-viergewinnt .kg-main { background: radial-gradient(120% 90% at 50% 20%, #2C4A6E, #12233A); }
 .vg-wrap { gap: 12px; }
@@ -30,3 +31,15 @@ body.marks .vg-disc .cm { display: block; }
 .vg-dot .cm { width: 9px; height: 9px; display: none; fill: #fff; }
 body.marks .vg-dot .cm { display: block; }
 @media (max-width: 640px) { .vg-board { padding: 6px; gap: 3px; } .vg-col { gap: 3px; } }
+
+/* Spielwelt: wertiger physischer Spielrahmen mit Standfuß (nur dekorativ), ruhige rote/gelbe Steine */
+.vg-stage { --wk-bg: linear-gradient(170deg, #2a3a52, #141d2c); --wk-edge:#9db7e866; --wk-accent:#f2c200; --wk-max:640px; }
+.vg-frame { display: grid; justify-items: center; gap: 0; }
+.vg-foot { display: block; width: min(70%, 380px); height: 14px; border-radius: 0 0 10px 10px; background: linear-gradient(180deg, #7a4f2a, #4d3018); box-shadow: 0 6px 12px #0006; }
+.vg-stage button.vg-col { min-width: 44px; }
+.vg-disc.win { outline: 3px solid #fff; outline-offset: 1px; } /* auch ohne Animation klar markiert (Stern + Rand) */
+
+/* Kurzes Querformat: das Brett braucht die ganze Höhe – der Kopf mit den Chips entfällt (Status steht oben in der Leiste) */
+@media (max-height: 560px) { .vg-stage { padding: 6px; gap: 4px; } .vg-stage > .wk-head { display: none; } }
+@media (max-height: 560px) { .vg-foot { display: none; } .vg-stage { border-width: 0; box-shadow: none; } }
+@media (max-height: 560px) { .vg-stage button.vg-col { min-width: 0; min-height: 0; } }
