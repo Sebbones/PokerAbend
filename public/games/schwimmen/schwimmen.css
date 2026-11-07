@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Schwimmen: Mitte mit drei offenen Karten, eigener Wert, aufgedeckter letzter Durchgang */
 .kg-schwimmen .kg-main { background: radial-gradient(120% 90% at 50% 25%, #1F6A73, #0F3A40); }
 .sw-table { gap: 12px; }
@@ -29,3 +30,12 @@
   .sw-last li small { grid-column: 1 / -1; }
 }
 @media (pointer: coarse) { .sw-last summary { min-height: 44px; } }
+
+/* Spielwelt: eleganter kleiner Bistrotisch – drei zentrale Auslageplätze, Mitte und Dreierhand getrennt */
+.sw-stage { --wk-bg: radial-gradient(110% 80% at 50% 0, #226c74, #0d3238); --wk-edge:#bfe3e666; --wk-accent:#f0d28a; --wk-max:760px; justify-items: stretch; }
+.sw-stage .sw-mid { gap: 12px; padding: 14px 16px; border: 2px dashed #bfe3e680; justify-self: center; }
+.sw-stage .sw-mid .kc { outline: 1px solid #ffffff33; outline-offset: 3px; border-radius: 8px; }
+.sw-stage .sw-mid .kc.sel { outline: 3px solid var(--gold); outline-offset: 3px; }
+.sw-stage .sw-center { align-items: stretch; }
+.sw-stage button, .sw-stage summary { min-height: 44px; }
+@media (max-width: 640px) { .sw-stage .sw-mid { gap: 8px; padding: 10px; } .sw-stage .sw-center { gap: 10px; } }

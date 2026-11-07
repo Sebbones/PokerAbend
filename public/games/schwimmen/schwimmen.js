@@ -90,7 +90,9 @@
               <span class="sw-v">${vText(L.values[id])}</span><small>${lost ? `✗ ${fate}` : ''}</small></li>`;
           }).join('')}</ol></details>`;
       }
-      return I18n.html`<div class="kg-table sw-table">
+      const W = WorldKit, t = W.t;
+      const chips = [W.chip('♣', `${g.middle.length} ${t('Mittelkarten', 'middle cards')}`), g.knocker ? W.chip('✊', `${t('Geklopft', 'Knocked')}: ${nameOf(S, g.knocker)} – ${t('letzte Chance', 'last chance')}`, 'warn') : W.chip('…', t('Noch nicht geklopft', 'Nobody knocked yet')), g.hand ? W.chip('★', `${t('Dein Wert', 'Your value')} ${vText(value(g.hand, fire).v)}`, value(g.hand, fire).v >= 31 ? 'good' : '') : ''].filter(Boolean);
+      return I18n.html`<div class="kg-table sw-table wk-stage sw-stage">${W.head({ eyebrow: t('Bistrotisch', 'Bistro table'), title: myTurn ? t('Du bist dran', 'Your turn') : t('Drei Karten in der Mitte', 'Three cards in the middle'), chips })}
         <div class="sw-center">
           <div class="sw-mid" role="group" aria-label="Mitte">${mid}</div>
           ${mine}
