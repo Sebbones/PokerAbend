@@ -1017,14 +1017,14 @@
       "authorization": "Explicit Skat/Doppelkopf playable-game request, 2026-11-07",
       "scope": "Reizen, Skat/Drücken, Spielansage und Stichspiel mit expliziter Kartenauswahl und Bestätigung im neuen Spiel",
       "documentation": "games/skat/README.md",
-      "implementation_commit": null
+      "implementation_commit": "c216f81b6e67d3e4e93aeee049b766cd856d95d0"
     },
     {
       "game_id": "doppelkopf",
       "authorization": "Explicit Skat/Doppelkopf playable-game request, 2026-11-07",
       "scope": "Vorbehalt, Ansagen und Stichspiel mit expliziter Kartenauswahl und Bestätigung im neuen Spiel",
       "documentation": "games/doppelkopf/README.md",
-      "implementation_commit": null
+      "implementation_commit": "c216f81b6e67d3e4e93aeee049b766cd856d95d0"
     }
   ]
 }
