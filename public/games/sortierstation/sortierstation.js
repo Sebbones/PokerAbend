@@ -48,8 +48,9 @@
       }).join('');
       const item = it ? `<div class="ss-item" aria-label="${c.L.COLORS[it.color].name}, ${c.L.SHAPES[it.shape].name}">${shape(it.shape, c.L.COLORS[it.color].css)}</div>
         <div class="so-bar"><i style="width:${Math.max(0, 100 - ((c.t - it.t) / it.life) * 100)}%"></i></div>` : '<div class="ss-item empty">…</div>';
-      return I18n.html`<div class="ss-wrap"><div class="ss-top"><b class="ss-rule">Sortiere nach ${c.L.ruleName(rule)}</b><b class="so-score">${ev.pts} Punkte</b><span>${left} s</span></div>
-        <div class="ss-belt" role="status">${item}</div><div class="ss-boxes so-btns">${boxes}</div></div>`;
+      const W = WorldKit, t = W.t;
+      return `<div class="wk-stage ss-wrap ss-stage">${W.head({ eyebrow: t('Versandstation', 'Dispatch station'), title: `${t('Sortiere nach', 'Sort by')} ${c.L.ruleName(rule)}`, chips: [W.chip('★', `${ev.pts} ${t('Punkte', 'points')}`, 'good'), W.chip('⏱', `${left} s`, left <= 5 ? 'warn' : '')] })}
+        <div class="ss-rulebar" aria-hidden="true">${t('Regel', 'Rule')}: <b>${c.L.ruleName(rule)}</b></div><div class="ss-belt" role="status">${item}</div><div class="ss-boxes so-btns">${boxes}</div></div>`;
     },
     hint: () => 'Tipp das vorderste Ding in die richtige Kiste',
     choose(c, b) {

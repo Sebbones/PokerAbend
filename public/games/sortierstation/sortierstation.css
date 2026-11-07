@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Sortierstation: Band mit einem Ding, darunter die Kisten */
 .ss-wrap { display: grid; justify-items: center; gap: 14px; width: 100%; }
 .ss-top { display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap; justify-content: center; }
@@ -12,3 +13,11 @@
 .ss-sw { display: inline-block; width: 36px; height: 36px; border-radius: 8px; box-shadow: inset 0 0 0 2px rgba(0,0,0,.25); }
 .ss-box kbd { opacity: .6; }
 @media (pointer: coarse) { .ss-box kbd { display: none; } }
+
+/* Spielwelt: kleine illustrierte Versandstation – Regel immer an derselben Stelle, Band und drei Zielkisten getrennt */
+.ss-stage { --wk-bg: linear-gradient(180deg, #2a3138, #171c21); --wk-edge:#e8c9a066; --wk-accent:#f0b86a; --wk-max:760px; }
+.ss-stage .ss-rulebar { justify-self: stretch; text-align: center; padding: 6px 12px; border-radius: 8px; background: repeating-linear-gradient(45deg, #f0b86a 0 10px, #2a2a2a 10px 20px); color: #fff; font-size: 14px; text-shadow: 0 1px 2px #000; }
+.ss-stage .ss-belt { justify-self: stretch; min-height: 118px; border: 2px solid #4a4f55; }
+.ss-stage .ss-boxes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; }
+.ss-stage .ss-box { min-width: 0 !important; min-height: 92px !important; border: 3px solid #c79b66; background: linear-gradient(180deg, #8a6340, #5e4129); }
+@media (max-width: 640px) { .ss-stage .ss-box { min-height: 96px !important; } .ss-stage .ss-belt { min-height: 96px; padding: 10px; } }
