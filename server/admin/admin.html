@@ -6,27 +6,39 @@
 <meta name="robots" content="noindex">
 <title>Admin · Spieleabend</title>
 <style>
-  :root { color-scheme: dark; --bg:#101a18; --card:#16241f; --line:#2c4039; --text:#f4efe2; --muted:#a9b8b0; --brass:#c99a45; --bad:#e5766b; --good:#7cc59a; }
+  /* V2-06: gleiche Tokens wie der Hub (style.css/ui-theme.css) – Schrift, Flächen, Linien, Rundungen, Fokus; keine eigene Palette */
+  @font-face { font-family: 'Bricolage Grotesque'; src: url('/fonts/bricolage.woff2') format('woff2'); font-weight: 200 800; font-display: swap; }
+  :root { color-scheme: dark; --bg:#101815; --panel:#1A2521; --panel-2:#24332D; --card:var(--panel); --line:#FFFFFF1C; --edge:#FFFFFF24; --text:#F2F0E9; --muted:#B3BDB5;
+    --brass:#E0BC74; --gold:#C99A45; --accent:#32765B; --accent-hover:#3D896A; --bad:#F0948F; --danger:#B8433F; --good:#7FD39A; --heading: Georgia, 'Times New Roman', serif;
+    --r-m:12px; --r-l:16px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 system-ui, sans-serif; }
-  main { max-width: 1100px; margin: 0 auto; padding: 16px; }
-  h1 { font-size: 1.5rem; margin: 0 0 4px; } h2 { font-size: 1.1rem; margin: 0 0 10px; color: var(--brass); }
-  .top { display:flex; flex-wrap:wrap; gap:8px 16px; align-items:center; justify-content:space-between; margin-bottom:16px; }
-  .grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-  section { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; min-width:0; }
+  body { margin:0; background:radial-gradient(120% 90% at 50% 0, #1b2a23, var(--bg) 60%) fixed, var(--bg); color:var(--text); font:15px/1.5 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: var(--s-5) var(--s-4); }
+  h1 { font: 400 clamp(1.7rem, 4vw, 2.2rem)/1.1 var(--heading); letter-spacing: -.02em; margin: 0 0 4px; } h2 { font-size: 1.05rem; font-weight: 700; margin: 0 0 10px; color: var(--brass); letter-spacing: .01em; }
+  .top { display:flex; flex-wrap:wrap; gap:var(--s-2) var(--s-4); align-items:center; justify-content:space-between; margin-bottom:var(--s-4); }
+  .grid { display:grid; gap:var(--s-4); grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  section { background:var(--panel); border:1px solid var(--edge); border-radius:var(--r-l); padding:var(--s-4) 18px; min-width:0; box-shadow:0 12px 36px #0003; }
   section.wide { grid-column: 1 / -1; }
-  table { width:100%; border-collapse:collapse; font-size:14px; } th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table { width:100%; border-collapse:collapse; font-size:14px; } th, td { text-align:left; padding:8px; border-bottom:1px solid var(--line); vertical-align:top; }
   th { color:var(--muted); font-weight:600; } .scroll { overflow-x:auto; }
   .muted { color:var(--muted); } .bad { color:var(--bad); } .good { color:var(--good); }
-  button, input, select, textarea { font:inherit; } input, select, textarea { background:#0c1412; color:var(--text); border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
-  button { background:var(--brass); color:#1b1408; border:0; border-radius:8px; padding:8px 14px; font-weight:600; cursor:pointer; }
-  button.ghost { background:transparent; color:var(--text); border:1px solid var(--line); } button.danger { background:var(--bad); color:#2b0d09; }
+  button, input, select, textarea { font:inherit; }
+  input, select, textarea { min-height:44px; background:#FFFFFF0A; color:var(--text); border:1px solid var(--edge); border-radius:var(--r-m); padding:9px 12px; }
+  input::placeholder, textarea::placeholder { color:#9AA7A0; }
+  button { min-height:44px; background:var(--accent); color:#fff; border:1px solid transparent; border-radius:var(--r-m); padding:9px 17px; font-weight:600; cursor:pointer; }
+  button:hover:not(:disabled) { background:var(--accent-hover); }
+  button.ghost { background:transparent; color:var(--text); border:1px solid var(--edge); } button.ghost:hover:not(:disabled) { background:#FFFFFF0F; }
+  button.danger { background:transparent; color:var(--bad); border:1px solid var(--bad); } button.danger:hover:not(:disabled) { background:#B8433F33; }
   button:disabled { opacity:.5; cursor:default; }
-  .row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  :is(button, input, select, textarea, a, summary):focus-visible { outline:2px solid var(--brass); outline-offset:2px; }
+  .row { display:flex; flex-wrap:wrap; gap:var(--s-2); align-items:center; }
   .stat { display:flex; justify-content:space-between; gap:12px; padding:4px 0; border-bottom:1px solid var(--line); } .stat:last-child { border:0; }
-  dialog { background:var(--card); color:var(--text); border:1px solid var(--line); border-radius:12px; padding:18px; max-width:min(440px, 92vw); } dialog::backdrop { background:#000a; }
+  dialog { background:var(--panel); color:var(--text); border:1px solid var(--edge); border-radius:var(--r-l); padding:var(--s-5); max-width:min(440px, 92vw); box-shadow:0 20px 50px #0006; } dialog::backdrop { background:#000a; }
   #login { max-width: 380px; margin: 12vh auto; } #login form { display:grid; gap:10px; }
-  #msg { min-height:1.4em; } a { color:var(--brass); }
+  #msg { min-height:1.4em; } a { color:var(--brass); text-underline-offset:3px; }
+  @media (max-width: 600px) { main { padding: var(--s-4) 12px; } section { padding: 14px; } .grid { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  @media (forced-colors: active) { section, dialog, input, select, textarea, button { border-color: CanvasText; } }
 </style>
 </head>
 <body>

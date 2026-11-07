@@ -277,3 +277,29 @@
 }
 @media (prefers-reduced-motion: reduce) { .games > li, .btn { transition: none; } }
 body.calm .games > li { transition: none; }
+
+/* ---------- V2-06: Konto-Seiten (Profil, Einstellungen, Bestenliste, Erfolge) im gleichen Glas-Design ----------
+   Gleiche Tokens wie Hub und Dialoge (--glass, --glass-edge, --line, --text-2, --r-*, --s-*); keine eigenen Farben,
+   kein Deckkraft-Abblenden von Text (Kontrast nach WCAG AA), kein Ersatz des bestehenden Hubs. */
+.player-profile-dlg { background: var(--glass); color: var(--text); border: 1px solid var(--glass-edge); border-radius: var(--r-l); box-shadow: 0 20px 50px #0006; }
+.player-profile-dlg::backdrop { background: #000a; }
+@supports (backdrop-filter: blur(1px)) { .player-profile-dlg { backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); } }
+:root[data-glass='reduced'] .player-profile-dlg { background: var(--panel); backdrop-filter: none; -webkit-backdrop-filter: none; }
+@media (prefers-reduced-transparency: reduce) { .player-profile-dlg { background: var(--panel); backdrop-filter: none; -webkit-backdrop-filter: none; } }
+/* Die Avatar-Regel der Hub-Kopfzeile darf den Profil-Dialog nicht verformen */
+.player-profile-dlg .profile-avatar { width: 56px; height: 56px; padding: 0; justify-content: center; border: 1px solid #c6b78a99; background: #284137; font-size: 30px; border-radius: 50%; }
+.player-profile-dlg .profile-head h2 { font-family: var(--heading); font-weight: 400; }
+.profile-section { border-top-color: var(--line); }
+.profile-section h3 { color: var(--text-2); opacity: 1; font-size: 12px; letter-spacing: .12em; }
+.profile-head h2 small, .profile-id, .profile-list li span, .profile-stat span, .profile-badges li small, .profile-hidden, .profile-error { color: var(--text-2); opacity: 1; }
+.profile-stat { background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--r-m); }
+.profile-badges li { background: var(--glass-soft); }
+.set-section, .set-page .set-group { border-color: var(--line); }
+.set-group { border-radius: var(--r-m); }
+.set-toggle small, .set-status, .set-page .hint { color: var(--text-2); opacity: 1; }
+.set-head h2 { font-size: 1.1rem; }
+.identity-block .hint, .ops-about small, .whatsnew-list small, .achievement-card small { color: var(--text-2); opacity: 1; }
+:is(.set-page, .player-profile-dlg, .hub-main .board, .achievement-grid, .achievement-filters) :is(button, select, input, a, summary, [data-profile]):focus-visible { outline: 2px solid var(--gold-text); outline-offset: 2px; }
+@media (forced-colors: active) {
+  .player-profile-dlg, .set-section, .set-group, .profile-stat, .achievement-card, .achievement-summary { border-color: CanvasText; }
+}
