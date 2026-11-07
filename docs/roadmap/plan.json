@@ -310,16 +310,36 @@
         "echte Ergebnisdaten statt Demo-Werte",
         "Gäste ohne öffentliches globales Profil"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "08ba88b",
+      "completed_at": "2026-11-07",
+      "notes": [
+        "Ausdrückliche Freigabe vom 2026-11-07 (nur V2-04). Profil über die öffentliche Game-ID mit Avatar, Name, optional Discord-Name, Statistik/Siegquote, Lieblingsspielen, letzten Partien und Erfolgen; Freigabe-Schalter je Konto (Grundlage für V2-05). Dokumentation: docs/roadmap/V2-04_PROFILE.md.",
+        "Öffentlich nur für registrierte (Discord-verknüpfte) Konten ohne „versteckt“; Gäste haben kein öffentliches Profil, das eigene sieht jeder selbst. Antwort bei nicht öffentlichen Profilen ist immer gleich (200, available:false). Rate-Limits: 60 Abfragen/min je Adresse, 20 Änderungen/min je Konto.",
+        "Erfolge: Startset von 17 Erfolgen aus server/achievements.js; neu ist die dauerhafte Ablage des ersten Zeitpunkts je Konto. Großer Ausbau bleibt V2-13.",
+        "Nicht Teil: Namenssuche, Freundeslisten, eigene Datenschutzseite (V2-05). Produktivdaten nicht angefasst, kein Produktivdeployment."
+      ],
       "public_roadmap_ids": [
         "v2-player-profiles",
         "v2-account-achievements"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/profile.test.js",
+          "result": "11 Prüfungen grün (Freigaben, Erfolgszeiten, Profilfelder, Gast/versteckt/unbekannt, Namenswechsel, keine internen IDs, Server-Schnittstelle, Origin-Prüfung, Rate-Limit, Lobby-Game-IDs)."
+        },
+        {
+          "command": "playwright test test/ui/profile.spec.js (Desktop + Handy)",
+          "result": "8 grün: Bestenliste, Gerade online, offene Tische, nicht freigegebene und nicht öffentliche Profile, eigene Freigaben mit Neuladen, Englisch; kein seitliches Überlaufen."
+        },
+        {
+          "command": "npm run test:fast",
+          "result": "alle Node-Tests grün bis auf den Plan-Test, der erst mit diesem Eintrag den Status done erwartet."
+        }
+      ],
+      "commits": [
+        "08ba88b"
+      ]
     },
     {
       "id": "V2-05",
