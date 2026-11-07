@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Schocken: runder Bierdeckelstapel, Würfeltablett, Übersicht der Würfe */
 .kg-schocken .kg-main { background: radial-gradient(120% 90% at 50% 25%, #5A4632, #2C2217); }
 .sc-table { gap: 12px; }
@@ -56,3 +57,10 @@
   .sc-overview li small { display: none; }
   .sc-tray { min-width: 0; padding: 10px 14px 8px; }
 }
+
+/* Spielwelt: ruhiger Kneipentisch – patiniertes Holz, dunkle Würfelmatte; Deckelvorrat, aktive Schale und Halbzeitwertung abgesetzt */
+.sc-stage { --wk-bg: linear-gradient(165deg, #5a4128, #2b1d10); --wk-edge:#d9b27c66; --wk-accent:#f0c987; --wk-max:760px; justify-items: stretch; }
+.sc-stage .sc-tray { background: #14201bcc; border: 2px solid #3a2a18; box-shadow: inset 0 0 18px #000a; }
+.sc-stage .sc-half { border: 1px solid #f0c98766; border-radius: 10px; padding: 6px 12px; background: #0000003a; }
+.sc-stage .sc-overview { border-top: 1px solid #ffffff22; padding-top: 8px; }
+.sc-stage button { min-height: 44px; }

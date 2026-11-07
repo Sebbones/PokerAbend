@@ -79,7 +79,9 @@
             <span class="sc-pos">${k + 1}.</span><b>${name(r.id)}</b><span class="sc-mini">${r.dice.map((v) => dieHTML(v, {})).join('')}</span>
             <span class="sc-name">${esc(r.name)}</span><small>${r.throws}× ${r.done ? '' : '· würfelt noch'}</small></li>`).join('')}
         </ol>${!current && g.lastPass ? I18n.html`<p class="sc-result">${name(g.lastPass.worst)} bekommt <b>${g.lastPass.deckel} Deckel</b> (${esc(g.lastPass.name)} von ${name(g.lastPass.best)})</p>` : ''}</div>` : '';
-      return I18n.html`<div class="kg-table sc-table">
+      const W = WorldKit, tt = W.t;
+      const chips = [W.chip('◎', `${g.stack} ${tt('Deckel in der Mitte', 'coasters in the middle')}`), half ? W.chip('½', half, g.finale ? 'warn' : '') : '', d ? W.chip('🎲', `${g.throws[id]} / ${g.maxThrows} ${tt('Würfe', 'throws')}`, g.throws[id] >= g.maxThrows ? 'warn' : '') : ''].filter(Boolean);
+      return I18n.html`<div class="kg-table sc-table wk-stage sc-stage">${W.head({ eyebrow: tt('Kneipentisch', 'Pub table'), title: myTurn ? tt('Du bist dran', 'Your turn') : tt('Würfelschale', 'The dice tray'), chips })}
         ${half ? `<div class="sc-half" role="status"><b>${half}</b>${halfNote}</div>` : ''}
         <div class="sc-center">
           <div class="sc-stack" aria-label="${g.stack} Deckel in der Mitte">${[...Array(Math.min(g.stack, 13))].map((_, i) => coaster('').replace('class="sc-deckel ', `style="--i:${i}" class="sc-deckel `)).join('')}<b>${g.stack}</b><small>in der Mitte</small></div>
