@@ -43,7 +43,7 @@ function realtimeGame(def) {
     document.querySelectorAll('#kg-players .kp').forEach((row, i) => {
       const p = kit.S.players.filter((p) => p.seated)[i];
       const body = frame.bodies.find((b) => b.id === p?.id);
-      const small = row.querySelector('.kp-txt small');
+      const small = row.querySelector('.kp-txt > small');
       if (body && small) small.textContent = I18n.html`${I18n.html`${body.points} Pkt.`}${body.alive ? '' : ' · '+I18n.t('ausgeschieden')}`;
     });
   }
