@@ -1,6 +1,7 @@
 // Reviewed English UI messages; German source text is the fallback for missing entries.
 'use strict';
 window.EN = {
+  'aus':'out', 'ausgeschieden':'eliminated',
   'Alle spielen gleichzeitig':'Everyone plays simultaneously', 'Runde beendet':'Round finished', 'Arena bereit':'Arena ready',
   'Richtung halten zum Bewegen':'Hold a direction to move', 'Pfeiltasten / WASD':'Arrow keys / WASD',
   'Bewegungssteuerung':'Movement controls', 'Bewegung stoppen':'Stop moving',

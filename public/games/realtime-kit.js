@@ -35,7 +35,7 @@ function realtimeGame(def) {
     const clock = $('#rt-time'); if (clock) clock.textContent = I18n.html`${Math.max(0, Math.ceil((frame.duration - Math.max(0, frame.elapsed)) / 1000))} s`;
     for (const p of frame.bodies) {
       const row = document.querySelector(I18n.html`[data-rt-player="${p.id}"]`);
-      if (row) { row.textContent = I18n.html`${p.alive ? frame.kind === 'laser' ? '♥'.repeat(p.lives) : '●' : 'aus'} · ${p.points} Pkt.${frame.crown?.holder === p.id ? ' · ♛' : ''}`; row.classList.toggle('rt-out', !p.alive); }
+      if (row) { row.textContent = I18n.html`${p.alive ? frame.kind === 'laser' ? '♥'.repeat(p.lives) : '●' : I18n.t('aus')} · ${I18n.html`${p.points} Pkt.`}${frame.crown?.holder === p.id ? ' · ♛' : ''}`; row.classList.toggle('rt-out', !p.alive); }
     }
     const button = document.querySelector('[data-rt-jump]');
     if (button) { button.disabled = !me()?.alive || frame.elapsed < 0; button.textContent = (me()?.jumpReady || 0) > frame.elapsed ? 'Lädt …' : 'Springen'; }
@@ -44,7 +44,7 @@ function realtimeGame(def) {
       const p = kit.S.players.filter((p) => p.seated)[i];
       const body = frame.bodies.find((b) => b.id === p?.id);
       const small = row.querySelector('.kp-txt small');
-      if (body && small) small.textContent = I18n.html`${body.points} Pkt.${body.alive ? '' : ' · ausgeschieden'}`;
+      if (body && small) small.textContent = I18n.html`${I18n.html`${body.points} Pkt.`}${body.alive ? '' : ' · '+I18n.t('ausgeschieden')}`;
     });
   }
   function vector() {
@@ -162,13 +162,13 @@ function realtimeGame(def) {
     id: def.id, get name(){return def.name;}, ring: false, direction: false, roundWord: I18n.t('Runde'), get short(){return def.short;}, intro: def.intro, lobby:def.lobby,
     get rules(){return def.rules || I18n.html`<h3>${uiText(def.name)}</h3><ul>${def.short.map((r) => `<li>${esc(r)}</li>`).join('')}</ul><p>Pfeiltasten oder WASD zum Bewegen; Richtungsknöpfe am Handy halten. Leertaste oder Sprungknopf zum Springen. Bei Tabwechsel oder fehlenden Eingaben bleibt die Figur stehen; die Runde läuft weiter.</p>`;},
     onState(S) { seq = Math.max(seq, S.g?.inputSeq || 0); if (S.g) accept(S.g); if (S.gamePaused || S.phase !== 'playing') release(); },
-    status: () => 'Alle spielen gleichzeitig',
+    status: () => I18n.t('Alle spielen gleichzeitig'),
     playerInfo: (p) => I18n.html`${p.pts || 0} Pkt.${p.eliminated ? ' · ausgeschieden' : ''}`,
     hint: (S) => S.you?.inRound ? def.hint : I18n.t('Du schaust zu – beim nächsten Start kannst du mitspielen.'),
     keepMain: (S) => !!$('#rt-canvas') && $('#rt-canvas').dataset.run === S.g?.runId && S.phase === 'playing',
     main(S) {
       const G = S.g;
-      return I18n.html`<section class="rt-wrap" aria-label="${uiText(def.name)} Arena"><div class="rt-head"><span class="rt-label">${esc(def.tag)}</span><b id="rt-state">Arena bereit</b><span id="rt-time"></span></div><canvas id="rt-canvas" width="900" height="600" data-run="${esc(G.runId)}" role="img" aria-label="Gemeinsames Spielfeld. Deine Figur hat einen weißen Rand. Status und Punkte stehen unter dem Feld."></canvas><ul class="rt-scores">${G.bodies.map((p, i) => `<li style="--player:${palette[i % palette.length]}"><b>${esc(S.players.find((person) => person.id === p.id)?.name || '?')}${p.id === S.you?.id ? ' (du)' : ''}</b><span data-rt-player="${p.id}"></span></li>`).join('')}</ul></section>`;
+      return I18n.html`<section class="rt-wrap" aria-label="${uiText(def.name)} Arena"><div class="rt-head"><span class="rt-label">${esc(def.tag)}</span><b id="rt-state">Arena bereit</b><span id="rt-time"></span></div><canvas id="rt-canvas" width="900" height="600" data-run="${esc(G.runId)}" role="img" aria-label="Gemeinsames Spielfeld. Deine Figur hat einen weißen Rand. Status und Punkte stehen unter dem Feld."></canvas><ul class="rt-scores">${G.bodies.map((p, i) => `<li style="--player:${palette[i % palette.length]}"><b>${esc(S.players.find((person) => person.id === p.id)?.name || '?')}${p.id === S.you?.id ? ' '+I18n.t('(du)') : ''}</b><span data-rt-player="${p.id}"></span></li>`).join('')}</ul></section>`;
     },
     dock: controls,
     dockKey: (S) => `${S.phase}:${S.g?.runId}:${S.you?.inRound}:${S.you?.playing}:${S.you?.isHost}:${S.players.filter((p) => p.seated).length}`,
