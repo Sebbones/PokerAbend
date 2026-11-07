@@ -38,7 +38,10 @@
         const label = owner === null ? `${cname(i)}${legal.has(i) ? ', erlaubt' : ''}` : `${cname(i)} ${COLOR[g.colors[owner]]}`;
         return legal.has(i) ? `<button type="button" class="rv-cell can" data-g="cell" data-c="${i}" aria-label="${label}">${inner}</button>` : `<div class="rv-cell" role="gridcell" aria-label="${label}">${inner}</div>`;
       }).join('');
-      return I18n.html`<div class="kg-table rv-wrap"><div class="rv-board" role="grid" aria-label="Spielfeld">${cells}</div></div>`;
+      const W = WorldKit, t = W.t, myTurn = S.turnId === S.you?.id && S.phase === 'playing';
+      const count = (color) => g.board.filter((o) => o !== null && g.colors[o] === color).length;
+      const chips = [W.chip('●', `${t('Schwarz', 'Black')} ${count(0)}`), W.chip('○', `${t('Weiß', 'White')} ${count(1)}`), g.flipped.length ? W.chip('⟲', `${g.flipped.length} ${t('umgedreht', 'flipped')}`, 'warn') : '', myTurn && !g.legal.length ? W.chip('⏭', t('Du musst aussetzen', 'You must pass'), 'bad') : ''].filter(Boolean);
+      return I18n.html`<div class="kg-table rv-wrap wk-stage rv-stage">${W.head({ eyebrow: t('Turnierbrett', 'Tournament board'), title: myTurn ? t('Du bist dran', 'Your turn') : t('Am Zug', 'On the move'), chips })}<div class="rv-board" role="grid" aria-label="Spielfeld">${cells}</div></div>`;
     },
     dock: () => '',
     onClick(t) { if (t.dataset.g === 'cell') send('place', { cell: Number(t.dataset.c) }); },

@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Reversi: grünes Brett, schwarze und weiße Steine */
 .kg-reversi .kg-main { background: radial-gradient(120% 90% at 50% 25%, #1F5A3A, #0C2A1B); }
 .rv-wrap { display: grid; justify-items: center; width: 100%; }
@@ -17,3 +18,13 @@ body.marks .rv-1 .cm { fill: #333; stroke: rgba(255,255,255,.6); }
 .rv-dot { display: inline-grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; vertical-align: -2px; }
 .rv-dot.rv-0 { background: #111; } .rv-dot.rv-1 { background: #eee; border: 1px solid #999; }
 @media (prefers-reduced-motion: no-preference) { .rv-disc.flip { animation: rv-flip .35s ease-out; } @keyframes rv-flip { from { transform: scaleX(.1); } } }
+
+/* Spielwelt: reduziertes strategisches Turnierbrett in tiefem Grün – Zählung außerhalb des Rasters, letzter Stein und Umdreher auch ohne Animation erkennbar */
+.rv-stage { --wk-bg: linear-gradient(170deg, #1d5a3b, #0b2a1b); --wk-edge:#bfe8cf55; --wk-accent:#d8ecc4; --wk-max:640px; justify-items: center; }
+.rv-stage .wk-head { justify-self: stretch; }
+.rv-stage .rv-board { border: 3px solid #0a1f14; box-shadow: 0 10px 26px #0006; }
+.rv-disc.last::after { content: ''; position: absolute; width: 22%; height: 22%; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 2px #00000066; }
+.rv-disc.flip { outline: 2px dashed #ffe9a8; outline-offset: -3px; }
+
+/* Kurzes Querformat: das Brett braucht die ganze Höhe – der Kopf mit den Chips entfällt (Status steht oben in der Leiste) */
+@media (max-height: 560px) { .rv-stage { padding: 6px; gap: 4px; } .rv-stage > .wk-head { display: none; } }
