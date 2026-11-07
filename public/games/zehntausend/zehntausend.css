@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Zehntausend: Punktestände zum Ziel, Zugpunkte, herausgelegte Würfel, aktueller Wurf mit Live-Wertung */
 .kg-zehntausend .kg-main { background: radial-gradient(120% 90% at 50% 20%, #6E3A3A, #331818); place-items: start center; }
 .zt-table { gap: 12px; }
@@ -32,3 +33,10 @@
   .zt-dice .die.big { --d: 46px; }
   .zt-row { grid-template-columns: minmax(60px, 1fr) 1fr 56px; gap: 6px; }
 }
+
+/* Spielwelt: Würfelarena – Risiko (Zugpunkte) klar von gesicherter Wertung getrennt, aktuelle Würfel zuerst, Rangliste nachrangig */
+.zt-stage { --wk-bg: radial-gradient(110% 80% at 50% 0, #3a2d52, #17112a); --wk-edge:#c9b6f066; --wk-accent:#ffd98a; --wk-max:760px; justify-items: stretch; }
+.zt-stage .zt-turn { border: 2px dashed #ffd98a88; border-radius: 14px; padding: 12px; background: #00000038; }
+.zt-stage .zt-points b { color: #ffd98a; } .zt-stage .zt-points small::before { content: '⚠ '; }
+.zt-stage .zt-track { border-top: 1px solid #ffffff22; padding-top: 8px; opacity: 1; }
+.zt-stage button { min-height: 44px; }

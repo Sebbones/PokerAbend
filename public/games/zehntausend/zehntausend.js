@@ -92,9 +92,11 @@
         ? dieHTML(d, { tag: 'button', cls: I18n.html`big ${sel.has(i) ? 'kept' : ''}`, attrs: `type="button" data-g="pick" data-i="${i}" aria-pressed="${sel.has(i)}"` })
         : dieHTML(d, { cls: 'big' }))).join('') : I18n.html`<span class="zt-wait">${g.remaining} Würfel bereit</span>`;
       const preview = myTurn && g.rolled ? `<span class="zt-preview ${pick.length ? (score > 0 ? 'ok' : 'bad') : ''}">${pick.length ? (score > 0 ? I18n.html`Auswahl: +${fmt(score)}` : 'Auswahl punktet nicht ganz') : 'Würfel wählen'}</span>` : '';
-      return I18n.html`<div class="kg-table zt-table">${final}${track}
-        <div class="zt-turn"><div class="zt-points"><small>${nameOf(S, S.turnId)} · dieser Zug</small><b>${fmt(g.turnPoints)}</b></div>${aside}
-          <div class="zt-dice">${dice}</div>${preview}</div>${loss}</div>`;
+      const W = WorldKit, tt = W.t, mineBank = g.banked[S.you?.id];
+      const chips = [W.chip('⚠', `${tt('Riskiert', 'At risk')}: ${fmt(g.turnPoints)}`, g.turnPoints ? 'warn' : ''), mineBank !== undefined ? W.chip('🔒', `${tt('Gesichert', 'Banked')}: ${fmt(mineBank)}`, 'good') : '', W.chip('🎯', `${tt('Ziel', 'Target')} ${fmt(g.target)}`), g.final ? W.chip('⏳', tt('Letzte Runde', 'Final round'), 'bad') : ''].filter(Boolean);
+      return I18n.html`<div class="kg-table zt-table wk-stage zt-stage">${W.head({ eyebrow: tt('Würfelarena', 'Dice arena'), title: myTurn ? tt('Du bist dran', 'Your turn') : `${nameOf(S, S.turnId)} ${tt('würfelt', 'is rolling')}`, chips })}${final}
+        <div class="zt-turn"><div class="zt-points"><small>${nameOf(S, S.turnId)} · ${tt('dieser Zug – noch nicht gesichert', 'this turn – not banked yet')}</small><b>${fmt(g.turnPoints)}</b></div>${aside}
+          <div class="zt-dice">${dice}</div>${preview}</div>${loss}${track}</div>`;
     },
     dock(S, myTurn) {
       if (!myTurn) return '';
