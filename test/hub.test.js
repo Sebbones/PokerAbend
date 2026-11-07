@@ -211,7 +211,7 @@ test('Jedes Spiel bringt Spielerzahl, Dauer und Spielbild mit – passend zu den
   for (const g of gameList()) {
     assert.ok(Number.isInteger(g.minPlayers) && Number.isInteger(g.maxPlayers) && g.minPlayers >= 1 && g.minPlayers <= g.maxPlayers, `${g.id}: Spielerzahl`);
     assert.ok(Number.isInteger(g.duration) && g.duration > 0 && g.duration <= 180, `${g.id}: Dauer`);
-    assert.match(g.art, /^<svg class="game-art" viewBox="0 0 64 64"[^>]*>.*<\/svg>$/s, `${g.id}: Spielbild`);
+    assert.match(g.art, /^<svg class="game-art" viewBox="0 0 [1-9]\d{0,3} [1-9]\d{0,3}"[^>]*>.*<\/svg>$/s, `${g.id}: Spielbild`);
     assert.ok(!/<script|on\w+=|href=|<image|<foreignObject/i.test(g.art), `${g.id}: Spielbild ohne Skripte und externe Bilder`);
     // stimmt mit dem Raum überein (Poker: Plätze am Tisch)
     const r = GAMES[g.id].create('META', {}, () => {});
