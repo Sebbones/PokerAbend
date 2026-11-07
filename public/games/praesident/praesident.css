@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Präsident: gelegte Karten offen in der Mitte */
 .kg-praesident .kg-main { background: radial-gradient(120% 90% at 50% 25%, #5A2A3A, #2A1220); }
 .pr-wrap { display: grid; justify-items: center; gap: 14px; }
@@ -8,3 +9,9 @@
 .kg-praesident .kg-hand .kc.can { outline: 2px solid rgba(240, 195, 90, .55); outline-offset: 1px; }
 .kc.mini { --w: 30px; vertical-align: middle; box-shadow: none; }
 @media (max-width: 640px) { .kg-praesident .kg-hand .kc { --w: 42px; } }
+
+/* Spielwelt: zurückhaltender Clubtisch – dunkles Weinrot, Rangkarten statt Prunk; Kombination, Freigabe und Plätze getrennt */
+.pr-stage { --wk-bg: linear-gradient(170deg, #4a2433, #24101b); --wk-edge:#e8b9c866; --wk-accent:#f0c987; --wk-max:760px; justify-items: stretch; }
+.pr-stage .pr-table { justify-self: center; border: 1px solid #f0c98755; }
+.pr-stage .pr-table.empty { border-style: dashed; }
+.kg-praesident .kg-hand .kc { min-height: 44px; }

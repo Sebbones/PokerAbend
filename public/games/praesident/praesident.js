@@ -43,7 +43,9 @@
       const passed = g.passed.length ? I18n.html`<div class="kg-chip">Gepasst: ${g.passed.map((id) => nameOf(S, id)).join(', ')}</div>` : '';
       const places = g.places.length ? I18n.html`<div class="kg-chip">Fertig: ${g.places.map((id, i) => `${i + 1}. ${nameOf(S, id)}`).join(' · ')}</div>` : '';
       const ex = g.exchange ? I18n.html`<div class="kg-chip">Kartentausch: ${nameOf(S, g.exchange.from)} → ${nameOf(S, g.exchange.to)} ${frenchCard(g.exchange.gave, { cls: 'mini', attrs: 'disabled tabindex="-1"' })}</div>` : '';
-      return `<div class="kg-table pr-wrap">${table}<div class="kg-chips">${passed}${places}${ex}</div></div>`;
+      const W = WorldKit, tr = W.t, left = S.players.filter((p) => p.inRound && !g.places.includes(p.id)).length;
+      const chips = [t ? W.chip('♠', `${tr('Aktuell', 'Current')}: ${t.count} × ${t.rank}`, 'warn') : W.chip('✦', tr('Freie Ausspielrunde', 'Free lead')), g.passed.length ? W.chip('⏭', `${tr('Gepasst', 'Passed')}: ${g.passed.length}`) : '', W.chip('⚑', `${left} ${tr('Plätze offen', 'places open')}`)].filter(Boolean);
+      return `<div class="kg-table pr-wrap wk-stage pr-stage">${W.head({ eyebrow: tr('Clubtisch', 'Club table'), title: t ? tr('Kombination am Tisch', 'Combination on the table') : tr('Der Tisch ist frei', 'The table is free'), chips })}${table}<div class="kg-chips">${passed}${places}${ex}</div></div>`;
     },
     dock(S, myTurn) {
       const g = S.g;
