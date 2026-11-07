@@ -686,17 +686,34 @@
         "Desktop und Mobile Safari getestet",
         "Kein bestehendes Risiko-Würfelspiel verändert"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
+      "status": "done",
+      "implementation_commit": "02205be",
+      "completed_at": "2026-11-07",
       "notes": [
-        "Repo-Abgleich am 30.10.2026: games/planned.js hat bereits 'gebietskampf' (Große Projekte). Die öffentliche Roadmap nennt die Risiko-Inspiration. IDs bewahren; kein Duplikat anlegen."
+        "Repo-Abgleich am 30.10.2026: games/planned.js hat bereits 'gebietskampf' (Große Projekte). Die öffentliche Roadmap nennt die Risiko-Inspiration. IDs bewahren; kein Duplikat anlegen.",
+        "Ausdrückliche Freigabe vom 2026-11-07. Öffentlicher Name „Gebietskampf (Risiko-inspiriert)“, ID gebietskampf unverändert; kein zweites Risiko-Spiel, risiko-wuerfeln bleibt unverändert. Eigene erfundene Karte Meridia (42 Gebiete, kleine Karte 28), eigene SVG-Optik; Details: docs/roadmap/V2-11_GEBIETSKAMPF.md.",
+        "Serverseitig: Würfel, Zugprüfung, Karten, Missionen (nur eigene Ansicht), Bots in drei Stufen, Speicherstand mitten im Spiel (persistMidGame in rooms.json) und Reconnect mitten im Zug. Nicht umgesetzt: Produktivdeployment; die individuelle visuelle Ausarbeitung bleibt VIS-090 (planned)."
       ],
       "public_roadmap_ids": [
         "gebietskampf"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test \"test/*.test.js\" (sauberer Checkout von 02205be + diesem Dokumentationsstand)",
+          "result": "1418 Tests, 1418 bestanden, 0 fehlgeschlagen; darunter test/gebietskampf.test.js mit 18 Tests (Karte, Aufbau, Verstärkung/Boni, Kampfregeln, Eroberung, Kartentausch, Verschieben, Missionen, Registrierung, Raum, Reconnect/Speicherstand, Timeout/Aussteiger, Bots, Bot-Partien bis zum Ende auf beiden Karten und in beiden Siegmodi)."
+        },
+        {
+          "command": "npx playwright test test/ui/gebietskampf.spec.js",
+          "result": "2 bestanden (desktop + mobil): Hosten, Bots, Verstärken, Angreifen, Verschieben, Zuschauer, Pause, Reconnect mitten im Zug, Zoom, sechs Größen ohne seitliches Überlaufen, Tastatur, Englisch. Screenshots: docs/design/screenshots/gebietskampf/ (26 JPEG)."
+        },
+        {
+          "command": "npx playwright test smoke, game-design, language, roadmap-presence, bots, settings (sauberer Checkout)",
+          "result": "90 bestanden, 2 fehlgeschlagen: roadmap-presence (desktop + mobil) prüft mit dem Stand von HEAD zusätzlich den Eintrag v2-platform-integration des parallel bearbeiteten Pakets V2-17/V2-07, nicht V2-11; der Gebietskampf-Teil der Prüfung wurde angepasst (Eintrag ist jetzt „Bereits spielbar“)."
+        }
+      ],
+      "commits": [
+        "02205be"
+      ]
     },
     {
       "id": "V2-12",

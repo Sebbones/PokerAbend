@@ -10,7 +10,10 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
     await expect(page.getByText(title, { exact: true })).toBeVisible();
   }
   await page.locator('[data-roadmap-stage="gross"] > summary').click();
-  for (const id of ['gebietskampf', 'staedtehandel', 'turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell']) {
+  await page.locator('[data-plan="gebietskampf"]').click(); // V2-11: umgesetzt, nicht mehr nur geplant
+  await expect(page.locator('#host-dlg')).toContainText('Bereits spielbar');
+  await page.locator('#host-dlg .host-close').click();
+  for (const id of ['staedtehandel', 'turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell']) {
     await page.locator(`[data-plan="${id}"]`).click();
     await expect(page.locator('#host-dlg')).toContainText('Noch nicht spielbar');
     await expect(page.locator('#host-form')).toHaveCount(0);
