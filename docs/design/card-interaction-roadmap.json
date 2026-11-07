@@ -23,9 +23,11 @@
       "omaha-hi-lo",
       "short-deck",
       "seven-card-stud",
-      "exploding-deck"
+      "exploding-deck",
+      "skat",
+      "doppelkopf"
     ],
-    "registered_count": 19,
+    "registered_count": 21,
     "authorized_pilots": 3,
     "planned_followups": 10,
     "baseline_registered_card_games": [
@@ -1009,6 +1011,20 @@
       "followup_commits": [
         "9a4ed6b5c055aeba11de8b76e19c95618054bbab"
       ]
+    },
+    {
+      "game_id": "skat",
+      "authorization": "Explicit Skat/Doppelkopf playable-game request, 2026-11-07",
+      "scope": "Reizen, Skat/Drücken, Spielansage und Stichspiel mit expliziter Kartenauswahl und Bestätigung im neuen Spiel",
+      "documentation": "games/skat/README.md",
+      "implementation_commit": null
+    },
+    {
+      "game_id": "doppelkopf",
+      "authorization": "Explicit Skat/Doppelkopf playable-game request, 2026-11-07",
+      "scope": "Vorbehalt, Ansagen und Stichspiel mit expliziter Kartenauswahl und Bestätigung im neuen Spiel",
+      "documentation": "games/doppelkopf/README.md",
+      "implementation_commit": null
     }
   ]
 }

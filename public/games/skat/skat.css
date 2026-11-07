@@ -1,0 +1,21 @@
+.kg-skat{--scene-accent:#e3c27a}
+.kg-skat #kg-main{background:radial-gradient(ellipse at top,#2c5a3f99,#16241d00)}
+.sk-world{max-width:1000px!important;margin:auto;gap:15px!important}
+.sk-head{text-align:center;color:#f3ead1}.sk-head small{letter-spacing:.26em;color:#e3c27a}.sk-head h2{font:600 clamp(22px,3vw,34px) Georgia,serif;margin:8px 0}.sk-head p{font-size:13px;color:#d6cfb6;min-height:1em}
+.sk-felt{width:100%;min-height:190px;display:flex;flex-direction:column;justify-content:center;align-items:center;border-radius:80px;border:10px ridge #6c4b2b;background:radial-gradient(ellipse,#2f6a48,#17382a 78%);box-shadow:inset 0 0 50px #0006,0 12px 24px #0003;padding:22px;color:#f3ead1;text-align:center}
+.sk-bid{display:grid;gap:4px;place-items:center}.sk-bid b{font:700 54px Georgia,serif;color:#e3c27a}.sk-bid span{font-size:12px;letter-spacing:.14em;text-transform:uppercase}.sk-bid small{color:#cfe0cf}
+.sk-skat{display:grid;place-items:center;gap:8px}.sk-skat-cards{display:flex;gap:10px}.sk-skat-cards i{width:52px;height:74px;border-radius:7px;border:2px solid #e3c27a;background:repeating-linear-gradient(45deg,#8c2a2a 0 7px,#6d1f1f 7px 14px);box-shadow:0 3px 8px #0006}.sk-skat-cards i.gone{opacity:.25;border-style:dashed;background:none}
+.sk-trick{display:flex;justify-content:center;gap:22px;flex-wrap:wrap}.sk-trick article{display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12px}.sk-trick .kc{width:64px;height:88px;opacity:1!important;filter:none!important}
+.sk-open{width:100%;text-align:center;color:#f3ead1}.sk-open small{display:block;margin-bottom:6px;color:#e3c27a}.sk-open div{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}.sk-open .kc{width:40px;height:56px;font-size:16px;opacity:1!important;filter:none!important}
+.sk-ledger{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:0;justify-content:center;width:100%}
+.sk-ledger li{display:grid;grid-template-columns:1fr auto;gap:4px 14px;padding:12px 16px;background:#f1ead6;color:#2d2a1c;border-radius:8px;min-width:190px;box-shadow:0 3px 8px #0002}.sk-ledger li.decl{outline:3px solid #e3c27a}.sk-ledger b{grid-column:1/-1}.sk-ledger span{font-size:12px}.sk-ledger strong{color:#2f6a48;font-size:18px;grid-row:2/4;grid-column:2}
+.sk-result{max-width:520px;color:#f3ead1}.sk-result h3{font:600 20px Georgia,serif;margin:0 0 6px}.sk-result ul{list-style:none;padding:0;margin:10px 0;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}.sk-result li{display:grid;gap:2px}.sk-result strong{font-size:20px;color:#e3c27a}.sk-fine{font-size:12px;color:#cfe0cf}
+.sk-lobby{max-width:520px;margin:12px auto;text-align:center;font-size:13px}
+.sk-hand{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-height:176px;overflow:auto;padding:7px 8px;width:100%;max-width:860px;margin:auto}
+.sk-hand .kc{flex:0 0 58px;width:58px;height:80px;font-size:24px;min-width:44px;touch-action:manipulation}.sk-hand .kc:disabled{opacity:.55}
+.sk-hand .kc.sk-selected{outline:3px solid #e9c46d;outline-offset:-3px;transform:translateY(-4px);box-shadow:0 4px 12px #0008}.sk-hand .kc:focus-visible{outline:3px solid #a7e3e5;outline-offset:1px}
+.sk-actions{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:8px}.sk-actions .btn{min-height:44px}.sk-actions>span{font-size:13px}
+.sk-games{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.sk-chip{min-height:44px}.sk-chip.on{background:#e3c27a;color:#2d2a1c;border-color:#e3c27a}
+.sk-flags{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:13px}.sk-flag{display:inline-flex;gap:6px;align-items:center;min-height:44px}.sk-pick{display:inline-flex;align-items:center;gap:8px;font-size:13px}.sk-pick select{min-height:44px;min-width:76px}
+@media(max-width:600px){.sk-felt{border-radius:34px;padding:14px 8px;min-height:150px;border-width:6px}.sk-trick{gap:9px}.sk-trick .kc{width:49px;height:70px}.sk-ledger li{min-width:130px;flex:1;padding:9px}.sk-hand{max-height:150px;padding:6px 2px;gap:5px}.sk-hand .kc{flex-basis:46px;width:46px;height:67px;font-size:20px}.sk-head h2{font-size:22px}.sk-bid b{font-size:40px}.kg-skat .kg-table{padding:12px}}
+@media(prefers-reduced-motion:reduce){.kg-skat *{transition:none!important;animation:none!important}}

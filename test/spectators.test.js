@@ -46,8 +46,8 @@ for (const g of Object.values(GAMES)) {
     if (g.id === 'maexchen') assert.equal(v.g.cup, null);
     if (g.id === 'blackjack' && r.phase === 'playing') assert.equal(v.g.dealer.cards[1], null, 'verdeckte Dealerkarte sichtbar');
     // Mitten in der Runde einsteigen: erst ab der nächsten Runde (bei Spielen für genau zwei erst, wenn ein Platz frei wird)
-    if (r.opts.maxPlayers <= 2) {
-      assert.throws(() => r.sit(z), /Mehr als 2/);
+    if (r.seats.length >= r.opts.maxPlayers) { // Spiele für genau zwei, drei oder vier: erst wenn ein Platz frei wird
+      assert.throws(() => r.sit(z), /Mehr als [0-9]/);
       r.stand(b);
     }
     const midRound = r.phase === 'playing'; // eine Runde kann schon beim Geben enden (z. B. 31 bei Schwimmen)

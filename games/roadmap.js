@@ -152,6 +152,7 @@ export const ROADMAP = [
     punkt('3d-experiment', '3D-Experiment', 'design', '3D-Würfel als begrenzter Test für eine räumliche Darstellung.'),
     punkt('discord-activity', 'Discord Activity', 'discord', 'Direkt gemeinsam im Discord-Sprachkanal spielen.'),
   ] },
+  { id: 'skat-doppelkopf-fertig', titel: 'Skat & Doppelkopf', satz: 'Die beiden großen deutschen Kartenspiele mit Computer-Mitspielern, Varianten und eigenen Kartenwelten.', stufe: 'erledigt', datum: '2026-11-07', punkte: spiele(['skat', 'doppelkopf']) },
   { id: 'wer-bin-ich-fertig', titel: 'Wer bin ich?', satz: 'Begriffe erraten und durch Ja/Nein-Fragen eingrenzen.', stufe: 'erledigt', datum: '2026-10-28', punkte: spiele(['wer-bin-ich']) },
   { id: 'phase10-fertig', titel: 'Phase-10-Verbesserungen', satz: 'Feste Joker, längere Auslagen und bessere Kartenauswahl.', stufe: 'erledigt', datum: '2026-10-28', punkte: [punkt('phase10-komfort', 'Auslagen & Kartenauswahl', 'funktion', 'Joker-Zuordnung und Auswahl am Tisch verbessert.', true)] },
   { id: 'paket6-fertig', titel: 'Päckchen 6', satz: 'Gleichzeitige Solo-Aufgaben und neue Party-Runden.', stufe: 'erledigt', datum: '2026-10-28', punkte: [

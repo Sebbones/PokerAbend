@@ -225,34 +225,6 @@ export const PLANNED = [
   funktion({ id: 'modifikatoren', name: 'Modifikatoren', type: 'feature', paeckchen: 'spaeter', beschreibung: 'Zufällige oder vom Host gewählte Regelwürze für Partyspiele, z. B. doppelte Punkte, umgekehrte Wertung oder Zeitdruck – gilt für eine Runde oder die Partie.' }),
 
   // ---------- Groß ----------
-  spiel({
-    id: 'skat', name: 'Skat', category: 'karten', minPlayers: 3, maxPlayers: 3, duration: 45, paeckchen: 'gross',
-    description: 'Das deutsche Kartenspiel: reizen, ansagen und 61 Augen holen.',
-    rules: [
-      '32 Karten (Sieben bis Ass), drei Spieler bekommen je zehn Karten, zwei liegen als Skat verdeckt.',
-      'Beim Reizen wird der Höchstbietende Alleinspieler gegen die beiden anderen.',
-      'Er darf den Skat aufnehmen, zwei Karten drücken und sagt ein Spiel an: Farbspiel, Grand oder Null.',
-      'Im Farbspiel sind die vier Buben und die Karten der Trumpffarbe Trumpf; Karte zugeben ist Pflicht.',
-      'Augen: Ass 11, Zehn 10, König 4, Dame 3, Bube 2; der Alleinspieler braucht 61 von 120.',
-      'Der Spielwert ergibt sich aus Grundwert, Mitspielen/Ohne und Spitzen; Schneider und Schwarz erhöhen ihn.',
-    ],
-    houseRules: ['Ramsch bei Passen aller', 'Bockrunden', 'Kontra und Re', 'Spiel nach Seeger-Fabian-Wertung'],
-    art: fan([{ ...CARD, kind: 'dot', color: '#1A1A1A' }, { ...CARD, kind: 'heart' }, { ...CARD, kind: 'diamond' }]),
-  }),
-  spiel({
-    id: 'doppelkopf', name: 'Doppelkopf', category: 'karten', minPlayers: 4, maxPlayers: 4, duration: 60, paeckchen: 'gross',
-    description: 'Vier Spieler, zwei Parteien: Re gegen Kontra um 121 von 240 Augen.',
-    rules: [
-      'Gespielt wird mit dem doppelten Skatblatt ohne Sieben und Acht (48 Karten), jeder bekommt zwölf.',
-      'Trumpf sind Karo, alle Buben und Damen und die Herz-Zehn; die beiden Kreuz-Damen bestimmen die Partei Re.',
-      'Wer eine Kreuz-Dame hat, gehört zu Re – die anderen sind Kontra. Das wird erst im Spiel offenbar.',
-      'Farbzwang bei Fehl-Karten und Trumpf, höchste Karte gewinnt den Stich.',
-      'Re braucht 121 Augen, Kontra 120. Augen: Ass 11, Zehn 10, König 4, Dame 3, Bube 2.',
-      'Ansagen (Re/Kontra, keine 90 …) und Fuchs, Doppelkopf, Karlchen geben Zusatzpunkte.',
-    ],
-    houseRules: ['Hochzeit', 'Schweine', 'Solo-Spiele', 'Pflichtsolo'],
-    art: fan([{ ...CARD, kind: 'dot', color: '#1A1A1A' }, { ...CARD, kind: 'diamond' }, { ...CARD, kind: 'bars', color: '#C99A45' }, { ...CARD, kind: 'heart' }]),
-  }),
 
   spiel({
     id: 'staedtehandel', name: 'Städtehandel (Catan-inspiriert)', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 60, paeckchen: 'gross',

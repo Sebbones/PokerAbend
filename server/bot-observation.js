@@ -11,7 +11,7 @@ export function botObservation(room,id){
   else if(room.game==='reversi')out.g={board:[...g.board],legal:[...g.legal]};
   else if(room.game==='backgammon')out.g=g;
   else if(room.game==='farbenchaos')out.g={...g,others:room.order.filter(p=>p!==id).map(p=>({id:p,cards:room.publicPlayer(room.players.get(p)).cards}))};
-  else if(room.game==='hearts'||room.game==='sechs-nimmt')out.g=g;
+  else if(room.game==='hearts'||room.game==='sechs-nimmt'||room.game==='skat'||room.game==='doppelkopf')out.g=g;
   else if(room.game==='kniffel')out.g={dice:g.dice,rolls:g.rolls,sheet:{...g.sheets[id]},options:g.options,joker:!!room.settings.joker};
   else if(room.game==='scrabble')out.g=g;
   else if(room.game==='schach')out.g={key:g.key,revision:g.revision,position:g.position,legal:g.legal};
@@ -21,5 +21,5 @@ export function botObservation(room,id){
   else return null;
   return structuredClone(out);
 }
-const METHODS={luegenbaron:['answer','vote'],'exploding-deck':['playCard','drawCard','insertBomb','giveCard','nope','passReaction'],schach:['move'],monopoly:['onTimeout','bid','passAuction','respondTrade','buy','leaveJail','throwDice','manage','proposeTrade','endTurn'],scrabble:['pass','place','review','vote'],kniffel:['throwDice','score'],viergewinnt:['drop'],reversi:['place'],backgammon:['throwDice','confirmTurn','move','answerDouble'],poker:['act'],omaha:['act'],farbenchaos:['play','draw','pass','lateCall','catchForgot'],hearts:['pass','play'],'sechs-nimmt':['choose','takeRow']};
+const METHODS={doppelkopf:['reserve','announce','play'],skat:['bid','ramschChoice','pickup','discard','declare','play'],luegenbaron:['answer','vote'],'exploding-deck':['playCard','drawCard','insertBomb','giveCard','nope','passReaction'],schach:['move'],monopoly:['onTimeout','bid','passAuction','respondTrade','buy','leaveJail','throwDice','manage','proposeTrade','endTurn'],scrabble:['pass','place','review','vote'],kniffel:['throwDice','score'],viergewinnt:['drop'],reversi:['place'],backgammon:['throwDice','confirmTurn','move','answerDouble'],poker:['act'],omaha:['act'],farbenchaos:['play','draw','pass','lateCall','catchForgot'],hearts:['pass','play'],'sechs-nimmt':['choose','takeRow']};
 export function applyBotAction(room,id,action){if(!action||!METHODS[room.game]?.includes(action.method)||!Array.isArray(action.args))throw Error('Ungültige Computeraktion');if(room.game==='monopoly'&&action.method==='proposeTrade')room.traded[id]=room.turnNo;return room[action.method](id,...action.args);}

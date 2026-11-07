@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 69,
-    "not_implemented_count": 38,
+    "playable_count": 76,
+    "not_implemented_count": 31,
     "completed_visual_count": 18,
-    "open_playable_visual_count": 51,
+    "open_playable_visual_count": 58,
     "planned_visual_count": 89,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -101,7 +101,14 @@
       "schach",
       "sudoku",
       "2048",
-      "wellenwacht"
+      "wellenwacht",
+      "snake",
+      "memory",
+      "minesweeper",
+      "nonogramm",
+      "sokoban",
+      "skat",
+      "doppelkopf"
     ],
     "not_implemented_game_ids": [
       "stichmeister",
@@ -124,8 +131,6 @@
       "schubsarena",
       "scheinwerfer-flucht",
       "brueckenroulette",
-      "skat",
-      "doppelkopf",
       "staedtehandel",
       "gebietskampf",
       "turmbauer",
@@ -133,11 +138,6 @@
       "fallenbauer",
       "reaktor-notfall",
       "bomben-duell",
-      "snake",
-      "memory",
-      "minesweeper",
-      "nonogramm",
-      "sokoban",
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
@@ -313,6 +313,7 @@
     "VIS-027",
     "VIS-035",
     "VIS-049",
+    "VIS-100",
     "VIS-015",
     "VIS-018",
     "VIS-021",
@@ -334,6 +335,9 @@
     "VIS-039",
     "VIS-056",
     "VIS-085",
+    "VIS-099",
+    "VIS-101",
+    "VIS-103",
     "VIS-006",
     "VIS-016",
     "VIS-024",
@@ -353,13 +357,16 @@
     "VIS-041",
     "VIS-057",
     "VIS-045",
+    "VIS-102",
     "VIS-007",
     "VIS-011",
     "VIS-013",
     "VIS-036",
     "VIS-002",
     "VIS-047",
-    "VIS-046"
+    "VIS-046",
+    "VIS-086",
+    "VIS-087"
   ],
   "suggested_development_order": [
     "VIS-027",
@@ -412,7 +419,14 @@
     "VIS-085",
     "VIS-056",
     "VIS-057",
-    "VIS-084"
+    "VIS-084",
+    "VIS-099",
+    "VIS-100",
+    "VIS-101",
+    "VIS-102",
+    "VIS-103",
+    "VIS-086",
+    "VIS-087"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -440,15 +454,8 @@
     "VIS-095",
     "VIS-093",
     "VIS-058",
-    "VIS-086",
-    "VIS-087",
     "VIS-090",
     "VIS-089",
-    "VIS-099",
-    "VIS-100",
-    "VIS-101",
-    "VIS-102",
-    "VIS-103",
     "VIS-104",
     "VIS-105",
     "VIS-106",
@@ -11184,24 +11191,43 @@
       "game_name": "Skat",
       "category": "karten",
       "category_name": "Kartenspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/skat/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "baseline_card_world",
+        "evidence": [
+          "games/skat/rules.test.js",
+          "games/skat/ui.spec.js"
+        ],
+        "assessment": "Erste spielbare Umsetzung mit Szenenbild und Basis-Tisch im bestehenden Kartenstil; die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/skat/skat.js",
+        "public/games/skat/skat.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/skat/skat.js",
+          "sha256": "46a37ba0426e75413d22d78e376093c83d6aa144f9b1a9795e9f574aea64de73"
+        },
+        {
+          "path": "public/games/skat/skat.css",
+          "sha256": "bbb505bd738a87a51fed7ab2e93a10880c2916cc32ae5c6dc609251781d87734"
+        }
+      ],
+      "current_design": "Grüner Skattisch mit Reizanzeige, Skatablage, Stichmitte und Papier-Wertungsleiste im gemeinsamen Kartenstil.",
+      "known_visual_weaknesses": [
+        "Basis-Tisch ohne eigene Kartenillustration, Animationen oder Spezialansichten; individuelle Gestaltung nicht begonnen."
+      ],
+      "assessment_method": "Server- und Bot-Tests sowie Playwright Hosten, Bots und Spielen auf Desktop und Mobil; Planungsstatus der individuellen Gestaltung unverändert.",
       "gameplay_summary": "Das deutsche Kartenspiel: reizen, ansagen und 61 Augen holen.",
       "planned_style": "Klassischer gehobener Dreierspieltisch mit Reiznotiz.",
       "background_concept": "Dunkles Kartentuch, dezente Papierwertung.",
@@ -11253,8 +11279,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "skat",
-        "source": "games/planned.js",
-        "status": "not_implemented",
+        "source": "games/skat/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],
@@ -11269,24 +11295,43 @@
       "game_name": "Doppelkopf",
       "category": "karten",
       "category_name": "Kartenspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/doppelkopf/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "baseline_card_world",
+        "evidence": [
+          "games/doppelkopf/rules.test.js",
+          "games/doppelkopf/ui.spec.js"
+        ],
+        "assessment": "Erste spielbare Umsetzung mit Szenenbild und Basis-Tisch im bestehenden Kartenstil; die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/doppelkopf/doppelkopf.js",
+        "public/games/doppelkopf/doppelkopf.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/doppelkopf/doppelkopf.js",
+          "sha256": "14421fc4edac25337aaf95896e712a449b792d20789e379ba82861928a30af27"
+        },
+        {
+          "path": "public/games/doppelkopf/doppelkopf.css",
+          "sha256": "cdb479ac70f9fe53c02ffae4f743529885dfbcca9106251b2f72d148e898dfb2"
+        }
+      ],
+      "current_design": "Burgunderroter Doppelkopf-Tisch mit Vorbehaltsleiste, Stichmitte, Re/Kontra-Anzeige und Papier-Wertungsleiste im gemeinsamen Kartenstil.",
+      "known_visual_weaknesses": [
+        "Basis-Tisch ohne eigene Kartenillustration, Animationen oder Spezialansichten; individuelle Gestaltung nicht begonnen."
+      ],
+      "assessment_method": "Server- und Bot-Tests sowie Playwright Hosten, Bots und Spielen auf Desktop und Mobil; Planungsstatus der individuellen Gestaltung unverändert.",
       "gameplay_summary": "Vier Spieler, zwei Parteien: Re gegen Kontra um 121 von 240 Augen.",
       "planned_style": "Vierersalon für partnerschaftliches Stichspiel.",
       "background_concept": "Ruhige dunkelgrüne Tischfläche.",
@@ -11338,8 +11383,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "doppelkopf",
-        "source": "games/planned.js",
-        "status": "not_implemented",
+        "source": "games/doppelkopf/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],
@@ -12525,27 +12570,36 @@
       "game_name": "Snake",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Neon grid with a bright head, distinct food and visible direction controls."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Snake: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
-      "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      "current_frontend_files": [
+        "public/singleplayer/snake-logic.js",
+        "public/singleplayer/collection-runtime.js",
+        "public/singleplayer/collection.css"
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/singleplayer.css"
+      ],
+      "source_audit": [],
+      "current_design": "Neon grid with a bright head, distinct food and visible direction controls.",
+      "known_visual_weaknesses": [
+        "Commit-bound acceptance evidence is pending the implementation commit."
+      ],
+      "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Lenke eine Schlange, sammle Nahrung und vermeide Kollisionen.",
       "planned_style": "Klare Leuchtspuren auf dunklem Raster.",
-      "background_concept": "Snake: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "background_concept": "Snake: original flat materials inside the existing private solo shell.",
       "board_concept": "Snake: Steuerung auf einem Raster, Wachstum und zunehmendes Tempo.",
       "objects_concept": "Snake: Tastatur und Wischgesten; Pause, lokaler Highscore, drei Tempostufen.",
       "status_and_actions": "Snake: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
@@ -12559,9 +12613,9 @@
         "end"
       ],
       "technical_constraints": [
-        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
-        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
-        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+        "Local-only gameplay with versioned, strictly validated browser saves.",
+        "No room, Socket.IO result, public ranking, presence or achievement submission.",
+        "Pause on leaving or hiding; restore paused; corrupted saves retained until explicit new game."
       ],
       "existing_variants": [],
       "effort": {
@@ -12594,9 +12648,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "snake",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
@@ -12610,27 +12664,37 @@
       "game_name": "Memory",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Original botanical and everyday SVG line drawings on illustrated card backs."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Memory: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
-      "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      "current_frontend_files": [
+        "public/singleplayer/memory-logic.js",
+        "public/singleplayer/collection-runtime.js",
+        "public/singleplayer/collection.css",
+        "public/singleplayer/memory-art.js"
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/singleplayer.css"
+      ],
+      "source_audit": [],
+      "current_design": "Original botanical and everyday SVG line drawings on illustrated card backs.",
+      "known_visual_weaknesses": [
+        "Commit-bound acceptance evidence is pending the implementation commit."
+      ],
+      "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Finde passende Kartenpaare in deinem eigenen Tempo.",
       "planned_style": "Ruhige illustrierte Symbolkarten mit starken Kontrasten.",
-      "background_concept": "Memory: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "background_concept": "Memory: original flat materials inside the existing private solo shell.",
       "board_concept": "Memory: Zwei Karten aufdecken; passende Paare bleiben offen.",
       "objects_concept": "Memory: Drei Rastergrößen; Zugzähler und optionale Uhr; Lokale Bestleistungen.",
       "status_and_actions": "Memory: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
@@ -12644,9 +12708,9 @@
         "end"
       ],
       "technical_constraints": [
-        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
-        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
-        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+        "Local-only gameplay with versioned, strictly validated browser saves.",
+        "No room, Socket.IO result, public ranking, presence or achievement submission.",
+        "Pause on leaving or hiding; restore paused; corrupted saves retained until explicit new game."
       ],
       "existing_variants": [],
       "effort": {
@@ -12679,9 +12743,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "memory",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
@@ -12695,27 +12759,36 @@
       "game_name": "Minesweeper",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Numbered workshop tiles, explicit touch reveal/flag modes and internal board scrolling."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Minesweeper: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
-      "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      "current_frontend_files": [
+        "public/singleplayer/minesweeper-logic.js",
+        "public/singleplayer/collection-runtime.js",
+        "public/singleplayer/collection.css"
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/singleplayer.css"
+      ],
+      "source_audit": [],
+      "current_design": "Numbered workshop tiles, explicit touch reveal/flag modes and internal board scrolling.",
+      "known_visual_weaknesses": [
+        "Commit-bound acceptance evidence is pending the implementation commit."
+      ],
+      "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Entschärfe ein Minenfeld mit Logik und Markierungen.",
       "planned_style": "Lesbare nummerierte Felder, eigenständige Werkstattoptik.",
-      "background_concept": "Minesweeper: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "background_concept": "Minesweeper: original flat materials inside the existing private solo shell.",
       "board_concept": "Minesweeper: Nachbarzahlen verraten versteckte Minen.",
       "objects_concept": "Minesweeper: Sicherer erster Klick; Flaggen und Aufdecken; Drei Feldgrößen.",
       "status_and_actions": "Minesweeper: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
@@ -12729,9 +12802,9 @@
         "end"
       ],
       "technical_constraints": [
-        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
-        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
-        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+        "Local-only gameplay with versioned, strictly validated browser saves.",
+        "No room, Socket.IO result, public ranking, presence or achievement submission.",
+        "Pause on leaving or hiding; restore paused; corrupted saves retained until explicit new game."
       ],
       "existing_variants": [],
       "effort": {
@@ -12764,9 +12837,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "minesweeper",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
@@ -12780,27 +12853,36 @@
       "game_name": "Nonogramm",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Paper logic sheet with row/column clues, ink pixels and crossed empty cells."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Nonogramm: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
-      "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      "current_frontend_files": [
+        "public/singleplayer/nonogramm-logic.js",
+        "public/singleplayer/collection-runtime.js",
+        "public/singleplayer/collection.css"
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/singleplayer.css"
+      ],
+      "source_audit": [],
+      "current_design": "Paper logic sheet with row/column clues, ink pixels and crossed empty cells.",
+      "known_visual_weaknesses": [
+        "Commit-bound acceptance evidence is pending the implementation commit."
+      ],
+      "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Entschlüssle ein Pixelmotiv anhand von Zahlen am Rand.",
       "planned_style": "Papierartige Logiktafel mit farbigen fertigen Motiven.",
-      "background_concept": "Nonogramm: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "background_concept": "Nonogramm: original flat materials inside the existing private solo shell.",
       "board_concept": "Nonogramm: Zahlenfolgen geben zusammenhängende Blöcke in Zeilen und Spalten an.",
       "objects_concept": "Nonogramm: 5×5 bis 15×15; Markierung leerer Felder; Undo und Hilfen.",
       "status_and_actions": "Nonogramm: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
@@ -12814,9 +12896,9 @@
         "end"
       ],
       "technical_constraints": [
-        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
-        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
-        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+        "Local-only gameplay with versioned, strictly validated browser saves.",
+        "No room, Socket.IO result, public ranking, presence or achievement submission.",
+        "Pause on leaving or hiding; restore paused; corrupted saves retained until explicit new game."
       ],
       "existing_variants": [],
       "effort": {
@@ -12849,9 +12931,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "nonogramm",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
@@ -12865,27 +12947,36 @@
       "game_name": "Sokoban",
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/singleplayer/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
+        "level": "individual_game_world",
         "evidence": [],
-        "assessment": "Individuelles Zukunftskonzept, keine Engine oder Oberfläche implementiert."
+        "assessment": "Original tiled warehouses with wood crates, distinct targets and a visible worker."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Sokoban: Noch keine Spieloberfläche; ausschließlich individueller Backlog-Plan.",
-      "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+      "current_frontend_files": [
+        "public/singleplayer/sokoban-logic.js",
+        "public/singleplayer/collection-runtime.js",
+        "public/singleplayer/collection.css"
       ],
-      "assessment_method": "Individuelles Konzept anhand der geplanten Mechanik; keine bereits implementierte Ansicht behauptet.",
+      "shared_frontend_files": [
+        "public/singleplayer.js",
+        "public/singleplayer/storage.js",
+        "public/singleplayer/puzzle-base.js",
+        "public/singleplayer/singleplayer.css"
+      ],
+      "source_audit": [],
+      "current_design": "Original tiled warehouses with wood crates, distinct targets and a visible worker.",
+      "known_visual_weaknesses": [
+        "Commit-bound acceptance evidence is pending the implementation commit."
+      ],
+      "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Schiebe Kisten auf Zielmarkierungen und plane jeden Schritt.",
       "planned_style": "Eigene kleine Lagerhäuser aus lesbaren 2D-Kacheln.",
-      "background_concept": "Sokoban: Ruhige lokale Farbflächen mit gemeinsamer Hub-Typografie; keine Assets oder zusätzliche Engine implementiert.",
+      "background_concept": "Sokoban: original flat materials inside the existing private solo shell.",
       "board_concept": "Sokoban: Kisten lassen sich schieben, aber nicht ziehen.",
       "objects_concept": "Sokoban: Handgebaute eigene Level; Undo und Neustart; Lokaler Level-Fortschritt.",
       "status_and_actions": "Sokoban: Start, lokale Fortsetzung, Pause, Regeln, Einstellungen und klarer Endzustand ohne öffentliche Rangliste.",
@@ -12899,9 +12990,9 @@
         "end"
       ],
       "technical_constraints": [
-        "Lokaler Einzelspieler-Pfad ohne Socket.IO-Raum oder öffentliche Ergebnisübermittlung.",
-        "Bestehende 49 Multiplayer-Spiele und ihre Persistenz bleiben erhalten.",
-        "Implementierung nur nach ausdrücklicher eigener Freigabe."
+        "Local-only gameplay with versioned, strictly validated browser saves.",
+        "No room, Socket.IO result, public ranking, presence or achievement submission.",
+        "Pause on leaving or hiding; restore paused; corrupted saves retained until explicit new game."
       ],
       "existing_variants": [],
       "effort": {
@@ -12934,9 +13025,9 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "sokoban",
-        "source": "games/singleplayer/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/singleplayer/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
       "screenshots": [],
       "test_results": [],
