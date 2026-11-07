@@ -1,1 +1,12 @@
 @import url('/games/backlog-dice.css');
+
+/* VIS-057: kooperatives Monster-Abenteuer – Gegnerkarte, Gruppenstatus und Würfelzone getrennt */
+.kg-monsterwuerfel .kg-main { background: radial-gradient(120% 90% at 50% 0, #2c4a2f, #0f1d12); }
+.kg-monsterwuerfel .dg-health { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.kg-monsterwuerfel .dg-health article:first-child { border: 2px solid #8fd3a2; border-radius: 14px; background: #1d3a26cc; }
+.kg-monsterwuerfel .dg-health article:last-child { border: 2px solid #e68f86; border-radius: 14px; background: #4a2020cc; }
+.kg-monsterwuerfel .dg-health h3::before { content: '♥ '; } .kg-monsterwuerfel .dg-health article:last-child h3::before { content: '☠ '; }
+.kg-monsterwuerfel .dg-panel { border: 1px dashed #ffffff55; border-radius: 16px; background: #00000040; }
+.kg-monsterwuerfel .dg-legend span { padding: 2px 8px; border-radius: 99px; border: 1px solid #ffffff44; }
+.kg-monsterwuerfel .dg-dice button { min-width: 56px; min-height: 56px; }
+@media (max-width: 640px) { .kg-monsterwuerfel .dg-health { grid-template-columns: minmax(0, 1fr); } }
