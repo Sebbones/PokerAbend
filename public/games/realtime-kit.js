@@ -49,17 +49,19 @@ function realtimeGame(def) {
   }
   function vector() {
     const all = new Set([...keys, ...held.values()]);
-    return { x: Number(all.has('right')) - Number(all.has('left')), y: Number(all.has('down')) - Number(all.has('up')) };
+    const v = { x: Number(all.has('right')) - Number(all.has('left')), y: Number(all.has('down')) - Number(all.has('up')) };
+    return v.x || v.y ? v : def.vector?.(frame,kit.S) || v;
   }
   function pump(force = false) {
     if (!mine() || kit.S.gamePaused || !frame || !me()?.alive || !kit.S.you?.inRound) return;
+    if (def.canInput && !def.canInput(frame,kit.S)) return;
     const now = performance.now(), v = active() ? vector() : { x: 0, y: 0 }, signature = `${v.x}:${v.y}`;
     if (!force && (now - sentAt < 160 || signature === lastVector && !jump && now - sentAt < 220)) return;
     seq = Math.max(seq, kit.S.g?.inputSeq || 0) + 1;
     socket.emit('steer', { runId: frame.runId, round: frame.round, seq, ...v, jump: active() && jump }, () => {});
     jump = false; sentAt = now; lastVector = signature;
   }
-  function release() { keys.clear(); held.clear(); jump = false; pump(true); }
+  function release() { keys.clear(); held.clear(); jump = false; def.release?.(); pump(true); }
   const keyMap = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right', w: 'up', W: 'up', a: 'left', A: 'left', s: 'down', S: 'down', d: 'right', D: 'right' };
   document.addEventListener('keydown', (e) => {
     if (!mine() || e.target.closest?.('input,textarea,select,dialog,.panel') || !active()) return;
@@ -69,7 +71,7 @@ function realtimeGame(def) {
   document.addEventListener('keyup', (e) => { if (keyMap[e.key] && keys.delete(keyMap[e.key])) pump(true); });
   window.addEventListener('blur', release);
   document.addEventListener('visibilitychange', () => { if (document.hidden) release(); else if (mine() && !raf) raf = requestAnimationFrame(loop); });
-  socket.on('disconnect', () => { keys.clear(); held.clear(); jump = false; });
+  socket.on('disconnect', () => { keys.clear(); held.clear(); jump = false; def.release?.(); });
   socket.on('arena', (next) => { if (session?.game === def.id) accept(next); });
   setInterval(pump, 80);
 
@@ -134,6 +136,7 @@ function realtimeGame(def) {
   function fit() {
     const main = $('#kg-main'), wrap = main?.querySelector('.rt-wrap');
     if (!main || !wrap || !canvas?.isConnected) return;
+    if (def.fit && def.fit({main,wrap,canvas,frame}) !== false) return;
     const style = getComputedStyle(main), gap = parseFloat(getComputedStyle(wrap).rowGap) || 0;
     const banner = main.querySelector('.program-banner');
     const height = main.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom) - wrap.querySelector('.rt-head').offsetHeight - wrap.querySelector('.rt-scores').offsetHeight - gap * 2 - (banner ? banner.offsetHeight + (parseFloat(style.rowGap) || 0) : 0);
@@ -156,6 +159,7 @@ function realtimeGame(def) {
     const stop = document.querySelector('[data-rt-stop]');
     if (stop && !stop.dataset.bound) { stop.dataset.bound = 'true'; stop.addEventListener('click', release); }
     updateLabels();
+    def.bind?.(kit.S,{canvas,frame:()=>frame,active,fit,pump});
   }
   const controls = (S) => I18n.html`<div class="rt-controls"><div class="rt-pad" role="group" aria-label="Bewegungssteuerung">${[['up', '↑', 'oben'], ['left', '←', 'links'], ['down', '↓', 'unten'], ['right', '→', 'rechts']].map(([dir, icon, label]) => I18n.html`<button class="btn rt-dir rt-${dir}" type="button" data-rt-dir="${dir}" aria-label="Nach ${label} bewegen">${icon}</button>`).join('')}<button class="btn rt-stop" type="button" data-rt-stop aria-label="Bewegung stoppen">●</button></div>${S.g?.jumping ? I18n.html('<button class="btn btn-brass rt-jump" type="button" data-rt-jump>Springen</button>') : I18n.html('<p class="rt-keyhint">Pfeiltasten / WASD<br>Richtung halten zum Bewegen</p>')}</div>`;
   const kit = kitGame({
@@ -170,7 +174,8 @@ function realtimeGame(def) {
       const G = S.g;
       return I18n.html`<section class="rt-wrap" aria-label="${uiText(def.name)} Arena"><div class="rt-head"><span class="rt-label">${esc(def.tag)}</span><b id="rt-state">Arena bereit</b><span id="rt-time"></span></div><canvas id="rt-canvas" width="900" height="600" data-run="${esc(G.runId)}" role="img" aria-label="Gemeinsames Spielfeld. Deine Figur hat einen weißen Rand. Status und Punkte stehen unter dem Feld."></canvas><ul class="rt-scores">${G.bodies.map((p, i) => `<li style="--player:${palette[i % palette.length]}"><b>${esc(S.players.find((person) => person.id === p.id)?.name || '?')}${p.id === S.you?.id ? ' '+I18n.t('(du)') : ''}</b><span data-rt-player="${p.id}"></span></li>`).join('')}</ul></section>`;
     },
-    dock: controls,
+    dock: (S) => def.dock ? def.dock(S,controls(S)) : controls(S),
+    onClick: (el,S,e) => def.onClick?.(el,S,e),
     dockKey: (S) => `${S.phase}:${S.g?.runId}:${S.you?.inRound}:${S.you?.playing}:${S.you?.isHost}:${S.players.filter((p) => p.seated).length}`,
     afterRender: bind,
   });

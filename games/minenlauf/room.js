@@ -1,0 +1,20 @@
+import {ExpeditionRoom} from '../expedition-room.js';import {adjacent,minefield,path} from './logic.js';
+export class Room extends ExpeditionRoom {
+ static KIND='mine';
+ static OPTIONS=[...ExpeditionRoom.OPTIONS,{key:'penaltySecs',label:'Strafzeit je Mine in Sekunden',type:'number',min:1,max:10},{key:'moreMines',label:'Mehr Minen',type:'bool'},{key:'flags',label:'Mit Flaggen',type:'bool'}];
+ defaultSettings(){return {playSecs:60,penaltySecs:3,moreMines:false,flags:false};}
+ setup(){this.field=minefield(11,7,this.settings.moreMines?.42:.24,this.rng);for(const p of this.bodies){p.cell=Math.floor(this.field.rows/2)*this.field.cols;this.cells.set(p.id,{revealed:new Set([p.cell]),flags:new Set()});this.position(p);}}
+ position(p){p.x=(p.cell%this.field.cols+.5)*900/this.field.cols;p.y=(Math.floor(p.cell/this.field.cols)+.5)*600/this.field.rows;}
+ validateCommand(p,d){if(!['cell','flag'].includes(d.action)||!Number.isSafeInteger(d.cell)||d.cell<0||d.cell>=this.field.cols*this.field.rows)throw Error('Ungültiges Feld');if(d.action==='flag'&&!this.settings.flags)throw Error('Flaggen sind ausgeschaltet');if(d.action==='cell'&&!adjacent(p.cell,this.field.cols,this.field.rows).includes(d.cell))throw Error('Wähle ein benachbartes Feld');}
+ perform(p,d){if(d.action==='flag'){const s=this.cells.get(p.id);if(!s.revealed.has(d.cell)){if(s.flags.has(d.cell))s.flags.delete(d.cell);else s.flags.add(d.cell);}return;}this.visit(p,d.cell);}
+ visit(p,cell){if(p.finished||this.elapsed<p.blockedUntil||this.elapsed<p.moveAt)return false;const s=this.cells.get(p.id);if(s.flags.has(cell)||s.revealed.has(cell)&&this.field.mines[cell])return false;p.moveAt=this.elapsed+180;s.revealed.add(cell);
+  if(this.field.mines[cell]){p.errors++;p.blockedUntil=this.elapsed+180;return false;}
+  p.cell=cell;this.position(p);if(cell%this.field.cols===this.field.cols-1){p.finished=true;p.finishMs=this.elapsed+p.errors*this.settings.penaltySecs*1000;}return true;
+ }
+ advance(){for(const p of this.bodies){const d=this.liveInput(p);if(!d)continue;const x=p.cell%this.field.cols,y=Math.floor(p.cell/this.field.cols),nx=x+(d.x||0),ny=y+(!d.x?d.y:0);if((d.x||d.y)&&nx>=0&&nx<this.field.cols&&ny>=0&&ny<this.field.rows)this.visit(p,ny*this.field.cols+nx);}if(this.bodies.every(p=>p.finished)||this.elapsed>=this.settings.playSecs*1000){const done=this.bodies.filter(p=>p.finished),best=Math.min(...done.map(p=>p.finishMs)),errors=Math.min(...done.filter(p=>p.finishMs===best).map(p=>p.errors)),winners=done.filter(p=>p.finishMs===best&&p.errors===errors).map(p=>p.id);const ranks=[...new Set([...done].sort((a,b)=>a.finishMs-b.finishMs||a.errors-b.errors).map(p=>p.finishMs+':'+p.errors))];for(const p of this.bodies)this.points[p.id]=p.finished?(this.roster.length-ranks.indexOf(p.finishMs+':'+p.errors))*100:0;this.finish(winners,winners.length?'Die beste Zielzeit einschließlich Strafzeit gewinnt.':'Niemand hat das Minenfeld durchquert – unentschieden.');}}
+ worldView(id){const s=this.cells.get(id);return {cols:this.field?.cols||11,rows:this.field?.rows||7,board:this.field?this.field.numbers.map((n,i)=>s?.revealed.has(i)?n:null):[],flags:s?[...s.flags]:[],flagsEnabled:!!this.settings.flags,penaltySecs:this.settings.penaltySecs};}
+ botStep(id){const p=this.bodies.find(p=>p.id===id),v=this.gameView(id);if(!p||p.finished||this.elapsed<p.blockedUntil||this.elapsed<p.moveAt)return;const safe=i=>v.board[i]!==-1&&!v.flags.includes(i),known=i=>v.board[i]!==null&&v.board[i]!==-1,targets=[];
+  for(let i=0;i<v.board.length;i++)if(v.board[i]===null&&safe(i)){const route=path(p.cell,n=>n===i,n=>adjacent(n,v.cols,v.rows).filter(t=>safe(t)&&(known(t)||t===i)));if(!route)continue;let risk=.3;for(const n of adjacent(i,v.cols,v.rows,true)){const count=v.board[n];if(count===null||count<0)continue;const ns=adjacent(n,v.cols,v.rows,true),unknown=ns.filter(t=>v.board[t]===null).length,marked=ns.filter(t=>v.board[t]===-1).length;if(unknown)risk=Math.min(risk,Math.max(0,(count-marked)/unknown));}targets.push({route,score:risk*100+route.length-(i%v.cols)*.6});}
+  targets.sort((a,b)=>a.score-b.score);const route=targets[0]?.route;if(route?.length>1)this.visit(p,route[1]);
+ }
+}
