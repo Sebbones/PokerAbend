@@ -1025,6 +1025,13 @@
       "scope": "Vorbehalt, Ansagen und Stichspiel mit expliziter Kartenauswahl und Bestätigung im neuen Spiel",
       "documentation": "games/doppelkopf/README.md",
       "implementation_commit": "c216f81b6e67d3e4e93aeee049b766cd856d95d0"
+    },
+    {
+      "game_id": "stichmeister",
+      "authorization": "Explicit BACKLOG-06 playable-game request, 2026-11-07",
+      "scope": "Private hand, legal card selection and explicit play confirmation in the new game; historical ten followups remain planned.",
+      "documentation": "docs/backlog/BACKLOG-06.md",
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05"
     }
   ]
 }

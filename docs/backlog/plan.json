@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 16,
-  "remaining_count": 25,
+  "completed_count": 19,
+  "remaining_count": 22,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -235,7 +235,7 @@
         "8b6c982c53728b890750ec096b88d9a5d3687bf2"
       ],
       "scope": "Only the four expressly authorised games, bots, visual worlds and directly necessary reuse/compatibility tests. Stop here. No V2 implementation in these game commits.",
-      "shared_source_audit_commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
+      "shared_source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
       "shared_source_audit": [
         {
           "path": "games/poker/engine/table.js",
@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "0059140ea7389ec3cbb3d859baa243a18001241ae4d6ecfa2316d0ce6c355d5b"
+          "sha256": "5fb02d76591b55ac9d8f38ae88ccca54cbcfe06bb2448f9155fcb267caa35930"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -345,6 +345,55 @@
       "backlog_05_registration": {
         "scope": "Only bot registration for explicitly authorized new games; existing strategies unchanged",
         "implementation_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519"
+      },
+      "pre_backlog_06_shared_audit": {
+        "commit": "8b6c982c53728b890750ec096b88d9a5d3687bf2",
+        "sources": [
+          {
+            "path": "games/poker/engine/table.js",
+            "sha256": "218554472156f7533886f45664950d124d0cf0add82fc62494db065a8cb0f318"
+          },
+          {
+            "path": "games/poker/engine/cards.js",
+            "sha256": "4c3ba71c72940bda54861019b204aaa7b5696436b285ad9f6c5590c7b3e5372b"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "0059140ea7389ec3cbb3d859baa243a18001241ae4d6ecfa2316d0ce6c355d5b"
+          },
+          {
+            "path": "games/five-card-draw/room.js",
+            "sha256": "67230f584ccf5b506986d4ad99d0a7e8a674fd21a0598556ec070bde09d7cac3"
+          },
+          {
+            "path": "games/five-card-draw/table.js",
+            "sha256": "a8267dc82b18fe1e6096985ebd292936e689a8278d8576cab1f9ab3b7c035cd6"
+          },
+          {
+            "path": "games/omaha-hi-lo/poker-room.js",
+            "sha256": "7100c6c570a4678962c6cfa98873b1bb7a0f3335828b5c864453004a7e47c00d"
+          },
+          {
+            "path": "games/omaha-hi-lo/bot.js",
+            "sha256": "eb347d2023df6f92b68dd85d3dac758e0cf15877b3b82490511d67d1d701ed28"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.js",
+            "sha256": "e29afe58c160625d739e2660e52b07e081370633b0e80daf03b108ea80f719ca"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.css",
+            "sha256": "977c4b07b8cda93539be8383303b285b03413aa7dd2502d1cf1542832bf50de4"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.js",
+            "sha256": "dd5454e96f250b7aa1dbb198d1402f079ffb6dd7ab4138f995d1305ce88dfb09"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.css",
+            "sha256": "f4787f1bb135b611077eead8e2d15d4b855fca19fb1cfb8a92a54cecc25373cd"
+          }
+        ]
       }
     },
     {
@@ -493,7 +542,7 @@
         }
       ],
       "permanent_screenshots": 100,
-      "shared_source_audit_commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
+      "shared_source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
       "shared_source_audit": [
         {
           "path": "package.json",
@@ -505,11 +554,11 @@
         },
         {
           "path": "games/index.js",
-          "sha256": "6e20d6bbe1e720aff035ce7517bdbaafb68f280f902f823a68b591af587d7bc5"
+          "sha256": "907c7167dc9546d2b95d956565d5889b64018c888a1c00df2b039708c353a251"
         },
         {
           "path": "games/bots.js",
-          "sha256": "0059140ea7389ec3cbb3d859baa243a18001241ae4d6ecfa2316d0ce6c355d5b"
+          "sha256": "5fb02d76591b55ac9d8f38ae88ccca54cbcfe06bb2448f9155fcb267caa35930"
         },
         {
           "path": "games/variants.js",
@@ -517,11 +566,11 @@
         },
         {
           "path": "games/bot-levels.js",
-          "sha256": "f7c9d11dcd452bf4fa43ed5f7b77cfc19e733b342c771ac9b19f2e80240d748e"
+          "sha256": "126694f8e675a224a081f82adaff55c63bef60ab6125d220065ccef32371d798"
         },
         {
           "path": "games/bot-strategies/index.js",
-          "sha256": "061b33692794e909e3271df2825aac6e79969a16ac17425b6a8e83cc4bd3b5ac"
+          "sha256": "0aad1158201f437ff327ddd58330e4b6c9307235ba27043ee5b79072f60c1a51"
         },
         {
           "path": "server/bots.js",
@@ -533,7 +582,7 @@
         },
         {
           "path": "server/bot-observation.js",
-          "sha256": "a6a3a38fd8739b3521a2a2c198f4bf5f7c4322162917ef4175085aa47c3f1f84"
+          "sha256": "085aae872a67e51f030784f913c42e4b303127d19582d96a0896b19ec71afb15"
         },
         {
           "path": "server/party-program.js",
@@ -541,7 +590,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "5a254c5c9cdd5b4fa21318bf92ce7ebfde38e47642da8bb1712077ebe0940947"
+          "sha256": "ddc59dfd947e97fc16be23a0d21e56fdd9e0b8dce316b3f36b98b1e160a22eb6"
         },
         {
           "path": "public/hub.js",
@@ -549,7 +598,7 @@
         },
         {
           "path": "public/i18n-en.js",
-          "sha256": "e6ad1ee1aa1c38e719a00c5d7d5b7dfc355eadcf2486010ecd4a02a9ccc03d2f"
+          "sha256": "f341078f1bc912ca4ee9876d624a57e57884241cc4de5793188261d668e4ce14"
         },
         {
           "path": "public/games/party-kit.js",
@@ -660,7 +709,193 @@
       "remaining_tasks": [
         "A single full browser run remains timing-sensitive: its 14 failures all passed in isolated one-worker rechecks. Stabilising unrelated existing fixtures needs a separate task; no reproducible new-game defect remains from these checks."
       ],
-      "completion_note": "All four games implemented, registered, bot-tested and visually verified. Full browser run honestly recorded as 530 passed / 14 failed / 18 skipped; all 14 isolated rechecks passed. Current-main game worlds rechecked after independent lobby followup and final complete Node suite passed. Stop after BACKLOG-05."
+      "completion_note": "All four games implemented, registered, bot-tested and visually verified. Full browser run honestly recorded as 530 passed / 14 failed / 18 skipped; all 14 isolated rechecks passed. Current-main game worlds rechecked after independent lobby followup and final complete Node suite passed. Stop after BACKLOG-05.",
+      "pre_backlog_06_shared_audit": {
+        "commit": "c26f42553e98ed13e351a9f1fdfb4701a6bf6519",
+        "sources": [
+          {
+            "path": "package.json",
+            "sha256": "7c6257fb2a3ed48d66efcc46838712ff581b98be037936d72ed58c37af5342ab"
+          },
+          {
+            "path": "package-lock.json",
+            "sha256": "40ab451a17996dc79efdea2784788d6a45a0540e6ade7556617226edb0d2280d"
+          },
+          {
+            "path": "games/index.js",
+            "sha256": "6e20d6bbe1e720aff035ce7517bdbaafb68f280f902f823a68b591af587d7bc5"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "0059140ea7389ec3cbb3d859baa243a18001241ae4d6ecfa2316d0ce6c355d5b"
+          },
+          {
+            "path": "games/variants.js",
+            "sha256": "d5e1b6d0214b5eccc1fab1b12fc166843f38edd0523669a85c456f8026454f09"
+          },
+          {
+            "path": "games/bot-levels.js",
+            "sha256": "f7c9d11dcd452bf4fa43ed5f7b77cfc19e733b342c771ac9b19f2e80240d748e"
+          },
+          {
+            "path": "games/bot-strategies/index.js",
+            "sha256": "061b33692794e909e3271df2825aac6e79969a16ac17425b6a8e83cc4bd3b5ac"
+          },
+          {
+            "path": "server/bots.js",
+            "sha256": "95d9fae8de94cdf14645098afe57a07d25bcd6f6fe0b1a9dbcd435164797f2cf"
+          },
+          {
+            "path": "server/bot-play.js",
+            "sha256": "861f2b908b273f7457ebc4ced6561036f98afe53b4566c9b2493fedd74f891dd"
+          },
+          {
+            "path": "server/bot-observation.js",
+            "sha256": "a6a3a38fd8739b3521a2a2c198f4bf5f7c4322162917ef4175085aa47c3f1f84"
+          },
+          {
+            "path": "server/party-program.js",
+            "sha256": "8ece043f1e8d406cdfbbe01c533506934e8f23efa57fc10b35fa1d1f3e2c19d3"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "5a254c5c9cdd5b4fa21318bf92ce7ebfde38e47642da8bb1712077ebe0940947"
+          },
+          {
+            "path": "public/hub.js",
+            "sha256": "7ec54f58c67e6b6a91375d7fc07ae2c52a473ffdea4df90ea5fde5465e08236b"
+          },
+          {
+            "path": "public/i18n-en.js",
+            "sha256": "e6ad1ee1aa1c38e719a00c5d7d5b7dfc355eadcf2486010ecd4a02a9ccc03d2f"
+          },
+          {
+            "path": "public/games/party-kit.js",
+            "sha256": "cf11732460737d7afe88a494775e1152d8d1cab437ffde90495007a9eb76db02"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BACKLOG-06",
+      "games": [
+        "stichmeister",
+        "labyrinth-brett",
+        "schatzinsel"
+      ],
+      "status": "verified",
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "test_results": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "completed_at": "2026-11-07",
+      "permanent_screenshots": 60,
+      "shared_source_audit_commit": "3c145f833dba1be85f7d0a901f7e73da36a051cf",
+      "shared_source_audit": [
+        {
+          "path": "games/index.js",
+          "sha256": "907c7167dc9546d2b95d956565d5889b64018c888a1c00df2b039708c353a251"
+        },
+        {
+          "path": "games/bots.js",
+          "sha256": "5fb02d76591b55ac9d8f38ae88ccca54cbcfe06bb2448f9155fcb267caa35930"
+        },
+        {
+          "path": "games/bot-levels.js",
+          "sha256": "126694f8e675a224a081f82adaff55c63bef60ab6125d220065ccef32371d798"
+        },
+        {
+          "path": "games/bot-strategies/index.js",
+          "sha256": "0aad1158201f437ff327ddd58330e4b6c9307235ba27043ee5b79072f60c1a51"
+        },
+        {
+          "path": "server/bot-observation.js",
+          "sha256": "085aae872a67e51f030784f913c42e4b303127d19582d96a0896b19ec71afb15"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "ddc59dfd947e97fc16be23a0d21e56fdd9e0b8dce316b3f36b98b1e160a22eb6"
+        },
+        {
+          "path": "public/i18n-en.js",
+          "sha256": "f341078f1bc912ca4ee9876d624a57e57884241cc4de5793188261d668e4ce14"
+        },
+        {
+          "path": "server/bot-decisions.js",
+          "sha256": "d93d86a5dd8da62d6af095e0a466894503eab33fc08c4cbb8e611e57d892b79c"
+        }
+      ],
+      "followup_commits": [
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ],
+      "verification_attempts": [
+        {
+          "scope": "Full working tree, including concurrent unrelated visual edits",
+          "passed": 1358,
+          "failed": 4,
+          "skipped": 3,
+          "log": "artifacts/backlog06-full-node.log",
+          "note": "Missing new catalogue entry, SVG-size fixture, security catalogue and concurrent Mogeln hash. Catalogue/fixture fixed; unrelated visual source excluded from release snapshot."
+        },
+        {
+          "scope": "First isolated complete Node run",
+          "passed": 1364,
+          "failed": 1,
+          "skipped": 3,
+          "log": "artifacts/backlog06-isolated-full-node.log",
+          "note": "Only screenshot proof failed because final browser capture had replaced images after the manifest was generated. Final manifest is regenerated after all captures finish."
+        },
+        {
+          "scope": "Initial additional normal-end browser run",
+          "completed": false,
+          "passed": 1,
+          "failed": 1,
+          "log": "artifacts/backlog06-end-ui.log",
+          "note": "Labyrinth could not finish due to inherited --input-type worker startup flag; corrected by followup commit. Remaining run interrupted; final ten-case actual-worker report is green."
+        }
+      ],
+      "remaining_tasks": [],
+      "completion_note": "Three complete verified games, original names/art, private views, three bot levels, DE/EN rules, normal browser results, 60 screenshots and green complete Node release source. Stop after BACKLOG-06; no V2 package changed."
     }
   ],
   "games": [
@@ -1152,11 +1387,103 @@
     {
       "id": "stichmeister",
       "name": "Stichmeister",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-06",
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "test_results": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-paused.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-result.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-paused.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-result.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-spectator.png"
+      ],
+      "completed_at": "2026-11-07",
+      "source_audit": [
+        {
+          "path": "games/stichmeister/bot.js",
+          "sha256": "e9489512c40ae2d7b0377ecc081dc555e6ea451494814d0ae60bb2aa3fe525f7"
+        },
+        {
+          "path": "games/stichmeister/index.js",
+          "sha256": "468376191a17561e272006c26cac24da0ebf1b4cb28e8de3b60873eabd1518b3"
+        },
+        {
+          "path": "games/stichmeister/room.js",
+          "sha256": "8a71a14607d893035c1ea7d4e7fcc1e751b2e49e1a6877a96f4ba02aad89fb74"
+        },
+        {
+          "path": "games/stichmeister/rules.js",
+          "sha256": "eb6749cf45a86d708f044d5a06e9b27a2d03fe5f204ec6d2377369c2dca15474"
+        },
+        {
+          "path": "public/games/stichmeister/stichmeister.css",
+          "sha256": "eeb81bc7451a687d60be8299f24a1abecac86df0388101b476410e9c46d0c9ff"
+        },
+        {
+          "path": "public/games/stichmeister/stichmeister.js",
+          "sha256": "ac21acc2f9023226714f2afe9846517f50b0f5ab41c3270229ef714ff2ee182b"
+        }
+      ],
+      "source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "followup_commits": [
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ]
     },
     {
       "id": "exploding-deck",
@@ -1490,11 +1817,105 @@
     {
       "id": "labyrinth-brett",
       "name": "Labyrinth-Brett",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-06",
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "test_results": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-paused.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-reachable.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-result.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-paused.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-reachable.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-result.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-spectator.png"
+      ],
+      "completed_at": "2026-11-07",
+      "source_audit": [
+        {
+          "path": "games/labyrinth-brett/bot.js",
+          "sha256": "a242dfeb649b413e43fc1bba0dd06b5b4ec87f646690f0108915913ecfc5211f"
+        },
+        {
+          "path": "games/labyrinth-brett/index.js",
+          "sha256": "2768194ab5b9384afe52e3174d04e17e796ba969295259e534d7e1dad35f35b5"
+        },
+        {
+          "path": "games/labyrinth-brett/room.js",
+          "sha256": "c120d814dcb9feabe43bba2462a359ade00ed278fee15db6345b39210ff9b410"
+        },
+        {
+          "path": "games/labyrinth-brett/rules.js",
+          "sha256": "a6883ae8ebaac3813381ef897f70126b262a3a7eee0bd19d76d921c31dbb2d1e"
+        },
+        {
+          "path": "public/games/labyrinth-brett/labyrinth-brett.css",
+          "sha256": "b0fcab3ca15d8eda9eae6b2bcf0a71abf8dcccc527f9503514bdbe6fd72f66e3"
+        },
+        {
+          "path": "public/games/labyrinth-brett/labyrinth-brett.js",
+          "sha256": "14b7c9053a8c703f113cd8787b2d5da82f2cb4e7ffc8ae2c4996156b4c6a7c2f"
+        }
+      ],
+      "source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "followup_commits": [
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ]
     },
     {
       "id": "regelwahnsinn",
@@ -1977,11 +2398,103 @@
     {
       "id": "schatzinsel",
       "name": "Schatzinsel",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-06",
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "test_results": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-dug.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-paused.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-private-setup.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-result.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-dug.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-paused.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-private-setup.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-result.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-spectator.png"
+      ],
+      "completed_at": "2026-11-07",
+      "source_audit": [
+        {
+          "path": "games/schatzinsel/bot.js",
+          "sha256": "045d47a44c49b4b96f7242ac3ca3a0756f8c817b5ee7b7b731c831d796dce7f1"
+        },
+        {
+          "path": "games/schatzinsel/index.js",
+          "sha256": "8ab47db7f02408fbf3466a10f1ad96e563d3392403fa13b67eed2d53c12ed641"
+        },
+        {
+          "path": "games/schatzinsel/room.js",
+          "sha256": "96ddb554a1f2b0b21a854204cf4a1b853b5645aadb2b576b355ad43046caec52"
+        },
+        {
+          "path": "public/games/schatzinsel/schatzinsel.css",
+          "sha256": "75346575a3001fd67383a0cc294940acca59781341d57e1e0d48f13c717b42ab"
+        },
+        {
+          "path": "public/games/schatzinsel/schatzinsel.js",
+          "sha256": "6690102fe98b823c7357039448bd89996fd1bd549ab63d502e311e3d12a7710d"
+        }
+      ],
+      "source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "followup_commits": [
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ]
     },
     {
       "id": "gummiband-challenge",
@@ -2483,14 +2996,13 @@
     }
   ],
   "latest_authorization": {
-    "date": "2026-11-03",
+    "date": "2026-11-07",
     "games": [
-      "schach",
-      "exploding-deck",
-      "doppelagent",
-      "luegenbaron"
+      "stichmeister",
+      "labyrinth-brett",
+      "schatzinsel"
     ],
-    "scope": "Only these four complete games, own worlds, DE/EN, bots and tests. Schach belongs to grosse-projekte, three games to the historical 41-item section. No V2 work or server changes beyond necessary registration. Stop after this packet."
+    "scope": "Only BACKLOG-06: original three games, own worlds/lobbies/rules, DE/EN, three-level bots and tests. Schatzinsel explicitly follows the private 8x8 digging entry without dice or movement. Stop afterwards; no V2 work."
   },
   "extra_games": [
     {
@@ -2603,6 +3115,18 @@
       "followup_commits": [
         "68c6ca46f08996c146e4e01d728c8c9223de818d"
       ]
+    }
+  ],
+  "authorization_history": [
+    {
+      "date": "2026-11-03",
+      "games": [
+        "schach",
+        "exploding-deck",
+        "doppelagent",
+        "luegenbaron"
+      ],
+      "scope": "Only these four complete games, own worlds, DE/EN, bots and tests. Schach belongs to grosse-projekte, three games to the historical 41-item section. No V2 work or server changes beyond necessary registration. Stop after this packet."
     }
   ]
 }

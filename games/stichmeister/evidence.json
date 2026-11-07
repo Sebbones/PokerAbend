@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "game": "stichmeister",
+  "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+  "source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+  "date": "2026-11-07",
+  "art": "Original inline SVG and game-scoped CSS, authored for this game; no external assets or logos.",
+  "tests": [
+    {
+      "command": "node --test test/backlog06.test.js",
+      "passed": 17,
+      "failed": 0,
+      "log": "artifacts/backlog06-worker-fixed-node.log",
+      "note": "178 full bot games plus worker-module bootstrap regression."
+    },
+    {
+      "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 125.526,
+      "report": "artifacts/backlog06-real-worker-ui-report.json",
+      "log": "artifacts/backlog06-real-worker-ui.log",
+      "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+    },
+    {
+      "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 63.172,
+      "report": "artifacts/backlog06-shared-ui-report.json",
+      "log": "artifacts/backlog06-shared-ui.log"
+    },
+    {
+      "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+      "passed": 1365,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 86.86,
+      "log": "artifacts/backlog06-final-full-node.log",
+      "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+    },
+    {
+      "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+      "passed": 102,
+      "failed": 0,
+      "log": "artifacts/backlog06-final-proof.log"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/stichmeister/bot.js",
+      "sha256": "e9489512c40ae2d7b0377ecc081dc555e6ea451494814d0ae60bb2aa3fe525f7"
+    },
+    {
+      "path": "games/stichmeister/index.js",
+      "sha256": "468376191a17561e272006c26cac24da0ebf1b4cb28e8de3b60873eabd1518b3"
+    },
+    {
+      "path": "games/stichmeister/room.js",
+      "sha256": "8a71a14607d893035c1ea7d4e7fcc1e751b2e49e1a6877a96f4ba02aad89fb74"
+    },
+    {
+      "path": "games/stichmeister/rules.js",
+      "sha256": "eb6749cf45a86d708f044d5a06e9b27a2d03fe5f204ec6d2377369c2dca15474"
+    },
+    {
+      "path": "public/games/stichmeister/stichmeister.css",
+      "sha256": "eeb81bc7451a687d60be8299f24a1abecac86df0388101b476410e9c46d0c9ff"
+    },
+    {
+      "path": "public/games/stichmeister/stichmeister.js",
+      "sha256": "ac21acc2f9023226714f2afe9846517f50b0f5ab41c3270229ef714ff2ee182b"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-1440x900.png",
+      "sha256": "462ce5ecf5998ae54ba057fb0651aed13c6d9347172d77c06829df991c3e0636"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-1920x1080.png",
+      "sha256": "57817626473c42f9d3f43511c2b6bab1fab94b099a9a2210897e1d95b4de36d2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-360x800.png",
+      "sha256": "cf16b0be280eedb7312438c7e17849fb04a667b942000b039b9855e0c1bb5871"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-390x844.png",
+      "sha256": "5afa0d1e2750667854e268802ad78bc480876063653d4bbf56ce12f9a08606cb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-768x1024.png",
+      "sha256": "b7fb5679c423f4c4212fee90b9097cb4e970285f6a2d3f1cfcaab9ba1ffa6509"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-900x450.png",
+      "sha256": "a0ff2e9f5d3fcc7a683137c676765a9f08b988e0bb3f83053cb545dcf27002c0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-english-rules.png",
+      "sha256": "3c4f60061b03570c3400d90d1f0adaf7485532eebff697bcee6cedec6b9f20e2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-lobby.png",
+      "sha256": "c6d124377d30f4679658d2460015de89e3c53c73d5c887015811f6609cfcc04b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-paused.png",
+      "sha256": "07afc519e0ac4fa68e54db9c88b36ab338c278e35b07eb923455b3a0a4e01508"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-reconnect.png",
+      "sha256": "462ce5ecf5998ae54ba057fb0651aed13c6d9347172d77c06829df991c3e0636"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-result.png",
+      "sha256": "594ba8bca6924888181ef7359072834dee97b4c11b3d7797deefd49affe17950"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/desktop-spectator.png",
+      "sha256": "a187362df34e221c97d05745fc1690576e08586681049a70588a9c362f6ef6a6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/mobil-english-rules.png",
+      "sha256": "5020c2773bfa224a13f0a6c9fbe53195f5c4165e5d87f038b71812fdfa3110d8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/mobil-lobby.png",
+      "sha256": "cbdf21d10d9838a5f4bb033da8e2ea0257936a0f344f1f8f84379f178b4e9053"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/mobil-paused.png",
+      "sha256": "c6671ecb3efdbc6cd5e77c72efd77837264807f910418d207fb41cafa01af7db"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/mobil-reconnect.png",
+      "sha256": "fac31dc35a16f08e51075fa7194043166f58bb4c0dac822caf2708cdf3ef2d2d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/mobil-result.png",
+      "sha256": "f0c4444aada0c76d318a7ccdb2116db134532c5222233e32f78ab041f4bc9640"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/stichmeister/mobil-spectator.png",
+      "sha256": "a7c151fcf66ff52eae447134fc00b3168c67d0c5ed49fec08b447d7173cbc7af"
+    }
+  ],
+  "browser_scope": "Real host and separate spectator contexts, pause/reload/resume, six-size desktop matrix and mobile native taps. All three games have normal desktop/mobile result captures. Final checks execute actual strategy workers.",
+  "followup_commits": [
+    "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+  ]
+}

@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 03.11.2026: 69 spielbare Spiele, 38 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 18 done, 89 planned.** BACKLOG-05 schließt zusätzlich Schach (VIS-088), Exploding-Deck (VIS-054), Doppelagent (VIS-081) und Lügenbaron (VIS-082) mit eigenen Spielwelten und echten Nachweisen ab. 51 spielbare Oberflächen und 38 Backlog-Konzepte bleiben visuell geplant; daraus folgt keine weitere Freigabe.
+**Stand 07.11.2026: 83 spielbare Spiele, 24 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 21 done, 86 planned.** BACKLOG-06 schließt Stichmeister (VIS-053), Labyrinth-Brett (VIS-058) und Schatzinsel (VIS-069) mit eigenen Spielwelten ab. 62 spielbare Oberflächen und 24 Backlog-Konzepte bleiben visuell geplant. Nachweise: [Abschlussbericht](../backlog/BACKLOG-06.md). Keine weiteren VIS- oder V2-Pakete freigegeben.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -1581,28 +1581,30 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-053 – Stichmeister
 
 - **Spiel-ID/Kategorie:** `stichmeister` / Kartenspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 10–15 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done** (BACKLOG-06, 07.11.2026).
+- **Priorität / Aufwand:** abgeschlossen; die ursprüngliche Schätzung bleibt in der JSON-Planung erhalten.
+- **Frontend:** `public/games/stichmeister/stichmeister.css`, `public/games/stichmeister/stichmeister.js`.
+- **Gemeinsame Komponenten:** vorhandenes Kit, BacklogKit, Raum-/Pause-/Bot-Worker-Architektur.
+- **Aktueller Stand:** Eigener Ansage-Kartentisch mit sichtbarem Trumpf, privater Hand und Papierwertung.
+- **Optische Verbesserungsziele:** Im freigegebenen Umfang umgesetzt; Nachweise im Abschlussbericht.
 - **Stil:** Klassischer Ansage-Kartentisch mit Papierwertungsbogen.
 - **Hintergrund:** Gedämpftes Kartentuch und schmale Messingkante.
 - **Spielfeld:** Aktueller Stich im Zentrum; Ansagen und erreichte Stiche neben Spielern.
 - **Figuren/Karten/Objekte:** Eigene Karten, Trumpfzeichen und Stichmarker.
 - **Status und Aktionen:** Ansagephase, Bedienen und Rundenauswertung unterscheiden.
 - **Mobil:** Stich und eigene Hand zuerst, Wertungsliste darunter.
-- **Technische Grenzen:** Bedienpflicht und verdeckte Hände erst nach freigegebenem Gameplay integrieren. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Persönliche Serveransichten, verdeckte Informationen und ausschließlich spielbezogene Gestaltung; G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von stichmeister.
+- **Abhängigkeiten:** VIS-001; separate Gameplay-Freigabe durch BACKLOG-06 erfüllt.
 
 **Individuelle Akzeptanz:**
 
 - Ansage und tatsächlich geholte Stiche sind deutlich getrennt.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Echte Implementierung, Regeltests und Desktop-/Touch-Prüfungen; Originalbilder mit SHA-256 im Spielmanifest.
+
+**BACKLOG-06 abgeschlossen:** Eigener Ansage-Kartentisch mit sichtbarem Trumpf, privater Hand und Papierwertung. Implementierungscommit `187d9f937673e79b80b86df3c6ca7fce8b7b7f05`; [Regeln, Tests und Grenzen](../backlog/BACKLOG-06.md), [Originalbilder und Quellhashes](../../games/stichmeister/evidence.json).
 
 <a id="vis-054"></a>
 ### VIS-054 – Exploding-Deck
@@ -1716,28 +1718,30 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-058 – Labyrinth-Brett
 
 - **Spiel-ID/Kategorie:** `labyrinth-brett` / Brettspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 18–27 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done** (BACKLOG-06, 07.11.2026).
+- **Priorität / Aufwand:** abgeschlossen; die ursprüngliche Schätzung bleibt in der JSON-Planung erhalten.
+- **Frontend:** `public/games/labyrinth-brett/labyrinth-brett.css`, `public/games/labyrinth-brett/labyrinth-brett.js`.
+- **Gemeinsame Komponenten:** vorhandenes Kit, BacklogKit, Raum-/Pause-/Bot-Worker-Architektur.
+- **Aktueller Stand:** Eigenes verschiebbares Gangbrett mit Wege-SVGs, eigener Auftragskarte und erreichbaren Zielen.
+- **Optische Verbesserungsziele:** Im freigegebenen Umfang umgesetzt; Nachweise im Abschlussbericht.
 - **Stil:** Hochwertiges verschiebbares Labyrinth aus Stein-/Holzkacheln.
 - **Hintergrund:** Ruhiger Tisch ohne scheinbar begehbare Dekoration.
 - **Spielfeld:** Tatsächliche Gänge und einschiebbare Linien geometrisch exakt.
 - **Figuren/Karten/Objekte:** Figuren, Schätze und Schiebepfeile klar erkennen.
 - **Status und Aktionen:** Schieben und anschließendes Laufen getrennte Phasen.
 - **Mobil:** Brettverschiebung mit zugänglichen alternativen Linienaktionen.
-- **Technische Grenzen:** Keine zusätzliche Verbindung oder verschiebbare Reihe dekorativ suggerieren. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Persönliche Serveransichten, verdeckte Informationen und ausschließlich spielbezogene Gestaltung; G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von labyrinth-brett.
+- **Abhängigkeiten:** VIS-001; separate Gameplay-Freigabe durch BACKLOG-06 erfüllt.
 
 **Individuelle Akzeptanz:**
 
 - Schiebeeffekt und erreichbarer Weg entsprechen der freigegebenen Karte.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Echte Implementierung, Regeltests und Desktop-/Touch-Prüfungen; Originalbilder mit SHA-256 im Spielmanifest.
+
+**BACKLOG-06 abgeschlossen:** Eigenes verschiebbares Gangbrett mit Wege-SVGs, eigener Auftragskarte und erreichbaren Zielen. Implementierungscommit `187d9f937673e79b80b86df3c6ca7fce8b7b7f05`; [Regeln, Tests und Grenzen](../backlog/BACKLOG-06.md), [Originalbilder und Quellhashes](../../games/labyrinth-brett/evidence.json).
 
 <a id="vis-059"></a>
 ### VIS-059 – Story-Chaos
@@ -2013,28 +2017,30 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-069 – Schatzinsel
 
 - **Spiel-ID/Kategorie:** `schatzinsel` / Brettspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 14–21 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done** (BACKLOG-06, 07.11.2026).
+- **Priorität / Aufwand:** abgeschlossen; die ursprüngliche Schätzung bleibt in der JSON-Planung erhalten.
+- **Frontend:** `public/games/schatzinsel/schatzinsel.css`, `public/games/schatzinsel/schatzinsel.js`.
+- **Gemeinsame Komponenten:** vorhandenes Kit, BacklogKit, Raum-/Pause-/Bot-Worker-Architektur.
+- **Aktueller Stand:** Eigene Ausgrabungskarte mit privaten Verstecken, öffentlichen Grabungsspuren und textlichen Wärmehinweisen.
+- **Optische Verbesserungsziele:** Im freigegebenen Umfang umgesetzt; Nachweise im Abschlussbericht.
 - **Stil:** Eigene maritime Schatzkarte mit getrennten Inselbereichen.
 - **Hintergrund:** Statische Pergamentseekarte mit eigenem Küstenentwurf.
 - **Spielfeld:** Eigene Verstecke und fremde Grabungsfelder klar unterscheiden.
 - **Figuren/Karten/Objekte:** Schatz-/Spaten-/Fundmarker gemäß freigegebener Information.
 - **Status und Aktionen:** Verstecken, Graben und Fundauswertung als getrennte Phasen.
 - **Mobil:** Inselraster verschiebbar, alternative Koordinatenwahl.
-- **Technische Grenzen:** Keine gegnerischen Schätze in Texturen oder Markern vorzeitig verraten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Persönliche Serveransichten, verdeckte Informationen und ausschließlich spielbezogene Gestaltung; G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von schatzinsel.
+- **Abhängigkeiten:** VIS-001; separate Gameplay-Freigabe durch BACKLOG-06 erfüllt.
 
 **Individuelle Akzeptanz:**
 
 - Verdeckte Verstecke hinterlassen keine grafische Spur.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Echte Implementierung, Regeltests und Desktop-/Touch-Prüfungen; Originalbilder mit SHA-256 im Spielmanifest.
+
+**BACKLOG-06 abgeschlossen:** Eigene Ausgrabungskarte mit privaten Verstecken, öffentlichen Grabungsspuren und textlichen Wärmehinweisen. Implementierungscommit `187d9f937673e79b80b86df3c6ca7fce8b7b7f05`; [Regeln, Tests und Grenzen](../backlog/BACKLOG-06.md), [Originalbilder und Quellhashes](../../games/schatzinsel/evidence.json).
 
 <a id="vis-070"></a>
 ### VIS-070 – Gummiband-Challenge

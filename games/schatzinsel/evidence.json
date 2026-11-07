@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "game": "schatzinsel",
+  "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+  "source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+  "date": "2026-11-07",
+  "art": "Original inline SVG and game-scoped CSS, authored for this game; no external assets or logos.",
+  "tests": [
+    {
+      "command": "node --test test/backlog06.test.js",
+      "passed": 17,
+      "failed": 0,
+      "log": "artifacts/backlog06-worker-fixed-node.log",
+      "note": "178 full bot games plus worker-module bootstrap regression."
+    },
+    {
+      "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 125.526,
+      "report": "artifacts/backlog06-real-worker-ui-report.json",
+      "log": "artifacts/backlog06-real-worker-ui.log",
+      "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+    },
+    {
+      "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 63.172,
+      "report": "artifacts/backlog06-shared-ui-report.json",
+      "log": "artifacts/backlog06-shared-ui.log"
+    },
+    {
+      "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+      "passed": 1365,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 86.86,
+      "log": "artifacts/backlog06-final-full-node.log",
+      "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+    },
+    {
+      "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+      "passed": 102,
+      "failed": 0,
+      "log": "artifacts/backlog06-final-proof.log"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/schatzinsel/bot.js",
+      "sha256": "045d47a44c49b4b96f7242ac3ca3a0756f8c817b5ee7b7b731c831d796dce7f1"
+    },
+    {
+      "path": "games/schatzinsel/index.js",
+      "sha256": "8ab47db7f02408fbf3466a10f1ad96e563d3392403fa13b67eed2d53c12ed641"
+    },
+    {
+      "path": "games/schatzinsel/room.js",
+      "sha256": "96ddb554a1f2b0b21a854204cf4a1b853b5645aadb2b576b355ad43046caec52"
+    },
+    {
+      "path": "public/games/schatzinsel/schatzinsel.css",
+      "sha256": "75346575a3001fd67383a0cc294940acca59781341d57e1e0d48f13c717b42ab"
+    },
+    {
+      "path": "public/games/schatzinsel/schatzinsel.js",
+      "sha256": "6690102fe98b823c7357039448bd89996fd1bd549ab63d502e311e3d12a7710d"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-1440x900.png",
+      "sha256": "c5149fe0c019391a2faa0bbafda6e3010da78e6a85bfcf45f71e9b75788210d9"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-1920x1080.png",
+      "sha256": "56c72f4c4bdd93b997c79629d90a98aeb070885aeb14a8348e7bb600e06f2c57"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-360x800.png",
+      "sha256": "f4abef058cade4b26acc559e9613c2c0a74a09e1b597c165b2198de8ea6e961e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-390x844.png",
+      "sha256": "b603895e6e8b99051e9b787ab4fecc40c9d774372be64b10f3e79e30738bddd7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-768x1024.png",
+      "sha256": "76acf80bc4ef2561f255d79c76ea0515a5ef3b43d4f3a238eb94e203a1aa1eac"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-900x450.png",
+      "sha256": "5aa82d988d9f45072fc73f6489e4dca450bbea798ee272228b8bb4e5174987e5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-dug.png",
+      "sha256": "a63db9c258ab926260cee59464c2de2e66ddf40ceaffbe66bfb0b86b7a6bd6d2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-english-rules.png",
+      "sha256": "a916ad116092616a9e78c6237f5286120d45702a987edeb2f2f2a249bca80825"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-lobby.png",
+      "sha256": "af83dd3709820169df9c1965934da23f9df595d340db0fdcfcb34f6978f86f5d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-paused.png",
+      "sha256": "5a2666e24dd5d0b148c356eace8b31e9f6fbd5e8b6314a7647fe9a6dd9faf5e8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-private-setup.png",
+      "sha256": "83c7626f804dcb10be43e547fdbb528ca92cd57d6c4b5908580daf02f1ec7a52"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-reconnect.png",
+      "sha256": "c5149fe0c019391a2faa0bbafda6e3010da78e6a85bfcf45f71e9b75788210d9"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-result.png",
+      "sha256": "21ce6f4d931d07598b8de68827fc2226ec7471bf2719e8422533adeecd90317e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/desktop-spectator.png",
+      "sha256": "25e668e251e07e671f02e8fe16048d9c18a7173ead31dc863bfaf64b0b72640c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-dug.png",
+      "sha256": "10ccb15abef1c763b0ce0b313aab444318cbe277cb7251b4b0d27776283c86a8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-english-rules.png",
+      "sha256": "751d6d41a813f672c070ecb3ac07d25bf25c27ddf6c0dd01e27ca18ed2a98ec7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-lobby.png",
+      "sha256": "5b1b67f06be85e12262e85a3ca637141d3fcb6318f754c4b3ad5ab1af999bb06"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-paused.png",
+      "sha256": "9d21e6b9c1382462a34811d98daa62d547c212fdb6b148001f0b0f4b639e6309"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-private-setup.png",
+      "sha256": "d5b937eb64cb35251b6d06ed5fe8a418c86d35a2d2d61510cf2cb8f67244837c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-reconnect.png",
+      "sha256": "78006e9979129d85f96555f944086d795b5a4a3c630585844270b030e12d0b8f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-result.png",
+      "sha256": "c1e67d3436c127a3340666980fdf7a3ebb68d68597138c78319233923be5b34a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/schatzinsel/mobil-spectator.png",
+      "sha256": "a31714c5bc89e156f32fd25d1b2a345578a9e64ef5e393e13d70ea74fe872566"
+    }
+  ],
+  "browser_scope": "Real host and separate spectator contexts, pause/reload/resume, six-size desktop matrix and mobile native taps. All three games have normal desktop/mobile result captures. Final checks execute actual strategy workers.",
+  "followup_commits": [
+    "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+  ]
+}

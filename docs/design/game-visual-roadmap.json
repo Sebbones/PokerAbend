@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-01",
+  "updated_at": "2026-11-07",
   "audited_source_commit": "ef6511d76f78689fc525a63f6e3637c3f14f1252",
   "audit_hash_format": "SHA-256 of UTF-8 source with LF line endings at package.source_audit_commit, falling back to audited_source_commit",
   "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen. Explicit BACKLOG-03 game, bot and visual-world authorization on 2026-11-01: Backgammon, Hearts and Five Card Draw only. Explicit BACKLOG-04 authorization: Scrabble, Omaha Hi/Lo, Short Deck Poker and Seven Card Stud with bots and individual visual worlds, 2026-11-01.",
@@ -26,11 +26,11 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 80,
-    "not_implemented_count": 27,
-    "completed_visual_count": 18,
+    "playable_count": 83,
+    "not_implemented_count": 24,
+    "completed_visual_count": 21,
     "open_playable_visual_count": 62,
-    "planned_visual_count": 89,
+    "planned_visual_count": 86,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -85,19 +85,24 @@
       "omaha-hi-lo",
       "seven-card-stud",
       "short-deck",
+      "stichmeister",
       "exploding-deck",
       "risiko-wuerfeln",
       "wuerfeljagd",
       "monsterwuerfel",
+      "labyrinth-brett",
       "story-chaos",
       "backgammon",
       "scrabble",
       "hearts",
       "five-card-draw",
+      "schatzinsel",
       "doppelagent",
       "luegenbaron",
       "wuerfel-auktion",
       "zahlenreihe",
+      "skat",
+      "doppelkopf",
       "schach",
       "sudoku",
       "2048",
@@ -107,22 +112,17 @@
       "minesweeper",
       "nonogramm",
       "sokoban",
-      "skat",
-      "doppelkopf",
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
       "match-3"
     ],
     "not_implemented_game_ids": [
-      "stichmeister",
-      "labyrinth-brett",
       "regelwahnsinn",
       "jaeger-schatten",
       "infektionsjagd",
       "letzter-schutzplatz",
       "kistenchaos",
-      "schatzinsel",
       "gummiband-challenge",
       "geschenkfaenger",
       "rhythmus-rausch",
@@ -151,11 +151,14 @@
       "omaha-hi-lo",
       "seven-card-stud",
       "short-deck",
+      "stichmeister",
       "exploding-deck",
+      "labyrinth-brett",
       "backgammon",
       "scrabble",
       "hearts",
       "five-card-draw",
+      "schatzinsel",
       "doppelagent",
       "luegenbaron",
       "schach",
@@ -443,7 +446,6 @@
     "VIS-060",
     "VIS-071",
     "VIS-074",
-    "VIS-053",
     "VIS-075",
     "VIS-091",
     "VIS-062",
@@ -453,7 +455,6 @@
     "VIS-092",
     "VIS-072",
     "VIS-076",
-    "VIS-069",
     "VIS-064",
     "VIS-079",
     "VIS-061",
@@ -461,7 +462,6 @@
     "VIS-080",
     "VIS-095",
     "VIS-093",
-    "VIS-058",
     "VIS-090",
     "VIS-089"
   ],
@@ -725,6 +725,57 @@
         "failed": 0,
         "log": "games/seven-card-stud/_artifacts/poker-regression-release.log"
       }
+    },
+    "backlog06": {
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "followup_commits": [
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ],
+      "tests": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "permanent_screenshots": 60,
+      "documentation": "docs/backlog/BACKLOG-06.md"
     }
   },
   "packages": [
@@ -7756,24 +7807,40 @@
       "game_name": "Stichmeister",
       "category": "karten",
       "category_name": "Kartenspiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/stichmeister/evidence.json"
+        ],
+        "assessment": "Explicitly authorised first implementation with original scene SVG, lobby and playable game world; no prior frontend."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/stichmeister/stichmeister.css",
+        "public/games/stichmeister/stichmeister.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/stichmeister/stichmeister.css",
+          "sha256": "eeb81bc7451a687d60be8299f24a1abecac86df0388101b476410e9c46d0c9ff"
+        },
+        {
+          "path": "public/games/stichmeister/stichmeister.js",
+          "sha256": "ac21acc2f9023226714f2afe9846517f50b0f5ab41c3270229ef714ff2ee182b"
+        }
+      ],
+      "current_design": "Eigener Ansage-Kartentisch mit sichtbarem Trumpf, privater Hand und Papierwertung.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/mobile play, six viewport sizes, independent spectator/privacy, pause and reconnect; original screenshots and Node rule tests.",
       "gameplay_summary": "Vorher ansagen, wie viele Stiche man holt – nur genaue Vorhersagen bringen Bonuspunkte.",
       "planned_style": "Klassischer Ansage-Kartentisch mit Papierwertungsbogen.",
       "background_concept": "Gedämpftes Kartentuch und schmale Messingkante.",
@@ -7792,8 +7859,7 @@
         "end"
       ],
       "technical_constraints": [
-        "Bedienpflicht und verdeckte Hände erst nach freigegebenem Gameplay integrieren.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
+        "Bedienpflicht und verdeckte Hände bleiben ausschließlich serverseitig geprüft.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -7803,8 +7869,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktueller Stich im Zentrum; Ansagen und erreichte Stiche neben Spielern. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-06 order implemented and tested.",
       "acceptance_criteria": [
         "Ansage und tatsächlich geholte Stiche sind deutlich getrennt."
       ],
@@ -7825,15 +7891,79 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "stichmeister",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-paused.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-result.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-paused.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-result.png",
+        "docs/backlog/screenshots/backlog06/stichmeister/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "commits": [
+        "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ],
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-054",
@@ -8320,24 +8450,40 @@
       "game_name": "Labyrinth-Brett",
       "category": "brett",
       "category_name": "Brettspiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/labyrinth-brett/evidence.json"
+        ],
+        "assessment": "Explicitly authorised first implementation with original scene SVG, lobby and playable game world; no prior frontend."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/labyrinth-brett/labyrinth-brett.css",
+        "public/games/labyrinth-brett/labyrinth-brett.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/labyrinth-brett/labyrinth-brett.css",
+          "sha256": "b0fcab3ca15d8eda9eae6b2bcf0a71abf8dcccc527f9503514bdbe6fd72f66e3"
+        },
+        {
+          "path": "public/games/labyrinth-brett/labyrinth-brett.js",
+          "sha256": "14b7c9053a8c703f113cd8787b2d5da82f2cb4e7ffc8ae2c4996156b4c6a7c2f"
+        }
+      ],
+      "current_design": "Eigenes verschiebbares Gangbrett mit Wege-SVGs, eigener Auftragskarte und erreichbaren Zielen.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/mobile play, six viewport sizes, independent spectator/privacy, pause and reconnect; original screenshots and Node rule tests.",
       "gameplay_summary": "Gänge verschieben, Wege öffnen und die eigenen Schätze einsammeln.",
       "planned_style": "Hochwertiges verschiebbares Labyrinth aus Stein-/Holzkacheln.",
       "background_concept": "Ruhiger Tisch ohne scheinbar begehbare Dekoration.",
@@ -8357,7 +8503,6 @@
       ],
       "technical_constraints": [
         "Keine zusätzliche Verbindung oder verschiebbare Reihe dekorativ suggerieren.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -8367,8 +8512,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Tatsächliche Gänge und einschiebbare Linien geometrisch exakt. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-06 order implemented and tested.",
       "acceptance_criteria": [
         "Schiebeeffekt und erreichbarer Weg entsprechen der freigegebenen Karte."
       ],
@@ -8389,15 +8534,81 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "labyrinth-brett",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-paused.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-reachable.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-result.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-paused.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-reachable.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-result.png",
+        "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "commits": [
+        "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ],
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-059",
@@ -9545,24 +9756,40 @@
       "game_name": "Schatzinsel",
       "category": "brett",
       "category_name": "Brettspiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "individual_game_world",
+        "evidence": [
+          "games/schatzinsel/evidence.json"
+        ],
+        "assessment": "Explicitly authorised first implementation with original scene SVG, lobby and playable game world; no prior frontend."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/schatzinsel/schatzinsel.css",
+        "public/games/schatzinsel/schatzinsel.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/backlog-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/schatzinsel/schatzinsel.css",
+          "sha256": "75346575a3001fd67383a0cc294940acca59781341d57e1e0d48f13c717b42ab"
+        },
+        {
+          "path": "public/games/schatzinsel/schatzinsel.js",
+          "sha256": "6690102fe98b823c7357039448bd89996fd1bd549ab63d502e311e3d12a7710d"
+        }
+      ],
+      "current_design": "Eigene Ausgrabungskarte mit privaten Verstecken, öffentlichen Grabungsspuren und textlichen Wärmehinweisen.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/mobile play, six viewport sizes, independent spectator/privacy, pause and reconnect; original screenshots and Node rule tests.",
       "gameplay_summary": "Schätze auf der eigenen Insel verstecken und die der anderen ausgraben.",
       "planned_style": "Eigene maritime Schatzkarte mit getrennten Inselbereichen.",
       "background_concept": "Statische Pergamentseekarte mit eigenem Küstenentwurf.",
@@ -9582,7 +9809,6 @@
       ],
       "technical_constraints": [
         "Keine gegnerischen Schätze in Texturen oder Markern vorzeitig verraten.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -9592,8 +9818,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Eigene Verstecke und fremde Grabungsfelder klar unterscheiden. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-06 order implemented and tested.",
       "acceptance_criteria": [
         "Verdeckte Verstecke hinterlassen keine grafische Spur."
       ],
@@ -9614,15 +9840,83 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "schatzinsel",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-dug.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-paused.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-private-setup.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-result.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-dug.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-paused.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-private-setup.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-result.png",
+        "docs/backlog/screenshots/backlog06/schatzinsel/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog06.test.js",
+          "passed": 17,
+          "failed": 0,
+          "log": "artifacts/backlog06-worker-fixed-node.log",
+          "note": "178 full bot games plus worker-module bootstrap regression."
+        },
+        {
+          "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 125.526,
+          "report": "artifacts/backlog06-real-worker-ui-report.json",
+          "log": "artifacts/backlog06-real-worker-ui.log",
+          "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+        },
+        {
+          "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 63.172,
+          "report": "artifacts/backlog06-shared-ui-report.json",
+          "log": "artifacts/backlog06-shared-ui.log"
+        },
+        {
+          "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+          "passed": 1365,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 86.86,
+          "log": "artifacts/backlog06-final-full-node.log",
+          "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+        },
+        {
+          "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+          "passed": 102,
+          "failed": 0,
+          "log": "artifacts/backlog06-final-proof.log"
+        }
+      ],
+      "commits": [
+        "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+        "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+      ],
+      "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-070",

@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "game": "labyrinth-brett",
+  "implementation_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+  "source_audit_commit": "187d9f937673e79b80b86df3c6ca7fce8b7b7f05",
+  "date": "2026-11-07",
+  "art": "Original inline SVG and game-scoped CSS, authored for this game; no external assets or logos.",
+  "tests": [
+    {
+      "command": "node --test test/backlog06.test.js",
+      "passed": 17,
+      "failed": 0,
+      "log": "artifacts/backlog06-worker-fixed-node.log",
+      "note": "178 full bot games plus worker-module bootstrap regression."
+    },
+    {
+      "command": "playwright test test/ui/backlog06.spec.js test/ui/backlog06-end.spec.js --workers=1",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 125.526,
+      "report": "artifacts/backlog06-real-worker-ui-report.json",
+      "log": "artifacts/backlog06-real-worker-ui.log",
+      "note": "Final actual-strategy workers, native mobile taps, six sizes and normal results for all three games."
+    },
+    {
+      "command": "playwright test test/ui/bots.spec.js test/ui/bot-difficulty.spec.js --workers=1 (isolated release source)",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 63.172,
+      "report": "artifacts/backlog06-shared-ui-report.json",
+      "log": "artifacts/backlog06-shared-ui.log"
+    },
+    {
+      "command": "node --test test/*.test.js (complete isolated release source; same npm test command)",
+      "passed": 1365,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 86.86,
+      "log": "artifacts/backlog06-final-full-node.log",
+      "note": "Tracked main plus only this authorised packet and final evidence; concurrent unrelated visual work excluded without modifying it."
+    },
+    {
+      "command": "node --test test/backlog06-proof.test.js test/game-visual-roadmap.test.js test/new-games.test.js",
+      "passed": 102,
+      "failed": 0,
+      "log": "artifacts/backlog06-final-proof.log"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/labyrinth-brett/bot.js",
+      "sha256": "a242dfeb649b413e43fc1bba0dd06b5b4ec87f646690f0108915913ecfc5211f"
+    },
+    {
+      "path": "games/labyrinth-brett/index.js",
+      "sha256": "2768194ab5b9384afe52e3174d04e17e796ba969295259e534d7e1dad35f35b5"
+    },
+    {
+      "path": "games/labyrinth-brett/room.js",
+      "sha256": "c120d814dcb9feabe43bba2462a359ade00ed278fee15db6345b39210ff9b410"
+    },
+    {
+      "path": "games/labyrinth-brett/rules.js",
+      "sha256": "a6883ae8ebaac3813381ef897f70126b262a3a7eee0bd19d76d921c31dbb2d1e"
+    },
+    {
+      "path": "public/games/labyrinth-brett/labyrinth-brett.css",
+      "sha256": "b0fcab3ca15d8eda9eae6b2bcf0a71abf8dcccc527f9503514bdbe6fd72f66e3"
+    },
+    {
+      "path": "public/games/labyrinth-brett/labyrinth-brett.js",
+      "sha256": "14b7c9053a8c703f113cd8787b2d5da82f2cb4e7ffc8ae2c4996156b4c6a7c2f"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-1440x900.png",
+      "sha256": "1051ad062550a8b2c12423de50fda9cd531b3a54e18c08d35e09a3e6ea6a1c28"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-1920x1080.png",
+      "sha256": "22627a8289b228969212a8070b90ae7093169a2956843fe534568596b5ea78b8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-360x800.png",
+      "sha256": "0b641d28a5fcd8b2c6c0f2349e2a468bc54222563c3cc1a25b5a38ead8280468"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-390x844.png",
+      "sha256": "e4950f60ca686da688b94f87bf0f7acd808aa21a924c7f9b4ef9caad6b9b698d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-768x1024.png",
+      "sha256": "dc1801d7ad8b7272f31e74e3bf0532dab2acc29c9ed460c2f5e3a10dfec0badd"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-900x450.png",
+      "sha256": "87a7a13ba4787aca01b7ba58c5851720b0c2ded762b56522d5749dd1f366937c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-english-rules.png",
+      "sha256": "333abbb3ec5ac175ee5579d2651083214b7d26d66ca1fefda4931b29fc65b475"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-lobby.png",
+      "sha256": "5366910fd8452eb4071e2d336baf464d31e80e8100f8ff5f2806f74876d45ba4"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-paused.png",
+      "sha256": "a0c9ce4d4432b11a0ef23d6d0f990657bb977a4b3c02ffdc2975041ca905d6d6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-reachable.png",
+      "sha256": "fc8b33890847789e4605e2a1cf6d4a6bc1d3e55bde1b54c971a10b5d486d6303"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-reconnect.png",
+      "sha256": "1051ad062550a8b2c12423de50fda9cd531b3a54e18c08d35e09a3e6ea6a1c28"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-result.png",
+      "sha256": "10146a40b4239c0b890c8fa30bfe8be7edd68e73608d88c2ada86edccc32cbb0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/desktop-spectator.png",
+      "sha256": "3acc777ef63c4e0f26e15d870a3553791f6902c05e48c73fd866ca8617b49d47"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-english-rules.png",
+      "sha256": "7d2e2453a644b450470e95ae7ea36d952c683985e207baf51928ed0a7c456785"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-lobby.png",
+      "sha256": "69407a9ab415b924021e36fa2416e5c9763ac7506215e858ba35239d1c8f899a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-paused.png",
+      "sha256": "12b3a68cb9960813e576dc4810b83c11ae4a515543f200bfc077067518e0733f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-reachable.png",
+      "sha256": "cbb68f79e1524336fc20ffe251d9370ead2b4021cf0fabd6ccb8600437049766"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-reconnect.png",
+      "sha256": "6e154a3e5c1a46b6460b138934c3e1be1270cfa7a56df06d5c09319395f328ef"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-result.png",
+      "sha256": "42b0d490b849df5fa1b6f0ddbbbb74460319b9257eadd3b14bb582b19c687e83"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog06/labyrinth-brett/mobil-spectator.png",
+      "sha256": "f72a64c008b03fe171f970432959e228763be4ef87f89ecdad9dfbb6374cc59d"
+    }
+  ],
+  "browser_scope": "Real host and separate spectator contexts, pause/reload/resume, six-size desktop matrix and mobile native taps. All three games have normal desktop/mobile result captures. Final checks execute actual strategy workers.",
+  "followup_commits": [
+    "3c145f833dba1be85f7d0a901f7e73da36a051cf"
+  ]
+}
