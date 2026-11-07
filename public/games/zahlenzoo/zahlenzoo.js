@@ -29,8 +29,9 @@
       const t = c.t;
       if (t >= c.round.durationMs + 500) return I18n.html('<div class="zz-over" role="status"><b>Vorbei!</b><span>Jetzt zählen und rechnen …</span></div>');
       const counts = c.L.visibleAt(c.round, t);
-      const rows = c.round.types.map((id) => { const a = c.L.ANIMALS.find((x) => x.id === id); return `<div class="zz-row" aria-label="${esc(a.many)}"><span class="zz-icons">${`<i>${a.icon}</i>`.repeat(Math.max(0, counts[id]))}</span></div>`; }).join('');
-      return I18n.html`<div class="zz-scene" role="img" aria-label="Tiere im Bild">${rows}</div>`;
+      const rows = c.round.types.map((id) => { const a = c.L.ANIMALS.find((x) => x.id === id); return `<div class="zz-row" aria-label="${esc(a.many)}"><span class="zz-name" aria-hidden="true">${esc(a.many)}</span><span class="zz-icons">${`<i>${a.icon}</i>`.repeat(Math.max(0, counts[id]))}</span></div>`; }).join('');
+      const W = WorldKit, tt = W.t, left = Math.max(0, Math.ceil((c.round.durationMs - t) / 1000));
+      return I18n.html`<div class="wk-stage zz-stage">${W.head({ eyebrow: tt('Tierpark', 'Zoo'), title: tt('Schau genau hin', 'Look closely'), chips: [W.chip('⏱', `${left} s`, left <= 3 ? 'warn' : ''), W.chip('🐾', `${c.round.types.length} ${tt('Tierarten', 'animal kinds')}`)] })}<div class="zz-scene" role="img" aria-label="Tiere im Bild">${rows}</div></div>`;
     },
     question: (c) => (c.round ? `<div class="pk-q"><h2>${esc(c.round.question.text)}</h2></div>` : ''),
     hint: () => 'Schau genau hin und tipp die Zahl ein, sobald du sie weißt',

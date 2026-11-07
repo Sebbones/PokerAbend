@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Zahlenzoo: Bühne mit einer Zeile je Tierart */
 .zz-scene { display: grid; gap: 10px; width: min(100%, 520px); padding: 14px; border-radius: var(--r-l); background: rgba(0,0,0,.28); min-height: 160px; }
 .zz-row { min-height: 44px; display: flex; align-items: center; border-bottom: 1px dashed rgba(255,255,255,.12); }
@@ -7,3 +8,10 @@
 .zz-over span { color: var(--text-2); font-size: 16px; }
 @keyframes zz-pop { from { transform: scale(.2); } }
 @media (prefers-reduced-motion: reduce) { .zz-icons i { animation: none; } }
+
+/* Spielwelt: freundlicher illustrativer Tierpark – Gehege-Zeilen, Tiergruppen umbrechen, Text nie über bewegten Tieren */
+.zz-stage { --wk-bg: linear-gradient(180deg, #3b6b3f, #244a2c); --wk-edge:#d9e8b266; --wk-accent:#ffe08a; --wk-max:620px; }
+.zz-stage .zz-scene { width: 100%; background: #f4ecd0; color: #2d3a22; border: 3px solid #8a6a3a; box-shadow: inset 0 0 0 2px #f4ecd0; }
+.zz-stage .zz-row { border-bottom-color: #8a6a3a55; gap: 10px; }
+.zz-name { flex: 0 0 5.5em; font-size: 12px; font-weight: 700; color: #4f5a38; }
+@media (max-width: 480px) { .zz-name { flex-basis: 4.2em; } .zz-icons i { font-size: 26px; } }
