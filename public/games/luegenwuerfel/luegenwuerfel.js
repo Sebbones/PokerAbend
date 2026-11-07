@@ -49,8 +49,10 @@
         reveal = I18n.html`<div class="lw-reveal ${R.truth ? 'true' : 'lie'}" role="status"><b>${nameOf(S, R.doubter)} rief „Lüge!“ – gezählt: ${R.count} × ${R.bid.face}, geboten waren ${R.bid.n}</b>
           <ul>${rows}</ul><span>${nameOf(S, R.loser)} verliert einen Würfel</span></div>`;
       }
-      const mine = g.cup ? I18n.html`<div class="lw-mine" aria-label="Deine Würfel"><small>Deine Würfel</small><div class="lw-cup">${g.cup.map((d) => dieHTML(d, { cls: 'big' })).join('')}</div></div>` : '';
-      return `<div class="kg-table lw-wrap">${bid}${mine}${reveal}</div>`;
+      const W = WorldKit, t = W.t;
+      const mine = g.cup ? I18n.html`<div class="lw-mine" aria-label="Deine Würfel"><small>🔒 ${t('Nur du siehst das', 'Only you can see this')} · ${t('Deine Würfel', 'Your dice')}</small><div class="lw-cup">${g.cup.map((d) => dieHTML(d, { cls: 'big' })).join('')}</div></div>` : '';
+      const chips = [W.chip('🎲', `${g.total} ${t('Würfel am Tisch', 'dice on the table')}`), g.bid ? W.chip('⬆', `${t('Gebot', 'Bid')} ${g.bid.n} × ${g.bid.face}`, 'warn') : W.chip('…', t('Noch kein Gebot', 'No bid yet')), g.wild ? W.chip('★', t('Einsen sind Joker', 'Ones are wild')) : ''].filter(Boolean);
+      return `<div class="kg-table lw-wrap wk-stage lw-stage">${W.head({ eyebrow: t('Würfelclub', 'Dice club'), title: myTurn ? t('Du bist am Zug', 'Your move') : t('Gebot am Tisch', 'The bid on the table'), chips })}<div class="lw-center">${bid}</div>${reveal}${mine}</div>`;
     },
     dock(S, myTurn) {
       const g = S.g;

@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Lügenwürfel: Gebot groß in der Mitte, eigene Würfel, aufgedeckte Becher nach „Lüge!“ */
 .kg-luegenwuerfel .kg-main { background: radial-gradient(120% 90% at 50% 25%, #2A3A5A, #121A2B); }
 .lw-wrap { display: grid; justify-items: center; gap: 14px; width: 100%; }
@@ -18,3 +19,13 @@
 .lw-n .btn { min-width: 44px; min-height: 44px; }
 .lw-faces { display: flex; gap: 6px; }
 .lw-faces .die { --d: 40px; }
+
+/* Spielwelt: geheimer Würfelclub – dunkles Leder, kupferne Gebotsplakette, persönlicher Becher abgesetzt */
+.lw-stage { --wk-bg: radial-gradient(120% 90% at 50% 0, #33231a, #150f0b); --wk-edge:#c27a4866; --wk-accent:#e0a070; --wk-max:760px; justify-items: stretch; }
+.lw-center { display: grid; justify-items: center; }
+.lw-stage .lw-bid { width: min(100%, 460px); padding: 16px 20px; border-radius: 14px; border: 2px solid #c27a48; background: linear-gradient(160deg, #6b3f22, #3d2415); color: #fbe9d4; box-shadow: 0 8px 22px #0007, inset 0 0 0 3px #00000033; }
+.lw-stage .lw-mine { border: 1px dashed #e0a07099; border-radius: 12px; padding: 10px 12px; background: #00000040; }
+.lw-stage .lw-mine small { color: #f0d4b8; }
+.lw-stage .lw-reveal { border-radius: 12px; }
+.lw-stage .lw-reveal.lie::before { content: '✕ '; } .lw-stage .lw-reveal.true::before { content: '✓ '; }
+.lw-stage :is(button) { min-height: 44px; }
