@@ -1,10 +1,22 @@
-/* Gedächtnisküche: große Zutat, danach Ablage zum Nachtippen */
-.gk-show { display: grid; justify-items: center; gap: 8px; padding: 22px 40px; border-radius: var(--r-l); background: rgba(0,0,0,.3); min-width: 220px; }
-.gk-show small { color: var(--text-2); }
-.gk-big { font-size: 96px; line-height: 1.1; min-height: 110px; display: block; }
-.gk-recall { display: grid; justify-items: center; gap: 12px; }
-.gk-recall small { color: var(--text-2); }
-.gk-taps { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; max-width: 100%; }
-.gk-taps i { font-style: normal; display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; border: 2px dashed rgba(255,255,255,.25); font-size: 24px; }
-.gk-taps i.on { border-style: solid; border-color: var(--gold); background: rgba(0,0,0,.3); }
-.gk-recipe { font-size: 34px; letter-spacing: .1em; }
+@import url('/games/world-kit.css');
+/* Gedächtnisküche: warme Rezeptküche – Papierkarte beim Merken, ruhiges Arbeitsbrett beim Wiedergeben */
+.gk-stage { --wk-bg: linear-gradient(170deg,#4a3422,#2a1d12); --wk-edge:#e2b97a55; --wk-accent:#f0c987; --wk-max:760px; }
+.gk-show { display:grid; justify-items:center; gap:8px; }
+.gk-card { display:grid; justify-items:center; gap:4px; width:min(100%,280px); padding:18px 18px 14px; border-radius:6px; background:#f4ead1; color:#2d2618; box-shadow:0 8px 18px #0007; border-top:8px solid #c4572c; }
+.gk-card b { font:600 20px Georgia,serif; min-height:26px; }
+.gk-big { display:grid; place-items:center; width:120px; height:120px; }
+.gk-big .gk-ico { width:100%; height:100%; }
+.gk-show small { color:var(--wk-muted); }
+.gk-recall { display:grid; justify-items:center; gap:12px; }
+.gk-recall small { color:var(--wk-muted); }
+.gk-taps { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; max-width:100%; }
+.gk-taps i { position:relative; font-style:normal; display:inline-grid; place-items:center; width:46px; height:46px; border-radius:10px; border:2px dashed #e2b97a66; background:#0002; }
+.gk-taps i small { position:absolute; top:-9px; left:-4px; font-size:10px; padding:0 4px; border-radius:6px; background:#2a1d12; color:#e2b97a; }
+.gk-taps i.on { border-style:solid; border-color:#f0c987; background:#f4ead1; }
+.gk-taps .gk-ico { width:32px; height:32px; }
+.gk-board { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; width:min(100%,520px); padding:12px; border-radius:12px; background:linear-gradient(180deg,#8a5a33,#6a4224); box-shadow:inset 0 0 0 4px #4e301a; }
+.gk-ing { display:grid; justify-items:center; gap:2px; min-height:84px; padding:8px 4px; border-radius:10px; border:2px solid #e8d3a8; background:#f4ead1; color:#2d2618; }
+.gk-ing .gk-ico { width:44px; height:44px; } .gk-ing small { font-size:12px; color:#2d2618; }
+.gk-ing:active { transform:scale(.97); }
+.gk-recipe { display:inline-flex; flex-wrap:wrap; gap:4px; justify-content:center; } .gk-ico.mini { width:32px; height:32px; }
+@media (max-width:480px) { .gk-board { gap:8px; padding:8px; } .gk-ing { min-height:78px; } .gk-big { width:96px; height:96px; } }
