@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-07",
+  "game": "labyrinth-chaos",
+  "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+  "followup_commits": [
+    "768abf69903dda45e372fb8b042abaf719963155"
+  ],
+  "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+  "artwork": "Original SVG/Canvas/CSS composition, using the existing locally authored glyph system; no external images or logos.",
+  "tests": [
+    {
+      "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+      "passed": 65,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog09-node-final-focused.log",
+      "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+    },
+    {
+      "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 308.818,
+      "report": "artifacts/backlog09-ui-complete-report.json",
+      "log": "artifacts/backlog09-ui-complete.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 30.543,
+      "report": "artifacts/backlog09-controls-report.json",
+      "log": "artifacts/backlog09-controls.log"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+      "tests": 1558,
+      "passed": 1555,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 230.597,
+      "log": "artifacts/backlog09-full-node.log",
+      "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/labyrinth-chaos/index.js",
+      "sha256": "f6bfe2ce9d86c24ce6d296d8c8a25b792a1bd0a4c8846875f6e51ef4d9cd16b7"
+    },
+    {
+      "path": "games/labyrinth-chaos/logic.js",
+      "sha256": "3b391eef8e11140011f8b7b459b01dff299c9298c661556ed6d5f7824ef33269"
+    },
+    {
+      "path": "games/labyrinth-chaos/room.js",
+      "sha256": "bb98661a0edc7d95987881c5c0b55c8475133b0ae9f4e9c6bca09fcf9ca10a4c"
+    },
+    {
+      "path": "public/games/labyrinth-chaos/labyrinth-chaos.css",
+      "sha256": "4968f30de215cc5902398de3ee64f0d33969c63051ce66d7f820e9ab86fc34c2"
+    },
+    {
+      "path": "public/games/labyrinth-chaos/labyrinth-chaos.js",
+      "sha256": "b067ff609131cf2399634282567804c4cc46a1baa9809d3bc0d2ae20e87339ab"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-1440x900.png",
+      "sha256": "36f29a6e6f4b3347b625e6b5b601ed655b993825f18ec6bb22717041e811e707"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-1920x1080.png",
+      "sha256": "63afd6844bdbcef2e4ce5b917b3ce3d000f1347ed231fb15e0b05a6add79798f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-360x800.png",
+      "sha256": "2517bcdecf4acc10af7ba87ec01b86e114d6da73df4b4f0c118aebb62168b896"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-390x844.png",
+      "sha256": "c9bb0b8306d1f06683ceabec4cc5884c9d5b6f44058a1a0d85a57ab07286a22f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-768x1024.png",
+      "sha256": "90a078a7711ae27d50d8ea7012dc4b262cf5e57790c2460ad49eb5bb4b4ba626"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-900x450.png",
+      "sha256": "0a6b4179f5d02964a33bea5d8b2b6286cc319c808b6ecd5ece58a043146ecbda"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-english-rules.png",
+      "sha256": "a61efbbc61da401f2c41e68a76971effa5366c0f913148aed1a8cf358c23f0dc"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-lobby.png",
+      "sha256": "8964ca4929416409d86c9e12d23ce20d26074d59b11b9e025e62a5f3b9b8afad"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-paused.png",
+      "sha256": "36d196709e18dbeb2ada48f52592ab0910d641121a2f4e53cda3b55d63ce3fd1"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-playing.png",
+      "sha256": "f9e994dc480cd919644cf0481aa9723472d0046365a069c6f631a2071d5468cb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-reconnect.png",
+      "sha256": "36f29a6e6f4b3347b625e6b5b601ed655b993825f18ec6bb22717041e811e707"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-result.png",
+      "sha256": "16e93d401c669c14e102bee7532eab512aa411077c561ebc0bd0c055ff18856b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-spectator.png",
+      "sha256": "ba9653a7540fe9b3c7b7a358a1af9abcbb938254116bee124e7063b6ed021216"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-zoom-controls.png",
+      "sha256": "7509501effaeada6f625e556196a44126b93212b10451479b57d8f78e692ea19"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-english-rules.png",
+      "sha256": "5dbff7cbfd60eda979657dbdc23db1d79aedeee535210d31d4354373933e388c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-lobby.png",
+      "sha256": "f67bf4312dc064ba4625fa9ea93bb8f9562baf8610af36e1dbeca953a007bc95"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-paused.png",
+      "sha256": "c81e5e430121eb4186b6c98519fd3f87aa208af472f9db4888c8a11baa1dd524"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-playing.png",
+      "sha256": "0ea7ba67d36f806c3a5d0ec4703ff13587a797e7e1110ffe4a9a168dae452bbf"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-reconnect.png",
+      "sha256": "02aaf864603967f7404e8919c3ce3de8e660802b1ffd37ca6c6f3ab2339b1bf5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-result.png",
+      "sha256": "20567a7549b3bcd97a23a7f3096c89700d5738e83824c6ba5a8794a2219dad97"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-spectator.png",
+      "sha256": "652ca78ff6b4a85b2f7bed2fe990f91814e01edf575d881d7c13f7f02e83d408"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-zoom-controls.png",
+      "sha256": "e0fc9f0ca366e7974f6488c335a64e401ab4505c362b8bd4e4ebd2857c7baaed"
+    }
+  ]
+}

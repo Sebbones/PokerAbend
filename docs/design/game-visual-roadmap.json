@@ -26,11 +26,11 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 93,
-    "not_implemented_count": 14,
-    "completed_visual_count": 56,
+    "playable_count": 97,
+    "not_implemented_count": 10,
+    "completed_visual_count": 60,
     "open_playable_visual_count": 37,
-    "planned_visual_count": 51,
+    "planned_visual_count": 47,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -101,6 +101,13 @@
       "hearts",
       "five-card-draw",
       "schatzinsel",
+      "geschenkfaenger",
+      "rhythmus-rausch",
+      "stillgestanden",
+      "minenlauf",
+      "labyrinth-chaos",
+      "schubsarena",
+      "scheinwerfer-flucht",
       "doppelagent",
       "luegenbaron",
       "wuerfel-auktion",
@@ -110,6 +117,7 @@
       "schach",
       "staedtehandel",
       "gebietskampf",
+      "bomben-duell",
       "sudoku",
       "2048",
       "wellenwacht",
@@ -121,11 +129,7 @@
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
-      "match-3",
-      "geschenkfaenger",
-      "rhythmus-rausch",
-      "stillgestanden",
-      "bomben-duell"
+      "match-3"
     ],
     "not_implemented_game_ids": [
       "kistenchaos",
@@ -133,10 +137,6 @@
       "puzzle-panik",
       "wortjagd",
       "schatzgraeber",
-      "minenlauf",
-      "labyrinth-chaos",
-      "schubsarena",
-      "scheinwerfer-flucht",
       "brueckenroulette",
       "turmbauer",
       "geschenkdiebe",
@@ -147,17 +147,33 @@
       "scotland-yard",
       "maumau",
       "farbenchaos",
+      "maexchen",
+      "schocken",
       "zehnetappen",
       "stapelrennen",
+      "schwimmen",
+      "kniffel",
+      "viergewinnt",
       "shutthebox",
+      "zehntausend",
       "schaetzmeister",
+      "schlagfertig",
       "werhatdasgesagt",
       "mogeln",
+      "praesident",
       "wuerfelpoker",
+      "luegenwuerfel",
       "chicago",
+      "reversi",
+      "dame",
+      "domino",
+      "zahlenzoo",
       "gedaechtnis-kueche",
       "pfeilfieber",
+      "sortierstation",
       "tickendes-paket",
+      "kritzelpost",
+      "hex",
       "wuerfelduell",
       "omaha-hi-lo",
       "seven-card-stud",
@@ -174,32 +190,20 @@
       "hearts",
       "five-card-draw",
       "schatzinsel",
-      "doppelagent",
-      "luegenbaron",
-      "schach",
-      "sudoku",
-      "2048",
-      "wellenwacht",
       "geschenkfaenger",
       "rhythmus-rausch",
       "stillgestanden",
+      "minenlauf",
+      "labyrinth-chaos",
+      "schubsarena",
+      "scheinwerfer-flucht",
+      "doppelagent",
+      "luegenbaron",
+      "schach",
       "bomben-duell",
-      "domino",
-      "luegenwuerfel",
-      "maexchen",
-      "praesident",
-      "schlagfertig",
-      "schwimmen",
-      "sortierstation",
-      "viergewinnt",
-      "zahlenzoo",
-      "reversi",
-      "schocken",
-      "zehntausend",
-      "dame",
-      "hex",
-      "kniffel",
-      "kritzelpost"
+      "sudoku",
+      "2048",
+      "wellenwacht"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -430,14 +434,10 @@
     "VIS-070",
     "VIS-074",
     "VIS-091",
-    "VIS-077",
     "VIS-094",
     "VIS-092",
     "VIS-076",
     "VIS-064",
-    "VIS-079",
-    "VIS-078",
-    "VIS-080",
     "VIS-093"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
@@ -802,6 +802,52 @@
       ],
       "permanent_screenshots": 80,
       "report": "docs/backlog/BACKLOG-07.md"
+    },
+    "backlog09": {
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "followup_commits": [
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "permanent_screenshots": 86,
+      "report": "docs/backlog/BACKLOG-09.md"
     }
   },
   "packages": [
@@ -11883,24 +11929,43 @@
       "game_name": "Minenlauf",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/minenlauf/evidence.json",
+          "docs/backlog/BACKLOG-09.md"
+        ],
+        "assessment": "Eigene Zahlenfurt mit privaten Minenhinweisen oberhalb kleiner Figurenmarker, Flaggenmodus und intern vergrößerbarem Raster."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/minenlauf/minenlauf.css",
+        "public/games/minenlauf/minenlauf.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/realtime-kit.js",
+        "public/games/realtime.css",
+        "public/games/expedition-kit.js",
+        "public/games/expedition.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/minenlauf/minenlauf.css",
+          "sha256": "5e78156b33e1a34c3ff6e636c13cebb0fb3e5bb999e5a08d2bda166e6776b5d5"
+        },
+        {
+          "path": "public/games/minenlauf/minenlauf.js",
+          "sha256": "622459a2dd8937a354f392834bc668c2d325c039e67cddab9d1523db54efa188"
+        }
+      ],
+      "current_design": "Eigene Zahlenfurt mit privaten Minenhinweisen oberhalb kleiner Figurenmarker, Flaggenmodus und intern vergrößerbarem Raster.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six sizes, zoom/flags, own hints and spectator privacy, pause/reload, held-input network disconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Über ein verminntes Feld zum Ziel – mit Zahlenhinweisen.",
       "planned_style": "Klarer taktischer Zahlenpfad auf eigener Minenkarte.",
       "background_concept": "Statisches dunkles Kartenmaterial ohne falsche Hinweiszahlen.",
@@ -11920,7 +11985,6 @@
       ],
       "technical_constraints": [
         "Kein Layoutmerkmal darf verdeckte Minenpositionen verraten.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -11930,8 +11994,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Echte aufgedeckte Zahlen, Flaggen und Weg zum Ziel exakt darstellen. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-09 gameplay and visual-world order completed.",
       "acceptance_criteria": [
         "Alternative verdeckte Minenfelder erzeugen identische öffentliche Darstellung."
       ],
@@ -11952,15 +12016,79 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "minenlauf",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-zoom-controls.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155"
     },
     {
       "id": "VIS-078",
@@ -11968,24 +12096,43 @@
       "game_name": "Labyrinth-Chaos",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/labyrinth-chaos/evidence.json",
+          "docs/backlog/BACKLOG-09.md"
+        ],
+        "assessment": "Eigenes Wandwerk mit wechselnden Durchgängen, klar gezeichneten Wänden, kleinen Spielermarkern und internem Zoom."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/labyrinth-chaos/labyrinth-chaos.css",
+        "public/games/labyrinth-chaos/labyrinth-chaos.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/realtime-kit.js",
+        "public/games/realtime.css",
+        "public/games/expedition-kit.js",
+        "public/games/expedition.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/labyrinth-chaos/labyrinth-chaos.css",
+          "sha256": "4968f30de215cc5902398de3ee64f0d33969c63051ce66d7f820e9ab86fc34c2"
+        },
+        {
+          "path": "public/games/labyrinth-chaos/labyrinth-chaos.js",
+          "sha256": "b067ff609131cf2399634282567804c4cc46a1baa9809d3bc0d2ae20e87339ab"
+        }
+      ],
+      "current_design": "Eigenes Wandwerk mit wechselnden Durchgängen, klar gezeichneten Wänden, kleinen Spielermarkern und internem Zoom.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six sizes, zoom/flags, own hints and spectator privacy, pause/reload, held-input network disconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Ein Labyrinth, dessen Wände sich verändern – wer zuerst raus ist, gewinnt.",
       "planned_style": "Dynamische eigene Irrgartenarena mit sehr klaren Wandzuständen.",
       "background_concept": "Ruhige Außenkulisse ohne scheinbare Wände.",
@@ -12005,7 +12152,6 @@
       ],
       "technical_constraints": [
         "Keine Kollision, Nebelregel oder kommende Öffnung visuell erfinden.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -12015,8 +12161,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktuelle Wände und erlaubte Öffnungen nur aus gültigem Zustand. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-09 gameplay and visual-world order completed.",
       "acceptance_criteria": [
         "Wand, offene Passage und Ausgang eindeutig."
       ],
@@ -12037,15 +12183,79 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "labyrinth-chaos",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-zoom-controls.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155"
     },
     {
       "id": "VIS-079",
@@ -12053,24 +12263,43 @@
       "game_name": "Schubsarena",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/schubsarena/evidence.json",
+          "docs/backlog/BACKLOG-09.md"
+        ],
+        "assessment": "Eigener kupferfarbener Schubserring mit sichtbar schrumpfender Plattform, Stoßrichtung und virtuellem Touch-Stick."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/schubsarena/schubsarena.css",
+        "public/games/schubsarena/schubsarena.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/realtime-kit.js",
+        "public/games/realtime.css",
+        "public/games/expedition-kit.js",
+        "public/games/expedition.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/schubsarena/schubsarena.css",
+          "sha256": "f6196e433683209b5fb49c996cc72272bc243a36153a29c9a076f59d150093e4"
+        },
+        {
+          "path": "public/games/schubsarena/schubsarena.js",
+          "sha256": "5df747d2e5e51d5a1fd9577e697bad922cd354cfdde81bee86711e8a1a631f3d"
+        }
+      ],
+      "current_design": "Eigener kupferfarbener Schubserring mit sichtbar schrumpfender Plattform, Stoßrichtung und virtuellem Touch-Stick.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six sizes, zoom/flags, own hints and spectator privacy, pause/reload, held-input network disconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Gegner von der schrumpfenden Plattform schubsen.",
       "planned_style": "Abstrakte schrumpfende Plattform mit klarer Kante.",
       "background_concept": "Statischer dunkler Freiraum außerhalb der Arena.",
@@ -12090,7 +12319,6 @@
       ],
       "technical_constraints": [
         "Keine neue Stoßreichweite, Kraft oder Abklingzeit durch Effekte suggerieren.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -12100,8 +12328,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Tatsächliche Plattformgrenze maßstabstreu, keine zusätzliche Standfläche. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-09 gameplay and visual-world order completed.",
       "acceptance_criteria": [
         "Plattformkante und echte Stoßbereitschaft bleiben lesbar."
       ],
@@ -12122,15 +12350,79 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "schubsarena",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-network-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-network-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155"
     },
     {
       "id": "VIS-080",
@@ -12138,24 +12430,43 @@
       "game_name": "Scheinwerfer-Flucht",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/scheinwerfer-flucht/evidence.json",
+          "docs/backlog/BACKLOG-09.md"
+        ],
+        "assessment": "Eigener dunkler Nachtausgang mit klar begrenztem wanderndem Licht, aktiven Schlüsselstellen, Hitzeanzeige und Touch-Stick."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/scheinwerfer-flucht/scheinwerfer-flucht.css",
+        "public/games/scheinwerfer-flucht/scheinwerfer-flucht.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/realtime-kit.js",
+        "public/games/realtime.css",
+        "public/games/expedition-kit.js",
+        "public/games/expedition.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/scheinwerfer-flucht/scheinwerfer-flucht.css",
+          "sha256": "3d870f29fbe13bcacaffbbb1ccbd8cd74db4861c255ea4cb2e6eede2ae14c4a4"
+        },
+        {
+          "path": "public/games/scheinwerfer-flucht/scheinwerfer-flucht.js",
+          "sha256": "000481046d5dea6c868340b1f9c40e34767a5edfa3d40aea454b4ab3baecf881"
+        }
+      ],
+      "current_design": "Eigener dunkler Nachtausgang mit klar begrenztem wanderndem Licht, aktiven Schlüsselstellen, Hitzeanzeige und Touch-Stick.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play, six sizes, zoom/flags, own hints and spectator privacy, pause/reload, held-input network disconnect, DE/EN rules and normal results; original permanent screenshots.",
       "gameplay_summary": "Ein Scheinwerfer sucht die Arena ab – wer erwischt wird, fliegt raus.",
       "planned_style": "Eigene Fluchtarena mit klaren Licht-/Dunkelzonen.",
       "background_concept": "Dunkle ruhige Umgebung, keine blendenden Scheinwerfereffekte.",
@@ -12175,7 +12486,6 @@
       ],
       "technical_constraints": [
         "Keine versteckten Spieler über Schatten/Kameraposition verraten.",
-        "Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel.",
         "Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10."
       ],
       "existing_variants": [],
@@ -12185,8 +12495,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Freigegebener Lichtkegel und echte Fluchtwege präzise zeichnen. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-09 gameplay and visual-world order completed.",
       "acceptance_criteria": [
         "Lichtgrenze ist auch ohne grelle Helligkeitswechsel erkennbar."
       ],
@@ -12207,15 +12517,77 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "scheinwerfer-flucht",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155"
     },
     {
       "id": "VIS-081",

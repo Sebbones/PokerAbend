@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 07.11.2026: 89 spielbare Spiele, 18 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 36 done, 71 planned.** BACKLOG-07 schließt Regelwahnsinn (VIS-060), Jäger & Schatten (VIS-061), Infektionsjagd (VIS-062) und Letzter Schutzplatz (VIS-063) mit eigenen Spielwelten ab. 53 spielbare Oberflächen und 18 Konzepte bleiben visuell geplant. [Abschlussbericht](../backlog/BACKLOG-07.md). Keine weiteren Pakete freigegeben.
+**Stand 07.11.2026: 97 spielbare Spiele, 10 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 60 done, 47 planned.** BACKLOG-09 schließt Minenlauf (VIS-077), Labyrinth-Chaos (VIS-078), Schubsarena (VIS-079) und Scheinwerfer-Flucht (VIS-080) ab. 37 spielbare Oberflächen und 10 Konzepte bleiben visuell geplant. [Abschlussbericht](../backlog/BACKLOG-09.md). Keine weiteren Pakete freigegeben.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -2235,109 +2235,109 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-077 – Minenlauf
 
 - **Spiel-ID/Kategorie:** `minenlauf` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 12–18 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 12–18 h; individuell aufwendiges Spielfeld.
+- **Frontend:** `public/games/minenlauf/minenlauf.css`, `public/games/minenlauf/minenlauf.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/realtime-kit.js`, `public/games/realtime.css`, `public/games/expedition-kit.js`, `public/games/expedition.css`.
+- **Aktueller Stand:** Eigene Zahlenfurt mit privaten Minenhinweisen oberhalb kleiner Figurenmarker, Flaggenmodus und intern vergrößerbarem Raster.
+- **Optische Verbesserungsziele:** Umgesetzt und mit Originalbildern, Desktop-/Touchaktionen und Regeln geprüft.
 - **Stil:** Klarer taktischer Zahlenpfad auf eigener Minenkarte.
 - **Hintergrund:** Statisches dunkles Kartenmaterial ohne falsche Hinweiszahlen.
 - **Spielfeld:** Echte aufgedeckte Zahlen, Flaggen und Weg zum Ziel exakt darstellen.
 - **Figuren/Karten/Objekte:** Zahl, Flagge, Mine und Ziel durch Form unterscheiden.
 - **Status und Aktionen:** Strafzeit, Wegfortschritt und Ende klar gliedern.
 - **Mobil:** Raster scrollbar mit großen Auswahlzellen.
-- **Technische Grenzen:** Kein Layoutmerkmal darf verdeckte Minenpositionen verraten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Kein Layoutmerkmal darf verdeckte Minenpositionen verraten. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von minenlauf.
+- **Abhängigkeiten:** VIS-001; Gameplay und eigene Spielwelt mit BACKLOG-09 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Alternative verdeckte Minenfelder erzeugen identische öffentliche Darstellung.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code `0051919ff99023bb0f4869e4e9d25f02b5574b9c`, Nachlauf `768abf69903dda45e372fb8b042abaf719963155`, [Manifest](../../games/minenlauf/evidence.json), [Regeln und Tests](../backlog/BACKLOG-09.md). 22 Originalbilder mit SHA-256, sechs Größen, Desktop/Touch, DE/EN, Pause, Reconnect und reguläres Ergebnis.
 
 <a id="vis-078"></a>
 ### VIS-078 – Labyrinth-Chaos
 
 - **Spiel-ID/Kategorie:** `labyrinth-chaos` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 16–24 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 16–24 h; individuell aufwendiges Spielfeld.
+- **Frontend:** `public/games/labyrinth-chaos/labyrinth-chaos.css`, `public/games/labyrinth-chaos/labyrinth-chaos.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/realtime-kit.js`, `public/games/realtime.css`, `public/games/expedition-kit.js`, `public/games/expedition.css`.
+- **Aktueller Stand:** Eigenes Wandwerk mit wechselnden Durchgängen, klar gezeichneten Wänden, kleinen Spielermarkern und internem Zoom.
+- **Optische Verbesserungsziele:** Umgesetzt und mit Originalbildern, Desktop-/Touchaktionen und Regeln geprüft.
 - **Stil:** Dynamische eigene Irrgartenarena mit sehr klaren Wandzuständen.
 - **Hintergrund:** Ruhige Außenkulisse ohne scheinbare Wände.
 - **Spielfeld:** Aktuelle Wände und erlaubte Öffnungen nur aus gültigem Zustand.
 - **Figuren/Karten/Objekte:** Figuren und Ausgang mit stabilen Symbolen.
 - **Status und Aktionen:** Wandwechsel und Wegziel zeigen, ohne nächste geheime Änderung vorwegzunehmen.
 - **Mobil:** Labyrinth und Touch-Steuerung getrennt halten.
-- **Technische Grenzen:** Keine Kollision, Nebelregel oder kommende Öffnung visuell erfinden. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Keine Kollision, Nebelregel oder kommende Öffnung visuell erfinden. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von labyrinth-chaos.
+- **Abhängigkeiten:** VIS-001; Gameplay und eigene Spielwelt mit BACKLOG-09 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Wand, offene Passage und Ausgang eindeutig.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code `0051919ff99023bb0f4869e4e9d25f02b5574b9c`, Nachlauf `768abf69903dda45e372fb8b042abaf719963155`, [Manifest](../../games/labyrinth-chaos/evidence.json), [Regeln und Tests](../backlog/BACKLOG-09.md). 22 Originalbilder mit SHA-256, sechs Größen, Desktop/Touch, DE/EN, Pause, Reconnect und reguläres Ergebnis.
 
 <a id="vis-079"></a>
 ### VIS-079 – Schubsarena
 
 - **Spiel-ID/Kategorie:** `schubsarena` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 15–23 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 15–23 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/schubsarena/schubsarena.css`, `public/games/schubsarena/schubsarena.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/realtime-kit.js`, `public/games/realtime.css`, `public/games/expedition-kit.js`, `public/games/expedition.css`.
+- **Aktueller Stand:** Eigener kupferfarbener Schubserring mit sichtbar schrumpfender Plattform, Stoßrichtung und virtuellem Touch-Stick.
+- **Optische Verbesserungsziele:** Umgesetzt und mit Originalbildern, Desktop-/Touchaktionen und Regeln geprüft.
 - **Stil:** Abstrakte schrumpfende Plattform mit klarer Kante.
 - **Hintergrund:** Statischer dunkler Freiraum außerhalb der Arena.
 - **Spielfeld:** Tatsächliche Plattformgrenze maßstabstreu, keine zusätzliche Standfläche.
 - **Figuren/Karten/Objekte:** Kontrastreiche Figuren und bestätigte Stoßrückmeldung.
 - **Status und Aktionen:** Stoßbereitschaft, ausgeschieden und Finale getrennt.
 - **Mobil:** Große Stoßtaste, Finger verdecken keine Plattformkante.
-- **Technische Grenzen:** Keine neue Stoßreichweite, Kraft oder Abklingzeit durch Effekte suggerieren. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Keine neue Stoßreichweite, Kraft oder Abklingzeit durch Effekte suggerieren. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von schubsarena.
+- **Abhängigkeiten:** VIS-001; Gameplay und eigene Spielwelt mit BACKLOG-09 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Plattformkante und echte Stoßbereitschaft bleiben lesbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code `0051919ff99023bb0f4869e4e9d25f02b5574b9c`, Nachlauf `768abf69903dda45e372fb8b042abaf719963155`, [Manifest](../../games/schubsarena/evidence.json), [Regeln und Tests](../backlog/BACKLOG-09.md). 22 Originalbilder mit SHA-256, sechs Größen, Desktop/Touch, DE/EN, Pause, Reconnect und reguläres Ergebnis.
 
 <a id="vis-080"></a>
 ### VIS-080 – Scheinwerfer-Flucht
 
 - **Spiel-ID/Kategorie:** `scheinwerfer-flucht` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 16–24 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 16–24 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** `public/games/scheinwerfer-flucht/scheinwerfer-flucht.css`, `public/games/scheinwerfer-flucht/scheinwerfer-flucht.js`.
+- **Gemeinsame Komponenten:** `public/games/kit.js`, `public/games/realtime-kit.js`, `public/games/realtime.css`, `public/games/expedition-kit.js`, `public/games/expedition.css`.
+- **Aktueller Stand:** Eigener dunkler Nachtausgang mit klar begrenztem wanderndem Licht, aktiven Schlüsselstellen, Hitzeanzeige und Touch-Stick.
+- **Optische Verbesserungsziele:** Umgesetzt und mit Originalbildern, Desktop-/Touchaktionen und Regeln geprüft.
 - **Stil:** Eigene Fluchtarena mit klaren Licht-/Dunkelzonen.
 - **Hintergrund:** Dunkle ruhige Umgebung, keine blendenden Scheinwerfereffekte.
 - **Spielfeld:** Freigegebener Lichtkegel und echte Fluchtwege präzise zeichnen.
 - **Figuren/Karten/Objekte:** Figuren, Schlüssel und Ausgang als klar unterschiedliche Objekte.
 - **Status und Aktionen:** Öffentliche Hitze, Schlüsselstatus und Ziel nur nach Spielzustand.
 - **Mobil:** Kegel und Fluchtweg bleiben neben Touch-Tasten sichtbar.
-- **Technische Grenzen:** Keine versteckten Spieler über Schatten/Kameraposition verraten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Keine versteckten Spieler über Schatten/Kameraposition verraten. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von scheinwerfer-flucht.
+- **Abhängigkeiten:** VIS-001; Gameplay und eigene Spielwelt mit BACKLOG-09 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Lichtgrenze ist auch ohne grelle Helligkeitswechsel erkennbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Code `0051919ff99023bb0f4869e4e9d25f02b5574b9c`, Nachlauf `768abf69903dda45e372fb8b042abaf719963155`, [Manifest](../../games/scheinwerfer-flucht/evidence.json), [Regeln und Tests](../backlog/BACKLOG-09.md). 20 Originalbilder mit SHA-256, sechs Größen, Desktop/Touch, DE/EN, Pause, Reconnect und reguläres Ergebnis.
 
 <a id="vis-081"></a>
 ### VIS-081 – Doppelagent

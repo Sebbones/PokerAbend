@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 27,
-  "remaining_count": 14,
+  "completed_count": 31,
+  "remaining_count": 10,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -1053,7 +1053,7 @@
       ],
       "completed_at": "2026-11-07",
       "report": "docs/backlog/BACKLOG-07.md",
-      "shared_source_audit_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "shared_source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
       "shared_source_audit": [
         {
           "path": "games/party-arena-room.js",
@@ -1077,7 +1077,7 @@
         },
         {
           "path": "public/games/realtime-kit.js",
-          "sha256": "ff03eba801f78faa6dda759afa949ccea8e5654f372d2b1f8df2c534f00ca0df"
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
         },
         {
           "path": "public/i18n-en.js",
@@ -1175,6 +1175,55 @@
             "sha256": "4d69f28c4a15ad22dfd991518b8c8f3843fcb88ce7e2b6b4c5f13fe76d10b8ab"
           }
         ]
+      },
+      "pre_backlog_09_shared_audit": {
+        "commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+        "sources": [
+          {
+            "path": "games/party-arena-room.js",
+            "sha256": "8ad2d1bfaccfed767a70cac209332b0887f12c5b0ef1a4b8fd6edc4fa7fdc2f0"
+          },
+          {
+            "path": "games/party-arena-bot.js",
+            "sha256": "bbda45bfaa2199d345edacbc0aff63ea38f3f73012d246f6978d8d89aad44e71"
+          },
+          {
+            "path": "games/index.js",
+            "sha256": "669de83f255338acb39875f22bb7e939da25e5702e283c694739dfcc1e23cca8"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+          },
+          {
+            "path": "public/games/party-arena-kit.js",
+            "sha256": "59a5a688d5590490bbddaa55f7e2b8dd25e3bc1244455a960f71731e3e0fb526"
+          },
+          {
+            "path": "public/games/realtime-kit.js",
+            "sha256": "ff03eba801f78faa6dda759afa949ccea8e5654f372d2b1f8df2c534f00ca0df"
+          },
+          {
+            "path": "public/i18n-en.js",
+            "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
+          },
+          {
+            "path": "public/index.html",
+            "sha256": "fc25d1ca467b30054b809af4349995082e885ce789ac50af6c271a450014ef77"
+          },
+          {
+            "path": "server/index.js",
+            "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+          },
+          {
+            "path": "server/party-program.js",
+            "sha256": "57b55bd967300e3e06f81e79471aff4ef2074faa771567ae6ec53ecb1e2c5850"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
+          }
+        ]
       }
     },
     {
@@ -1253,6 +1302,130 @@
         }
       ],
       "permanent_screenshots": 64
+    },
+    {
+      "id": "BACKLOG-09",
+      "games": [
+        "schubsarena",
+        "scheinwerfer-flucht",
+        "minenlauf",
+        "labyrinth-chaos"
+      ],
+      "status": "verified",
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "followup_commits": [
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "registration_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "completed_at": "2026-11-07",
+      "report": "docs/backlog/BACKLOG-09.md",
+      "shared_source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+      "shared_source_audit": [
+        {
+          "path": "games/expedition-room.js",
+          "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+        },
+        {
+          "path": "games/index.js",
+          "sha256": "669de83f255338acb39875f22bb7e939da25e5702e283c694739dfcc1e23cca8"
+        },
+        {
+          "path": "games/bots.js",
+          "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
+        },
+        {
+          "path": "public/index.html",
+          "sha256": "fc25d1ca467b30054b809af4349995082e885ce789ac50af6c271a450014ef77"
+        },
+        {
+          "path": "public/i18n-en.js",
+          "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/games/expedition-kit.js",
+          "sha256": "6de7b478d32f8b47bc7884058bb3fd7af171dd1add78cfed20244d20b0d87f87"
+        },
+        {
+          "path": "public/games/expedition.css",
+          "sha256": "4ac3b01ee61d59e584b233444613f5db4f557b211965174c479ecdbbb0d9aff7"
+        }
+      ],
+      "verification_history": [
+        {
+          "report": "artifacts/backlog09-ui-first-report.json",
+          "passed": 6,
+          "failed": 2,
+          "reason": "Desktop Zoom did not enlarge already-wide boards; fixed relative zoom with original fit as default."
+        },
+        {
+          "report": "artifacts/backlog09-ui-final-report.json",
+          "passed": 22,
+          "failed": 2,
+          "reason": "Both Mine Run test drivers used stale frames; server rejected non-adjacent commands. All 16 existing arena/PartyRoom regressions passed. Driver now waits for the acknowledged post-command server tick."
+        },
+        {
+          "report": "artifacts/backlog09-ui-verified-report.json",
+          "passed": 9,
+          "failed": 1,
+          "reason": "The short mobile shove round ended before the test tried to pause. Pause/reload now happen before the bounded inward movement probe."
+        },
+        {
+          "log": "artifacts/backlog09-full-node-first.log",
+          "tests": 1558,
+          "passed": 1554,
+          "failed": 1,
+          "skipped": 3,
+          "duration_seconds": 218.116,
+          "reason": "Existing singleplayer catalog test still listed Mine Run as planned. It now verifies the registered room API and separation from local Minesweeper; full suite rerun passed."
+        }
+      ],
+      "permanent_screenshots": 86
     }
   ],
   "games": [
@@ -3428,38 +3601,376 @@
     {
       "id": "minenlauf",
       "name": "Minenlauf",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-09",
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog09/minenlauf/mobil-zoom-controls.png"
+      ],
+      "followup_commits": [
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "source_audit": [
+        {
+          "path": "games/minenlauf/index.js",
+          "sha256": "7bb22e74b1169c58080ac0b7d0d381b2e5e26fd54a83408743d21db38f06e4b0"
+        },
+        {
+          "path": "games/minenlauf/logic.js",
+          "sha256": "31d5b980983364eab26437ec14bb8531fd40b46251239be673ead307169fff73"
+        },
+        {
+          "path": "games/minenlauf/room.js",
+          "sha256": "abc58d7f49f89ddbbb414c2776593320e76fdeea5fa5ed9ea57cc09b870cd3a6"
+        },
+        {
+          "path": "public/games/minenlauf/minenlauf.css",
+          "sha256": "5e78156b33e1a34c3ff6e636c13cebb0fb3e5bb999e5a08d2bda166e6776b5d5"
+        },
+        {
+          "path": "public/games/minenlauf/minenlauf.js",
+          "sha256": "622459a2dd8937a354f392834bc668c2d325c039e67cddab9d1523db54efa188"
+        }
+      ],
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155"
     },
     {
       "id": "labyrinth-chaos",
       "name": "Labyrinth-Chaos",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-09",
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog09/labyrinth-chaos/mobil-zoom-controls.png"
+      ],
+      "followup_commits": [
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "source_audit": [
+        {
+          "path": "games/labyrinth-chaos/index.js",
+          "sha256": "f6bfe2ce9d86c24ce6d296d8c8a25b792a1bd0a4c8846875f6e51ef4d9cd16b7"
+        },
+        {
+          "path": "games/labyrinth-chaos/logic.js",
+          "sha256": "3b391eef8e11140011f8b7b459b01dff299c9298c661556ed6d5f7824ef33269"
+        },
+        {
+          "path": "games/labyrinth-chaos/room.js",
+          "sha256": "bb98661a0edc7d95987881c5c0b55c8475133b0ae9f4e9c6bca09fcf9ca10a4c"
+        },
+        {
+          "path": "public/games/labyrinth-chaos/labyrinth-chaos.css",
+          "sha256": "4968f30de215cc5902398de3ee64f0d33969c63051ce66d7f820e9ab86fc34c2"
+        },
+        {
+          "path": "public/games/labyrinth-chaos/labyrinth-chaos.js",
+          "sha256": "b067ff609131cf2399634282567804c4cc46a1baa9809d3bc0d2ae20e87339ab"
+        }
+      ],
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+      "remaining_house_rule_ideas": [
+        "Nebel: nur die nähere Umgebung sichtbar",
+        "Schlüssel einsammeln"
+      ]
     },
     {
       "id": "schubsarena",
       "name": "Schubsarena",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-09",
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-network-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-network-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/schubsarena/mobil-spectator.png"
+      ],
+      "followup_commits": [
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "source_audit": [
+        {
+          "path": "games/schubsarena/index.js",
+          "sha256": "df7afa6baef29d82884a2486fc899983851fea4c4ac257c9abe2b31536e3c970"
+        },
+        {
+          "path": "games/schubsarena/room.js",
+          "sha256": "24aac97992b30c4ef178840c205990634e2ecdde16bbd433aeb4eeb6130e2dde"
+        },
+        {
+          "path": "public/games/schubsarena/schubsarena.css",
+          "sha256": "f6196e433683209b5fb49c996cc72272bc243a36153a29c9a076f59d150093e4"
+        },
+        {
+          "path": "public/games/schubsarena/schubsarena.js",
+          "sha256": "5df747d2e5e51d5a1fd9577e697bad922cd354cfdde81bee86711e8a1a631f3d"
+        }
+      ],
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155"
     },
     {
       "id": "scheinwerfer-flucht",
       "name": "Scheinwerfer-Flucht",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-09",
+      "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "test_results": [
+        {
+          "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 65,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog09-node-final-focused.log",
+          "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+        },
+        {
+          "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 308.818,
+          "report": "artifacts/backlog09-ui-complete-report.json",
+          "log": "artifacts/backlog09-ui-complete.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 30.543,
+          "report": "artifacts/backlog09-controls-report.json",
+          "log": "artifacts/backlog09-controls.log"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1558,
+          "passed": 1555,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 230.597,
+          "log": "artifacts/backlog09-full-node.log",
+          "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-paused.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-playing.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-result.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-paused.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-playing.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-result.png",
+        "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-spectator.png"
+      ],
+      "followup_commits": [
+        "768abf69903dda45e372fb8b042abaf719963155"
+      ],
+      "source_audit": [
+        {
+          "path": "games/scheinwerfer-flucht/index.js",
+          "sha256": "a7d527cd3db623bec4b9aa7e755af7f89b1152c32209b62c960e2d8d3070ae05"
+        },
+        {
+          "path": "games/scheinwerfer-flucht/room.js",
+          "sha256": "fd38a23d51d85ed8a104362bfd850514af7183b6061d64a21f6956b44dce810b"
+        },
+        {
+          "path": "public/games/scheinwerfer-flucht/scheinwerfer-flucht.css",
+          "sha256": "3d870f29fbe13bcacaffbbb1ccbd8cd74db4861c255ea4cb2e6eede2ae14c4a4"
+        },
+        {
+          "path": "public/games/scheinwerfer-flucht/scheinwerfer-flucht.js",
+          "sha256": "000481046d5dea6c868340b1f9c40e34767a5edfa3d40aea454b4ab3baecf881"
+        }
+      ],
+      "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155"
     },
     {
       "id": "doppelagent",
@@ -3919,12 +4430,12 @@
   "latest_authorization": {
     "date": "2026-11-07",
     "games": [
-      "jaeger-schatten",
-      "infektionsjagd",
-      "letzter-schutzplatz",
-      "regelwahnsinn"
+      "schubsarena",
+      "scheinwerfer-flucht",
+      "minenlauf",
+      "labyrinth-chaos"
     ],
-    "scope": "Only these four PartyRoom games, own worlds, DE/EN, bots, adjustable clocks, reconnect and private per-player views. No V2 packages; stop after completion."
+    "scope": "Only these four realtime-room games, server referee, solvable random minefields/mazes, touch and keyboard, DE/EN and own scenes. No V2 packages; stop after completion."
   },
   "extra_games": [
     {
@@ -4059,6 +4570,16 @@
         "regelwahnsinn"
       ],
       "scope": "Only these four PartyRoom games, own worlds, DE/EN, bots, adjustable clocks, reconnect and private per-player views. No V2 packages; stop after completion."
+    },
+    {
+      "date": "2026-11-07",
+      "games": [
+        "schubsarena",
+        "scheinwerfer-flucht",
+        "minenlauf",
+        "labyrinth-chaos"
+      ],
+      "scope": "Only these four realtime-room games, server referee, solvable random minefields/mazes, touch and keyboard, DE/EN and own scenes. No V2 packages; stop after completion."
     }
   ]
 }

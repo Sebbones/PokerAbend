@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-07",
+  "game": "minenlauf",
+  "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+  "followup_commits": [
+    "768abf69903dda45e372fb8b042abaf719963155"
+  ],
+  "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+  "artwork": "Original SVG/Canvas/CSS composition, using the existing locally authored glyph system; no external images or logos.",
+  "tests": [
+    {
+      "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+      "passed": 65,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog09-node-final-focused.log",
+      "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+    },
+    {
+      "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 308.818,
+      "report": "artifacts/backlog09-ui-complete-report.json",
+      "log": "artifacts/backlog09-ui-complete.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 30.543,
+      "report": "artifacts/backlog09-controls-report.json",
+      "log": "artifacts/backlog09-controls.log"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+      "tests": 1558,
+      "passed": 1555,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 230.597,
+      "log": "artifacts/backlog09-full-node.log",
+      "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/minenlauf/index.js",
+      "sha256": "7bb22e74b1169c58080ac0b7d0d381b2e5e26fd54a83408743d21db38f06e4b0"
+    },
+    {
+      "path": "games/minenlauf/logic.js",
+      "sha256": "31d5b980983364eab26437ec14bb8531fd40b46251239be673ead307169fff73"
+    },
+    {
+      "path": "games/minenlauf/room.js",
+      "sha256": "abc58d7f49f89ddbbb414c2776593320e76fdeea5fa5ed9ea57cc09b870cd3a6"
+    },
+    {
+      "path": "public/games/minenlauf/minenlauf.css",
+      "sha256": "5e78156b33e1a34c3ff6e636c13cebb0fb3e5bb999e5a08d2bda166e6776b5d5"
+    },
+    {
+      "path": "public/games/minenlauf/minenlauf.js",
+      "sha256": "622459a2dd8937a354f392834bc668c2d325c039e67cddab9d1523db54efa188"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-1440x900.png",
+      "sha256": "085f1c1f1c96d96fa3bb3812356cb5eb0a0b1df6d374a3d9e45c5e36dc352a6d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-1920x1080.png",
+      "sha256": "a74b1361c92be8e1ede50b6d15690a9de4481b4ea3c1ecbf79c8e547615c5077"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-360x800.png",
+      "sha256": "7694ad0614cd57c1e00507725d0928753109bda32d83f329a329be3439f3e3cb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-390x844.png",
+      "sha256": "4ffdef81674e73649d6e8b76ce8e33016622ab46cbab6b951dcb829bf8fa795d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-768x1024.png",
+      "sha256": "26e9e6622a250d16d7b62bb975e752009764f0d79b2530c91f7fbda112cf180e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-900x450.png",
+      "sha256": "cc04c5d85174a435618eaa0e925b57c0dc217239fd58a21cc6624883a19a224b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-english-rules.png",
+      "sha256": "adaf5761a181b481111a79a2c65c64aaa0fe0a79e6bb07649e006e1097fafb3b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-lobby.png",
+      "sha256": "7bb8dc60265dc9113d69a1b621ff7e67255a3c7c2f0250a45ddf69853d9d3cf5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-paused.png",
+      "sha256": "86b1f017093a2475daba37b09cd5bc3f99c4c4fa078bc2372687378be38f3ae6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-playing.png",
+      "sha256": "38469801aa8ed6e25e01d18b64b97264e09510cb94887191824cb8cd1f292c17"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-reconnect.png",
+      "sha256": "085f1c1f1c96d96fa3bb3812356cb5eb0a0b1df6d374a3d9e45c5e36dc352a6d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-result.png",
+      "sha256": "ae5ddb06b2336657b61f1290ad46f61bb879140925ef64fca95e52f0c413fb55"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-spectator.png",
+      "sha256": "17c062e53bef53e3ff634359ec515518cbd981eaefefe2d2c4c201af1a09fc28"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/desktop-zoom-controls.png",
+      "sha256": "ac961664bc89c980d76730f3cac5af994cffac080870fa0c8260e77f2651d34a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-english-rules.png",
+      "sha256": "70446b010a3bc51bd1b0849e2fb77e17da876fe4432066fbdb18e8c90da95544"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-lobby.png",
+      "sha256": "cecead804c652bb4aae1bae692a7be11125c3acb9a5fa06cc6d0daf0d278a45a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-paused.png",
+      "sha256": "6c4c8fdd6a3f8dd72f9a039995d684cc9afc09c0965148125df5e6c116293bb8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-playing.png",
+      "sha256": "ddf5e2a61f2330eba2316ef0f33df6fc381f5943d56fe11e5dbf40148c08392e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-reconnect.png",
+      "sha256": "704c789ad761117ce2ca627c5c52b655291316cfff7c1720f2a7db96b871c71f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-result.png",
+      "sha256": "4f4186eb13b919a05e16e617682f31d1f6abc3a6be126c0e4a480da7019f1f7b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-spectator.png",
+      "sha256": "4859245b5a40dcf58ee21084b039b75e22d9e6724a2c6af435deaa97118128f9"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/minenlauf/mobil-zoom-controls.png",
+      "sha256": "4aac7dee5ae1aa32fadc24ecd6bdb6d460334cc554cd8225d0007c70f27379e6"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-07",
+  "game": "schubsarena",
+  "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+  "followup_commits": [
+    "768abf69903dda45e372fb8b042abaf719963155"
+  ],
+  "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+  "artwork": "Original SVG/Canvas/CSS composition, using the existing locally authored glyph system; no external images or logos.",
+  "tests": [
+    {
+      "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+      "passed": 65,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog09-node-final-focused.log",
+      "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+    },
+    {
+      "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 308.818,
+      "report": "artifacts/backlog09-ui-complete-report.json",
+      "log": "artifacts/backlog09-ui-complete.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 30.543,
+      "report": "artifacts/backlog09-controls-report.json",
+      "log": "artifacts/backlog09-controls.log"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+      "tests": 1558,
+      "passed": 1555,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 230.597,
+      "log": "artifacts/backlog09-full-node.log",
+      "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/schubsarena/index.js",
+      "sha256": "df7afa6baef29d82884a2486fc899983851fea4c4ac257c9abe2b31536e3c970"
+    },
+    {
+      "path": "games/schubsarena/room.js",
+      "sha256": "24aac97992b30c4ef178840c205990634e2ecdde16bbd433aeb4eeb6130e2dde"
+    },
+    {
+      "path": "public/games/schubsarena/schubsarena.css",
+      "sha256": "f6196e433683209b5fb49c996cc72272bc243a36153a29c9a076f59d150093e4"
+    },
+    {
+      "path": "public/games/schubsarena/schubsarena.js",
+      "sha256": "5df747d2e5e51d5a1fd9577e697bad922cd354cfdde81bee86711e8a1a631f3d"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-1440x900.png",
+      "sha256": "f4738f9ef4419a45819ca12f66117d5203dde58112ba2f83ea8d22290cd4aa4d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-1920x1080.png",
+      "sha256": "d15d1eb3083b6ba727c798d1966533a93691daa642bf107f2af3dd7abc7dc93e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-360x800.png",
+      "sha256": "191441eb2b61fc2a47fc8ae6ea78eb3907342a8bbbda5d63ae190de44065e877"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-390x844.png",
+      "sha256": "6981ab827121acd7568da73693f37764ebd1924d7d5cb660c4da32dcd1c27b0b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-768x1024.png",
+      "sha256": "311914c60ec59264aa4682971b69cccd2c3a1d33277815c890144d29643276b9"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-900x450.png",
+      "sha256": "ee712f1f28dca1176ebea206cd1b43d99ccd79a86f6ecea2e570b5fa25629360"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-english-rules.png",
+      "sha256": "9e01ef334c466ccb804de4de63cf5112c406e4f0ddb9ac5f8ba32dbc6ae3787e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-lobby.png",
+      "sha256": "3e87e1df079ddd2100b0e9f2d824a5e5e835ad143a9d36e669f38a5e96eb0fdf"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-network-reconnect.png",
+      "sha256": "e001de05b660b7edb591d6d38d97d0638633ac0030b937959ec6bda056db84f3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-paused.png",
+      "sha256": "3e1e5a1b638d495aa01b3ccaff32c83dcb180806eaa9116ef190539804a62cb7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-playing.png",
+      "sha256": "61a2e4b2e8c3ed4f2f24d81a11f4b1ca57bfe6cf6c551c137ff80ef61fdc4a18"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-reconnect.png",
+      "sha256": "f4738f9ef4419a45819ca12f66117d5203dde58112ba2f83ea8d22290cd4aa4d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-result.png",
+      "sha256": "712f5933dd9d5bdc98b99d648cfd35051a625f3d5fddde42df9c32923d74ca7c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/desktop-spectator.png",
+      "sha256": "1b6c2b65533a4aa2475da44d27409caf6e3fb5a1b0c75b8103cd30582c6716dc"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-english-rules.png",
+      "sha256": "18d6d1c140fac2d71f7f878c39d01d24246ffe02efde95e9034a45e0a29d6d16"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-lobby.png",
+      "sha256": "8e992c8b97bcfb6aaad47f948a3d90cb24c5efb1d9a9b74c3d93fd786d4fcf45"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-network-reconnect.png",
+      "sha256": "7acc94ce70887ec563218eb0b03099c5d2e92b5218fb4066da6ec25681dda359"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-paused.png",
+      "sha256": "6b427fe60b1d8a6e013c338d6a4c2e817a6b4ded719b5f458a1f15a1161c939e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-playing.png",
+      "sha256": "9025d6742f0bc85bd8788021548ca94d1fa4b1315374a07cc54ff0f908ddf898"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-reconnect.png",
+      "sha256": "d03400b4ff6e4c1a9fd7057124560139a4b42f7602eadaa1493424006dc3bb07"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-result.png",
+      "sha256": "71759e85931df68e49db2e699d3a3eac0b391c5fc70577c39c098fb0f1881c36"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/schubsarena/mobil-spectator.png",
+      "sha256": "64fb839a18a365653fd0a54735b3187c459cedbcef1750d8f6aa98453d0fd0ec"
+    }
+  ]
+}

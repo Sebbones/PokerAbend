@@ -1,0 +1,148 @@
+{
+  "date": "2026-11-07",
+  "game": "scheinwerfer-flucht",
+  "implementation_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+  "followup_commits": [
+    "768abf69903dda45e372fb8b042abaf719963155"
+  ],
+  "source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+  "artwork": "Original SVG/Canvas/CSS composition, using the existing locally authored glyph system; no external images or logos.",
+  "tests": [
+    {
+      "command": "node --test test/backlog09.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+      "passed": 65,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog09-node-final-focused.log",
+      "note": "17 new rule tests: 2000 minefields, 400 growing mazes in eight wall phases, 200 complete bot rounds and exact protocol/privacy/victory cases."
+    },
+    {
+      "command": "playwright test test/ui/backlog09.spec.js test/ui/backlog09-reconnect.spec.js --workers=1 (isolated current main + only this packet)",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 308.818,
+      "report": "artifacts/backlog09-ui-complete-report.json",
+      "log": "artifacts/backlog09-ui-complete.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog09-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 30.543,
+      "report": "artifacts/backlog09-controls-report.json",
+      "log": "artifacts/backlog09-controls.log"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+      "tests": 1558,
+      "passed": 1555,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 230.597,
+      "log": "artifacts/backlog09-full-node.log",
+      "note": "Concurrent unrelated working-tree changes excluded without altering them. Existing restore-test.sh cases need bash and are skipped on Windows."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/scheinwerfer-flucht/index.js",
+      "sha256": "a7d527cd3db623bec4b9aa7e755af7f89b1152c32209b62c960e2d8d3070ae05"
+    },
+    {
+      "path": "games/scheinwerfer-flucht/room.js",
+      "sha256": "fd38a23d51d85ed8a104362bfd850514af7183b6061d64a21f6956b44dce810b"
+    },
+    {
+      "path": "public/games/scheinwerfer-flucht/scheinwerfer-flucht.css",
+      "sha256": "3d870f29fbe13bcacaffbbb1ccbd8cd74db4861c255ea4cb2e6eede2ae14c4a4"
+    },
+    {
+      "path": "public/games/scheinwerfer-flucht/scheinwerfer-flucht.js",
+      "sha256": "000481046d5dea6c868340b1f9c40e34767a5edfa3d40aea454b4ab3baecf881"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-1440x900.png",
+      "sha256": "e2535617479c344471f7da627f8d394e9320bf874a4293d101e8fac59dd29650"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-1920x1080.png",
+      "sha256": "251e733ab9e0989828d45c37135cb31b29801a05a28ba929c533af76ad1c4882"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-360x800.png",
+      "sha256": "8ff1a7f73d25319af6b7c40f8c8df959d5b576e878ab9ffb0947a976982e4882"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-390x844.png",
+      "sha256": "5d6c31a0f42ffe23c79ab3307be219204a35d7807d11db5b883525e7dce2d180"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-768x1024.png",
+      "sha256": "06a18652d8ab111cdd6dc11b6b34a5f70e896d61c37053f4bd33674ee54768c6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-900x450.png",
+      "sha256": "8eed0d03bcdc343c93239a4ac8f4fb0da5ea7d6895aa69463c387976f674bbe6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-english-rules.png",
+      "sha256": "5588417a96edc354a02d9e47eaa0cdc9e475ed27ec79d60b8dc3183c3f77d247"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-lobby.png",
+      "sha256": "ad62dcfb2408c46e7543ef95b158a44fe34ded1d212a6709e9ff819bdd1ffabc"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-paused.png",
+      "sha256": "e8ba40a9663ac21adfba71bed449fdcee3d55cf7dd92d56eb46549271a1773a5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-playing.png",
+      "sha256": "1d29b46192de48f5cfdf4f8ba5dd812490ad1f64ae784bb1230cbc056ecafc72"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-reconnect.png",
+      "sha256": "e2535617479c344471f7da627f8d394e9320bf874a4293d101e8fac59dd29650"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-result.png",
+      "sha256": "90e9295ddd088a2b36390ebe43edddab8e2a407cce1839f1e3e8c8f824cf1b4a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/desktop-spectator.png",
+      "sha256": "e566391ae395ac12bc80c2ecd7152399f1915881be65adc78f75db79b87db8c5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-english-rules.png",
+      "sha256": "2e481a5e5e940d9e1895498427d6d72bf27fae24357ba9c9181f6e25d03c2f64"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-lobby.png",
+      "sha256": "c26471b67d094d6053965968e1a8c324ee5a2417fcdc4870f0f771cd75dcc3d0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-paused.png",
+      "sha256": "d1d2996c97b74d8ad8b94c6859d899e8bf1bd0baef3c92aff93a5b0ecd72ac4e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-playing.png",
+      "sha256": "a1aa3e0cee8b42b045d029c6cc556c0fe0cc72c18adc56a1f58304eb938534ff"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-reconnect.png",
+      "sha256": "0dd502404d9c15a31b10347597a361185709817a80e7adf18eb596f0f4993616"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-result.png",
+      "sha256": "460a1291fa30a7fb671f88f3e0b31c4f5675e64a9dd4261f8f8ef553bea17cee"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog09/scheinwerfer-flucht/mobil-spectator.png",
+      "sha256": "0f67dd557695054a403cb2816c7a4f42b44af427354e15e67b04d6b4f19fbaa4"
+    }
+  ]
+}
