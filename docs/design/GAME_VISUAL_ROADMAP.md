@@ -2559,12 +2559,12 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-089 – Städtehandel (Catan-inspiriert)
 
 - **Spiel-ID/Kategorie:** `staedtehandel` / Brettspiele.
-- **Implementierung / Design:** not_implemented / **planned**.
+- **Implementierung / Design:** playable / **planned**.
 - **Priorität / Aufwand:** after_gameplay; 28–42 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
+- **Frontend:** Funktionale Erstumsetzung aus V2-12 in `public/games/staedtehandel/staedtehandel.js` und `.css`; die individuelle Ausarbeitung ist dieses Paket und nicht freigegeben.
 - **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Aktueller Stand:** Spielbar seit V2-12 („Städtehandel“, Insel Aurelia): SVG-Insel mit Landschaftssymbolen, Zahlenchips, Häfen, Räuber, Bauteilen in Spielerfarbe, markierten Bauplätzen, Rohstoffhand sowie Handels- und Kartenfenster.
+- **Optische Verbesserungsziele:** Individuelle Landschaftszeichnung, Würfel- und Ertragsanimation und eine alternative Bauzielliste; das Konzept ist mit den tatsächlichen Zuständen des spielbaren Spiels abzugleichen.
 - **Stil:** Eigener Rohstoff- und Städtebauplan mit klaren Landschaften.
 - **Hintergrund:** Eigenes Küsten-/Landkartenmaterial ohne Original-Catan-Grafiken.
 - **Spielfeld:** Freigegebene Hex-, Kanten- und Kreuzungsgeometrie exakt übernehmen.
@@ -2573,14 +2573,14 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 - **Mobil:** Karte verschiebbar; Bauziele zusätzlich als zugängliche Liste.
 - **Technische Grenzen:** Verdeckte Handressourcen, Entwicklungskarten und künftiges V2-Gameplay getrennt behandeln. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von staedtehandel.
+- **Abhängigkeiten:** VIS-001; die Gameplay-Voraussetzung `staedtehandel` ist mit V2-12 erfüllt, die visuelle Freigabe fehlt weiterhin.
 
 **Individuelle Akzeptanz:**
 
 - Keine dekorative Kreuzung erscheint als legaler Bauplatz.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** Gameplay und funktionale Oberfläche: [V2-12](../roadmap/V2-12_STAEDTEHANDEL.md). Für dieses visuelle Paket gibt es noch keine Implementierungscommits, Testergebnisse oder Screenshots; es bleibt `planned`.
 
 <a id="vis-090"></a>
 ### VIS-090 – Gebietskampf (Risiko-inspiriert)

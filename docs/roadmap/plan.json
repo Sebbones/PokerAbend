@@ -728,11 +728,15 @@
         "games/index.js",
         "games/planned.js",
         "games/roadmap.js",
-        "games/bots.js",
-        "test/ui/staedtehandel.spec.js (spätere Implementierung)",
-        "games/staedtehandel/ (spätere Implementierung)",
-        "public/games/staedtehandel/ (spätere Implementierung)",
-        "test/staedtehandel.test.js (spätere Implementierung)"
+        "games/bot-levels.js",
+        "games/bot-strategies/index.js",
+        "server/bot-observation.js",
+        "server/index.js",
+        "games/staedtehandel/",
+        "public/games/staedtehandel/",
+        "test/staedtehandel.test.js",
+        "test/staedtehandel-server.test.js",
+        "test/ui/staedtehandel.spec.js"
       ],
       "security": [
         "Rohstoffe/Entwicklungskarten pro Spieler geheim halten",
@@ -746,17 +750,40 @@
         "Mobile und Desktop: skalierbares Hexfeldbrett",
         "Originale markenunabhängige Gestaltung und endgültiger Produktname vor Launch festgelegt"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
+      "status": "done",
+      "implementation_commit": "f93c33b4abc9eadd519bbee7bdf6b07441955172",
+      "completed_at": "2026-11-07",
       "notes": [
-        "Repo-Abgleich am 30.10.2026: games/planned.js hat bereits 'staedtehandel' (Große Projekte). Die öffentliche Roadmap nennt die Catan-Inspiration. IDs bewahren; kein Duplikat anlegen."
+        "Repo-Abgleich am 30.10.2026: games/planned.js hat bereits 'staedtehandel' (Große Projekte). Die öffentliche Roadmap nennt die Catan-Inspiration. IDs bewahren; kein Duplikat anlegen.",
+        "Ausdrückliche Freigabe vom 2026-11-07. Endgültiger Produktname „Städtehandel“ (ohne Fremdmarke), ID staedtehandel unverändert; kein zweites Siedler-Spiel, der Backlog-Eintrag wurde ersetzt. Eigene erfundene Insel Aurelia (19 Felder, große Variante 30), eigene Rohstoffe (Holz, Ton, Wolle, Korn, Kupfer), eigene Entwicklungskarten und eigene SVG-Optik; Details: docs/roadmap/V2-12_STAEDTEHANDEL.md.",
+        "Serverseitig: Würfel, Kosten, Baurechte, Handelsprüfung, Stapel und Diebstahl; Rohstoffe und Entwicklungskarten nur in der eigenen Ansicht; Bots in drei Stufen (auch Abwerfen und Antworten außerhalb des eigenen Zuges); Speicherstand mitten im Spiel (persistMidGame in rooms.json, jetzt auch beim geordneten Beenden) und Reconnect. Nicht umgesetzt: Produktivdeployment, Erweiterungen (Seefahrer, Städte & Ritter); die individuelle visuelle Ausarbeitung bleibt VIS-089 (planned)."
       ],
       "public_roadmap_ids": [
         "staedtehandel"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test \"test/*.test.js\" (sauberer Checkout von f93c33b + diesem Dokumentationsstand)",
+          "result": "1453 Tests, 1453 bestanden, 0 fehlgeschlagen; darunter test/staedtehandel.test.js mit 31 Tests (Brett und Häfen, Feldaufbau, Aufbauphase, Ertrag und Bankvorrat, Bauregeln, längste Straße, größte Rittermacht, Räuber und Abwurf, Bank/Häfen, Spielerhandel mit Betrugsversuchen, Entwicklungskarten, Sieg, Geheimhaltung, Bots, 6 Bot-Partien bis zum Sieg mit 3–6 Spielern, Stufenvergleich, Zeitablauf, Speicherstand, Aussteiger) und test/staedtehandel-server.test.js (echter Serverneustart mitten im Spiel).",
+          "passed": 1453,
+          "failed": 0
+        },
+        {
+          "command": "npx playwright test test/ui/staedtehandel.spec.js",
+          "result": "4 bestanden (2 desktop + 2 mobil): Hosten, Bots, Aufbau durch Antippen, Würfeln, Handelsangebot, Zuschauer ohne Rohstoffe, Pause, Reconnect, Zoom, sechs Größen ohne seitliches Überlaufen, Antippziele auf dem Handy mindestens 44 px, großes Brett mit fünf Spielern, falsche Spielerzahl abgelehnt, Englisch. Screenshots: docs/design/screenshots/staedtehandel/ (30 JPEG).",
+          "passed": 4,
+          "failed": 0
+        },
+        {
+          "command": "npx playwright test staedtehandel, smoke, bots, roadmap-presence, visual-roadmap, achievements (sauberer Checkout von f93c33b + diesem Dokumentationsstand)",
+          "result": "30 bestanden, 0 fehlgeschlagen (darunter die 4 Städtehandel-Fälle); roadmap-presence prüft jetzt auch die Einträge der Pakete V2-07/V2-17 und beide umgesetzten Spiele (Gebietskampf, Städtehandel „Bereits spielbar“).",
+          "passed": 30,
+          "failed": 0
+        }
+      ],
+      "commits": [
+        "f93c33b4abc9eadd519bbee7bdf6b07441955172"
+      ]
     },
     {
       "id": "V2-13",
