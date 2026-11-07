@@ -80,7 +80,9 @@
       const side = (id) => `<div class="mu-side ${id === S.turnId ? 'turn' : ''}"><span class="mu-stack">${'<i></i>'.repeat(g.inHand[id] || 0)}</span>
         <small>${nameOf(S, id)} (${COLOR[g.colors[id]]}): ${g.inHand[id] ? I18n.html`${g.inHand[id]} zum Setzen` : 'alle gesetzt'}</small></div>`;
       const ids = Object.keys(g.colors).sort((x, y) => g.colors[x] - g.colors[y]);
-      return I18n.html`<div class="kg-table mu-wrap">
+      const W = WorldKit, t = W.t, placing = Object.values(g.inHand).some((n) => n > 0);
+      const chips = [W.chip(placing ? '◉' : '↔', placing ? t('Phase: Setzen', 'Phase: placing') : t('Phase: Ziehen', 'Phase: moving'), ''), removable.size ? W.chip('✕', t('Mühle! Gegnerischen Stein nehmen', 'Mill! Take an opposing stone'), 'warn') : (g.mills || []).length ? W.chip('▬', `${(g.mills || []).length} ${t('Mühle(n) stehen', 'mill(s) formed')}`, 'good') : '', from !== null && myTurn ? W.chip('✔', t('Stein gewählt – Ziel antippen', 'Stone selected – tap a target'), 'good') : ''].filter(Boolean);
+      return I18n.html`<div class="kg-table mu-wrap wk-stage mu-stage">${W.head({ eyebrow: t('Mühlebrett', 'Mill board'), title: myTurn ? t('Du bist dran', 'Your turn') : t('Am Zug', 'On the move'), chips })}
         <div class="mu-sides">${ids.map(side).join('')}</div>
         <div class="mu-board ${myColor === 1 ? 'me-black' : ''}" role="group" aria-label="Mühle-Brett">
           <svg viewBox="-0.5 -0.5 7 7" class="mu-lines" aria-hidden="true">${LINES}<g class="mu-mills">${mills}</g></svg>${pts}</div>

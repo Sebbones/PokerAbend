@@ -42,3 +42,12 @@ button.mu-pt { cursor: pointer; }
   .mu-pt { width: 13%; }
   .mu-stack i { width: 10px; height: 10px; }
 }
+
+/* VIS-017: edles dunkles Holzbrett mit Elfenbein-/Anthrazitsteinen – drei Quadrate, Mittellinien und 24 Punkte unverändert, Reserven neben dem Brett */
+.mu-stage { --wk-bg: linear-gradient(165deg, #3a2a1e, #17100a); --wk-edge:#e3c79a66; --wk-accent:#f0d28a; --wk-max:720px; justify-items: center; }
+.mu-stage .wk-head, .mu-stage .mu-sides { justify-self: stretch; }
+.mu-stage .mu-board { background: linear-gradient(135deg, #8a5d37, #5e3b1f); box-shadow: inset 0 0 0 6px #2e1c0e, 0 10px 26px #0008; }
+.mu-stage .mu-lines { stroke: #e3c79a; }
+.mu-stage .mu-pt.empty::before { background: #e3c79a; }
+.mu-stage .mu-side { background: #0000003d; border-radius: 10px; padding: 6px 10px; }
+@media (max-height: 560px) { .mu-stage { padding: 6px; gap: 4px; } .mu-stage > .wk-head { display: none; } }
