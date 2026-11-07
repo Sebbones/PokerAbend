@@ -154,6 +154,40 @@ Object.assign(GAMES, {
     async act(page) { await page.waitForTimeout(500); await page.locator('#pk-in').fill('Ein Hund auf dem Mond').catch(() => {}); },
   },
 });
+
+// ---- P2 (zweite Hälfte) und P3 ----
+// relaxed: Spiele mit eigener, intern scrollbarer Tischgeometrie (Poker, Monopoly) – Aufnahme in allen Größen, aber ohne Passform-Prüfung (dafür gibt es die eigenen Specs).
+const quiet = (page) => page.waitForTimeout(400);
+Object.assign(GAMES, {
+  bildunterschrift: { bots: 0, humans: 2, settings: { rounds: 1, writeSecs: 20 }, scene: '[data-scene=bildunterschrift]', async act(page) { await page.waitForTimeout(500); } },
+  'malen-raten': { bots: 0, humans: 2, settings: { rounds: 1, writeSecs: 20 }, scene: '[data-scene=malen-raten]', async act(page) { await page.waitForTimeout(500); } },
+  'wer-bin-ich': { bots: 0, humans: 2, settings: { turnTime: 0 }, scene: '.wb-stage', async act(page) { await page.waitForTimeout(500); } },
+  kronenjagd: { bots: 1, settings: {}, scene: '#rt-canvas', async act(page) { await page.waitForTimeout(800); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(300); } },
+  'laser-huepfer': { bots: 1, settings: {}, scene: '#rt-canvas', async act(page) { await page.waitForTimeout(800); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(300); } },
+  broeckelboden: { bots: 1, settings: {}, scene: '#rt-canvas', async act(page) { await page.waitForTimeout(800); await page.keyboard.press('ArrowLeft'); await page.waitForTimeout(300); } },
+  'sechs-nimmt': { bots: 2, settings: { turnTime: 0 }, scene: '.sn-table', async act(page) { await tryClick(page, '[data-g=choose]:not([disabled])'); await quiet(page); } },
+  durak: { bots: 1, settings: { turnTime: 0 }, scene: '.du-wrap', async act(page) { await lastTurn(page); await tryClick(page, '.kg-hand .kc:not([disabled])'); await tryClick(page, '[data-g=attack]'); await quiet(page); } },
+  muehle: { bots: 1, settings: { turnTime: 0 }, scene: '.mu-stage', async act(page) { await lastTurn(page); await tryClick(page, '.mu-pt.can'); await quiet(page); } },
+  huetchen: { bots: 1, settings: { turnTime: 0 }, scene: '.hb-stage', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=roll]'); await page.waitForTimeout(900); await tryClick(page, '[data-g=pick]'); await quiet(page); } },
+  schiffe: { bots: 1, settings: { turnTime: 0 }, scene: '.sv-stage', async act(page) { await tryClick(page, '[data-g=random]'); await tryClick(page, '[data-g=ready]'); await quiet(page); } },
+  werwolf: { bots: 5, settings: { turnTime: 0 }, scene: '.ww-village', async act(page) { await page.waitForTimeout(600); } },
+  blackjack: { bots: 2, settings: { turnTime: 0 }, scene: '.bj-table', async act(page) { await tryClick(page, '[data-g=bet]'); await quiet(page); } },
+  'monopoly-deal': { bots: 2, settings: { turnTime: 0 }, scene: '.md-table', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=card]'); await quiet(page); } },
+  poker: { relaxed: true, bots: 2, settings: {}, scene: '.table', async act(page) { await page.waitForTimeout(800); await tryClick(page, '[data-act=call],[data-act=check]'); await quiet(page); } },
+  omaha: { relaxed: true, bots: 2, settings: {}, scene: '.table', async act(page) { await page.waitForTimeout(800); await tryClick(page, '[data-act=call],[data-act=check]'); await quiet(page); } },
+  'spiel-des-lebens': { bots: 1, settings: { turnTime: 0 }, scene: '.life-table', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=spin]'); await page.waitForTimeout(900); } },
+  monopoly: { relaxed: true, bots: 1, settings: { turnTime: 0 }, scene: '.mo-board', async act(page) { await page.waitForTimeout(500); } },
+  'risiko-wuerfeln': {
+    bots: 2, settings: { turnTime: 0, target: 40 }, scene: '.risk-table',
+    async act(page) { await lastTurn(page); await tryClick(page, '[data-g=risk-roll]'); await quiet(page); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn !== s.me) return; if (s.g.pot >= 8 && await tryClick(page, '[data-g=risk-bank]:not([disabled])')) return; await tryClick(page, '[data-g=risk-roll]:not([disabled])'); }, 800); },
+  },
+  'story-chaos': { bots: 2, settings: { turnTime: 0 }, scene: '.story-table', async act(page) { await lastTurn(page, 20000).catch(() => {}); await answer(page, 'Es war einmal ein Pinguin'); } },
+  zahlenreihe: { bots: 2, settings: { turnTime: 0, rounds: 1 }, scene: '.sequence-question', async act(page) { await answer(page, '5'); } },
+  wuerfeljagd: { bots: 2, settings: { turnTime: 0, rounds: 1 }, scene: '.dg-target', async act(page) { await tryClick(page, '[data-g=hunt-roll]'); await quiet(page); } },
+  monsterwuerfel: { bots: 1, settings: { turnTime: 0 }, scene: '.dg-health', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=monster-roll]'); await quiet(page); } },
+  'wuerfel-auktion': { bots: 2, settings: { turnTime: 0 }, scene: '.pk-q', async act(page) { await answer(page, '3'); } },
+});
 const only = process.env.VIS_P1_ONLY ? process.env.VIS_P1_ONLY.split(',') : Object.keys(GAMES);
 
 test.use({ createLimit: '100' });
@@ -196,10 +230,11 @@ for (const id of only) {
     expect((await send(page, 'gamePause', { paused: false })).ok).toBe(true);
     await page.reload(); await expect(page.locator(cfg.scene)).toBeVisible(); await shot(page, 'reconnect');
     if (info.project.name === 'desktop') for (const [width, height] of VIEWPORTS) {
-      await page.setViewportSize({ width, height }); expect(await overflow(page), `${width}x${height}`).toBe(true);
-      const box = await page.locator(cfg.scene).first().boundingBox(); expect(box.x).toBeGreaterThanOrEqual(-1); expect(box.x + box.width).toBeLessThanOrEqual(width + 1);
+      await page.setViewportSize({ width, height });
+      if (!cfg.relaxed) { expect(await overflow(page), `${width}x${height}`).toBe(true);
+        const box = await page.locator(cfg.scene).first().boundingBox(); expect(box.x).toBeGreaterThanOrEqual(-1); expect(box.x + box.width).toBeLessThanOrEqual(width + 1); }
       await shot(page, `table-${width}x${height}`);
-    } else expect(await overflow(page)).toBe(true);
+    } else if (!cfg.relaxed) expect(await overflow(page)).toBe(true);
     // Englisch: Kurzregeln im Hilfedialog (vor dem Ergebnis, solange der Tisch läuft)
     await page.evaluate(() => I18n.select('en')); await page.locator('[data-kit=help]').first().click();
     await expect(page.locator('#help-dlg')).toBeVisible(); await shot(page, 'english-rules'); await page.keyboard.press('Escape');
