@@ -229,14 +229,15 @@ app.use('/api/me', (req, res, next) => meRouter(req, res, next));
 app.use('/api/profile', (req, res, next) => profileRouter(req, res, next));
 app.get('/api/achievements/players', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  res.json({ names: achievements.players(req.query.q) });
+  res.json({ names: achievements.players(req.query.q, req.accountId) });
 });
 app.get('/api/achievements', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   try {
     // me=1: die Erfolge genau dieses Kontos (gleiche Namen bleiben getrennt); sonst nach Name
     const account = req.query.me === '1' ? accounts.get(req.accountId) : null;
-    res.json(account ? achievements.detailFor(account.id, account.name || req.query.name) : achievements.detail(req.query.name));
+    if (account) { const { detail } = achievements.reconcile(account.id, account.name || req.query.name); accounts.save(); res.json(detail); }
+    else res.json(achievements.detail(req.query.name, { viewer:req.accountId }));
   }
   catch (error) { res.status(error.status || 500).json({ error: error.message }); }
 });
@@ -303,6 +304,8 @@ const io = new Server(http, {
 const rooms = new Map();
 const presence = createPresence({
   emit: (list) => io.to('lobby').emit('presence', list),
+  visibleFor: (key) => !key.startsWith('#') || !!accounts.byGameId(key) && accounts.privacyOf(accounts.byGameId(key).id).showOnline,
+  identityOf: (id) => accounts.get(io.sockets.sockets.get(id)?.data.accountId)?.gameId || `session:${id}`,
   location: (id) => {
     const socket = io.sockets.sockets.get(id);
     if (!socket) return null;
@@ -311,15 +314,16 @@ const presence = createPresence({
     if (!p || p.kicked || p.socketId !== id) return { kind: 'home' };
     const info = r.lobbyInfo?.();
     const seated = r.seats ? r.seats.includes(p.id) : p.seat !== null && p.seat !== undefined;
-    return { kind: seated ? 'playing' : 'watching', private: !!r.unlisted, code: r.code, game: r.game, gameName: GAMES[r.game].name,
-      canJoin: !!info && info.seats.length < info.max };
+    return { kind: !r.busy ? 'lobby' : seated ? 'playing' : 'watching', private: !!r.unlisted, code: r.code, game: r.game, gameName: GAMES[r.game].name,
+      canJoin: !r.busy && !!info && info.seats.length < info.max };
   },
 });
 const bots = createBotRunner({ isCurrent: (r) => rooms.get(r.code) === r, notify: (r) => { broadcast(r); if (!r.busy) save(); } });
+setInterval(() => presence.changed(), 30000).unref(); // lease expiry also updates idle observers
 const codes = createCodes(); // gemeinsam für alle Spiele
-const achievements = createAchievements({ leaderboard, games: Object.values(GAMES) });
+const achievements = createAchievements({ leaderboard, games: Object.values(GAMES), accounts });
 const profiles = createProfiles({ accounts, leaderboard, achievements, games: Object.values(GAMES) });
-profileRouter = createProfileAPI({ profiles, accounts, trustProxy: TRUST_PROXY, onChange: () => save() });
+profileRouter = createProfileAPI({ profiles, accounts, trustProxy: TRUST_PROXY, onChange: () => { presence.changed(); save(); } });
 // V2-05: Konto-Daten löschen. Ergebnisse anderer bleiben anonymisiert; Tickets/Planungen/Bretter verlieren nur die Zuordnung zum Konto.
 const DELETED_ACCOUNT = '0'.repeat(32);
 function eraseAccount(accountId) {
@@ -343,6 +347,7 @@ function saveHistory(r) {
 }
 function dropHistory(code) { try { unlinkSync(historyFile(code)); } catch { /* gab keine */ } }
 let saveTimer = null;
+achievements.backfill(); accounts.save();
 function save() {
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
@@ -413,24 +418,22 @@ function onRoomChange(room, kind, data) {
   if (kind === 'roundAbort') { ranked.abort(room); return; }
   // Ergebnis einer Partie: in die Bestenliste (gespeichert wird mit dem nächsten Speichern)
   if (kind === 'result') {
+    const frozen = room.rankedRound;
+    if (!frozen || leaderboard.round(frozen.id)) return; // replayed completion is never counted twice
     if (recordProgramResult(room)) archiveReview(room);
     // Computer-Mitspieler sind keine Personen; Menschen werden über ihr Konto gezählt (ohne Konto: wie früher über den Namen)
-    const botNames = new Set([...room.players.values()].filter((p) => p.bot).map((p) => p.name));
-    const humans = new Map([...room.players.values()].filter((p) => !p.bot).map((p) => [p.name, p]));
-    const entries = (data?.entries?.filter((p) => !botNames.has(p.name)) || []).map((p) => ({ ...p, accountId: humans.get(p.name)?.accountId || null }));
+    const participants = (data?.entries || []).map((entry,i) => ({ entry, player:room.players.get(data.ids?.[i]) || [...room.players.values()].find(p=>p.name===entry.name) })).filter(p=>p.player && !p.player.bot);
+    const entries = participants.map(({entry,player})=>({...entry,accountId:frozen.accounts[player.id] || null}));
     const detailOf = (entry) => (entry.accountId ? achievements.detailFor(entry.accountId, entry.name) : achievements.detail(entry.name));
     const before = new Map(entries.map((p) => [p.name, new Set(detailOf(p).badges.filter((b) => b.unlocked).map((b) => b.id))]));
     leaderboard.record(room.game, entries, room.variant || 'classic');
-    for (const entry of entries) if (entry.accountId) accounts.recordAchievements(entry.accountId, detailOf(entry).badges.filter((b) => b.unlocked).map((b) => b.id));
     ranked.record(room, data);
     // Erst dauerhaft speichern, dann die neuen Abzeichen melden.
     try {
       leaderboard.save();
-      for (const entry of entries) {
-        const earned = detailOf(entry).badges.filter((b) => b.unlocked && !before.get(entry.name).has(b.id));
-        const player = [...room.players.values()].find((p) => !p.bot && p.name === entry.name);
-        if (earned.length && player?.socketId) io.to(player.socketId).emit('achievements', { names: earned.map((b) => b.title), name: entry.name });
-      }
+      const notices = entries.map((entry,i) => ({ entry, player:participants[i].player, earned:entry.accountId ? achievements.reconcile(entry.accountId,entry.name).fresh : detailOf(entry).badges.filter(b=>b.unlocked && !before.get(entry.name).has(b.id)) }));
+      accounts.save();
+      for (const { entry,player,earned } of notices) if (earned.length && player.socketId) io.to(player.socketId).emit('achievements', { names:earned.map(b=>b.title), name:entry.name });
     } catch (error) { console.error('Abzeichen konnten nicht gespeichert werden:', error.message); }
     save(); return;
   }
@@ -741,7 +744,7 @@ io.on('connection', (socket) => {
     const account = accounts.get(socket.data.accountId);
     // V2-05: „Online zeigen“ ist eine Freigabe des Kontos und gilt serverseitig, nicht nur im Browser
     const shown = !account || accounts.privacyOf(account.id).showOnline;
-    const accepted = presence.update(socket.id, shown ? data : { ...data, visible: false }, account?.gameId || null);
+    const accepted = presence.update(socket.id, shown ? data : { ...data, visible: false }, account?.gameId || `session:${socket.id}`);
     if (accepted && account) accounts.touch(account.id, data);
     return { reply: { accepted } };
   }, { needRoom: false });

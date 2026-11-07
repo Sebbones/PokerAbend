@@ -96,7 +96,8 @@ test('Profil: echte Zahlen aus Bestenliste und Rundenablage – Siegquote, Liebl
   assert.ok(p.recent[0].at >= p.recent[1].at, 'neueste zuerst');
   assert.deepEqual(p.recent.map((r) => r.place), [1, 2, 1]);
   assert.equal(p.recent[0].gameName, 'Mau-Mau');
-  assert.ok(p.achievements.unlocked === 3 && p.achievements.badges.some((b) => b.id === 'erster-sieg'));
+  assert.equal(p.achievements.unlocked, 4);
+  assert.ok(p.achievements.badges.some(b=>b.id==='erster-sieg') && p.achievements.badges.some(b=>b.id==='spiel-maumau-start'));
   assert.equal(p.discord, null, 'Discord-Name ist ohne Freigabe nicht dabei');
   assert.equal(p.privacy, undefined, 'fremde Sicht enthält keine Einstellungen');
 });

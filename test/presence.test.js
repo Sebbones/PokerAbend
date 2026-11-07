@@ -46,7 +46,7 @@ test('Presence: privater Tisch verrät weder Spiel noch Code, Bots fehlen vollst
   assert.equal(p.snapshot().recent.length, 0);
 });
 
-test('Presence: Unsichtbare fehlen auch nach Umbenennen/Trennen und bei mehreren Tabs; park ist kurz weg', () => {
+test('Presence: Unsichtbare fehlen auch nach Umbenennen/Trennen und bei mehreren Tabs; park kehrt in den Hub zurück', () => {
   const { p, update } = setup();
   update('a'); update('b');
   update('a', { visible: false });
@@ -58,7 +58,7 @@ test('Presence: Unsichtbare fehlen auch nach Umbenennen/Trennen und bei mehreren
   assert.deepEqual(p.snapshot(), { online: [], recent: [] });
   update('a', { name: 'Ben' });
   p.park('a');
-  assert.equal(p.snapshot().online[0].kind, 'away');
+  assert.equal(p.snapshot().online[0].kind, 'home');
   update('a', { name: 'Ben' });
   assert.equal(p.snapshot().online[0].kind, 'home');
 });

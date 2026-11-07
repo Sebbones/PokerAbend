@@ -629,8 +629,9 @@ function presenceHTML() {
   const me = (typeof Identity !== 'undefined' && Identity.gameId) || profile.name.trim().toLowerCase(); // Personen laufen über die Game-ID, Clients ohne Konto über den Namen
   const recentlySeen = hubPresence.recent.filter((p) => Date.now() - p.at < 86400000);
   const people = [...hubPresence.online].sort((a, b) => (b.key === me) - (a.key === me) || a.name.localeCompare(b.name, 'de'));
-  const list = `<ul class="presence-list">${people.map((p) => `<li><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${profileLink(p.key, p.name)}${p.key === me ? I18n.t(' (du)') : ''}</b><small>${uiText(p.status)}</small></div>
-    ${p.code && p.key !== me ? I18n.html`<div class="presence-actions">${p.canJoin ? I18n.html`<button type="button" class="btn btn-brass" data-join="${esc(p.code)}" data-mode="sit">Mitspielen</button>` : ''}<button type="button" class="btn btn-ghost" data-join="${esc(p.code)}" data-mode="watch">Zuschauen</button></div>` : ''}</li>`).join('')}</ul>`;
+  const status = p => I18n.language !== 'en' ? p.status : p.kind === 'home' ? 'In the hub' : p.kind === 'away' ? 'Away' : !p.game ? 'At a private table' : `${p.kind==='lobby'?'In lobby:':p.kind==='playing'?'Playing':'Watching'} ${account.games.find(g=>g.id===p.game)?.name || p.game}`;
+  const list = `<ul class="presence-list">${people.map((p) => `<li data-presence-person="${esc(p.key)}" data-presence-kind="${esc(p.kind)}"><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${profileLink(p.key, p.name)}${p.key === me ? I18n.t(' (du)') : ''}</b><small>${esc(status(p))}</small></div>
+    ${p.code && p.key !== me ? I18n.html`<div class="presence-actions">${p.canJoin ? `<button type="button" class="btn btn-brass" data-join="${esc(p.code)}" data-mode="sit">${I18n.content('Beitreten','Join')}</button>` : ''}<button type="button" class="btn btn-ghost" data-join="${esc(p.code)}" data-mode="watch">Zuschauen</button></div>` : ''}</li>`).join('')}</ul>`;
   const recent = I18n.html`<details class="presence-recent" data-presence-details="recent"><summary>Zuletzt online (${recentlySeen.length})</summary><ul class="presence-list">${recentlySeen.map((p) => `<li><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${profileLink(p.key, p.name)}</b><small><time datetime="${new Date(p.at).toISOString()}">${relativeSeen(p.at)}</time></small></div></li>`).join('') || I18n.html('<li>Noch niemand in den letzten 24 Stunden.</li>')}</ul></details>`;
   const title = I18n.html`Gerade online (${people.length})`;
   return `<div class="presence-desktop"><h2>${I18n.t(title)}</h2>${list || ''}</div>
@@ -652,6 +653,7 @@ socket.on('presence', (data) => { hubPresence = data; refreshPresence(); });
 window.addEventListener('identityready', () => refreshPresence());
 document.addEventListener('visibilitychange', () => { if (!document.hidden) lastInput = Date.now(); reportPresence(); });
 ['pointerdown', 'keydown', 'input'].forEach((event) => document.addEventListener(event, () => { lastInput = Date.now(); reportPresence(); }, { passive: true }));
-setInterval(() => { reportPresence(); refreshPresence(); }, 30000);
+setInterval(() => { reportPresence(true); refreshPresence(); }, 30000);
+window.addEventListener('pagehide', () => socket.disconnect());
 window.addEventListener('storage', (e) => { if (['poker:name', 'poker:avatar', 'poker:presenceHidden'].includes(e.key)) { renderProfileChip(); reportPresence(true); } });
 if (socket.connected) subscribeLobby();

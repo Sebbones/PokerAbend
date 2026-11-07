@@ -70,13 +70,14 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
   return {
     // Nur Statistik-Kopien: Erfolge benutzen dieselbe Identität und keine zweite Ergebnisdatei.
     // ref: ein Name (alle gleichnamigen Personen zusammen) oder { accountId, name } (genau dieses Konto)
-    profile(ref) {
+    profile(ref, { includeAccount = () => true } = {}) {
       const byAccount = ref && typeof ref === 'object' && ACCOUNT_ID.test(ref.accountId) ? ref.accountId : null;
       const name = ref && typeof ref === 'object' ? ref.name : ref;
       const wanted = nameKey(name), games = new Map();
       let shown = null;
       for (const [key, p] of Object.entries(data.players)) {
         const owner = ownerOf(key);
+        if (!byAccount && ACCOUNT_ID.test(owner) && !includeAccount(owner)) continue;
         if (byAccount ? owner !== byAccount : nameKey(nameOfOwner(key)) !== wanted) continue;
         shown ||= nameOfOwner(key);
         for (const [gameKey, g] of Object.entries(p.games || {})) {
@@ -87,9 +88,9 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
       const given = String(name || '').trim();
       return { name: byAccount ? given || data.players[byAccount]?.name || shown || '' : shown || given, games: [...games.values()] };
     },
-    names(query = '') {
+    names(query = '', { includeAccount = () => true } = {}) {
       const q = nameKey(query);
-      return [...new Set(Object.keys(data.players).map(nameOfOwner))].filter((name) => nameKey(name).includes(q)).sort((a, b) => a.localeCompare(b, 'de'));
+      return [...new Set(Object.keys(data.players).filter(key => !ACCOUNT_ID.test(ownerOf(key)) || includeAccount(ownerOf(key))).map(nameOfOwner))].filter((name) => nameKey(name).includes(q)).sort((a, b) => a.localeCompare(b, 'de'));
     },
     // Alter Bestand ohne Konto, den noch niemand übernommen hat
     legacyNames() {
@@ -152,13 +153,17 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
 
     // V2-03: eine Runde mit Platzierungen. players: [{ accountId, name, bot, win, points }]. Doppelte Runden-IDs zählen nie zweimal.
     // ranked/reason kommen vom Server (beim Rundenstart eingefroren), nie vom Client. lowWins: wenige Punkte sind besser.
-    recordRound({ id, game, variant = 'classic', ranked = false, reason = '', players = [], lowWins = false }) {
+    recordRound({ id, game, variant = 'classic', ranked = false, reason = '', players = [], lowWins = false, program = null }) {
       if (!ROUND_ID.test(String(id)) || data.rounds[id] || !players.length) return false;
       const list = players.map((p) => ({ a: ACCOUNT_ID.test(p.accountId) && !p.bot ? p.accountId : null, n: String(p.name ?? '').trim().slice(0, 40), bot: !!p.bot, win: !!p.win, pts: Number(p.points) || 0 }));
       const order = [...list].sort((x, y) => (y.win - x.win) || (lowWins ? x.pts - y.pts : y.pts - x.pts));
       order.forEach((p, i) => { p.place = i > 0 && order[i - 1].win === p.win && order[i - 1].pts === p.pts ? order[i - 1].place : i + 1; });
-      const humansOnly = list.every((p) => !p.bot), qualified = !!ranked && humansOnly && list.filter((p) => p.a).length >= 2;
+      const humansOnly = list.every((p) => !p.bot), qualified = !!ranked && humansOnly && list.every(p=>p.a) && new Set(list.map(p=>rankedOwner(p.a))).size >= 2;
       data.rounds[id] = { id, game: scoreKey(game, variant), variant, at: now().getTime(), ranked: qualified, reason: qualified ? '' : String(reason || (humansOnly ? 'zu-wenige' : 'bots')), players: list };
+      // Only server-created station identity, never room codes, names or client claims.
+      if (program && /^[a-f0-9-]{36}$/.test(program.id) && program.mode === 'abend' && Number.isInteger(program.total) && program.total >= 1 && program.total <= 12 && Number.isInteger(program.index) && program.index >= 0 && program.index < program.total) {
+        data.rounds[id].program = { id: program.id, mode: 'abend', index: program.index, total: program.total };
+      }
       const keys = Object.keys(data.rounds);
       if (keys.length > MAX_ROUNDS) for (const key of keys.sort((a, b) => data.rounds[a].at - data.rounds[b].at).slice(0, keys.length - MAX_ROUNDS)) delete data.rounds[key];
       dirty = true;
@@ -166,6 +171,27 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
     },
     roundCount: () => Object.keys(data.rounds).length,
     round: (id) => data.rounds[id] || null,
+    achievementAccounts() {
+      return [...new Set([...Object.keys(data.players).map(rankedOwner), ...Object.values(data.rounds).flatMap(r => Array.isArray(r?.players) ? r.players.map(p => p?.a && rankedOwner(p.a)) : [])].filter(id => ACCOUNT_ID.test(id || '')))];
+    },
+    // Recompute from unique, qualified results; repeat reads/backfills never add counts.
+    achievementProfile(accountId, gameIds = null) {
+      const games = new Map(), evenings = new Map(); let streak = 0, longestStreak = 0;
+      const allowed = gameIds && new Set(gameIds);
+      const rounds = Object.entries(data.rounds).filter(([key,r])=>r && key===r.id).map(([,r])=>r).filter(r => r.ranked === true && ROUND_ID.test(r.id) && Number.isSafeInteger(r.at) && typeof r.game === 'string' && (!allowed || allowed.has(r.game.split('~')[0])) && Array.isArray(r.players) && r.players.length >= 2 && r.players.every(p => p && !p.bot && (p.a === null || ACCOUNT_ID.test(p.a))) && new Set(r.players.map((p,i) => p.a || `deleted:${i}`)).size >= 2).sort((a,b) => a.at-b.at);
+      for (const r of rounds) {
+        const p = r.players.find(p => rankedOwner(p.a) === rankedOwner(accountId)); if (!p) continue;
+        const id = r.game.split('~')[0], g = games.get(id) || { id, played: 0, wins: 0, months: [] };
+        g.played++; g.wins += Number(p.win); games.set(id,g);
+        streak = p.win ? streak+1 : 0; longestStreak = Math.max(longestStreak,streak);
+        const q = r.program;
+        if (q?.mode === 'abend' && /^[a-f0-9-]{36}$/.test(q.id) && Number.isInteger(q.total) && q.total >= 1 && q.total <= 12 && Number.isInteger(q.index) && q.index >= 0 && q.index < q.total) {
+          const e = evenings.get(q.id) || { total:q.total, indices:new Set(), valid:true };
+          e.valid &&= e.total === q.total; e.indices.add(q.index); evenings.set(q.id,e);
+        }
+      }
+      return { games:[...games.values()], longestStreak, completedEvenings:[...evenings.values()].filter(e=>e.valid && e.indices.size===e.total).length };
+    },
     // Nur qualifizierte Ergebnisse. game 'all' = alle Spiele zusammen (dann ohne Punkte, weil Spiele nicht vergleichbar sind).
     // V2-04: Auswertung für ein einzelnes Konto aus der Rundenablage (zusammengeführte Konten zählen mit)
     // V2-05: personenbezogene Einträge eines Kontos entfernen. Ergebnisse anderer bleiben: das Konto wird in den Runden anonymisiert.

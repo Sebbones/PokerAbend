@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { ACHIEVEMENTS, achievementProgress, createAchievements } from '../server/achievements.js';
+import { ACHIEVEMENTS, achievementCatalog, achievementProgress, createAchievements } from '../server/achievements.js';
 import { createLeaderboard } from '../server/leaderboard.js';
 import { GAMES } from '../games/index.js';
 
@@ -11,7 +11,7 @@ const games = Object.values(GAMES), progress = (rows) => achievementProgress({ n
 const row = (id, played = 1, wins = 0, months = ['2026-10']) => ({ id, played, wins, months });
 
 test('Abzeichen: eindeutige Definitionen und ein leerer Start mit ehrlichem Fortschritt', () => {
-  const p = progress([]); assert.equal(p.total, 17); assert.equal(new Set(ACHIEVEMENTS.map((b) => b.id)).size, 17);
+  const p = progress([]); assert.equal(p.total, 21 + 3 * games.length); assert.equal(new Set(achievementCatalog(games).map(b=>b.id)).size,p.total); assert.equal(new Set(ACHIEVEMENTS.map((b) => b.id)).size, 17);
   assert.equal(p.unlocked, 0); assert.equal(p.recorded, false);
   assert.ok(p.badges.every((b) => !b.unlocked && b.progress === 0 && b.target > 0 && b.description && b.title));
 });
@@ -45,7 +45,7 @@ test('Entdecken: verschiedene Spiele und Kategorien statt wiederholter Partien z
 test('Alle 17 Abzeichen sind über echte Katalogspiele erreichbar; Monate zählen nur einmal', () => {
   const result = progress(games.map((g) => row(g.id, 3, 2, ['2026-10', '2026-11', '2027-01', '2026-10', 'bad', '2026-13'])));
   assert.equal(result.stats.activeMonths, 3); assert.equal(result.stats.categories, 4); assert.equal(result.stats.distinctGames, games.length);
-  assert.equal(result.unlocked, result.total);
+  assert.equal(result.unlocked, 17, 'The original achievements remain reachable; new ranked achievements need qualified rounds');
 });
 
 test('Statistik bleibt unverändert; ungültige oder ungespielte Werte vergeben keine Abzeichen', () => {

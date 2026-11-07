@@ -12,6 +12,11 @@
 .achievement-card { --medal: #c99167; padding: 1.1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
 .achievement-card.tier-silver { --medal: #c5d2d6; }
 .achievement-card.tier-gold { --medal: var(--gold); }
+.achievement-card.tier-platinum { --medal: #a9dfed; }
+.achievement-filters select { max-width: 100%; min-width: 0; }
+.achievement-filters .field { min-width: 0; max-width: 100%; }
+.achievement-card h2, .achievement-card p { overflow-wrap: anywhere; }
+#achievement-more { margin: 1rem 0; }
 .achievement-card.earned { border-color: var(--medal); }
 .achievement-card-head { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; }
 .achievement-card h2 { font-size: 1.05rem; margin: .2rem 0 0; }

@@ -38,7 +38,9 @@ export function createRanked({ accounts, leaderboard, lowWins = () => false, new
         if (!p || !frozen.ids.includes(p.id)) reason ||= 'teilnehmer';
         return { accountId: (p && frozen.accounts[p.id]) || null, name: e.name, bot: !!p?.bot, win: e.win, points: e.points };
       });
-      return leaderboard.recordRound({ id: frozen.id, game: room.game, variant: room.variant || 'classic', ranked: !reason, reason, players, lowWins: !!lowWins(room) });
+      const p = room.partyProgram;
+      const program = p && ['running','between','done'].includes(p.status) && p.results?.some(r=>r.index===p.index && r.game===room.game) ? { id:p.id, mode:p.config.mode, index:p.index, total:p.plan.length } : null;
+      return leaderboard.recordRound({ id: frozen.id, game: room.game, variant: room.variant || 'classic', ranked: !reason, reason, players, lowWins: !!lowWins(room), program });
     },
   };
 }
