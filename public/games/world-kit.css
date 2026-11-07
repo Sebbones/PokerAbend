@@ -1,0 +1,31 @@
+/* Gemeinsame Bausteine der individuellen Spielwelten (opt-in über .wk-*; jedes Spiel setzt seine eigenen Variablen).
+   Reines CSS, keine Bilder. Kontrast, 44-Pixel-Aktionen und reduzierte Bewegung sind hier einmal geregelt. */
+.wk-stage { --wk-ink:#f6efe0; --wk-muted:#d3caae; --wk-edge:#ffffff2e; --wk-surface:#0000003d; --wk-accent:#e3c27a; --wk-font:Georgia,'Times New Roman',serif;
+  position:relative; display:grid; justify-items:stretch; gap:14px; width:100%; max-width:var(--wk-max,880px); min-width:0; margin:auto; padding:clamp(12px,2.2vw,24px); border-radius:18px;
+  border:1px solid var(--wk-edge); background:var(--wk-bg,linear-gradient(160deg,#ffffff0f,#0000002a)); color:var(--wk-ink); box-shadow:inset 0 0 0 1px #ffffff12,0 14px 30px #0004; }
+.wk-stage * { min-width:0; }
+.wk-head { display:flex; justify-content:space-between; align-items:end; gap:10px 18px; flex-wrap:wrap; }
+.wk-eyebrow { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--wk-accent); font-weight:600; }
+.wk-title { margin:2px 0 0; font:600 clamp(22px,3.4vw,34px)/1.15 var(--wk-font); overflow-wrap:anywhere; }
+.wk-sub { margin:4px 0 0; color:var(--wk-muted); font-size:13px; }
+.wk-chips { display:flex; gap:6px; flex-wrap:wrap; }
+.wk-chip { display:inline-flex; align-items:center; gap:6px; min-height:32px; padding:5px 12px; border-radius:99px; border:1px solid var(--wk-edge); background:var(--wk-surface); font-size:13px; color:var(--wk-ink); }
+.wk-chip::before { content:attr(data-i); font-size:14px; line-height:1; }
+.wk-chip.good { border-color:#8fd3a2; background:#2f6a4466; }
+.wk-chip.warn { border-color:#e7b56a; background:#7a4d1c66; }
+.wk-chip.bad { border-color:#e68f86; background:#7a2f2866; }
+.wk-panel { padding:12px 14px; border-radius:12px; background:var(--wk-surface); border:1px solid var(--wk-edge); }
+.wk-label { display:block; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--wk-muted); margin-bottom:6px; }
+.wk-ledger { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+.wk-ledger > li { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:8px 12px; border-radius:10px; background:var(--wk-surface); border:1px solid transparent; }
+.wk-ledger > li.me { border-color:var(--wk-accent); }
+.wk-ledger > li.hit { border-color:#8fd3a2; background:#2f6a4455; }
+.wk-ledger > li.out { opacity:.6; }
+.wk-ledger b { overflow-wrap:anywhere; }
+.wk-grow { flex:1 1 auto; }
+.wk-note { padding:12px 16px; border-radius:6px; background:var(--wk-paper,#f2e8cf); color:var(--wk-paper-ink,#2e2a20); box-shadow:0 3px 8px #0005; font-family:var(--wk-font); overflow-wrap:anywhere; }
+.wk-stage button:focus-visible,.wk-stage [tabindex]:focus-visible,.wk-stage summary:focus-visible { outline:3px solid #f2d98a; outline-offset:2px; }
+.wk-stage .btn,.wk-stage button { min-height:44px; }
+@media (max-width:600px) { .wk-stage { padding:12px; gap:10px; border-radius:14px; } .wk-chip { font-size:12px; } }
+@media (prefers-reduced-motion:reduce) { .wk-stage * { transition:none !important; animation:none !important; } }
+body.calm .wk-stage * { transition:none !important; animation:none !important; }
