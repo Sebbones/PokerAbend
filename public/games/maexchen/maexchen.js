@@ -91,7 +91,9 @@
       const last = g.last?.value;
       const ranks = I18n.html`<details class="mx-ranks"><summary>Rangliste der Würfe</summary>
         <ol>${[...g.values].reverse().map((v) => `<li class="${special(v)} ${v === last ? 'now' : ''}">${vName(v)}${v === MAEXCHEN ? I18n.html(' <small>(2 und 1)</small>') : ''}${v === last ? I18n.html(' <small>← zuletzt angesagt</small>') : ''}</li>`).join('')}</ol></details>`;
-      return `<div class="kg-table">${center}${ranks}</div>`;
+      const W = WorldKit, t = W.t, mineTurn = S.turnId === S.you?.id;
+      const chips = [g.last ? W.chip('⬆', `${t('Angesagt', 'Announced')}: ${vName(g.last.value)}`, g.last.value === MAEXCHEN ? 'warn' : '') : W.chip('…', t('Noch nichts angesagt', 'Nothing announced yet')), g.cup ? W.chip('🔒', t('Dein Wurf ist privat', 'Your roll is private'), 'good') : W.chip('🥃', t('Becher zu', 'Cup closed')), g.reveal ? W.chip('👁', t('Aufgedeckt', 'Revealed'), g.reveal.loser === g.reveal.by ? 'bad' : 'good') : ''].filter(Boolean);
+      return `<div class="kg-table wk-stage mx-table">${W.head({ eyebrow: t('Kneipentisch', 'Pub table'), title: mineTurn ? t('Du bist dran', 'Your turn') : t('Becher am Tisch', 'The cup on the table'), chips })}<div class="mx-zone mx-public" aria-label="${t('Öffentlich', 'Public')}">${center}</div>${ranks}</div>`;
     },
     dock(S, myTurn) {
       const g = S.g;
