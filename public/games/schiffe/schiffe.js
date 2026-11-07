@@ -133,6 +133,11 @@
       return 'Tipp ein Feld im gegnerischen Meer an';
     },
     main(S) {
+      const W = WorldKit, t = W.t, g1 = S.g, over1 = S.phase === 'over', mine1 = meIn(S);
+      const chips = [g1.step === 'place' && !over1 ? W.chip('⚓', mine1?.ready ? t('Flotte steht – warte auf den Gegner', 'Fleet ready – waiting for the opponent') : t('Phase: Schiffe setzen', 'Phase: placing ships'), mine1?.ready ? 'good' : 'warn') : over1 ? W.chip('🏁', t('Partie vorbei – beide Meere aufgedeckt', 'Game over – both seas revealed')) : W.chip('🎯', S.turnId === S.you?.id ? t('Du schießt', 'You are firing') : t('Der Gegner schießt', 'The opponent is firing'), S.turnId === S.you?.id ? 'good' : ''), S.variant === 'salvo' ? W.chip('✦', t('Salve-Variante', 'Salvo variant')) : ''].filter(Boolean);
+      return `<div class="wk-stage sv-stage">${W.head({ eyebrow: t('Seekarte', 'Sea chart'), title: g1.step === 'place' && !over1 ? t('Flotte aufstellen', 'Deploy your fleet') : t('Seeschlacht', 'Sea battle'), chips })}${this.mainBody(S)}</div>`;
+    },
+    mainBody(S) {
       const g = S.g;
       const me = S.you?.id;
       const mine = meIn(S);

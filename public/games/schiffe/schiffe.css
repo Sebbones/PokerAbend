@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Schiffe versenken: zwei Meere 10 × 10 mit Beschriftung A–J / 1–10 */
 .kg-schiffe .kg-main { background: radial-gradient(120% 90% at 50% 25%, #1E4E6E, #0C2638); }
 .sv-wrap { gap: 10px; }
@@ -38,3 +39,9 @@ button.sv-cell:hover, button.sv-cell:focus-visible { outline: 2px solid var(--go
   .sv-sea.small { width: min(100%, 260px); }
   .sv-board { grid-template-columns: 14px repeat(10, minmax(0, 1fr)); padding: 4px; gap: 1px; }
 }
+
+/* VIS-013: Seekarten-Tisch – dunkles Wasser, Pergament-Brettrand; eigene Flotte beim Setzen groß, beide Meere nur zum Schießen/Aufdecken */
+.sv-stage { --wk-bg: linear-gradient(165deg, #174463, #0a1d2e); --wk-edge:#a8d2e866; --wk-accent:#bfe3f0; --wk-max:980px; justify-items: stretch; }
+.sv-stage .sv-two { align-items: start; }
+.sv-stage button { min-height: 44px; }
+@media (max-height: 560px) { .sv-stage { padding: 6px; gap: 4px; } .sv-stage > .wk-head { display: none; } }
