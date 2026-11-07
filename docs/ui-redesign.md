@@ -1,5 +1,17 @@
 # UI-Redesign – Arbeits- und Abnahmeprotokoll
 
+## V2-06 – Konto-Seiten im Liquid-Glass-Design (2026-11-07)
+
+Ausdrücklich freigegebenes Paket ohne Logikänderung: Profil-Dialog, Einstellungen, Bestenliste, Erfolge und Admin-Seite folgen jetzt denselben Tokens wie der Hub.
+
+| Bereich | Vorher | Nachher |
+| --- | --- | --- |
+| Profil-Dialog | Avatar vom Hub-Kopfzeilen-Stil verformt (winzig, ohne Kreis); Rand und Flächen mit `currentColor`; abgeblendeter Text (`opacity`) | Avatar 56 px im Kreis; Fläche `--glass`, Rand `--glass-edge`, Kacheln `--panel-2` mit `--line`; Text in `--text-2` statt Deckkraft; deckend bei „Glaseffekt reduzieren“ und `prefers-reduced-transparency` |
+| Einstellungen, Bestenliste, Erfolge | Hinweise per `opacity`; Gruppenränder in `currentColor` | Hinweise in `--text-2`; Ränder `--line`; goldener Fokusring (2 px) auf allen bedienbaren Elementen |
+| Admin | eigene Palette (#16241f, Messing), `system-ui`, 12 px Rundung, Messing-Buttons | Bricolage Grotesque, Georgia-Überschrift, `--panel`/`--edge`, 16 px Rundung, smaragdgrüne Hauptaktionen, umrandete Gefahr-Aktionen, 44-px-Ziele, Fokusring, `prefers-reduced-motion`, `forced-colors` |
+
+Der Hub kennt kein helles Farbschema (`color-scheme: dark`); geprüft sind die Tischthemen klassisch und Nacht sowie die reduzierten Varianten. Textkontrast wird in `test/ui/v2-06-account-glass.spec.js` gegen den tatsächlich dahinterliegenden Hintergrund gemessen (halbtransparente Flächen übereinandergelegt, Hub-Foto als dunkler Grundton angenommen) – bereits vorher ohne Verstöße, nachher weiterhin. Screenshots: `docs/design/screenshots/v2-06/before` und `after` (desktop und mobil, JPEG).
+
 ## Aktuelle Referenzkorrektur vom 30. Oktober 2026
 
 Dieser Abschnitt beschreibt den aktuellen Auftrag auf Basis von `main` bei `7c8b96c459feed1750dd7ee2caddf23b5686a66e`. Die weiter unten erhaltenen Abschnitte sind das historische Protokoll des ersten Redesigns; ihre Aussagen über optionale Fotos, frühere Branches und damals noch nicht erfolgte Pushes sind zeitgebunden. Für diese Korrektur wurde ausschließlich auf `main` gearbeitet. Die Originalreferenz wurde vor der Umsetzung und den visuellen Korrekturrunden tatsächlich geöffnet. Es wurden weder neue Spiele noch V2-Pakete implementiert.

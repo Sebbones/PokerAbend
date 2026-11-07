@@ -438,17 +438,35 @@
         "responsive Desktop/iPhone",
         "kein 3D, keine Freundesliste"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
+      "status": "done",
+      "implementation_commit": "e73be94",
+      "completed_at": "2026-11-07",
       "notes": [
-        "Redesign bereits vor dieser Konsolidierung auf main: aa25517; Abnahme in docs/ui-redesign.md. Die spätere V2-Kontointegration ist noch nicht implementiert und bleibt planned."
+        "Redesign bereits vor dieser Konsolidierung auf main: aa25517; Abnahme in docs/ui-redesign.md. Die spätere V2-Kontointegration ist noch nicht implementiert und bleibt planned.",
+        "Ausdrückliche Freigabe vom 2026-11-07. Keine Logikänderung: gemeinsame Tokens (--glass, --glass-edge, --line, --text-2, Radien) für Profil-Dialog und Konto-Seiten in public/ui-theme.css; der Hub, seine Tokens und Hintergrund bleiben unverändert. Die Admin-Seite (server/admin/admin.html) nutzt jetzt Hub-Schrift, Flächenfarbe, Linien, Rundungen und Fokusring. Details und Vorher/Nachher: docs/ui-redesign.md (V2-06).",
+        "Der Hub kennt kein helles Farbschema (color-scheme: dark) – geprüft wurden die beiden vorhandenen Tischthemen klassisch und Nacht, „Glaseffekt reduzieren“, die Systemeinstellungen „reduzierte Transparenz“ und „reduzierte Bewegung“ sowie erzwungene Farben. Ein neues helles Theme war nicht Teil des Auftrags.",
+        "Bekannt und nicht Teil dieses Pakets: ui-redesign.spec.js „Neuer Tisch …“ schlägt bereits ohne diese Änderung fehl (der Schalter „Glaseffekt reduzieren“ wurde mit V2-05 auf die Einstellungsseite verlegt)."
       ],
       "public_roadmap_ids": [
         "v2-liquid-glass"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test \"test/*.test.js\" (sauberer Checkout von HEAD + diese Änderung)",
+          "result": "1453 Tests, 1453 bestanden, 0 fehlgeschlagen."
+        },
+        {
+          "command": "npx playwright test test/ui/v2-06-account-glass.spec.js (desktop + mobil)",
+          "result": "8 bestanden: Bestenliste, Erfolge, Einstellungen, Profil-Dialog und Admin ohne Überlaufen, Textkontrast nach WCAG AA (4,5:1 bzw. 3:1 für große Schrift, gemessen gegen den tatsächlichen Hintergrund) in beiden Tischthemen, keine laufenden Animationen bei „reduzierte Bewegung“, sichtbarer Fokusring; Screenshots vorher/nachher in docs/design/screenshots/v2-06/."
+        },
+        {
+          "command": "npx playwright test profile, settings, ops, achievements (sauberer Checkout)",
+          "result": "42 bestanden zusammen mit der neuen Spec."
+        }
+      ],
+      "commits": [
+        "e73be94"
+      ]
     },
     {
       "id": "V2-07",
