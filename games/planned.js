@@ -27,15 +27,7 @@ export const PLANNED = [
 
 
 
-  spiel({ id: 'stichmeister', name: 'Stichmeister', category: 'karten', minPlayers: 3, maxPlayers: 6, duration: 20, paeckchen: 'spaeter',
-    description: "Vorher ansagen, wie viele Stiche man holt – nur genaue Vorhersagen bringen Bonuspunkte.",
-    rules: ["Alle erhalten gleich viele Karten und sagen vor der Runde ihre Stichzahl an.","Wer eine angespielte Farbe auf der Hand hat, muss diese Farbe bedienen.","Die höchste Karte der Farbe gewinnt den Stich; ein vereinbarter Trumpf kann sie schlagen.","Nach der Runde gibt es Punkte für die Stiche und einen Bonus für eine genaue Ansage."], art: fan([{ kind: 'heart' }, { kind: 'diamond' }, { kind: 'bars' }]),
-  }),
 
-  spiel({ id: 'labyrinth-brett', name: 'Labyrinth-Brett', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 20, paeckchen: 'spaeter',
-    description: "Gänge verschieben, Wege öffnen und die eigenen Schätze einsammeln.",
-    rules: ["Ein Labyrinth aus verschiebbaren Gangplättchen enthält verdeckte Schatzaufträge.","Wer dran ist, schiebt zuerst eine Reihe oder Spalte mit dem freien Plättchen.","Danach zieht die eigene Figur beliebig weit auf zusammenhängenden Wegen.","Wer alle eigenen Schätze gesammelt hat und zum Start zurückkehrt, gewinnt."], art: glyph('maze'),
-  }),
   spiel({ id: 'regelwahnsinn', name: 'Regelwahnsinn', category: 'party', bauart: 'A', minPlayers: 3, maxPlayers: 12, duration: 10, paeckchen: 'spaeter',
     description: "Jede Runde eine neue Regel: Wer den Überblick behält, sammelt Punkte.",
     rules: ["Alle starten mit einer einfachen offenen Grundaufgabe für die Runde.","Nach jeder Runde kommt eine weitere sichtbare Zusatzregel dazu.","Korrekte Antworten unter allen aktiven Regeln bringen Punkte; die höchste Summe gewinnt."], art: glyph('arrows'),
@@ -63,19 +55,6 @@ export const PLANNED = [
   // ---------- Später ----------
 
 
-  spiel({
-    id: 'schatzinsel', name: 'Schatzinsel', category: 'brett', minPlayers: 2, maxPlayers: 4, duration: 15, paeckchen: 'spaeter',
-    description: 'Schätze auf der eigenen Insel verstecken und die der anderen ausgraben.',
-    rules: [
-      'Jeder bekommt eine Insel aus 8×8 Feldern und versteckt darauf drei Schätze.',
-      'Reihum gräbt man ein Feld auf einer fremden Insel aus.',
-      'Ein Treffer gibt den Schatz und einen weiteren Zug; kein Treffer verrät „heiß“, „warm“ oder „kalt“ (Abstand zum nächsten Schatz).',
-      'Wer einen ganzen Gegner leer gegraben hat, nimmt ihn aus dem Spiel.',
-      'Wer am Ende die meisten Schätze hat, gewinnt.',
-    ],
-    houseRules: ['Mehr Schätze', 'Ohne Hinweise', 'Falle statt Schatz auf einzelnen Feldern'],
-    art: battle(),
-  }),
   spiel({
     id: 'gummiband-challenge', name: 'Gummiband-Challenge', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
     description: 'Ein Gummiband möglichst lange in der Zielzone halten.',

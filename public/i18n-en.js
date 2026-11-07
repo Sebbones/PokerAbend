@@ -1,6 +1,10 @@
 // Reviewed English UI messages; German source text is the fallback for missing entries.
 'use strict';
 window.EN = {
+  'Blätter pro Partie':'Deals per match','Maximale Handgröße':'Maximum hand size','Trumpfvereinbarung':'Trump agreement','Aufgedeckte Karte':'Revealed card','Ohne Trumpf':'No trump',
+  'Schätze pro Person':'Treasures per player','Schätze pro Insel':'Treasures per island','Hinweise heiß / warm / kalt':'Hot / warm / cold hints',
+  'Stichmeister: höchste Gesamtpunktzahl gewinnt':'Trick Forecast: highest total wins','Alle eigenen Schätze gefunden und zum Start zurückgekehrt':'All assigned treasures found and returned home','Schatzinsel: die meisten gefundenen Schätze gewinnen':'Hidden Isles: most collected treasures wins',
+  'dreht das freie Gangplättchen':'rotates the spare tile','verschiebt einen Gang':'shifts a corridor','findet einen eigenen Schatz':'finds an assigned treasure','zieht durch die Gänge':'moves along the corridors','hat seine Schätze verdeckt versteckt':'has hidden their treasures privately','gräbt ohne Schatzfund':'digs without finding treasure',
   'Nonogramm':'Nonogram',
   'Fünf weitere Klassiker sind spielbar. Vier weitere Pakete benötigen eine eigene Freigabe.':'Five more classics are playable. Four further packages require separate approval.',
   'Einzelspieler': 'Single player', 'Spielen': 'Play',
@@ -601,3 +605,5 @@ Object.assign(window.EN_GAMES,{skat:{name:'Skat',description:'The German card ga
 Object.assign(window.EN,{'Spiele pro Serie':'Games per series','3 Spiele':'3 games','6 Spiele':'6 games','12 Spiele':'12 games','24 Spiele':'24 games','36 Spiele':'36 games','4 Spiele':'4 games','8 Spiele':'8 games','16 Spiele':'16 games','Ramsch, wenn alle passen':'Ramsch when everyone passes','Bockrunden':'Bock rounds','Mit Neunen (48 statt 40 Karten)':'With nines (48 instead of 40 cards)','Schweinchen (zwei Karo-Asse sind höchster Trumpf)':'Pigs (two aces of diamonds are the highest trump)','Skat braucht genau drei Spieler':'Skat needs exactly three players','Doppelkopf braucht genau vier Spieler':'Doppelkopf needs exactly four players'});
 Object.assign(window.EN,{'Mein Profil':'My profile','So sehen dich andere. Hier legst du auch fest, welche Angaben sie sehen.':'This is how others see you. You also choose here which details they can see.','Profil öffnen':'Open profile'});
 Object.assign(window.EN,{'Einstellungen':'Settings','Alle Einstellungen öffnen':'Open all settings','Anzeige, Bedienung, Filter, Ton und Datenschutz stehen gesammelt auf einer Seite.':'Display, controls, filters, sound and privacy are collected on one page.'});
+
+Object.assign(window.EN_GAMES,{stichmeister:{name:'Trick Forecast',description:'Predict tricks, follow suit and score bonuses for exact forecasts.'},'labyrinth-brett':{name:'Shifting Paths',description:'Shift corridors, find your private assigned treasures and return home.'},schatzinsel:{name:'Hidden Isles',description:'Hide treasures on private islands, dig elsewhere and follow warm clues.'}});

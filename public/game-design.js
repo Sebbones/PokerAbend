@@ -11,9 +11,9 @@ const GameDesign = (() => {
     arena: { label: I18n.t('Zusammen in der Arena'), light: '#3c4266', dark: '#1c2335', tone: 392, accents: ['#C2D598', '#EAC77F', '#A8D3EB'] },
   };
   const groups = {
-    cards: 'poker omaha maumau farbenchaos zehnetappen stapelrennen schwimmen blackjack mogeln praesident durak sechs-nimmt monopoly-deal hearts five-card-draw omaha-hi-lo short-deck seven-card-stud exploding-deck skat doppelkopf',
+    cards: 'poker omaha maumau farbenchaos zehnetappen stapelrennen schwimmen blackjack mogeln praesident durak sechs-nimmt monopoly-deal hearts five-card-draw omaha-hi-lo short-deck seven-card-stud exploding-deck skat doppelkopf stichmeister',
     dice: 'maexchen schocken kniffel shutthebox zehntausend wuerfelpoker luegenwuerfel chicago wuerfelduell risiko-wuerfeln wuerfeljagd monsterwuerfel wuerfel-auktion',
-    board: 'huetchen schiffe viergewinnt muehle reversi dame domino monopoly spiel-des-lebens scotland-yard hex backgammon scrabble schach',
+    board: 'huetchen schiffe viergewinnt muehle reversi dame domino monopoly spiel-des-lebens scotland-yard hex backgammon scrabble schach labyrinth-brett schatzinsel',
     party: 'schaetzmeister schlagfertig werhatdasgesagt tickendes-paket werwolf wer-bin-ich story-chaos zahlenreihe doppelagent luegenbaron',
     solo: 'zahlenzoo gedaechtnis-kueche pfeilfieber sortierstation',
     drawing: 'kritzelpost bildunterschrift malen-raten',
