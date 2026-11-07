@@ -24,7 +24,7 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
     const matches = points.filter(p => p.id === id);
     expect(matches, `${task.id}: ${id}`).toHaveLength(1);
     // Only explicitly authorized, implemented packages may complete public points.
-    expect(!!matches[0].erledigt, id).toBe(['v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'].includes(id));
+    expect(!!matches[0].erledigt, id).toBe(['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'].includes(id));
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('v2-roadmap.png'), fullPage: true });
@@ -77,7 +77,8 @@ test('Roadmap: Navigation, Filter, Spielregeln und gemerkte abgeschlossene Etapp
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.locator(page.viewportSize().width < 641 ? '#profile-avatar' : '#profile-chip').click();
   await expect(page.getByRole('switch', { name: /Geplante Spiele zeigen/ })).toHaveCount(0);
-  await expect(page.getByRole('switch', { name: /Mich nicht als online zeigen/ })).toBeVisible();
+  await page.locator('.profile-preferences summary').click();
+  await expect(page.locator('#p-preferences a[href="#einstellungen"]')).toBeVisible();
 });
 
 test('Presence: zweiter Browser, Unsichtbarkeit, Tisch zuschauen und Trennen', async ({ page, app, browser }, info) => {
@@ -90,19 +91,15 @@ test('Presence: zweiter Browser, Unsichtbarkeit, Tisch zuschauen und Trennen', a
     const list = page.locator(page.viewportSize().width < 641 ? '.presence-mobile .presence-list' : '.presence-desktop .presence-list');
     await expect(list).toContainText('Ben', { timeout: 7000 });
     await expect(list.locator('li').first()).toContainText('Anna (du)');
-    const profile = other.viewportSize().width < 641 ? '#profile-avatar' : '#profile-chip';
-    await other.locator(profile).click();
-    await other.getByRole('switch', { name: /Mich nicht als online zeigen/ }).check();
-    await other.getByRole('button', { name: 'Speichern', exact: true }).click();
+    await other.evaluate(()=>location.hash='#einstellungen/datenschutz');
+    await other.locator('[data-set-privacy=showOnline]').uncheck();
     await expect(list).not.toContainText('Ben', { timeout: 7000 });
-    await other.locator(profile).click();
-    await other.getByRole('switch', { name: /Mich nicht als online zeigen/ }).uncheck();
-    await other.getByRole('button', { name: 'Speichern', exact: true }).click();
+    await other.locator('[data-set-privacy=showOnline]').check();
     await other.evaluate(() => { location.hash = '#spiele'; });
     await other.locator('[data-host="maumau"]').click();
     await other.locator('#host-form button[type="submit"]').click();
     await other.getByRole('button', { name: 'Mitspielen', exact: true }).click();
-    await expect(list).toContainText('spielt Mau-Mau', { timeout: 7000 });
+    await expect(list).toContainText('in Lobby: Mau-Mau', { timeout: 7000 });
     await page.screenshot({ path: info.outputPath('presence.png'), fullPage: true });
     await list.locator('li').filter({ hasText: 'Ben' }).getByRole('button', { name: 'Zuschauen', exact: true }).click();
     await expect(page.locator('#kg-meta')).toContainText('Mau-Mau');

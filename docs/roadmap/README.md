@@ -5,6 +5,8 @@
 
 ## Wichtige Dateien
 
+- [V2-13 und V2-14: Erfolge & Presence](V2-13_V2-14_ACHIEVEMENTS_PRESENCE.md): 234 Abzeichen, qualifizierte spielbezogene Meilensteine, idempotente Bestandsauswertung und Statuswechsel mit Privatsphäre, mehreren Tabs und WebKit-Nachweisen. Alle anderen Task-Status bleiben unverändert.
+
 - [V2-16: Bot-Schwierigkeit](V2-16_BOT_SCHWIERIGKEIT.md): elf Piloten, Host-Auswahl, Informationsgrenzen, Budgets, 2.200 Vergleichspartien und vollständiger Browser-Prüfverlauf. Die übrigen nicht umgesetzten Pakete bleiben geplant.
 
 - **Separate visuelle Planung:** [Design-Roadmap für alle Spiele](../design/GAME_VISUAL_ROADMAP.md), [JSON-Pakete](../design/game-visual-roadmap.json) und [Designstandard](../design/GAME_VISUAL_GUIDELINES.md). Nach dem ausdrücklich beauftragten BACKLOG-04 sind vierzehn VIS-Pakete abgeschlossen. Die weiteren 93 VIS-Pakete (51 spielbare Spiele und 42 Konzepte; Stand 01.11.2026) benötigen eigene Freigaben und ändern keine V2-Statusangaben.

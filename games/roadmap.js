@@ -14,7 +14,7 @@ const spiele = (ids) => ids.map((id) => punkt(id, GAMES[id].name, 'spiel', GAMES
 const BETRIEB_FERTIG = ['betrieb-1', 'betrieb-2', 'betrieb-3', 'betrieb-4', 'betrieb-5', 'betrieb-6'];
 
 // V2-00, V2-01 und V2-02 (Bestandsaufnahme, Plattformidentität, Discord-Anmeldung) sind umgesetzt; alles Übrige bleibt geplant.
-const V2_FERTIG = ['v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'technik-3', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'];
+const V2_FERTIG = ['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'technik-3', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'];
 
 export const ROADMAP = [
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
@@ -90,7 +90,7 @@ export const ROADMAP = [
     ['Ausfall-Wächter', 'Den vorhandenen /health-Endpunkt von außen überwachen.'],
     ['Backups & Restore-Test', 'Backups außer Haus speichern und ihre Wiederherstellung regelmäßig prüfen.'],
     ['Speichern mitten in der Runde', 'Laufende Spielstände nach einem Neustart fortsetzen.'],
-  ]).map((p) => (BETRIEB_FERTIG.includes(p.id) ? { ...p, erledigt: true, datum: '2026-11-01' } : p)) },
+  ]).map((p) => (BETRIEB_FERTIG.includes(p.id) ? { ...p, erledigt: true, datum: ['v2-erfolge-ausbauen','v2-online-verbessern'].includes(p.id) ? '2026-11-07' : '2026-11-01' } : p)) },
   { id: 'technik', titel: 'Technik aufräumen', satz: 'Eine klare Grundlage für weitere Spiele und verlässliche Spielerdaten.', stufe: 'spaeter', punkte: liste('technik', 'betrieb', [
     ['Tests aufteilen', 'Die gewachsene Testsammlung in überschaubare Bereiche gliedern.'],
     ['SQLite', 'Persistente Daten strukturiert in einer Datenbank halten.'],

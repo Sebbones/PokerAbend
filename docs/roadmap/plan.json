@@ -727,7 +727,12 @@
         "public/achievements.js",
         "public/achievements.css",
         "test/achievements.test.js",
-        "test/ui/achievements.spec.js"
+        "test/ui/achievements.spec.js",
+        "test/v2-13-14.test.js",
+        "test/v2-13-14-proof.test.js",
+        "test/ui/v2-13-14.spec.js",
+        "test/ui/v2-13-14.webkit.config.js",
+        "server/ranked.js"
       ],
       "security": [
         "Kein Farming von öffentlichen Ranked-Erfolgen über Bots/Gäste/manipulierte Daten",
@@ -741,15 +746,74 @@
         "Verborgene Erfolge erscheinen nur gemäß Privacy-Präferenz",
         "Bestehende Erfolge und Benachrichtigungen bleiben funktionsfähig"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "20873f46782de597ec885b629c1b95d6ad269890",
+      "completed_at": "2026-11-07",
+      "notes": [
+        "Explicit order 2026-11-07: 234 badges for 71 room games (17 retained + 217 qualified), per-game progress, rare/secret milestones, evening completion, private/public separation and idempotent retrospective evaluation.",
+        "Full scope, evidence and remaining limits: docs/roadmap/V2-13_V2-14_ACHIEVEMENTS_PRESENCE.md. Stop after these two packages; every other task is unchanged."
+      ],
       "public_roadmap_ids": [
         "v2-erfolge-ausbauen"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/v2-13-14.test.js test/achievements.test.js test/presence.test.js test/ranked.test.js test/profile.test.js test/settings.test.js test/party-program-server.test.js",
+          "result": "69 passed, 0 failed; identity, privacy, replay, backfill, malformed history, streak order and existing regressions.",
+          "passed": 69,
+          "failed": 0,
+          "log": "artifacts/v2-13-14-release-focus-node.log"
+        },
+        {
+          "command": "playwright test test/ui/v2-13-14.spec.js test/ui/achievements.spec.js --workers=1",
+          "result": "10 passed on desktop/mobile; real unlock, private views, lobby join, tabs, idle and transport reconnect.",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 104.484278,
+          "report": "artifacts/v2-13-14-complete-browser-report.json",
+          "log": "artifacts/v2-13-14-complete-browser.log"
+        },
+        {
+          "command": "node --test test/*.test.js",
+          "result": "Complete current main suite: 1382 passed, 0 failed, 3 skipped.",
+          "passed": 1382,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 91.607,
+          "log": "artifacts/v2-13-14-final-full-node.log"
+        },
+        {
+          "command": "playwright test test/ui/settings.spec.js test/ui/profile.spec.js test/ui/roadmap-presence.spec.js --workers=1",
+          "result": "30 passed, 0 failed, desktop and mobile settings/profile/presence/roadmap regressions.",
+          "passed": 30,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 108.17562,
+          "report": "artifacts/v2-13-14-final-regression-report.json",
+          "log": "artifacts/v2-13-14-final-regression.log"
+        },
+        {
+          "command": "playwright test --config=test/ui/v2-13-14.webkit.config.js --workers=1",
+          "result": "3 passed, 0 failed with the committed reproducible WebKit configuration.",
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 97.250595,
+          "report": "artifacts/v2-13-14-repro-webkit-report.json",
+          "log": "artifacts/v2-13-14-repro-webkit.log"
+        },
+        {
+          "command": "node --test test/roadmap.test.js test/v2-roadmap.test.js test/v2-13-14-proof.test.js",
+          "result": "11 passed, 0 failed; other task objects, source files and 15 screenshot hashes verified.",
+          "passed": 11,
+          "failed": 0,
+          "log": "artifacts/v2-13-14-proof-node.log"
+        }
+      ],
+      "commits": [
+        "20873f46782de597ec885b629c1b95d6ad269890"
+      ]
     },
     {
       "id": "V2-14",
@@ -768,7 +832,11 @@
         "public/hub.js",
         "public/hub.css",
         "test/presence.test.js",
-        "test/ui/roadmap-presence.spec.js"
+        "test/ui/roadmap-presence.spec.js",
+        "test/v2-13-14.test.js",
+        "test/v2-13-14-proof.test.js",
+        "test/ui/v2-13-14.spec.js",
+        "test/ui/v2-13-14.webkit.config.js"
       ],
       "security": [
         "Unsichtbare Spieler dürfen weder in Online- noch Zuletzt-online-Listen erscheinen",
@@ -784,15 +852,74 @@
         "Unsichtbarkeit und private Tische bleiben geschützt",
         "Safari und Reconnect überprüft"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "20873f46782de597ec885b629c1b95d6ad269890",
+      "completed_at": "2026-11-07",
+      "notes": [
+        "Explicit order 2026-11-07: hub/lobby/playing/watching/away, authoritative account privacy, stable identities, multi-tab deduplication, open-lobby join, pagehide cleanup, heartbeat lease and Safari-engine reconnect tests.",
+        "Full scope, evidence and remaining limits: docs/roadmap/V2-13_V2-14_ACHIEVEMENTS_PRESENCE.md. Stop after these two packages; every other task is unchanged."
+      ],
       "public_roadmap_ids": [
         "v2-online-verbessern"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/v2-13-14.test.js test/achievements.test.js test/presence.test.js test/ranked.test.js test/profile.test.js test/settings.test.js test/party-program-server.test.js",
+          "result": "69 passed, 0 failed; identity, privacy, replay, backfill, malformed history, streak order and existing regressions.",
+          "passed": 69,
+          "failed": 0,
+          "log": "artifacts/v2-13-14-release-focus-node.log"
+        },
+        {
+          "command": "playwright test test/ui/v2-13-14.spec.js test/ui/achievements.spec.js --workers=1",
+          "result": "10 passed on desktop/mobile; real unlock, private views, lobby join, tabs, idle and transport reconnect.",
+          "passed": 10,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 104.484278,
+          "report": "artifacts/v2-13-14-complete-browser-report.json",
+          "log": "artifacts/v2-13-14-complete-browser.log"
+        },
+        {
+          "command": "node --test test/*.test.js",
+          "result": "Complete current main suite: 1382 passed, 0 failed, 3 skipped.",
+          "passed": 1382,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 91.607,
+          "log": "artifacts/v2-13-14-final-full-node.log"
+        },
+        {
+          "command": "playwright test test/ui/settings.spec.js test/ui/profile.spec.js test/ui/roadmap-presence.spec.js --workers=1",
+          "result": "30 passed, 0 failed, desktop and mobile settings/profile/presence/roadmap regressions.",
+          "passed": 30,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 108.17562,
+          "report": "artifacts/v2-13-14-final-regression-report.json",
+          "log": "artifacts/v2-13-14-final-regression.log"
+        },
+        {
+          "command": "playwright test --config=test/ui/v2-13-14.webkit.config.js --workers=1",
+          "result": "3 passed, 0 failed with the committed reproducible WebKit configuration.",
+          "passed": 3,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 97.250595,
+          "report": "artifacts/v2-13-14-repro-webkit-report.json",
+          "log": "artifacts/v2-13-14-repro-webkit.log"
+        },
+        {
+          "command": "node --test test/roadmap.test.js test/v2-roadmap.test.js test/v2-13-14-proof.test.js",
+          "result": "11 passed, 0 failed; other task objects, source files and 15 screenshot hashes verified.",
+          "passed": 11,
+          "failed": 0,
+          "log": "artifacts/v2-13-14-proof-node.log"
+        }
+      ],
+      "commits": [
+        "20873f46782de597ec885b629c1b95d6ad269890"
+      ]
     },
     {
       "id": "V2-15",
@@ -980,7 +1107,7 @@
       "commits": []
     }
   ],
-  "updated_date": "2026-11-01",
+  "updated_date": "2026-11-07",
   "addenda": [
     {
       "file": "docs/roadmap/V2_ADDENDUM_2026-10-30.md",

@@ -59,7 +59,7 @@ test('Öffentliche Roadmap enthält die geplanten V2-Wünsche ohne Doppelungen o
   for (const id of features) {
     assert.ok(byId.has(id), 'Fehlender V2-Roadmap-Eintrag: ' + id);
     // Only explicitly authorized implementations are completed; all other wishes stay planned.
-    assert.equal(!!byId.get(id).erledigt, ['discord-1', 'discord-3', 'discord-4', 'v2-bot-schwierigkeit'].includes(id), id);
+    assert.equal(!!byId.get(id).erledigt, ['discord-1', 'discord-3', 'discord-4', 'v2-bot-schwierigkeit', 'v2-online-verbessern', 'v2-erfolge-ausbauen'].includes(id), id);
   }
   for (const id of ['v2-spielerkomfort', 'v2-admin-verwaltung', 'discord-login']) {
     assert.equal(sections.find((section) => section.id === id)?.stufe, 'spaeter');

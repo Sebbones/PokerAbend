@@ -1,0 +1,182 @@
+{
+  "date": "2026-11-07",
+  "implementation_commit": "20873f46782de597ec885b629c1b95d6ad269890",
+  "packages": [
+    "V2-13",
+    "V2-14"
+  ],
+  "unchanged_other_tasks_sha256": "b989765b3792554b4592b7ab56eba9cee94e42041b7b58dc141dc7c07d14d2fa",
+  "source_audit": [
+    {
+      "path": "server/achievements.js",
+      "sha256": "9948cff456d3412fc00572cea833d414b4cd00b67893ab09c52d690b16df9a09"
+    },
+    {
+      "path": "server/leaderboard.js",
+      "sha256": "57a9464d4cec7dbc782b30087a8b3dd252a3d67acb2c57519ddab7e806474e1a"
+    },
+    {
+      "path": "server/ranked.js",
+      "sha256": "00041792692e018fc3f02bab719084259ae9a26002a0b25b284a3d6d83433fe4"
+    },
+    {
+      "path": "server/index.js",
+      "sha256": "92e0bd59f09914c200086eb1e824b9ec89e2360558274e88a8452695370406ff"
+    },
+    {
+      "path": "server/presence.js",
+      "sha256": "501e5b81db6987cf9a29ce5b0823a9736130eb23e1a1b08b4f539870f3cae9f6"
+    },
+    {
+      "path": "public/achievements.js",
+      "sha256": "6a1470dab02d8dd1b0cfacdd04a189cda1ee5dab1d99a286d3d325d455fcb4ec"
+    },
+    {
+      "path": "public/achievements.css",
+      "sha256": "d5b5da5eb4270ad66016385e45c2269b46bbbb17edabdc82e25be753a9df5b7d"
+    },
+    {
+      "path": "public/hub.js",
+      "sha256": "5f09441b80c3590d4ee4b04099b903d4b05f79fe21abbead5c05be6bfe7310e1"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/desktop-away-presence.png",
+      "sha256": "62c2ed3be13b8a40c8bb8efbb59453d716f4df31493215dbc21ee7b11c0538ea"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/desktop-lobby-presence.png",
+      "sha256": "f295919439be578efe7dfc08b7e5d50b9b78c4382235abdf9b423fbf2826dbd6"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/desktop-private-presence.png",
+      "sha256": "1f71b5d69a6ea668fbbf0896319bdb75b9ba78e37036fa6114a0b5d1374f6e85"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/desktop-secret-locked.png",
+      "sha256": "e45f8a77596cd713435f4f07641788b1f40eaef9dcfce225dbe426f80b36a8f6"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/desktop-secret-unlocked.png",
+      "sha256": "f9b85b42c56ed0ce55a1eab84662f5834eba869100c5fdef0c2fd7fd80f17c5f"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/mobil-away-presence.png",
+      "sha256": "60c7e8baedca6b9af0723804f037e73d98a482bf96de8ba50726959ae68bfd20"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/mobil-lobby-presence.png",
+      "sha256": "9afbaa10ea941ee1cb1869b3bbbd6e21e275302d61ada3d02034799b4d830fb8"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/mobil-private-presence.png",
+      "sha256": "c66223a1b5bf973bbb8015782079c14ec65e09af8df8c31e64a376792549b14b"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/mobil-secret-locked.png",
+      "sha256": "dc4682f7746ccc8c710d5589ed99fcb1bc32bfc173352c09c88d1003c3c03c6f"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/mobil-secret-unlocked.png",
+      "sha256": "1c8498d273691f0a81adc1d0ab17511a38d1c856e5cdf5d3ceed9b1c19908a03"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/webkit-away-presence.png",
+      "sha256": "85333dce334782a3f99ba0c66adb3246847b6d89f4dbaf418e2835d5b668e83c"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/webkit-lobby-presence.png",
+      "sha256": "886c2ee0457d94087fee027660ac1da7ad780dbe4252e98aafe5bdbe31d8c888"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/webkit-private-presence.png",
+      "sha256": "920f20e3ebb1fd5d56aa3982b9626a139d3a154b34e567e7916dfe38311e7ee6"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/webkit-secret-locked.png",
+      "sha256": "432a17c48feeb718e80650ed7d601290f27229bb93136b08ea520bad73eb73c5"
+    },
+    {
+      "path": "docs/roadmap/screenshots/v2-13-14/webkit-secret-unlocked.png",
+      "sha256": "db63e4cdb07d007b10498933cb1e9ba2013e1c633be1c3e459d5bea7bb7a49cb"
+    }
+  ],
+  "tests": [
+    {
+      "command": "node --test test/v2-13-14.test.js test/achievements.test.js test/presence.test.js test/ranked.test.js test/profile.test.js test/settings.test.js test/party-program-server.test.js",
+      "result": "69 passed, 0 failed; identity, privacy, replay, backfill, malformed history, streak order and existing regressions.",
+      "passed": 69,
+      "failed": 0,
+      "log": "artifacts/v2-13-14-release-focus-node.log"
+    },
+    {
+      "command": "playwright test test/ui/v2-13-14.spec.js test/ui/achievements.spec.js --workers=1",
+      "result": "10 passed on desktop/mobile; real unlock, private views, lobby join, tabs, idle and transport reconnect.",
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 104.484278,
+      "report": "artifacts/v2-13-14-complete-browser-report.json",
+      "log": "artifacts/v2-13-14-complete-browser.log"
+    },
+    {
+      "command": "node --test test/*.test.js",
+      "result": "Complete current main suite: 1382 passed, 0 failed, 3 skipped.",
+      "passed": 1382,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 91.607,
+      "log": "artifacts/v2-13-14-final-full-node.log"
+    },
+    {
+      "command": "playwright test test/ui/settings.spec.js test/ui/profile.spec.js test/ui/roadmap-presence.spec.js --workers=1",
+      "result": "30 passed, 0 failed, desktop and mobile settings/profile/presence/roadmap regressions.",
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 108.17562,
+      "report": "artifacts/v2-13-14-final-regression-report.json",
+      "log": "artifacts/v2-13-14-final-regression.log"
+    },
+    {
+      "command": "playwright test --config=test/ui/v2-13-14.webkit.config.js --workers=1",
+      "result": "3 passed, 0 failed with the committed reproducible WebKit configuration.",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 97.250595,
+      "report": "artifacts/v2-13-14-repro-webkit-report.json",
+      "log": "artifacts/v2-13-14-repro-webkit.log"
+    },
+    {
+      "command": "node --test test/roadmap.test.js test/v2-roadmap.test.js test/v2-13-14-proof.test.js",
+      "result": "11 passed, 0 failed; other task objects, source files and 15 screenshot hashes verified.",
+      "passed": 11,
+      "failed": 0,
+      "log": "artifacts/v2-13-14-proof-node.log"
+    }
+  ],
+  "remaining_tasks": [],
+  "verification_attempts": [
+    {
+      "log": "artifacts/v2-13-14-full-node.log",
+      "passed": 1381,
+      "failed": 1,
+      "skipped": 3,
+      "note": "Only old roadmap expectation still marked V2-13/V2-14 planned; fixed in the authorised metadata tests."
+    },
+    {
+      "report": "artifacts/v2-13-14-regression-browser-report.json",
+      "passed": 29,
+      "failed": 1,
+      "note": "Mobile settings test read local storage before the async privacy request completed; now polls both local preference and server privacy. Complete 30-case rerun passed."
+    },
+    {
+      "report": "artifacts/v2-13-14-final-browser-report.json",
+      "passed": 6,
+      "failed": 4,
+      "note": "Preliminary test assumptions about retained seat, a logged-in second tab, idle reconnect and mobile disclosure were corrected; the final complete feature run passed all ten."
+    }
+  ]
+}

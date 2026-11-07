@@ -118,7 +118,8 @@ test('Datenschutz getrennt vom Ausblenden: Erfolge im Hub verbergen ändert die 
   await expect(page.locator('[data-set-privacy="showStats"]')).not.toBeChecked();
   await expect(page.locator('[data-set-privacy="showAchievements"]')).toBeChecked();
   await page.locator('[data-set-privacy="showOnline"]').uncheck();
-  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('poker:presenceHidden')))).toBe(true);
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('poker:presenceHidden')))).toBe(true);
+  await expect.poll(async () => (await api(page, 'GET', '/api/profile/me')).json.privacy.showOnline).toBe(false);
   // Das eigene Profil verweist auf die Einstellungen
   await page.locator('.set-page [data-profile="me"]').click();
   await expect(page.locator('#player-profile-dlg a[href="#einstellungen/datenschutz"]')).toBeVisible();
