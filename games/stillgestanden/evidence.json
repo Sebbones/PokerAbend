@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-07",
+  "game": "stillgestanden",
+  "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "artwork": "Original inline SVG and Canvas/CSS authored for this game; no external images, logos or assets.",
+  "tests": [
+    {
+      "command": "node --test test/backlog08.test.js",
+      "passed": 32,
+      "failed": 0,
+      "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+    },
+    {
+      "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 295.6,
+      "report": "artifacts/backlog08-ui-report.json",
+      "log": "artifacts/backlog08-ui.log",
+      "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+      "passed": 64,
+      "failed": 2,
+      "skipped": 0,
+      "duration_seconds": 697.2,
+      "report": "artifacts/backlog08-ui-wide-report.json",
+      "log": "artifacts/backlog08-ui-wide.log",
+      "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 2,
+      "duration_seconds": 229.5,
+      "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+      "log": "artifacts/backlog08-ui-realtime-retry.log",
+      "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/stillgestanden/index.js",
+      "sha256": "2833acb8b60376c4a4362145acc836157fa547044121f822af82c067f8597761"
+    },
+    {
+      "path": "games/stillgestanden/room.js",
+      "sha256": "a0fa2c5caee9d1284c071ab454a93c0c121953d3fc226509b40846574ab88d40"
+    },
+    {
+      "path": "public/games/stillgestanden/stillgestanden.js",
+      "sha256": "3ee9c30c5cebea74f39e66a3f6c65219610da7229c125a9fd80e04f3874f5aa8"
+    },
+    {
+      "path": "public/games/stillgestanden/stillgestanden.css",
+      "sha256": "b0245306baa3b98c54b070b6bb264f17a3e7e4a02c25a37a1135bbc58fc0ee90"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-1440x900.png",
+      "sha256": "9d6b5cfb6acb091faf172991d821a01eddaeb7d3680fef22e3fb6109e5da9569"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-1920x1080.png",
+      "sha256": "cfbd1f7e45e4c055a28d5a1005378e47c1b31e5c58ef465b9019296a64675fcd"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-360x800.png",
+      "sha256": "2617c5533e14554f61d174ffefd4e9807a2f0d802e507a6af2bb270bd36388a7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-390x844.png",
+      "sha256": "fea5b5143b755510559f24081f580c08afd29d9d121bc6c5c59eca0586ab4257"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-768x1024.png",
+      "sha256": "8b3639d35508d714c9e259102605c0803f2c01baacd720a125ee093c0f160c61"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-900x450.png",
+      "sha256": "51a8639fbf4c5390a131284e5eded15b5552c01460351cc855172411f7f53bae"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-english-rules.png",
+      "sha256": "0c9cf2159e475ee43421da8e736058b406e82fc76c787eafcb65d7c5cb6abf5d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-lobby.png",
+      "sha256": "219b1cc4a1d90695fe8af672ec0fc0542873be50c38b1c9906a561a3f0b9fd03"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-paused.png",
+      "sha256": "9d6b5cfb6acb091faf172991d821a01eddaeb7d3680fef22e3fb6109e5da9569"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-playing.png",
+      "sha256": "2c28916bc61379e830c93f992da9dd42d71c5ab68380fe107338b5cd41ddb0fd"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/desktop-result.png",
+      "sha256": "6a4763c51a11d1d79801f9801bbf104b39f6957c4818a20bc1809f9ee990415d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/mobil-english-rules.png",
+      "sha256": "8a401b424dc97485882474fa5bf1186081ee193f2a1e1ec3ec5bbbdc6e3f0800"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/mobil-lobby.png",
+      "sha256": "05ad70ace4d6de0f3e4b9556b9c0531411bfe3acfb74e3fcf57b3917d984ce20"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/mobil-paused.png",
+      "sha256": "71c7b00f876b5876c6be004623f908527e102ce86e0101d352d2ab64d8e81d04"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/mobil-playing.png",
+      "sha256": "08aef54e03357e4bfa145889018ac7db67e44f0043ccca1174d43a89c6fc7fd3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/stillgestanden/mobil-result.png",
+      "sha256": "85aa2ba5ba366030f0000b1d673d560116a19043228143cf50abdd6762bcf558"
+    }
+  ]
+}

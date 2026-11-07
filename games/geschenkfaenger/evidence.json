@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-07",
+  "game": "geschenkfaenger",
+  "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "artwork": "Original inline SVG and Canvas/CSS authored for this game; no external images, logos or assets.",
+  "tests": [
+    {
+      "command": "node --test test/backlog08.test.js",
+      "passed": 32,
+      "failed": 0,
+      "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+    },
+    {
+      "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 295.6,
+      "report": "artifacts/backlog08-ui-report.json",
+      "log": "artifacts/backlog08-ui.log",
+      "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+      "passed": 64,
+      "failed": 2,
+      "skipped": 0,
+      "duration_seconds": 697.2,
+      "report": "artifacts/backlog08-ui-wide-report.json",
+      "log": "artifacts/backlog08-ui-wide.log",
+      "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 2,
+      "duration_seconds": 229.5,
+      "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+      "log": "artifacts/backlog08-ui-realtime-retry.log",
+      "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/geschenkfaenger/index.js",
+      "sha256": "d9ad52a1cc5a59c9284dc8264c45c500a7d6fd8f0afde2b4a0e8fef4723f7003"
+    },
+    {
+      "path": "games/geschenkfaenger/room.js",
+      "sha256": "c5a51f747ecada4fd6d7187f2ba2eb05d5c4dd7d339a48a506e579dbaad6574b"
+    },
+    {
+      "path": "public/games/geschenkfaenger/geschenkfaenger.js",
+      "sha256": "0db96927e0a610df997389e701ffae251768f984ec5f9c36c494505338241a5e"
+    },
+    {
+      "path": "public/games/geschenkfaenger/geschenkfaenger.css",
+      "sha256": "36965574b89d4a1f664e02e6c6495b20c257ff8e04893974e601b0a28a89ece8"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-1440x900.png",
+      "sha256": "87c76d57842b17d7f7ff63859dc9c18ec02ad49573d7424a37905945b519574a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-1920x1080.png",
+      "sha256": "7705ca1e60a30a629c122202aea643655f5ce9f4d0431442acfce44692a41ba7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-360x800.png",
+      "sha256": "31b4a62404e5e325532131ed8b0d69677c756532f4615ae25beee8a46fa8901a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-390x844.png",
+      "sha256": "1d74891d002d051d02bab98973428b0714126739c24a7657495fbf69e85a188f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-768x1024.png",
+      "sha256": "b9aa9c099f33f79bb727db70df970e02b9a4d0666eae6313e2ce10c12d12fab4"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-900x450.png",
+      "sha256": "2936092ff3c761fe02374344590e37e1fdc213b0f00cc414022e0534eadc6ca3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-english-rules.png",
+      "sha256": "139121e10d7b33b120965794dd959ce5d9a22be02325bfd81ab69e8c094b1b2a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-lobby.png",
+      "sha256": "66e041ade805ba9af69e6f391a05ae05c1d77ee5574bfa1e02ebfb63e7905926"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-paused.png",
+      "sha256": "87c76d57842b17d7f7ff63859dc9c18ec02ad49573d7424a37905945b519574a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-playing.png",
+      "sha256": "68635298eb4fffc97ca6f379208f39d5fa85b1c2d23c86fd1ca3e219e1dd7b33"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-result.png",
+      "sha256": "cc0139f1695d319efa62d4866e70c94339a641ffac83517ef6bfb3c449356b74"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-english-rules.png",
+      "sha256": "ea1cff10cc5629c01439ac9b16514bc226ad842ebd0a2aaec434ae72044a66e5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-lobby.png",
+      "sha256": "5ac6357dfeedcf8691f14c4d5a0aaaf4ae8e9f6bff164e054ffd7207bad8a679"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-paused.png",
+      "sha256": "5e226b64fcd745d1fe1b3f9f6d0751bc8aa696503dc1326bd169ccc628f6d4b5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-playing.png",
+      "sha256": "a352e014ad62da71dd69f2a2f36139e6124d6238dd1e70deba999217b5b7a44b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-result.png",
+      "sha256": "9a7582ef5b657480210efed29d4bf138a5ab71bbe2cb477c7060b63c5720e934"
+    }
+  ]
+}

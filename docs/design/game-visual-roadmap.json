@@ -26,11 +26,11 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 89,
-    "not_implemented_count": 18,
-    "completed_visual_count": 36,
+    "playable_count": 93,
+    "not_implemented_count": 14,
+    "completed_visual_count": 40,
     "open_playable_visual_count": 53,
-    "planned_visual_count": 71,
+    "planned_visual_count": 67,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -121,16 +121,17 @@
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
-      "match-3"
+      "match-3",
+      "geschenkfaenger",
+      "rhythmus-rausch",
+      "stillgestanden",
+      "bomben-duell"
     ],
     "not_implemented_game_ids": [
       "kistenchaos",
       "gummiband-challenge",
-      "geschenkfaenger",
-      "rhythmus-rausch",
       "puzzle-panik",
       "wortjagd",
-      "stillgestanden",
       "schatzgraeber",
       "minenlauf",
       "labyrinth-chaos",
@@ -140,8 +141,7 @@
       "turmbauer",
       "geschenkdiebe",
       "fallenbauer",
-      "reaktor-notfall",
-      "bomben-duell"
+      "reaktor-notfall"
     ],
     "completed_visual_game_ids": [
       "scotland-yard",
@@ -179,7 +179,11 @@
       "schach",
       "sudoku",
       "2048",
-      "wellenwacht"
+      "wellenwacht",
+      "geschenkfaenger",
+      "rhythmus-rausch",
+      "stillgestanden",
+      "bomben-duell"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -440,20 +444,16 @@
     "VIS-083",
     "VIS-073",
     "VIS-070",
-    "VIS-071",
     "VIS-074",
-    "VIS-075",
     "VIS-091",
     "VIS-077",
     "VIS-094",
     "VIS-092",
-    "VIS-072",
     "VIS-076",
     "VIS-064",
     "VIS-079",
     "VIS-078",
     "VIS-080",
-    "VIS-095",
     "VIS-093"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
@@ -10713,24 +10713,42 @@
       "game_name": "Geschenkfänger",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/geschenkfaenger/evidence.json",
+          "docs/backlog/BACKLOG-08.md"
+        ],
+        "assessment": "Eigenes Winterfenster mit Nachthimmel, Fensterbrett als Fanglinie und klar unterscheidbaren Geschenk-/Bombenformen; Körbe aller Spielenden laufen auf Serverzeit."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/geschenkfaenger/geschenkfaenger.css",
+        "public/games/geschenkfaenger/geschenkfaenger.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/arcade-kit.js",
+        "public/games/arcade.css",
+        "public/games/realtime.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/geschenkfaenger/geschenkfaenger.js",
+          "sha256": "0db96927e0a610df997389e701ffae251768f984ec5f9c36c494505338241a5e"
+        },
+        {
+          "path": "public/games/geschenkfaenger/geschenkfaenger.css",
+          "sha256": "36965574b89d4a1f664e02e6c6495b20c257ff8e04893974e601b0a28a89ece8"
+        }
+      ],
+      "current_design": "Eigenes Winterfenster mit Nachthimmel, Fensterbrett als Fanglinie und klar unterscheidbaren Geschenk-/Bombenformen; Körbe aller Spielenden laufen auf Serverzeit.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play with six players, six viewport sizes, pause/reload, DE/EN rules, measured draw time and normal results; original permanent screenshots.",
       "gameplay_summary": "Geschenke mit dem Korb fangen und Bomben ausweichen.",
       "planned_style": "Freundliche eigene Geschenkfang-Szene.",
       "background_concept": "Ruhiger festlicher Hintergrund ohne fallende Dekoration.",
@@ -10760,8 +10778,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Echte Fangfläche und Korbgrenzen unverfälscht zeigen. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-08 order implemented and tested.",
       "acceptance_criteria": [
         "Geschenk und Gefahr sind ohne Farbe unterscheidbar."
       ],
@@ -10782,15 +10800,73 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "geschenkfaenger",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-result.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "commits": [
+        "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
+      ],
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
     },
     {
       "id": "VIS-072",
@@ -10798,24 +10874,42 @@
       "game_name": "Rhythmus-Rausch",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/rhythmus-rausch/evidence.json",
+          "docs/backlog/BACKLOG-08.md"
+        ],
+        "assessment": "Eigene Neon-Bühne mit vier Bahnen, Trefferlinie, serverbewerteter Rückmeldung (Perfect/Good/OK/Miss/Stray) und öffentlicher Rangliste."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/rhythmus-rausch/rhythmus-rausch.css",
+        "public/games/rhythmus-rausch/rhythmus-rausch.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/arcade-kit.js",
+        "public/games/arcade.css",
+        "public/games/realtime.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/rhythmus-rausch/rhythmus-rausch.js",
+          "sha256": "acefb4d0658062581b3e9192477208b3648f033f5e7052f826c8231da72ab8da"
+        },
+        {
+          "path": "public/games/rhythmus-rausch/rhythmus-rausch.css",
+          "sha256": "f873817d7ec60de1cc7afa960a76f260a99559e2b9d71367f284f76d81d7ee37"
+        }
+      ],
+      "current_design": "Eigene Neon-Bühne mit vier Bahnen, Trefferlinie, serverbewerteter Rückmeldung (Perfect/Good/OK/Miss/Stray) und öffentlicher Rangliste.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play with six players, six viewport sizes, pause/reload, DE/EN rules, measured draw time and normal results; original permanent screenshots.",
       "gameplay_summary": "Im Takt tippen: Je genauer, desto mehr Punkte.",
       "planned_style": "Saubere grafische Taktbühne ohne Stroboskop.",
       "background_concept": "Statischer dunkler Bühnenrand.",
@@ -10845,8 +10939,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Echte Taktnoten und Trefferfenster exakt an Audiotiming koppeln. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-08 order implemented and tested.",
       "acceptance_criteria": [
         "Reduzierte Bewegung beeinträchtigt die Taktlesbarkeit nicht."
       ],
@@ -10867,15 +10961,73 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "rhythmus-rausch",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-result.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "commits": [
+        "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
+      ],
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
     },
     {
       "id": "VIS-073",
@@ -11053,24 +11205,42 @@
       "game_name": "Stillgestanden!",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/stillgestanden/evidence.json",
+          "docs/backlog/BACKLOG-08.md"
+        ],
+        "assessment": "Eigene Ampelstrecke mit großer Ampel, Zielband, Bahnen je Spielfigur und deutlicher Rot-/Gelb-Rückmeldung ohne Fake-Flag im Frame."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/stillgestanden/stillgestanden.css",
+        "public/games/stillgestanden/stillgestanden.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/arcade-kit.js",
+        "public/games/arcade.css",
+        "public/games/realtime.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/stillgestanden/stillgestanden.js",
+          "sha256": "3ee9c30c5cebea74f39e66a3f6c65219610da7229c125a9fd80e04f3874f5aa8"
+        },
+        {
+          "path": "public/games/stillgestanden/stillgestanden.css",
+          "sha256": "b0245306baa3b98c54b070b6bb264f17a3e7e4a02c25a37a1135bbc58fc0ee90"
+        }
+      ],
+      "current_design": "Eigene Ampelstrecke mit großer Ampel, Zielband, Bahnen je Spielfigur und deutlicher Rot-/Gelb-Rückmeldung ohne Fake-Flag im Frame.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play with six players, six viewport sizes, pause/reload, DE/EN rules, measured draw time and normal results; original permanent screenshots.",
       "gameplay_summary": "Bei Grün laufen, bei Rot stillstehen – wer sich bewegt, muss zurück.",
       "planned_style": "Grafische Laufbahn mit sehr eindeutiger Signalampel.",
       "background_concept": "Statische Spielfeldkulisse ohne bewegliche Hintergrundfiguren.",
@@ -11100,8 +11270,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Start, Ziel und echte Positionen maßstabstreu. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-08 order implemented and tested.",
       "acceptance_criteria": [
         "Signal ist ohne Farbe und ohne Animation verständlich."
       ],
@@ -11122,15 +11292,73 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "stillgestanden",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-result.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "commits": [
+        "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
+      ],
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
     },
     {
       "id": "VIS-076",
@@ -13122,24 +13350,42 @@
       "game_name": "Bomben-Duell",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "completed",
+        "evidence": [
+          "games/bomben-duell/evidence.json",
+          "docs/backlog/BACKLOG-08.md"
+        ],
+        "assessment": "Eigene Sprengwerkstatt mit Pfeilern, Kisten, sichtbaren Lunten, Flammen und Rundenzähler."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/bomben-duell/bomben-duell.css",
+        "public/games/bomben-duell/bomben-duell.js"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/games/arcade-kit.js",
+        "public/games/arcade.css",
+        "public/games/realtime.css"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/bomben-duell/bomben-duell.js",
+          "sha256": "32943898d0a3460f063b3bde6c1d62a4b7d5817350762f3471e0cd9fb57c690d"
+        },
+        {
+          "path": "public/games/bomben-duell/bomben-duell.css",
+          "sha256": "f5054551c354cebf28d2ec9b7be9f583d25171e7816634592eadb693e9f7c871"
+        }
+      ],
+      "current_design": "Eigene Sprengwerkstatt mit Pfeilern, Kisten, sichtbaren Lunten, Flammen und Rundenzähler.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Actual desktop/touch play with six players, six viewport sizes, pause/reload, DE/EN rules, measured draw time and normal results; original permanent screenshots.",
       "gameplay_summary": "In einer eigenen Spielarena Sprengladungen setzen und rechtzeitig in Deckung gehen.",
       "planned_style": "Eigene abstrakte taktische Spielarena.",
       "background_concept": "Statischer dunkler Arenarand ohne realistische Gewalt.",
@@ -13169,8 +13415,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Freigegebenes Raster, Hindernisse und echte Warn-/Wirkflächen. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-08 order implemented and tested.",
       "acceptance_criteria": [
         "Warnzone und bestätigte Wirkung stimmen mit Servergeometrie überein."
       ],
@@ -13191,15 +13437,73 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "bomben-duell",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-result.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "commits": [
+        "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
+      ],
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "completed_at": "2026-11-07",
+      "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873"
     },
     {
       "id": "VIS-096",

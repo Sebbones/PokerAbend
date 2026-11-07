@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-07",
+  "game": "bomben-duell",
+  "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "artwork": "Original inline SVG and Canvas/CSS authored for this game; no external images, logos or assets.",
+  "tests": [
+    {
+      "command": "node --test test/backlog08.test.js",
+      "passed": 32,
+      "failed": 0,
+      "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+    },
+    {
+      "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 295.6,
+      "report": "artifacts/backlog08-ui-report.json",
+      "log": "artifacts/backlog08-ui.log",
+      "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+      "passed": 64,
+      "failed": 2,
+      "skipped": 0,
+      "duration_seconds": 697.2,
+      "report": "artifacts/backlog08-ui-wide-report.json",
+      "log": "artifacts/backlog08-ui-wide.log",
+      "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 2,
+      "duration_seconds": 229.5,
+      "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+      "log": "artifacts/backlog08-ui-realtime-retry.log",
+      "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/bomben-duell/index.js",
+      "sha256": "bc58a0bbb1ea6f233e4f17a86c5d6e8cc8fe4f14de17a725ff58f2ed32e1367e"
+    },
+    {
+      "path": "games/bomben-duell/room.js",
+      "sha256": "30020d3c6d59642f62c8d5559e340992210fd9a53e7dae17d7efd907e5129d74"
+    },
+    {
+      "path": "public/games/bomben-duell/bomben-duell.js",
+      "sha256": "32943898d0a3460f063b3bde6c1d62a4b7d5817350762f3471e0cd9fb57c690d"
+    },
+    {
+      "path": "public/games/bomben-duell/bomben-duell.css",
+      "sha256": "f5054551c354cebf28d2ec9b7be9f583d25171e7816634592eadb693e9f7c871"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-1440x900.png",
+      "sha256": "cc920b180e4ba8cac5d8a31f827877679dca7ba0590a5279923f5f571cdf31b3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-1920x1080.png",
+      "sha256": "0a03e4898a7f0502c268e14fa3818d6308807bacd74761b8a102114c99575aad"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-360x800.png",
+      "sha256": "ce9f5fd855db701982e9e8a149796744e51729bfcd40c97eaa9cf5dfeffe8462"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-390x844.png",
+      "sha256": "b7e3fa53b2a06ab56a77e09eb0d33e66848401f6928ad086845cbfc85b0a66d1"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-768x1024.png",
+      "sha256": "0adaf9137bf679c0f62c032e995f73951516f557aaa9c67894f06b866a2cd4ab"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-900x450.png",
+      "sha256": "f9d4ee4e68f9c427252b046ce7fb23ed93c041086400aca12bb71789b3d98950"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-english-rules.png",
+      "sha256": "9e158c1a4cef9c6cd5177f29872a9f14148b064e4a03c39ccf036c485ea23746"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-lobby.png",
+      "sha256": "29b592cb1647308f7b5dc55b78b0c48fef8cce5e64d982331a96076d3dbc65cb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-paused.png",
+      "sha256": "cc920b180e4ba8cac5d8a31f827877679dca7ba0590a5279923f5f571cdf31b3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-playing.png",
+      "sha256": "ce075d1ed7c88b3fd85d2ad7d0d2c40ecd215acc1c2ae3d1fab582d4741bf39b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/desktop-result.png",
+      "sha256": "e11776932079240b8bedc3f621be29f9f717f0cdabaff6289d68d3b632d0f89f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/mobil-english-rules.png",
+      "sha256": "c7fd0bebf3bc0a8096d62058a0954d3248e321efc8034eff529604b79e8354fa"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/mobil-lobby.png",
+      "sha256": "987d93023a10824f33f12c94924c1137bd1563b67d3f3e00cbe7ba2da36717c4"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/mobil-paused.png",
+      "sha256": "350a2bff8df8740195949f558baa7367cb610b728fd7ef9cdf739830fa1f19d2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/mobil-playing.png",
+      "sha256": "5f20c7d03d725a3591b86c8f7bcf8788167626b8ec694dca66beffaf0de6d780"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/bomben-duell/mobil-result.png",
+      "sha256": "dc05b4caf6e1010c0413a3679804ee380853b9b85f49214f9c03994846674496"
+    }
+  ]
+}

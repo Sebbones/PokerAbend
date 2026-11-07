@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-07",
+  "game": "rhythmus-rausch",
+  "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+  "artwork": "Original inline SVG and Canvas/CSS authored for this game; no external images, logos or assets.",
+  "tests": [
+    {
+      "command": "node --test test/backlog08.test.js",
+      "passed": 32,
+      "failed": 0,
+      "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+    },
+    {
+      "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 295.6,
+      "report": "artifacts/backlog08-ui-report.json",
+      "log": "artifacts/backlog08-ui.log",
+      "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+      "passed": 64,
+      "failed": 2,
+      "skipped": 0,
+      "duration_seconds": 697.2,
+      "report": "artifacts/backlog08-ui-wide-report.json",
+      "log": "artifacts/backlog08-ui-wide.log",
+      "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+    },
+    {
+      "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 2,
+      "duration_seconds": 229.5,
+      "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+      "log": "artifacts/backlog08-ui-realtime-retry.log",
+      "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/rhythmus-rausch/index.js",
+      "sha256": "bcd2b4d3fa1a1cdb979d7e010ee7c1444b294fa9ddf17ec7045be7d880b8013d"
+    },
+    {
+      "path": "games/rhythmus-rausch/room.js",
+      "sha256": "8e2982601565dff4dd65c2a6e67a5a03fa17b0cfb029e536ea9bc160d9ce51c6"
+    },
+    {
+      "path": "public/games/rhythmus-rausch/rhythmus-rausch.js",
+      "sha256": "acefb4d0658062581b3e9192477208b3648f033f5e7052f826c8231da72ab8da"
+    },
+    {
+      "path": "public/games/rhythmus-rausch/rhythmus-rausch.css",
+      "sha256": "f873817d7ec60de1cc7afa960a76f260a99559e2b9d71367f284f76d81d7ee37"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-1440x900.png",
+      "sha256": "20b7b52d7d418aa39a46005237d580ba674fa917be4c8e0a3c78360a142cbf5a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-1920x1080.png",
+      "sha256": "1500b697a035444665a0a982ec82e624e8cad453263a5c75396a638e7f350186"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-360x800.png",
+      "sha256": "0a654a1913a7a1968a69727c246d73113f5bcb67035fd00ad584d1e3451ea6ed"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-390x844.png",
+      "sha256": "b6e5c407e0b993af4289c7214f868cfdb322cd684b2ca0c2e3b0d5aa1eb744d0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-768x1024.png",
+      "sha256": "201c698dc93d9dabe6d0c92a9f4445ae629b16b0bc807ee58ce045c5f25fc96b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-900x450.png",
+      "sha256": "8dfafaa852ec3a3c5b40d53558ba050e54750eac3074f7e365b167d605d102b3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-english-rules.png",
+      "sha256": "d91b0bf8b486efb978a446c0eb75e0ceb985b90265a60a675fbd4fc5684bfd24"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-lobby.png",
+      "sha256": "c5b49a4a7812d6cb5563d4e6b07ceba6ccb1006429045f3ead87e52f13dd02aa"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-paused.png",
+      "sha256": "20b7b52d7d418aa39a46005237d580ba674fa917be4c8e0a3c78360a142cbf5a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-playing.png",
+      "sha256": "0fb0ace3d896a7e85f346277da25dbe8060d869ae85f9246843718aafb06e97f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-result.png",
+      "sha256": "fb2bf807c3278aa61dcf86b20c2f19ff342f0924e926a585717dca101b439fb0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-english-rules.png",
+      "sha256": "312404e6f1f4bb91cf30e5c619167b1f5b3ed63eccb6bdd4b82d82fa1b9529b8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-lobby.png",
+      "sha256": "8fe52e4d920b2c518f9f746d648962a5138777328d3f8477f0fed3edc7a2ee6e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-paused.png",
+      "sha256": "516a86c6dac787c5d17558e6dabe5585cde178e09b8a870c3af1245cdad05634"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-playing.png",
+      "sha256": "e10d49911c46d4231e72f7a484a4c3a60203aa705bbd689a6f6d04c95c8233a1"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-result.png",
+      "sha256": "eb2aa486ad0ad5140604d5f59a7c1a5e8802b4dc9d8a2fe1968ed947513b5bdc"
+    }
+  ]
+}

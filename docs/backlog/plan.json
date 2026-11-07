@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 23,
-  "remaining_count": 18,
+  "completed_count": 27,
+  "remaining_count": 14,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -235,7 +235,7 @@
         "8b6c982c53728b890750ec096b88d9a5d3687bf2"
       ],
       "scope": "Only the four expressly authorised games, bots, visual worlds and directly necessary reuse/compatibility tests. Stop here. No V2 implementation in these game commits.",
-      "shared_source_audit_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+      "shared_source_audit_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
       "shared_source_audit": [
         {
           "path": "games/poker/engine/table.js",
@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "5fad65fa5c47ee81e1f190c546dc16acc436ef5d0f73b9cf3ce93e287742ce93"
+          "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -409,6 +409,55 @@
           {
             "path": "games/bots.js",
             "sha256": "5fb02d76591b55ac9d8f38ae88ccca54cbcfe06bb2448f9155fcb267caa35930"
+          },
+          {
+            "path": "games/five-card-draw/room.js",
+            "sha256": "67230f584ccf5b506986d4ad99d0a7e8a674fd21a0598556ec070bde09d7cac3"
+          },
+          {
+            "path": "games/five-card-draw/table.js",
+            "sha256": "a8267dc82b18fe1e6096985ebd292936e689a8278d8576cab1f9ab3b7c035cd6"
+          },
+          {
+            "path": "games/omaha-hi-lo/poker-room.js",
+            "sha256": "7100c6c570a4678962c6cfa98873b1bb7a0f3335828b5c864453004a7e47c00d"
+          },
+          {
+            "path": "games/omaha-hi-lo/bot.js",
+            "sha256": "eb347d2023df6f92b68dd85d3dac758e0cf15877b3b82490511d67d1d701ed28"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.js",
+            "sha256": "e29afe58c160625d739e2660e52b07e081370633b0e80daf03b108ea80f719ca"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.css",
+            "sha256": "977c4b07b8cda93539be8383303b285b03413aa7dd2502d1cf1542832bf50de4"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.js",
+            "sha256": "dd5454e96f250b7aa1dbb198d1402f079ffb6dd7ab4138f995d1305ce88dfb09"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.css",
+            "sha256": "f4787f1bb135b611077eead8e2d15d4b855fca19fb1cfb8a92a54cecc25373cd"
+          }
+        ]
+      },
+      "pre_backlog_08_shared_audit": {
+        "commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
+        "sources": [
+          {
+            "path": "games/poker/engine/table.js",
+            "sha256": "218554472156f7533886f45664950d124d0cf0add82fc62494db065a8cb0f318"
+          },
+          {
+            "path": "games/poker/engine/cards.js",
+            "sha256": "4c3ba71c72940bda54861019b204aaa7b5696436b285ad9f6c5590c7b3e5372b"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "5fad65fa5c47ee81e1f190c546dc16acc436ef5d0f73b9cf3ce93e287742ce93"
           },
           {
             "path": "games/five-card-draw/room.js",
@@ -1004,7 +1053,7 @@
       ],
       "completed_at": "2026-11-07",
       "report": "docs/backlog/BACKLOG-07.md",
-      "shared_source_audit_commit": "630805a922620574828991de86c1c44d11a820d1",
+      "shared_source_audit_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
       "shared_source_audit": [
         {
           "path": "games/party-arena-room.js",
@@ -1016,11 +1065,11 @@
         },
         {
           "path": "games/index.js",
-          "sha256": "1b2d59f27fe7841a124de45554305b86535d9cd63461a3e950dc192f66f94dae"
+          "sha256": "669de83f255338acb39875f22bb7e939da25e5702e283c694739dfcc1e23cca8"
         },
         {
           "path": "games/bots.js",
-          "sha256": "5fad65fa5c47ee81e1f190c546dc16acc436ef5d0f73b9cf3ce93e287742ce93"
+          "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
         },
         {
           "path": "public/games/party-arena-kit.js",
@@ -1028,15 +1077,15 @@
         },
         {
           "path": "public/games/realtime-kit.js",
-          "sha256": "39c9a21aa6c1331914412a79055a9ec3568e0a74f26b9282be66446fb46cd711"
+          "sha256": "ff03eba801f78faa6dda759afa949ccea8e5654f372d2b1f8df2c534f00ca0df"
         },
         {
           "path": "public/i18n-en.js",
-          "sha256": "e53edf72b86a66ef242bdf95317d84a575171a3d1a4242ee3783f3ad62bfe5ad"
+          "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
         },
         {
           "path": "public/index.html",
-          "sha256": "17a24a8709d1d2d42b6e70be78921813560c07f15b6ff6ae930678160ed58266"
+          "sha256": "fc25d1ca467b30054b809af4349995082e885ce789ac50af6c271a450014ef77"
         },
         {
           "path": "server/index.js",
@@ -1048,7 +1097,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "4d69f28c4a15ad22dfd991518b8c8f3843fcb88ce7e2b6b4c5f13fe76d10b8ab"
+          "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
         }
       ],
       "permanent_screenshots": 80,
@@ -1077,7 +1126,133 @@
           "report": "artifacts/backlog07-ui-labels-report.json",
           "reason": "Mobile infection start progress exceeded the 7-second test wait under concurrent Node load; test start tolerance raised to 12 seconds. Final eight-case run passed."
         }
-      ]
+      ],
+      "pre_backlog_08_shared_audit": {
+        "commit": "630805a922620574828991de86c1c44d11a820d1",
+        "sources": [
+          {
+            "path": "games/party-arena-room.js",
+            "sha256": "8ad2d1bfaccfed767a70cac209332b0887f12c5b0ef1a4b8fd6edc4fa7fdc2f0"
+          },
+          {
+            "path": "games/party-arena-bot.js",
+            "sha256": "bbda45bfaa2199d345edacbc0aff63ea38f3f73012d246f6978d8d89aad44e71"
+          },
+          {
+            "path": "games/index.js",
+            "sha256": "1b2d59f27fe7841a124de45554305b86535d9cd63461a3e950dc192f66f94dae"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "5fad65fa5c47ee81e1f190c546dc16acc436ef5d0f73b9cf3ce93e287742ce93"
+          },
+          {
+            "path": "public/games/party-arena-kit.js",
+            "sha256": "59a5a688d5590490bbddaa55f7e2b8dd25e3bc1244455a960f71731e3e0fb526"
+          },
+          {
+            "path": "public/games/realtime-kit.js",
+            "sha256": "39c9a21aa6c1331914412a79055a9ec3568e0a74f26b9282be66446fb46cd711"
+          },
+          {
+            "path": "public/i18n-en.js",
+            "sha256": "e53edf72b86a66ef242bdf95317d84a575171a3d1a4242ee3783f3ad62bfe5ad"
+          },
+          {
+            "path": "public/index.html",
+            "sha256": "17a24a8709d1d2d42b6e70be78921813560c07f15b6ff6ae930678160ed58266"
+          },
+          {
+            "path": "server/index.js",
+            "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+          },
+          {
+            "path": "server/party-program.js",
+            "sha256": "57b55bd967300e3e06f81e79471aff4ef2074faa771567ae6ec53ecb1e2c5850"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "4d69f28c4a15ad22dfd991518b8c8f3843fcb88ce7e2b6b4c5f13fe76d10b8ab"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BACKLOG-08",
+      "games": [
+        "geschenkfaenger",
+        "rhythmus-rausch",
+        "stillgestanden",
+        "bomben-duell"
+      ],
+      "status": "verified",
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "completed_at": "2026-11-07",
+      "report": "docs/backlog/BACKLOG-08.md",
+      "scope": "Only the four expressly authorised realtime games, their server referee logic, bots, visual worlds and directly necessary compatibility tests. Stop here. No V2 implementation in these game commits.",
+      "shared_source_audit_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "shared_source_audit": [
+        {
+          "path": "games/arcade-logic.js",
+          "sha256": "191a55203156215d13f6605b2a46e278393324d2bfe68bdbada008f18af0c3bd"
+        },
+        {
+          "path": "games/arcade-room.js",
+          "sha256": "1df1dd14bf43ac400b6d1811ec3bc7e6e524016c524581ee5c35fba2eeab5be0"
+        },
+        {
+          "path": "games/arcade-bot.js",
+          "sha256": "8de8c4065db24c92ff4f70ac3af2b08ca3e77d73ecaa1716486c304ef33b7d40"
+        },
+        {
+          "path": "public/games/arcade-kit.js",
+          "sha256": "eda44e851b8e2e0ce29992cf4416ca48b502ec0822a9b2fd34e3ebdd9e99679d"
+        },
+        {
+          "path": "public/games/arcade.css",
+          "sha256": "2aad562b505ff85b9218b747de7641116394db8bbb5e443d0969a781470c6512"
+        }
+      ],
+      "permanent_screenshots": 64
     }
   ],
   "games": [
@@ -3034,20 +3209,130 @@
     {
       "id": "geschenkfaenger",
       "name": "Geschenkfänger",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-08",
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/geschenkfaenger/mobil-result.png"
+      ]
     },
     {
       "id": "rhythmus-rausch",
       "name": "Rhythmus-Rausch",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-08",
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/rhythmus-rausch/mobil-result.png"
+      ]
     },
     {
       "id": "puzzle-panik",
@@ -3070,11 +3355,66 @@
     {
       "id": "stillgestanden",
       "name": "Stillgestanden!",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-08",
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/stillgestanden/mobil-result.png"
+      ]
     },
     {
       "id": "schatzgraeber",
@@ -3514,11 +3854,66 @@
     {
       "id": "bomben-duell",
       "name": "Bomben-Duell",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-08",
+      "implementation_commit": "da5befa00c4fd5d80ac0f7d25e9a3ca98963a873",
+      "test_results": [
+        {
+          "command": "node --test test/backlog08.test.js",
+          "passed": 32,
+          "failed": 0,
+          "note": "Server referee rules: scoring, hit windows, latency compensation, signals, blasts, rounds; 8 bot test rounds per player count over all four games; 8-bot step cost under 5 ms."
+        },
+        {
+          "command": "playwright test test/ui/backlog08.spec.js --workers=1 (desktop + mobil, sechs Spielende)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 295.6,
+          "report": "artifacts/backlog08-ui-report.json",
+          "log": "artifacts/backlog08-ui.log",
+          "note": "Echte Tastatur- und CDP-Touch-Eingaben, Serverwertung, Regeln DE/EN, Pause/Neuladen, sechs Größen, Zeichenzeit, reguläres Ergebnis."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js test/ui/bots.spec.js test/ui/party-program.spec.js test/ui/language.spec.js test/ui/backlog07.spec.js --workers=1",
+          "passed": 64,
+          "failed": 2,
+          "skipped": 0,
+          "duration_seconds": 697.2,
+          "report": "artifacts/backlog08-ui-wide-report.json",
+          "log": "artifacts/backlog08-ui-wide.log",
+          "note": "Regression der bestehenden Echtzeitspiele, Bots, Abendprogramme, englischen Oberflächen und der vier BACKLOG-07-Arenen. Zwei mobile bzw. Desktop-Fälle (Kronenjagd, Laser-Hüpfer) verfehlten die 6-Sekunden-Startfrist, während andere Sitzungen gleichzeitig eigene Playwright-Läufe auf derselben Maschine ausführten; sie sind hier als fehlgeschlagen ausgewiesen."
+        },
+        {
+          "command": "playwright test test/ui/realtime.spec.js --workers=1 --retries=2 (Wiederholung der betroffenen Spezifikation)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "flaky": 2,
+          "duration_seconds": 229.5,
+          "report": "artifacts/backlog08-ui-realtime-retry-report.json",
+          "log": "artifacts/backlog08-ui-realtime-retry.log",
+          "note": "Alle sechs Fälle bestanden; zwei (Laser-Hüpfer Desktop, Kronenjagd mobil) erst im Wiederholungsversuch. Der Fehlermodus ist die Startfrist unter Last; diese Spiele nutzen keinen Code aus BACKLOG-08. Zwei Vorläufe ohne Wiederholung (4/6 bestanden) sind nicht als grün gewertet."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-1440x900.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-1920x1080.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-360x800.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-390x844.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-768x1024.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-900x450.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-paused.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-playing.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/desktop-result.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-paused.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-playing.png",
+        "docs/backlog/screenshots/backlog08/bomben-duell/mobil-result.png"
+      ]
     }
   ],
   "latest_authorization": {
