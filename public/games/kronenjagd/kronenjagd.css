@@ -1,1 +1,6 @@
 @import url('/games/realtime.css');
+
+/* VIS-042: königliche Hofarena – dunkler Boden, goldener Rahmen um die maßstabstreue Arena, große Touch-Richtungstasten */
+.kg-kronenjagd #rt-canvas { border-color: #c9a24a; outline: 3px solid #3b2a52; outline-offset: 0; border-radius: 10px; box-shadow: 0 0 0 3px #3b2a52, 0 16px 40px #0007; background: #1d1630; }
+.kg-kronenjagd .rt-pad .btn { background: #3b2a52; border: 2px solid #c9a24a; color: #ffe9a8; }
+@media (max-width: 640px) { .kg-kronenjagd .rt-controls { gap: 12px; } .kg-kronenjagd .rt-keyhint { display: none; } }
