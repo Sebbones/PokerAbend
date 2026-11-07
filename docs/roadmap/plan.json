@@ -371,16 +371,35 @@
         "Einstellungen mobil bedienbar",
         "Gäste ohne Konto bleiben voll spielfähig"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "bdf0b67",
+      "completed_at": "2026-11-07",
+      "notes": [
+        "Ausdrückliche Freigabe vom 2026-11-07 (V2-05 und V2-15 gemeinsam). Eine Einstellungsseite (#einstellungen) mit Anzeige, Bedienung, Hub-Filtern, Ton, Datenschutz und eigenen Daten; Details: docs/roadmap/V2-05_V2-15_SETTINGS.md.",
+        "Datenschutz getrennt vom Ausblenden: Profil-Freigaben (V2-04) plus neu „Online-Status“, serverseitig durchgesetzt. Brettspiele (und jede Kategorie) ausblend- und wieder einblendbar; Einladungslinks und Adressen bleiben nutzbar. Gäste ohne erreichbares Konto behalten alles lokal.",
+        "Daten exportieren (JSON) und löschen (mit Game-ID-Bestätigung); Ergebnisse anderer bleiben, das Konto darin wird anonymisiert. Nicht erfasst: selbst geschriebene Freitexte in Tickets/Planungen/Rückblicken. Kein Produktivdeployment."
+      ],
       "public_roadmap_ids": [
         "v2-profile-preferences",
         "v2-privacy"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/settings.test.js",
+          "result": "10 Prüfungen grün (Schema, Konto, Löschen, Anonymisierung, Schnittstelle, Geräte, Präsenz-Durchsetzung, Export ohne Fremddaten)."
+        },
+        {
+          "command": "playwright test test/ui/settings.spec.js test/ui/profile.spec.js test/ui/identity.spec.js test/ui/look.spec.js test/ui/lobby-menu.spec.js (Desktop + Handy)",
+          "result": "alle grün, kein seitliches Überlaufen der Einstellungsseite."
+        },
+        {
+          "command": "npm run test:fast",
+          "result": "1176 grün."
+        }
+      ],
+      "commits": [
+        "bdf0b67"
+      ]
     },
     {
       "id": "V2-06",
@@ -806,15 +825,25 @@
         "Discord-Nutzer Einstellungen geräteübergreifend, Gast im Browser behalten",
         "Ausblendung beeinflusst keine Spielregeln oder Rechte"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "bdf0b67",
+      "completed_at": "2026-11-07",
+      "notes": [
+        "Gemeinsam mit V2-05 umgesetzt: jeder Bereich der Startseite einzeln ein-/ausblendbar, Alles zurücksetzen und Zurücksetzen je Bereich, Sofort-Vorschau, Doppeltipp- und Bestätigungs-Schalter, Standardfilter, reduzierte Bewegung/Transparenz, Kartengröße, Ton.",
+        "Ausblenden ändert weder API-Rechte noch Spielregeln; Einstellungen bleiben immer erreichbar. Nicht Teil: Benachrichtigungen, Video-Einstellungen. Kein Produktivdeployment."
+      ],
       "public_roadmap_ids": [
         "v2-einstellungen"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "siehe V2-05",
+          "result": "Die Tests von V2-05 decken V2-15 ab (gemeinsame Seite, Sync, Ausblenden ohne Rechteänderung, Einladungslink bei ausgeblendeter Kategorie)."
+        }
+      ],
+      "commits": [
+        "bdf0b67"
+      ]
     },
     {
       "id": "V2-16",

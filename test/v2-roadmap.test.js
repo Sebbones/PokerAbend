@@ -9,7 +9,7 @@ import { ROADMAP, resolvedRoadmap } from '../games/roadmap.js';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const plan = JSON.parse(read('docs/roadmap/plan.json'));
 const inventory = JSON.parse(read('docs/roadmap/consolidation.json'));
-const DONE = ['V2-00', 'V2-01', 'V2-02', 'V2-03', 'V2-04', 'V2-16'];
+const DONE = ['V2-00', 'V2-01', 'V2-02', 'V2-03', 'V2-04', 'V2-05', 'V2-15', 'V2-16'];
 const V2_DONE_POINTS = ['v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security']; // ausdrücklich freigegebene und umgesetzte Pakete
 
 test('V2-Plan: 18 vollständige, eindeutig geplante Pakete mit gültigen Abhängigkeiten', () => {
