@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Shut the Box: Holzbox mit Klappen (offen = aufrecht mit Zahl, zu = umgeklappt), Würfel, Punkte je Runde */
 .kg-shutthebox .kg-main { background: radial-gradient(120% 90% at 50% 20%, #2F6B4F, #143326); place-items: start center; }
 .sb-table { gap: 12px; }
@@ -34,3 +35,15 @@ button.sb-flap:disabled { cursor: default; opacity: .55; }
   .sb-flap { min-height: 56px; font-size: 18px; }
   .sb-wood { padding: 10px 8px 12px; }
 }
+
+/* Klappbox: Gaststättentisch mit warmem Seitenlicht, Scharnierleiste, Klappenlage mit Text statt nur Farbe */
+.kg-shutthebox .kg-main { background: radial-gradient(90% 80% at 10% 15%, #6b4a2a55, transparent 60%), radial-gradient(120% 90% at 50% 20%, #2F6B4F, #143326); }
+.sb-table { --wk-bg:linear-gradient(170deg,#1f4a37cc,#0f271dcc); --wk-edge:#e2c38d55; --wk-accent:#f0c987; --wk-max:760px; }
+.sb-wood { width:100%; position:relative; }
+.sb-box { position:relative; padding-top:10px; }
+.sb-hinge { position:absolute; left:2%; right:2%; top:2px; height:6px; border-radius:3px; background:linear-gradient(180deg,#d9b36a,#8c6a2e); box-shadow:0 1px 2px #0006; }
+.sb-flap b { font-size:22px; line-height:1; }
+.sb-flap small { font-size:11px; font-weight:700; margin-top:2px; color:#6b4a1f; }
+.sb-flap.shut small { color:#c9a679; }
+.sb-flap.sel small { color:#3a2410; }
+@media (max-width:640px) { .sb-flap small { font-size:10px; } .sb-scores { padding:4px 6px; } }

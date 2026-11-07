@@ -16,13 +16,14 @@
     const can = interactive && g.combos ? reachable(g.combos) : null;
     const flaps = [...Array(g.flaps).keys()].map((k) => {
       const f = k + 1;
-      if (!open.has(f)) return I18n.html`<span class="sb-flap shut" role="img" aria-label="Klappe ${f} zu"><b>${f}</b><small>zu</small></span>`;
-      if (!can) return I18n.html`<span class="sb-flap" role="img" aria-label="Klappe ${f} offen"><b>${f}</b></span>`;
+      const t = WorldKit.t;
+      if (!open.has(f)) return `<span class="sb-flap shut" role="img" aria-label="${t('Klappe', 'Flap')} ${f} ${t('zu', 'shut')}"><b>${f}</b><small>${t('zu', 'shut')}</small></span>`;
+      if (!can) return `<span class="sb-flap" role="img" aria-label="${t('Klappe', 'Flap')} ${f} ${t('offen', 'open')}"><b>${f}</b><small>${t('offen', 'open')}</small></span>`;
       const picked = sel.has(f);
       const ok = picked || can.flaps.has(f);
-      return I18n.html`<button type="button" class="sb-flap ${picked ? 'sel' : ''} ${ok && !picked ? 'fit' : ''}" data-g="flap" data-f="${f}" aria-pressed="${picked}" ${ok ? '' : 'disabled'} aria-label="Klappe ${f}${picked ? ' – ausgewählt' : ok ? ' – passt' : ' – passt nicht'}"><b>${f}</b></button>`;
+      return `<button type="button" class="sb-flap ${picked ? 'sel' : ''} ${ok && !picked ? 'fit' : ''}" data-g="flap" data-f="${f}" aria-pressed="${picked}" ${ok ? '' : 'disabled'} aria-label="${t('Klappe', 'Flap')} ${f}${picked ? ' – ' + t('ausgewählt', 'selected') : ok ? ' – ' + t('passt', 'fits') : ' – ' + t('passt nicht', 'does not fit')}"><b>${f}</b><small>${picked ? t('gewählt', 'picked') : ok ? t('passt', 'fits') : t('offen', 'open')}</small></button>`;
     }).join('');
-    return I18n.html`<div class="sb-box ${g.flaps > 9 ? 'twelve' : ''}" role="group" aria-label="Box von ${nameOf(S, id)}">${flaps}</div>`;
+    return `<div class="sb-box ${g.flaps > 9 ? 'twelve' : ''}" role="group" aria-label="${WorldKit.t('Box von', 'Box of')} ${nameOf(S, id)}">${flaps}<span class="sb-hinge" aria-hidden="true"></span></div>`;
   };
 
   const kit = kitGame({
@@ -81,8 +82,10 @@
       const rows = ids.map((id) => `<tr class="${id === S.you?.id ? 'me' : ''}"><td>${nameOf(S, id)}</td>${[...Array(g.rounds).keys()].map((k) => `<td class="num">${g.results[id][k] ?? ''}</td>`).join('')}
         <td class="num"><b>${g.results[id].reduce((a, b) => a + b, 0)}</b></td></tr>`).join('');
       const table = I18n.html`<div class="sb-scores"><table class="standings"><thead><tr><th>Name</th>${[...Array(g.rounds).keys()].map((k) => I18n.html`<th class="num ${k + 1 === g.sub ? 'now' : ''}">R${k + 1}</th>`).join('')}<th class="num">Summe</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-      return `<div class="kg-table sb-table">${shut}
-        <div class="sb-wood"><small>${S.phase === 'playing' ? I18n.html`Box von ${nameOf(S, active)}${mine ? ' (du)' : ''}` : 'Spiel vorbei'}</small>${active && g.boxes[active] ? box(S, active, mine) : ''}${dice}</div>
+      const W = WorldKit, t = W.t, total = [...sel].reduce((x, y) => x + y, 0);
+      const chips = [g.dice.length ? W.chip('🎲', `${t('Summe', 'Sum')} ${g.sum}`) : W.chip('🎲', t('Noch nicht gewürfelt', 'Not rolled yet')), mine && g.pending ? W.chip(total === g.sum ? '✓' : '＋', `${t('Gewählt', 'Picked')}: ${total}${total === g.sum ? '' : ' / ' + g.sum}`, total === g.sum ? 'good' : '') : ''].filter(Boolean);
+      return `<div class="kg-table wk-stage sb-table">${W.head({ eyebrow: S.phase === 'playing' ? t(`Runde ${g.sub} von ${g.rounds}`, `Round ${g.sub} of ${g.rounds}`) : t('Spiel vorbei', 'Game over'), title: S.phase === 'playing' ? t(`Box von ${nameOf(S, active)}${mine ? ' (du)' : ''}`, `${nameOf(S, active)}'s box${mine ? ' (you)' : ''}`) : 'Shut the Box', chips })}${shut}
+        <div class="sb-wood">${active && g.boxes[active] ? box(S, active, mine) : ''}${dice}</div>
         ${table}</div>`;
     },
     dock(S, myTurn) {
