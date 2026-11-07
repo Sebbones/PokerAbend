@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 84,
-    "not_implemented_count": 23,
+    "playable_count": 85,
+    "not_implemented_count": 22,
     "completed_visual_count": 32,
-    "open_playable_visual_count": 52,
+    "open_playable_visual_count": 53,
     "planned_visual_count": 75,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -116,7 +116,8 @@
       "solitaire",
       "mahjong-solitaire",
       "match-3",
-      "gebietskampf"
+      "gebietskampf",
+      "staedtehandel"
     ],
     "not_implemented_game_ids": [
       "regelwahnsinn",
@@ -136,7 +137,6 @@
       "schubsarena",
       "scheinwerfer-flucht",
       "brueckenroulette",
-      "staedtehandel",
       "turmbauer",
       "geschenkdiebe",
       "fallenbauer",
@@ -374,7 +374,8 @@
     "VIS-046",
     "VIS-086",
     "VIS-087",
-    "VIS-090"
+    "VIS-090",
+    "VIS-089"
   ],
   "suggested_development_order": [
     "VIS-030",
@@ -428,7 +429,8 @@
     "VIS-105",
     "VIS-106",
     "VIS-107",
-    "VIS-090"
+    "VIS-090",
+    "VIS-089"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -452,8 +454,7 @@
     "VIS-078",
     "VIS-080",
     "VIS-095",
-    "VIS-093",
-    "VIS-089"
+    "VIS-093"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
   "verification": {
@@ -12168,25 +12169,44 @@
     {
       "id": "VIS-089",
       "game_id": "staedtehandel",
-      "game_name": "Städtehandel (Catan-inspiriert)",
+      "game_name": "Städtehandel",
       "category": "brett",
       "category_name": "Brettspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/staedtehandel/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "baseline_world",
+        "evidence": [
+          "games/staedtehandel/rules.js",
+          "test/staedtehandel.test.js",
+          "test/ui/staedtehandel.spec.js"
+        ],
+        "assessment": "Erste spielbare Umsetzung des V2-12-Auftrags mit eigener SVG-Insel Aurelia (Brett, Häfen, Zahlenchips, Räuber, Bauteile, Handelsfenster); die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
+      "current_frontend_files": [
+        "public/games/staedtehandel/staedtehandel.js",
+        "public/games/staedtehandel/staedtehandel.css"
+      ],
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/staedtehandel/staedtehandel.css",
+          "sha256": "94b0ab64492d7217705985e9cd3605320f82263aa6b16fa8755eb8c126a64e28"
+        },
+        {
+          "path": "public/games/staedtehandel/staedtehandel.js",
+          "sha256": "4f9e0961579642b9835206f80ae1cb54ec6718eeef5ac8ff7702dfd5f9309487"
+        }
+      ],
+      "current_design": "Insel Aurelia als SVG: Sechsecke mit Landschaftssymbolen und Zahlenchips, Häfen, Räuber, Straßen, Siedlungen und Städte in Spielerfarben mit Symbol, markierte Bauplätze, Rohstoffhand, Handels- und Kartenfenster, Seitenleiste mit Spielern, Bank und Baukosten (zoom- und scrollbar).",
       "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+        "Erste spielbare Umsetzung mit funktionaler Insel; individuelle Ausarbeitung (Landschaftszeichnung, Würfel- und Ertragsanimation, alternative Bauzielliste) ist dieses geplante Paket und nicht freigegeben."
       ],
       "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
       "gameplay_summary": "Rohstoffe erwürfeln, tauschen und eine eigene Stadt aufbauen.",
@@ -12219,7 +12239,7 @@
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Freigegebene Hex-, Kanten- und Kreuzungsgeometrie exakt übernehmen. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
       "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority_reason": "Spielbar seit V2-12; die individuelle visuelle Ausarbeitung wartet auf eine eigene Freigabe.",
       "acceptance_criteria": [
         "Keine dekorative Kreuzung erscheint als legaler Bauplatz."
       ],
@@ -12240,8 +12260,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "staedtehandel",
-        "source": "games/planned.js",
-        "status": "not_implemented",
+        "source": "games/staedtehandel/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],

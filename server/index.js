@@ -983,7 +983,7 @@ setInterval(() => {
 }, 2000).unref();
 
 function saveNow() {
-  for (const r of rooms.values()) { if (!r.busy) r.lastSnapshot = snapshotOf(r); else if (r.lastSnapshot) r.lastSnapshot.unlisted = !!r.unlisted; } // Privat-Schalter gilt auch mitten in der Runde
+  for (const r of rooms.values()) { if (!r.busy || r.persistMidGame) r.lastSnapshot = snapshotOf(r); else if (r.lastSnapshot) r.lastSnapshot.unlisted = !!r.unlisted; } // Privat-Schalter gilt auch mitten in der Runde
   try {
     mkdirSync(DATA_DIR, { recursive: true });
     writeFileSync(SAVE_FILE + '.tmp', JSON.stringify([...rooms.values()].map((r) => r.lastSnapshot).filter(Boolean)));

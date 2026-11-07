@@ -13,7 +13,10 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
   await page.locator('[data-plan="gebietskampf"]').click(); // V2-11: umgesetzt, nicht mehr nur geplant
   await expect(page.locator('#host-dlg')).toContainText('Bereits spielbar');
   await page.locator('#host-dlg .host-close').click();
-  for (const id of ['staedtehandel', 'turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell']) {
+  await page.locator('[data-plan="staedtehandel"]').click(); // V2-12: umgesetzt, nicht mehr nur geplant
+  await expect(page.locator('#host-dlg')).toContainText('Bereits spielbar');
+  await page.locator('#host-dlg .host-close').click();
+  for (const id of ['turmbauer', 'geschenkdiebe', 'fallenbauer', 'reaktor-notfall', 'bomben-duell']) {
     await page.locator(`[data-plan="${id}"]`).click();
     await expect(page.locator('#host-dlg')).toContainText('Noch nicht spielbar');
     await expect(page.locator('#host-form')).toHaveCount(0);
@@ -27,7 +30,7 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
     const matches = points.filter(p => p.id === id);
     expect(matches, `${task.id}: ${id}`).toHaveLength(1);
     // Only explicitly authorized, implemented packages may complete public points.
-    expect(!!matches[0].erledigt, id).toBe(['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'].includes(id));
+    expect(!!matches[0].erledigt, id).toBe(['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'v2-platform-integration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit', 'gebietskampf', 'staedtehandel', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'].includes(id));
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('v2-roadmap.png'), fullPage: true });

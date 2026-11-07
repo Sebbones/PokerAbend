@@ -21,8 +21,9 @@
     },
     {
       "path": "server/index.js",
-      "sha256": "5ff5989b29f1e0bb16fb94c6ed83df96a40ba5a90b08b5397902ad797fd03286",
-      "v2_11_update": "V2-11 (Gebietskampf, 2026-11-07): Raeume koennen ihren Spielstand auch mitten im Spiel speichern (persistMidGame); vorheriger Hash 179b54f3...9b5a"
+      "sha256": "9a2e84bc9cee6a461231a4ce08f539c30a1cee9213327d6a596804cdc5c4b384",
+      "v2_11_update": "V2-11 (Gebietskampf, 2026-11-07): Raeume koennen ihren Spielstand auch mitten im Spiel speichern (persistMidGame); vorheriger Hash 179b54f3...9b5a",
+      "v2_12_update": "V2-12 (Städtehandel, 2026-11-07): saveNow() speichert Räume mit persistMidGame auch beim geordneten Beenden mitten im Spiel; vorheriger Hash 5ff5989b...3286"
     },
     {
       "path": "server/presence.js",

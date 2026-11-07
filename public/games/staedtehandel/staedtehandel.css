@@ -1,0 +1,81 @@
+/* Städtehandel: Inselkarte „Aurelia“ – Meer, Sechsecke, Zahlenchips und Bauteile als SVG (keine Bilddateien) */
+.kg-staedtehandel .kg-main { grid-template-columns: minmax(0, 1fr); background: radial-gradient(120% 90% at 50% 15%, #245a74, #0d2635); }
+.st-wrap { width: 100%; max-width: 1240px; min-width: 0; display: grid; gap: 10px; }
+.st-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 8px 12px; border-radius: 12px; background: #0000004d; border: 1px solid #ffffff26; color: #f2ead6; }
+.st-steps { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.st-steps li { padding: 4px 10px; border-radius: 99px; border: 1px solid #ffffff33; font-size: 13px; color: #cdd8d6; }
+.st-steps li.on { background: var(--gold, #c99a45); color: #2a1b08; border-color: transparent; font-weight: 700; }
+.st-dice { display: inline-flex; align-items: center; gap: 4px; }
+.st-dice i { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 7px; background: #f6efdc; color: #2d2618; font: 800 17px system-ui, sans-serif; font-style: normal; border: 2px solid #0007; }
+.st-dice b { margin-left: 4px; }
+.st-note { padding: 3px 10px; border-radius: 99px; background: #7a4d1c66; border: 1px solid #e3c27a; font-size: 13px; }
+.st-zoom { margin-left: auto; display: inline-flex; gap: 4px; }
+.st-zoom .btn { min-width: 44px; min-height: 44px; }
+.st-board { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 12px; align-items: start; }
+.st-viewport { overflow: auto; border-radius: 14px; border: 2px solid #e3c27a66; background: #0f3347; max-height: 74vh; touch-action: pan-x pan-y; -webkit-overflow-scrolling: touch; }
+.st-viewport:focus-visible { outline: 3px solid #e3c27a; outline-offset: 2px; }
+.st-svg { display: block; height: auto; min-width: 100%; user-select: none; }
+.st-svg.fit { width: 100%; height: clamp(300px, calc(100dvh - 400px), 900px); }
+.st-sea { fill: #1b4d66; }
+.st-land { stroke: #f4e8c4; stroke-width: 3; stroke-linejoin: round; }
+.st-token circle { fill: #f6efdc; stroke: #2d2618; stroke-width: 2; }
+.st-token text { font: 800 19px system-ui, sans-serif; fill: #2d2618; }
+.st-token .st-pips { font-size: 11px; letter-spacing: 1px; }
+.st-token.hot text { fill: #c0281f; }
+.st-token.dim { opacity: .45; }
+.st-port line { stroke: #f4e8c4; stroke-width: 3; stroke-dasharray: 4 4; opacity: .85; }
+.st-port circle { fill: #123a50; stroke: #f4e8c4; stroke-width: 2; }
+.st-port text { fill: #fff; font: 800 12px system-ui, sans-serif; }
+.st-road .o { stroke: #fff; stroke-width: 13; stroke-linecap: round; }
+.st-road .i { stroke-width: 8; stroke-linecap: round; }
+.st-glyph { fill: #fff; font: 800 10px system-ui, sans-serif; paint-order: stroke; stroke: #0008; stroke-width: 2px; pointer-events: none; }
+.st-pickhex { fill: #ffe9a066; stroke: #ffd36b; stroke-width: 5; stroke-dasharray: 8 6; cursor: pointer; }
+.st-hex.pick:focus-visible .st-pickhex { stroke: #fff; stroke-width: 7; }
+.st-spot { cursor: pointer; outline: none; }
+.st-spot .hit { fill: transparent; }
+.st-spot .ring { fill: #ffe9a066; stroke: #ffd36b; stroke-width: 4; stroke-dasharray: 6 4; }
+.st-spot:hover .ring, .st-spot:focus-visible .ring { fill: #ffd36baa; stroke: #fff; stroke-dasharray: none; }
+.st-side { display: grid; gap: 10px; color: #f2ead6; }
+.st-side section { padding: 10px 12px; border-radius: 12px; background: #0000004d; border: 1px solid #ffffff26; }
+.st-side h3 { margin: 0 0 6px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #e3c27a; }
+.st-players, .st-costs, .st-devs { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.st-players li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; column-gap: 8px; align-items: center; padding: 4px 6px; border-radius: 8px; }
+.st-players li small { grid-column: 2 / -1; color: #cdd8d6; }
+.st-players li.turn { background: #e3c27a2e; outline: 1px solid #e3c27a; }
+.st-players li.out { opacity: .5; text-decoration: line-through; }
+.st-pchip { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; color: #fff; font-size: 13px; border: 2px solid #fff; text-shadow: 0 0 3px #000; }
+.st-vp { font-weight: 800; color: #ffd36b; }
+.st-mine, .st-awards { margin: 8px 0 0; font-size: 13px; }
+.st-bank { list-style: none; margin: 0 0 4px; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.st-bank li { display: inline-flex; align-items: center; gap: 4px; }
+.st-costs li { font-size: 13px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.st-ic { vertical-align: -3px; flex: none; }
+.st-hand { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 6px; }
+.st-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 99px; background: #0000003d; border: 1px solid #ffffff2e; font-size: 13px; }
+.st-chip.big { flex-direction: column; gap: 0; min-width: 62px; padding: 5px 8px; border-radius: 10px; background: #f6efdc; color: #2d2618; border: 2px solid #2d261855; }
+.st-chip.big b { font-size: 18px; line-height: 1.1; }
+.st-chip.big small { font-size: 11px; }
+.st-chip.big.zero { opacity: .5; }
+.st-chip.big.dev { background: #efe1ff; }
+.st-acts { gap: 8px; flex-wrap: wrap; justify-content: center; }
+.st-acts button, .st-panel button, .st-offer button { min-height: 44px; }
+.st-panel, .st-offer { margin: 8px auto 0; padding: 10px 12px; border-radius: 12px; background: #0000004d; border: 1px solid #ffffff26; max-width: 640px; color: #f2ead6; text-align: left; }
+.st-offer { border-color: #e3c27a; }
+.st-panel p, .st-offer p { margin: 0 0 6px; }
+.st-tabs, .st-resrow, .st-ans-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.st-res small { margin-left: 4px; opacity: .8; }
+.st-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.st-step { display: grid; grid-template-columns: minmax(0, 1fr) 44px 24px 44px; align-items: center; gap: 4px; margin-bottom: 4px; }
+.st-step b { text-align: center; }
+.st-steps2 { display: grid; gap: 4px; margin-bottom: 8px; }
+.st-ans { padding: 6px 10px; border-radius: 99px; border: 1px solid #ffffff33; font-size: 13px; }
+.st-ans.decline { opacity: .6; }
+.st-devs li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+@media (max-width: 900px) {
+  .st-board { grid-template-columns: minmax(0, 1fr); }
+  .st-viewport { max-height: 62vh; }
+  .st-strip { gap: 6px 10px; }
+  .st-steps li { padding: 3px 8px; font-size: 12px; }
+  .st-two { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .st-wrap * { transition: none !important; animation: none !important; } }
