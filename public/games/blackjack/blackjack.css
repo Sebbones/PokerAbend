@@ -37,3 +37,11 @@
   .bj-hand.big .kc { --w: 52px; }
   .bj-dealer { border-radius: var(--r-l); }
 }
+
+/* VIS-011: eleganter Casinotisch – Filz mit goldener Linie, Dealer als Halbbogen oben, Hände und Einsatz klar getrennt, große Chip-Knöpfe */
+.kg-blackjack .kg-main { background: radial-gradient(120% 90% at 50% 0, #1f6b4b, #0b3023); }
+.kg-blackjack .bj-dealer { border: 2px solid #d9b45a66; border-top: 0; background: #0b2a1f99; }
+.kg-blackjack .bj-seat { border: 1px solid #ffffff2a; border-radius: 14px; background: #0b2a1f88; }
+.kg-blackjack .bj-seat.turn, .kg-blackjack .bj-seat.me { border-color: #d9b45a; box-shadow: 0 0 0 2px #d9b45a44; }
+.kg-blackjack .bj-total::before { content: '= '; }
+.kg-blackjack button { min-height: 44px; }
