@@ -1,5 +1,19 @@
+@import url('/games/world-kit.css');
 /* Mau-Mau: Tisch, Wunschfarbe, deutsches Blatt (Eichel, Grün, Herz, Schellen – selbst gezeichnet) */
-.kg-maumau .kg-main { background: radial-gradient(120% 90% at 50% 25%, #2C6E55, #174534); }
+.kg-maumau .kg-main { background: radial-gradient(120% 90% at 50% 25%, #5f7f68, #2f4a3b); }
 .mm-wish-sign { font-size: 46px; line-height: 1; color: var(--paper); }
 .mm-wish-sign.red { color: #F06A6A; }
 .mm-wish-sign svg { width: 52px; height: 52px; display: block; }
+/* Haus-Tisch: Salbeigrün mit Elfenbein-Ring, Ziehstapel und Ablage als Paar */
+.kg-maumau .kg-table { --wk-ink:#f6efe0; --wk-muted:#d9e2d6; --wk-accent:#e9d6a1; --wk-edge:#f1e6c466; justify-items:center; }
+.kg-maumau .kg-piles { padding:14px 22px; border-radius:999px; border:3px solid #f1e6c4; background:#00000026; box-shadow:inset 0 0 0 6px #0000001f; }
+.kg-maumau .kg-piles small { text-transform:uppercase; letter-spacing:.12em; font-size:11px; }
+.kg-maumau .kg-wish { padding:6px 12px; border-radius:12px; border:2px solid var(--gold); background:#0003; }
+/* Sonderkarten 7 / 8 / Bube in der Hand */
+.kg-maumau .kg-hand .kc { position:relative; }
+.kg-maumau .kg-hand [data-card^="7"]::after, .kg-maumau .kg-hand [data-card^="8"]::after, .kg-maumau .kg-hand [data-card^="J"]::after { position:absolute; right:-4px; bottom:-6px; min-width:22px; padding:1px 5px; border-radius:99px; background:#2f4a3b; color:#fff; border:1px solid #e9d6a1; font:700 11px/16px system-ui,sans-serif; text-align:center; pointer-events:none; }
+.kg-maumau .kg-hand [data-card^="7"]::after { content:'+2'; }
+.kg-maumau .kg-hand [data-card^="8"]::after { content:'⏭'; }
+.kg-maumau .kg-hand [data-card^="J"]::after { content:'★'; }
+@media (max-width:600px) { .kg-maumau .kg-piles { padding:10px 14px; gap:var(--s-3); } }
+.kg-maumau .kg-table::before { content:"Mau-Mau"; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--wk-accent); }
