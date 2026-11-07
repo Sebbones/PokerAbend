@@ -127,6 +127,10 @@ test.describe('Spielmotive', () => {
       } else if (['farbenchaos', 'stapelrennen', 'zehnetappen'].includes(id)) {
         await expect(page.locator('.cw-lobby')).toBeVisible();
         expect(await page.locator('.cw-lobby-art .kc').count()).toBeGreaterThan(0);
+      } else if (['schach', 'exploding-deck', 'doppelagent', 'luegenbaron'].includes(id)) {
+        const lobbies={schach:'.ch-lobby','exploding-deck':'.eb-lobby',doppelagent:'.da-file',luegenbaron:'.lb-lobby'};
+        await expect(page.locator(lobbies[id])).toBeVisible();
+        await expect(page.locator(lobbies[id]).locator('h2')).not.toHaveText('');
       } else if (!['poker', 'omaha'].includes(id)) await expect(page.locator('.scene-hero > svg')).toBeVisible();
       const closed=await page.evaluate(()=>send('closeTable'));
       expect(closed.ok,id).toBe(true);
