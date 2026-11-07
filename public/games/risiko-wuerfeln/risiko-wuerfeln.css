@@ -1,2 +1,13 @@
 @import url('/games/backlog.css');
 .risk-pot{display:grid;justify-items:center;gap:12px;border:1px solid var(--line);border-radius:16px;background:#ffffff08;padding:24px}.risk-pot>strong{font-size:clamp(42px,8vw,78px);color:var(--scene-accent)}.risk-pot>span{color:var(--muted)}.risk-die{min-height:90px;display:grid;place-items:center}.risk-ready{font-size:72px;color:var(--scene-accent);line-height:1}.risk-bust{padding:12px;border-left:3px solid #e39a7b;color:#f1bea7}
+
+/* VIS-055: ruhiger Zock-Würfeltisch – Risikoseite (ungesicherte Zugpunkte) klar von der Sicherungsseite (gesicherte Punkte) getrennt */
+.kg-risiko-wuerfeln .kg-main { background: radial-gradient(120% 90% at 50% 0, #20463f, #0d1f1c); }
+.risk-table .risk-pot { position: relative; border: 2px dashed #f0b86a; background: #00000040; }
+.risk-table .risk-pot::before { content: '⚠ Risiko – noch nicht gesichert'; position: absolute; top: -12px; left: 16px; padding: 0 10px; border-radius: 99px; background: #7a4d1c; color: #fff; font-size: 12px; font-weight: 700; }
+.risk-table .risk-bust::before { content: '✕ '; }
+.risk-table .bg-score-list { border-top: 3px solid #8fd3a2; padding-top: 12px; }
+.risk-table .bg-score-list::before { content: '🔒 Gesichert'; display: block; margin-bottom: 6px; color: #8fd3a2; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 640px) { .risk-table .risk-pot { padding: 18px 12px; } .risk-table .bg-score-list { order: 3; } }
+html[lang='en'] .risk-table .risk-pot::before { content: '⚠ Risk – not banked yet'; }
+html[lang='en'] .risk-table .bg-score-list::before { content: '🔒 Banked'; }
