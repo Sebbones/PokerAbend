@@ -1,6 +1,7 @@
 // Terminfindung und Spielewahl: Namen sind Anzeige, Rechte gehören zur Browser-Kennung.
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
-import { rebindIds } from './rebind.js';
+import { rebindIds, rebindGameIds } from './rebind.js';
+import { GAME_ID } from './account-store.js';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { cleanName, cleanText } from './security.js';
@@ -11,7 +12,7 @@ export const planError = (status, message) => Object.assign(new Error(message), 
 const fail = (message) => { throw planError(400, message); };
 const validActor = (a) => {
   if (!a || !/^[a-f0-9]{32}$/.test(a.id || '') || typeof a.name !== 'string' || !cleanName(a.name)) fail('Lege zuerst deinen Namen im Profil fest');
-  return { id: a.id, name: cleanName(a.name), avatar: AVATARS.includes(a.avatar) ? a.avatar : '🦉' };
+  return { id: a.id, name: cleanName(a.name), avatar: AVATARS.includes(a.avatar) ? a.avatar : '🦉', ...(typeof a.gameId === 'string' && GAME_ID.test(a.gameId) ? { gameId: a.gameId } : {}) }; // V2-07: gameId nur zur Anzeige
 };
 const text = (v, max, min = 0) => {
   if (typeof v !== 'string' || v.length > max || cleanText(v, max).length < min) fail(`Bitte ${min} bis ${max} Zeichen eingeben`);
@@ -67,11 +68,11 @@ export function createPlanStore({ dir, games, now = Date.now, persist = atomic }
   function view(p, actor, detail = true) {
     const mine = p.ballots.find((b) => b.person.id === actor?.id);
     const summary = { id: p.id, title: p.title, description: p.description, private: p.private, status: p.status, revision: p.revision, createdAt: p.createdAt, updatedAt: p.updatedAt,
-      owner: { name: p.owner.name, avatar: p.owner.avatar }, canManage: p.owner.id === actor?.id, participants: p.ballots.length,
+      owner: { name: p.owner.name, avatar: p.owner.avatar, ...(p.owner.gameId ? { gameId: p.owner.gameId } : {}) }, canManage: p.owner.id === actor?.id, participants: p.ballots.length,
       slots: p.slots.map((s) => ({ id: s.id, at: s.at, yes: p.ballots.filter((b) => b.answers[s.id] === 'yes').length, maybe: p.ballots.filter((b) => b.answers[s.id] === 'maybe').length, no: p.ballots.filter((b) => b.answers[s.id] === 'no').length })),
       games: p.games.map((g) => ({ id: g.id, name: catalog.get(g.id).name, votes: p.ballots.filter((b) => b.games.includes(g.id)).length })).sort((a, b) => b.votes - a.votes || a.name.localeCompare(b.name, 'de')), selected: p.selected ? { slot: p.selected.slot, games: [...p.selected.games] } : null };
     return detail ? { ...summary, mine: mine ? { answers: { ...mine.answers }, games: [...mine.games], revision: mine.revision } : { answers: {}, games: [], revision: 0 },
-      people: p.ballots.map((b) => ({ name: b.person.name, avatar: b.person.avatar, mine: b.person.id === actor?.id, answers: { ...b.answers }, games: [...b.games] })) } : summary;
+      people: p.ballots.map((b) => ({ name: b.person.name, avatar: b.person.avatar, ...(b.person.gameId ? { gameId: b.person.gameId } : {}), mine: b.person.id === actor?.id, answers: { ...b.answers }, games: [...b.games] })) } : summary;
   }
   return {
     list({ known = [], q = '', status = '', page = 1 } = {}, actor) {
@@ -127,6 +128,11 @@ export function createPlanStore({ dir, games, now = Date.now, persist = atomic }
     // V2-01: Besucher-ID → Konto-ID (Ersteller, Stimmen, Spielvorschläge)
     rebind(from, to) {
       const { value, count } = rebindIds(structuredClone(state), from, to);
+      if (count) { mkdirSync(dir, { recursive: true }); persist(file, value); state = value; }
+      return count;
+    },
+    rebindGameId(from, to) {
+      const { value, count } = rebindGameIds(structuredClone(state), from, to);
       if (count) { mkdirSync(dir, { recursive: true }); persist(file, value); state = value; }
       return count;
     },

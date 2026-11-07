@@ -3,6 +3,8 @@ import { readFileSync, writeFileSync, renameSync, mkdirSync, existsSync } from '
 import { join } from 'node:path';
 import { cleanText } from './security.js';
 import { AVATARS } from './base-room.js';
+import { GAME_ID } from './account-store.js';
+import { rebindGameIds } from './rebind.js';
 import { variantName } from '../games/variants.js';
 
 export const REVIEW_ID = /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/;
@@ -16,7 +18,8 @@ const error = (status, message) => Object.assign(new Error(message), { status })
 
 function cleanReview(r) {
   if (!r || !REVIEW_ID.test(r.id || '') || !modes.includes(r.mode) || !statuses.includes(r.status) || !Array.isArray(r.players) || r.players.length > 30 || !Array.isArray(r.stations) || !r.stations.length || r.stations.length > 12) throw new Error('Ungültiger Abend-Rückblick');
-  const players = r.players.map((p, i) => ({ key: 'p' + i, name: cleanText(p.name, 32) || 'Mitspieler', avatar: AVATARS.includes(p.avatar) ? p.avatar : '🦉', team: r.mode === 'team' && ['a', 'b'].includes(p.team) ? p.team : null }));
+  const players = r.players.map((p, i) => ({ key: 'p' + i, name: cleanText(p.name, 32) || 'Mitspieler', avatar: AVATARS.includes(p.avatar) ? p.avatar : '🦉', team: r.mode === 'team' && ['a', 'b'].includes(p.team) ? p.team : null,
+    ...(typeof p.gameId === 'string' && GAME_ID.test(p.gameId) ? { gameId: p.gameId } : {}) })); // V2-07: öffentliche Spieler-ID statt nur Freitextname; alte Rückblicke haben keine
   const keys = new Set(players.map((p) => p.key));
   const stations = r.stations.map((s) => {
     if (!s || !Number.isInteger(s.index) || s.index < 0 || s.index >= 12 || !/^[a-z0-9-]{1,30}$/.test(s.game || '') || !Array.isArray(s.values) || s.values.length > players.length) throw new Error('Ungültige Spielwertung');
@@ -28,16 +31,17 @@ function cleanReview(r) {
     return { index: s.index, game: s.game, gameName: cleanText(s.gameName, 60) || s.game, at: timestamp(s.at), scoreLabel: cleanText(s.scoreLabel, 40) || 'Punkte', lowWins: s.lowWins === true, values };
   }).sort((a, b) => a.index - b.index);
   if (new Set(stations.map((s) => s.index)).size !== stations.length) throw new Error('Doppelte Spielwertung');
-  return { id: r.id, name: cleanText(r.name, 40) || 'Unser Spieleabend', mode: r.mode, status: r.status, private: r.private === true,
+  return { id: r.id, name: cleanText(r.name, 40) || 'Unser Spieleabend', mode: r.mode, status: r.status, private: r.private === true, ...(r.hidden === true ? { hidden: true } : {}), // V2-17: von der Verwaltung ausgeblendet, aber nicht gelöscht
     startedAt: timestamp(r.startedAt), endedAt: timestamp(r.endedAt), updatedAt: timestamp(r.updatedAt), planned: Math.max(stations.length, Math.min(12, Number.isInteger(r.planned) ? r.planned : stations.length)), players, stations };
 }
 
-export function reviewFromRoom(room, games, now = Date.now()) {
+// gameIdOf(raumSpielerId) → öffentliche Spieler-ID oder null (versteckte Konten liefern null)
+export function reviewFromRoom(room, games, now = Date.now(), gameIdOf = () => null) {
   const p = room.partyProgram;
   if (!p?.results?.length || !REVIEW_ID.test(p.id || '') || !p.roster?.length) return null;
   const keys = new Map(p.roster.map((person, i) => [person.id, 'p' + i]));
   return cleanReview({ id: p.id, name: p.config.name, mode: p.config.mode, status: p.results.length === p.plan.length ? 'done' : p.status, private: !!room.unlisted, startedAt: p.startedAt, endedAt: p.endedAt, updatedAt: now, planned: p.plan.length,
-    players: p.roster.map((person) => ({ name: person.name, avatar: person.avatar, team: person.team })),
+    players: p.roster.map((person) => ({ name: person.name, avatar: person.avatar, team: person.team, gameId: gameIdOf(person.id) })),
     stations: p.results.map((r) => ({ index: r.index, game: r.game, gameName: variantName(r.game, games[r.game]?.name || r.game, r.variant), at: r.at, scoreLabel: r.scoreLabel, lowWins: r.lowWins,
       values: p.roster.filter((person) => Object.hasOwn(r.points, person.id)).map((person) => ({ player: keys.get(person.id), raw: r.raw?.[person.id], points: r.points[person.id], won: r.winners?.includes(person.id) })) })) });
 }
@@ -68,7 +72,7 @@ export function summarizeReview(r) {
   return { ...clone(r), standings, teams, timeline, winners, moments: moments.slice(-12) };
 }
 
-export function createReviewStore({ dir, games, now = Date.now }) {
+export function createReviewStore({ dir, games, now = Date.now, gameIdOf = () => null }) {
   const file = join(dir, 'evening-reviews.json'); let rows = [];
   if (existsSync(file)) {
     const data = JSON.parse(readFileSync(file, 'utf8'));
@@ -81,7 +85,7 @@ export function createReviewStore({ dir, games, now = Date.now }) {
   }
   return {
     capture(room, { restoring = false } = {}) {
-      let r = reviewFromRoom(room, games, now()); if (!r) return null;
+      let r = reviewFromRoom(room, games, now(), (id) => gameIdOf(room, id)); if (!r) return null;
       const old = rows.find((s) => s.id === r.id);
       // rooms.json wird verzögert gespeichert. Ein älterer Raumstand nach einem
       // Absturz darf einen bereits archivierten Abschluss nicht zurückdrehen.
@@ -90,18 +94,36 @@ export function createReviewStore({ dir, games, now = Date.now }) {
       } else if (old && ['done', 'stopped'].includes(old.status)) {
         r = { ...old, private: r.private, updatedAt: r.updatedAt };
       }
+      if (old?.hidden) r.hidden = true;
       if (old && restoring) r.private ||= old.private;
       if (old && JSON.stringify({ ...old, updatedAt: null }) === JSON.stringify({ ...r, updatedAt: null })) return r.id;
       write([r, ...rows.filter((s) => s.id !== r.id)].sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0)).slice(0, MAX_REVIEWS)); return r.id;
     },
     list({ known = [], query = '', page = 1 } = {}) {
       const allowed = new Set(known.slice(0, 100).filter((id) => REVIEW_ID.test(id))), q = cleanText(query, 80).toLocaleLowerCase('de');
-      const selected = rows.filter((r) => ['done', 'stopped'].includes(r.status) && (!r.private || allowed.has(r.id)) && (!q || [r.name, ...r.players.map((p) => p.name), ...r.stations.map((s) => s.gameName)].join(' ').toLocaleLowerCase('de').includes(q)));
+      const selected = rows.filter((r) => !r.hidden && ['done', 'stopped'].includes(r.status) && (!r.private || allowed.has(r.id)) && (!q || [r.name, ...r.players.map((p) => p.name), ...r.stations.map((s) => s.gameName)].join(' ').toLocaleLowerCase('de').includes(q)));
       const at = Math.max(1, Math.min(25, Number.isSafeInteger(page) ? page : 1));
       return { total: selected.length, page: at, items: selected.slice((at - 1) * 20, at * 20).map((r) => ({ id: r.id, name: r.name, mode: r.mode, status: r.status, private: r.private, startedAt: r.startedAt, endedAt: r.endedAt,
         games: r.stations.map((s) => s.gameName), players: r.players.length, completed: r.stations.length, planned: r.planned, winners: summarizeReview(r).winners })) };
     },
-    get(id) { if (!REVIEW_ID.test(id || '')) throw error(404, 'Rückblick nicht gefunden'); const r = rows.find((r) => r.id === id); if (!r) throw error(404, 'Rückblick nicht gefunden'); return summarizeReview(r); },
+    get(id) { if (!REVIEW_ID.test(id || '')) throw error(404, 'Rückblick nicht gefunden'); const r = rows.find((r) => r.id === id); if (!r || r.hidden) throw error(404, 'Rückblick nicht gefunden'); return summarizeReview(r); },
+    // V2-17: Verwaltung sieht alles, auch private und ausgeblendete Abende
+    adminList({ limit = 100 } = {}) {
+      return rows.slice(0, Math.max(1, Math.min(MAX_REVIEWS, Number(limit) | 0 || 100))).map((r) => ({ id: r.id, name: r.name, mode: r.mode, status: r.status, private: r.private, hidden: !!r.hidden, updatedAt: r.updatedAt, endedAt: r.endedAt,
+        players: r.players.map((p) => ({ name: p.name, gameId: p.gameId || '' })), games: r.stations.map((s) => s.gameName), completed: r.stations.length, planned: r.planned, winners: summarizeReview(r).winners }));
+    },
+    adminGet(id) { const r = REVIEW_ID.test(id || '') && rows.find((x) => x.id === id); if (!r) throw error(404, 'Rückblick nicht gefunden'); return { ...summarizeReview(r), hidden: !!r.hidden }; },
+    setHidden(id, hidden) {
+      const r = REVIEW_ID.test(id || '') && rows.find((x) => x.id === id); if (!r) return null;
+      if (!!r.hidden !== !!hidden) write(rows.map((x) => { if (x.id !== id) return x; const y = { ...x }; if (hidden) y.hidden = true; else delete y.hidden; return y; }));
+      return { id, name: r.name, hidden: !!hidden };
+    },
+    // Konten zusammengeführt (to = neue Game-ID) oder gelöscht (to = null)
+    rebindGameId(from, to) {
+      const { value, count } = rebindGameIds(clone(rows), from, to);
+      if (count) write(value);
+      return count;
+    },
   };
 }
 

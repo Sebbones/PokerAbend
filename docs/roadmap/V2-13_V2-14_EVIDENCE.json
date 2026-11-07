@@ -13,7 +13,7 @@
     },
     {
       "path": "server/leaderboard.js",
-      "sha256": "57a9464d4cec7dbc782b30087a8b3dd252a3d67acb2c57519ddab7e806474e1a"
+      "sha256": "02134be939132bbf4b700f97936ec4902bf88c2102696ef20533111f7422089c"
     },
     {
       "path": "server/ranked.js",
@@ -21,7 +21,7 @@
     },
     {
       "path": "server/index.js",
-      "sha256": "92e0bd59f09914c200086eb1e824b9ec89e2360558274e88a8452695370406ff"
+      "sha256": "179b54f3c2daf371e1b148b68989de8b2b0a48c2c14e80ce0ef9f7f7f9319b5a"
     },
     {
       "path": "server/presence.js",

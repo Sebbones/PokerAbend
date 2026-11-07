@@ -48,9 +48,10 @@ export function createIdentityAPI({ identity, accounts, leaderboard, secure = ()
     if (!target || !accounts.has(target)) { linkFails.hit(ip); linkFailsAll.hit('all'); return res.status(400).json({ error: 'Der Code stimmt nicht oder ist abgelaufen' }); }
     const to = accounts.get(target), from = mine(req);
     if (to.id === from.id) return res.status(400).json({ error: 'Dieses Gerät gehört schon zu dieser Person' });
+    const fromGameId = from.gameId;
     accounts.merge(from.id, to.id);
     leaderboard.merge(from.id, to.id, to.name);
-    onMerge(from.id, to.id);
+    onMerge(from.id, to.id, { fromGameId, toGameId: to.gameId });
     onChange();
     res.append('Set-Cookie', identity.cookie(identity.issue(to.id), { secure: secure(req) }));
     res.json({ ok: true, gameId: to.gameId });

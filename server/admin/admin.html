@@ -18,7 +18,7 @@
   table { width:100%; border-collapse:collapse; font-size:14px; } th, td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
   th { color:var(--muted); font-weight:600; } .scroll { overflow-x:auto; }
   .muted { color:var(--muted); } .bad { color:var(--bad); } .good { color:var(--good); }
-  button, input { font:inherit; } input { background:#0c1412; color:var(--text); border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
+  button, input, select, textarea { font:inherit; } input, select, textarea { background:#0c1412; color:var(--text); border:1px solid var(--line); border-radius:8px; padding:8px 10px; }
   button { background:var(--brass); color:#1b1408; border:0; border-radius:8px; padding:8px 14px; font-weight:600; cursor:pointer; }
   button.ghost { background:transparent; color:var(--text); border:1px solid var(--line); } button.danger { background:var(--bad); color:#2b0d09; }
   button:disabled { opacity:.5; cursor:default; }
@@ -49,6 +49,15 @@
       <section><h2>Datendateien</h2><div id="files"></div></section>
       <section><h2>Übernommene alte Statistiken</h2><div class="scroll" id="claims"></div></section>
       <section><h2>Fehler aus dem Browser</h2><div class="scroll" id="errors"></div></section>
+      <section class="wide" id="mod-reviews"><h2>Rückblicke</h2><p class="muted">Ausgeblendete Abende verschwinden aus dem öffentlichen Archiv, bleiben aber gespeichert und lassen sich wieder einblenden.</p><div class="scroll" id="reviews"></div></section>
+      <section class="wide" id="mod-board"><h2>Bestenliste &amp; Ergebnisse</h2>
+        <form id="board-form" class="row"><input name="game" placeholder="Spiel-ID (leer = alle)" maxlength="40" aria-label="Spiel-ID"><select name="period" aria-label="Zeitraum"><option value="all">Gesamt</option><option value="month">Monat</option><option value="week">Woche</option></select><label class="row"><input type="checkbox" name="hidden"> nur ausgeblendete Partien</label><button type="submit">Anzeigen</button></form>
+        <div class="scroll" id="board"></div><h2 style="margin-top:14px">Partien</h2><p class="muted">Eine ausgeblendete Partie zählt in keiner Rangliste, keinem Profil und keinem neuen Erfolg. Bereits freigeschaltete Abzeichen bleiben.</p><div class="scroll" id="rounds"></div></section>
+      <section class="wide" id="mod-players"><h2>Spieler zusammenführen</h2><p class="muted">Dieselbe Person mit zwei Konten: alle Ergebnisse, Tickets und Planungen des ersten Kontos gehören danach dem zweiten. Das lässt sich nicht automatisch rückgängig machen.</p>
+        <form id="player-search" class="row"><input name="q" placeholder="Name oder Game-ID suchen" maxlength="40" aria-label="Spieler suchen"><button type="submit">Suchen</button></form>
+        <div class="scroll" id="players"></div>
+        <form id="merge-form" class="row" style="margin-top:10px"><input name="from" placeholder="Altes Konto (#ABCD)" maxlength="7" aria-label="Altes Konto"><span class="muted">→</span><input name="to" placeholder="Bleibt bestehen (#WXYZ)" maxlength="7" aria-label="Zielkonto"><button class="danger" type="submit">Zusammenführen</button></form></section>
+      <section class="wide" id="mod-tickets"><h2>Tickets</h2><form id="ticket-filter" class="row"><input name="q" placeholder="Suchen" maxlength="100" aria-label="Tickets suchen"><select name="status" aria-label="Status"><option value="">Alle Status</option></select><button type="submit">Filtern</button></form><div class="scroll" id="tickets"></div></section>
       <section class="wide"><h2>Admin-Protokoll</h2><div class="scroll" id="log"></div></section>
     </div>
   </div>

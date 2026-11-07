@@ -4,7 +4,7 @@ import { parseCookies, sameOrigin, clientIp, limiter } from './security.js';
 import { createPlanStore, PLAN_ID } from './evening-plans.js';
 import { normalizeProgram, programDefaults, programOptions } from './party-program.js';
 
-export function createPlanAPI({ dir, games, secret, secure = () => false, trustProxy = false }) {
+export function createPlanAPI({ dir, games, secret, secure = () => false, trustProxy = false, personOf = () => null }) {
   const router = express.Router(), cookieName = 'pa_plan_visitor';
   const sign = (payload) => createHmac('sha256', secret).update('evening-plan:' + payload).digest('base64url');
   function identity(value) {
@@ -41,7 +41,9 @@ export function createPlanAPI({ dir, games, secret, secure = () => false, trustP
       const payload = randomBytes(16).toString('hex') + '.' + (Date.now() + 365 * 86400000), token = payload + '.' + sign(payload); id = identity(token);
       res.append('Set-Cookie', `${cookieName}=${encodeURIComponent(token)}; Path=/api/plans; HttpOnly; SameSite=Strict; Max-Age=31536000${secure(req) ? '; Secure' : ''}`);
     }
-    req.planActor = { id, name: req.body.name, avatar: req.body.avatar }; next();
+    // V2-07: mit Konto zählen Name, Avatar und Spieler-ID des Servers, nie die Angaben der Anfrage
+    const known = req.accountId ? personOf(req.accountId) : null;
+    req.planActor = { id, name: known?.name || req.body.name, avatar: known?.name ? known.avatar : req.body.avatar, gameId: known?.gameId }; next();
   });
   const call = (fn) => (req, res, next) => { try { fn(req, res); } catch (error) { next(error); } };
   router.get('/', call((req, res) => res.json(store.list({ ...req.query, known: String(req.query.known || '').split(',').slice(0, 100) }, req.planActor))));
@@ -69,5 +71,6 @@ export function createPlanAPI({ dir, games, secret, secure = () => false, trustP
     res.status(status).json({ error: status === 500 ? 'Die Änderung konnte nicht gespeichert werden. Bitte versuche es später erneut' : error.type === 'entity.parse.failed' ? 'Ungültiges JSON' : status === 413 ? 'Die Anfrage ist zu groß' : error.message });
   });
   router.rebind = (from, to) => store?.rebind(from, to) || 0;
+  router.rebindGameId = (from, to) => store?.rebindGameId(from, to) || 0;
   return router;
 }

@@ -1,6 +1,7 @@
 // Persistentes Ticket-Board. Browser-Identitäten sind privat; Namen verleihen keine Rechte.
 import { existsSync, mkdirSync, readFileSync, writeFileSync, renameSync } from 'node:fs';
-import { rebindIds } from './rebind.js';
+import { rebindIds, rebindGameIds } from './rebind.js';
+import { GAME_ID } from './account-store.js';
 import { join } from 'node:path';
 import { cleanName, cleanText } from './security.js';
 import { AVATARS } from './base-room.js';
@@ -14,7 +15,8 @@ const clone = (value) => structuredClone(value);
 const person = (actor) => {
   const name = cleanName(typeof actor?.name === 'string' ? actor.name : '');
   if (!name || typeof actor?.id !== 'string' || !/^[a-f0-9]{32}$/.test(actor.id)) throw ticketError(400, 'Lege zuerst deinen Namen im Profil fest');
-  return { id: actor.id, name, avatar: AVATARS.includes(actor.avatar) ? actor.avatar : '🦉' };
+  // V2-07: gameId = öffentliche Spieler-ID des Kontos (optional; alte Tickets haben keine). Sie verleiht nie Rechte, dafür zählt nur id.
+  return { id: actor.id, name, avatar: AVATARS.includes(actor.avatar) ? actor.avatar : '🦉', ...(typeof actor.gameId === 'string' && GAME_ID.test(actor.gameId) ? { gameId: actor.gameId } : {}) };
 };
 const plain = (value, max) => {
   if (typeof value !== 'string' || value.length > max) throw ticketError(400, `Bitte höchstens ${max} Zeichen eingeben`);
@@ -74,7 +76,7 @@ export function createTicketStore({ dir, games = [], now = Date.now, persist = a
     persist(file, next); state = next;
     return result;
   };
-  const publicPerson = (p) => ({ name: p.name, avatar: p.avatar });
+  const publicPerson = (p) => ({ name: p.name, avatar: p.avatar, ...(p.gameId ? { gameId: p.gameId } : {}) });
   function view(t, actor, detail = true) {
     const base = { id: t.id, title: t.title, type: t.type, game: t.game, status: t.status, author: publicPerson(t.author), createdAt: t.createdAt, updatedAt: t.updatedAt, revision: t.revision,
       votes: t.voters.length, voted: t.voters.includes(actor?.id), commentCount: t.comments.length, canEdit: !!actor?.admin || actor?.id === t.author.id, canDelete: !!actor?.admin };
@@ -99,6 +101,11 @@ export function createTicketStore({ dir, games = [], now = Date.now, persist = a
     // V2-01: Besucher-ID → Konto-ID (Autoren, Stimmen); gibt die Zahl der ersetzten Stellen zurück
     rebind(from, to) {
       const { value, count } = rebindIds(clone(state), from, to);
+      if (count) { persist(file, value); state = value; }
+      return count;
+    },
+    rebindGameId(from, to) {
+      const { value, count } = rebindGameIds(clone(state), from, to);
       if (count) { persist(file, value); state = value; }
       return count;
     },

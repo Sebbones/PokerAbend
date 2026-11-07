@@ -8,7 +8,9 @@ const equal = (a, b) => {
   const x = Buffer.from(String(a)), y = Buffer.from(String(b));
   return x.length === y.length && timingSafeEqual(x, y);
 };
-export function createTicketAPI({ dir, games, secret, adminPassword = '', secure = () => false, trustProxy = false }) {
+// Fester Akteur für Änderungen aus /admin. Er ist keine Spieler-ID und kann nie einem Cookie entsprechen.
+export const ADMIN_ACTOR = Object.freeze({ id: '0'.repeat(31) + 'a', name: 'Admin', avatar: '🦉', admin: true });
+export function createTicketAPI({ dir, games, secret, adminPassword = '', secure = () => false, trustProxy = false, personOf = () => null }) {
   const router = express.Router();
   const passwordHash = createHash('sha256').update(adminPassword).digest('hex');
   const sign = (name, payload) => createHmac('sha256', secret).update(`${name}:${name === ADMIN ? passwordHash : ''}:${payload}`).digest('base64url');
@@ -58,7 +60,9 @@ export function createTicketAPI({ dir, games, secret, adminPassword = '', secure
       const token = issue(VISITOR, 24 * 365); id = identity(VISITOR, token);
       res.append('Set-Cookie', cookie(req, VISITOR, token, 365 * 86400));
     }
-    req.ticketActor = { id, admin: !!adminPassword && !!identity(ADMIN, cookies[ADMIN]), name: req.body?.name, avatar: req.body?.avatar };
+    // V2-07: Mit Konto kommen Anzeigename, Avatar und öffentliche Spieler-ID vom Server, nicht aus der Anfrage.
+    const known = req.accountId ? personOf(req.accountId) : null;
+    req.ticketActor = { id, admin: !!adminPassword && !!identity(ADMIN, cookies[ADMIN]), name: known?.name || req.body?.name, avatar: known?.name ? known.avatar : req.body?.avatar, gameId: known?.gameId };
     next();
   });
   const call = (fn) => (req, res, next) => { try { fn(req, res); } catch (e) { next(e); } };
@@ -97,5 +101,15 @@ export function createTicketAPI({ dir, games, secret, adminPassword = '', secure
     if (status === 500) console.error('Ticket-Board:', err.message);
     res.status(status).json({ error: status === 413 ? 'Die Anfrage ist zu groß' : status === 500 ? 'Die Änderung konnte nicht gespeichert werden. Bitte versuche es später erneut' : err.type === 'entity.parse.failed' ? 'Ungültiges JSON' : err.message });
   });
-  return { router, clearAdmin, rebind: (from, to) => store?.rebind(from, to) || 0 };
+  // Verwaltung über /admin (V2-17): eigener Akteur, kein Cookie-Zugang
+  const must = () => { if (!store) throw ticketError(503, 'Die Ticket-Datei ist nicht lesbar'); return store; };
+  const admin = {
+    list: (query = {}) => ({ ...must().list({ sort: 'updated', ...query }, ADMIN_ACTOR), statuses: TICKET_STATUS, types: TICKET_TYPES }),
+    detail: (id) => must().detail(id, ADMIN_ACTOR),
+    update: (id, data) => must().update(id, data, ADMIN_ACTOR),
+    comment: (id, text) => must().comment(id, text, ADMIN_ACTOR),
+    removeComment: (id, commentId) => must().removeComment(id, commentId, ADMIN_ACTOR),
+    remove: (id) => must().remove(id, ADMIN_ACTOR),
+  };
+  return { router, clearAdmin, admin, rebind: (from, to) => store?.rebind(from, to) || 0, rebindGameId: (from, to) => store?.rebindGameId(from, to) || 0 };
 }

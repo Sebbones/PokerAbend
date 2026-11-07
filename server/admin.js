@@ -14,7 +14,7 @@ const HOURS = 8;
 const dir = join(dirname(fileURLToPath(import.meta.url)), 'admin');
 const equal = (a, b) => { const x = Buffer.from(String(a)), y = Buffer.from(String(b)); return x.length === y.length && timingSafeEqual(x, y); };
 
-export function createAdmin({ password, secret, dataDir, secure = () => false, trustProxy = false, log, errors, system, version, rooms, closeRoom, online, announce, cancelUpdate, claims = () => [], undoClaim = () => null }) {
+export function createAdmin({ password, secret, dataDir, secure = () => false, trustProxy = false, log, errors, system, version, rooms, closeRoom, online, announce, cancelUpdate, claims = () => [], undoClaim = () => null, tools = null, tickets = null }) {
   const router = express.Router();
   const pwHash = createHash('sha256').update('admin:' + password).digest('hex');
   const sign = (payload) => createHmac('sha256', secret).update(`admin:${pwHash}:${payload}`).digest('base64url');
@@ -45,7 +45,7 @@ export function createAdmin({ password, secret, dataDir, secure = () => false, t
     if (!['GET', 'HEAD', 'DELETE'].includes(req.method) && !req.is('application/json')) return res.status(415).json({ error: 'Bitte JSON senden' });
     next();
   });
-  api.use(express.json({ limit: '2kb' }));
+  api.use(express.json({ limit: '8kb' }));
   api.use((req, _res, next) => { req.body ||= {}; req.admin = valid(parseCookies(req.headers.cookie)[ADMIN_COOKIE]); next(); });
 
   api.post('/login', (req, res) => {
@@ -91,6 +91,31 @@ export function createAdmin({ password, secret, dataDir, secure = () => false, t
     log.add('Statistik-Zuordnung rückgängig', `${info.name}${info.gameId ? ' von ' + info.gameId : ''}`);
     res.json({ ok: true });
   });
+  // ---- V2-17: Moderation. Jede Änderung steht im Admin-Protokoll; lesende Aufrufe nicht.
+  const guard = (fn) => (req, res) => {
+    try { res.json(fn(req, res)); }
+    catch (error) { res.status(error.status >= 400 && error.status < 600 ? error.status : 500).json({ error: error.status ? error.message : 'Das hat nicht geklappt' }); }
+  };
+  const q = (req, key, max = 80) => (typeof req.query[key] === 'string' ? req.query[key].slice(0, max) : '');
+  if (tools) {
+    api.get('/reviews', guard(() => tools.reviews.list()));
+    api.get('/reviews/:id', guard((req) => tools.reviews.get(req.params.id)));
+    api.post('/reviews/:id/hide', guard((req) => { const info = tools.reviews.hide(req.params.id, req.body.hidden); log.add(info.hidden ? 'Rückblick ausgeblendet' : 'Rückblick eingeblendet', info.name); return { ok: true, ...info }; }));
+    api.get('/leaderboard', guard((req) => tools.leaderboard(q(req, 'game', 40) || 'all', q(req, 'period', 10) || 'all')));
+    api.get('/rounds', guard((req) => tools.rounds.list({ game: q(req, 'game', 40) || 'all', hidden: req.query.hidden === '1', limit: Number(req.query.limit) || 50 })));
+    api.post('/rounds/:id/hide', guard((req) => { const info = tools.rounds.hide(req.params.id, req.body.hidden); log.add(info.hidden ? 'Partie ausgeblendet' : 'Partie eingeblendet', `${info.game} ${info.id}`); return { ok: true, ...info }; }));
+    api.get('/players', guard((req) => tools.players.search(q(req, 'q', 40))));
+    api.post('/players/merge', guard((req) => { const info = tools.players.merge(req.body.from, req.body.to); log.add('Spieler zusammengeführt', `${info.from} → ${info.to}`); return { ok: true, ...info }; }));
+  }
+  if (tickets) {
+    api.get('/tickets', guard((req) => tickets.list({ q: q(req, 'q', 100), status: q(req, 'status', 12), type: q(req, 'type', 8), page: Number(req.query.page) || 1 })));
+    api.get('/tickets/:id', guard((req) => ({ ticket: tickets.detail(req.params.id) })));
+    api.patch('/tickets/:id', guard((req) => { const t = tickets.update(req.params.id, req.body); log.add('Ticket bearbeitet', `#${t.id} ${t.title} (${t.status})`); return { ticket: t }; }));
+    api.post('/tickets/:id/comments', guard((req) => { const t = tickets.comment(req.params.id, req.body.text); log.add('Ticket kommentiert', `#${t.id} ${t.title}`); return { ticket: t }; }));
+    api.delete('/tickets/:id/comments/:comment', guard((req) => { const t = tickets.removeComment(req.params.id, req.params.comment); log.add('Ticket-Kommentar gelöscht', `#${t.id} Kommentar ${req.params.comment}`); return { ticket: t }; }));
+    api.delete('/tickets/:id', guard((req) => { const before = tickets.detail(req.params.id); tickets.remove(req.params.id); log.add('Ticket gelöscht', `#${before.id} ${before.title}`); return { ok: true }; }));
+  }
+  api.get('/log', (req, res) => res.json({ entries: log.recent(Math.max(1, Math.min(500, Number(req.query.limit) || 200))) }));
   api.post('/update', (req, res) => {
     try { const state = announce(req.body.minutes, 'admin'); log.add('Update angekündigt', `in ${req.body.minutes} Minuten`); res.json({ ok: true, update: state }); }
     catch (error) { res.status(400).json({ error: error.message }); }

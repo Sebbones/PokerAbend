@@ -146,6 +146,13 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
       audit('Konto gelöscht', `${removed.length} Eintrag/Einträge`);
       return removed;
     },
+    // V2-17: Verwaltung findet Konten über Game-ID oder Anzeigename. Die interne Konto-ID bleibt beim Server.
+    search(query = '', limit = 30) {
+      const q = String(query).trim().toLowerCase();
+      return Object.values(state.accounts).filter((a) => !a.mergedInto && (!q || a.gameId.toLowerCase().includes(q) || String(a.name).toLowerCase().includes(q)))
+        .sort((a, b) => (b.lastSeen || 0) - (a.lastSeen || 0)).slice(0, Math.max(1, Math.min(100, Number(limit) | 0 || 30)))
+        .map((a) => ({ gameId: a.gameId, name: a.name, avatar: a.avatar, createdAt: a.createdAt, lastSeen: a.lastSeen, registered: this.isRegistered(a.id) }));
+    },
     audit,
     auditLog: (n = 50) => state.audit.slice(-n).reverse(),
     count: () => Object.values(state.accounts).filter((a) => !a.mergedInto).length,

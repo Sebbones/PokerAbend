@@ -13,6 +13,7 @@ import { GAMES, DEFAULT_GAME, gameList, singleplayerGameList, gameEvents, PLANNE
 import { maintenance, assertNewRoundAllowed } from './maintenance.js';
 import { versionInfo, createAdminLog, createClientErrors, createSystemSampler, cleanClientError } from './ops.js';
 import { createAdmin } from './admin.js';
+import { createAdminTools } from './admin-tools.js';
 import { resolvedRoadmap, whatsNew } from '../games/roadmap.js';
 import { createPresence } from './presence.js';
 import { createTicketAPI } from './ticket-api.js';
@@ -49,7 +50,7 @@ try {
 } catch (error) { console.error('Sicherung vor der Konto-Umstellung fehlgeschlagen:', error.message); }
 configureBoards(DATA_DIR);
 let reviews = null;
-try { reviews = createReviewStore({ dir: DATA_DIR, games: GAMES }); }
+try { reviews = createReviewStore({ dir: DATA_DIR, games: GAMES, gameIdOf: (room, id) => publicPersonOf(room.players.get(id)?.accountId)?.gameId || null }); }
 catch (error) { console.error('Abend-Rückblicke konnten nicht geladen werden:', error.message); }
 function archiveReview(room, { stopped = false, restoring = false } = {}) {
   const p = room.partyProgram;
@@ -78,7 +79,12 @@ const auth = createAuth({ password: SITE_PASSWORD, secret: SECRET });
 const accounts = createAccountStore(DATA_DIR, { onChange: () => save() });   // interne Konto-IDs und öffentliche Game-IDs
 const identity = createIdentity({ secret: SECRET });
 const leaderboard = createLeaderboard(DATA_DIR); // Bestenliste über alle Abende
-const ticketAPI = createTicketAPI({ dir: DATA_DIR, games: Object.values(GAMES), secret: SECRET, adminPassword: process.env.TICKET_ADMIN_PASSWORD || '', secure: (req) => isSecure(req), trustProxy: TRUST_PROXY });
+// V2-07: Name, Avatar und öffentliche Game-ID eines Kontos für Tickets, Planungen und Rückblicke. Versteckte Konten zeigen keine Game-ID.
+function publicPersonOf(accountId) {
+  const a = accountId && accounts.get(accountId);
+  return a ? { name: a.name, avatar: a.avatar, gameId: accounts.privacyOf(a.id).hidden ? undefined : a.gameId } : null;
+}
+const ticketAPI = createTicketAPI({ dir: DATA_DIR, games: Object.values(GAMES), secret: SECRET, adminPassword: process.env.TICKET_ADMIN_PASSWORD || '', secure: (req) => isSecure(req), trustProxy: TRUST_PROXY, personOf: publicPersonOf });
 if (MODE === 'password') console.log('Anmeldung: Seitenpasswort');
 else console.warn('⚠ Kein SITE_PASSWORD eingerichtet – jeder mit dem Link kommt auf die Seite. Nur lokal zum Testen!');
 
@@ -203,6 +209,7 @@ if (ADMIN_PASSWORD) {
     password: ADMIN_PASSWORD, secret: SECRET, dataDir: DATA_DIR, secure: isSecure, trustProxy: TRUST_PROXY, log: adminLog, errors: clientErrors,
     system: sampler, version: VERSION, rooms: () => adminRooms(), closeRoom: (code) => adminCloseRoom(code), online: () => adminOnline(),
     announce: (minutes, by) => announceUpdate(minutes, by), cancelUpdate: () => cancelUpdate(),
+    tickets: ticketAPI.admin, tools: createAdminTools({ reviews, leaderboard, accounts, mergeAccounts, changed: () => { leaderboard.save(); save(); } }),
     claims: () => leaderboard.claims().map((c) => ({ key: c.key, name: c.name, by: c.by, gameId: accounts.get(c.claimedBy)?.gameId || '', claimedAt: c.claimedAt })),
     undoClaim: (key) => { const info = leaderboard.unclaim(key); if (!info) return null; save(); return { name: info.name, gameId: accounts.get(info.claimedBy)?.gameId || '' }; },
   }).router);
@@ -212,11 +219,12 @@ app.get('/roadmap', (_req, res) => {
   res.json(resolvedRoadmap());
 });
 app.use('/api/tickets', ticketAPI.router);
-const planAPI = createPlanAPI({ dir: DATA_DIR, games: Object.values(GAMES), secret: SECRET, secure: isSecure, trustProxy: TRUST_PROXY });
+const planAPI = createPlanAPI({ dir: DATA_DIR, games: Object.values(GAMES), secret: SECRET, secure: isSecure, trustProxy: TRUST_PROXY, personOf: publicPersonOf });
 app.use('/api/plans', planAPI);
 // Zwei Geräte werden eine Person: alles, was dem alten Konto gehörte, gehört danach dem Ziel
-function mergeAccounts(from, to) {
+function mergeAccounts(from, to, { fromGameId, toGameId } = {}) {
   ticketAPI.rebind(from, to); planAPI.rebind(from, to); boardStore().rebind(from, to);
+  if (fromGameId && toGameId) { ticketAPI.rebindGameId(fromGameId, toGameId); planAPI.rebindGameId(fromGameId, toGameId); reviews?.rebindGameId(fromGameId, toGameId); }
   for (const room of rooms.values()) for (const p of room.players.values()) if (p.accountId === from) p.accountId = to;
   for (const s of io.sockets.sockets.values()) if (s.data.accountId === from) s.data.accountId = to;
   presence.changed();
@@ -327,6 +335,8 @@ profileRouter = createProfileAPI({ profiles, accounts, trustProxy: TRUST_PROXY, 
 // V2-05: Konto-Daten löschen. Ergebnisse anderer bleiben anonymisiert; Tickets/Planungen/Bretter verlieren nur die Zuordnung zum Konto.
 const DELETED_ACCOUNT = '0'.repeat(32);
 function eraseAccount(accountId) {
+  const gameId = accounts.get(accountId)?.gameId;
+  if (gameId) { ticketAPI.rebindGameId(gameId, null); planAPI.rebindGameId(gameId, null); reviews?.rebindGameId(gameId, null); }
   const removed = accounts.deleteAccount(accountId);
   leaderboard.forgetAccounts(removed);
   for (const id of removed) { ticketAPI.rebind(id, DELETED_ACCOUNT); planAPI.rebind(id, DELETED_ACCOUNT); boardStore().rebind(id, DELETED_ACCOUNT); discord?.revokeAccount(id); }

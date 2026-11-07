@@ -170,15 +170,26 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
       return true;
     },
     roundCount: () => Object.keys(data.rounds).length,
+    // V2-17: Verwaltung. Eine ausgeblendete Runde bleibt gespeichert (umkehrbar), zählt aber in keiner Wertung, keinem Profil und keinem Erfolg.
+    setRoundHidden(id, hidden) {
+      const r = ROUND_ID.test(String(id)) ? data.rounds[id] : null;
+      if (!r) return null;
+      if (!!r.hidden !== !!hidden) { if (hidden) r.hidden = true; else delete r.hidden; dirty = true; }
+      return { id: r.id, game: r.game, hidden: !!r.hidden };
+    },
+    adminRounds({ limit = 50, game = 'all', hiddenOnly = false } = {}) {
+      return Object.values(data.rounds).filter((r) => (game === 'all' || r.game === game) && (!hiddenOnly || r.hidden)).sort((a, b) => b.at - a.at).slice(0, Math.max(1, Math.min(200, Number(limit) | 0 || 50)))
+        .map((r) => ({ id: r.id, game: r.game, at: r.at, ranked: !!r.ranked, reason: r.reason || '', hidden: !!r.hidden, players: r.players.map((p) => ({ account: p.a ? rankedOwner(p.a) : null, name: p.n, bot: !!p.bot, win: !!p.win, place: p.place, points: p.pts })) }));
+    },
     round: (id) => data.rounds[id] || null,
     achievementAccounts() {
-      return [...new Set([...Object.keys(data.players).map(rankedOwner), ...Object.values(data.rounds).flatMap(r => Array.isArray(r?.players) ? r.players.map(p => p?.a && rankedOwner(p.a)) : [])].filter(id => ACCOUNT_ID.test(id || '')))];
+      return [...new Set([...Object.keys(data.players).map(rankedOwner), ...Object.values(data.rounds).filter(r => !r?.hidden).flatMap(r => Array.isArray(r?.players) ? r.players.map(p => p?.a && rankedOwner(p.a)) : [])].filter(id => ACCOUNT_ID.test(id || '')))];
     },
     // Recompute from unique, qualified results; repeat reads/backfills never add counts.
     achievementProfile(accountId, gameIds = null) {
       const games = new Map(), evenings = new Map(); let streak = 0, longestStreak = 0;
       const allowed = gameIds && new Set(gameIds);
-      const rounds = Object.entries(data.rounds).filter(([key,r])=>r && key===r.id).map(([,r])=>r).filter(r => r.ranked === true && ROUND_ID.test(r.id) && Number.isSafeInteger(r.at) && typeof r.game === 'string' && (!allowed || allowed.has(r.game.split('~')[0])) && Array.isArray(r.players) && r.players.length >= 2 && r.players.every(p => p && !p.bot && (p.a === null || ACCOUNT_ID.test(p.a))) && new Set(r.players.map((p,i) => p.a || `deleted:${i}`)).size >= 2).sort((a,b) => a.at-b.at);
+      const rounds = Object.entries(data.rounds).filter(([key,r])=>r && key===r.id && !r.hidden).map(([,r])=>r).filter(r => r.ranked === true && ROUND_ID.test(r.id) && Number.isSafeInteger(r.at) && typeof r.game === 'string' && (!allowed || allowed.has(r.game.split('~')[0])) && Array.isArray(r.players) && r.players.length >= 2 && r.players.every(p => p && !p.bot && (p.a === null || ACCOUNT_ID.test(p.a))) && new Set(r.players.map((p,i) => p.a || `deleted:${i}`)).size >= 2).sort((a,b) => a.at-b.at);
       for (const r of rounds) {
         const p = r.players.find(p => rankedOwner(p.a) === rankedOwner(accountId)); if (!p) continue;
         const id = r.game.split('~')[0], g = games.get(id) || { id, played: 0, wins: 0, months: [] };
@@ -207,18 +218,18 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
     },
     accountSummary(accountId) {
       const out = { played: 0, wins: 0 };
-      for (const r of Object.values(data.rounds)) { if (!r.ranked) continue; for (const p of r.players) if (p.a && !p.bot && rankedOwner(p.a) === accountId) { out.played++; out.wins += p.win ? 1 : 0; } }
+      for (const r of Object.values(data.rounds)) { if (!r.ranked || r.hidden) continue; for (const p of r.players) if (p.a && !p.bot && rankedOwner(p.a) === accountId) { out.played++; out.wins += p.win ? 1 : 0; } }
       return out;
     },
     accountRounds(accountId, limit = 10) {
       const rows = [];
-      for (const r of Object.values(data.rounds)) { const p = r.players.find((x) => x.a && !x.bot && rankedOwner(x.a) === accountId); if (p) rows.push({ game: r.game, at: r.at, ranked: !!r.ranked, win: !!p.win, place: p.place, points: p.pts, players: r.players.length }); }
+      for (const r of Object.values(data.rounds)) { if (r.hidden) continue; const p = r.players.find((x) => x.a && !x.bot && rankedOwner(x.a) === accountId); if (p) rows.push({ game: r.game, at: r.at, ranked: !!r.ranked, win: !!p.win, place: p.place, points: p.pts, players: r.players.length }); }
       return rows.sort((a, b) => b.at - a.at).slice(0, limit);
     },
     rankedTable(game = 'all', period = 'all', lowWins = false, { withOwner = false } = {}) {
       const rows = new Map();
       for (const r of Object.values(data.rounds)) {
-        if (!r.ranked || !inRange(r, period) || (game !== 'all' && r.game !== game)) continue;
+        if (!r.ranked || r.hidden || !inRange(r, period) || (game !== 'all' && r.game !== game)) continue;
         for (const p of r.players) {
           if (!p.a || p.bot) continue;
           const owner = rankedOwner(p.a), row = rows.get(owner) || { name: '', played: 0, wins: 0, points: 0, placeSum: 0, at: 0 };
@@ -233,7 +244,7 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
     rankedSummary(game = 'all', period = 'all') {
       const out = { ranked: 0, notRanked: 0, reasons: {} };
       for (const r of Object.values(data.rounds)) {
-        if (!inRange(r, period) || (game !== 'all' && r.game !== game)) continue;
+        if (r.hidden || !inRange(r, period) || (game !== 'all' && r.game !== game)) continue;
         if (r.ranked) out.ranked++; else { const k = r.reason || 'unbekannt'; out.notRanked++; out.reasons[k] = (out.reasons[k] || 0) + 1; }
       }
       return out;

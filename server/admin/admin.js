@@ -49,12 +49,41 @@ function render(s) {
   $('#errors').innerHTML = s.errors.length ? `<table><thead><tr><th>Meldung</th><th>Spiel</th><th>Anzahl</th><th>Zuletzt</th></tr></thead><tbody>${s.errors.map((e) => `<tr><td>${esc(e.message)}</td><td>${esc(e.game)}</td><td>${e.count}</td><td>${esc(time(e.last))}</td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine Fehler gemeldet.</p>';
   $('#log').innerHTML = s.log.length ? `<table><tbody>${s.log.map((l) => `<tr><td class="muted">${esc(time(l.at))}</td><td>${esc(l.action)}</td><td class="muted">${esc(l.detail)}</td></tr>`).join('')}</tbody></table>` : '<p class="muted">Noch keine Einträge.</p>';
 }
+const bad = (e) => say(e.message, true);
+const fmtDay = (at) => (at ? new Date(at).toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' }) : '–');
+const tag = (gid) => (gid ? ` <span class="muted">${esc(gid)}</span>` : '');
+async function loadReviews() {
+  const { items } = await call('/reviews');
+  $('#reviews').innerHTML = items.length ? `<table><thead><tr><th>Abend</th><th>Spieler</th><th>Stationen</th><th>Sieger</th><th>Stand</th><th></th></tr></thead><tbody>${items.map((r) => `<tr><td><b>${esc(r.name)}</b>${r.private ? ' <span class="muted">(privat)</span>' : ''}${r.hidden ? ' <span class="bad">(ausgeblendet)</span>' : ''}<br><span class="muted">${esc(fmtDay(r.endedAt || r.updatedAt))}</span></td>
+    <td>${r.players.map((p) => esc(p.name) + tag(p.gameId)).join(', ')}</td><td>${r.completed}/${r.planned}<br><span class="muted">${esc(r.games.join(', '))}</span></td><td>${esc(r.winners.join(', ') || '–')}</td><td>${esc(r.status)}</td>
+    <td><button class="${r.hidden ? 'ghost' : 'danger'}" type="button" data-hide-review="${esc(r.id)}" data-hidden="${r.hidden ? 0 : 1}" data-label="${esc(r.name)}">${r.hidden ? 'Einblenden' : 'Ausblenden'}</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted">Noch keine Rückblicke.</p>';
+}
+async function loadBoard() {
+  const f = new FormData($('#board-form')), game = String(f.get('game') || '').trim() || 'all', period = String(f.get('period') || 'all'), hidden = f.get('hidden') ? '1' : '0';
+  const [b, r] = await Promise.all([call(`/leaderboard?game=${encodeURIComponent(game)}&period=${encodeURIComponent(period)}`), call(`/rounds?game=${encodeURIComponent(game)}&hidden=${hidden}&limit=50`)]);
+  $('#board').innerHTML = b.rows.length ? `<table><thead><tr><th>#</th><th>Spieler</th><th>Partien</th><th>Siege</th><th>Ø Platz</th><th>Punkte</th></tr></thead><tbody>${b.rows.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(x.name)}${tag(x.gameId)}</td><td>${x.played}</td><td>${x.wins}</td><td>${x.avgPlace}</td><td>${x.points ?? '–'}</td></tr>`).join('')}</tbody></table><p class="muted">Gewertet: ${b.summary.ranked} · nicht gewertet: ${b.summary.notRanked}</p>` : '<p class="muted">Keine gewerteten Partien.</p>';
+  $('#rounds').innerHTML = r.items.length ? `<table><thead><tr><th>Wann</th><th>Spiel</th><th>Ergebnis</th><th>Wertung</th><th></th></tr></thead><tbody>${r.items.map((x) => `<tr><td class="muted">${esc(fmtDay(x.at))}</td><td>${esc(x.game)}</td>
+    <td>${x.players.map((p) => `${p.place}. ${esc(p.name)}${p.bot ? ' (Bot)' : ''}${tag(p.gameId)}`).join('<br>')}</td><td>${x.hidden ? '<span class="bad">ausgeblendet</span>' : x.ranked ? 'gewertet' : '<span class="muted">nicht gewertet</span>'}</td>
+    <td><button class="${x.hidden ? 'ghost' : 'danger'}" type="button" data-hide-round="${esc(x.id)}" data-hidden="${x.hidden ? 0 : 1}" data-label="${esc(x.game)}">${x.hidden ? 'Einblenden' : 'Ausblenden'}</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine Partien.</p>';
+}
+async function loadPlayers() {
+  const { items } = await call('/players?q=' + encodeURIComponent(String(new FormData($('#player-search')).get('q') || '')));
+  $('#players').innerHTML = items.length ? `<table><thead><tr><th>Game-ID</th><th>Name</th><th>Zuletzt gesehen</th><th>Discord</th></tr></thead><tbody>${items.map((p) => `<tr><td><b>${esc(p.gameId)}</b></td><td>${esc(p.avatar)} ${esc(p.name || '–')}</td><td class="muted">${esc(fmtDay(p.lastSeen))}</td><td>${p.registered ? 'ja' : 'nein'}</td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine Konten gefunden.</p>';
+}
+async function loadTickets() {
+  const f = new FormData($('#ticket-filter')), data = await call(`/tickets?q=${encodeURIComponent(String(f.get('q') || ''))}&status=${encodeURIComponent(String(f.get('status') || ''))}`);
+  const sel = $('#ticket-filter [name=status]'); if (sel.options.length === 1) for (const [k, v] of Object.entries(data.statuses)) sel.add(new Option(v, k));
+  $('#tickets').innerHTML = data.tickets.length ? `<table><thead><tr><th>#</th><th>Ticket</th><th>Von</th><th>Status</th><th></th></tr></thead><tbody>${data.tickets.map((t) => `<tr data-ticket="${t.id}" data-revision="${t.revision}"><td>${t.id}</td><td><b>${esc(t.title)}</b><br><span class="muted">${esc(t.excerpt)}</span><br><span class="muted">${t.votes} Stimmen · ${t.commentCount} Kommentare</span></td>
+    <td>${esc(t.author.name)}${tag(t.author.gameId)}</td><td><select aria-label="Status #${t.id}">${Object.entries(data.statuses).map(([k, v]) => `<option value="${k}"${k === t.status ? ' selected' : ''}>${esc(v)}</option>`).join('')}</select></td>
+    <td class="row"><button type="button" data-ticket-save="${t.id}">Speichern</button><button class="ghost" type="button" data-ticket-comment="${t.id}">Kommentieren</button><button class="danger" type="button" data-ticket-delete="${t.id}" data-label="${esc(t.title)}">Löschen</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine Tickets.</p>';
+}
+async function loadTools() { await Promise.all([loadReviews(), loadBoard(), loadPlayers(), loadTickets()].map((p) => p.catch(bad))); }
 async function load() {
   try { const s = await call('/status'); $('#login').hidden = true; $('#app').hidden = false; render(s); }
   catch (e) { if (!$('#app').hidden) say(e.message, true); }
 }
 function showLogin() { $('#app').hidden = true; $('#login').hidden = false; clearInterval(timer); timer = null; }
-function start() { clearInterval(timer); timer = setInterval(load, 5000); load(); }
+function start() { clearInterval(timer); timer = setInterval(load, 5000); load(); loadTools(); }
 
 $('#login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -62,7 +91,15 @@ $('#login-form').addEventListener('submit', async (e) => {
   catch (err) { $('#login-error').textContent = err.message; }
 });
 $('#logout').addEventListener('click', async () => { await call('/logout', 'POST', {}).catch(() => {}); showLogin(); });
-$('#refresh').addEventListener('click', load);
+$('#refresh').addEventListener('click', () => { load(); loadTools(); });
+for (const [id, fn] of [['#board-form', loadBoard], ['#player-search', loadPlayers], ['#ticket-filter', loadTickets]]) $(id).addEventListener('submit', (e) => { e.preventDefault(); fn().catch(bad); });
+$('#merge-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target), from = String(f.get('from') || '').trim().toUpperCase(), to = String(f.get('to') || '').trim().toUpperCase();
+  if (!await confirmDialog('Spieler zusammenführen?', `Alles von ${from} gehört danach ${to}. Das Konto ${from} wird nicht mehr als eigene Person geführt.`, 'Zusammenführen')) return;
+  try { await call('/players/merge', 'POST', { from, to }); say(`${from} wurde mit ${to} zusammengeführt`); e.target.reset(); } catch (err) { bad(err); }
+  load(); loadTools();
+});
 document.addEventListener('submit', async (e) => {
   if (e.target.id !== 'update-form') return;
   e.preventDefault();
@@ -81,6 +118,24 @@ document.addEventListener('click', async (e) => {
     if (!await confirmDialog('Zuordnung rückgängig machen?', `Die alte Statistik „${b.dataset.label}“ gehört danach wieder niemandem und kann neu übernommen werden. Gespielte Partien gehen nicht verloren.`, 'Rückgängig')) return;
     try { await call('/identity/claims/undo', 'POST', { key: b.dataset.undoClaim }); say('Zuordnung rückgängig gemacht'); } catch (err) { say(err.message, true); }
     load();
+  } else if (b.dataset.hideReview || b.dataset.hideRound) {
+    const hide = b.dataset.hidden === '1', review = !!b.dataset.hideReview, id = b.dataset.hideReview || b.dataset.hideRound;
+    if (hide && !await confirmDialog(review ? 'Rückblick ausblenden?' : 'Partie ausblenden?', review ? `„${b.dataset.label}“ verschwindet aus dem öffentlichen Archiv. Die Daten bleiben gespeichert.` : `Diese Partie (${b.dataset.label}) zählt danach in keiner Wertung mehr. Die Daten bleiben gespeichert.`, 'Ausblenden')) return;
+    try { await call(`/${review ? 'reviews' : 'rounds'}/${encodeURIComponent(id)}/hide`, 'POST', { hidden: hide }); say(hide ? 'Ausgeblendet' : 'Eingeblendet'); } catch (err) { bad(err); }
+    loadTools();
+  } else if (b.dataset.ticketSave) {
+    const row = b.closest('tr');
+    try { await call('/tickets/' + b.dataset.ticketSave, 'PATCH', { status: row.querySelector('select').value, revision: Number(row.dataset.revision) }); say('Ticket gespeichert'); } catch (err) { bad(err); }
+    loadTickets().catch(bad);
+  } else if (b.dataset.ticketComment) {
+    const text = prompt('Kommentar der Verwaltung (öffentlich sichtbar):');
+    if (!text) return;
+    try { await call(`/tickets/${b.dataset.ticketComment}/comments`, 'POST', { text }); say('Kommentar gespeichert'); } catch (err) { bad(err); }
+    loadTickets().catch(bad);
+  } else if (b.dataset.ticketDelete) {
+    if (!await confirmDialog('Ticket löschen?', `„${b.dataset.label}“ wird samt Kommentaren endgültig gelöscht.`, 'Löschen')) return;
+    try { await call('/tickets/' + b.dataset.ticketDelete, 'DELETE'); say('Ticket gelöscht'); } catch (err) { bad(err); }
+    loadTickets().catch(bad);
   } else if (b.hasAttribute('data-cancel-update')) {
     if (!await confirmDialog('Ankündigung zurücknehmen?', 'Das Banner verschwindet, neue Runden starten wieder.', 'Zurücknehmen')) return;
     try { await call('/update', 'DELETE'); say('Ankündigung zurückgenommen'); } catch (err) { say(err.message, true); }
