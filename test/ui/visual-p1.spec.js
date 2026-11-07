@@ -21,13 +21,68 @@ const GAMES = {
     },
   },
 };
+// Hilfen für die Wege bis zum Ergebnis: der Mensch handelt über die echte Oberfläche, Bots über den Server
+async function loop(page, step, max = 400) {
+  for (let i = 0; i < max; i++) { const s = await state(page); if (s.phase !== 'playing') return; await step(s).catch(() => {}); await page.waitForTimeout(150); }
+}
+Object.assign(GAMES, {
+  'tickendes-paket': {
+    bots: 2, settings: { turnTime: 0, rounds: 1 }, scene: '.tp-stage',
+    async act(page) { const input = page.locator('#tp-in'); if (await input.count()) { const letter = await page.evaluate(() => lastState.g.prompt.letter); await input.fill(letter + 'aaa'); await page.locator('form[data-tp] button[type=submit]').click(); await page.waitForTimeout(300); } },
+  },
+  wuerfelduell: {
+    bots: 2, settings: { turnTime: 0, health: 5 }, scene: '.wd-stage',
+    async act(page) { await page.locator('[data-g=wd-attack]').first().click(); await page.waitForTimeout(600); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn === s.me && await page.locator('[data-g=wd-attack]').count()) await page.locator('[data-g=wd-attack]').first().click({ timeout: 1500 }); }); },
+  },
+  wuerfelpoker: {
+    bots: 2, settings: { turnTime: 0, strikes: 1 }, scene: '.wp-stage',
+    async act(page) { await page.locator('[data-g=throw]').click(); await page.waitForTimeout(400); await page.locator('[data-g=keep]').first().click(); },
+  },
+  mogeln: {
+    bots: 2, settings: { turnTime: 0 }, scene: '.mg-stage',
+    async act(page) { await expect.poll(() => state(page).then((s) => s.turn === s.me), { timeout: 30000 }).toBe(true); await page.locator('[data-g=pick]:not([disabled])').last().click(); await page.locator('[data-g=play]').click(); await page.waitForTimeout(500); },
+  },
+  pfeilfieber: {
+    bots: 1, settings: { turnTime: 0, rounds: 1, writeSecs: 20 }, scene: '.pf-wrap', watchScene: '[data-scene=pfeilfieber]',
+    async act(page) { for (const k of ['ArrowUp', 'ArrowLeft']) { await page.keyboard.press(k); } await page.waitForTimeout(300); },
+  },
+});
+const answer = async (page, text) => { const input = page.locator('#pk-in'); if (await input.count()) { await input.fill(text); await page.locator('form[data-pk] button[type=submit]').click(); await page.waitForTimeout(300); } };
+const myTurn = (page) => expect.poll(() => state(page).then((s) => s.turn === s.me), { timeout: 30000 }).toBe(true);
+Object.assign(GAMES, {
+  schaetzmeister: {
+    bots: 2, settings: { turnTime: 0, rounds: 1, writeSecs: 20 }, scene: '.sm-card',
+    async act(page) { await answer(page, '42'); },
+    async finish(page) { await loop(page, async () => {}, 600); },
+  },
+  shutthebox: {
+    bots: 1, settings: { turnTime: 0, rounds: 1 }, scene: '.sb-table',
+    async act(page) { await myTurn(page); await page.locator('[data-g=roll]').first().click(); await page.waitForTimeout(500); await page.locator('[data-g=flap]:not([disabled])').first().click({ timeout: 3000 }).catch(() => {}); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn !== s.me) return; const q = (x) => page.locator(x); if (await q('[data-g=roll]').count()) await q('[data-g=roll]').first().click({ timeout: 1500 }); else if (await q('[data-g=close]:not([disabled])').count()) await q('[data-g=close]').click({ timeout: 1500 }); else await q('[data-g=flap]:not(.sel):not([disabled])').first().click({ timeout: 1500 }); }, 600); },
+  },
+  'gedaechtnis-kueche': {
+    bots: 1, settings: { turnTime: 0, rounds: 1, writeSecs: 20 }, scene: '.gk-stage', watchScene: '[data-scene=gedaechtnis-kueche]',
+    async act(page) { await page.waitForTimeout(500); },
+    async finish(page) { await loop(page, async () => { if (await page.locator('[data-g=gk-tap]').count()) await page.locator('[data-g=gk-tap]').first().click({ timeout: 1000 }); }, 600); },
+  },
+  maumau: {
+    bots: 2, settings: { turnTime: 0 }, scene: '.kg-piles',
+    async act(page) { await myTurn(page); const card = page.locator('[data-g=card].can').last(); try { if (await card.count()) { await card.click({ timeout: 3000 }); await page.locator('[data-g=play-selected]').click({ timeout: 3000 }); const wish = page.locator('[data-g=wish]').first(); if (await wish.count()) await wish.click({ timeout: 3000 }); } else await page.locator('[data-g=draw]').click({ timeout: 3000 }); } catch { await page.locator('[data-g=draw]:not([disabled])').click({ timeout: 2000 }).catch(() => {}); } await page.waitForTimeout(500); },
+  },
+  werhatdasgesagt: {
+    bots: 2, settings: { turnTime: 0, rounds: 1, writeSecs: 20, voteSecs: 20 }, scene: '.pk-q',
+    async act(page) { await answer(page, 'Pizza mit Ananas'); },
+    async finish(page) { await loop(page, async () => { const g = page.locator('[data-g=wh-guess]'); if (await g.count()) await g.first().click({ timeout: 1000 }); }, 600); },
+  },
+});
 const only = process.env.VIS_P1_ONLY ? process.env.VIS_P1_ONLY.split(',') : Object.keys(GAMES);
 
 test.use({ createLimit: '100' });
 for (const id of only) {
   const cfg = GAMES[id];
   test(`${id}: Spielwelt – Lobby, eigene Aktion, Zuschauer, Pause, Wiederverbindung, Ergebnis, Englisch und sechs Größen`, async ({ page, app, browser }, info) => {
-    test.setTimeout(240000);
+    test.setTimeout(420000);
     const shot = async (p, name) => {
       let path = info.outputPath(`${id}-${name}.jpg`);
       if (process.env.VIS_P1_CAPTURE === '1') { const dir = `docs/design/screenshots/${id}`; mkdirSync(dir, { recursive: true }); path = `${dir}/${info.project.name}-${name}.jpg`; }
@@ -48,7 +103,7 @@ for (const id of only) {
     const code = await page.evaluate(() => lastState.code), context = await browser.newContext({ viewport: page.viewportSize() || undefined });
     try {
       const watcher = await context.newPage(); await login(watcher, app, 'Zuschauer'); await watcher.evaluate((c) => joinAndEnter(c, 'watch'), code);
-      await expect(watcher.locator(cfg.scene)).toBeVisible(); await shot(watcher, 'spectator');
+      await expect(watcher.locator(cfg.watchScene || cfg.scene)).toBeVisible(); await shot(watcher, 'spectator');
     } finally { await context.close(); }
     if (cfg.act) { await cfg.act(page); await page.waitForTimeout(400); await shot(page, 'waiting'); }
     expect((await send(page, 'gamePause', { paused: true })).ok).toBe(true); await shot(page, 'paused');
@@ -62,6 +117,6 @@ for (const id of only) {
     // Englisch: Kurzregeln im Hilfedialog (vor dem Ergebnis, solange der Tisch läuft)
     await page.evaluate(() => I18n.select('en')); await page.locator('[data-kit=help]').first().click();
     await expect(page.locator('#help-dlg')).toBeVisible(); await shot(page, 'english-rules'); await page.keyboard.press('Escape');
-    if (cfg.finish) { await cfg.finish(page); await expect.poll(() => state(page).then((s) => s.phase), { timeout: 60000 }).toBe('over'); await shot(page, 'result'); }
+    if (cfg.finish) { await page.setViewportSize(info.project.name === 'desktop' ? { width: 1440, height: 900 } : page.viewportSize()); await cfg.finish(page); await expect.poll(() => state(page).then((s) => s.phase), { timeout: 60000 }).toBe('over'); await shot(page, 'result'); }
   });
 }

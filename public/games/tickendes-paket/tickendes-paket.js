@@ -29,14 +29,17 @@
       return g.prompt ? I18n.html`Schnell: ${g.prompt.cat} mit ${g.prompt.letter}!` : '';
     },
     main(S) {
-      const g = S.g;
+      const g = S.g, W = WorldKit, t = W.t;
       const myTurn = S.turnId === S.you?.id && S.phase === 'playing';
-      const boom = g.exploded && g.exploded.bomb === g.bomb - 1 ? I18n.html`<div class="tp-boom" role="status">💥 Geplatzt bei ${nameOf(S, g.exploded.id)}!</div>` : '';
-      const fuse = g.visibleFuse && g.fuseLeft !== null ? I18n.html`<div class="tp-fuse" data-fuse="${S.now + g.fuseLeft}" role="timer" aria-label="Zünder">⏱ ${Math.ceil(g.fuseLeft / 1000)} s</div>` : '';
-      const prompt = g.prompt ? I18n.html`<div class="tp-prompt ${myTurn ? 'mine' : ''}"><small>${nameOf(S, S.turnId)} muss nennen:</small><b>${esc(g.prompt.cat)}</b><span class="tp-letter" aria-label="mit dem Buchstaben ${esc(g.prompt.letter)}">${esc(g.prompt.letter)}</span></div>` : '';
-      const used = g.used.length ? I18n.html`<div class="tp-used" aria-label="Schon genannt"><small>Schon genannt:</small> ${g.used.map((w) => `<i>${esc(w)}</i>`).join('')}</div>` : '';
-      return I18n.html`<div class="kg-table tp-wrap"><div class="tp-pkg" aria-hidden="true"><span class="tp-box ${myTurn ? 'hot' : ''}">📦</span></div>
-        <div class="kg-chip">Paket ${g.bomb} von ${g.rounds}</div>${boom}${fuse}${prompt}${used}</div>`;
+      const exploded = g.exploded && g.exploded.bomb === g.bomb - 1;
+      const holder = nameOf(S, S.turnId);
+      const fuse = g.visibleFuse && g.fuseLeft !== null ? `<span class="wk-chip warn" data-i="⏱" data-fuse="${S.now + g.fuseLeft}" role="timer" aria-label="${t('Zünder', 'Fuse')}">${Math.ceil(g.fuseLeft / 1000)} s</span>` : W.chip('🔒', t('Zünder verborgen', 'Fuse hidden'));
+      const seal = '<svg viewBox="0 0 120 100" aria-hidden="true" focusable="false"><path d="M12 34 60 14l48 20v50L60 96 12 84z" fill="#b98a55" stroke="#4a3220" stroke-width="3"/><path d="M12 34l48 20 48-20M60 54v42" fill="none" stroke="#4a3220" stroke-width="3"/><path d="M42 24l48 20v14L42 38z" fill="#e6d3a8" stroke="#4a3220" stroke-width="2"/><circle cx="60" cy="62" r="11" fill="#c4572c" stroke="#4a3220" stroke-width="3"/><path d="M55 62h10M60 57v10" stroke="#f6e7c4" stroke-width="2.5" stroke-linecap="round"/></svg>';
+      const boom = exploded ? `<div class="tp-boom" role="status"><b>💥 ${t('Geplatzt bei', 'Burst at')} ${nameOf(S, g.exploded.id)}</b><small>${t('Ein Minuspunkt – das nächste Paket beginnt.', 'One penalty point – the next package starts.')}</small></div>` : '';
+      const task = g.prompt ? `<div class="tp-task tp-prompt ${myTurn ? 'mine' : ''}"><span class="wk-label">${myTurn ? t('Du musst nennen', 'You must name') : t(`${holder} muss nennen`, `${holder} must name`)}</span><b class="tp-cat">${esc(g.prompt.cat)}</b><span class="tp-letter" aria-label="${t('mit dem Buchstaben', 'with the letter')} ${esc(g.prompt.letter)}">${esc(g.prompt.letter)}</span></div>` : '';
+      const used = g.used.length ? `<div class="tp-used" aria-label="${t('Schon genannt', 'Already named')}"><span class="wk-label">${t('Schon genannt', 'Already named')}</span><div>${g.used.map((w) => `<i>${esc(w)}</i>`).join('')}</div></div>` : '';
+      return `<div class="kg-table wk-stage tp-stage">${W.head({ eyebrow: t(`Paket ${g.bomb} von ${g.rounds}`, `Package ${g.bomb} of ${g.rounds}`), title: myTurn ? t('Das Paket ist bei dir', 'The package is with you') : t(`Paket bei ${holder}`, `Package with ${holder}`), chips: [fuse] })}${boom}
+        <div class="tp-bench"><div class="tp-pkg ${myTurn ? 'hot' : ''}" aria-hidden="true">${seal}</div>${task}</div>${used}</div>`;
     },
     dock(S, myTurn) {
       if (!myTurn) return '';
@@ -70,7 +73,7 @@
   });
   // Sichtbarer Zünder: Sekunden herunterzählen
   setInterval(() => {
-    document.querySelectorAll('[data-fuse]').forEach((el) => { el.textContent = I18n.html`⏱ ${Math.max(0, Math.ceil((Number(el.dataset.fuse) - gameNow(kit.S)) / 1000))} s`; });
+    document.querySelectorAll('[data-fuse]').forEach((el) => { el.textContent = `${Math.max(0, Math.ceil((Number(el.dataset.fuse) - gameNow(kit.S)) / 1000))} s`; });
   }, 250);
   void kit; void cd;
 }
