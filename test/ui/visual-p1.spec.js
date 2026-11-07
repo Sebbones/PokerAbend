@@ -76,6 +76,84 @@ Object.assign(GAMES, {
     async finish(page) { await loop(page, async () => { const g = page.locator('[data-g=wh-guess]'); if (await g.count()) await g.first().click({ timeout: 1000 }); }, 600); },
   },
 });
+
+// ---- P2 (erste Hälfte): 16 weitere Spielwelten ----
+const lastTurn = async (page, ms = 30000) => { await expect.poll(() => state(page).then((s) => s.turn === s.me || s.phase !== 'playing'), { timeout: ms }).toBe(true); };
+const tryClick = async (page, selector, timeout = 1500) => { const l = page.locator(selector).first(); if (await l.count()) { await l.click({ timeout }).catch(() => {}); return true; } return false; };
+Object.assign(GAMES, {
+  domino: {
+    bots: 2, settings: { turnTime: 0 }, scene: '.dn-stage',
+    async act(page) { await lastTurn(page); if (!(await tryClick(page, '.dn-hand .dn-tile.can'))) await tryClick(page, '[data-g=draw],[data-g=pass]'); await tryClick(page, '[data-g=side]'); await page.waitForTimeout(400); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn !== s.me) return; if (await tryClick(page, '[data-g=side]')) return; if (await tryClick(page, '.dn-hand .dn-tile.can')) return; await tryClick(page, '[data-g=draw],[data-g=pass]'); }, 700); },
+  },
+  luegenwuerfel: {
+    bots: 2, settings: { turnTime: 0, dice: 1 }, scene: '.lw-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '[data-g=bid]'); await page.waitForTimeout(400); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn !== s.me) return; if (!(await tryClick(page, '[data-g=doubt]'))) await tryClick(page, '[data-g=bid]'); }, 600); },
+  },
+  maexchen: {
+    bots: 2, settings: { turnTime: 0, lives: 1 }, scene: '.mx-table',
+    async act(page) { await lastTurn(page); await tryClick(page, '[data-g=roll]'); await page.waitForTimeout(500); await tryClick(page, '[data-g=lift]'); },
+  },
+  praesident: {
+    bots: 3, settings: { turnTime: 0 }, scene: '.pr-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '[data-g=pick]'); if (!(await tryClick(page, '[data-g=play]:not([disabled])'))) await tryClick(page, '[data-g=pass]'); await page.waitForTimeout(400); },
+  },
+  schlagfertig: {
+    bots: 2, settings: { turnTime: 0, rounds: 1, writeSecs: 20, voteSecs: 20 }, scene: '.pk-q', watchScene: '[data-scene=schlagfertig]',
+    async act(page) { await answer(page, 'Ein sehr schlagfertiger Gedanke'); },
+    async finish(page) { await loop(page, async () => { await answer(page, 'Noch eine Pointe'); await tryClick(page, '[data-g=sl-vote]:not([disabled])'); await tryClick(page, '[data-g=sl-confirm]:not([disabled])'); }, 700); },
+  },
+  schwimmen: {
+    bots: 2, settings: { turnTime: 0, lives: 3 }, scene: '.sw-stage',
+    async act(page) { await lastTurn(page); if (!(await tryClick(page, '[data-g=knock]'))) await tryClick(page, '[data-g=pass]'); await page.waitForTimeout(400); },
+  },
+  sortierstation: {
+    bots: 1, settings: { turnTime: 0, rounds: 1 }, scene: '.ss-stage', watchScene: '[data-scene=sortierstation]',
+    async act(page) { await page.waitForTimeout(600); await tryClick(page, '.ss-box'); },
+    async finish(page) { await loop(page, async () => { await tryClick(page, '.ss-box', 800); }, 900); },
+  },
+  viergewinnt: {
+    bots: 1, settings: { turnTime: 0 }, scene: '.vg-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, 'button.vg-col'); await page.waitForTimeout(400); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn === s.me) await tryClick(page, 'button.vg-col'); }, 400); },
+  },
+  zahlenzoo: {
+    bots: 1, settings: { turnTime: 0, rounds: 1 }, scene: '[data-scene=zahlenzoo]',
+    async act(page) { await page.waitForTimeout(300); },
+    async finish(page) { await loop(page, async () => { await answer(page, '3'); }, 700); },
+  },
+  reversi: {
+    bots: 1, settings: { turnTime: 0 }, scene: '.rv-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '.rv-cell.can'); await page.waitForTimeout(400); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn === s.me) await tryClick(page, '.rv-cell.can'); }, 500); },
+  },
+  schocken: {
+    bots: 2, settings: { turnTime: 0 }, scene: '.sc-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '[data-g=roll]'); await page.waitForTimeout(400); },
+  },
+  zehntausend: {
+    bots: 2, settings: { turnTime: 0, target: 2000 }, scene: '.zt-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '[data-g=roll]'); await page.waitForTimeout(400); },
+  },
+  dame: {
+    bots: 1, settings: { turnTime: 0 }, scene: '.dm-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '.dm-cell.can'); await tryClick(page, '.dm-cell.can .dm-hint'); await page.waitForTimeout(400); },
+  },
+  hex: {
+    bots: 1, settings: { turnTime: 0, size: '9', swap: true }, scene: '.hx-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '.hx-cell:not(.blue):not(.red)'); await page.waitForTimeout(400); },
+    async finish(page) { await loop(page, async (s) => { if (s.turn === s.me) { const free = page.locator('.hx-cell:not(.blue):not(.red)'); const n = await free.count(); if (n) await free.nth(Math.floor(n / 2)).click({ timeout: 1200 }); } }, 700); },
+  },
+  kniffel: {
+    bots: 1, settings: { turnTime: 0 }, scene: '.kn-stage',
+    async act(page) { await lastTurn(page); await tryClick(page, '[data-g=roll]'); await page.waitForTimeout(500); },
+  },
+  kritzelpost: {
+    bots: 0, humans: 2, settings: { rounds: 1, writeSecs: 20 }, scene: '[data-scene=kritzelpost]',
+    async act(page) { await page.waitForTimeout(500); await page.locator('#pk-in').fill('Ein Hund auf dem Mond').catch(() => {}); },
+  },
+});
 const only = process.env.VIS_P1_ONLY ? process.env.VIS_P1_ONLY.split(',') : Object.keys(GAMES);
 
 test.use({ createLimit: '100' });
@@ -94,6 +172,14 @@ for (const id of only) {
     await shot(page, 'lobby');
     expect((await send(page, 'sit')).ok).toBe(true);
     for (let i = 0; i < cfg.bots; i++) expect((await send(page, 'addBot')).ok).toBe(true);
+    // Spiele ohne Computerspieler (z. B. Kritzelpost): weitere echte Mitspieler in eigenen Kontexten
+    const guestContexts = [];
+    for (let i = 0; i < (cfg.humans || 0); i++) {
+      const gc = await browser.newContext({ viewport: page.viewportSize() || undefined }); guestContexts.push(gc);
+      const gp = await gc.newPage(); await login(gp, app, `Gast${i + 1}`);
+      await gp.evaluate((c) => joinAndEnter(c, 'sit'), await page.evaluate(() => lastState.code));
+    }
+    if (cfg.humans) await expect.poll(() => page.evaluate(() => lastState.players.filter((p) => p.seated).length)).toBe(1 + cfg.humans);
     expect((await send(page, 'settings', cfg.settings)).ok).toBe(true);
     expect((await send(page, 'start')).ok).toBe(true);
     await expect.poll(() => state(page).then((s) => s.phase)).toBe('playing');

@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Domino: Kette aus Steinen mit Augen, Hand unten */
 .kg-domino .kg-main { background: radial-gradient(120% 90% at 50% 25%, #22443A, #0C1C17); }
 .dn-wrap { display: grid; justify-items: center; gap: 14px; width: 100%; }
@@ -18,3 +19,19 @@
 .kg-domino .kg-hand.overlap > * + * { margin-left: 0; }
 .kg-domino .kg-hand.overlap > .dn-tile { box-shadow: 0 2px 4px rgba(0,0,0,.45); }
 @media (max-width: 640px) { .dn-hand .dn-tile .dn-half { width: 22px; height: 22px; } }
+
+/* Spielwelt: Elfenbein-Dominotisch auf dunklem Textil, Kette im eigenen Band, Vorrat getrennt */
+.dn-stage { --wk-bg: repeating-linear-gradient(45deg, #1d2634 0 6px, #1a2230 6px 12px); --wk-edge:#e8dcc066; --wk-accent:#e8d9b0; --wk-max:980px; }
+.dn-board { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: center; }
+.dn-band { overflow-x: auto; padding: 6px; border-radius: 12px; background: #0000003d; border: 1px solid #ffffff1f; }
+.dn-stage .dn-chain { background: none; padding: 6px; min-width: 0; align-items: center; justify-content: center; }
+.dn-cap { display: inline-grid; justify-items: center; min-width: 44px; padding: 4px 6px; border-radius: 8px; border: 2px dashed #f0c35a; color: #f6e7b8; }
+.dn-cap b { font-size: 18px; line-height: 1; } .dn-cap small { font-size: 11px; }
+.dn-stage .dn-tile.double { flex-direction: column; margin-inline: 4px; }
+.dn-stage .dn-tile.double .dn-bar { width: auto; height: 2px; align-self: stretch; margin: 0 2px; }
+.dn-stock { display: grid; justify-items: center; gap: 2px; position: relative; padding: 8px 10px; color: #f2ead6; }
+.dn-stock i { position: absolute; top: 4px; left: 8px; width: 34px; height: 54px; border-radius: 5px; background: #2b3a52; border: 2px solid #e8dcc0; }
+.dn-stock i:nth-child(2) { transform: translate(3px, -2px); } .dn-stock i:nth-child(3) { transform: translate(6px, -4px); }
+.dn-stock b { position: relative; z-index: 1; margin: 18px 0 0 6px; font-size: 20px; text-shadow: 0 1px 3px #000; } .dn-stock small { margin-top: 28px; }
+.dn-hand .dn-tile { min-height: 44px; }
+@media (max-width: 640px) { .dn-board { grid-template-columns: minmax(0, 1fr); } .dn-stock { grid-auto-flow: column; justify-content: center; padding: 4px; } .dn-stock i { display: none; } .dn-stock b, .dn-stock small { margin: 0; } .dn-band { white-space: nowrap; } .dn-stage .dn-chain { flex-wrap: nowrap; justify-content: flex-start; width: max-content; } }

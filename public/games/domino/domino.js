@@ -39,8 +39,11 @@
     main(S) {
       const g = S.g;
       const chain = g.chain.length ? g.chain.map(([a, b]) => tile(a, b, { cls: a === b ? 'double' : '' })).join('') : I18n.html('<p class="hint">Noch kein Stein gelegt</p>');
-      const ends = g.ends ? I18n.html`<div class="kg-chip">Enden: <b>${g.ends[0]}</b> und <b>${g.ends[1]}</b> · Vorrat ${g.stock}</div>` : I18n.html`<div class="kg-chip">Vorrat ${g.stock}</div>`;
-      return I18n.html`<div class="kg-table dn-wrap"><div class="dn-chain" role="group" aria-label="Kette">${chain}</div><div class="kg-chips">${ends}</div></div>`;
+      const W = WorldKit, t = W.t, mine = S.turnId === S.you?.id;
+      const chips = [W.chip('▦', `${t('Vorrat', 'Stock')} ${g.stock}`), g.ends ? W.chip('◀', `${t('Linkes Ende', 'Left end')} ${g.ends[0]}`, 'good') : '', g.ends ? W.chip('▶', `${t('Rechtes Ende', 'Right end')} ${g.ends[1]}`, 'good') : '', W.chip('▤', `${g.chain.length} ${t('Steine in der Kette', 'tiles in the chain')}`)].filter(Boolean);
+      const cap = (side, n) => `<span class="dn-cap" aria-hidden="true"><b>${n}</b><small>${side === 'L' ? t('links', 'left') : t('rechts', 'right')}</small></span>`;
+      const stock = `<div class="dn-stock" role="img" aria-label="${t('Vorrat', 'Stock')}: ${g.stock}"><i></i><i></i><i></i><b>${g.stock}</b><small>${t('Vorrat', 'Stock')}</small></div>`;
+      return I18n.html`<div class="kg-table dn-wrap wk-stage dn-stage">${W.head({ eyebrow: t('Dominotisch', 'Domino table'), title: mine ? t('Du bist dran', 'Your turn') : t('Die Kette', 'The chain'), chips })}<div class="dn-board"><div class="dn-band"><div class="dn-chain" role="group" aria-label="Kette">${g.ends ? cap('L', g.ends[0]) : ''}${chain}${g.ends ? cap('R', g.ends[1]) : ''}</div></div>${stock}</div></div>`;
     },
     dock(S, myTurn) {
       const g = S.g;
