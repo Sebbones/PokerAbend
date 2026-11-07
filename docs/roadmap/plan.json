@@ -247,16 +247,41 @@
         "historische Rangliste deutlich als unbestätigt gekennzeichnet",
         "echte leere Zustände statt Fake-Top-Spieler"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
-      "notes": [],
+      "status": "done",
+      "implementation_commit": "ec8bb60",
+      "completed_at": "2026-11-07",
+      "notes": [
+        "Ausdrückliche Freigabe vom 2026-11-07 (nur V2-03). Rundenergebnisse mit stabiler Runden-ID, Konto-IDs, Bot-Flag, Platzierung und Punkten in leaderboard.json (schemaVersion 3, Sicherung leaderboard.json.pre-v2-03). Dokumentation: docs/roadmap/V2-03_RANKED.md.",
+        "Gewertet nur ohne Bots, ohne Gäste (Discord-Verknüpfung nötig) und mit mindestens zwei verschiedenen Konten; Berechtigung beim Rundenstart eingefroren, abgebrochene Runden ohne Eintrag, doppelte Runden einmal. Nicht gewertete Partien zählen weiter in der alten Statistik.",
+        "Hub/Tisch-Dialog: Ansicht Gewertet (Woche/Monat/Alles, je Spiel oder gesamt) und deutlich als unbestätigt gekennzeichnete Statistik; Marke gewertet/nicht gewertet im Spielrahmen. Alte namensbasierte Stats bleiben unverändert und über den Claim-Weg erreichbar; Migration idempotent.",
+        "Nicht Teil: rückwirkende Ranked-Wertung alter Partien, Wochen-Zeitraum für die alte Namensstatistik, Ranked-Marke in der Pokeroberfläche. Produktivdaten wurden nicht angefasst, kein Produktivdeployment.",
+        "Hinweis zur Prüfung: Parallel entstehende, noch nicht fertige Arbeit (Solo-Sammlung) lässt test/game-visual-roadmap.test.js auch auf reinem HEAD rot; das ist nicht Teil von V2-03."
+      ],
       "public_roadmap_ids": [
         "discord-5",
         "v2-historical-rankings"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test test/ranked.test.js",
+          "result": "18 Prüfungen grün (Berechtigung, Bot-Erkennung am Flag, Platzierung/Gleichstand, Idempotenz auch nach Neustart, Zeiträume, Kontozusammenführung, Migration, echte Räume Start→Ergebnis/Abbruch, /api/ranked, Zustand mit Gast/Bot)."
+        },
+        {
+          "command": "npm test in sauberer Kopie von HEAD (459734e) plus nur den V2-03-Dateien",
+          "result": "1278 Tests, 1276 grün, 2 rot: beide in test/game-visual-roadmap.test.js und auch auf reinem HEAD rot (parallele Solo-Arbeit), nicht von V2-03."
+        },
+        {
+          "command": "playwright test test/ui/ranked-board.spec.js test/ui/game-design.spec.js test/ui/evening-mode.spec.js test/ui/identity.spec.js test/ui/smoke.spec.js test/ui/achievements.spec.js --workers=2 (Desktop + Handy, saubere Kopie)",
+          "result": "50 grün; ranked-board: 10 grün (gewertet, Zeiträume, leerer Zustand, Statistik unbestätigt, Dialog, Marke; Handy ohne seitliches Überlaufen)."
+        },
+        {
+          "command": "playwright test test/ui/{identity,achievements,history,evening-reviews,ui-redesign,smoke,roadmap-presence,game-design,evening-mode,leave}.spec.js --workers=2 (vor der Overlay-Korrektur der Marke)",
+          "result": "112 grün, 9 rot: 8 Brett-Tests in game-design (Marke belegte Platz im Spielfeld; danach als Overlay behoben und grün) und 1 Abend-Modus (mobil, danach grün). Kein vollständiger Lauf aller Browser-Specs nach der Korrektur."
+        }
+      ],
+      "commits": [
+        "ec8bb60"
+      ]
     },
     {
       "id": "V2-04",
