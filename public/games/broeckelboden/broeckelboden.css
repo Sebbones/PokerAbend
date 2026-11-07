@@ -1,1 +1,9 @@
 @import url('/games/realtime.css');
+
+/* VIS-041: schwebende Steinplattform – dunkle Tiefe unter dem Feld, Bruchzustände bleiben aus den Server-Frames, Touch-Pad groß */
+.kg-broeckelboden #rt-canvas { border-color: #8a9484; outline: 4px solid #1d2620; outline-offset: 0; border-radius: 12px; box-shadow: 0 30px 40px -10px #000a, 0 0 0 6px #1d2620; background: #12181b; }
+.kg-broeckelboden .rt-pad { grid-template-columns: repeat(3, 60px); grid-template-rows: repeat(3, 52px); }
+.kg-broeckelboden .rt-pad .btn { min-width: 52px; min-height: 52px; border: 2px solid #8a9484; }
+.kg-broeckelboden .rt-scores li { border-radius: 6px; }
+@media (max-width: 640px) { .kg-broeckelboden .rt-keyhint { display: none; } }
+@media (max-height: 560px) { .kg-broeckelboden .rt-pad { grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(3, 44px); } .kg-broeckelboden .rt-pad .btn { min-width: 44px; min-height: 44px; } }
