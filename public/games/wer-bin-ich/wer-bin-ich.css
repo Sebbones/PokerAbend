@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Wer bin ich?: Tisch mit Avataren, gelbe Haftnotizen auf der Stirn, große Antwortknöpfe */
 .kg-wer-bin-ich .kg-main { background: radial-gradient(120% 90% at 50% 25%, #355A78, #14212E); place-items: start stretch; }
 .kg-wer-bin-ich .kg-table.wb-wrap { display: grid; gap: 14px; width: 100%; max-width: 980px; margin: 0 auto; justify-items: stretch; }
@@ -52,3 +53,14 @@
   .wb-centre.big .wb-q { font-size: 22px; }
   .wb-ans { min-height: 60px; font-size: 20px; }
 }
+
+/* VIS-037: gemütlicher Ratesalon – gleichartige beschriftete Stirnzettel; eigener verdeckter Platz getrennt von den sichtbaren Fremdkarten, zwei Spalten auf dem Handy */
+.wb-stage { --wk-bg: linear-gradient(165deg, #3f3347, #1b1522); --wk-edge:#e0c9f066; --wk-accent:#f0d28a; --wk-max:980px; justify-items: stretch; }
+.wb-stage .wb-card { background: #f6e9a8; color: #2e2a10; border: 2px solid #c9b24a; border-radius: 6px; box-shadow: 0 6px 14px #0006; }
+.wb-stage .wb-card.me { border-style: dashed; border-color: #f0d28a; background: #e8dca0; }
+.wb-stage .wb-card.me::after { content: '🔒'; position: absolute; top: 6px; right: 8px; }
+.wb-stage .wb-card { position: relative; overflow-wrap: anywhere; }
+@media (max-width: 640px) { .wb-stage .wb-table { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Kontrast: auf den hellen Zetteln ist jeder Text dunkel (WCAG AA) */
+.wb-stage .wb-card, .wb-stage .wb-card * { color: #2e2a10 !important; }
+.wb-stage .wb-card .wb-note, .wb-stage .wb-card small { opacity: 1 !important; }

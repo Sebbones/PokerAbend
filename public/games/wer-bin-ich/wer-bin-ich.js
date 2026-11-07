@@ -124,7 +124,9 @@
       if (!g || !g.stage) return '';
       const notes = inGame(S) && g.stage === 'play' ? noteBox(S) : '';
       const hint = g.hints?.length ? I18n.html`<div class="wb-hints"><small>Tipps:</small> ${g.hints.map((h) => `<i>${nm(S, h.for)}: ${esc(h.text)}</i>`).join('')}</div>` : '';
-      return `<div class="kg-table wb-wrap">${centre(S)}${hint}${cards(S)}${notes}</div>`;
+      const W = WorldKit, t = W.t, solved = (g.solved || []).length, total = S.players.filter((p) => p.inRound).length;
+      const chips = [g.stage === 'words' ? W.chip('✎', t('Begriffe werden geschrieben', 'Writing the terms'), 'warn') : W.chip('❓', t('Fragerunde', 'Question round')), W.chip('✔', `${solved} / ${total} ${t('erraten', 'solved')}`, solved ? 'good' : ''), inGame(S) ? W.chip('🔒', t('Dein eigener Zettel bleibt verdeckt', 'Your own note stays hidden')) : ''].filter(Boolean);
+      return `<div class="kg-table wb-wrap wk-stage wb-stage">${W.head({ eyebrow: t('Ratesalon', 'Guessing salon'), title: g.stage === 'words' ? t('Begriffe für die Stirnzettel', 'Terms for the headbands') : t('Wer bin ich?', 'Who am I?'), chips })}${centre(S)}${hint}${cards(S)}${notes}</div>`;
     },
     dock(S, myTurn) {
       const g = S.g;
