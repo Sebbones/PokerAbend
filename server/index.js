@@ -465,8 +465,8 @@ const snapshotOf = (r) => ({ ...r.snapshot(), game: r.game, code: r.code, unlist
 
 function broadcastFrame(room) {
   if (!room.frame || rooms.get(room.code) !== room) return;
-  const frame = room.frame();
-  for (const p of room.players.values()) if (p.socketId && !p.kicked) io.to(p.socketId).emit('arena', frame);
+  const frame = room.personalFrames ? null : room.frame();
+  for (const p of room.players.values()) if (p.socketId && !p.kicked) io.to(p.socketId).emit('arena', room.personalFrames ? room.frame(p.id) : frame);
 }
 
 // ---------- Spiel wechseln (gleicher Raum, gleicher Code, alle bleiben drin) ----------

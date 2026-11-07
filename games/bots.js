@@ -543,3 +543,5 @@ Object.assign(BOTS,{doppelagent:(room,id,rng)=>room.botStep(id,rng)});
 Object.assign(BOTS,{luegenbaron:(room,id,rng)=>room.botStep(id,rng)});
 
 Object.assign(BOTS,{stichmeister:(room,id,rng)=>room.botStep(id,rng),'labyrinth-brett':(room,id,rng)=>room.botStep(id,rng),schatzinsel:(room,id,rng)=>room.botStep(id,rng)});
+
+Object.assign(BOTS,Object.fromEntries(['jaeger-schatten','infektionsjagd','letzter-schutzplatz','regelwahnsinn'].map(id=>[id,(room,p)=>room.botStep(p)])));

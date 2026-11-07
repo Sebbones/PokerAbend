@@ -1,0 +1,2 @@
+@import url('/games/realtime.css');
+.kg-letzter-schutzplatz .pa-lobby{background:#3c2926;color:#f2e4cd;border:1px solid #e7bd8388;border-radius:18px;padding:24px;text-align:center}.pa-lobby .game-art{width:min(100%,340px);height:auto}.pa-lobby h2{font:700 clamp(24px,4vw,38px) Georgia,serif}.kg-letzter-schutzplatz .rt-label{color:#e7bd83}.kg-letzter-schutzplatz #rt-state{font-size:clamp(12px,2vw,18px);overflow-wrap:anywhere}

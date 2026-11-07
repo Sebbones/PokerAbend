@@ -31,7 +31,7 @@ function realtimeGame(def) {
   function updateLabels() {
     if (!frame) return;
     const state = $('#rt-state');
-    if (state) state.textContent = frame.elapsed < 0 ? I18n.html`Start in ${Math.ceil(-frame.elapsed / 1000)} …` : kit.S.phase !== 'playing' ? 'Runde beendet' : frame.kind === 'laser' && frame.hazards.some((h) => h.warning) ? 'Laser angekündigt – Sprung vorbereiten' : !me()?.alive ? I18n.t('Du schaust zu') : 'Die Arena ist frei';
+    if (state) state.textContent = def.state ? def.state(frame,kit.S) : frame.elapsed < 0 ? I18n.html`Start in ${Math.ceil(-frame.elapsed / 1000)} …` : kit.S.phase !== 'playing' ? 'Runde beendet' : frame.kind === 'laser' && frame.hazards.some((h) => h.warning) ? 'Laser angekündigt – Sprung vorbereiten' : !me()?.alive ? I18n.t('Du schaust zu') : 'Die Arena ist frei';
     const clock = $('#rt-time'); if (clock) clock.textContent = I18n.html`${Math.max(0, Math.ceil((frame.duration - Math.max(0, frame.elapsed)) / 1000))} s`;
     for (const p of frame.bodies) {
       const row = document.querySelector(I18n.html`[data-rt-player="${p.id}"]`);
@@ -79,7 +79,8 @@ function realtimeGame(def) {
     const alpha = kit.S?.gamePaused ? 1 : Math.min(1, Math.max(0, (now - received) / 100));
     ctx.clearRect(0, 0, a.width, a.height);
     ctx.fillStyle = frame.kind === 'floor' ? '#291d22' : frame.kind === 'crown' ? '#231c3d' : '#0e2430'; ctx.fillRect(0, 0, a.width, a.height);
-    if (frame.kind === 'floor') {
+    if (def.paint) def.paint(ctx,frame,kit.S);
+    else if (frame.kind === 'floor') {
       frame.tiles.forEach((time, i) => {
         const x = i % a.cols * a.tile, y = Math.floor(i / a.cols) * a.tile;
         if (time === -1) { ctx.fillStyle = '#bb503842'; ctx.fillRect(x + 13, y + 13, a.tile - 26, a.tile - 26); return; }
@@ -158,12 +159,12 @@ function realtimeGame(def) {
   }
   const controls = (S) => I18n.html`<div class="rt-controls"><div class="rt-pad" role="group" aria-label="Bewegungssteuerung">${[['up', '↑', 'oben'], ['left', '←', 'links'], ['down', '↓', 'unten'], ['right', '→', 'rechts']].map(([dir, icon, label]) => I18n.html`<button class="btn rt-dir rt-${dir}" type="button" data-rt-dir="${dir}" aria-label="Nach ${label} bewegen">${icon}</button>`).join('')}<button class="btn rt-stop" type="button" data-rt-stop aria-label="Bewegung stoppen">●</button></div>${S.g?.jumping ? I18n.html('<button class="btn btn-brass rt-jump" type="button" data-rt-jump>Springen</button>') : I18n.html('<p class="rt-keyhint">Pfeiltasten / WASD<br>Richtung halten zum Bewegen</p>')}</div>`;
   const kit = kitGame({
-    id: def.id, name: def.name, ring: false, direction: false, roundWord: I18n.t('Runde'), short: def.short, intro: def.intro,
-    rules: I18n.html`<h3>${uiText(def.name)}</h3><ul>${def.short.map((r) => `<li>${esc(r)}</li>`).join('')}</ul><p>Pfeiltasten oder WASD zum Bewegen; Richtungsknöpfe am Handy halten. Leertaste oder Sprungknopf zum Springen. Bei Tabwechsel oder fehlenden Eingaben bleibt die Figur stehen; die Runde läuft weiter.</p>`,
+    id: def.id, get name(){return def.name;}, ring: false, direction: false, roundWord: I18n.t('Runde'), get short(){return def.short;}, intro: def.intro, lobby:def.lobby,
+    get rules(){return def.rules || I18n.html`<h3>${uiText(def.name)}</h3><ul>${def.short.map((r) => `<li>${esc(r)}</li>`).join('')}</ul><p>Pfeiltasten oder WASD zum Bewegen; Richtungsknöpfe am Handy halten. Leertaste oder Sprungknopf zum Springen. Bei Tabwechsel oder fehlenden Eingaben bleibt die Figur stehen; die Runde läuft weiter.</p>`;},
     onState(S) { seq = Math.max(seq, S.g?.inputSeq || 0); if (S.g) accept(S.g); if (S.gamePaused || S.phase !== 'playing') release(); },
     status: () => 'Alle spielen gleichzeitig',
     playerInfo: (p) => I18n.html`${p.pts || 0} Pkt.${p.eliminated ? ' · ausgeschieden' : ''}`,
-    hint: (S) => S.you?.inRound ? def.hint : 'Du schaust zu – beim nächsten Start kannst du mitspielen.',
+    hint: (S) => S.you?.inRound ? def.hint : I18n.t('Du schaust zu – beim nächsten Start kannst du mitspielen.'),
     keepMain: (S) => !!$('#rt-canvas') && $('#rt-canvas').dataset.run === S.g?.runId && S.phase === 'playing',
     main(S) {
       const G = S.g;

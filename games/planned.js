@@ -28,22 +28,6 @@ export const PLANNED = [
 
 
 
-  spiel({ id: 'regelwahnsinn', name: 'Regelwahnsinn', category: 'party', bauart: 'A', minPlayers: 3, maxPlayers: 12, duration: 10, paeckchen: 'spaeter',
-    description: "Jede Runde eine neue Regel: Wer den Überblick behält, sammelt Punkte.",
-    rules: ["Alle starten mit einer einfachen offenen Grundaufgabe für die Runde.","Nach jeder Runde kommt eine weitere sichtbare Zusatzregel dazu.","Korrekte Antworten unter allen aktiven Regeln bringen Punkte; die höchste Summe gewinnt."], art: glyph('arrows'),
-  }),
-  spiel({ id: 'jaeger-schatten', name: 'Jäger & Schatten', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: "Im gemeinsamen Echtzeitfeld jagen, ausweichen und unerkannt entkommen.",
-    rules: ["Ein Teil der Spieler jagt, die übrigen verstecken sich als Schatten auf dem Feld.","Alle bewegen sich gleichzeitig; Berührung durch einen Jäger deckt einen Schatten auf.","Nach Ablauf der Zeit gewinnen die entkommenen Schatten, sonst das Jägerteam."], art: glyph('agent'),
-  }),
-  spiel({ id: 'infektionsjagd', name: 'Infektionsjagd', category: 'party', bauart: 'C', minPlayers: 3, maxPlayers: 12, duration: 5, paeckchen: 'spaeter',
-    description: "Eine Berührung steckt an – bleibt jemand bis zum Schluss unentdeckt?",
-    rules: ["Ein zufälliger Spieler beginnt infiziert, alle anderen fliehen im gemeinsamen Feld.","Wer von einem Infizierten berührt wird, gehört ebenfalls zu dessen Team.","Die Überlebenden gewinnen nach Ablauf der Zeit; vorher gewinnt eine vollständige Infektion."], art: glyph('monster'),
-  }),
-  spiel({ id: 'letzter-schutzplatz', name: 'Letzter Schutzplatz', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 12, duration: 5, paeckchen: 'spaeter',
-    description: "Rechtzeitig einen sicheren Platz erreichen, bevor die nächste Gefahr kommt.",
-    rules: ["Alle bewegen sich gleichzeitig auf einer Fläche mit markierten Schutzplätzen.","Vor jeder Gefahrenphase werden die sicheren Plätze angezeigt und eine Frist läuft.","Außerhalb eines Schutzplatzes scheidest du aus; bis zum Schluss werden Plätze weniger."], art: glyph('shield'),
-  }),
   spiel({ id: 'kistenchaos', name: 'Kistenchaos', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
     description: "Kisten in Echtzeit verschieben und trotz des Gedränges das eigene Ziel erreichen.",
     rules: ["Alle bewegen sich gleichzeitig auf einem Feld voller verschiebbarer Kisten.","Kisten müssen zu passenden Zielen geschoben werden und dürfen andere Wege versperren.","Eine feste Spielzeit entscheidet; die meisten richtig platzierten Kisten gewinnen."], art: glyph('puzzle'),

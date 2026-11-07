@@ -1,0 +1,2 @@
+@import url('/games/realtime.css');
+.kg-infektionsjagd .pa-lobby{background:#173b32;color:#e7efd5;border:1px solid #a9ce9888;border-radius:18px;padding:24px;text-align:center}.pa-lobby .game-art{width:min(100%,340px);height:auto}.pa-lobby h2{font:700 clamp(24px,4vw,38px) Georgia,serif}.kg-infektionsjagd .rt-label{color:#bde0ae}.kg-infektionsjagd #rt-state{font-size:clamp(12px,2vw,18px);overflow-wrap:anywhere}
