@@ -9,3 +9,11 @@
 .md-dialog { width:min(580px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); padding:0; }.md-dialog-body { padding:20px; display:grid; gap:12px; }.md-dialog-body p { margin:0; }.md-dialog-body .field { margin:0; }.md-dialog-body .panel-head { padding:0; }.md-dialog-body select { width:100%; min-height:44px; }.md-dialog-actions { display:flex; gap:8px; flex-wrap:wrap; }.md-dialog-actions .btn { flex:1 1 180px; min-height:44px; }
 .md-payment { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; }.md-payment label { position:relative; display:flex; gap:8px; align-items:center; min-height:52px; border:1px solid #ffffff30; border-radius:8px; padding:10px; cursor:pointer; }.md-payment label:has(:checked) { border-color:var(--gold); background:#c99a4520; }.md-payment label span { display:grid; font-size:13px; gap:4px; }.md-payment input { min-width:20px; min-height:20px; accent-color:var(--gold); }
 @media(max-width:640px) { .md-player { padding:8px; }.md-set { padding:5px; }.md-hand .md-card { --w:56px; }.md-dialog-body { padding:16px; } }
+
+/* VIS-045: Kartentisch für Immobiliensätze – eigene Bank und Sätze in getrennten Zonen, Karten nur mit Text und Wert (keine fremden Marken) */
+.kg-monopoly-deal .kg-main { background: radial-gradient(120% 90% at 50% 0, #2a3d4a, #11191f); }
+.md-player { border-color: #ffffff2a; background: #0f1a22ee; }
+.md-own { border-color: #e8c36a; box-shadow: 0 0 0 2px #e8c36a33; }
+.md-sets { padding: 6px; border-radius: 10px; background: #00000030; border: 1px dashed #ffffff33; }
+.md-card { border-radius: 8px; }
+.kg-monopoly-deal button { min-height: 44px; }
