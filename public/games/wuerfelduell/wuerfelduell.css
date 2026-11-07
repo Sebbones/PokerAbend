@@ -1,1 +1,28 @@
-.wd-table{width:min(100%,850px);text-align:center}.wd-health{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.wd-health article{padding:12px;border:1px solid #807456;border-radius:12px;min-width:140px;display:grid;gap:7px}.wd-health .out{opacity:.5}.wd-health meter{width:100%;height:18px}.wd-battle{display:grid;gap:12px;padding:20px;border:1px solid #807456;border-radius:18px;max-width:550px;margin:12px auto}.wd-battle h3{margin:0}.wd-dice{display:flex;gap:8px;justify-content:center;margin-top:8px}.wd-dice .die{width:44px;height:44px}.wd-dice .wd-hit{outline:3px solid #b55944}.wd-dice .wd-shield{outline:3px solid #4d9272}.wd-damage{font-size:1.6rem;color:#efb49d}
+@import url('/games/world-kit.css');
+/* Würfelduell: ruhige dunkle Arena, Angreifer links, Verteidiger rechts, Schaden als gemeinsames Ergebnis in der Mitte */
+.kg-wuerfelduell .kg-main { background: radial-gradient(120% 90% at 50% 15%, #2b3447, #10141d); }
+.wd-stage { --wk-bg: linear-gradient(165deg,#222a3b,#12161f); --wk-edge:#8fa4d055; --wk-accent:#e6a68f; --wk-max:900px; }
+.wd-arena { display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:12px; align-items:stretch; }
+.wd-arena.empty { display:grid; place-items:center; min-height:140px; border:1px dashed var(--wk-edge); border-radius:14px; color:var(--wk-muted); }
+.wd-side { display:grid; gap:10px; justify-items:center; align-content:start; padding:14px; border-radius:14px; border:1px solid var(--wk-edge); }
+.wd-side.atk { background:linear-gradient(180deg,#5a2f2a66,#2b161455); border-color:#e6a68f77; }
+.wd-side.def { background:linear-gradient(180deg,#2a4a5a66,#13222b55); border-color:#8fc4e677; }
+.wd-dice { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.wd-die { display:grid; justify-items:center; gap:2px; }
+.wd-die small { font-size:13px; height:14px; color:var(--wk-muted); }
+.wd-dice .die { --d:46px; }
+.wd-atk .die,.wd-side.atk .die.wd-on { outline:3px solid #e6a68f; outline-offset:2px; }
+.wd-side.def .die.wd-on { outline:3px solid #8fc4e6; outline-offset:2px; }
+.wd-count { font-size:15px; }
+.wd-clash { display:grid; align-content:center; justify-items:center; gap:4px; min-width:104px; padding:10px; text-align:center; }
+.wd-vs { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--wk-muted); }
+.wd-damage { font:700 34px/1 var(--wk-font); color:#f2b9a3; }
+.wd-clash small { color:var(--wk-muted); font-size:12px; }
+.wd-roster li { display:grid; grid-template-columns:minmax(0,1.4fr) auto auto; gap:8px 14px; align-items:center; }
+.wd-who { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.wd-hearts { display:inline-flex; flex-wrap:wrap; gap:1px; }
+.wd-hearts i { font-style:normal; font-size:15px; color:#4a5268; }
+.wd-hearts i.on { color:#e87a6a; }
+.wd-roster li.out { opacity:.6; text-decoration:none; }
+.wd-targets { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:8px; width:100%; }
+@media (max-width:640px) { .wd-arena { grid-template-columns:1fr; } .wd-clash { grid-auto-flow:column; justify-content:center; gap:12px; padding:4px; } .wd-roster li { grid-template-columns:1fr auto; } .wd-roster li .wd-hearts { grid-column:1/-1; } .wd-dice .die { --d:42px; } }
