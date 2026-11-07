@@ -47,13 +47,13 @@
     hint: (S) => (S.g.mine === null ? I18n.t('Gib deine Schätzung als Zahl ein – Komma für Dezimalstellen') : I18n.t('Deine Schätzung steht – du kannst sie bis zum Ende der Zeit noch ändern')),
     question(S) {
       const G = S.g;
-      return `<div class="pk-q"><h2>${esc(I18n.content(G.question, G.questionEn))}</h2>${G.unit ? I18n.html`<p>Antwort in: <b>${esc(I18n.content(G.unit, G.unitEn))}</b></p>` : ''}</div>`;
+      const t = WorldKit.t;
+      return `<div class="pk-q sm-card"><span class="wk-label">${t('Schätzfrage', 'Estimation question')} ${G.q}/${G.of}</span><h2>${esc(I18n.content(G.question, G.questionEn))}</h2>${G.unit ? `<p>${t('Antwort in', 'Answer in')}: <b>${esc(I18n.content(G.unit, G.unitEn))}</b></p>` : ''}<div class="sm-ruler" aria-hidden="true"></div></div>`;
     },
     board(S) {
       const G = S.g;
-      return I18n.html`<div class="pk-wait">${G.mine !== null
-        ? I18n.html`<p class="pk-mine">Deine Schätzung: <b>${pkFmt(G.mine)}</b>${unitText(G.unit, G.unitEn)}</p>`
-        : G.canAnswer ? I18n.html('<p class="pk-mine pk-open">Du hast noch nicht geschätzt</p>') : ''}
+      const W = WorldKit, t = W.t, state = G.mine !== null ? W.chip('✔', `${t('Abgegeben', 'Submitted')}: ${pkFmt(G.mine)}${unitText(G.unit, G.unitEn)}`, 'good') : G.canAnswer ? W.chip('✎', t('Entwurf – noch nicht abgegeben', 'Draft – not submitted yet'), 'warn') : W.chip('👁', t('Du schaust zu', 'You are watching'));
+      return I18n.html`<div class="pk-wait"><div class="wk-chips sm-state">${state}</div>
         <p>Die Schätzungen der anderen siehst du, sobald alle fertig sind oder die Zeit abläuft.</p></div>`;
     },
     writeForm(S) {

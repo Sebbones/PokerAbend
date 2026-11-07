@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Schätzmeister: Zahlenstrahl mit den Schätzungen und der richtigen Antwort */
 .kg-schaetzmeister .kg-main { background: radial-gradient(120% 90% at 50% 20%, #2C4A5C, #14212B); }
 .sm-answer { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 2px 12px; text-align: center; padding: 8px 18px; border-radius: var(--r-l); background: rgba(0,0,0,.32); box-shadow: 0 0 0 3px var(--gold); width: 100%; }
@@ -42,3 +43,20 @@ body.calm .sm-m, body.calm .sm-flag { animation: none; }
   .sm-rank .val { grid-column: 2 / 4; grid-row: 2; text-align: left; }
   .sm-m { width: 52px; } .sm-m small { max-width: 52px; }
 }
+
+/* Redaktioneller Wissenssalon: Papierflächen, große Fragen, dezente Maßstriche */
+.kg-schaetzmeister .kg-main { background: radial-gradient(120% 90% at 50% 0%, #4a3a2a, #1d1610); }
+.sm-card { --wk-paper:#f3ead2; position:relative; display:grid; gap:6px; padding:18px 20px 22px; border-radius:6px; background:#f3ead2; color:#2d2618; box-shadow:0 6px 16px #0006; }
+.sm-card .wk-label { color:#7a6a45; }
+.sm-card h2 { margin:0; font:600 clamp(22px,4vw,34px)/1.2 Georgia,'Times New Roman',serif; color:#2d2618; overflow-wrap:anywhere; }
+.sm-card p { margin:0; color:#5a4d33; }
+.sm-ruler { position:absolute; left:20px; right:20px; bottom:8px; height:8px; background:repeating-linear-gradient(90deg,#8a7a55 0 1px,transparent 1px 12px); opacity:.55; border-bottom:1px solid #8a7a55; }
+.sm-state { justify-content:center; margin:6px 0; }
+.kg-schaetzmeister .sm-answer { background:#f3ead2; color:#2d2618; box-shadow:0 0 0 3px #c99a45, 0 6px 16px #0006; border-radius:6px; }
+.kg-schaetzmeister .sm-answer small { color:#6a5b3a; } .kg-schaetzmeister .sm-answer b { color:#7a4a0d; font-family:Georgia,serif; }
+.kg-schaetzmeister .sm-line { background:#f3ead2; border-radius:6px; box-shadow:0 4px 12px #0005; }
+.kg-schaetzmeister .sm-axis { background:repeating-linear-gradient(90deg,#8a7a55 0 2px,transparent 2px 10%); height:6px; border-bottom:2px solid #8a7a55; }
+.kg-schaetzmeister .sm-m small { color:#2d2618; font-weight:600; }
+.kg-schaetzmeister .sm-m i { background:#fff8e4; border-color:#8a7a55; }
+.kg-schaetzmeister .sm-scale { color:#d9ccb0; }
+@media (max-width:640px) { .sm-card { padding:14px 14px 20px; } .sm-ruler { left:14px; right:14px; } }
