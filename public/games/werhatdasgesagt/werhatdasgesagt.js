@@ -28,16 +28,18 @@
     },
     question(S) { return `<div class="pk-q"><h2>${esc(I18n.content(S.g.prompt, S.g.promptEn))}</h2></div>`; },
     board(S) {
-      const G = S.g;
+      const G = S.g, W = WorldKit, t = W.t;
       if (G.stage === 'write') {
-        return I18n.html`<div class="pk-wait">${G.mine !== null ? I18n.html`<p class="pk-mine">Deine Antwort: <b>${esc(G.mine)}</b></p>` : G.canWrite ? I18n.html('<p class="pk-mine pk-open">Du hast noch nicht geantwortet</p>') : ''}
+        const state = G.mine !== null ? W.chip('✔', t('Antwort abgegeben', 'Answer submitted'), 'good') : G.canWrite ? W.chip('✎', t('Noch nicht geantwortet', 'Not answered yet'), 'warn') : W.chip('👁', t('Du schaust zu', 'You are watching'));
+        return I18n.html`<div class="pk-wait"><div class="wk-chips wh-state">${state}</div>${G.mine !== null ? I18n.html`<p class="pk-mine">Deine Antwort: <b>${esc(G.mine)}</b></p>` : ''}
           <p>Die Antworten werden gleich einzeln gezeigt – ohne Namen.</p></div>`;
       }
       const grid = G.canGuess ? I18n.html`<div class="wh-grid" role="group" aria-label="Wer hat das geschrieben?">${G.candidates.map((id) => {
         const on = G.myGuess === id;
         return `<button type="button" class="wh-pick${on ? ' on' : ''}" data-g="wh-guess" data-id="${esc(id)}" aria-pressed="${on}">${pkAvatar(S, id)}<span>${esc(pkName(S, id))}</span>${on ? I18n.html('<small>✓ dein Tipp</small>') : ''}</button>`;
       }).join('')}</div>` : `<p class="pk-mine">${G.mine ? I18n.t('Das ist deine Antwort – du rätst hier nicht mit.') : I18n.t('Du schaust zu.')}</p>`;
-      return `<blockquote class="wh-answer ${G.text === '(keine Antwort)' ? 'empty' : ''}"><p>${esc(G.text)}</p></blockquote>${grid}`;
+      const chips = [G.canGuess ? (G.myGuess ? W.chip('✔', t('Tipp gesetzt', 'Guess set'), 'good') : W.chip('?', t('Noch kein Tipp', 'No guess yet'), 'warn')) : G.mine ? W.chip('🔒', t('Deine Antwort – Autor verborgen', 'Your answer – author hidden')) : W.chip('👁', t('Du schaust zu', 'You are watching'))];
+      return `<div class="wk-stage wh-stage">${W.head({ eyebrow: t('Anonyme Antwort', 'Anonymous answer'), title: t('Wer hat das geschrieben?', 'Who wrote this?'), chips })}<blockquote class="wh-answer ${G.text === '(keine Antwort)' ? 'empty' : ''}"><span class="wh-seal" aria-hidden="true">?</span><p>${esc(G.text)}</p></blockquote>${grid}</div>`;
     },
     writeForm(S) {
       const G = S.g;

@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Wer hat das gesagt?: Antwort im Zitat, Spielerliste zum Tippen, Auflösung mit Autor und Tipps */
 .kg-werhatdasgesagt .kg-main { background: radial-gradient(120% 90% at 50% 15%, #4B3F82, #1D1A3A); }
 .wh-answer { margin: 0; width: 100%; padding: 18px 20px; border-radius: var(--r-l); background: var(--gold); color: #2A1B08; box-shadow: var(--shadow-1); position: relative; }
@@ -35,3 +36,12 @@
 body.calm .wh-card { animation: none; }
 @media (prefers-reduced-motion: reduce) { .wh-card { animation: none; } }
 @media (max-width: 640px) { .wh-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Spielwelt: Antwortzettel mit Siegel, für alle Autoren gleich anonym */
+.wh-stage { --wk-bg:linear-gradient(170deg,#4b3f82,#1d1a3a); --wk-edge:#c99a4566; --wk-accent:#e8c276; --wk-max:760px; }
+.wh-stage .wh-answer { padding:22px 22px 18px 26px; border-radius:4px; transform:none; border-left:8px solid #8a5cc7; }
+.wh-seal { position:absolute; right:-8px; top:-12px; display:grid; place-items:center; width:38px; height:38px; border-radius:50%; background:#8a2f3a; color:#fbe9c9; font:700 20px Georgia,serif; box-shadow:0 2px 6px #0006; }
+.wh-state { justify-content:center; }
+.wh-stage .wh-grid { grid-template-columns:repeat(auto-fill,minmax(min(100%,130px),1fr)); }
+.wh-pick { min-height:88px; }
+.wh-pick.on { box-shadow:0 0 0 2px var(--gold) inset; }
+@media (max-width:640px) { .wh-stage .wh-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
