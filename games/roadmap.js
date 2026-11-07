@@ -18,7 +18,7 @@ const V2_FERTIG = ['v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v
 
 export const ROADMAP = [
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
-  { id: 'einzelspieler-zukunft', titel: 'Weitere Einzelspieler-Spiele', satz: 'Neun einzeln geplante Arbeitspakete. Umsetzung jeweils erst nach eigener Freigabe.', stufe: 'spaeter', eintraege: ['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3'], punkte: [] },
+  { id: 'einzelspieler-zukunft', titel: 'Weitere Einzelspieler-Spiele', satz: 'Fünf weitere Klassiker sind spielbar. Vier weitere Pakete benötigen eine eigene Freigabe.', stufe: 'spaeter', eintraege: ['block-puzzle','solitaire','mahjong-solitaire','match-3'], punkte: spiele(['snake','memory','minesweeper','nonogramm','sokoban']) },
   { id: 'neue-spielwelten', titel: 'Neue Spielwelten & schönere Spieloberflächen', satz: 'Scotland Yard, UNO, Skip-Bo und Phase 10 sind visuell überarbeitet. Weitere individuelle Spielwelten folgen schrittweise nach eigener Freigabe.', stufe: 'spaeter', punkte: [
     punkt('visual-scotland-yard', 'Scotland Yard: Ermittlungszentrale & Stadtkarte', 'design', 'Eigene Stadtviertel, persönliche Figuren, Fahrkarten und Ermittlungsprotokoll – auf Desktop und Handy geprüft.', true),
     punkt('visual-kartenwelten', 'UNO, Skip-Bo & Phase 10: eigene Kartenwelten', 'design', 'Farbarena, nummerierte Baureihen und Phasen-Arbeitsfläche mit eigenen Lobbys und klaren Aktionen auf Desktop und Handy.', true),

@@ -1,0 +1,46 @@
+/* Original flat game worlds; all selectors are scoped to the five new local games. */
+.solo-collection { min-width:0; }
+.solo-collection [data-content] { min-width:0; }
+.solo-scroll { max-width:100%; overflow:auto; overscroll-behavior:contain; border-radius:9px; margin:14px 0; }
+.solo-cell-grid { display:grid; grid-template-columns:repeat(var(--columns),minmax(0,1fr)); }
+.solo-collection .number-pad { margin-inline:auto; }
+.singleplayer.solo-snake { background:#10292b; --sp-edge:#93e0a145; }
+.snake-field { display:grid; grid-template-columns:repeat(16,1fr); width:min(100%,540px); aspect-ratio:1; margin:auto; padding:8px; gap:2px; background:#081a20; border:2px solid #7bae94; border-radius:12px; touch-action:none; }
+.snake-field i { border-radius:2px; background:#a0d4b807; }
+.snake-field .body { background:#83c59f; box-shadow:0 0 6px #83c59f66; }
+.snake-field .head { background:#d2f5ab; border:2px solid #e8ffd7; }
+.snake-field .food { background:#eead74; border-radius:50%; box-shadow:inset 0 0 0 3px #bc724a; }
+.singleplayer.solo-memory { background:#26392f; --sp-ink:#f8f1d8; }
+.memory-field { max-width:640px; gap:clamp(5px,1vw,12px); margin:auto; }
+.memory-card { aspect-ratio:4/5; min-width:0; min-height:44px; border:2px solid #9fae86; border-radius:12px; background:repeating-linear-gradient(45deg,#304c3c,#304c3c 8px,#345340 8px,#345340 10px); color:#dacb99; font-size:34px; padding:8px; }
+.solo-memory .memory-card.face { background:#e8dfbc; color:#325a49; }
+.memory-card svg { display:block; width:100%; height:100%; max-height:90px; }
+.solo-memory .memory-card.matched { opacity:1!important; border-color:#8bcaa0; background:#c3d5ae; }
+.singleplayer.solo-minesweeper { background:#253039; --sp-edge:#a7c3ce55; }
+.mine-field { --cell:34px; min-width:calc(var(--columns)*var(--cell)); width:min(100%,680px); margin:auto; gap:2px; background:#52606b; padding:4px; border:2px solid #a7b9bc; border-radius:7px; }
+.mine-cell { aspect-ratio:1; min-width:0; min-height:0; padding:0; color:#e9dbb2; font-weight:800; font-size:17px; border:1px solid #a1b3b3; border-radius:3px; background:linear-gradient(140deg,#435562,#283a46); }
+.mine-cell.open { background:#e5e4cf; color:#27556c; border-color:#b1b6a6; }
+.mine-cell.open[data-number="2"] { color:#28613e; }.mine-cell.open[data-number="3"] { color:#963a2c; }.mine-cell.open[data-number="4"] { color:#563b86; }
+.mine-cell.hit { background:#953c31; color:#ffe1b6; }
+.mine-field.zoom { --cell:44px; }
+.singleplayer.solo-nonogramm { background:#e4dcc5; --sp-ink:#263e39; --sp-muted:#405b51; --sp-edge:#54706555; }
+.singleplayer.solo-nonogramm a { color:#3f6252; }.singleplayer.solo-nonogramm .btn-ghost { color:#263e39; border-color:#70867b; background:#f1ead7; }
+.singleplayer.solo-nonogramm .sp-setup select { background:#f5eedc; color:#263e39; }
+.singleplayer.solo-nonogramm [aria-pressed=true] { background:#c5d1b0; }.solo-nonogramm .sp-paused { color:#f5efdf; }
+.ng-field { --cell:32px; display:grid; grid-template-columns:70px repeat(var(--columns),var(--cell)); width:max-content; background:#faf5e6; border:2px solid #60766a; border-radius:4px; overflow:hidden; margin:auto; }
+.ng-field.zoom { --cell:44px; }
+.ng-clue { display:flex; align-items:center; justify-content:flex-end; padding:0 6px; font-size:13px; font-weight:700; border:1px solid #94a38b; letter-spacing:1px; }
+.ng-clue.vertical { flex-direction:column; justify-content:flex-end; min-height:80px; padding:5px 0; letter-spacing:0; }
+.ng-corner { display:grid; place-items:center; color:#426351; font-weight:700; }
+.ng-cell { width:var(--cell); height:var(--cell); min-width:0; min-height:0; padding:0; border:1px solid #94a38b; border-radius:0; background:#faf5e6; color:#3a6152; font-size:22px; }
+.ng-cell.filled { background:#3d705d; box-shadow:inset 0 0 0 2px #649278; }.ng-cell.cross { background:#e9e5d7; }
+.singleplayer.solo-sokoban { background:#332c25; --sp-edge:#c4a27755; }
+.warehouse-field { --cell:38px; min-width:calc(var(--columns)*var(--cell)); max-width:630px; background:#32291e; border:3px solid #826d4b; margin:auto; border-radius:8px; overflow:hidden; touch-action:none; }
+.warehouse-field.zoom { --cell:44px; touch-action:pan-x pan-y; }
+.warehouse-cell { aspect-ratio:1; min-height:0; min-width:0; padding:0; border:1px solid #866f4938; border-radius:0; background:#ba9c6c; font-size:clamp(20px,3.5vw,37px); color:#305e51; }
+.warehouse-cell.wall { background:repeating-linear-gradient(0deg,#5b5b50,#5b5b50 9px,#686858 10px,#686858 19px); border:2px solid #353a32; }
+.warehouse-cell.crate span { display:grid; place-items:center; width:80%; height:80%; margin:auto; color:#efcf90; background:#89522f; border:2px solid #d6a36c; border-radius:3px; }
+.warehouse-cell.crate.goal span { background:#345f4a; border-color:#b0d28d; }
+.warehouse-cell.worker span { display:grid; place-items:center; background:#e1e5c6; border:3px solid #487c69; border-radius:50%; width:70%; height:70%; margin:auto; }
+.solo-collection .solo-cell-grid button:focus-visible,.solo-collection .ng-cell:focus-visible { outline-offset:-3px; outline:3px solid #eeb945; z-index:1; }
+@media(max-width:740px){.mine-field{--cell:24px}.warehouse-field{--cell:29px}.ng-field{--cell:24px}.memory-card{padding:4px;border-radius:7px}.solo-collection .sp-metrics>span{font-size:12px}.solo-collection .sp-private{font-size:11px}.solo-collection .sp-setup{margin:20px auto}}

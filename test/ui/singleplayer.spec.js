@@ -3,7 +3,8 @@ import {mkdirSync} from 'node:fs';
 import {create as sudoku} from '../../public/singleplayer/sudoku-logic.js';
 import {create as number} from '../../public/singleplayer/2048-logic.js';
 import {create as defense} from '../../public/singleplayer/wellenwacht-logic.js';
-import {GAMES} from '../../games/index.js';
+import {GAMES,SINGLEPLAYER_GAMES} from '../../games/index.js';
+const SOLO_COUNT=Object.keys(SINGLEPLAYER_GAMES).length;
 
 const path=process.env.SOLO_CAPTURE_EVIDENCE==='1'?'docs/solo-games/screenshots':'artifacts/solo-screenshots';
 mkdirSync(path,{recursive:true});
@@ -11,12 +12,12 @@ async function shot(page,testInfo,name){mkdirSync(path,{recursive:true});await p
 async function route(page,id){await page.evaluate((id)=>{location.hash='#solo/'+id;},id);await expect(page.locator(`[data-solo="${id}"]`)).toBeVisible();}
 async function start(page){await page.locator('[data-setup] button[type=submit]').click();}
 async function saved(page,id){return page.evaluate((id)=>JSON.parse(localStorage.getItem('poker:singleplayer:'+id))?.state,id);}
-async function seed(page,id,state){await page.evaluate(()=>{location.hash='#spiele/einzelspieler';});await expect(page.locator('[data-solo-start]')).toHaveCount(3);await page.evaluate(({id,state})=>{localStorage.setItem('poker:singleplayer:'+id,JSON.stringify({version:1,id,updatedAt:Date.now(),state}));},{id,state});await page.reload();await route(page,id);}
+async function seed(page,id,state){await page.evaluate(()=>{location.hash='#spiele/einzelspieler';});await expect(page.locator('[data-solo-start]')).toHaveCount(SOLO_COUNT);await page.evaluate(({id,state})=>{localStorage.setItem('poker:singleplayer:'+id,JSON.stringify({version:1,id,updatedAt:Date.now(),state}));},{id,state});await page.reload();await route(page,id);}
 
-test('single-player library separates 3 local games from all registered room games',async({page,app},info)=>{
-  await login(page,app);const catalog=await page.request.get(app.url+'/me').then((r)=>r.json());expect(catalog.games.map((g)=>g.id)).toEqual(Object.keys(GAMES));expect(catalog.singleplayerGames).toHaveLength(3);
-  await page.locator('.category-tabs a[href="#spiele/einzelspieler"]').click();await expect(page.locator('[data-solo-start]')).toHaveCount(3);await expect(page.locator('#games-body [data-host]')).toHaveCount(0);
-  await expect(page.locator('.library-count')).toContainText('3');await expect(page.locator('.library-head [data-create-table]')).toHaveCount(0);await expect(page.locator('[data-id=sudoku] .gr-desc')).toBeVisible();
+test('single-player library separates local games from all registered room games',async({page,app},info)=>{
+  await login(page,app);const catalog=await page.request.get(app.url+'/me').then((r)=>r.json());expect(catalog.games.map((g)=>g.id)).toEqual(Object.keys(GAMES));expect(catalog.singleplayerGames).toHaveLength(SOLO_COUNT);
+  await page.locator('.category-tabs a[href="#spiele/einzelspieler"]').click();await expect(page.locator('[data-solo-start]')).toHaveCount(SOLO_COUNT);await expect(page.locator('#games-body [data-host]')).toHaveCount(0);
+  await expect(page.locator('.library-count')).toContainText(String(SOLO_COUNT));await expect(page.locator('.library-head [data-create-table]')).toHaveCount(0);await expect(page.locator('[data-id=sudoku] .gr-desc')).toBeVisible();
   for(const id of ['sudoku','2048','wellenwacht']){const reply=await page.evaluate((game)=>new Promise((resolve)=>socket.emit('create',{game,name:'Anna'},resolve)),id);expect(reply.ok).toBe(false);}
   await shot(page,info,'library');await page.locator('[data-solo-start="2048"]').click();await expect(page.locator('[data-setup]')).toBeVisible();await shot(page,info,'2048-start');await start(page);await expect(page.locator('.number-tile.filled')).toHaveCount(2);
   const before=await saved(page,'2048');await page.locator('[data-dir="down"]').click();await page.locator('.sp-common [data-action=pause]').click();const paused=await saved(page,'2048');expect(paused.paused).toBe(true);await page.locator('.number-grid').press('ArrowLeft',{force:true});expect((await saved(page,'2048')).board).toEqual(paused.board);
@@ -70,14 +71,14 @@ test('direct solo entry works without a profile or Discord and has no horizontal
   await page.goto(app.url+'/#solo/sudoku');await page.getByLabel('Passwort').fill(app.password);await page.getByRole('button',{name:'Reinkommen'}).click();await expect(page.locator('[data-solo=sudoku]')).toBeVisible();await expect(page.locator('#profile-dlg')).not.toBeVisible();await start(page);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
 
-test('new roadmap packages are planned, translated and linked to their individual GitHub issues',async({page,app})=>{
+test('remaining roadmap packages are planned, translated and linked to their individual GitHub issues',async({page,app})=>{
   await login(page,app);await page.locator('#hub-language select').selectOption('en');await page.evaluate(()=>{location.hash='#roadmap';});await page.locator('[data-roadmap-stage=spaeter] > summary').click();
   const section=page.locator('article[aria-labelledby=roadmap-einzelspieler-zukunft]');await expect(section).toContainText('More single-player games');await expect(section.locator('[data-plan]')).toHaveCount(9);
-  await section.locator('[data-plan=minesweeper]').click();await expect(page.locator('#host-dlg')).toContainText('Clear a minefield using logic and flags.');await expect(page.locator('#host-dlg')).toContainText('Neighbour counts reveal hidden mines.');await expect(page.locator('#host-dlg')).toContainText('Acceptance criteria');await expect(page.locator('#host-dlg')).toContainText('Separate from Minenlauf');await expect(page.locator('#host-dlg a[href="https://github.com/TTLPSCWA/PokerAbend/issues/7"]')).toBeVisible();await expect(page.locator('#host-dlg [data-host]')).toHaveCount(0);
+  await section.locator('[data-plan=block-puzzle]').click();await expect(page.locator('#host-dlg')).toContainText('Place shapes and clear complete lines.');await expect(page.locator('#host-dlg')).toContainText('Place three offered shapes on a grid; complete lines disappear.');await expect(page.locator('#host-dlg')).toContainText('Acceptance criteria');await expect(page.locator('#host-dlg')).toContainText('Puzzle-Panik stays a separate planned party game');await expect(page.locator('#host-dlg a[href="https://github.com/TTLPSCWA/PokerAbend/issues/10"]')).toBeVisible();await expect(page.locator('#host-dlg [data-host]')).toHaveCount(0);
 });
 
 test('blocked browser storage still allows local play and reduced motion prevents tile animations',async({page,app})=>{
-  await login(page,app);await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>{Object.defineProperty(window,'localStorage',{get(){throw new DOMException('blocked','SecurityError');}});});await route(page,'2048');await expect(page.locator('.sp-setup .error')).toContainText('Browserspeicher ist gesperrt');await start(page);await page.locator('[data-dir=left]').click();await expect(page.locator('[data-save]')).toContainText('Speichern nicht verfügbar');expect(await page.locator('.number-grid').evaluate((grid)=>grid.getAnimations({subtree:true}).length)).toBe(0);await page.locator('.sp-heading a').click();await expect(page.locator('[data-solo-start]')).toHaveCount(3);
+  await login(page,app);await page.emulateMedia({reducedMotion:'reduce'});await page.evaluate(()=>{Object.defineProperty(window,'localStorage',{get(){throw new DOMException('blocked','SecurityError');}});});await route(page,'2048');await expect(page.locator('.sp-setup .error')).toContainText('Browserspeicher ist gesperrt');await start(page);await page.locator('[data-dir=left]').click();await expect(page.locator('[data-save]')).toContainText('Speichern nicht verfügbar');expect(await page.locator('.number-grid').evaluate((grid)=>grid.getAnimations({subtree:true}).length)).toBe(0);await page.locator('.sp-heading a').click();await expect(page.locator('[data-solo-start]')).toHaveCount(SOLO_COUNT);
 });
 
 test('local games stay responsive across six viewports and keep settings across language changes',async({page,app},info)=>{
