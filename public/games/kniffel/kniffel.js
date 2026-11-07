@@ -97,7 +97,9 @@
         ${S.settings.extraBonus ? sumRow('Extra-Kniffel', (t) => t.extra || '–') : ''}
         ${sumRow(I18n.t('Gesamt'), (t) => `<b>${t.total}</b>`, 'total')}
         </tbody></table></div>`;
-      return `<div class="kg-table kn-table">${triple ? `<div class="kg-acts">${[0, 1, 2].map((i) => I18n.html`<button class="btn" data-g="column" data-column="${i}" aria-pressed="${column === i}">Spalte ×${i + 1}</button>`).join('')}</div>` : ''}${tray}${sheet}</div>`;
+      const W = WorldKit, tt = W.t, free = Object.values(g.sheets[me] || {}).filter((v) => v === null).length;
+      const chips = [W.chip('🎲', g.rolls ? `${g.rolls}. ${tt('Wurf von 3', 'roll of 3')}` : tt('Noch nicht gewürfelt', 'Not rolled yet'), g.rolls >= 3 ? 'warn' : ''), g.sheets[me] ? W.chip('✎', `${free} ${tt('Felder offen', 'boxes open')}`) : '', triple ? W.chip('×3', `${tt('Dreifachblatt', 'Triple sheet')} · ${tt('Spalte', 'column')} ×${column + 1}`, 'warn') : '', myTurn && g.options && g.rolls ? W.chip('✔', tt('Feld antippen zum Eintragen', 'Tap a box to score'), 'good') : ''].filter(Boolean);
+      return `<div class="kg-table kn-table wk-stage kn-stage">${W.head({ eyebrow: tt('Würfeltablett & Punkteblatt', 'Dice tray & score sheet'), title: myTurn ? tt('Du bist dran', 'Your turn') : `${nameOf(S, S.turnId)} ${tt('ist dran', 'is playing')}`, chips })}${triple ? `<div class="kg-acts">${[0, 1, 2].map((i) => I18n.html`<button class="btn" data-g="column" data-column="${i}" aria-pressed="${column === i}">Spalte ×${i + 1}</button>`).join('')}</div>` : ''}${tray}${sheet}</div>`;
     },
     dock(S, myTurn) {
       if (!myTurn) return '';

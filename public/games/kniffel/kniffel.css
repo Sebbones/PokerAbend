@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Kniffel: Würfeltablett und Punkteblatt (alle Spieler nebeneinander, eigene Spalte hervorgehoben) */
 .kg-kniffel .kg-main { background: radial-gradient(120% 90% at 50% 20%, #5B3A6E, #2A1A36); place-items: start center; }
 .kn-table { gap: 12px; }
@@ -40,3 +41,15 @@
   .kn-sheet tbody th small { display: none; }
   .kn-sheet td.num { min-width: 44px; }
 }
+
+/* Spielwelt: hochwertiges Würfeltablett neben klarem Papier-Punkteblatt – Zeilenführung, Vorschau/Streichen/belegt unterscheidbar, Blatt scrollbar */
+.kn-stage { --wk-bg: linear-gradient(165deg, #1f4a38, #0e261c); --wk-edge:#bfe3cc55; --wk-accent:#f0d28a; --wk-max:900px; justify-items: stretch; }
+.kn-stage .kn-tray { background: #133126cc; border: 3px solid #5a3b1d; border-radius: 14px; box-shadow: inset 0 0 18px #000a; }
+.kn-stage .kn-sheet-wrap { overflow-x: auto; border-radius: 10px; }
+.kn-stage .kn-sheet tbody tr:nth-child(even) th, .kn-stage .kn-sheet tbody tr:nth-child(even) td { background-image: linear-gradient(#0000000d, #0000000d); }
+.kn-stage .kn-pick.zero::after { content: ' ✕'; }
+.kn-stage button { min-height: 44px; }
+
+/* Querformat: die gemeinsame Zweispalten-Aufteilung (Tablett | Blatt) bleibt, der Kopf spannt über beide Spalten und wird kompakt */
+.kn-stage > .wk-head { grid-column: 1 / -1; }
+@media (max-height: 560px) { .kn-stage { padding: 8px; gap: 6px; } .kn-stage .wk-eyebrow, .kn-stage .wk-chips { display: none; } .kn-stage .wk-title { font-size: 16px; } }
