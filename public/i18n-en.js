@@ -624,3 +624,100 @@ Object.assign(window.EN_GAMES,{staedtehandel:{name:'Städtehandel',description:'
 Object.assign(window.EN,{"Aurelia – 19 Felder (3–4 Spieler)":"Aurelia – 19 hexes (3–4 players)","Groß-Aurelia – 30 Felder (5–6 Spieler)":"Greater Aurelia – 30 hexes (5–6 players)","Brett":"Board","Spielfeld":"Layout","Zufällig":"Random","Festes Einsteigerfeld (nur 3–4 Spieler)":"Fixed beginner layout (3–4 players only)","Siegpunkte zum Gewinnen":"Victory points to win","Zeit pro Schritt in Sekunden (0 = ohne)":"Seconds per step (0 = no limit)","Aurelia ist eine erfundene Insel aus Sechsecken: Wald (Holz), Tongrube (Ton), Weide (Wolle), Acker (Korn), Gebirge (Kupfer) und eine Düne ohne Ertrag. Auf jedem Feld liegt eine Zahl von 2 bis 12.":"Aurelia is an invented island of hexes: forest (wood), clay pit (clay), pasture (wool), fields (grain), mountains (copper) and a dune without yield. Each hex carries a number from 2 to 12.","Aufbau: Reihum setzt jeder eine Siedlung mit einer anschließenden Straße, dann geht es rückwärts noch einmal. Für die zweite Siedlung gibt es sofort je einen Rohstoff der angrenzenden Felder.":"Setup: in turn everyone places a settlement followed by a road, then once more in reverse order. The second settlement immediately pays one resource from each adjacent hex.","Ertrag: Wer dran ist, würfelt mit zwei Würfeln. Jede Siedlung an einem Feld mit dieser Zahl bringt 1 Rohstoff, jede Stadt 2. Die Würfel fallen auf dem Server.":"Yield: the active player rolls two dice. Each settlement next to a hex with that number yields 1 resource, each city 2. The server rolls the dice.","Bauen: Straße = Holz + Ton. Siedlung = Holz + Ton + Wolle + Korn, mindestens zwei Straßenabschnitte von der nächsten Siedlung entfernt und an eine eigene Straße angeschlossen. Stadt = 2 Korn + 3 Kupfer auf einer eigenen Siedlung. Entwicklungskarte = Wolle + Korn + Kupfer.":"Building: road = wood + clay. Settlement = wood + clay + wool + grain, at least two road segments from the nearest settlement and connected to your own road. City = 2 grain + 3 copper on your own settlement. Development card = wool + grain + copper.","Die Sieben: Wer mehr als 7 Karten hat, wirft die Hälfte ab. Der Würfler versetzt den Räuber auf ein anderes Feld (das bringt dann nichts mehr) und stiehlt eine zufällige Karte von jemandem, der dort baut.":"The seven: anyone holding more than 7 cards discards half. The roller moves the robber to another hex (which then yields nothing) and steals a random card from someone building there.","Handel: Auf deinem Zug bietest du anderen einen Tausch an – wer zustimmt, den wählst du aus. Mit der Bank tauschst du 4:1, mit einem 3:1-Hafen 3:1, mit einem Spezialhafen 2:1 für dessen Rohstoff.":"Trade: on your turn you offer others a swap – you choose among those who agree. With the bank you trade 4:1, with a 3:1 harbour 3:1, with a special harbour 2:1 for its resource.","Entwicklungskarten: Ritter (Räuber versetzen, drei gespielte Ritter und mehr als alle anderen = größte Rittermacht, 2 Punkte), Bauwerk (1 geheimer Punkt), Straßenbau (zwei Straßen gratis), Erfindung (zwei beliebige Rohstoffe von der Bank), Handelsmonopol (alle Karten eines Rohstoffs von allen anderen). Eine Karte pro Zug, nicht am Kaufzug.":"Development cards: knight (move the robber; three played knights and more than anyone else = largest army, 2 points), landmark (1 secret point), road building (two free roads), invention (any two resources from the bank), trade monopoly (all cards of one resource from everyone else). One card per turn, not on the turn you bought it.","Längste Handelsstraße: zusammenhängend mindestens 5 Straßenabschnitte und mehr als alle anderen = 2 Punkte. Fremde Siedlungen unterbrechen eine Straße.":"Longest trade road: at least 5 connected road segments and more than anyone else = 2 points. Foreign settlements break a road.","Sieg: Siedlung = 1 Punkt, Stadt = 2, dazu Auszeichnungen und Bauwerke. Wer in seinem Zug 10 Punkte hat, gewinnt.":"Victory: settlement = 1 point, city = 2, plus awards and landmarks. Whoever has 10 points on their turn wins."});
 
 Object.assign(window.EN_GAMES,{'jaeger-schatten':{name:'Hunters & Shadows',description:'Secret teams, shared paths and a chase against time.'},infektionsjagd:{name:'Infection Chase',description:'Secretly infected or still uninfected: survive the shared chase.'},'letzter-schutzplatz':{name:'Last Shelter',description:'Reach a safe circle before the next danger phase.'},regelwahnsinn:{name:'Rule Cascade',description:'One number and ever more rules: keep track and score points.'}});
+// BACKLOG-08: Arcade-Spiele (Geschenkfänger, Rhythmus-Rausch, Stillgestanden!, Bomben-Duell)
+Object.assign(window.EN,{"Alle sehen denselben Fall von Geschenken und Bomben (gleicher Seed); jede Person fängt mit dem eigenen Korb.":"Everyone sees the same fall of gifts and bombs (same seed); each person catches with their own basket.",
+"Den Korb bewegst du nach links und rechts: Pfeiltasten, A/D oder die gehaltenen Knöpfe am Handy.":"Move the basket left and right: arrow keys, A/D or the held buttons on a phone.",
+"Kleine Geschenke geben 10, große 20 Punkte; optional gibt es goldene Geschenke mit 50. Eine Bombe nimmt 30 Punkte weg (nie unter null).":"Small gifts give 10, large ones 20 points; optionally golden gifts give 50. A bomb takes away 30 points (never below zero).",
+"Optional wird der Korb mit jeder Bombe kleiner.":"Optionally the basket shrinks with every bomb.",
+"Der Server berechnet Korb, Fall und Treffer; nach Ablauf der Spielzeit gewinnt die höchste Punktzahl, Gleichstand teilt den Sieg.":"The server computes basket, fall and catches; when time is up the highest score wins and a tie shares the win.",
+"Goldene Geschenke und schrumpfenden Korb stellst du am Tisch unter „Host“ ein. Korb mit Pfeiltasten oder A/D bewegen, am Handy die Knöpfe halten. Optionale Bots für Testrunden.":"Set golden gifts and the shrinking basket at the table under “Host”. Move the basket with arrow keys or A/D; hold the buttons on a phone. Optional bots for test rounds.",
+"Alle bekommen dieselbe Notenfolge (gleicher Seed); die Noten laufen in vier Bahnen auf die Trefferlinie zu.":"Everyone gets the same note chart (same seed); the notes run towards the hit line in four lanes.",
+"Tippe die Bahn genau dann, wenn die Note die Linie erreicht: Tasten D F J K oder ← ↓ ↑ →, am Handy die vier Felder.":"Tap the lane exactly when the note reaches the line: keys D F J K or ← ↓ ↑ →, the four pads on a phone.",
+"Perfekt (±60 ms) gibt 100, gut (±130 ms) 60 und knapp (±200 ms) 25 Punkte. Serien aus perfekten und guten Treffern geben bis zu 50 Bonuspunkte pro Note.":"Perfect (±60 ms) gives 100, good (±130 ms) 60 and close (±200 ms) 25 points. Streaks of perfect and good hits give up to 50 bonus points per note.",
+"Verpasste Noten und Fehltipps unterbrechen die Serie; ein Fehltipp kostet 10 Punkte.":"Missed notes and stray taps break the streak; a stray tap costs 10 points.",
+"Der Server wertet jeden Tipp mit seiner Zeit; nur die selbst gemessene Verzögerung deiner Verbindung (höchstens 200 ms) wird ausgeglichen. Die höchste Punktzahl gewinnt.":"The server judges every tap by its own time; only your connection's self-measured delay (at most 200 ms) is compensated. The highest score wins.",
+"Eine Bahn und schnelleres Tempo stellst du am Tisch unter „Host“ ein. Tasten D F J K oder Pfeiltasten, am Handy die vier Felder tippen. Optionale Bots für Testrunden.":"Set single lane and faster tempo at the table under “Host”. Keys D F J K or arrow keys; tap the four pads on a phone. Optional bots for test rounds.",
+"Alle starten an derselben Linie und laufen in Echtzeit zum Ziel. Laufen: ↑, W oder Leertaste halten, am Handy den Laufknopf halten.":"Everyone starts at the same line and runs to the finish in real time. Run: hold ↑, W or Space; hold the run button on a phone.",
+"Bei Grün darfst du laufen. Gelb kündigt Rot an, bei Rot musst du stillstehen – die Signale kommen zufällig.":"You may run on green. Amber announces red; on red you must stand still – the signals come at random.",
+"Wer sich bei Rot bewegt, geht zurück zum Start (oder steht ohne Rückkehr zwei Sekunden still). Nach dem Wechsel auf Rot gibt es eine kurze, an deine Verbindung angepasste Gnadenfrist.":"If you move on red you go back to the start (or, without return, stand still for two seconds). After the switch to red there is a short grace period adapted to your connection.",
+"Optional gibt es ein Fake-Signal: ein kurzes Rot ohne Strafe.":"Optionally there is a fake signal: a brief red without penalty.",
+"Wer zuerst das Ziel erreicht, gewinnt; läuft die Zeit ab, gewinnt der weiteste Lauf. Der Server entscheidet über Signale, Bewegung und Strafen.":"The first to reach the finish wins; when time runs out the furthest run wins. The server decides signals, movement and penalties.",
+"Rückkehr zum Start und Fake-Signal stellst du am Tisch unter „Host“ ein. Laufen mit ↑, W oder Leertaste halten; am Handy den Laufknopf halten. Optionale Bots für Testrunden.":"Set return-to-start and fake signal at the table under “Host”. Hold ↑, W or Space to run; hold the run button on a phone. Optional bots for test rounds.",
+"Alle bewegen sich gleichzeitig Feld für Feld auf einem Raster mit festen Pfeilern und zerstörbaren Kisten (Pfeiltasten/WASD oder Richtungsknöpfe).":"Everyone moves simultaneously, cell by cell, on a grid with fixed pillars and destructible crates (arrow keys/WASD or direction buttons).",
+"Mit Leertaste oder Bombenknopf legst du eine Bombe (eine gleichzeitig). Ihre Zündschnur ist sichtbar und läuft etwa zwei Sekunden.":"Space or the bomb button places a bomb (one at a time). Its fuse is visible and burns for about two seconds.",
+"Die Explosion reicht zwei Felder in vier Richtungen, wird von Pfeilern gestoppt, sprengt die erste Kiste und zündet andere Bomben. Wer in den Flammen steht, scheidet aus.":"The blast reaches two cells in four directions, is stopped by pillars, destroys the first crate and sets off other bombs. Anyone standing in the flames is out.",
+"Pro Runde gibt es so viele Punkte, wie vor dir ausgeschieden sind; Überlebende erhalten die Zahl aller Ausgeschiedenen. Nach den eingestellten Runden gewinnt die höchste Summe.":"Each round you score as many points as players left before you; survivors score the number of everyone eliminated. After the set rounds the highest total wins.",
+"Der Server berechnet Bewegung, Zündschnur, Explosion und Punkte; Eingaben vom Client sind nur Richtungen und das Legen.":"The server computes movement, fuse, blast and points; client input is only directions and placing.",
+"Bewegen mit Pfeiltasten/WASD, Bombe mit Leertaste; am Handy Richtungsknöpfe und Bombenknopf. Optionale Bots für Testrunden.":"Move with arrow keys/WASD, bomb with Space; direction pad and bomb button on a phone. Optional bots for test rounds.",
+"Geschenke mit dem Korb fangen und Bomben ausweichen – der Server zählt jeden Treffer.":"Catch gifts with your basket and dodge bombs – the server counts every catch.",
+"Im Takt tippen: Je genauer, desto mehr Punkte – der Server wertet jeden Tipp.":"Tap on the beat: the more precise, the more points – the server judges every tap.",
+"Bei Grün laufen, bei Rot stillstehen – wer sich bewegt, muss zurück.":"Run on green, freeze on red – move and you go back.",
+"In einer eigenen Spielarena Sprengladungen setzen und rechtzeitig in Deckung gehen.":"Place bombs in your own arena and take cover in time.",
+"Goldene Geschenke":"Golden gifts",
+"Korb wird mit jeder Bombe kleiner":"Basket shrinks with every bomb",
+"Nur eine Bahn":"Single lane",
+"Schnelleres Tempo":"Faster tempo",
+"Bei Rot zurück zum Start":"Back to start on red",
+"Fake-Signal (kurzes Rot ohne Strafe)":"Fake signal (brief red, no penalty)",
+"Sekunden pro Runde":"Seconds per round",
+"Anzahl Runden":"Number of rounds",
+"Gleichstand – die Besten teilen sich den Sieg.":"A tie – the best share the win.",
+"Die höchste Punktzahl gewinnt.":"The highest score wins.",
+"Niemand hat Punkte erzielt – unentschieden.":"Nobody scored – a draw.",
+"Niemand ist losgekommen – unentschieden.":"Nobody got going – a draw.",
+"Das Ziel ist erreicht – wer zuerst da ist, gewinnt.":"The finish is reached – whoever arrives first wins.",
+"Die Zeit ist um – der weiteste Lauf gewinnt.":"Time is up – the furthest run wins.",
+"Gleichstand – die höchste Summe teilen sich mehrere.":"A tie – several share the highest total.",
+"Nach allen Runden gewinnt die höchste Punktsumme.":"After all rounds the highest total wins.",
+"Ungültiger Tipp":"Invalid tap",
+"Zu viele Tipps auf einmal":"Too many taps at once",
+"Die Runde hat noch nicht begonnen":"The round has not started yet",
+"Das Spiel ist angehalten":"The game is paused",
+"Das gibt es in diesem Spiel nicht":"That does not exist in this game"});
+Object.assign(window.EN_GAMES,{"geschenkfaenger":{name:"Gift Catch",description:"Catch gifts with your basket and dodge bombs – the server counts every catch."},"rhythmus-rausch":{name:"Rhythm Rush",description:"Tap on the beat: the more precise, the more points – the server judges every tap."},"stillgestanden":{name:"Freeze!",description:"Run on green, freeze on red – move and you go back."},"bomben-duell":{name:"Bomb Duel",description:"Place bombs in your own arena and take cover in time."}});
+
+// BACKLOG-09
+Object.assign(window.EN,{
+  "Strafzeit je Mine in Sekunden": "Penalty seconds per mine",
+  "Mehr Minen": "More mines",
+  "Mit Flaggen": "Enable flags",
+  "Anzahl Durchgänge": "Number of courses",
+  "Sekunden zwischen Wandwechseln": "Seconds between wall changes",
+  "Eis-Plattform (rutschig)": "Ice platform (slippery)",
+  "Stoß-Kraft wächst mit der Zeit": "Push strength grows over time",
+  "Schlüssel für den Ausgang": "Keys required to escape",
+  "Zwei Scheinwerfer": "Two spotlights",
+  "Schneller werdendes Licht": "Accelerating light",
+  "In dieser Phase ist keine Aktion möglich": "No action is possible in this phase",
+  "Ungültige Aktion": "Invalid action",
+  "Ungültiges Feld": "Invalid cell",
+  "Flaggen sind ausgeschaltet": "Flags are disabled",
+  "Wähle ein benachbartes Feld": "Choose an adjacent cell",
+  "Dieses Spiel verwendet nur Richtungseingaben": "This game uses direction input only",
+  "Die beste Zielzeit einschließlich Strafzeit gewinnt.": "The fastest finish time including penalties wins.",
+  "Niemand hat das Minenfeld durchquert – unentschieden.": "Nobody crossed the minefield — a draw.",
+  "Die höchste Gesamtpunktzahl aus allen Labyrinthen gewinnt.": "The highest total across all mazes wins.",
+  "Niemand hat einen Ausgang erreicht – unentschieden.": "Nobody reached an exit — a draw.",
+  "Die letzte Person auf der Plattform gewinnt.": "The last person on the platform wins.",
+  "Keine alleinige letzte Person – unentschieden.": "No sole last survivor — a draw.",
+  "Mit genügend Schlüsseln zuerst am Ausgang – entkommen!": "First at the exit with enough keys — escaped!",
+  "Niemand ist rechtzeitig entkommen – unentschieden.": "Nobody escaped in time — a draw."
+});
+Object.assign(window.EN_GAMES,{
+  "schubsarena": {
+    "name": "Shove Arena",
+    "description": "Push opponents off the shrinking platform and keep your own balance."
+  },
+  "scheinwerfer-flucht": {
+    "name": "Spotlight Escape",
+    "description": "Stay cool in darkness, collect keys in light and escape first."
+  },
+  "minenlauf": {
+    "name": "Mine Run",
+    "description": "Use number clues to cross the shared hidden minefield safely."
+  },
+  "labyrinth-chaos": {
+    "name": "Maze Chaos",
+    "description": "Changing walls and growing mazes: race to the exit across several courses."
+  }
+});

@@ -14,10 +14,10 @@ const GameDesign = (() => {
     cards: 'poker omaha maumau farbenchaos zehnetappen stapelrennen schwimmen blackjack mogeln praesident durak sechs-nimmt monopoly-deal hearts five-card-draw omaha-hi-lo short-deck seven-card-stud exploding-deck skat doppelkopf stichmeister',
     dice: 'maexchen schocken kniffel shutthebox zehntausend wuerfelpoker luegenwuerfel chicago wuerfelduell risiko-wuerfeln wuerfeljagd monsterwuerfel wuerfel-auktion',
     board: 'huetchen schiffe viergewinnt muehle reversi dame domino monopoly spiel-des-lebens scotland-yard hex backgammon scrabble schach labyrinth-brett schatzinsel gebietskampf staedtehandel',
-    party: 'schaetzmeister schlagfertig werhatdasgesagt tickendes-paket werwolf wer-bin-ich story-chaos zahlenreihe doppelagent luegenbaron regelwahnsinn jaeger-schatten infektionsjagd letzter-schutzplatz',
+    party: 'schaetzmeister schlagfertig werhatdasgesagt tickendes-paket werwolf wer-bin-ich story-chaos zahlenreihe doppelagent luegenbaron regelwahnsinn jaeger-schatten infektionsjagd letzter-schutzplatz geschenkfaenger rhythmus-rausch stillgestanden bomben-duell',
     solo: 'zahlenzoo gedaechtnis-kueche pfeilfieber sortierstation',
     drawing: 'kritzelpost bildunterschrift malen-raten',
-    arena: 'broeckelboden kronenjagd laser-huepfer',
+    arena: 'broeckelboden kronenjagd laser-huepfer schubsarena scheinwerfer-flucht minenlauf labyrinth-chaos',
   };
   const scenes = Object.fromEntries(Object.entries(groups).flatMap(([family, ids]) => ids.split(' ').map((id, i) => [id, {
     family, ...families[family], accent: families[family].accents[i % 3], angle: 25 + i * 17, tone: families[family].tone + i * 13,

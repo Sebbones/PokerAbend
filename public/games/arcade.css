@@ -1,0 +1,19 @@
+@import url('/games/realtime.css');
+/* Gemeinsame Oberfläche der Arcade-Spiele: große Halte- und Tippflächen, Lobby-Szene. */
+.arc-lobby { background:var(--arc-bg); color:#efe6cb; border:1px solid color-mix(in srgb, var(--arc-accent) 55%, transparent); border-radius:18px; padding:24px; text-align:center; }
+.arc-lobby .game-art { width:min(100%,340px); max-width:none; height:auto; }
+.arc-lobby h2 { font:700 clamp(24px,4vw,38px) Georgia,serif; margin:.2em 0; }
+.arc-tag { color:var(--arc-accent); letter-spacing:.12em; font-size:.72rem; }
+.arc-two { gap:16px; width:100%; }
+.arc-two .arc-big { flex:1 1 0; min-height:84px; font-size:2.2rem; touch-action:none; user-select:none; -webkit-user-select:none; }
+.arc-run { min-height:84px; min-width:min(70vw,320px); font-size:1.5rem; touch-action:none; user-select:none; -webkit-user-select:none; }
+.arc-lanes { display:grid; grid-template-columns:repeat(var(--lanes,4),1fr); gap:8px; width:100%; max-width:560px; }
+.arc-pad { min-height:84px; font-size:1.4rem; touch-action:none; user-select:none; -webkit-user-select:none; }
+.arc-big.is-down, .arc-run.is-down, .arc-pad.is-down, .rt-jump.is-down, .rt-dir.is-down { filter:brightness(1.35); transform:scale(.97); }
+@media (max-width:640px) {
+  :is(.kg-geschenkfaenger,.kg-rhythmus-rausch,.kg-stillgestanden,.kg-bomben-duell) .kg-main { padding:46px 10px 10px; align-content:start; }
+  :is(.kg-geschenkfaenger,.kg-rhythmus-rausch,.kg-stillgestanden,.kg-bomben-duell) .kg-dock { padding:8px 10px calc(8px + env(safe-area-inset-bottom)); }
+  :is(.kg-geschenkfaenger,.kg-rhythmus-rausch,.kg-stillgestanden,.kg-bomben-duell) .kg-hint { font-size:.8rem; }
+  .arc-two .arc-big, .arc-pad, .arc-run { min-height:72px; }
+}
+@media (prefers-reduced-motion: reduce) { .arc-big.is-down, .arc-run.is-down, .arc-pad.is-down { transform:none; } }

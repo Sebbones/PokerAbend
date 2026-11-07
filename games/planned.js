@@ -52,30 +52,6 @@ export const PLANNED = [
     art: glyph('rope', '#C99A45'),
   }),
   spiel({
-    id: 'geschenkfaenger', name: 'Geschenkfänger', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Geschenke mit dem Korb fangen und Bomben ausweichen.',
-    rules: [
-      'Alle sehen denselben Fall von Geschenken und Bomben (gleicher Seed), jeder spielt lokal.',
-      'Man bewegt einen Korb nach links und rechts und fängt Geschenke.',
-      'Verschiedene Geschenke geben verschiedene Punkte; eine Bombe nimmt Punkte weg.',
-      'Nach 30 Sekunden gewinnt, wer die meisten Punkte hat; der Server prüft den Ablauf.',
-    ],
-    houseRules: ['Goldene Geschenke', 'Korb wird mit jeder Bombe kleiner'],
-    art: glyph('gift', '#B8433F'),
-  }),
-  spiel({
-    id: 'rhythmus-rausch', name: 'Rhythmus-Rausch', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Im Takt tippen: Je genauer, desto mehr Punkte.',
-    rules: [
-      'Alle bekommen dieselbe Notenfolge (gleicher Seed), die in Bahnen auf eine Linie zulaufen.',
-      'Man tippt genau dann, wenn eine Note die Linie erreicht.',
-      'Perfekte, gute und verpasste Treffer geben unterschiedlich viele Punkte; Serien geben einen Bonus.',
-      'Der Server wertet die Tipp-Zeitpunkte aus; die höchste Punktzahl gewinnt.',
-    ],
-    houseRules: ['Nur eine Bahn', 'Schnelleres Tempo'],
-    art: glyph('note', '#5A468F'),
-  }),
-  spiel({
     id: 'puzzle-panik', name: 'Puzzle-Panik', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
     description: 'Ein Schiebepuzzle so schnell wie möglich lösen.',
     rules: [
@@ -101,19 +77,6 @@ export const PLANNED = [
     art: glyph('letters', '#7A5238'),
   }),
   spiel({
-    id: 'stillgestanden', name: 'Stillgestanden!', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    vorbild: 'Rotes Licht, grünes Licht – nur die Mechanik',
-    description: 'Bei Grün laufen, bei Rot stillstehen – wer sich bewegt, muss zurück.',
-    rules: [
-      'Alle starten an einer Linie und laufen in Echtzeit zum Ziel.',
-      'Bei grünem Signal darf man laufen, bei rotem muss man stillstehen.',
-      'Wer sich bei Rot bewegt, geht zurück zum Start oder bekommt einen Zeitaufschlag.',
-      'Wer zuerst das Ziel erreicht, gewinnt die Runde; die Signale kommen zufällig.',
-    ],
-    houseRules: ['Ohne Rückkehr zum Start', 'Fake-Signal'],
-    art: glyph('figure', '#B8433F'),
-  }),
-  spiel({
     id: 'schatzgraeber', name: 'Schatzgräber', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
     description: 'Alle graben gleichzeitig in der Arena nach Schätzen – und weichen den Bomben aus.',
     rules: [
@@ -124,54 +87,6 @@ export const PLANNED = [
     ],
     houseRules: ['Metalldetektor-Hinweise', 'Gegner können Fundstellen stehlen'],
     art: glyph('shovel', '#7A5238'),
-  }),
-  spiel({
-    id: 'minenlauf', name: 'Minenlauf', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Über ein verminntes Feld zum Ziel – mit Zahlenhinweisen.',
-    rules: [
-      'Alle bekommen dasselbe Feld (gleicher Seed), Minen sind versteckt.',
-      'Jedes aufgedeckte Feld zeigt, wie viele Minen in den Nachbarfeldern liegen.',
-      'Man legt sich einen sicheren Weg von der linken zur rechten Seite.',
-      'Eine Mine kostet Strafzeit; es gewinnt, wer zuerst und mit den wenigsten Fehlern durch ist.',
-    ],
-    houseRules: ['Mit Flaggen', 'Mehr Minen'],
-    art: glyph('mines', '#2A2A2A'),
-  }),
-  spiel({
-    id: 'labyrinth-chaos', name: 'Labyrinth-Chaos', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Ein Labyrinth, dessen Wände sich verändern – wer zuerst raus ist, gewinnt.',
-    rules: [
-      'Alle laufen gleichzeitig durch dasselbe Labyrinth zum Ausgang.',
-      'In regelmäßigen Abständen öffnen und schließen sich einzelne Wände.',
-      'Wer zuerst den Ausgang erreicht, bekommt die meisten Punkte, danach absteigend.',
-      'Mehrere Durchgänge mit wachsender Größe.',
-    ],
-    houseRules: ['Nebel: nur die nähere Umgebung sichtbar', 'Schlüssel einsammeln'],
-    art: glyph('maze', '#235D49'),
-  }),
-  spiel({
-    id: 'schubsarena', name: 'Schubsarena', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Gegner von der schrumpfenden Plattform schubsen.',
-    rules: [
-      'Alle stehen auf einer runden Plattform und bewegen sich in Echtzeit.',
-      'Mit einem Stoß schiebt man andere ein Stück zur Seite; der Stoß braucht kurz zum Aufladen.',
-      'Wer von der Plattform fällt, scheidet aus; die Fläche wird mit der Zeit kleiner.',
-      'Wer zuletzt auf der Plattform steht, gewinnt die Runde.',
-    ],
-    houseRules: ['Eis-Plattform (rutschig)', 'Stoß-Kraft wächst mit der Zeit'],
-    art: glyph('push', '#1F57C3'),
-  }),
-  spiel({
-    id: 'scheinwerfer-flucht', name: 'Scheinwerfer-Flucht', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Ein Scheinwerfer sucht die Arena ab – wer erwischt wird, fliegt raus.',
-    rules: [
-      'Ein Scheinwerfer wandert über eine Arena, alle bewegen sich in Echtzeit.',
-      'Wer im Licht steht, sammelt Hitze; wird sie zu groß, scheidet man aus.',
-      'Im Dunkeln bleiben ist sicher, aber Schlüssel für den Ausgang liegen im Hellen.',
-      'Wer mit genug Schlüsseln als Erster den Ausgang erreicht, gewinnt.',
-    ],
-    houseRules: ['Zwei Scheinwerfer', 'Schneller werdendes Licht'],
-    art: glyph('spotlight', '#2A2A2A'),
   }),
   spiel({
     id: 'brueckenroulette', name: 'Brückenroulette', category: 'party', bauart: 'A', minPlayers: 3, maxPlayers: 8, duration: 10, paeckchen: 'spaeter',
@@ -213,12 +128,6 @@ export const PLANNED = [
     description: 'Gemeinsam Rätsel lösen, bevor eine fiktive Anlage überhitzt.',
     rules: ['Die Gruppe erhält mehrere zusammengehörige Hinweise und kleine Rätsel.', 'Richtige gemeinsame Entscheidungen stabilisieren die Anlage; Fehler kosten Zeit.', 'Alle gewinnen gemeinsam, wenn sie die Aufgaben vor Ablauf des Timers lösen.'],
     art: glyph('pen'),
-  }),
-  spiel({
-    id: 'bomben-duell', name: 'Bomben-Duell', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 3, paeckchen: 'spaeter',
-    description: 'In einer eigenen Spielarena Sprengladungen setzen und rechtzeitig in Deckung gehen.',
-    rules: ['Alle bewegen sich auf einem eigenen gemeinsamen Raster mit Hindernissen.', 'Platzierte Sprengladungen lösen nach einer sichtbaren Vorwarnzeit aus.', 'Wer die Runde übersteht, erhält Punkte; nach mehreren Runden gewinnt die höchste Summe.'],
-    art: glyph('bomb'),
   }),
   funktion({ id: 'party-brett', name: 'Party-Brett', type: 'feature', paeckchen: 'gross', beschreibung: 'Ein Brettspiel, auf dem die Partyspiele als Aufgaben liegen: Ereignisfelder, Items und Sabotage sorgen für Abwechslung, Minispiele entscheiden um Felder und Punkte.' }),
 ];
