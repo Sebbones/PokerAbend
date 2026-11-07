@@ -526,3 +526,8 @@ body.cards-xl { --cs: 1.5; }
 .after-odds { margin-top: 6px; max-width: 46ch; line-height: 1.5; }
 .after-odds small { color: var(--text-2); margin-right: 4px; }
 .after-odds span { white-space: nowrap; }
+
+/* VIS-002 / VIS-024: zurückhaltender dunkler Pokerraum – ruhigere Filz- und Randmaterialien, Omaha mit eigener blauer Filzfarbe; Layout und Sitzgeometrie unverändert */
+.felt { background-image: radial-gradient(ellipse at 50% 35%, #1f6a4d, #0f3b2b 70%); }
+[data-scene='omaha'] .felt { background-image: radial-gradient(ellipse at 50% 35%, #254b78, #112640 70%); }
+.seat .pot-box, .pot-box { border: 1px solid #e8c36a55; }
