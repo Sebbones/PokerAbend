@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Dame: Holzbrett, helle und dunkle Steine, Dame mit Krone */
 .kg-dame .kg-main { background: radial-gradient(120% 90% at 50% 25%, #5A4028, #22170B); }
 .dm-wrap { display: grid; justify-items: center; width: 100%; }
@@ -20,3 +21,14 @@ body.marks .dm-1:not(.king) .cm { fill: #fff; stroke: rgba(0,0,0,.6); }
 .dm-dot { display: inline-grid; place-items: center; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; vertical-align: -2px; }
 .dm-dot.dm-0 { background: #eee; border: 1px solid #999; } .dm-dot.dm-1 { background: #222; }
 @media (max-width: 640px) { .dm-piece { font-size: 16px; } }
+
+/* Spielwelt: klassisches Turnierbrett aus dunklem Nussbaum mit heller Einlage – Koordinaten im Rand, Auswahl/Ziel/letzter Zug unterscheidbar */
+.dm-stage { --wk-bg: linear-gradient(170deg, #4a3220, #1d140b); --wk-edge:#e8d2a866; --wk-accent:#f0d28a; --wk-max:640px; justify-items: center; }
+.dm-stage .wk-head { justify-self: stretch; }
+.dm-stage .dm-board { border-width: 8px; border-color: #2e1c0e; box-shadow: 0 10px 26px #0007, inset 0 0 0 2px #e8d5ae33; }
+.dm-stage .dm-piece.sel { outline: 4px solid #fff; }
+.dm-stage .dm-hint { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #00000066; }
+.dm-stage .dm-cell.last::after { content: ''; position: absolute; inset: 3px; border: 2px dashed #ffe9a8; pointer-events: none; }
+
+/* Kurzes Querformat: das Brett braucht die ganze Höhe – der Kopf mit den Chips entfällt (Status steht oben in der Leiste) */
+@media (max-height: 560px) { .dm-stage { padding: 6px; gap: 4px; } .dm-stage > .wk-head { display: none; } }

@@ -50,7 +50,9 @@
         return act ? `<button type="button" class="dm-cell ${dark ? 'dark' : 'light'} can ${last ? 'last' : ''}" data-g="cell" data-c="${i}" aria-label="${label}">${inner}</button>`
           : `<div class="dm-cell ${dark ? 'dark' : 'light'} ${last ? 'last' : ''}" role="gridcell" aria-label="${label}">${inner}</div>`;
       }).join('');
-      return I18n.html`<div class="kg-table dm-wrap"><div class="dm-board" role="grid" aria-label="Spielfeld">${cells}</div></div>`;
+      const W = WorldKit, t = W.t, n = (c) => g.board.filter((p) => p && (p.toLowerCase() === 'w' ? 0 : 1) === c).length, kings = (c) => g.board.filter((p) => p && p === p.toUpperCase() && (p.toLowerCase() === 'w' ? 0 : 1) === c).length;
+      const chips = [W.chip('○', `${t('Weiß', 'White')} ${n(0)}${kings(0) ? ` (♛ ${kings(0)})` : ''}`), W.chip('●', `${t('Schwarz', 'Black')} ${n(1)}${kings(1) ? ` (♛ ${kings(1)})` : ''}`), g.chain !== null && g.chain !== undefined ? W.chip('⚔', t('Mehrfachschlag: weiterziehen', 'Multi-jump: keep going'), 'warn') : '', sel !== null && myTurn ? W.chip('✔', `${t('Gewählt', 'Selected')}: ${cname(sel)}`, 'good') : ''].filter(Boolean);
+      return I18n.html`<div class="kg-table dm-wrap wk-stage dm-stage">${W.head({ eyebrow: t('Turnierbrett', 'Tournament board'), title: myTurn ? t('Du bist dran', 'Your turn') : t('Am Zug', 'On the move'), chips })}<div class="dm-board" role="grid" aria-label="Spielfeld">${cells}</div></div>`;
     },
     dock: () => '',
     onClick(t, S) {
