@@ -167,7 +167,18 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
     roundCount: () => Object.keys(data.rounds).length,
     round: (id) => data.rounds[id] || null,
     // Nur qualifizierte Ergebnisse. game 'all' = alle Spiele zusammen (dann ohne Punkte, weil Spiele nicht vergleichbar sind).
-    rankedTable(game = 'all', period = 'all', lowWins = false) {
+    // V2-04: Auswertung für ein einzelnes Konto aus der Rundenablage (zusammengeführte Konten zählen mit)
+    accountSummary(accountId) {
+      const out = { played: 0, wins: 0 };
+      for (const r of Object.values(data.rounds)) { if (!r.ranked) continue; for (const p of r.players) if (p.a && !p.bot && rankedOwner(p.a) === accountId) { out.played++; out.wins += p.win ? 1 : 0; } }
+      return out;
+    },
+    accountRounds(accountId, limit = 10) {
+      const rows = [];
+      for (const r of Object.values(data.rounds)) { const p = r.players.find((x) => x.a && !x.bot && rankedOwner(x.a) === accountId); if (p) rows.push({ game: r.game, at: r.at, ranked: !!r.ranked, win: !!p.win, place: p.place, points: p.pts, players: r.players.length }); }
+      return rows.sort((a, b) => b.at - a.at).slice(0, limit);
+    },
+    rankedTable(game = 'all', period = 'all', lowWins = false, { withOwner = false } = {}) {
       const rows = new Map();
       for (const r of Object.values(data.rounds)) {
         if (!r.ranked || !inRange(r, period) || (game !== 'all' && r.game !== game)) continue;
@@ -178,7 +189,7 @@ export function createLeaderboard(dataDir, { now = () => new Date() } = {}) {
           row.played++; row.wins += p.win ? 1 : 0; row.points += p.pts; row.placeSum += p.place; rows.set(owner, row);
         }
       }
-      return [...rows.values()].map(({ placeSum, at, ...row }) => ({ ...row, avgPlace: Math.round((placeSum / row.played) * 10) / 10, points: game === 'all' ? null : row.points }))
+      return [...rows.entries()].map(([owner, { placeSum, at, ...row }]) => ({ ...(withOwner ? { owner } : {}), ...row, avgPlace: Math.round((placeSum / row.played) * 10) / 10, points: game === 'all' ? null : row.points }))
         .sort((a, b) => b.wins - a.wins || b.wins / b.played - a.wins / a.played || a.avgPlace - b.avgPlace || (game === 'all' ? 0 : lowWins ? a.points / a.played - b.points / b.played : b.points - a.points) || a.name.localeCompare(b.name, 'de'));
     },
     // Wie viele Runden im Zeitraum nicht gewertet wurden und warum (für die ehrliche Anzeige)

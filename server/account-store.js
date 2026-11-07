@@ -12,6 +12,9 @@ export const ACCOUNT_ID = /^[a-f0-9]{32}$/;
 export const CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 export const GAME_ID = /^#[A-HJKMNP-Z2-9]{4,6}$/;
 const AUDIT_MAX = 200;
+// V2-04: Profil-Freigaben (Vorbereitung für V2-05). Standard: Statistik, Favoriten, letzte Partien und Erfolge sichtbar, Discord-Name nicht.
+export const PRIVACY_DEFAULTS = Object.freeze({ hidden: false, showDiscord: false, showStats: true, showFavorites: true, showRecent: true, showAchievements: true });
+export const PRIVACY_KEYS = Object.keys(PRIVACY_DEFAULTS);
 const emptyState = () => ({ schemaVersion: SCHEMA_VERSION, accounts: {}, externals: {}, audit: [] });
 
 export function createAccountStore(dir, { now = Date.now, onChange = () => {} } = {}) {
@@ -62,7 +65,7 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
       if (typeof id !== 'string' || !ACCOUNT_ID.test(id)) return null;
       const target = resolve(id);
       if (target) { const a = state.accounts[target]; a.lastSeen = now(); return a; }
-      const a = { id, gameId: newGameId(), createdAt: now(), lastSeen: now(), name: '', avatar: '', mergedInto: null, discord: null };
+      const a = { id, gameId: newGameId(), createdAt: now(), lastSeen: now(), name: '', avatar: '', mergedInto: null, discord: null, privacy: { ...PRIVACY_DEFAULTS }, achievements: {} };
       state.accounts[id] = a; byGameId.set(a.gameId, id); audit('Konto angelegt', a.gameId);
       return a;
     },
@@ -82,6 +85,7 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
     merge(from, to) {
       const f = resolve(from), t = resolve(to);
       if (!f || !t || f === t) return false;
+      { const src = state.accounts[f], dst = state.accounts[t]; if (src.achievements) { dst.achievements = dst.achievements || {}; for (const [k, v] of Object.entries(src.achievements)) if (!dst.achievements[k] || v < dst.achievements[k]) dst.achievements[k] = v; } }
       state.accounts[f].mergedInto = t; byGameId.delete(state.accounts[f].gameId);
       audit('Geräte verbunden', `${state.accounts[f].gameId} → ${state.accounts[t].gameId}`);
       return true;
@@ -103,6 +107,23 @@ export function createAccountStore(dir, { now = Date.now, onChange = () => {} } 
     // Anzeigedaten des Anbieters (z. B. Discord-Name); die ID selbst steht nur in externals
     setExternalProfile(id, data) { const t = resolve(id); if (!t) return false; state.accounts[t].discord = data; touched(); return true; },
     findExternal: (provider, externalId) => resolve(state.externals[`${provider}:${externalId}`]),
+    // V2-04: Freigaben – immer vollständig und nur mit bekannten Schaltern (alte Konten ohne Feld bekommen die Standardwerte)
+    privacyOf(id) { const a = this.get(id); const own = a?.privacy && typeof a.privacy === 'object' ? a.privacy : {}; return Object.fromEntries(PRIVACY_KEYS.map((k) => [k, typeof own[k] === 'boolean' ? own[k] : PRIVACY_DEFAULTS[k]])); },
+    setPrivacy(id, patch) {
+      const a = this.get(id); if (!a) return false;
+      const next = { ...this.privacyOf(id) };
+      for (const k of PRIVACY_KEYS) if (typeof patch?.[k] === 'boolean') next[k] = patch[k];
+      a.privacy = next; audit('Profil-Freigaben geändert', a.gameId); return true;
+    },
+    // Erfolge: erster Zeitpunkt je freigeschaltetem Erfolg (die Berechnung selbst bleibt in achievements.js)
+    achievementTimes(id) { const a = this.get(id); return a?.achievements && typeof a.achievements === 'object' ? { ...a.achievements } : {}; },
+    recordAchievements(id, ids, at = now()) {
+      const a = this.get(id); if (!a) return [];
+      const known = a.achievements && typeof a.achievements === 'object' ? a.achievements : (a.achievements = {}), fresh = [];
+      for (const key of ids) if (/^[a-zäöüß-]{2,40}$/.test(String(key)) && !known[key]) { known[key] = at; fresh.push(key); }
+      if (fresh.length) touched();
+      return fresh;
+    },
     audit,
     auditLog: (n = 50) => state.audit.slice(-n).reverse(),
     count: () => Object.values(state.accounts).filter((a) => !a.mergedInto).length,

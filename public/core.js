@@ -554,7 +554,7 @@ function leaderboardInner(r, pre = 'lb') {
     </div>`;
   if (ranked) {
     const rows = r.rows.map((x, k) => I18n.html`<tr><td><span class="rank ${k < 3 ? 'r' + (k + 1) : ''}" aria-label="Platz ${k + 1}">${k + 1}</span></td>
-      <td>${esc(x.name)}</td><td class="num">${x.played}</td>
+      <td>${x.gameId ? `<button type="button" data-profile="${esc(x.gameId)}">${esc(x.name)}</button>` : esc(x.name)}</td><td class="num">${x.played}</td>
       <td class="num">${x.wins} <small>(${Math.round((100 * x.wins) / x.played)} %)</small></td>
       <td class="num">${x.avgPlace.toLocaleString(I18n.locale)}</td>${r.game === 'all' ? '' : `<td class="num ${isPoker ? (x.points > 0 ? 'pos' : x.points < 0 ? 'neg' : '') : ''}">${fmtPoints(x.points)}</td>`}</tr>`).join('');
     const s = r.summary || { ranked: 0, notRanked: 0, reasons: {} };

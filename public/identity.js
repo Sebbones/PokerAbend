@@ -42,6 +42,9 @@ const Identity = (() => {
     body.innerHTML = I18n.html`
       <div class="identity-block"><b>Deine Game-ID</b> <output id="p-game-id" class="identity-id">${esc(state.gameId)}</output>
         <p class="hint">Gleiche Namen sind zwei Personen: Die Game-ID unterscheidet sie. Sie bleibt, auch wenn du dich umbenennst.</p></div>
+      <div class="identity-block"><b>Mein Profil</b>
+        <p class="hint">So sehen dich andere. Hier legst du auch fest, welche Angaben sie sehen.</p>
+        <div class="identity-row"><button type="button" class="btn" data-profile="me">Profil öffnen</button></div></div>
       <div class="identity-block"><b>Gerät verbinden</b>
         <p class="hint">Erzeuge hier einen Code und gib ihn auf dem anderen Gerät ein. Er gilt 10 Minuten und nur einmal. Beide Geräte sind danach dieselbe Person.</p>
         <div class="identity-row"><button type="button" class="btn" id="p-link-create">Code erzeugen</button><output id="p-link-code" class="identity-id" aria-live="polite"></output></div>

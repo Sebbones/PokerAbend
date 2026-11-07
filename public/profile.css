@@ -1,0 +1,29 @@
+/* Spielerprofil (V2-04) */
+.player-profile-dlg { width: min(560px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow: auto; }
+.profile-body { padding: var(--s-5, 20px); display: grid; gap: 14px; }
+.profile-head { display: flex; align-items: center; gap: 14px; }
+.profile-head h2 { margin: 0; font-size: 22px; overflow-wrap: anywhere; }
+.profile-head h2 small { font-size: 13px; font-weight: 400; opacity: .7; }
+.profile-avatar { width: 56px; height: 56px; flex: none; display: grid; place-items: center; font-size: 30px; border-radius: 50%; background: color-mix(in srgb, currentColor 10%, transparent); }
+.profile-id { margin: 4px 0 0; font-size: 13px; }
+.profile-section { display: grid; gap: 8px; padding-top: 12px; border-top: 1px solid color-mix(in srgb, currentColor 16%, transparent); }
+.profile-section h3 { margin: 0; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; opacity: .8; }
+.profile-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+.profile-stat { display: grid; gap: 2px; padding: 10px; border-radius: 8px; background: color-mix(in srgb, currentColor 7%, transparent); }
+.profile-stat strong { font-size: 20px; }
+.profile-stat span { font-size: 12px; opacity: .75; }
+.profile-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.profile-list li { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 14px; }
+.profile-list li span { opacity: .8; }
+.profile-badges { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.profile-badges li { display: grid; padding: 6px 10px; border-radius: 99px; border: 1px solid currentColor; font-size: 13px; }
+.profile-badges li small { font-size: 11px; opacity: .7; }
+.profile-badges .tier-silver { border-color: #b9c3cc; }
+.profile-badges .tier-gold { border-color: #e3c27a; }
+.profile-hidden, .profile-error { font-style: italic; }
+.profile-actions { display: flex; justify-content: flex-end; }
+.profile-actions .btn { min-height: 44px; }
+.player-profile-dlg .toggle { min-height: 44px; }
+[data-profile] { cursor: pointer; background: none; border: 0; padding: 0; color: inherit; font: inherit; text-decoration: underline dotted; text-underline-offset: 3px; }
+[data-profile]:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+@media (max-width: 480px) { .profile-body { padding: 14px; } .profile-head h2 { font-size: 19px; } }

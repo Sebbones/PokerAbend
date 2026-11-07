@@ -35,6 +35,7 @@ import { configureBoards, boardStore } from '../games/monopoly/boards.js';
 import { createReviewStore, reviewMarkdown } from './evening-reviews.js';
 import { createPlanAPI } from './plan-api.js';
 import { createAchievements } from './achievements.js';
+import { createProfiles, createProfileAPI } from './profile.js';
 import { variantOf, variantName, scoreKey } from '../games/variants.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -220,6 +221,9 @@ function mergeAccounts(from, to) {
   presence.changed();
 }
 app.use('/api/identity', createIdentityAPI({ identity, accounts, leaderboard, secure: isSecure, trustProxy: TRUST_PROXY, onMerge: mergeAccounts, onChange: () => save(), discordEnabled: !!discord }));
+// V2-04: Spielerprofile (Router wird erst nach Bestenliste und Erfolgen angelegt)
+let profileRouter = (_req, _res, next) => next();
+app.use('/api/profile', (req, res, next) => profileRouter(req, res, next));
 app.get('/api/achievements/players', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   res.json({ names: achievements.players(req.query.q) });
@@ -273,7 +277,7 @@ app.get('/api/ranked', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   const game = typeof req.query.game === 'string' && Object.hasOwn(GAME_INFO, req.query.game) ? req.query.game : 'all';
   const period = RANK_PERIODS.includes(req.query.period) ? req.query.period : 'all';
-  res.json({ view: 'ranked', game, period, games: Object.values(GAME_INFO), rows: leaderboard.rankedTable(game, period, !!GAME_INFO[game]?.lowWins), summary: leaderboard.rankedSummary(game, period) });
+  res.json({ view: 'ranked', game, period, games: Object.values(GAME_INFO), rows: leaderboard.rankedTable(game, period, !!GAME_INFO[game]?.lowWins, { withOwner: true }).map(({ owner, ...row }) => ({ ...row, gameId: accounts.get(owner)?.gameId || null })), summary: leaderboard.rankedSummary(game, period) });
 });
 app.use(express.static(PUBLIC_DIR, { extensions: ['html'] }));
 app.use((_req, res) => res.status(404).send('Nicht gefunden'));
@@ -311,6 +315,8 @@ const presence = createPresence({
 const bots = createBotRunner({ isCurrent: (r) => rooms.get(r.code) === r, notify: (r) => { broadcast(r); if (!r.busy) save(); } });
 const codes = createCodes(); // gemeinsam für alle Spiele
 const achievements = createAchievements({ leaderboard, games: Object.values(GAMES) });
+const profiles = createProfiles({ accounts, leaderboard, achievements, games: Object.values(GAMES) });
+profileRouter = createProfileAPI({ profiles, accounts, trustProxy: TRUST_PROXY, onChange: () => save() });
 
 // ---------- Speichern ----------
 // Verlauf pro Tisch in eigener Datei – der Spielstand bleibt klein, der Verlauf wird nur bei Änderungen geschrieben
@@ -401,6 +407,7 @@ function onRoomChange(room, kind, data) {
     const detailOf = (entry) => (entry.accountId ? achievements.detailFor(entry.accountId, entry.name) : achievements.detail(entry.name));
     const before = new Map(entries.map((p) => [p.name, new Set(detailOf(p).badges.filter((b) => b.unlocked).map((b) => b.id))]));
     leaderboard.record(room.game, entries, room.variant || 'classic');
+    for (const entry of entries) if (entry.accountId) accounts.recordAchievements(entry.accountId, detailOf(entry).badges.filter((b) => b.unlocked).map((b) => b.id));
     ranked.record(room, data);
     // Erst dauerhaft speichern, dann die neuen Abzeichen melden.
     try {
@@ -506,6 +513,12 @@ function broadcast(room) {
 // ---------- Offene Tische (Startseite) ----------
 // Pro Tisch nur: Spiel, Code, Host, wer sitzt (Name, Avatar), Plätze, Stand. Keine Tokens, IDs, Karten oder Spielstände.
 // Private Tische (Host-Schalter) und Tische ohne einen verbundenen Menschen fehlen. Wer die Liste abonniert, bekommt Änderungen höchstens einmal pro Sekunde.
+// V2-04: Game-ID nur für registrierte Menschen, die ihr Profil nicht versteckt haben (sonst gibt es nichts anzuklicken)
+function publicGameId(room, seat) {
+  if (seat.bot) return {};
+  const p = [...room.players.values()].find((x) => !x.bot && !x.kicked && x.name === seat.name), a = p?.accountId && accounts.get(p.accountId);
+  return a && accounts.isRegistered(a.id) && !accounts.privacyOf(a.id).hidden ? { gameId: a.gameId } : {};
+}
 function lobbyList() {
   const out = [];
   for (const r of rooms.values()) {
@@ -518,7 +531,7 @@ function lobbyList() {
     out.push({
       code: r.code, game: r.game, gameName: game.name, category: game.category || 'karten',
       host: host ? { name: host.name, avatar: host.avatar } : null,
-      seats: info.seats.map((s) => ({ name: s.name, avatar: s.avatar, bot: !!s.bot })), max: info.max, watchers: info.watchers, status: info.status,
+      seats: info.seats.map((s) => ({ name: s.name, avatar: s.avatar, bot: !!s.bot, ...publicGameId(r, s) })), max: info.max, watchers: info.watchers, status: info.status,
     });
   }
   return out.sort((a, b) => a.gameName.localeCompare(b.gameName, 'de') || a.code.localeCompare(b.code));

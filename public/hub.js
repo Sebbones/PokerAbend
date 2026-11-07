@@ -453,7 +453,7 @@ socket.on('lobby', (list) => { hubTables = list; refreshTables(); });
 
 function tableCardHTML(t, mine = false) {
   const free = t.max - t.seats.length;
-  const seats = t.seats.map((s) => `<li class="tc-seat"><span class="tc-av" aria-hidden="true">${esc(s.avatar || '🙂')}</span>${esc(s.name)}${s.bot ? I18n.html(' <small>(Computer)</small>') : ''}</li>`).join('');
+  const seats = t.seats.map((s) => `<li class="tc-seat"><span class="tc-av" aria-hidden="true">${esc(s.avatar || '🙂')}</span>${s.gameId ? profileLink(s.gameId, s.name) : esc(s.name)}${s.bot ? I18n.html(' <small>(Computer)</small>') : ''}</li>`).join('');
   const actions = mine ? I18n.html`<button type="button" class="btn btn-brass" data-join="${esc(t.code)}">Zurück an den Tisch</button>`
     : free > 0 ? I18n.html`<button type="button" class="btn btn-brass" data-join="${esc(t.code)}" data-mode="sit">Dazusetzen</button><button type="button" class="btn btn-ghost" data-join="${esc(t.code)}" data-mode="watch">Zuschauen</button>`
       : I18n.html`<button type="button" class="btn btn-brass" data-join="${esc(t.code)}" data-mode="watch">Zuschauen</button>`;
@@ -614,13 +614,15 @@ function relativeSeen(at) {
   const mins = Math.floor(Math.max(0, Date.now() - at) / 60000);
   return mins < 1 ? I18n.t('gerade eben') : mins < 60 ? I18n.html`vor ${mins} Min.` : I18n.html`vor ${Math.floor(mins / 60)} Std.`;
 }
+// V2-04: Personen mit Game-ID als Schaltfläche zum Profil; ohne Konto (Name als Schlüssel) bleibt es Text
+const profileLink = (key, name) => (typeof key === 'string' && key.startsWith('#') ? `<button type="button" data-profile="${esc(key)}">${esc(name)}</button>` : esc(name));
 function presenceHTML() {
   const me = (typeof Identity !== 'undefined' && Identity.gameId) || profile.name.trim().toLowerCase(); // Personen laufen über die Game-ID, Clients ohne Konto über den Namen
   const recentlySeen = hubPresence.recent.filter((p) => Date.now() - p.at < 86400000);
   const people = [...hubPresence.online].sort((a, b) => (b.key === me) - (a.key === me) || a.name.localeCompare(b.name, 'de'));
-  const list = `<ul class="presence-list">${people.map((p) => `<li><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${esc(p.name)}${p.key === me ? I18n.t(' (du)') : ''}</b><small>${uiText(p.status)}</small></div>
+  const list = `<ul class="presence-list">${people.map((p) => `<li><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${profileLink(p.key, p.name)}${p.key === me ? I18n.t(' (du)') : ''}</b><small>${uiText(p.status)}</small></div>
     ${p.code && p.key !== me ? I18n.html`<div class="presence-actions">${p.canJoin ? I18n.html`<button type="button" class="btn btn-brass" data-join="${esc(p.code)}" data-mode="sit">Mitspielen</button>` : ''}<button type="button" class="btn btn-ghost" data-join="${esc(p.code)}" data-mode="watch">Zuschauen</button></div>` : ''}</li>`).join('')}</ul>`;
-  const recent = I18n.html`<details class="presence-recent" data-presence-details="recent"><summary>Zuletzt online (${recentlySeen.length})</summary><ul class="presence-list">${recentlySeen.map((p) => `<li><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${esc(p.name)}</b><small><time datetime="${new Date(p.at).toISOString()}">${relativeSeen(p.at)}</time></small></div></li>`).join('') || I18n.html('<li>Noch niemand in den letzten 24 Stunden.</li>')}</ul></details>`;
+  const recent = I18n.html`<details class="presence-recent" data-presence-details="recent"><summary>Zuletzt online (${recentlySeen.length})</summary><ul class="presence-list">${recentlySeen.map((p) => `<li><span class="presence-avatar" aria-hidden="true">${esc(p.avatar)}</span><div><b>${profileLink(p.key, p.name)}</b><small><time datetime="${new Date(p.at).toISOString()}">${relativeSeen(p.at)}</time></small></div></li>`).join('') || I18n.html('<li>Noch niemand in den letzten 24 Stunden.</li>')}</ul></details>`;
   const title = I18n.html`Gerade online (${people.length})`;
   return `<div class="presence-desktop"><h2>${I18n.t(title)}</h2>${list || ''}</div>
     <details class="presence-mobile" data-presence-details="online"><summary><span>${I18n.t(title)}</span><span class="presence-avatars" aria-hidden="true">${people.slice(0, 5).map((p) => `<span>${esc(p.avatar)}</span>`).join('')}</span></summary>${list}</details>
