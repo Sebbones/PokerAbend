@@ -36,17 +36,23 @@
       return I18n.html`Tipp die Würfel an, die liegen bleiben sollen – der Rest wird neu gewürfelt (${g.throws} von ${g.maxThrows})`;
     },
     main(S) {
-      const g = S.g;
+      const g = S.g, W = WorldKit, t = W.t;
       const myTurn = S.turnId === S.you?.id && S.phase === 'playing';
-      const dice = g.dice.map((d, i) => dieHTML(d, myTurn && g.throws && g.throws < g.maxThrows
-        ? { tag: 'button', cls: I18n.html`big ${keep.has(i) ? 'kept' : ''}`, attrs: `type="button" data-g="keep" data-i="${i}" aria-pressed="${keep.has(i)}"` }
-        : { cls: I18n.html`big ${g.kept.includes(i) ? 'kept' : ''}` })).join('');
-      const tray = `<div class="wp-tray"><small>${nameOf(S, S.turnId)}${g.throws ? I18n.html` · ${g.throws}. Wurf von ${g.maxThrows}` : ' · noch nicht gewürfelt'}</small><div class="wp-dice">${dice}</div>${g.current ? `<b class="wp-cat">${esc(g.current)}</b>` : ''}</div>`;
-      const rows = Object.entries(g.results).map(([id, r]) => `<li><b>${nameOf(S, id)}</b>${mini(r.dice)}<span>${esc(r.name)}</span></li>`).join('');
+      const pick = myTurn && g.throws && g.throws < g.maxThrows;
+      const slots = g.dice.map((d, i) => {
+        const kept = pick ? keep.has(i) : g.kept.includes(i);
+        const die = dieHTML(d, pick ? { tag: 'button', cls: I18n.html`big ${kept ? 'kept' : ''}`, attrs: `type="button" data-g="keep" data-i="${i}" aria-pressed="${kept}" aria-label="${t('Würfel', 'Die')} ${i + 1}: ${d}${kept ? ', ' + t('behalten', 'kept') : ''}"` } : { cls: I18n.html`big ${kept ? 'kept' : ''}` });
+        return `<span class="wp-slot ${kept ? 'kept' : ''}">${die}<small>${kept ? '✓ ' + t('behalten', 'kept') : '&nbsp;'}</small></span>`;
+      }).join('');
+      const left = Math.max(0, g.maxThrows - g.throws);
+      const chips = [W.chip('🎲', t(`Wurf ${g.throws} von ${g.maxThrows}`, `Roll ${g.throws} of ${g.maxThrows}`)), W.chip('↻', t(`${left} übrig`, `${left} left`), left ? '' : 'warn')];
+      const tray = `<div class="wp-tray"><span class="wk-label">${t('Aktueller Wurf', 'Current roll')} · ${nameOf(S, S.turnId)}${g.throws ? '' : ' · ' + t('noch nicht gewürfelt', 'not rolled yet')}</span><div class="wp-dice">${slots}</div>${g.current ? `<b class="wp-cat">${esc(g.current)}</b>` : `<span class="wp-cat dim">${t('Noch keine Hand', 'No hand yet')}</span>`}</div>`;
+      const rows = Object.entries(g.results).map(([id, r]) => `<li><b class="wk-grow">${nameOf(S, id)}</b>${mini(r.dice)}<span>${esc(r.name)}</span></li>`).join('');
       const L = g.last;
-      const last = L ? I18n.html`<details class="wp-last" open><summary>Runde ${L.no}: ${L.losers.length ? I18n.html`Strich für ${L.losers.map((id) => nameOf(S, id)).join(', ')}` : 'kein Strich'}</summary>
-        <ol>${Object.entries(L.results).map(([id, r]) => `<li class="${L.losers.includes(id) ? 'lost' : ''}"><b>${nameOf(S, id)}</b>${mini(r.dice)}<span>${esc(r.name)}</span></li>`).join('')}</ol></details>` : '';
-      return `<div class="kg-table wp-wrap">${tray}${rows ? I18n.html`<ul class="wp-results" aria-label="Fertig in dieser Runde">${rows}</ul>` : ''}${last}</div>`;
+      const last = L ? `<details class="wp-last wk-panel" open><summary>${t(`Runde ${L.no} (abgeschlossen)`, `Round ${L.no} (finished)`)}: ${L.losers.length ? t('Strich für ', 'Strike for ') + L.losers.map((id) => nameOf(S, id)).join(', ') : t('kein Strich', 'no strike')}</summary>
+        <ol>${Object.entries(L.results).map(([id, r]) => `<li class="${L.losers.includes(id) ? 'lost' : ''}"><b class="wk-grow">${nameOf(S, id)}</b>${mini(r.dice)}<span>${esc(r.name)}${L.losers.includes(id) ? ' ✗' : ''}</span></li>`).join('')}</ol></details>` : '';
+      return `<div class="kg-table wk-stage wp-stage">${W.head({ eyebrow: t('Würfelpoker', 'Dice poker'), title: myTurn ? t('Du bist am Wurf', 'Your roll') : t(`${nameOf(S, S.turnId)} würfelt`, `${nameOf(S, S.turnId)} is rolling`), chips })}
+        <div class="wp-board">${tray}<aside class="wp-side">${rows ? `<div><span class="wk-label">${t('Fertig in dieser Runde', 'Done this round')}</span><ul class="wk-ledger wp-results" aria-label="${t('Fertig in dieser Runde', 'Done this round')}">${rows}</ul></div>` : `<p class="wk-sub">${t('Noch niemand ist fertig.', 'Nobody is done yet.')}</p>`}</aside></div>${last}</div>`;
     },
     dock(S, myTurn) {
       const g = S.g;

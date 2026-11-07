@@ -1,17 +1,23 @@
-/* Würfelpoker: Tablett mit fünf Würfeln, Ergebnisse der Runde */
-.kg-wuerfelpoker .kg-main { background: radial-gradient(120% 90% at 50% 25%, #6A2A2A, #2B1212); }
-.wp-wrap { display: grid; justify-items: center; gap: 14px; width: 100%; }
-.wp-tray { display: grid; justify-items: center; gap: 8px; padding: 14px 18px; border-radius: var(--r-l); background: rgba(0,0,0,.28); }
-.wp-tray small { color: #F0D5D5; }
-.wp-dice { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-.wp-dice .die.kept { transform: translateY(-8px); outline: 3px solid var(--gold); outline-offset: 2px; }
-.wp-dice button.die { cursor: pointer; }
-.wp-cat { color: var(--gold-text); font-size: 20px; }
-.wp-results, .wp-last ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; width: min(100%, 520px); }
-.wp-results li, .wp-last li { display: grid; grid-template-columns: minmax(60px, 1fr) auto minmax(0, 1.2fr); gap: 8px; align-items: center; padding: 3px 8px; border-radius: 8px; background: rgba(0,0,0,.2); }
-.wp-last li.lost { background: rgba(184,67,63,.3); }
-.wp-last { width: min(100%, 560px); background: rgba(0,0,0,.25); border-radius: var(--r-m); padding: 6px 12px; }
-.wp-last summary { cursor: pointer; font-weight: 600; min-height: 32px; display: flex; align-items: center; }
-.wp-mini { display: flex; gap: 2px; }
-.wp-mini .die { --d: 24px; }
-@media (max-width: 640px) { .wp-results li, .wp-last li { grid-template-columns: minmax(50px, 1fr) auto; } .wp-results li span:last-child, .wp-last li span:last-child { grid-column: 1 / -1; } }
+@import url('/games/world-kit.css');
+/* Würfelpoker: Nachtblau und warmes Gold – Tablett mit fünf Würfeln, Kategorie darunter, Rundenergebnisse daneben */
+.kg-wuerfelpoker .kg-main { background: radial-gradient(120% 90% at 50% 15%, #1f2d52, #0c1222); }
+.wp-stage { --wk-bg: linear-gradient(165deg,#1d2a4a,#0e1428); --wk-edge:#d7b46a55; --wk-accent:#e8c777; --wk-max:940px; }
+.wp-board { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:14px; align-items:start; }
+.wp-tray { display:grid; justify-items:center; gap:12px; padding:18px 12px; border-radius:16px; background:radial-gradient(ellipse at 50% 20%,#2b3f6e,#17213f); border:2px solid #d7b46a66; box-shadow:inset 0 0 26px #0007; }
+.wp-dice { display:flex; flex-wrap:wrap; gap:10px 12px; justify-content:center; }
+.wp-slot { display:grid; justify-items:center; gap:4px; }
+.wp-slot small { font-size:12px; min-height:15px; color:#f1d48a; font-weight:600; }
+.wp-slot .die { --d:60px; box-shadow:0 5px 10px #0007; }
+.wp-slot.kept .die { transform:translateY(-8px); outline:3px solid #e8c777; outline-offset:2px; }
+.wp-slot button.die { cursor:pointer; }
+.wp-cat { font:700 22px/1.2 var(--wk-font); color:#f1d48a; text-align:center; }
+.wp-cat.dim { color:var(--wk-muted); font-weight:400; font-size:16px; }
+.wp-results li,.wp-last li { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 10px; align-items:center; }
+.wp-results li span,.wp-last li span { grid-column:1/-1; font-size:13px; color:var(--wk-muted); }
+.wp-last { padding:6px 12px; }
+.wp-last summary { cursor:pointer; font-weight:600; min-height:44px; display:flex; align-items:center; }
+.wp-last ol { list-style:none; margin:0 0 6px; padding:0; display:grid; gap:6px; }
+.wp-last li { padding:6px 10px; border-radius:8px; background:#0003; }
+.wp-last li.lost { background:#7a2f2866; outline:1px solid #e68f86; }
+.wp-mini { display:flex; gap:2px; } .wp-mini .die { --d:24px; }
+@media (max-width:700px) { .wp-board { grid-template-columns:1fr; } .wp-slot .die { --d:52px; } .wp-dice { gap:8px; } }
