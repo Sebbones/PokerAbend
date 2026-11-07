@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Schlagfertig: Aufgabenkarten, Duell mit zwei anonymen Antworten, Finale mit Auswahl, Auflösung mit Namen und Stimmen */
 .kg-schlagfertig .kg-main { background: radial-gradient(120% 90% at 50% 15%, #4A3A7A, #1F1838); }
 .sl-blank { display: inline-block; min-width: 3.2em; margin: 0 .15em; border-bottom: 3px solid var(--gold); transform: translateY(-.1em); }
@@ -50,3 +51,9 @@ body.calm .sl-card { animation: none; }
   .sl-answers.duel, .sl-pair { grid-template-columns: minmax(0, 1fr); }
   .sl-ans { min-height: 96px; padding: 12px 14px; }
 }
+
+/* Spielwelt: kleine Comedy-Bühne – Papierkarten im warmen Spotlicht, Duell statt Formularstapel */
+.sl-stage { --wk-bg: radial-gradient(90% 70% at 50% 0, #6a4a2a 0, #2a1e3c 55%, #17102a); --wk-edge:#f0c98766; --wk-accent:#ffd98a; --wk-max:860px; }
+.sl-stage .sl-answers.duel { position: relative; }
+.sl-stage .sl-answers.duel::after { content: 'VS'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #2a1e3c; color: #ffd98a; font: 800 14px system-ui, sans-serif; border: 2px solid #ffd98a; pointer-events: none; }
+.sl-stage .sl-ans { min-height: 140px; }

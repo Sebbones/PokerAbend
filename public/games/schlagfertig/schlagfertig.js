@@ -63,8 +63,10 @@
           <span class="sl-text">${esc(a.text)}</span>
           <small>${a.mine ? I18n.t('Deine Antwort') : on ? I18n.t('✓ Deine Stimme') : can ? I18n.t('Tippen zum Wählen') : ''}</small></button>`;
       }).join('');
-      return I18n.html`<div class="sl-answers ${G.final ? 'final' : 'duel'}" role="group" aria-label="Antworten">${cards}</div>
-        ${G.final && G.canVote ? I18n.html`<p class="pk-mine">${sel.length} von ${G.maxPicks} Stimmen vergeben</p>` : ''}`;
+      const W = WorldKit, t = W.t;
+      const chips = [G.final ? W.chip('★', t('Finale – bis zu drei Stimmen', 'Final – up to three votes'), 'warn') : W.chip('⚔', t('Duell – zwei Antworten', 'Duel – two answers')), G.canVote ? W.chip(picked.size ? '✔' : '?', picked.size ? `${picked.size} ${t('Stimme(n) vergeben', 'vote(s) cast')}` : t('Noch keine Stimme', 'No vote yet'), picked.size ? 'good' : 'warn') : W.chip(G.isAuthor ? '🔒' : '👁', G.isAuthor ? t('Du bist Autor – keine Stimme', 'You are an author – no vote') : t('Du schaust zu', 'You are watching'))];
+      return I18n.html`<div class="wk-stage sl-stage">${W.head({ eyebrow: t('Comedy-Bühne', 'Comedy stage'), title: G.final ? t('Finale: Wähle deine Favoriten', 'Final: pick your favourites') : t('Wer ist schlagfertiger?', 'Who is wittier?'), chips })}<div class="sl-answers ${G.final ? 'final' : 'duel'}" role="group" aria-label="Antworten">${cards}</div>
+        ${G.final && G.canVote ? I18n.html`<p class="pk-mine">${sel.length} von ${G.maxPicks} Stimmen vergeben</p>` : ''}</div>`;
     },
     writeForm(S) {
       const G = S.g;
