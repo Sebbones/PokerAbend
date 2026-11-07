@@ -48,7 +48,7 @@ test('Öffentliche Roadmap enthält die geplanten V2-Wünsche ohne Doppelungen o
     assert.equal(matches.length, 1, id + ' steht genau einmal im Backlog');
     assert.match(byId.get(id).titel, title);
     assert.equal(byId.get(id).art, 'spiel');
-    assert.ok(!byId.get(id).erledigt);
+    assert.equal(!!byId.get(id).erledigt, id === 'gebietskampf', id); // nur das freigegebene V2-11 ist umgesetzt
   }
   const features = [
     'discord-1', 'discord-3', 'discord-4', 'discord-5', 'discord-6',

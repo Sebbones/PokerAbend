@@ -21,7 +21,8 @@
     },
     {
       "path": "server/index.js",
-      "sha256": "179b54f3c2daf371e1b148b68989de8b2b0a48c2c14e80ce0ef9f7f7f9319b5a"
+      "sha256": "5ff5989b29f1e0bb16fb94c6ed83df96a40ba5a90b08b5397902ad797fd03286",
+      "v2_11_update": "V2-11 (Gebietskampf, 2026-11-07): Raeume koennen ihren Spielstand auch mitten im Spiel speichern (persistMidGame); vorheriger Hash 179b54f3...9b5a"
     },
     {
       "path": "server/presence.js",

@@ -326,7 +326,7 @@ const presence = createPresence({
       canJoin: !r.busy && !!info && info.seats.length < info.max };
   },
 });
-const bots = createBotRunner({ isCurrent: (r) => rooms.get(r.code) === r, notify: (r) => { broadcast(r); if (!r.busy) save(); } });
+const bots = createBotRunner({ isCurrent: (r) => rooms.get(r.code) === r, notify: (r) => { broadcast(r); if (!r.busy || r.persistMidGame) save(); } });
 setInterval(() => presence.changed(), 30000).unref(); // lease expiry also updates idle observers
 const codes = createCodes(); // gemeinsam für alle Spiele
 const achievements = createAchievements({ leaderboard, games: Object.values(GAMES), accounts });
@@ -364,7 +364,7 @@ function save() {
     try {
       mkdirSync(DATA_DIR, { recursive: true });
       // Nur Räume ohne laufende Runde haben einen sauberen Stand – alle anderen bleiben beim letzten Stand
-      for (const r of rooms.values()) { if (!r.busy) r.lastSnapshot = snapshotOf(r); else if (r.lastSnapshot) r.lastSnapshot.unlisted = !!r.unlisted; } // Privat-Schalter gilt auch mitten in der Runde
+      for (const r of rooms.values()) { if (!r.busy || r.persistMidGame) r.lastSnapshot = snapshotOf(r); else if (r.lastSnapshot) r.lastSnapshot.unlisted = !!r.unlisted; } // Privat-Schalter gilt auch mitten in der Runde
       const data = [...rooms.values()].map((r) => r.lastSnapshot).filter(Boolean);
       writeFileSync(SAVE_FILE + '.tmp', JSON.stringify(data));
       renameSync(SAVE_FILE + '.tmp', SAVE_FILE);
@@ -691,7 +691,7 @@ io.on('connection', (socket) => {
         if (room?.gamePaused && !['gamePause', 'freeze', 'park', 'leave', 'closeTable', 'abortRound', 'makeHost', 'unlisted'].includes(event)) throw new Error('Das Spiel ist angehalten – der Host setzt es fort');
         const res = fn(payload || {}, room, player);
         const r = res?.closed ? null : (res?.room || room);
-        if (r) { r.afterChange(); if (!res?.frameOnly) broadcast(r); if (!r.busy) save(); }
+        if (r) { r.afterChange(); if (!res?.frameOnly) broadcast(r); if (!r.busy || r.persistMidGame) save(); }
         cb({ ok: true, ...(res?.reply || {}) });
       } catch (e) {
         cb({ ok: false, error: e.message, ...(e.extra || {}) }); // extra: z. B. ein Namensvorschlag

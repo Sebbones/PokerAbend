@@ -26,10 +26,10 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 83,
-    "not_implemented_count": 24,
+    "playable_count": 84,
+    "not_implemented_count": 23,
     "completed_visual_count": 32,
-    "open_playable_visual_count": 51,
+    "open_playable_visual_count": 52,
     "planned_visual_count": 75,
     "total_visual_packages": 107,
     "playable_game_ids": [
@@ -115,7 +115,8 @@
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
-      "match-3"
+      "match-3",
+      "gebietskampf"
     ],
     "not_implemented_game_ids": [
       "regelwahnsinn",
@@ -136,7 +137,6 @@
       "scheinwerfer-flucht",
       "brueckenroulette",
       "staedtehandel",
-      "gebietskampf",
       "turmbauer",
       "geschenkdiebe",
       "fallenbauer",
@@ -373,7 +373,8 @@
     "VIS-047",
     "VIS-046",
     "VIS-086",
-    "VIS-087"
+    "VIS-087",
+    "VIS-090"
   ],
   "suggested_development_order": [
     "VIS-030",
@@ -426,7 +427,8 @@
     "VIS-104",
     "VIS-105",
     "VIS-106",
-    "VIS-107"
+    "VIS-107",
+    "VIS-090"
   ],
   "future_concepts_order": [
     "VIS-083",
@@ -451,7 +453,6 @@
     "VIS-080",
     "VIS-095",
     "VIS-093",
-    "VIS-090",
     "VIS-089"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
@@ -12255,22 +12256,41 @@
       "game_name": "Gebietskampf (Risiko-inspiriert)",
       "category": "brett",
       "category_name": "Brettspiele",
-      "implementation_status": "not_implemented",
+      "implementation_status": "playable",
       "visual_status": "planned",
       "implementation_authorized_now": false,
       "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "inventory_source": "games/gebietskampf/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "baseline_world",
+        "evidence": [
+          "games/gebietskampf/rules.js",
+          "test/gebietskampf.test.js",
+          "test/ui/gebietskampf.spec.js"
+        ],
+        "assessment": "Erste spielbare Umsetzung des V2-11-Auftrags mit eigener SVG-Karte; die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
+      "current_frontend_files": [
+        "public/games/gebietskampf/gebietskampf.js",
+        "public/games/gebietskampf/gebietskampf.css"
+      ],
+      "shared_frontend_files": [
+        "public/games/kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/gebietskampf/gebietskampf.js",
+          "sha256": "78b69db350d4d9d471fea81201795925e394eb400501ede2af746b6df5bef476"
+        },
+        {
+          "path": "public/games/gebietskampf/gebietskampf.css",
+          "sha256": "9356d006a70518250a1a685396a2383d5df32895cfb6341ca75215fa8d4fe6aa"
+        }
+      ],
+      "current_design": "Dunkle Seekarte Meridia: sechs Landmassen als weiche Flächen, Gebiete als Spielsteine mit Besitzerfarbe, Symbol und Truppenzahl, Seitenleiste mit Spielern, Karten, Mission und letztem Kampf (SVG, zoom- und scrollbar).",
       "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+        "Erste spielbare Umsetzung mit funktionaler Seekarte; individuelle Ausarbeitung (Kartenzeichnung, Animationen, alternative Gebietsliste) ist dieses geplante Paket und nicht freigegeben."
       ],
       "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
       "gameplay_summary": "Truppen verteilen, würfeln und Gebiete erobern, bis nur noch einer übrig ist.",
@@ -12324,8 +12344,8 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "gebietskampf",
-        "source": "games/planned.js",
-        "status": "not_implemented",
+        "source": "games/gebietskampf/index.js",
+        "status": "playable",
         "requires_separate_authorization": true
       },
       "screenshots": [],

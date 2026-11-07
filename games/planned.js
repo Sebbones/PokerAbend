@@ -218,20 +218,6 @@ export const PLANNED = [
     houseRules: ['Räuber bei einer Sieben', 'Längste Straße und größte Armee als Bonus', 'Spielfeld zufällig'],
     art: hexBoard(['#7FD39A', '#C99A45', '#E3C08A', '#9DB7E8', '#D33B35', '#F7F3E8', '#1C7A43']),
   }),
-  spiel({
-    id: 'gebietskampf', name: 'Gebietskampf (Risiko-inspiriert)', category: 'brett', minPlayers: 2, maxPlayers: 5, duration: 90, paeckchen: 'gross',
-    description: 'Truppen verteilen, würfeln und Gebiete erobern, bis nur noch einer übrig ist.',
-    rules: [
-      'Eine Weltkarte ist in Gebiete geteilt; die Gebiete werden unter den Spielern verteilt und mit Truppen besetzt.',
-      'Zu Beginn jeder Runde bekommt man Verstärkung nach Gebieten und Kontinenten und setzt sie frei ein.',
-      'Man greift benachbarte Gebiete an: Angreifer und Verteidiger würfeln, die höheren Augen gewinnen, Verluste werden abgezogen.',
-      'Wer ein Gebiet erobert, zieht Truppen nach; pro Runde mit einer Eroberung gibt es eine Karte.',
-      'Am Ende des Zuges darf man einmal Truppen verschieben.',
-      'Gewonnen hat, wer alle anderen besiegt oder seine geheime Mission erfüllt.',
-    ],
-    houseRules: ['Missionen statt Weltherrschaft', 'Kartentausch-Bonus steigt', 'Schnelle Variante mit weniger Gebieten'],
-    art: territory(),
-  }),
   // Erhaltene Ideen aus dem alten Party-Katalog (PR #2): ausschließlich Backlog, nicht startbar.
   spiel({
     id: 'turmbauer', name: 'Turmbauer', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 10, duration: 2, paeckchen: 'spaeter',

@@ -7,7 +7,7 @@ export function botObservation(room,id){
   const out={game:room.game,id,variant:room.variant||'classic',foe:room.order?.find(p=>p!==id)||null,epoch:{round:room.roundNo,move:room.moveNo,hand:room.table?.handNo}};
   if(room.table){const t=room.table,h=t.hand,seat=room.players.get(id).seat;out.g={own:[...h.players[seat].cards],board:[...h.board],legal:t.legal(seat),pot:h.seats.reduce((n,i)=>n+h.players[i].total,0),opponents:h.seats.filter(i=>i!==seat&&!h.players[i].folded).length};return structuredClone(out);}
   const g=room.gameView(id);
-  if(['stichmeister','labyrinth-brett','schatzinsel'].includes(room.game))return structuredClone({...out,g});
+  if(['stichmeister','labyrinth-brett','schatzinsel','gebietskampf'].includes(room.game))return structuredClone({...out,g});
   if(room.game==='viergewinnt')out.g={board:[...g.board]};
   else if(room.game==='reversi')out.g={board:[...g.board],legal:[...g.legal]};
   else if(room.game==='backgammon')out.g=g;
@@ -22,5 +22,5 @@ export function botObservation(room,id){
   else return null;
   return structuredClone(out);
 }
-const METHODS={stichmeister:['bid','play'],'labyrinth-brett':['shift','movePawn'],schatzinsel:['placeTreasures','dig'],doppelkopf:['reserve','announce','play'],skat:['bid','ramschChoice','pickup','discard','declare','play'],luegenbaron:['answer','vote'],'exploding-deck':['playCard','drawCard','insertBomb','giveCard','nope','passReaction'],schach:['move'],monopoly:['onTimeout','bid','passAuction','respondTrade','buy','leaveJail','throwDice','manage','proposeTrade','endTurn'],scrabble:['pass','place','review','vote'],kniffel:['throwDice','score'],viergewinnt:['drop'],reversi:['place'],backgammon:['throwDice','confirmTurn','move','answerDouble'],poker:['act'],omaha:['act'],farbenchaos:['play','draw','pass','lateCall','catchForgot'],hearts:['pass','play'],'sechs-nimmt':['choose','takeRow']};
+const METHODS={gebietskampf:['gkPlace','gkTrade','gkNext','gkAttack','gkOccupy','gkFortify','gkEnd'],stichmeister:['bid','play'],'labyrinth-brett':['shift','movePawn'],schatzinsel:['placeTreasures','dig'],doppelkopf:['reserve','announce','play'],skat:['bid','ramschChoice','pickup','discard','declare','play'],luegenbaron:['answer','vote'],'exploding-deck':['playCard','drawCard','insertBomb','giveCard','nope','passReaction'],schach:['move'],monopoly:['onTimeout','bid','passAuction','respondTrade','buy','leaveJail','throwDice','manage','proposeTrade','endTurn'],scrabble:['pass','place','review','vote'],kniffel:['throwDice','score'],viergewinnt:['drop'],reversi:['place'],backgammon:['throwDice','confirmTurn','move','answerDouble'],poker:['act'],omaha:['act'],farbenchaos:['play','draw','pass','lateCall','catchForgot'],hearts:['pass','play'],'sechs-nimmt':['choose','takeRow']};
 export function applyBotAction(room,id,action){if(!action||!METHODS[room.game]?.includes(action.method)||!Array.isArray(action.args))throw Error('Ungültige Computeraktion');if(room.game==='monopoly'&&action.method==='proposeTrade')room.traded[id]=room.turnNo;return room[action.method](id,...action.args);}

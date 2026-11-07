@@ -148,7 +148,7 @@ export const ROADMAP = [
   { id: 'party-extras', titel: 'Party-Extras', satz: 'Bekannte Spiele mit wechselnden Zusatzregeln und neuen Abendformaten.', stufe: 'spaeter', eintraege: ['modifikatoren', 'chaos-modus', 'survival-abend'], punkte: [] },
   { id: 'spaetere-spiele', titel: 'Weitere Spiele', satz: 'Der übrige Backlog für kommende Spiele-Päckchen.', stufe: 'spaeter', paeckchen: 'spaeter', punkte: spiele(['risiko-wuerfeln','story-chaos','zahlenreihe','wuerfeljagd','monsterwuerfel','wuerfel-auktion','backgammon','hearts','five-card-draw','scrabble','omaha-hi-lo','short-deck','seven-card-stud','exploding-deck','doppelagent','luegenbaron','stichmeister','labyrinth-brett','schatzinsel']) },
   { id: 'grosse-projekte', titel: 'Große Projekte', satz: 'Größere Spielsysteme und Experimente mit mehr Vorlauf.', stufe: 'gross', paeckchen: 'gross', punkte: [
-    ...spiele(['schach']),
+    ...spiele(['schach', 'gebietskampf']),
     punkt('3d-experiment', '3D-Experiment', 'design', '3D-Würfel als begrenzter Test für eine räumliche Darstellung.'),
     punkt('discord-activity', 'Discord Activity', 'discord', 'Direkt gemeinsam im Discord-Sprachkanal spielen.'),
   ] },
