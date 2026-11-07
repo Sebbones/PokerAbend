@@ -50,7 +50,7 @@ test('Wellenwacht builds, upgrades, sells, starts waves and restores a paused si
   await page.locator('[data-action=upgrade]').click();await page.locator('[data-action=upgrade]').click();expect((await saved(page,'wellenwacht')).towers[0].level).toBe(3);await expect(page.locator('[data-action=upgrade]')).toBeDisabled();await page.locator('[data-action=sell]').click();expect((await saved(page,'wellenwacht')).towers).toHaveLength(0);
   await page.locator('[data-action=build]').click();await page.locator('[data-action=wave]').click();await page.waitForTimeout(1200);await page.locator('[data-action=speed]').click();expect((await saved(page,'wellenwacht')).speed).toBe(2);await shot(page,info,'wellenwacht-playing');
   await page.locator('.sp-common [data-action=pause]').click();const paused=await saved(page,'wellenwacht');expect(paused.enemies.length).toBeGreaterThan(0);await page.waitForTimeout(300);expect((await saved(page,'wellenwacht')).time).toBe(paused.time);await page.reload();await expect(page.locator('.sp-paused')).toBeVisible();await page.locator('.sp-paused [data-action=pause]').click();expect((await saved(page,'wellenwacht')).towers).toEqual(paused.towers);
-  await page.locator('.sp-heading a').click();const leaving=await saved(page,'wellenwacht');expect(leaving.paused).toBe(true);await page.waitForTimeout(300);expect((await saved(page,'wellenwacht')).time).toBe(leaving.time);
+  await page.locator('.sp-heading a').click();await expect.poll(async()=>(await saved(page,'wellenwacht')).paused).toBe(true);const leaving=await saved(page,'wellenwacht');await page.waitForTimeout(300);expect((await saved(page,'wellenwacht')).time).toBe(leaving.time);
 });
 
 test('Wellenwacht second map, mobile zoom and end states',async({page,app},info)=>{

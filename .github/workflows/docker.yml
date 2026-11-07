@@ -20,10 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Repository herunterladen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Node.js einrichten
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -44,7 +44,7 @@ jobs:
 
       - name: Bericht bei Fehlern sichern
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: rauchprobe-fehler
           path: test-results/
@@ -58,17 +58,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Repository herunterladen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Bei GitHub Container Registry anmelden
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Docker-Image bauen und veröffentlichen
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true
@@ -84,10 +84,10 @@ jobs:
     timeout-minutes: 90
     steps:
       - name: Repository herunterladen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Node.js einrichten
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -109,15 +109,26 @@ jobs:
       - name: Alle Playwright-Prüfungen
         id: ui
         continue-on-error: true
-        run: npx playwright test --reporter=list,html,junit
+        # Ein Wiederholungsversuch fängt einzelne Wackler ab; Wackler bleiben im HTML-Bericht als "flaky" sichtbar.
+        run: npx playwright test --retries=1 --reporter=list,html,junit,json
         env:
           PLAYWRIGHT_CHANNEL: chromium
           PLAYWRIGHT_HTML_OPEN: never
           PLAYWRIGHT_JUNIT_OUTPUT_NAME: reports/playwright.xml
+          PLAYWRIGHT_JSON_OUTPUT_NAME: reports/playwright.json
+
+      - name: Wackelige Tests in der Zusammenfassung ausweisen
+        if: always()
+        run: |
+          node -e "
+          const fs=require('fs');if(!fs.existsSync('reports/playwright.json'))process.exit(0);
+          const flaky=[];(function walk(s){for(const x of s.suites||[])walk(x);for(const sp of s.specs||[])for(const t of sp.tests||[])if(t.status==='flaky')flaky.push(t.projectName+' › '+sp.file+':'+sp.line+' › '+sp.title);})({suites:JSON.parse(fs.readFileSync('reports/playwright.json')).suites});
+          const out='### Wackelige Playwright-Tests (erst im Wiederholungsversuch grün): '+flaky.length+'\n'+flaky.map(x=>'- '+x).join('\n')+'\n';
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,out);"
 
       - name: Bericht als Artefakt speichern
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: nachtlauf-bericht
           path: |

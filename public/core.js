@@ -340,7 +340,7 @@ async function enterGame(r) {
   $('#hub').hidden = true;
   $('#game-root').hidden = false;
   current.show();
-  if (lastState) current.onState(lastState);
+  if (lastState && (!lastState.game || lastState.game === game)) current.onState(lastState); // nie den Stand eines anderen Spiels in dieses Modul geben
 }
 // Gemeinsamer Teil des Host-Menüs „Spiel beenden“: zwei Knöpfe mit eigenen Bestätigungsdialogen
 function endGameHTML(running, noun = I18n.t('Runde')) {
@@ -453,7 +453,7 @@ function returnToRoom() {
     parked = false;
     $('#hub').hidden = true;
     $('#game-root').hidden = false;
-    if (lastState) current.onState(lastState);
+    if (lastState && (!lastState.game || lastState.game === mounted)) current.onState(lastState);
   });
 }
 window.addEventListener('popstate', () => {
@@ -517,7 +517,7 @@ socket.on('state', (st) => {
     session.game = st.game;
     if (mounted && !parked) { location.reload(); return; }
   }
-  if (session && current && !parked) current.onState(st);
+  if (session && current && !parked && (!st.game || !mounted || st.game === mounted)) current.onState(st);
 });
 
 // ---------- Bestenliste über alle Abende ----------
