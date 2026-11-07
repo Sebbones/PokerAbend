@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 /* Mensch ärgere Dich nicht: Spielbrett 11 × 11 wie das klassische Brett */
 .hc-4 { --pc:#9253bb; --pd:#583071; --pl:#d6a9ef; } .hc-5 { --pc:#e7852e; --pd:#995013; --pl:#ffca91; }
 .hb-hex { position:relative; width:min(100%,600px); aspect-ratio:1; background:#f1dfb9; border:5px solid #906336; border-radius:30px; }
@@ -55,3 +56,14 @@ body.marks .hc-dot .cm { display: block; }
 /* Am großen Tisch: Brett füllt die Mitte, so groß es geht */
 .kt-content .hb-wrap { width: min(100cqw, 100cqh, 640px); min-width: 0; }
 @media (max-width: 640px) { .hb-turn b { font-size: 11px; max-width: 64px; } .hb-turn small { display: none; } .hb-target b { font-size: 14px; } }
+
+/* VIS-007: klassisches Familienbrett – warmes Holz um das 11 × 11-Brett (Hexbrett bleibt erhalten), Würfel- und Zugstatus als Chips */
+.hb-stage { --wk-bg: linear-gradient(165deg, #5b4026, #2a1c10); --wk-edge:#e8cfa066; --wk-accent:#f0d28a; --wk-max:760px; justify-items: stretch; }
+.hb-stage .hb-wrap, .hb-stage .hb-hex { justify-self: center; }
+.hb-stage :is(button):not(.hb-piece):not(.hb-target) { min-height: 44px; }
+@media (max-height: 560px) { .hb-stage { padding: 6px; gap: 4px; } .hb-stage > .wk-head { display: none; } }
+@media (max-height: 560px) { .hb-stage { padding: 0; border: 0; box-shadow: none; background: none; } }
+/* Der Kopf nimmt Höhe: kompakt halten und beim Brett abziehen, damit es ganz sichtbar bleibt */
+.hb-stage { padding: 10px 14px; gap: 8px; }
+.hb-stage .wk-eyebrow { display: none; } .hb-stage .wk-title { font-size: 20px; }
+.hb-stage .hb-wrap { width: min(100%, 560px, calc(100dvh - var(--topbar, 57px) - var(--dock-h, 90px) - 120px - 80px)); }

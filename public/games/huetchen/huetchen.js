@@ -69,6 +69,11 @@
       return g.stuck ? I18n.html`Würfle – du brauchst eine 6 (Versuch ${g.tries + 1} von 3)` : I18n.t('Würfle');
     },
     main(S) {
+      const W = WorldKit, t = W.t, g0 = S.g, mine0 = S.turnId === S.you?.id, cur0 = S.players.find((p) => p.id === S.turnId), roll0 = g0.rolled || lastRoll;
+      const chips = [cur0 ? W.chip('●', `${t('Am Zug', 'On the move')}: ${esc(cur0.name)}`, mine0 ? 'good' : '') : '', roll0 ? W.chip('🎲', `${t('Gewürfelt', 'Rolled')}: ${roll0}`, roll0 === 6 ? 'warn' : '') : W.chip('…', t('Noch nicht gewürfelt', 'Not rolled yet')), g0.track === 60 ? W.chip('⬡', t('Sechseck-Brett', 'Hexagon board')) : ''].filter(Boolean);
+      return `<div class="wk-stage hb-stage">${W.head({ eyebrow: t('Spielbrett', 'Game board'), title: mine0 ? t('Du bist dran', 'Your turn') : t('Das Brett', 'The board'), chips })}${this.mainBody(S)}</div>`;
+    },
+    mainBody(S) {
       const g = S.g;
       if (g.track === 60) return hexBoard(S);
       const cells = new Map(); // "x,y" → HTML
