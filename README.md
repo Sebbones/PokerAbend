@@ -521,7 +521,43 @@ Zugang nur über die eigene Umgebungsvariable **`ADMIN_PASSWORD`** (in der `.env
 | `npm run test:smoke` | kleine Browser-Rauchprobe: Startseite, Kartenspiel, Brettspiel, jeweils Desktop und Handy |
 | `npm run test:ui` | alle Playwright-Prüfungen |
 
-Der Workflow `.github/workflows/docker.yml` führt bei jedem Push auf `main` erst `test:fast` und die Rauchprobe aus; **nur bei grünem Lauf wird das Image gebaut** (mit `GIT_COMMIT`). Jede Nacht (02:17 UTC) laufen alle Node-Tests und alle Playwright-Prüfungen ohne Image-Bau; Bericht (JUnit, HTML) als Artefakt `nachtlauf-bericht`.
+Der Workflow `.github/workflows/docker.yml` führt bei jedem Push auf `main` erst `test:fast` und die Rauchprobe aus; **nur bei grünem Lauf wird das Image gebaut** (mit `GIT_COMMIT`). Jede Nacht (02:17 UTC) laufen alle Node-Tests (4 Teile) und alle Playwright-Prüfungen (12 Teile) parallel mit **denselben Befehlen** wie lokal (`npm run test:all -- --only=… --shard=…`), ohne Image-Bau. Die Berichte jedes Teils (`nacht-node-N`, `nacht-ui-N`) und die zusammengeführte Coverage (`nacht-coverage`, HTML) liegen als Artefakte bereit; die Zusammenfassung des Laufs listet Fehler und wackelige Prüfungen.
+
+### Tests selbst starten
+
+**Einmalig vorbereiten** (Windows, Linux und macOS gleich; Node 20 oder neuer, die CI nutzt 22):
+
+```bash
+npm ci
+npx playwright install chromium     # Linux zusätzlich: npx playwright install --with-deps chromium
+```
+
+Unter **Windows und macOS** nutzen die Browser-Prüfungen das installierte Google Chrome (`channel: 'chrome'`). Wer kein Chrome hat oder wie die CI testen will, setzt `PLAYWRIGHT_CHANNEL=chromium` (PowerShell: `$env:PLAYWRIGHT_CHANNEL = 'chromium'`; Linux-Shell: `PLAYWRIGHT_CHANNEL=chromium npm run test:all`). Unter **Linux** wird `chromium` automatisch gewählt.
+
+| Befehl | Was | Dauer (Richtwert, 8 Kerne) |
+| --- | --- | --- |
+| `npm run test:all` | **alles**: Node-Tests mit Coverage, dann die komplette Playwright-Suite (Desktop und Handy), dann eine Zusammenfassung. Läuft bei roten Teilen weiter und endet mit Exit-Code 1 | siehe unten |
+| `npm run test:all:docker` | dasselbe im offiziellen Playwright-Image (`mcr.microsoft.com/playwright:v<Version>-noble`, Version passend zu `@playwright/test`); nutzt nur einen **lokalen** Docker-Dienst, nie einen entfernten Docker-Kontext | wie oben plus erster Image-Download (ca. 2 GB) |
+| `npm run test:report` | öffnet den HTML-Bericht der letzten Playwright-Läufe im Browser | sofort |
+| `npm run test:coverage` | nur die Node-Tests mit Coverage | ca. 3 Minuten |
+| `npm run coverage:worst` | die 20 Dateien mit der geringsten Zeilenabdeckung | sofort |
+| `npm run test:fast` / `npm run test:smoke` | schnelle Tests (unter einer Minute) / Rauchprobe | wie bisher |
+
+Teile einzeln oder in Stücken: `npm run test:all -- --only=node`, `--only=ui`, `--shard=2/12`, `--no-coverage`; alles nach einem zweiten `--` geht an Playwright, z. B. `npm run test:all -- --only=ui -- --project=desktop -g "Blackjack"`.
+
+**Wo liegen die Ergebnisse?** (Ordner `reports/`, nicht im Repository)
+
+| Pfad | Inhalt |
+| --- | --- |
+| `reports/summary.md` und `reports/summary.json` | Zusammenfassung: bestanden/fehlgeschlagen pro Teil, Coverage in %, Dauer, fehlgeschlagene und wackelige Prüfungen |
+| `reports/coverage/index.html` | Coverage-Bericht (HTML); Text im Terminal, `coverage-summary.json` und `lcov.info` daneben |
+| `reports/playwright-html/index.html` | Playwright-HTML-Bericht (öffnen mit `npm run test:report`) |
+| `reports/node-tests.xml`, `reports/playwright.json` | JUnit bzw. JSON für Auswertungen |
+| `test-results/` | Bilder, Traces und Videos fehlgeschlagener Browser-Prüfungen |
+
+Die Coverage misst `server/` und `games/` (Browser-Skripte unter `public/` laufen nur in den Playwright-Prüfungen; Hilfsdateien wie Fixtures, `_artifacts` und Konfigurationen sind in `.c8rc.json` ausgenommen). **Hinweis Windows:** Beendet ein Test seinen Server als Kindprozess hart, liefert dieser keine Messdaten; deshalb gibt es `test/api-inprocess.test.js` und `test/discord-inprocess.test.js`, die den Server im selben Prozess prüfen. Unter Linux (CI, Docker) wird auch bei Kindprozessen gemessen.
+
+Neue Spiele werden automatisch mitgeprüft: `test/all-games.test.js` liest die Spieleliste aus dem Ordner `games/` (Raum, Bots, Partie bis zum Ende oder Zuglimit, keine Karten/Rollen anderer in den Ansichten, Speichern und Laden) und `test/ui/game-flow.spec.js` ergänzt jedes Spiel ohne eigene Spec (`node scripts/games-without-spec.mjs` zeigt, welche das sind).
 
 ## Discord-Anmeldung einrichten (optional, V2-02)
 

@@ -101,18 +101,16 @@ jobs:
       - name: Abhängigkeiten installieren
         run: npm ci
 
-      - name: Node-Tests (inklusive Simulationen) – ein Viertel der Dateien
-        run: |
-          mkdir -p reports
-          node --test --test-shard=${{ matrix.shard }}/4 --test-reporter=spec --test-reporter-destination=stdout \
-            --test-reporter=junit --test-reporter-destination=reports/node-${{ matrix.shard }}.xml "test/*.test.js"
+      # Derselbe Befehl wie lokal (`npm run test:all`), hier nur der Node-Teil und ein Viertel der Dateien – mit Coverage.
+      - name: Node-Tests mit Coverage (inklusive Simulationen) – ein Viertel der Dateien
+        run: npm run test:all -- --only=node --shard=${{ matrix.shard }}/4 --reports=reports/teil-node-${{ matrix.shard }}
 
-      - name: Bericht sichern
+      - name: Bericht und Coverage sichern
         if: always()
         uses: actions/upload-artifact@v7
         with:
           name: nacht-node-${{ matrix.shard }}
-          path: reports/
+          path: reports/teil-node-${{ matrix.shard }}
           if-no-files-found: ignore
           retention-days: 14
 
@@ -142,13 +140,13 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Browser-Prüfungen – ein Zwölftel (Desktop und Mobil)
+        # Derselbe Befehl wie lokal (`npm run test:all`), hier nur der Browser-Teil und ein Zwölftel.
         # CI=true schaltet in playwright.config.js längere Wartezeiten und einen Wiederholungsversuch ein;
-        # Wackler bleiben im JSON-Bericht als "flaky" sichtbar.
-        run: npx playwright test --shard=${{ matrix.shard }}/12 --reporter=list,json
+        # Wackler bleiben in der Zusammenfassung als "wackelig" sichtbar.
+        run: npm run test:all -- --only=ui --shard=${{ matrix.shard }}/12 --reports=reports/teil-ui-${{ matrix.shard }}
         env:
           CI: 'true'
           PLAYWRIGHT_CHANNEL: chromium
-          PLAYWRIGHT_JSON_OUTPUT_NAME: reports/playwright-${{ matrix.shard }}.json
 
       - name: Bericht und Fehlerbilder sichern
         if: always()
@@ -156,7 +154,7 @@ jobs:
         with:
           name: nacht-ui-${{ matrix.shard }}
           path: |
-            reports/
+            reports/teil-ui-${{ matrix.shard }}
             test-results/
           if-no-files-found: ignore
           retention-days: 14
@@ -175,6 +173,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Abhängigkeiten installieren (für den Coverage-Bericht)
+        run: npm ci
+
       - name: Berichte aller Teile laden
         uses: actions/download-artifact@v7
         with:
@@ -182,8 +183,28 @@ jobs:
           path: berichte
           merge-multiple: true
 
+      - name: Coverage der vier Node-Teile zusammenführen
+        if: always()
+        run: |
+          mkdir -p coverage-roh reports
+          find berichte -path '*coverage/tmp/*.json' -exec cp {} coverage-roh/ \;
+          if [ -n "$(ls -A coverage-roh)" ]; then
+            npx c8 report --temp-directory coverage-roh --reports-dir reports/coverage-gesamt --reporter=text-summary --reporter=html --reporter=json-summary --reporter=lcovonly | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Keine Coverage-Rohdaten gefunden." | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Zusammengeführte Coverage als Artefakt sichern
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: nacht-coverage
+          path: reports/coverage-gesamt
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Fehler und wackelige Tests ausweisen
-        run: node scripts/nightly-summary.mjs berichte >> "$GITHUB_STEP_SUMMARY"
+        run: node scripts/nightly-summary.mjs berichte 4 12 >> "$GITHUB_STEP_SUMMARY"
 
       - name: Ergebnis prüfen
         if: needs.nightly-node.result != 'success' || needs.nightly-ui.result != 'success'

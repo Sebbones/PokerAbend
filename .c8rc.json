@@ -1,0 +1,16 @@
+{
+  "all": true,
+  "src": ["server", "games"],
+  "include": ["server/**", "games/**"],
+  "exclude": [
+    "**/*.spec.js",
+    "**/*.config.js",
+    "**/fixtures/**",
+    "**/_artifacts/**",
+    "**/browser-cases.js",
+    "**/build-catalog.js",
+    "server/admin/admin.js"
+  ],
+  "reporter": ["text", "html", "json-summary"],
+  "reports-dir": "reports/coverage"
+}
