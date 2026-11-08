@@ -1,0 +1,182 @@
+{
+  "package_id": "BACKLOG-12",
+  "game": "brueckenroulette",
+  "date": "2026-11-08",
+  "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+  "followup_commits": [],
+  "source_audit_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog12.test.js test/backlog12-client.test.js test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/hub.test.js test/game-design.test.js",
+      "passed": 94,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog12-node-focused.log",
+      "note": "17 neue Regel-, Privatsicht- und Simulationsfälle plus 2 Clientfälle: 60 Botpartien Schatzgräber, 80 Botpartien Brückenroulette, 700 erzeugte Reaktor-Aufgaben, 40 Botpartien Reaktor-Notfall."
+    },
+    {
+      "command": "playwright test test/ui/backlog12.spec.js --workers=1 (isolierter committeter Implementierungsstand, Desktop + Handy)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 128.99,
+      "report": "artifacts/backlog12-ui-isolated.json"
+    },
+    {
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolierter Worktree auf origin/main dc474bc plus Implementierungscommit und Nachweise)",
+      "tests": 1749,
+      "passed": 1746,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 234.166,
+      "log": "artifacts/backlog12-full-node.log",
+      "note": "Drei bestehende Restore-Shell-Fälle benötigen Bash und werden unter Windows übersprungen. --test-force-exit beendet nur nach Abschluss aller Tests offene Windows-Prozess-Handles. Ein früherer Lauf mit zwei Fehlern (Sicht-Roadmap-Zähler, mein Nachweistest) ist unter artifacts/backlog12-full-node-first.log getrennt erhalten."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-chosen.png",
+      "sha256": "32ccf2ef974435f5c49a2152ea378efda35eb21363948245221cf1cfc14f8109"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-english-rules.png",
+      "sha256": "e5a347540c0e76f9a072cd42b322b75518cbd06491e319ee94a2ff6533b7bd49"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-1440x900.png",
+      "sha256": "1816c7da2d15c82515ea6f426f8bf5f79a8c154cdb2fc44776e451602ddc70c3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-1920x1080.png",
+      "sha256": "80946d2cff70330b358fa2c2869cee016af19fcf223d235addcd1c6a41e0c5a7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-360x800.png",
+      "sha256": "6be02e5aeedbeaa567453b5e275bed9545ac8abff7c00cd2ecdbbd99756d9c6e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-390x844.png",
+      "sha256": "92dde0b6381ef23af6f004810ed764b7a83c83e875c99c67ec0eb74530bcfe84"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-768x1024.png",
+      "sha256": "52bf4ad4489dea88eb0650071913bef6380eb278318de3b97686f421b7bc71fc"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-900x450.png",
+      "sha256": "cb18d88b090eb0c48ccc63286ff4230632345203129142fb25d7f6d3b661b0f1"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-lobby.png",
+      "sha256": "9f43915b2c8cd2830138f00d021bcfc895a90037df097dafdac0acfd66b2dac2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-paused.png",
+      "sha256": "1816c7da2d15c82515ea6f426f8bf5f79a8c154cdb2fc44776e451602ddc70c3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-playing.png",
+      "sha256": "720137d10bdade3429a9b5e3efe93ac99baf92e3752f06828b88b6ee8e1b8d7a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-reconnect.png",
+      "sha256": "1816c7da2d15c82515ea6f426f8bf5f79a8c154cdb2fc44776e451602ddc70c3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-result.png",
+      "sha256": "73db9f5baa84515b98b0445f1703f6e60338ba5a0de48a6efdbd306f7d8f1434"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-reveal.png",
+      "sha256": "db6e638a283aea8413a52a4f35ac6853d1c594c56b8cc6cdd6fb55894c041731"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-spectator.png",
+      "sha256": "75748e800bb7be559368b4e7decd4ae9f532d073a12bd7c7c65d1418591bef33"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-chosen.png",
+      "sha256": "09c112e2068f73b20416e112bd7a8adc422c0a6d452eac6909ed285383ef7f16"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-english-rules.png",
+      "sha256": "92139779e2502a949e4d97216ecc3ce26e8584c8866a9ce77817d4b6f81d8489"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-layout-360x800.png",
+      "sha256": "1c943928a5bdc6ed4463d49edd3efff3a97c1325d81095845356bc765d1016dd"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-layout-390x844.png",
+      "sha256": "9e33c23b74b07337e5a25b676da190a650aac78ecc3794766d5abb148ba26e27"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-lobby.png",
+      "sha256": "cd597bb952670dc5dca86b81762cbf6fa6d775b56b11c80a20dd8643af0deaa9"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-paused.png",
+      "sha256": "9e33c23b74b07337e5a25b676da190a650aac78ecc3794766d5abb148ba26e27"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-playing.png",
+      "sha256": "8453465fdbadafdfa7c599f43b1b7c957d137b87b5a30852c8c384923de48eba"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-reconnect.png",
+      "sha256": "9e33c23b74b07337e5a25b676da190a650aac78ecc3794766d5abb148ba26e27"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-result.png",
+      "sha256": "783f0da15cc5d1c825a86112f16057aa907afaaedd368ef3519ecf14e4e1273b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-reveal.png",
+      "sha256": "6c7091308fbdeff3031f4ea1dd89aa9b53915324792dec9ebff079252dcf5f85"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-spectator.png",
+      "sha256": "3bbb4cce7f78c68ebe74dea302e199b87ae38c7e079825ceafdb6ff153a4ca3b"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/brueckenroulette/index.js",
+      "sha256": "32049308b76a5dc2d66bcd8218a6addc48d7d4f58f6f19f3052701bd9cff9b26"
+    },
+    {
+      "path": "games/brueckenroulette/room.js",
+      "sha256": "8d4308db08a3988df8e8b92046b1b2dad88dd95976c20e9b45c838424530d281"
+    },
+    {
+      "path": "games/brueckenroulette/rules.js",
+      "sha256": "a09a3a675a9e4ab46a070e1eb4d4b52126dfd46aca67473eac245f1d31a5033c"
+    },
+    {
+      "path": "public/games/brueckenroulette/brueckenroulette.js",
+      "sha256": "92febe6e23a348d8b34364094502bc2114a32d6051f13b23ba198e0ab45bc41a"
+    },
+    {
+      "path": "public/games/brueckenroulette/brueckenroulette.css",
+      "sha256": "192c62bc8d534def461402357a6b419825030fdaeb4a7da7ce265bdcb85407ed"
+    },
+    {
+      "path": "games/party-room.js",
+      "sha256": "654efd2515f38d8a03776be4591aabe846d95cd9d932617dff5eb23ea0c5ae94"
+    },
+    {
+      "path": "public/games/party-kit.js",
+      "sha256": "cf11732460737d7afe88a494775e1152d8d1cab437ffde90495007a9eb76db02"
+    },
+    {
+      "path": "public/games/party-kit.css",
+      "sha256": "019937bd380563209e10d04e5620a79a61669697363a4b89b8f3da38f6a6e7b5"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "Nur die drei freigegebenen Spiele Schatzgräber, Brückenroulette und Reaktor-Notfall. Keine V2-Arbeit, kein Produktivdeployment."
+}

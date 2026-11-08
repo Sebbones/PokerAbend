@@ -1,0 +1,186 @@
+{
+  "package_id": "BACKLOG-12",
+  "game": "reaktor-notfall",
+  "date": "2026-11-08",
+  "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+  "followup_commits": [],
+  "source_audit_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog12.test.js test/backlog12-client.test.js test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/hub.test.js test/game-design.test.js",
+      "passed": 94,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog12-node-focused.log",
+      "note": "17 neue Regel-, Privatsicht- und Simulationsfälle plus 2 Clientfälle: 60 Botpartien Schatzgräber, 80 Botpartien Brückenroulette, 700 erzeugte Reaktor-Aufgaben, 40 Botpartien Reaktor-Notfall."
+    },
+    {
+      "command": "playwright test test/ui/backlog12.spec.js --workers=1 (isolierter committeter Implementierungsstand, Desktop + Handy)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 128.99,
+      "report": "artifacts/backlog12-ui-isolated.json"
+    },
+    {
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolierter Worktree auf origin/main dc474bc plus Implementierungscommit und Nachweise)",
+      "tests": 1749,
+      "passed": 1746,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 234.166,
+      "log": "artifacts/backlog12-full-node.log",
+      "note": "Drei bestehende Restore-Shell-Fälle benötigen Bash und werden unter Windows übersprungen. --test-force-exit beendet nur nach Abschluss aller Tests offene Windows-Prozess-Handles. Ein früherer Lauf mit zwei Fehlern (Sicht-Roadmap-Zähler, mein Nachweistest) ist unter artifacts/backlog12-full-node-first.log getrennt erhalten."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-english-rules.png",
+      "sha256": "178a34e4069f095aae6564d918891b18e17268f32ed58c819805280f5d59ed9d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-1440x900.png",
+      "sha256": "0f593a4713872fbb5890cf21585ce9e7f3f3456896f3164e89c9aa9d4d82bd9b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-1920x1080.png",
+      "sha256": "63cd37610b98f6019a5ae728dd9493423fe5b61b26a7fd0e0a2383d5105b24cb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-360x800.png",
+      "sha256": "562d2a6522e72a78409e5da0b2d23257e33f9493f9812511cd8069b37fc46347"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-390x844.png",
+      "sha256": "77231b2196a208b2d1bd97d0aaf366eae88391455e1265b1bf7ad62fec22cdd6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-768x1024.png",
+      "sha256": "dd15c957011c620e21a40411f2df8a128209f2ca67b9fc0c09a25600bb82357e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-900x450.png",
+      "sha256": "6fb7679e9738280bb8a75027b17a320184a896d195e09931a2f9fccb808c0a74"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-lobby.png",
+      "sha256": "c94fc84018152c84921edb21ebbb67bc932d73cf3c543772a661eb3a48d90f51"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-paused.png",
+      "sha256": "20ea2b44593b3792a413140fa9d1b33af02e73681fd6b23aa33af5c259e7a43b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-penalty.png",
+      "sha256": "790f3cdf1fc7e3a3dd5071a9bdfe8c821edf5ef4b6db2f7fe9aeef4e60434532"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-playing.png",
+      "sha256": "ec31fd30af2900aa00a8556a105b5d78ebdc40aec526e5fafeb25d9a21622216"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-reconnect.png",
+      "sha256": "20ea2b44593b3792a413140fa9d1b33af02e73681fd6b23aa33af5c259e7a43b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-result.png",
+      "sha256": "230802914ed318ed44aabbbd58923c35dcf441eccab33386d106cc8b0eb810d6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-reveal.png",
+      "sha256": "1102ee475b823af4710add4ee79c705fc6050469e29fa341ce39f8fb95755395"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-spectator.png",
+      "sha256": "7ac2350bff21f55b07b84017e7fc3648b029f5b28a13921e889aa42b629a095c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-english-rules.png",
+      "sha256": "fa710caa2fdec7c4ec443065ee89028dca3be6ae9d50963b124221dcbef8fc6b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-layout-360x800.png",
+      "sha256": "295bd8166158fb506e4fd4fe94194768804795b9d355ab12892b81d9e86393ec"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-layout-390x844.png",
+      "sha256": "de3c9e88ce5edca902f10beed368bbb1665961c71b6493e1c24849f57f4e2a3b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-lobby.png",
+      "sha256": "76f0d13e6caa4d2eeeac12ade0f3a7040c80f5e56093d42d4786749f5ffa4bae"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-paused.png",
+      "sha256": "de3c9e88ce5edca902f10beed368bbb1665961c71b6493e1c24849f57f4e2a3b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-penalty.png",
+      "sha256": "374bbd374d0100604cb951fcca203e3e9b79b6059c5f036d50d33adec512af69"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-playing.png",
+      "sha256": "fbaa9f3f35ae69b88c9c8d64cb7b3ad4aa78512758dd4284fba607302d1f5878"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-reconnect.png",
+      "sha256": "de3c9e88ce5edca902f10beed368bbb1665961c71b6493e1c24849f57f4e2a3b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-result.png",
+      "sha256": "842f826ad8a806ef9b39ebbae25e320b4effce5cab2a7c4269a785e080bd1477"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-reveal.png",
+      "sha256": "89a9b15ec30133bfa194eee32df9527eeacd3de3ccb59c4e42eadfa64701e7e2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-spectator.png",
+      "sha256": "85c6333753f4e879131f5d4e3b77e0e0d4df5168396d4ae9f14bd5dd0509e48a"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/reaktor-notfall/index.js",
+      "sha256": "fbe8ce2cdd0e6fcb3452679149f3d46cce93165536381c1535b4b79a38866cdd"
+    },
+    {
+      "path": "games/reaktor-notfall/logic.js",
+      "sha256": "5b80fd0bef67b22c36e90df93715c1d8319e1bd99f9c3dbb5fdb1ae6929dbb6e"
+    },
+    {
+      "path": "games/reaktor-notfall/room.js",
+      "sha256": "59b36e9e7d0561e46b80d081ec5c1ec545423820bd29d3c72fc62bbfc310e7bb"
+    },
+    {
+      "path": "games/reaktor-notfall/rules.js",
+      "sha256": "f18a3d4a6d89ac3c451940c3fe8210b5b720fd1ab759886211bd59aee1e7c632"
+    },
+    {
+      "path": "public/games/reaktor-notfall/reaktor-notfall.js",
+      "sha256": "49b60f21ce8fe5412be66140e4dff56fbaab1f423a44ae557a67b8672751e3c1"
+    },
+    {
+      "path": "public/games/reaktor-notfall/reaktor-notfall.css",
+      "sha256": "954d425f630afa237e3c1b26d2c701342f265526890865d3e68d4a4738eece91"
+    },
+    {
+      "path": "games/party-room.js",
+      "sha256": "654efd2515f38d8a03776be4591aabe846d95cd9d932617dff5eb23ea0c5ae94"
+    },
+    {
+      "path": "public/games/party-kit.js",
+      "sha256": "cf11732460737d7afe88a494775e1152d8d1cab437ffde90495007a9eb76db02"
+    },
+    {
+      "path": "public/games/party-kit.css",
+      "sha256": "019937bd380563209e10d04e5620a79a61669697363a4b89b8f3da38f6a6e7b5"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "Nur die drei freigegebenen Spiele Schatzgräber, Brückenroulette und Reaktor-Notfall. Keine V2-Arbeit, kein Produktivdeployment."
+}

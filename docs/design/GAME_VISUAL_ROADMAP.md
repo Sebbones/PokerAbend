@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 2026-11-08: 104 spielbare Spiele, 3 noch nicht implementierte Spiele, 107 VIS-Pakete: 104 done, 3 planned.** BACKLOG-11 ergänzt ausschließlich Turmbauer (VIS-091), Geschenkdiebe (VIS-092) und Fallenbauer (VIS-093). [Abschlussbericht](../backlog/BACKLOG-11.md). Die übrigen drei Spiele bleiben geplant.
+**Stand 2026-11-08: 107 spielbare Spiele, 0 noch nicht implementierte Spiele, 107 VIS-Pakete: 107 done, 0 planned.** BACKLOG-12 ergänzt ausschließlich Schatzgräber (VIS-076), Brückenroulette (VIS-083) und Reaktor-Notfall (VIS-094). [Abschlussbericht](../backlog/BACKLOG-12.md). Frühere Pakete: BACKLOG-11 mit Turmbauer (VIS-091), Geschenkdiebe (VIS-092) und Fallenbauer (VIS-093).
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -2216,28 +2216,28 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-076 – Schatzgräber
 
 - **Spiel-ID/Kategorie:** `schatzgraeber` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 14–21 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 14–21 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/schatzgraeber/schatzgraeber.js, public/games/schatzgraeber/schatzgraeber.css
+- **Gemeinsame Komponenten:** games/workshop-room.js, games/expedition-room.js, games/realtime-room.js, public/games/realtime-kit.js, public/games/workshop.css, public/game-design.js
+- **Aktueller Stand:** Eigene Grabungsstätte: 12 × 8 Erdschollen, aufgedeckte Felder mit Schatz-, Bomben- und Zahlenmarken (◆ und ● zusätzlich zur Farbe), Grabring, Benommen-Sterne, Touch-Stick und Graben-Knopf; DE/EN.
+- **Optische Verbesserungsziele:** Eigene Materialien und bestätigte Aktionen; sechs Größenprüfungen ohne horizontales Seitenüberlaufen.
 - **Stil:** Eigene freundliche Ausgrabungsarena.
 - **Hintergrund:** Statische Erd-/Fundstellenkulisse außerhalb echter Grabungszellen.
 - **Spielfeld:** Tatsächliche Grabungsfelder und freigegebene Funde.
 - **Figuren/Karten/Objekte:** Spaten, Fund und Gefahr als unterschiedliche Symbole.
 - **Status und Aktionen:** Graben, Fund, Stehlen und Ergebnis nur nach Gameplayfreigabe.
 - **Mobil:** Große Zielzellen, wichtigste Gegenstände nicht unter Touch-Pad.
-- **Technische Grenzen:** Verdeckte Schätze/Gefahren dürfen keine Bodentexturunterschiede auslösen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Keine Änderungen an Regeln/RNG anderer Spiele, keine 3D-Funktionen.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von schatzgraeber.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-12 implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Verdeckter Schatz und leeres Feld sehen vorher identisch aus.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-12, Commit `9ed8c09c2f921acc8d37f848dfb2672a7b62dde3`; Originalbilder und Prüfungen: games/schatzgraeber/evidence.json.
 
 <a id="vis-077"></a>
 ### VIS-077 – Minenlauf
@@ -2405,28 +2405,28 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-083 – Brückenroulette
 
 - **Spiel-ID/Kategorie:** `brueckenroulette` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 7–11 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 7–11 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/brueckenroulette/brueckenroulette.js, public/games/brueckenroulette/brueckenroulette.css
+- **Gemeinsame Komponenten:** games/party-room.js, public/games/party-kit.js, public/games/party-kit.css, public/game-design.js
+- **Aktueller Stand:** Eigene Brücke über dem Fluss: Planken als Buttons mit Namen und Form, Wahl privat bis zur Auflösung, gebrochene Planke mit Schraffur und Text zusätzlich zur Farbe; DE/EN.
+- **Optische Verbesserungsziele:** Eigene Materialien und bestätigte Aktionen; sechs Größenprüfungen ohne horizontales Seitenüberlaufen.
 - **Stil:** Eigene grafische Brücke mit eindeutig getrennten Planken.
 - **Hintergrund:** Ruhiger Fluss-/Abgrundrand ohne zusätzliche scheinbare Wege.
 - **Spielfeld:** Drei beziehungsweise freigegebene vier Planken unverfälscht.
 - **Figuren/Karten/Objekte:** Gleichartige Wahlplättchen, später klare Bruchmarkierung.
 - **Status und Aktionen:** Verdeckte Wahl, gemeinsame Aufdeckung und Punktverlust trennen.
 - **Mobil:** Große Plankenwahl unter oder neben einer kompakten Brücke.
-- **Technische Grenzen:** Keine Besetzungsanzahl oder Zufallsentscheidung vor Auflösung verraten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Keine Änderungen an Regeln/RNG anderer Spiele, keine 3D-Funktionen.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von brueckenroulette.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-12 implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Geheime Wahlen und gleichzeitige Bruchauflösung unterscheiden.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-12, Commit `9ed8c09c2f921acc8d37f848dfb2672a7b62dde3`; Originalbilder und Prüfungen: games/brueckenroulette/evidence.json.
 
 <a id="vis-084"></a>
 ### VIS-084 – Würfel-Auktion
@@ -2702,28 +2702,28 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-094 – Reaktor-Notfall
 
 - **Spiel-ID/Kategorie:** `reaktor-notfall` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 12–18 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 12–18 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/reaktor-notfall/reaktor-notfall.js, public/games/reaktor-notfall/reaktor-notfall.css
+- **Gemeinsame Komponenten:** games/party-room.js, public/games/party-kit.js, public/games/party-kit.css, public/game-design.js
+- **Aktueller Stand:** Eigener Kontrollraum: Überhitzungsuhr, Reglerziffern A–D, private Hinweiskarten, öffentliche Codevorschläge und Auflösung mit allen Hinweisen; DE/EN.
+- **Optische Verbesserungsziele:** Eigene Materialien und bestätigte Aktionen; sechs Größenprüfungen ohne horizontales Seitenüberlaufen.
 - **Stil:** Eigener kooperativer Kontrollraum ohne reale Gefahrenanleitung.
 - **Hintergrund:** Ruhige abstrakte Technikpaneele.
 - **Spielfeld:** Aktuelles Rätsel und gemeinsame öffentliche Stabilität im Fokus.
 - **Figuren/Karten/Objekte:** Eigene Hinweis-/Schaltkarten, Symbole zusätzlich zu Warnfarben.
 - **Status und Aktionen:** Hinweis, Entscheidung und bestätigter gemeinsamer Fortschritt trennen.
 - **Mobil:** Aufgaben nacheinander statt winziger Kontrollpanelmatrix.
-- **Technische Grenzen:** Keine neue Rätsellösung oder geheime Hinweise in Dekoration verraten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Keine Änderungen an Regeln/RNG anderer Spiele, keine 3D-Funktionen.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von reaktor-notfall.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-12 implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Gruppenfortschritt und private Hinweise nur gemäß Spielzustand.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-12, Commit `9ed8c09c2f921acc8d37f848dfb2672a7b62dde3`; Originalbilder und Prüfungen: games/reaktor-notfall/evidence.json.
 
 <a id="vis-095"></a>
 ### VIS-095 – Bomben-Duell

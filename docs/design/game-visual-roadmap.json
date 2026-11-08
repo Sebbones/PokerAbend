@@ -26,11 +26,11 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 104,
-    "not_implemented_count": 3,
-    "completed_visual_count": 104,
+    "playable_count": 107,
+    "not_implemented_count": 0,
+    "completed_visual_count": 107,
     "open_playable_visual_count": 0,
-    "planned_visual_count": 3,
+    "planned_visual_count": 0,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -136,13 +136,12 @@
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
-      "match-3"
-    ],
-    "not_implemented_game_ids": [
+      "match-3",
       "schatzgraeber",
       "brueckenroulette",
       "reaktor-notfall"
     ],
+    "not_implemented_game_ids": [],
     "completed_visual_game_ids": [
       "scotland-yard",
       "poker",
@@ -247,7 +246,10 @@
       "block-puzzle",
       "solitaire",
       "mahjong-solitaire",
-      "match-3"
+      "match-3",
+      "schatzgraeber",
+      "brueckenroulette",
+      "reaktor-notfall"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -396,11 +398,7 @@
   ],
   "effort_order": [],
   "suggested_development_order": [],
-  "future_concepts_order": [
-    "VIS-083",
-    "VIS-094",
-    "VIS-076"
-  ],
+  "future_concepts_order": [],
   "public_roadmap_section_id": "neue-spielwelten",
   "verification": {
     "initial_pilot_and_planning": {
@@ -1343,7 +1341,7 @@
         },
         {
           "path": "public/i18n-en.js",
-          "sha256": "597078cef76db0b48b31d6d92ec900c878f0db89a415cfb875d15f280ac4ac3b"
+          "sha256": "d3cdbd36f1b04dfffff14425ad50a9fa4291f6c9ef618b537fb79fbf8b69aab8"
         }
       ],
       "current_design": "Geprüftes gemeinsames Kartensystem mit fünf eigenen Themen: Modern Card Table, Dual World, Extreme Edition, Wild Card Universe und Haunted Investigation; echte Spuknacht-Variante mit unveränderter Classic-Engine.",
@@ -10845,7 +10843,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -10999,7 +10997,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       }
     },
@@ -11840,7 +11838,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -11992,7 +11990,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       }
     },
@@ -12369,7 +12367,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -12523,7 +12521,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       }
     },
@@ -12578,7 +12576,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -12730,7 +12728,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       }
     },
@@ -12901,24 +12899,67 @@
       "game_name": "Schatzgräber",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/schatzgraeber/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich abgegrenzten BACKLOG-12."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/schatzgraeber/schatzgraeber.js",
+        "public/games/schatzgraeber/schatzgraeber.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "games/workshop-room.js",
+        "games/expedition-room.js",
+        "games/realtime-room.js",
+        "public/games/realtime-kit.js",
+        "public/games/workshop.css",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/schatzgraeber/schatzgraeber.js",
+          "sha256": "812b2313091be79351966381251dd0f0942f69b29ce41167f08866d8f157d74a"
+        },
+        {
+          "path": "public/games/schatzgraeber/schatzgraeber.css",
+          "sha256": "cfdaa4399f3229dcd110923774ddc2ccd0e9d37938dcabc0032c045c9363b2de"
+        },
+        {
+          "path": "games/workshop-room.js",
+          "sha256": "54ca905f3c99e31b2232970e7b14a08a33b7a6375ca4daa573c01f857063b07d"
+        },
+        {
+          "path": "games/expedition-room.js",
+          "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+        },
+        {
+          "path": "games/realtime-room.js",
+          "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/games/workshop.css",
+          "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+        }
+      ],
+      "current_design": "Eigene Grabungsstätte: 12 × 8 Erdschollen, aufgedeckte Felder mit Schatz-, Bomben- und Zahlenmarken (◆ und ● zusätzlich zur Farbe), Grabring, Benommen-Sterne, Touch-Stick und Graben-Knopf; DE/EN.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Touch-Handyabläufe mit drei Browser-Kontexten (Spieler, Gast, Zuschauer), Pause/Reload, privaten Sichten und Layoutgrößen.",
       "gameplay_summary": "Alle graben gleichzeitig in der Arena nach Schätzen – und weichen den Bomben aus.",
       "planned_style": "Eigene freundliche Ausgrabungsarena.",
       "background_concept": "Statische Erd-/Fundstellenkulisse außerhalb echter Grabungszellen.",
@@ -12948,8 +12989,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Tatsächliche Grabungsfelder und freigegebene Funde. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-12 authorization completed.",
       "acceptance_criteria": [
         "Verdeckter Schatz und leeres Feld sehen vorher identisch aus."
       ],
@@ -12970,15 +13011,68 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "schatzgraeber",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-paused.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-playing.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-result.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-paused.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-playing.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-result.png",
+        "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog12.test.js test/backlog12-client.test.js test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/hub.test.js test/game-design.test.js",
+          "passed": 94,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog12-node-focused.log",
+          "note": "17 neue Regel-, Privatsicht- und Simulationsfälle plus 2 Clientfälle: 60 Botpartien Schatzgräber, 80 Botpartien Brückenroulette, 700 erzeugte Reaktor-Aufgaben, 40 Botpartien Reaktor-Notfall."
+        },
+        {
+          "command": "playwright test test/ui/backlog12.spec.js --workers=1 (isolierter committeter Implementierungsstand, Desktop + Handy)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 128.99,
+          "report": "artifacts/backlog12-ui-isolated.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolierter Worktree auf origin/main dc474bc plus Implementierungscommit und Nachweise)",
+          "tests": 1749,
+          "passed": 1746,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 234.166,
+          "log": "artifacts/backlog12-full-node.log",
+          "note": "Drei bestehende Restore-Shell-Fälle benötigen Bash und werden unter Windows übersprungen. --test-force-exit beendet nur nach Abschluss aller Tests offene Windows-Prozess-Handles. Ein früherer Lauf mit zwei Fehlern (Sicht-Roadmap-Zähler, mein Nachweistest) ist unter artifacts/backlog12-full-node-first.log getrennt erhalten."
+        }
+      ],
+      "commits": [
+        "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3"
+      ],
+      "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3"
     },
     {
       "id": "VIS-077",
@@ -14000,24 +14094,57 @@
       "game_name": "Brückenroulette",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/brueckenroulette/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich abgegrenzten BACKLOG-12."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/brueckenroulette/brueckenroulette.js",
+        "public/games/brueckenroulette/brueckenroulette.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "games/party-room.js",
+        "public/games/party-kit.js",
+        "public/games/party-kit.css",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/brueckenroulette/brueckenroulette.js",
+          "sha256": "92febe6e23a348d8b34364094502bc2114a32d6051f13b23ba198e0ab45bc41a"
+        },
+        {
+          "path": "public/games/brueckenroulette/brueckenroulette.css",
+          "sha256": "192c62bc8d534def461402357a6b419825030fdaeb4a7da7ce265bdcb85407ed"
+        },
+        {
+          "path": "games/party-room.js",
+          "sha256": "654efd2515f38d8a03776be4591aabe846d95cd9d932617dff5eb23ea0c5ae94"
+        },
+        {
+          "path": "public/games/party-kit.js",
+          "sha256": "cf11732460737d7afe88a494775e1152d8d1cab437ffde90495007a9eb76db02"
+        },
+        {
+          "path": "public/games/party-kit.css",
+          "sha256": "019937bd380563209e10d04e5620a79a61669697363a4b89b8f3da38f6a6e7b5"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+        }
+      ],
+      "current_design": "Eigene Brücke über dem Fluss: Planken als Buttons mit Namen und Form, Wahl privat bis zur Auflösung, gebrochene Planke mit Schraffur und Text zusätzlich zur Farbe; DE/EN.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Touch-Handyabläufe mit drei Browser-Kontexten (Spieler, Gast, Zuschauer), Pause/Reload, privaten Sichten und Layoutgrößen.",
       "gameplay_summary": "Alle wählen gleichzeitig eine Planke – die vollste bricht.",
       "planned_style": "Eigene grafische Brücke mit eindeutig getrennten Planken.",
       "background_concept": "Ruhiger Fluss-/Abgrundrand ohne zusätzliche scheinbare Wege.",
@@ -14047,8 +14174,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Drei beziehungsweise freigegebene vier Planken unverfälscht. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-12 authorization completed.",
       "acceptance_criteria": [
         "Geheime Wahlen und gleichzeitige Bruchauflösung unterscheiden."
       ],
@@ -14069,15 +14196,72 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "brueckenroulette",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-chosen.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-paused.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-playing.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-result.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-reveal.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-chosen.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-paused.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-playing.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-result.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-reveal.png",
+        "docs/backlog/screenshots/backlog12/brueckenroulette/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog12.test.js test/backlog12-client.test.js test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/hub.test.js test/game-design.test.js",
+          "passed": 94,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog12-node-focused.log",
+          "note": "17 neue Regel-, Privatsicht- und Simulationsfälle plus 2 Clientfälle: 60 Botpartien Schatzgräber, 80 Botpartien Brückenroulette, 700 erzeugte Reaktor-Aufgaben, 40 Botpartien Reaktor-Notfall."
+        },
+        {
+          "command": "playwright test test/ui/backlog12.spec.js --workers=1 (isolierter committeter Implementierungsstand, Desktop + Handy)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 128.99,
+          "report": "artifacts/backlog12-ui-isolated.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolierter Worktree auf origin/main dc474bc plus Implementierungscommit und Nachweise)",
+          "tests": 1749,
+          "passed": 1746,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 234.166,
+          "log": "artifacts/backlog12-full-node.log",
+          "note": "Drei bestehende Restore-Shell-Fälle benötigen Bash und werden unter Windows übersprungen. --test-force-exit beendet nur nach Abschluss aller Tests offene Windows-Prozess-Handles. Ein früherer Lauf mit zwei Fehlern (Sicht-Roadmap-Zähler, mein Nachweistest) ist unter artifacts/backlog12-full-node-first.log getrennt erhalten."
+        }
+      ],
+      "commits": [
+        "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3"
+      ],
+      "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3"
     },
     {
       "id": "VIS-084",
@@ -15096,7 +15280,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
@@ -15303,7 +15487,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
@@ -15510,7 +15694,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
@@ -15676,24 +15860,57 @@
       "game_name": "Reaktor-Notfall",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/reaktor-notfall/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich abgegrenzten BACKLOG-12."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/reaktor-notfall/reaktor-notfall.js",
+        "public/games/reaktor-notfall/reaktor-notfall.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "games/party-room.js",
+        "public/games/party-kit.js",
+        "public/games/party-kit.css",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/reaktor-notfall/reaktor-notfall.js",
+          "sha256": "49b60f21ce8fe5412be66140e4dff56fbaab1f423a44ae557a67b8672751e3c1"
+        },
+        {
+          "path": "public/games/reaktor-notfall/reaktor-notfall.css",
+          "sha256": "954d425f630afa237e3c1b26d2c701342f265526890865d3e68d4a4738eece91"
+        },
+        {
+          "path": "games/party-room.js",
+          "sha256": "654efd2515f38d8a03776be4591aabe846d95cd9d932617dff5eb23ea0c5ae94"
+        },
+        {
+          "path": "public/games/party-kit.js",
+          "sha256": "cf11732460737d7afe88a494775e1152d8d1cab437ffde90495007a9eb76db02"
+        },
+        {
+          "path": "public/games/party-kit.css",
+          "sha256": "019937bd380563209e10d04e5620a79a61669697363a4b89b8f3da38f6a6e7b5"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+        }
+      ],
+      "current_design": "Eigener Kontrollraum: Überhitzungsuhr, Reglerziffern A–D, private Hinweiskarten, öffentliche Codevorschläge und Auflösung mit allen Hinweisen; DE/EN.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Touch-Handyabläufe mit drei Browser-Kontexten (Spieler, Gast, Zuschauer), Pause/Reload, privaten Sichten und Layoutgrößen.",
       "gameplay_summary": "Gemeinsam Rätsel lösen, bevor eine fiktive Anlage überhitzt.",
       "planned_style": "Eigener kooperativer Kontrollraum ohne reale Gefahrenanleitung.",
       "background_concept": "Ruhige abstrakte Technikpaneele.",
@@ -15723,8 +15940,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Aktuelles Rätsel und gemeinsame öffentliche Stabilität im Fokus. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-12 authorization completed.",
       "acceptance_criteria": [
         "Gruppenfortschritt und private Hinweise nur gemäß Spielzustand."
       ],
@@ -15745,15 +15962,72 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "reaktor-notfall",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-paused.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-penalty.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-playing.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-result.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-reveal.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-paused.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-penalty.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-playing.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-result.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-reveal.png",
+        "docs/backlog/screenshots/backlog12/reaktor-notfall/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog12.test.js test/backlog12-client.test.js test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/hub.test.js test/game-design.test.js",
+          "passed": 94,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog12-node-focused.log",
+          "note": "17 neue Regel-, Privatsicht- und Simulationsfälle plus 2 Clientfälle: 60 Botpartien Schatzgräber, 80 Botpartien Brückenroulette, 700 erzeugte Reaktor-Aufgaben, 40 Botpartien Reaktor-Notfall."
+        },
+        {
+          "command": "playwright test test/ui/backlog12.spec.js --workers=1 (isolierter committeter Implementierungsstand, Desktop + Handy)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 128.99,
+          "report": "artifacts/backlog12-ui-isolated.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolierter Worktree auf origin/main dc474bc plus Implementierungscommit und Nachweise)",
+          "tests": 1749,
+          "passed": 1746,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 234.166,
+          "log": "artifacts/backlog12-full-node.log",
+          "note": "Drei bestehende Restore-Shell-Fälle benötigen Bash und werden unter Windows übersprungen. --test-force-exit beendet nur nach Abschluss aller Tests offene Windows-Prozess-Handles. Ein früherer Lauf mit zwei Fehlern (Sicht-Roadmap-Zähler, mein Nachweistest) ist unter artifacts/backlog12-full-node-first.log getrennt erhalten."
+        }
+      ],
+      "commits": [
+        "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3"
+      ],
+      "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3"
     },
     {
       "id": "VIS-095",
@@ -17531,6 +17805,16 @@
       ],
       "implementation_commit": "ff5db5c28c9f81fab9911b0fb08a1226eb37d71b",
       "note": "Alle after_gameplay-Pakete spielbarer Spiele (13); jedes Spiel mit eigenem Commit (siehe commits je Paket)."
+    },
+    {
+      "id": "backlog-12",
+      "implemented": [
+        "VIS-076",
+        "VIS-083",
+        "VIS-094"
+      ],
+      "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+      "note": "Schatzgräber, Brückenroulette und Reaktor-Notfall mit ihren Spielen im ausdrücklich freigegebenen BACKLOG-12; jedes Paket mit eigenen Bildnachweisen."
     }
   ]
 }

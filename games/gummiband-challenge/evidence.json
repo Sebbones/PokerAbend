@@ -212,7 +212,7 @@
     },
     {
       "path": "public/game-design.js",
-      "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+      "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
     }
   ],
   "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
@@ -221,7 +221,7 @@
     "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
     "record": {
       "path": "public/game-design.js",
-      "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+      "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
     }
   }
 }

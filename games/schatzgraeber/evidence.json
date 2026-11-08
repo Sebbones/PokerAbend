@@ -1,0 +1,178 @@
+{
+  "package_id": "BACKLOG-12",
+  "game": "schatzgraeber",
+  "date": "2026-11-08",
+  "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+  "followup_commits": [],
+  "source_audit_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog12.test.js test/backlog12-client.test.js test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/hub.test.js test/game-design.test.js",
+      "passed": 94,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog12-node-focused.log",
+      "note": "17 neue Regel-, Privatsicht- und Simulationsfälle plus 2 Clientfälle: 60 Botpartien Schatzgräber, 80 Botpartien Brückenroulette, 700 erzeugte Reaktor-Aufgaben, 40 Botpartien Reaktor-Notfall."
+    },
+    {
+      "command": "playwright test test/ui/backlog12.spec.js --workers=1 (isolierter committeter Implementierungsstand, Desktop + Handy)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 128.99,
+      "report": "artifacts/backlog12-ui-isolated.json"
+    },
+    {
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolierter Worktree auf origin/main dc474bc plus Implementierungscommit und Nachweise)",
+      "tests": 1749,
+      "passed": 1746,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 234.166,
+      "log": "artifacts/backlog12-full-node.log",
+      "note": "Drei bestehende Restore-Shell-Fälle benötigen Bash und werden unter Windows übersprungen. --test-force-exit beendet nur nach Abschluss aller Tests offene Windows-Prozess-Handles. Ein früherer Lauf mit zwei Fehlern (Sicht-Roadmap-Zähler, mein Nachweistest) ist unter artifacts/backlog12-full-node-first.log getrennt erhalten."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-english-rules.png",
+      "sha256": "8b9485d30b2f700220822303341b12e41a32b3a7ec732536171ff2231aec4e6f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-1440x900.png",
+      "sha256": "7b931e1a173718bc8606505a64d2a03923b54932684505e96f2429fa8aaf5a08"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-1920x1080.png",
+      "sha256": "f68d106b5cf96bd06b246d0adda432560001957ac091824cecb4749730225298"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-360x800.png",
+      "sha256": "e60712ee8f0d6ec9c01633f70a91f3272feb66dda7d920695886fa69e5f46a90"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-390x844.png",
+      "sha256": "675b42d77e1c632b43f34653beb320f29d4399a3f5d3b9d874e748fe8386e857"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-768x1024.png",
+      "sha256": "6fc42859600ee78e6a962b8d037c0450104b02751651177b4a204ab721c89add"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-layout-900x450.png",
+      "sha256": "a2a934d57a2a9bd73dc6ac39ae84354287ba0785987606828d7436cf4861e2b8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-lobby.png",
+      "sha256": "b7ae64a99729e6286d9f271c495a68f2fc015a910d3e087e2724f1653116e7e8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-paused.png",
+      "sha256": "7b931e1a173718bc8606505a64d2a03923b54932684505e96f2429fa8aaf5a08"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-playing.png",
+      "sha256": "09f52a3bbaa78417713c239acd2992e3eda92d9395571c22a67bd10bcc8ed691"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-reconnect.png",
+      "sha256": "7b931e1a173718bc8606505a64d2a03923b54932684505e96f2429fa8aaf5a08"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-result.png",
+      "sha256": "85a915d58a795c659899221ce07f2e12ce21e456aa134c2f01b89f42d51b10ea"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/desktop-spectator.png",
+      "sha256": "a7dbdcd056a60a2880d78ad37198a99867e3bb6004461dec15dea10c9386cbbc"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-english-rules.png",
+      "sha256": "ece5e21999549393c496758ca77b92e9ee18cc1a0a30894d53169179c893b058"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-layout-360x800.png",
+      "sha256": "bc3a20bf77b045dabef183f38e09930fa01648f742a88af2cdda0ac79cd8e386"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-layout-390x844.png",
+      "sha256": "0f56ce848f991291e7a9ae3fd4c1fbaf67ed3c6a1a46f9ef9e31e87f4a168e2e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-lobby.png",
+      "sha256": "8a81ff219f96b8ced26ad50f702ec08ac428488e99a6b021586285618ea58919"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-paused.png",
+      "sha256": "68189737192f553c59deeda5c4b24a7dce3e84e76a49ab4f7c28cb0e3da584f5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-playing.png",
+      "sha256": "3111cf9d9146a8c8036f82eb059b8af02235b2b192ec0b1033b1add839edf8bd"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-reconnect.png",
+      "sha256": "0f56ce848f991291e7a9ae3fd4c1fbaf67ed3c6a1a46f9ef9e31e87f4a168e2e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-result.png",
+      "sha256": "aa150586af3e00849cb8bce01e1b46e9dfddebff889035d2076ee5592b805130"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog12/schatzgraeber/mobil-spectator.png",
+      "sha256": "d694f8ef9508c8e0d43e3fc03d78fb2bac5bd6c9ee70c4fea41aec436a8fc98b"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/schatzgraeber/index.js",
+      "sha256": "a57dd1a5474074a942c9f3e2659a7a67e6ac67fdd2a55c361e76d17ad9ce3fb9"
+    },
+    {
+      "path": "games/schatzgraeber/logic.js",
+      "sha256": "85d95c1d290b2706404438b87ad6213f45ec5525368c35f2a3e04ff2bab2263c"
+    },
+    {
+      "path": "games/schatzgraeber/room.js",
+      "sha256": "7984b7c1f7c08abe00c49b25910272ffbe84a1bf3687f5b7e4a1d1449a3ec7c9"
+    },
+    {
+      "path": "games/schatzgraeber/rules.js",
+      "sha256": "4566237c3eb526e7319d0a70e4bc98bd61332a56deef60a1fd293ef969007bcb"
+    },
+    {
+      "path": "public/games/schatzgraeber/schatzgraeber.js",
+      "sha256": "812b2313091be79351966381251dd0f0942f69b29ce41167f08866d8f157d74a"
+    },
+    {
+      "path": "public/games/schatzgraeber/schatzgraeber.css",
+      "sha256": "cfdaa4399f3229dcd110923774ddc2ccd0e9d37938dcabc0032c045c9363b2de"
+    },
+    {
+      "path": "games/workshop-room.js",
+      "sha256": "54ca905f3c99e31b2232970e7b14a08a33b7a6375ca4daa573c01f857063b07d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/games/workshop.css",
+      "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "Nur die drei freigegebenen Spiele Schatzgräber, Brückenroulette und Reaktor-Notfall. Keine V2-Arbeit, kein Produktivdeployment."
+}
