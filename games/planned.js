@@ -28,10 +28,6 @@ export const PLANNED = [
 
 
 
-  spiel({ id: 'kistenchaos', name: 'Kistenchaos', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: "Kisten in Echtzeit verschieben und trotz des Gedränges das eigene Ziel erreichen.",
-    rules: ["Alle bewegen sich gleichzeitig auf einem Feld voller verschiebbarer Kisten.","Kisten müssen zu passenden Zielen geschoben werden und dürfen andere Wege versperren.","Eine feste Spielzeit entscheidet; die meisten richtig platzierten Kisten gewinnen."], art: glyph('puzzle'),
-  }),
   funktion({ id: 'survival-abend', name: 'Survival-Abend', paeckchen: 'spaeter', beschreibung: 'Ein Party-Programm auf Basis von Päckchen 7: Wer eine Runde verliert, verliert ein Leben; am Ende gewinnt, wer übrig bleibt.' }),
   funktion({ id: 'chaos-modus', name: 'Chaos-Modus', paeckchen: 'spaeter', beschreibung: 'Zufällig gewählte Zusatzregeln verändern jede Partie; alle sehen die aktiven Regeln vor dem Start.' }),
 
@@ -39,43 +35,6 @@ export const PLANNED = [
   // ---------- Später ----------
 
 
-  spiel({
-    id: 'gummiband-challenge', name: 'Gummiband-Challenge', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Ein Gummiband möglichst lange in der Zielzone halten.',
-    rules: [
-      'Alle spielen gleichzeitig solo, die Zielzone verändert sich für alle gleich (gleicher Seed).',
-      'Man dehnt das Gummiband per Tipp oder Druck und muss die Spannung in der Zone halten.',
-      'Außerhalb der Zone gibt es keine Punkte; reißt das Band (zu stark), ist der Durchgang vorbei.',
-      'Der Server prüft die Eingaben, wer die meiste Zeit in der Zone war, gewinnt.',
-    ],
-    houseRules: ['Zone wird kleiner', 'Mehrere Durchgänge'],
-    art: glyph('rope', '#C99A45'),
-  }),
-  spiel({
-    id: 'puzzle-panik', name: 'Puzzle-Panik', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Ein Schiebepuzzle so schnell wie möglich lösen.',
-    rules: [
-      'Alle bekommen dasselbe verwürfelte Schiebepuzzle (gleicher Seed).',
-      'Man verschiebt Teile in die Lücke, bis das Bild oder die Zahlenreihe stimmt.',
-      'Gewonnen hat, wer zuerst fertig ist; nicht Fertige werden nach Fortschritt gewertet.',
-      'Der Server prüft die Zugfolge.',
-    ],
-    houseRules: ['Größeres Puzzle', 'Strafsekunden pro unnötigem Zug'],
-    art: glyph('puzzle', '#1F57C3'),
-  }),
-  spiel({
-    id: 'wortjagd', name: 'Wortjagd', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'In einem Buchstabenfeld so viele Wörter wie möglich finden.',
-    rules: [
-      'Alle sehen dasselbe 4×4-Buchstabenfeld (gleicher Seed) und haben 60 Sekunden Zeit.',
-      'Wörter entstehen aus Buchstaben, die waagerecht, senkrecht oder diagonal nebeneinanderliegen; kein Feld doppelt.',
-      'Wörter ab drei Buchstaben zählen, längere Wörter geben mehr Punkte.',
-      'Wörter, die mehrere Spieler gefunden haben, zählen für niemanden.',
-      'Der Server prüft die Wörter mit einer Wortliste.',
-    ],
-    houseRules: ['Auch doppelt gefundene Wörter zählen', '5×5-Feld', 'Mindestlänge 4'],
-    art: glyph('letters', '#7A5238'),
-  }),
   spiel({
     id: 'schatzgraeber', name: 'Schatzgräber', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
     description: 'Alle graben gleichzeitig in der Arena nach Schätzen – und weichen den Bomben aus.',

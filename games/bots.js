@@ -551,3 +551,6 @@ Object.assign(BOTS,Object.fromEntries(['geschenkfaenger','rhythmus-rausch','stil
 
 // BACKLOG-09
 Object.assign(BOTS,Object.fromEntries(["schubsarena","scheinwerfer-flucht","minenlauf","labyrinth-chaos"].map(id=>[id,(room,p)=>room.botStep(p)])));
+
+// BACKLOG-10
+Object.assign(BOTS,Object.fromEntries(["puzzle-panik","wortjagd","kistenchaos","gummiband-challenge"].map(id=>[id,(room,p)=>room.botStep(p)])));

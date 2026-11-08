@@ -14,7 +14,7 @@ test('single player is a separate catalog; only registered multiplayer games pro
   assert.ok(!gameEvents().some((e)=>e.startsWith('singleplayer')));
   const planned=PLANNED.filter((p)=>p.paeckchen==='solo-zukunft');assert.equal(planned.length,0,'alle neun Solo-Pakete sind umgesetzt');
   for(const p of planned){assert.equal(p.status,'planned');assert.ok(!PLAYABLE_GAMES[p.id]);for(const k of ['features','dependencies','acceptance'])assert.ok(p[k].length);}
-  for(const id of ['puzzle-panik','wortjagd'])assert.ok(PLANNED.some((p)=>p.id===id));
+  for(const id of ['puzzle-panik','wortjagd']){assert.equal(typeof GAMES[id].create,'function');assert.ok(!PLANNED.some(p=>p.id===id));assert.ok(!singleplayerGameList().some(g=>g.id===id));}
   assert.equal(typeof GAMES.minenlauf.create,'function');assert.equal(GAMES.minenlauf.bauart,'B');
   assert.ok(!singleplayerGameList().some(g=>g.id==='minenlauf'));assert.equal(GAMES.minesweeper,undefined);
   const roadmap=resolvedRoadmap();assert.equal(roadmap.find((e)=>e.id==='einzelspieler-zukunft').punkte.length,9);

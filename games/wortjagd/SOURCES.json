@@ -1,0 +1,24 @@
+[
+  {
+    "language": "de",
+    "repository": "https://github.com/enz/german-wordlist",
+    "commit": "1071d87d9535b57b80ec076c699f2578a28ee9dc",
+    "source": "https://raw.githubusercontent.com/enz/german-wordlist/1071d87d9535b57b80ec076c699f2578a28ee9dc/words",
+    "license": "CC0-1.0",
+    "license_source": "https://raw.githubusercontent.com/enz/german-wordlist/1071d87d9535b57b80ec076c699f2578a28ee9dc/COPYING",
+    "count": 617532,
+    "sha256": "d221f9207d736f1567a45ba38cbcd47677d7f98db680eb7a5b401ba3573f1c7d",
+    "transformation": "NFC, uppercase, sharp s to SS, A-Z and German umlauts only, 3-16 letters, unique sorted"
+  },
+  {
+    "language": "en",
+    "repository": "https://github.com/dwyl/english-words",
+    "commit": "20f5cc9b3f0ccc8ce45d814c532b7c2031bba31c",
+    "source": "https://raw.githubusercontent.com/dwyl/english-words/20f5cc9b3f0ccc8ce45d814c532b7c2031bba31c/words_alpha.txt",
+    "license": "Unlicense",
+    "license_source": "https://raw.githubusercontent.com/dwyl/english-words/20f5cc9b3f0ccc8ce45d814c532b7c2031bba31c/LICENSE.md",
+    "count": 363794,
+    "sha256": "bed2003c68acf7cac866952e6adee178b26be89498b40fa60a0848ac9098cf16",
+    "transformation": "NFC, uppercase, sharp s to SS, A-Z and German umlauts only, 3-16 letters, unique sorted"
+  }
+]

@@ -721,3 +721,7 @@ Object.assign(window.EN_GAMES,{
     "description": "Changing walls and growing mazes: race to the exit across several courses."
   }
 });
+
+// BACKLOG-10
+Object.assign(window.EN_GAMES,{"puzzle-panik":{"name":"Puzzle Panic","description":"The same sliding puzzle for everyone: shift the tiles and finish first."},"wortjagd":{"name":"Word Hunt","description":"Find words in the shared letter field; words found by multiple players score for nobody."},"kistenchaos":{"name":"Crate Chaos","description":"Push crates around the shared arena onto the numbered goals of your colour."},"gummiband-challenge":{"name":"Rubber Band Challenge","description":"Keep tension inside the moving target zone without snapping your band."}});
+Object.assign(window.EN,{"Puzzlegröße":"Puzzle size","Wortsprache":"Dictionary language","5 × 5 Buchstaben":"5 × 5 letters","Doppelte Wörter zählen":"Count duplicate words","Mindestlänge vier":"Minimum length four","Zielzone wird kleiner":"Shrinking target zone","Wähle ein Teil neben der Lücke":"Choose a tile beside the blank","Wort nicht in der Liste oder nicht im Feld":"Word not in dictionary or not on board","Dieses Wort hast du schon":"You already found this word","Wortlimit erreicht":"Word limit reached","Ungültiges Wort":"Invalid word","Die Zeit ist abgelaufen":"Time is up","Bitte kurz warten":"Please wait briefly","Die höchste Punktzahl gewinnt.":"The highest score wins."});
