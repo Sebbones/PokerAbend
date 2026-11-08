@@ -188,6 +188,11 @@ Object.assign(GAMES, {
   monsterwuerfel: { bots: 1, settings: { turnTime: 0 }, scene: '.dg-health', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=monster-roll]'); await quiet(page); } },
   'wuerfel-auktion': { bots: 2, settings: { turnTime: 0 }, scene: '.pk-q', async act(page) { await answer(page, '3'); } },
 });
+// ---- after_gameplay: Skat und Doppelkopf (die übrigen Pakete haben eigene Specs: visual-solo, gebietskampf, staedtehandel) ----
+Object.assign(GAMES, {
+  skat: { bots: 2, settings: { turnTime: 0 }, scene: '.sk-world', async act(page) { await lastTurn(page); if (!(await tryClick(page, '[data-g=sk-pass]'))) await tryClick(page, '[data-g=sk-hold]'); await page.waitForTimeout(400); } },
+  doppelkopf: { bots: 3, settings: { turnTime: 0 }, scene: '.dk-world', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=dk-reserve][data-choice=healthy]'); await page.waitForTimeout(400); } },
+});
 const only = process.env.VIS_P1_ONLY ? process.env.VIS_P1_ONLY.split(',') : Object.keys(GAMES);
 
 test.use({ createLimit: '100' });

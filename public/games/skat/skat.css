@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 .kg-skat{--scene-accent:#e3c27a}
 .kg-skat #kg-main{background:radial-gradient(ellipse at top,#2c5a3f99,#16241d00)}
 .sk-world{max-width:1000px!important;margin:auto;gap:15px!important}
@@ -19,3 +20,9 @@
 .sk-flags{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:13px}.sk-flag{display:inline-flex;gap:6px;align-items:center;min-height:44px}.sk-pick{display:inline-flex;align-items:center;gap:8px;font-size:13px}.sk-pick select{min-height:44px;min-width:76px}
 @media(max-width:600px){.sk-felt{border-radius:34px;padding:14px 8px;min-height:150px;border-width:6px}.sk-trick{gap:9px}.sk-trick .kc{width:49px;height:70px}.sk-ledger li{min-width:130px;flex:1;padding:9px}.sk-hand{max-height:150px;padding:6px 2px;gap:5px}.sk-hand .kc{flex-basis:46px;width:46px;height:67px;font-size:20px}.sk-head h2{font-size:22px}.sk-bid b{font-size:40px}.kg-skat .kg-table{padding:12px}}
 @media(prefers-reduced-motion:reduce){.kg-skat *{transition:none!important;animation:none!important}}
+
+/* VIS-086: klassischer gehobener Dreierspieltisch mit Reiznotiz – Phase und Gebot/Spiel als Chips, Skat als abgesetzter verdeckter Stapel, eigene Hand groß */
+.sk-chips { justify-content: center; }
+.sk-world .sk-ledger li { border: 1px solid #e3c27a44; border-radius: 10px; }
+.sk-world .sk-ledger li.decl { border-color: #e3c27a; box-shadow: 0 0 0 2px #e3c27a33; }
+.sk-world button, .sk-hand button { min-height: 44px; }
