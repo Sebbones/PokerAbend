@@ -1,0 +1,5 @@
+export const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+export const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+export function moveBodies(bodies,input){for(const p of bodies){const v=input(p),norm=Math.hypot(v?.x||0,v?.y||0)||1;if(v&&(v.x||v.y))p.facing={x:v.x/norm,y:v.y/norm};p.x=clamp(p.x+(v?.x||0)/norm*190*.05,18,882);p.y=clamp(p.y+(v?.y||0)/norm*190*.05,18,582);}}
+export function steal(bodies,p,elapsed){if(elapsed<p.stealReady)return false;p.stealReady=elapsed+1100;const candidates=bodies.filter(q=>q!==p&&q.bag>0&&elapsed>=q.shieldUntil&&distance(q,p)<=65&&((q.x-p.x)*p.facing.x+(q.y-p.y)*p.facing.y)>=distance(q,p)*.2).sort((a,b)=>distance(a,p)-distance(b,p));const q=candidates[0];if(!q)return false;q.bag--;p.bag++;q.shieldUntil=elapsed+1400;return true;}
+export function collect(bodies,gifts,rng=Math.random){const left=[];for(const gift of gifts){const eligible=bodies.filter(p=>distance(p,gift)<=28).sort((a,b)=>distance(a,gift)-distance(b,gift));if(!eligible.length){left.push(gift);continue;}const d=distance(eligible[0],gift),ties=eligible.filter(p=>Math.abs(distance(p,gift)-d)<1e-8);ties[Math.floor(rng()*ties.length)].bag++;}return left;}

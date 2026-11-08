@@ -554,3 +554,6 @@ Object.assign(BOTS,Object.fromEntries(["schubsarena","scheinwerfer-flucht","mine
 
 // BACKLOG-10
 Object.assign(BOTS,Object.fromEntries(["puzzle-panik","wortjagd","kistenchaos","gummiband-challenge"].map(id=>[id,(room,p)=>room.botStep(p)])));
+
+// BACKLOG-11
+Object.assign(BOTS,Object.fromEntries(["turmbauer","fallenbauer","geschenkdiebe"].map(id=>[id,(room,p)=>room.botStep(p)])));

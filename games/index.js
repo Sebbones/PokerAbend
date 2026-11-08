@@ -1,3 +1,6 @@
+import geschenkdiebe from './geschenkdiebe/index.js';
+import fallenbauer from './fallenbauer/index.js';
+import turmbauer from './turmbauer/index.js';
 import gummibandChallenge from './gummiband-challenge/index.js';
 import kistenchaos from './kistenchaos/index.js';
 import wortjagd from './wortjagd/index.js';
@@ -94,7 +97,7 @@ import doppelkopf from './doppelkopf/index.js';
 import gebietskampf from './gebietskampf/index.js';
 import staedtehandel from './staedtehandel/index.js';
 
-export const GAMES = Object.fromEntries([poker, maumau, farbenchaos, maexchen, schocken, huetchen, zehnetappen, stapelrennen, schwimmen, blackjack, kniffel, schiffe, viergewinnt, shutthebox, zehntausend, muehle, schaetzmeister, schlagfertig, werhatdasgesagt, mogeln, praesident, durak, omaha, wuerfelpoker, luegenwuerfel, chicago, reversi, dame, domino, zahlenzoo, gedaechtnisKueche, pfeilfieber, sortierstation, tickendesPaket, werwolf, werBinIch, kritzelpost, bildunterschrift, malenRaten, broeckelboden, kronenjagd, laserHuepfer, sechsNimmt, monopolyDeal, monopoly, spielDesLebens, scotlandYard, hex, wuerfelduell, risikoWuerfeln, storyChaos, zahlenreihe, wuerfeljagd, monsterwuerfel, wuerfelAuktion, backgammon, hearts, fiveCardDraw, scrabble, omahaHiLo, shortDeck, sevenCardStud, schach, explodingDeck, doppelagent, luegenbaron, skat, doppelkopf, gebietskampf, staedtehandel, stichmeister, labyrinthBrett, schatzinsel, jaegerSchatten, infektionsjagd, letzterSchutzplatz, regelwahnsinn, geschenkfaenger, rhythmusRausch, stillgestanden, bombenDuell, schubsarena, scheinwerferFlucht, minenlauf, labyrinthChaos, puzzlePanik, wortjagd, kistenchaos, gummibandChallenge].map((g) => [g.id, g]));
+export const GAMES = Object.fromEntries([poker, maumau, farbenchaos, maexchen, schocken, huetchen, zehnetappen, stapelrennen, schwimmen, blackjack, kniffel, schiffe, viergewinnt, shutthebox, zehntausend, muehle, schaetzmeister, schlagfertig, werhatdasgesagt, mogeln, praesident, durak, omaha, wuerfelpoker, luegenwuerfel, chicago, reversi, dame, domino, zahlenzoo, gedaechtnisKueche, pfeilfieber, sortierstation, tickendesPaket, werwolf, werBinIch, kritzelpost, bildunterschrift, malenRaten, broeckelboden, kronenjagd, laserHuepfer, sechsNimmt, monopolyDeal, monopoly, spielDesLebens, scotlandYard, hex, wuerfelduell, risikoWuerfeln, storyChaos, zahlenreihe, wuerfeljagd, monsterwuerfel, wuerfelAuktion, backgammon, hearts, fiveCardDraw, scrabble, omahaHiLo, shortDeck, sevenCardStud, schach, explodingDeck, doppelagent, luegenbaron, skat, doppelkopf, gebietskampf, staedtehandel, stichmeister, labyrinthBrett, schatzinsel, jaegerSchatten, infektionsjagd, letzterSchutzplatz, regelwahnsinn, geschenkfaenger, rhythmusRausch, stillgestanden, bombenDuell, schubsarena, scheinwerferFlucht, minenlauf, labyrinthChaos, puzzlePanik, wortjagd, kistenchaos, gummibandChallenge, turmbauer, fallenbauer, geschenkdiebe].map((g) => [g.id, g]));
 export const DEFAULT_GAME = 'poker'; // alte Spielstände ohne Spielart sind Poker
 export { SINGLEPLAYER_GAMES, singleplayerGameList } from './singleplayer/index.js';
 import { SINGLEPLAYER_GAMES } from './singleplayer/index.js';

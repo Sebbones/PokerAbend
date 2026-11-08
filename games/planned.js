@@ -65,24 +65,6 @@ export const PLANNED = [
 
   // Erhaltene Ideen aus dem alten Party-Katalog (PR #2): ausschließlich Backlog, nicht startbar.
   spiel({
-    id: 'turmbauer', name: 'Turmbauer', category: 'party', bauart: 'B', minPlayers: 2, maxPlayers: 10, duration: 2, paeckchen: 'spaeter',
-    description: 'Bewegliche Blöcke im richtigen Moment auf dem eigenen Turm stapeln.',
-    rules: ['Alle erhalten dieselbe Folge beweglicher Blöcke für ihren eigenen Turm.', 'Ein Tipp hält den nächsten Block an; passende Flächen sollen möglichst übereinanderliegen.', 'Nach der vereinbarten Zeit gewinnt der höchste gültige Turm.'],
-    art: stairs(['#B78254', '#C99A45', '#E0C884']),
-  }),
-  spiel({
-    id: 'geschenkdiebe', name: 'Geschenkdiebe', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 3, paeckchen: 'spaeter',
-    description: 'Geschenke einsammeln und sie den anderen in einer gemeinsamen Arena wieder abluchsen.',
-    rules: ['Alle bewegen sich gleichzeitig auf einer gemeinsamen Spielfläche.', 'Geschenke können eingesammelt und durch erlaubte Begegnungen anderen abgenommen werden.', 'Nach Ablauf der Runde gewinnt, wer die meisten Geschenke behalten hat.'],
-    art: glyph('crown'),
-  }),
-  spiel({
-    id: 'fallenbauer', name: 'Fallenbauer', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 4, paeckchen: 'spaeter',
-    description: 'Gemeinsam Fallen platzieren und anschließend den entstandenen Parcours bestehen.',
-    rules: ['Zuerst platzieren alle nacheinander Hindernisse auf einem gemeinsamen Parcours.', 'Anschließend versuchen alle gleichzeitig, das Ziel ohne Treffer zu erreichen.', 'Erfolgreiche Zieleinläufe bringen Punkte; nach den vereinbarten Runden zählt die Gesamtsumme.'],
-    art: glyph('flag'),
-  }),
-  spiel({
     id: 'reaktor-notfall', name: 'Reaktor-Notfall', category: 'party', bauart: 'A', minPlayers: 2, maxPlayers: 8, duration: 6, paeckchen: 'spaeter',
     description: 'Gemeinsam Rätsel lösen, bevor eine fiktive Anlage überhitzt.',
     rules: ['Die Gruppe erhält mehrere zusammengehörige Hinweise und kleine Rätsel.', 'Richtige gemeinsame Entscheidungen stabilisieren die Anlage; Fehler kosten Zeit.', 'Alle gewinnen gemeinsam, wenn sie die Aufgaben vor Ablauf des Timers lösen.'],

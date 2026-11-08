@@ -15,9 +15,9 @@ const GameDesign = (() => {
     dice: 'maexchen schocken kniffel shutthebox zehntausend wuerfelpoker luegenwuerfel chicago wuerfelduell risiko-wuerfeln wuerfeljagd monsterwuerfel wuerfel-auktion',
     board: 'huetchen schiffe viergewinnt muehle reversi dame domino monopoly spiel-des-lebens scotland-yard hex backgammon scrabble schach labyrinth-brett schatzinsel gebietskampf staedtehandel',
     party: 'schaetzmeister schlagfertig werhatdasgesagt tickendes-paket werwolf wer-bin-ich story-chaos zahlenreihe doppelagent luegenbaron regelwahnsinn jaeger-schatten infektionsjagd letzter-schutzplatz geschenkfaenger rhythmus-rausch stillgestanden bomben-duell',
-    solo: 'zahlenzoo gedaechtnis-kueche pfeilfieber sortierstation puzzle-panik wortjagd gummiband-challenge',
+    solo: 'zahlenzoo gedaechtnis-kueche pfeilfieber sortierstation puzzle-panik wortjagd gummiband-challenge turmbauer',
     drawing: 'kritzelpost bildunterschrift malen-raten',
-    arena: 'broeckelboden kronenjagd laser-huepfer schubsarena scheinwerfer-flucht minenlauf labyrinth-chaos kistenchaos',
+    arena: 'broeckelboden kronenjagd laser-huepfer schubsarena scheinwerfer-flucht minenlauf labyrinth-chaos kistenchaos fallenbauer geschenkdiebe',
   };
   const scenes = Object.fromEntries(Object.entries(groups).flatMap(([family, ids]) => ids.split(' ').map((id, i) => [id, {
     family, ...families[family], accent: families[family].accents[i % 3], angle: 25 + i * 17, tone: families[family].tone + i * 13,
