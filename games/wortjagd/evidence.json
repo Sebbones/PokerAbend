@@ -1,0 +1,220 @@
+{
+  "package_id": "BACKLOG-10",
+  "game": "wortjagd",
+  "date": "2026-11-08",
+  "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+  "followup_commits": [
+    "80590c603658d50209d7ddb7178de1660056dd91",
+    "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+  ],
+  "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-node-verified.log",
+      "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 326.832403,
+      "report": "artifacts/backlog10-ui-verified.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 99.69594599999999,
+      "report": "artifacts/backlog10-controls-report.json"
+    },
+    {
+      "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-design-registration.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 161.609225,
+      "report": "artifacts/backlog10-result-report.json"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+      "tests": 1590,
+      "passed": 1587,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 241.4839461,
+      "log": "artifacts/backlog10-full-node.log",
+      "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-english-rules.png",
+      "sha256": "7d19008c3645473b7f87c8996df32a86d143a467be5baee6dfd2853fc68e52c0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-1440x900.png",
+      "sha256": "28e7b13abee470f998e1446a6ed866e32657547cf29ca379d25fe54e9b5ec58b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-1920x1080.png",
+      "sha256": "59431118dfd8e5059adfc60c84e0c42076c1ea1840dfa7b2114051f0f148d675"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-360x800.png",
+      "sha256": "cd384390850145a286b73baa636065cb0da9896de6ba1734d8360bf6c61c10fb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-390x844.png",
+      "sha256": "8327219384164d867dd8da7f35e88496d2fddda495f46d2ff054c5b7ee9fc140"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-768x1024.png",
+      "sha256": "ea2ea5953fba84b0bc19806f9bac6363c2530b1d4558f458b22cdd36a5919dae"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-900x450.png",
+      "sha256": "3c68732f707d9109439d75e13f474d17e15b2c449d4746a31f9bee2c06cb022b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-lobby.png",
+      "sha256": "d4176815ce332eaeebc80dbd5aff3a940fb0718a87e850a1bd6099244b418701"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-paused.png",
+      "sha256": "8f3f4b1dd7c385358792ebd31715beaed4815b5d39ef30d92155de49e55a2fde"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-playing.png",
+      "sha256": "87ce5a8bedb2f5c221ba5ffce3f39b34efe51e1cf5369fdabdedfd1480d16a23"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-reconnect.png",
+      "sha256": "0fef4994cb0c4b906087c57edf66a1b35615b8b8345a976fe8749f00f994b554"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-result.png",
+      "sha256": "4b84062dbabd3630eb3e5fab90000b45e61037655b8b0c9db3545741a4c070af"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/desktop-spectator.png",
+      "sha256": "167854aaee6efdc600b1891c3887d0c30ce60511cdf8b41aa4c861402761fee3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-english-rules.png",
+      "sha256": "7e6e594c0f567a95aa718b19ca902ff87f84514c9f2175f5e2c65052f05cd37f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-1440x900.png",
+      "sha256": "996c60aa8f183479ac854b07dfcef6ce2a40dea6ac8e3a1bc6ebf2b2e702fb49"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-1920x1080.png",
+      "sha256": "30e3558dfdcdc11e0ff05209f2baf34a52bc5c83b5a45935aef4643085638c1a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-360x800.png",
+      "sha256": "4ab463914e86cf48430ddcfdf9478db37b17b8ae630cbf2f0477c0a4c9f1cb30"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-390x844.png",
+      "sha256": "91c32b4883aa225c7610a642fa267c3749bf85e8d2055dba8dee065fcae77929"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-768x1024.png",
+      "sha256": "5e76383466bd389c3b317e1da88b1516bb886175916d686312fecf5c6a719934"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-900x450.png",
+      "sha256": "4d53aeeab606b35873a9f1b5a798a7246c8ce1c46388d7d3f5a79cbf85a06225"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-lobby.png",
+      "sha256": "549dd6faa2dee21a6c550b6c5eb6c26f0e3aeb8296bc2d28cd327ea7733a1530"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-paused.png",
+      "sha256": "e60eed769e773db3f2c3a6dadb759d27e9082391aa98e251150792c8783c9f51"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-playing.png",
+      "sha256": "ebd9395c945f1ab64bb8b8ccc041d2e3aa0791d3e3e0c8b153211cb2750ffe71"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-reconnect.png",
+      "sha256": "1f5e36da6438a6dce70530f4656d1862b18231921db57b0a1e3cdbee2788612c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-result.png",
+      "sha256": "4a5c52bef05c5eab3ea5a6cda741e130094112fe4732172cb52d00104ddf7921"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/wortjagd/mobil-spectator.png",
+      "sha256": "bc161d45f2dafbd5d3ed1d86d9c01b1899ee35440d834424312b21da4e178211"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/wortjagd/index.js",
+      "sha256": "145a3e1315c9a374e5721a5b402754f2646f4b9ace1d63a0fb1f1358bb19b8df"
+    },
+    {
+      "path": "games/wortjagd/room.js",
+      "sha256": "fd6c176905ce58e873528407b31fdc5d676f33fe22f81866134f255313c27e0e"
+    },
+    {
+      "path": "games/wortjagd/logic.js",
+      "sha256": "f53b96ec0f3f6225bbea47fc00262743659af7070862fcd3422096cfb530c7a4"
+    },
+    {
+      "path": "public/games/wortjagd/wortjagd.js",
+      "sha256": "b38f512585da8b68fb95dff184202e1432ed7f42d5fff5bf203e98566f949607"
+    },
+    {
+      "path": "public/games/wortjagd/wortjagd.css",
+      "sha256": "db6bcae609917dc66263263524df5f8aae4d7172e1f18185566d93ea02f8dd00"
+    },
+    {
+      "path": "games/challenge-room.js",
+      "sha256": "164fd4ffd54cd6831d67884b41d63413945ccb365158a1ef28429e5b42cd109d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/challenge-kit.js",
+      "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+    },
+    {
+      "path": "public/games/challenge.css",
+      "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "Only the four explicitly authorised games; no V2 implementation or production deployment."
+}

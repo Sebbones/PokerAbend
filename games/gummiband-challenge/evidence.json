@@ -1,0 +1,220 @@
+{
+  "package_id": "BACKLOG-10",
+  "game": "gummiband-challenge",
+  "date": "2026-11-08",
+  "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+  "followup_commits": [
+    "80590c603658d50209d7ddb7178de1660056dd91",
+    "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+  ],
+  "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-node-verified.log",
+      "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 326.832403,
+      "report": "artifacts/backlog10-ui-verified.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 99.69594599999999,
+      "report": "artifacts/backlog10-controls-report.json"
+    },
+    {
+      "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-design-registration.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 161.609225,
+      "report": "artifacts/backlog10-result-report.json"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+      "tests": 1590,
+      "passed": 1587,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 241.4839461,
+      "log": "artifacts/backlog10-full-node.log",
+      "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-english-rules.png",
+      "sha256": "5dbca2852489a17f80fa144a31a0341ea4c01d925a6990d6fc623231f7f2acda"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-1440x900.png",
+      "sha256": "3dabfe818c5566fdcaa58db7fbcd24134e662a35e20ebc68ae99f9351a45f134"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-1920x1080.png",
+      "sha256": "a786c99b6cd76ed447098be99608606c93d2c099ab43ceff3e7bb1cb7fdd6d21"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-360x800.png",
+      "sha256": "3a75f7b33ceb3e7a5f2636c3f3180e1fa4d4ea91b05249ab653f6c71148731d2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-390x844.png",
+      "sha256": "a9b0f2ffea8b122044e5efdcd7d498e7437e9644cbe4ffa40d8ce70a6f9b42cc"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-768x1024.png",
+      "sha256": "359846d10813df30b434071328cfa047bcbf3e1594efe373b573c6a388d88a27"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-900x450.png",
+      "sha256": "ccdd3dd4bff86cfc317b576ced971c8f514b46333861054334e21eab1b6153f3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-lobby.png",
+      "sha256": "d2b1a7725ab21b643a19fa27ec764ddbad4a7f6dd439cca24dbc3872f4a474d8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-paused.png",
+      "sha256": "df7b67141d251e88f01ff9d06391e51768f1bb8c50b91a8837c8c8046ab9b444"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-playing.png",
+      "sha256": "cc2a72f0add8a03be44655d71fdf114ed2905be8242af0194eb3dd91984676ec"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-reconnect.png",
+      "sha256": "5838004f3dd89610eafb9d561c5c7e5bafa7249387bb185a6d9d498c4c8670be"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-result.png",
+      "sha256": "8aee2afceec3ad4fcf3e2c648564f9636be616b7268c940de0a2f793bb3119a7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-spectator.png",
+      "sha256": "d485468a8f83a5293c39ec57e29a0ca5a7433f222feec4b244c1df6244c17233"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-english-rules.png",
+      "sha256": "abee00c2ad7e2071857456db6f19bcfee25731b968a7327512f31d9ba0697195"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-1440x900.png",
+      "sha256": "74522fd669221869bced74d90862a510fbc65b2866a7e33db1235df1dcdc5e7c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-1920x1080.png",
+      "sha256": "f4a913fcda60aa1f8dc16049a1962c474786d7d462f8fe60c58d30b555872c5a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-360x800.png",
+      "sha256": "2547386cde6069eb61f4aa257d385bdf8eb05430b473bc8a6801607071773715"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-390x844.png",
+      "sha256": "909d54b9bec26a8edc98ea55a1e97ff21e5ff08bf7240115f3d10d51e26024fe"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-768x1024.png",
+      "sha256": "7245834c6ee6239d9d8c4daa7d32f1c750bf3234f9b5a722b16763de6868c18a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-900x450.png",
+      "sha256": "5e55f39f99c7210d3f7366b70df04e02597ddcd278854f8da54783f1722a3ad7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-lobby.png",
+      "sha256": "a7dd08b93d4e7fb55d747125e7655e99159ebdceadabe00aff30c1b1b3b63270"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-paused.png",
+      "sha256": "814d8cca74af1ee604a4a85b9b05d60e57c0fac2c2e02f2374196047816fd298"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-playing.png",
+      "sha256": "28bead0dc475c5bd193db97e5260aeb3381ada80869b34148779abc0e9fe9065"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-reconnect.png",
+      "sha256": "692991806014de0efbcd914184c09dee449908fd410e9882d6b4b5a0521f5675"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-result.png",
+      "sha256": "194a1456e3d5642de6339463f2f958ebd57435e343d92617729a46785cc9e611"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-spectator.png",
+      "sha256": "98248738ba2b06cc918a53975610f2d497b38a99c1a8892f07fafa0993dc376d"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/gummiband-challenge/index.js",
+      "sha256": "d1801755ad214bd86d21499c6f6ff30038a430c3bb0db90a10b17853705e4d25"
+    },
+    {
+      "path": "games/gummiband-challenge/room.js",
+      "sha256": "de210aec50eed59adc4aa12a8cda226196aa171cb5e270e3397a0a1212ab8b80"
+    },
+    {
+      "path": "games/gummiband-challenge/logic.js",
+      "sha256": "9963d62af3c1deae2ae37b02d120b8afc6553cbcee19a7fc5075050dee635be5"
+    },
+    {
+      "path": "public/games/gummiband-challenge/gummiband-challenge.js",
+      "sha256": "b2cad0f5448d8cecbd5708f1f0cdd67ca7fed78866ddc6b6de91f14c916028bb"
+    },
+    {
+      "path": "public/games/gummiband-challenge/gummiband-challenge.css",
+      "sha256": "60ae7ba6403afbedf6a4ec75ca10ebe57df4e75c1d68e5d0b364934752a9e3e2"
+    },
+    {
+      "path": "games/challenge-room.js",
+      "sha256": "164fd4ffd54cd6831d67884b41d63413945ccb365158a1ef28429e5b42cd109d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/challenge-kit.js",
+      "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+    },
+    {
+      "path": "public/games/challenge.css",
+      "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "Only the four explicitly authorised games; no V2 implementation or production deployment."
+}

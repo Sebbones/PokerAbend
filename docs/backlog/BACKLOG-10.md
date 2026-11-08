@@ -1,0 +1,55 @@
+# BACKLOG-10 – Puzzle-Panik, Wortjagd, Kistenchaos und Gummiband-Challenge
+
+Abgeschlossen am 08.11.2026 auf `main`. Implementierungscommit: `1c23dc3c4ee040bdcbb7c62674b7e779076a0997`. Geprüfte Nachläufe: `80590c603658d50209d7ddb7178de1660056dd91, 2831ec64e3887cf71f0e91f57bea1571bcdfd31d`. Ausschließlich die vier ausdrücklich freigegebenen Spiele; danach stoppen. **35 von 41 Backlog-Spielen verifiziert**, sechs offen. 89 Raumspiele und zwölf lokale Einzelspieler ergeben 101 spielbare Spiele.
+
+## Tatsächliche Umsetzung
+
+| Spiel | Regeln und Spielwelt |
+| --- | --- |
+| Puzzle-Panik | Gleiches 3×3-Schiebepuzzle für alle, optional 4×4. Legales Verwürfeln mit serverseitigem inversen Lösungsnachweis. Antippen oder Pfeiltasten/WASD verschieben die Lücke. Erster Löser gewinnt sofort; sonst 100 Punkte je korrekt platziertem Zahlenteil, bei Lösung 10.000 Zusatzpunkte. Eigener ruhiger Mosaiktisch. |
+| Wortjagd | Gleiches 4×4-Feld, genau 60 aktive Sekunden. Nachbarpfade einschließlich Diagonalen, kein Feld doppelt, Mindestlänge drei. Längenwertung 1/2/3/5/11; fremde Doppelwörter werden für alle gestrichen. Optionen: 5×5, Mindestlänge vier, doppelte Funde zählen. DE/EN-Wörterbuch unabhängig von UI-Sprache. Privates Sammeln, gemeinsame transparente Schlussliste. Eigener Wortgarten. |
+| Kistenchaos | Gemeinsame zufällige Arena für 2–8 mit zwei nummerierten Kisten und passenden Zielen je Person. Orthogonales Schieben, keine Ketten/kein Ziehen. Passende Ablagen werden gesichert: 100 Punkte je Kiste, feste Spielzeit, Gleichstand teilt Sieg. Andere dürfen freie Kisten verschieben. Eigener Frachthof mit Farb- und Nummernmarkierungen. |
+| Gummiband-Challenge | Gleiches zufälliges Zielzonenprofil, eigene Spannung. Halten/Space dehnt, Loslassen entspannt; nur Zeit in der Zone zählt. Ab Spannung 96 gerissen, gesammelte Zeit bleibt. Punkte in Millisekunden; Gleichstand teilt Sieg, null ist Remis. Option: kleiner werdende Zone. Eigenes Spannwerk mit sichtbarer Skala und Haltezustand. |
+
+Alle vier erweitern die vorhandene `RealtimeRoom`-Architektur über `ExpeditionRoom` und den kleinen `ChallengeRoom`-Lebenszyklus. Eine neue Demo, ein neuer Build oder eine Ersatz-Spiellogik anderer Spiele wurden nicht angelegt. Der Server entscheidet in festen Schritten über Eingaben, Positionen, Kollisionen und Punkte; Wortjagd verwendet zusätzlich die pausierbare Serverfrist, damit verzögerte Frames keine zusätzliche Suchzeit erlauben. Keine Client-Zeiten, Positionen oder Scores werden übernommen.
+
+Vorhandene Raum-Spieler-IDs, Hostpause, Frame-Transport und Reconnect bleiben erhalten. Eigene Bretter, Funde und Bandwerte kommen nur in die berechtigte Ansicht; der Puzzle-Lösungsnachweis und die Kisten-Zertifikate werden nie übertragen. Kisten/Positionen sind öffentlich. Zuschauer können keine Aktionen senden. Nonce, Runde, Sequenznummern und Eingabetempo werden geprüft. Alle Spiele haben optionale, regelkonforme Bots auf der ehrlich als einzige verfügbare Stufe ausgewiesenen Mittel-Stufe; sie verwenden eigene oder öffentliche Informationen. Suchknoten und Rechenzeit der Puzzle-/Wort-Bots sind begrenzt. Wortlisten werden einmalig nur für die verwendete Sprache geladen und zwischen Runden wiederverwendet.
+
+## Wörter und Lizenzen
+
+Die Daten werden lokal mitgeliefert; keine Wörterbuchanfragen an Dritte während einer Partie. Deutsch: [enz/german-wordlist](https://github.com/enz/german-wordlist), CC0-1.0. Englisch: [dwyl/english-words](https://github.com/dwyl/english-words), Unlicense. Vollständige unveränderte Lizenzen stehen in `games/wortjagd/LICENSE-de.txt` und `LICENSE-en.txt`. [SOURCES.json](../../games/wortjagd/SOURCES.json) enthält feste Quellcommits, Downloadadressen, Verarbeitung, Anzahl und SHA-256: 617.532 deutsche und 363.794 englische Einträge. Normalisiert werden NFC, Großschreibung und ß→SS; zugelassen sind 3–16 Buchstaben mit eigenen Ä/Ö/Ü. Wortlisten bleiben im Serverordner und werden nicht als Browserasset ausgeliefert. Die Liste ist ein festgelegtes Regelwörterbuch, keine Behauptung sprachlicher Vollständigkeit; sie enthält auch seltene Wörter.
+
+## Lösbarkeit und Grenzen
+
+Puzzle-Panik entsteht ausschließlich aus legalen Verschiebungen; der umgekehrte Zugweg wird im Test vollständig ausgeführt. Jede Kistenarena wird mit aus den realen Bewegungsregeln erzeugten Lösungen für alle Spieler zertifiziert. Zufällig sind Orientierung, Kisten-/Zielabstände und Randhindernisse. Die Grundrouten bleiben offen. Die Zusage betrifft die Anfangsaufgaben: Im laufenden Gedränge dürfen Spieler Wege versperren. Eigene noch freie Kisten lassen sich auf unbelegte Startplätze zurücksetzen; gesicherte Kisten bleiben stehen. Figuren dürfen ein Feld teilen, blockieren aber das Ziel einer geschobenen Kiste. Diese Online-Regeln stehen im Regeln-Tab.
+
+Neuladen/Wiederverbinden während eines laufenden Servers bewahrt den eigenen Stand. Ein vollständiger Serverneustart verwendet den bestehenden Zwischenrunden-Restore und beginnt in der Lobby; keine neue Neustart-Persistenz wurde behauptet. Die Backlog-Ideen „Strafsekunden pro unnötigem Puzzle-Zug“ und „mehrere Band-Durchgänge“ bleiben optionale Ideen, keine implementierten Schalter.
+
+## Tatsächliche Prüfungen
+
+| Befehl / Umfang | Bestanden | Fehler | Übersprungen |
+| --- | ---: | ---: | ---: |
+| node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js | 76 | 0 | 0 |
+| playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil) | 8 | 0 | 0 |
+| playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil) | 8 | 0 | 0 |
+| node --test test/backlog10-client.test.js test/game-design.test.js | 4 | 0 | 0 |
+| playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil) | 2 | 0 | 0 |
+| node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation) | 1587 | 0 | 3 |
+
+Die 15 neuen Node-Fälle prüfen 2.000 zufällige 3×3/4×4-Puzzle, 1.000 zufällige Kistenarenen für 2–8 Spieler mit ausgeführten Lösungen, 200 garantierte DE/EN-Buchstabenfelder, 120 vollständige Botpartien, Pfade/Wertung/Doppelwörter, Fristen, gefälschte Eingaben, persönliche JSON-Ansichten, Pause und Reconnect. Bestehende Katalog-/Login-Tests wurden ausschließlich um die tatsächlich neu registrierten IDs ergänzt; lokale Solo-Spiele bleiben eigenständig.
+
+Die acht vollständigen Playwright-Fälle laufen auf Desktop und Touch-Handy mit jeweils drei Browser-Kontexten: Lobby, DE/EN-Regeln, echte Tastatur-/Touchaktionen, Wortdoppelungen, fremde Ansichten, Hostrechte, Pause, Reload, Zoom und reguläre Ergebnisse. Acht zusätzliche Kontrollfälle prüfen 4×4-Puzzle, 5×5-Wortjagd in beiden Sprachen, acht Spieler im Frachthof, sechs Layoutgrößen, mindestens 4,5:1 Kontrast des Bandknopfs und Loslassen gehaltener Eingaben nach Netzwerk-Reconnect. Es wird kein vollständiger Playwright-Gesamtlauf behauptet.
+
+108 ausgewählte unveränderte Original-PNGs liegen dauerhaft in `docs/backlog/screenshots/backlog10/`. Größen: 1920×1080, 1440×900, 768×1024, 390×844, 360×800, 900×450. Die getrennten Kontrollpartien dürfen andere Zufallsfelder als die Hauptabläufe zeigen. Manifeste samt Bild- und LF-normalisierten Quellhashes: [Puzzle](../../games/puzzle-panik/evidence.json), [Wörter](../../games/wortjagd/evidence.json), [Kisten](../../games/kistenchaos/evidence.json), [Band](../../games/gummiband-challenge/evidence.json). Frühere Zoom-/Layoutaufnahmen wurden durch die endgültigen Kontrollbilder ersetzt.
+
+### Fehlerverlauf
+
+Der erste Node-Lauf bestand 13 von 14 Fällen. Ein falsch angeordnetes Wortpfad-Testbrett enthielt tatsächlich einen gültigen Pfad; die Teststellung wurde korrigiert. Ein früher Browserlauf wurde beendet, weil der Testtreiber auf den während der Pause gesperrten Zoomknopf wartete. Der folgende vollständige Lauf bestand sechs von acht Fällen: Wortjagd verlängerte unter Last die effektive Suchzeit über verzögerte feste Frames. Die zusätzliche Prüfung gegen die pausierbare Serveruhr und ein eigener verspäteter-Frame-Test beheben das. Anschließend wurden alle acht Hauptfälle erneut ausgeführt. Drei alte Katalogerwartungen fehlten zunächst die vier neuen IDs; deren gezielte Ergänzung ist im grünen 76er-Nachlauf enthalten. Abgeschlossene und fehlgeschlagene Läufe sind nicht als ein grünes Ergebnis zusammengefasst.
+
+Eine Sichtprüfung verbesserte den Kontrast des Bandknopfs und den Abstand unter dem Statistikhinweis. Im ersten Kontrolllauf bestanden sieben von acht Fällen; der mobile Aktivzustand des Bandknopfs erreichte nur 2,99:1. Eine auf dieses Spiel begrenzte CSS-Spezifität hält die dunkle Schrift nun auch im aktiven Standardbutton-Zustand auf hellem Hintergrund. Der vollständige achtteilige Kontrollnachlauf und seine Bilder zeigen den endgültigen Stand. Parallele V2-06-Rücknahmen und andere Spielwelt-Arbeiten bleiben außerhalb dieses Päckchens. Keine Secrets, Produktionsdaten oder Serverkonfigurationen geändert; kein Produktivdeployment. Push kann die vorhandene Test-/GHCR-Automatik auslösen. Auftrag endet nach diesem Päckchen.
+
+Der erste Gesamttest-Aufbau startete vor Ende des Archiv-Entpackens und fand deshalb noch keine Serverdateien. Dieser Start war kein vollständiger Testlauf; nach abgeschlossenem Entpacken wurde der isolierte Prüfstand neu synchronisiert. Der erste tatsächlich vollständige Lauf fand die fehlenden vier Einträge im gemeinsamen Motiv-/Klangregister. Diese wurden nur am Ende der bestehenden Gruppen ergänzt, damit Motive und Klänge aller bisherigen Spiele gleich bleiben. Der Designregister-Test und die acht Layout-/Reconnectfälle wurden nachgeprüft, anschließend die komplette Node-Suite erneut gestartet. Die endgültigen Zahlen stehen in der Tabelle. Vorherige Shared-Registrierungshashes in BACKLOG-04, BACKLOG-07 und BACKLOG-09 sind archiviert; nur durch dieses Päckchen geänderte Registrierungsdateien erhalten neue aktuelle Hashes, keine historischen Gameplay- oder Bildnachweise werden überschrieben.
+
+Die abschließende Sichtprüfung lokalisierte außerdem den sonst ungefiltert aus dem bestehenden Raumrahmen übernommenen Ergebnistitel und „Nochmal“-Knopf nur innerhalb der vier neuen Spiele. Zwei vollständige Wortjagd-Nachläufe und zwei Client-Fälle prüfen Ergebnis-/Fehlertexte auf Deutsch und Englisch. Hauptabläufe, Ergebnisnachlauf und der letzte Motiv-/Layoutlauf dürfen aus unterschiedlichen tatsächlichen Code-Nachläufen stammen; die Manifeste nennen den abschließenden Quellstand.
+
+Der erste vollständige Node-Lauf hatte 1.588 Fälle: 1.584 bestanden, einen Fehler im Motivregister und drei Windows-Bash-Überspringungen (364,306 s; `artifacts/backlog10-full-node-first.log`). Der endgültige Lauf auf `2831ec6` einschließlich Client-Nachlauf und Nachweisdateien hat 1.590 Fälle: **1.587 bestanden, 0 Fehler, 3 übersprungen**, 241,484 s. Die drei bestehenden Restore-Shell-Fälle benötigen Bash; dies ist in der Windows-Prüfung nicht vorhanden. Die abschließende gezielte Nachweis-/Design-/Clientprüfung bestand nochmals alle 19 Fälle (`artifacts/backlog10-final-proof.log`).

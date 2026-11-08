@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-07",
+  "updated_at": "2026-11-08",
   "audited_source_commit": "ef6511d76f78689fc525a63f6e3637c3f14f1252",
   "audit_hash_format": "SHA-256 of UTF-8 source with LF line endings at package.source_audit_commit, falling back to audited_source_commit",
   "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen. Explicit BACKLOG-03 game, bot and visual-world authorization on 2026-11-01: Backgammon, Hearts and Five Card Draw only. Explicit BACKLOG-04 authorization: Scrabble, Omaha Hi/Lo, Short Deck Poker and Seven Card Stud with bots and individual visual worlds, 2026-11-01.",
@@ -26,11 +26,11 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 97,
-    "not_implemented_count": 10,
-    "completed_visual_count": 84,
+    "playable_count": 101,
+    "not_implemented_count": 6,
+    "completed_visual_count": 88,
     "open_playable_visual_count": 13,
-    "planned_visual_count": 23,
+    "planned_visual_count": 19,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -96,13 +96,17 @@
       "jaeger-schatten",
       "infektionsjagd",
       "letzter-schutzplatz",
+      "kistenchaos",
       "backgammon",
       "scrabble",
       "hearts",
       "five-card-draw",
       "schatzinsel",
+      "gummiband-challenge",
       "geschenkfaenger",
       "rhythmus-rausch",
+      "puzzle-panik",
+      "wortjagd",
       "stillgestanden",
       "minenlauf",
       "labyrinth-chaos",
@@ -132,10 +136,6 @@
       "match-3"
     ],
     "not_implemented_game_ids": [
-      "kistenchaos",
-      "gummiband-challenge",
-      "puzzle-panik",
-      "wortjagd",
       "schatzgraeber",
       "brueckenroulette",
       "turmbauer",
@@ -145,22 +145,29 @@
     ],
     "completed_visual_game_ids": [
       "scotland-yard",
+      "poker",
       "maumau",
       "farbenchaos",
       "maexchen",
       "schocken",
+      "huetchen",
       "zehnetappen",
       "stapelrennen",
       "schwimmen",
+      "blackjack",
       "kniffel",
+      "schiffe",
       "viergewinnt",
       "shutthebox",
       "zehntausend",
+      "muehle",
       "schaetzmeister",
       "schlagfertig",
       "werhatdasgesagt",
       "mogeln",
       "praesident",
+      "durak",
+      "omaha",
       "wuerfelpoker",
       "luegenwuerfel",
       "chicago",
@@ -172,7 +179,18 @@
       "pfeilfieber",
       "sortierstation",
       "tickendes-paket",
+      "werwolf",
+      "wer-bin-ich",
       "kritzelpost",
+      "bildunterschrift",
+      "malen-raten",
+      "broeckelboden",
+      "kronenjagd",
+      "laser-huepfer",
+      "sechs-nimmt",
+      "monopoly-deal",
+      "monopoly",
+      "spiel-des-lebens",
       "hex",
       "wuerfelduell",
       "omaha-hi-lo",
@@ -180,18 +198,26 @@
       "short-deck",
       "stichmeister",
       "exploding-deck",
+      "risiko-wuerfeln",
+      "wuerfeljagd",
+      "monsterwuerfel",
       "labyrinth-brett",
+      "story-chaos",
       "regelwahnsinn",
       "jaeger-schatten",
       "infektionsjagd",
       "letzter-schutzplatz",
+      "kistenchaos",
       "backgammon",
       "scrabble",
       "hearts",
       "five-card-draw",
       "schatzinsel",
+      "gummiband-challenge",
       "geschenkfaenger",
       "rhythmus-rausch",
+      "puzzle-panik",
+      "wortjagd",
       "stillgestanden",
       "minenlauf",
       "labyrinth-chaos",
@@ -199,35 +225,13 @@
       "scheinwerfer-flucht",
       "doppelagent",
       "luegenbaron",
+      "wuerfel-auktion",
+      "zahlenreihe",
       "schach",
       "bomben-duell",
       "sudoku",
       "2048",
-      "wellenwacht",
-      "bildunterschrift",
-      "malen-raten",
-      "kronenjagd",
-      "sechs-nimmt",
-      "durak",
-      "laser-huepfer",
-      "muehle",
-      "wer-bin-ich",
-      "broeckelboden",
-      "monopoly-deal",
-      "blackjack",
-      "huetchen",
-      "schiffe",
-      "werwolf",
-      "poker",
-      "omaha",
-      "spiel-des-lebens",
-      "monopoly",
-      "risiko-wuerfeln",
-      "story-chaos",
-      "zahlenreihe",
-      "wuerfeljagd",
-      "monsterwuerfel",
-      "wuerfel-auktion"
+      "wellenwacht"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -406,14 +410,10 @@
   ],
   "future_concepts_order": [
     "VIS-083",
-    "VIS-073",
-    "VIS-070",
-    "VIS-074",
     "VIS-091",
     "VIS-094",
     "VIS-092",
     "VIS-076",
-    "VIS-064",
     "VIS-093"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
@@ -10815,24 +10815,57 @@
       "game_name": "Kistenchaos",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/kistenchaos/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich freigegebenen BACKLOG-10."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/kistenchaos/kistenchaos.js",
+        "public/games/kistenchaos/kistenchaos.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/challenge-kit.js",
+        "public/games/challenge.css",
+        "public/games/realtime-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/kistenchaos/kistenchaos.js",
+          "sha256": "c40c0da0e2f25b34d40cbc12a98fbf38e97b57f877ea2dac6020e453c1569e93"
+        },
+        {
+          "path": "public/games/kistenchaos/kistenchaos.css",
+          "sha256": "f169a954d9f93fc7798ef902b8c74f9e12f4d1aa25364ab7f10836b58adb56a2"
+        },
+        {
+          "path": "public/games/challenge-kit.js",
+          "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+        },
+        {
+          "path": "public/games/challenge.css",
+          "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      ],
+      "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Handy-Spielabläufe, Varianten, Pause, Neuladen, Zuschauer und sechs Bildschirmgrößen; unveränderte Original-PNGs mit SHA-256.",
       "gameplay_summary": "Kisten in Echtzeit verschieben und trotz des Gedränges das eigene Ziel erreichen.",
       "planned_style": "Eigener grafischer Lagerhof mit beweglichen Kisten.",
       "background_concept": "Ruhige Werkhalle außerhalb des Kollisionsfelds.",
@@ -10862,8 +10895,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Gitter, Wände und Zielzonen exakt aus dem Spielzustand. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-10 game and scene order completed.",
       "acceptance_criteria": [
         "Schiebekiste, feste Wand und Zielzone sofort unterscheidbar."
       ],
@@ -10884,15 +10917,99 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "kistenchaos",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-zoom-controls.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+        "80590c603658d50209d7ddb7178de1660056dd91",
+        "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      ],
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
     },
     {
       "id": "VIS-065",
@@ -11686,24 +11803,57 @@
       "game_name": "Gummiband-Challenge",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/gummiband-challenge/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich freigegebenen BACKLOG-10."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/gummiband-challenge/gummiband-challenge.js",
+        "public/games/gummiband-challenge/gummiband-challenge.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/challenge-kit.js",
+        "public/games/challenge.css",
+        "public/games/realtime-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/gummiband-challenge/gummiband-challenge.js",
+          "sha256": "b2cad0f5448d8cecbd5708f1f0cdd67ca7fed78866ddc6b6de91f14c916028bb"
+        },
+        {
+          "path": "public/games/gummiband-challenge/gummiband-challenge.css",
+          "sha256": "60ae7ba6403afbedf6a4ec75ca10ebe57df4e75c1d68e5d0b364934752a9e3e2"
+        },
+        {
+          "path": "public/games/challenge-kit.js",
+          "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+        },
+        {
+          "path": "public/games/challenge.css",
+          "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      ],
+      "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Handy-Spielabläufe, Varianten, Pause, Neuladen, Zuschauer und sechs Bildschirmgrößen; unveränderte Original-PNGs mit SHA-256.",
       "gameplay_summary": "Ein Gummiband möglichst lange in der Zielzone halten.",
       "planned_style": "Präzise grafische Spannungsanzeige mit ruhiger Zielzone.",
       "background_concept": "Statische Werkbank ohne schwingende Hintergrundelemente.",
@@ -11733,8 +11883,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Band und Zielbereich klar von Dekoration abheben. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-10 game and scene order completed.",
       "acceptance_criteria": [
         "Zielzone und tatsächliche Bandlage jederzeit erkennbar."
       ],
@@ -11755,15 +11905,97 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "gummiband-challenge",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+        "80590c603658d50209d7ddb7178de1660056dd91",
+        "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      ],
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
     },
     {
       "id": "VIS-071",
@@ -12093,24 +12325,57 @@
       "game_name": "Puzzle-Panik",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/puzzle-panik/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich freigegebenen BACKLOG-10."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/puzzle-panik/puzzle-panik.js",
+        "public/games/puzzle-panik/puzzle-panik.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/challenge-kit.js",
+        "public/games/challenge.css",
+        "public/games/realtime-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/puzzle-panik/puzzle-panik.js",
+          "sha256": "73411e8e3366aba3abef203d61023ed63254de1dd99b40f6126fb570439d8ed7"
+        },
+        {
+          "path": "public/games/puzzle-panik/puzzle-panik.css",
+          "sha256": "0d2c31d8f8fe0abdbd10ef12e6420956d46a6fc1b38751f7bf7cadc74289cae0"
+        },
+        {
+          "path": "public/games/challenge-kit.js",
+          "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+        },
+        {
+          "path": "public/games/challenge.css",
+          "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      ],
+      "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Handy-Spielabläufe, Varianten, Pause, Neuladen, Zuschauer und sechs Bildschirmgrößen; unveränderte Original-PNGs mit SHA-256.",
       "gameplay_summary": "Ein Schiebepuzzle so schnell wie möglich lösen.",
       "planned_style": "Hochwertiges eigenes Schiebepuzzle auf ruhiger Werkfläche.",
       "background_concept": "Schlichter Puzzletisch ohne konkurrierende Kästchen.",
@@ -12140,8 +12405,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Tatsächliches Schieberaster mit erkennbarer freier Zelle. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-10 game and scene order completed.",
       "acceptance_criteria": [
         "Freies Feld und erlaubter Zug sind eindeutig."
       ],
@@ -12162,15 +12427,99 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "puzzle-panik",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-zoom-controls.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+        "80590c603658d50209d7ddb7178de1660056dd91",
+        "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      ],
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
     },
     {
       "id": "VIS-074",
@@ -12178,24 +12527,57 @@
       "game_name": "Wortjagd",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/wortjagd/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich freigegebenen BACKLOG-10."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/wortjagd/wortjagd.js",
+        "public/games/wortjagd/wortjagd.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/challenge-kit.js",
+        "public/games/challenge.css",
+        "public/games/realtime-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/wortjagd/wortjagd.js",
+          "sha256": "b38f512585da8b68fb95dff184202e1432ed7f42d5fff5bf203e98566f949607"
+        },
+        {
+          "path": "public/games/wortjagd/wortjagd.css",
+          "sha256": "db6bcae609917dc66263263524df5f8aae4d7172e1f18185566d93ea02f8dd00"
+        },
+        {
+          "path": "public/games/challenge-kit.js",
+          "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+        },
+        {
+          "path": "public/games/challenge.css",
+          "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      ],
+      "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Handy-Spielabläufe, Varianten, Pause, Neuladen, Zuschauer und sechs Bildschirmgrößen; unveränderte Original-PNGs mit SHA-256.",
       "gameplay_summary": "In einem Buchstabenfeld so viele Wörter wie möglich finden.",
       "planned_style": "Redaktionelles Buchstabenatelier mit klaren Wortpfaden.",
       "background_concept": "Ruhiges Papier-/Filzmaterial ohne lesbare Dekowörter.",
@@ -12225,8 +12607,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Echtes Buchstabenfeld und gefundene Wörter getrennt. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit BACKLOG-10 game and scene order completed.",
       "acceptance_criteria": [
         "Lange Wortpfade und Wortliste auf Handy lesbar."
       ],
@@ -12247,15 +12629,97 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "wortjagd",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "commits": [
+        "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+        "80590c603658d50209d7ddb7178de1660056dd91",
+        "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      ],
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
     },
     {
       "id": "VIS-075",

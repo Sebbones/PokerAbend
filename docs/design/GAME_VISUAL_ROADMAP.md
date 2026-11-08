@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 07.11.2026: 97 spielbare Spiele, 10 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 60 done, 47 planned.** BACKLOG-09 schließt Minenlauf (VIS-077), Labyrinth-Chaos (VIS-078), Schubsarena (VIS-079) und Scheinwerfer-Flucht (VIS-080) ab. 37 spielbare Oberflächen und 10 Konzepte bleiben visuell geplant. [Abschlussbericht](../backlog/BACKLOG-09.md). Keine weiteren Pakete freigegeben.
+**Stand 2026-11-08: 101 spielbare Spiele, 6 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 88 done, 19 planned.** BACKLOG-10 schließt Kistenchaos (VIS-064), Gummiband-Challenge (VIS-070), Puzzle-Panik (VIS-073) und Wortjagd (VIS-074) ab. [Abschlussbericht](../backlog/BACKLOG-10.md). Andere Pakete bleiben unverändert.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -1882,30 +1882,32 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-064 – Kistenchaos
 
 - **Spiel-ID/Kategorie:** `kistenchaos` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 15–23 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 15–23 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/kistenchaos/kistenchaos.js, public/games/kistenchaos/kistenchaos.css
+- **Gemeinsame Komponenten:** public/games/challenge-kit.js, public/games/challenge.css, public/games/realtime-kit.js, public/game-design.js
+- **Aktueller Stand:** Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.
+- **Optische Verbesserungsziele:** Eigene Materialien und klare Aktionen; abgeschlossene sechs Layoutgrößen ohne horizontales Seitenüberlaufen.
 - **Stil:** Eigener grafischer Lagerhof mit beweglichen Kisten.
 - **Hintergrund:** Ruhige Werkhalle außerhalb des Kollisionsfelds.
 - **Spielfeld:** Gitter, Wände und Zielzonen exakt aus dem Spielzustand.
 - **Figuren/Karten/Objekte:** Kisten, Zielmarken und Figuren durch Form und Rand unterscheiden.
 - **Status und Aktionen:** Eigene Zielrichtung und gültige Interaktion klar anzeigen.
 - **Mobil:** Touch-Pad außerhalb wichtiger Schiebeflächen.
-- **Technische Grenzen:** Dekoration darf keine kollidierende Kiste oder erreichbares Ziel imitieren. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Spiellogik und RNG anderer Spiele bleiben erhalten; keine 3D-Funktion.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von kistenchaos.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-10 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Schiebekiste, feste Wand und Zielzone sofort unterscheidbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-10, Commit `1c23dc3c4ee040bdcbb7c62674b7e779076a0997`; Tests und Originalbilder: games/kistenchaos/evidence.json.
 
 <a id="vis-065"></a>
+**BACKLOG-10 abgeschlossen am 2026-11-08:** Erstimplementierung, [Nachweise](../../games/kistenchaos/evidence.json), Commit `1c23dc3`.
+
 ### VIS-065 – Backgammon
 
 - **Spiel-ID/Kategorie:** `backgammon` / Brettspiele.
@@ -2046,30 +2048,32 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-070 – Gummiband-Challenge
 
 - **Spiel-ID/Kategorie:** `gummiband-challenge` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 8–12 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 8–12 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/gummiband-challenge/gummiband-challenge.js, public/games/gummiband-challenge/gummiband-challenge.css
+- **Gemeinsame Komponenten:** public/games/challenge-kit.js, public/games/challenge.css, public/games/realtime-kit.js, public/game-design.js
+- **Aktueller Stand:** Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.
+- **Optische Verbesserungsziele:** Eigene Materialien und klare Aktionen; abgeschlossene sechs Layoutgrößen ohne horizontales Seitenüberlaufen.
 - **Stil:** Präzise grafische Spannungsanzeige mit ruhiger Zielzone.
 - **Hintergrund:** Statische Werkbank ohne schwingende Hintergrundelemente.
 - **Spielfeld:** Band und Zielbereich klar von Dekoration abheben.
 - **Figuren/Karten/Objekte:** Band mit lesbaren Endpunkten und zusätzlicher Zielmarkierung.
 - **Status und Aktionen:** Eigene Eingabe, Zielstatus und Ergebnis sichtbar trennen.
 - **Mobil:** Große Haltefläche, wichtige Anzeige nicht unter dem Finger.
-- **Technische Grenzen:** Physik und Zeitmessung erst nach Gameplayfreigabe spezifizieren. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Spiellogik und RNG anderer Spiele bleiben erhalten; keine 3D-Funktion.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von gummiband-challenge.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-10 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Zielzone und tatsächliche Bandlage jederzeit erkennbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-10, Commit `1c23dc3c4ee040bdcbb7c62674b7e779076a0997`; Tests und Originalbilder: games/gummiband-challenge/evidence.json.
 
 <a id="vis-071"></a>
+**BACKLOG-10 abgeschlossen am 2026-11-08:** Erstimplementierung, [Nachweise](../../games/gummiband-challenge/evidence.json), Commit `1c23dc3`.
+
 ### VIS-071 – Geschenkfänger
 
 - **Spiel-ID/Kategorie:** `geschenkfaenger` / Party Spiele.
@@ -2127,57 +2131,61 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-073 – Puzzle-Panik
 
 - **Spiel-ID/Kategorie:** `puzzle-panik` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 7–11 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 7–11 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/puzzle-panik/puzzle-panik.js, public/games/puzzle-panik/puzzle-panik.css
+- **Gemeinsame Komponenten:** public/games/challenge-kit.js, public/games/challenge.css, public/games/realtime-kit.js, public/game-design.js
+- **Aktueller Stand:** Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.
+- **Optische Verbesserungsziele:** Eigene Materialien und klare Aktionen; abgeschlossene sechs Layoutgrößen ohne horizontales Seitenüberlaufen.
 - **Stil:** Hochwertiges eigenes Schiebepuzzle auf ruhiger Werkfläche.
 - **Hintergrund:** Schlichter Puzzletisch ohne konkurrierende Kästchen.
 - **Spielfeld:** Tatsächliches Schieberaster mit erkennbarer freier Zelle.
 - **Figuren/Karten/Objekte:** Nummerierte Kacheln mit eindeutiger Orientierung.
 - **Status und Aktionen:** Züge, Zeit und fertiges Bild voneinander trennen.
 - **Mobil:** Kacheln groß halten, Raster ohne Seitenüberlauf.
-- **Technische Grenzen:** Lösbarkeit, Startseed und erlaubte Schiebeschritte nicht verändern. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Spiellogik und RNG anderer Spiele bleiben erhalten; keine 3D-Funktion.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von puzzle-panik.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-10 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Freies Feld und erlaubter Zug sind eindeutig.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-10, Commit `1c23dc3c4ee040bdcbb7c62674b7e779076a0997`; Tests und Originalbilder: games/puzzle-panik/evidence.json.
 
 <a id="vis-074"></a>
+**BACKLOG-10 abgeschlossen am 2026-11-08:** Erstimplementierung, [Nachweise](../../games/puzzle-panik/evidence.json), Commit `1c23dc3`.
+
 ### VIS-074 – Wortjagd
 
 - **Spiel-ID/Kategorie:** `wortjagd` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 9–14 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 9–14 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/wortjagd/wortjagd.js, public/games/wortjagd/wortjagd.css
+- **Gemeinsame Komponenten:** public/games/challenge-kit.js, public/games/challenge.css, public/games/realtime-kit.js, public/game-design.js
+- **Aktueller Stand:** Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.
+- **Optische Verbesserungsziele:** Eigene Materialien und klare Aktionen; abgeschlossene sechs Layoutgrößen ohne horizontales Seitenüberlaufen.
 - **Stil:** Redaktionelles Buchstabenatelier mit klaren Wortpfaden.
 - **Hintergrund:** Ruhiges Papier-/Filzmaterial ohne lesbare Dekowörter.
 - **Spielfeld:** Echtes Buchstabenfeld und gefundene Wörter getrennt.
 - **Figuren/Karten/Objekte:** Buchstabensteine mit gut sichtbarer Auswahlverbindung.
 - **Status und Aktionen:** Wortentwurf, gültige Einreichung und Punktliste unterscheiden.
 - **Mobil:** Große Felder und Eingabeweg für Touch sowie Tastatur.
-- **Technische Grenzen:** Keine Lösungen oder Wörterbuchantworten als Deko verraten. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Spiellogik und RNG anderer Spiele bleiben erhalten; keine 3D-Funktion.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von wortjagd.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-10 umgesetzt.
 
 **Individuelle Akzeptanz:**
 
 - Lange Wortpfade und Wortliste auf Handy lesbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-10, Commit `1c23dc3c4ee040bdcbb7c62674b7e779076a0997`; Tests und Originalbilder: games/wortjagd/evidence.json.
 
 <a id="vis-075"></a>
+**BACKLOG-10 abgeschlossen am 2026-11-08:** Erstimplementierung, [Nachweise](../../games/wortjagd/evidence.json), Commit `1c23dc3`.
+
 ### VIS-075 – Stillgestanden!
 
 - **Spiel-ID/Kategorie:** `stillgestanden` / Party Spiele.

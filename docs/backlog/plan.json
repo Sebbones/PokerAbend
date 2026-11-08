@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 31,
-  "remaining_count": 10,
+  "completed_count": 35,
+  "remaining_count": 6,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -235,7 +235,7 @@
         "8b6c982c53728b890750ec096b88d9a5d3687bf2"
       ],
       "scope": "Only the four expressly authorised games, bots, visual worlds and directly necessary reuse/compatibility tests. Stop here. No V2 implementation in these game commits.",
-      "shared_source_audit_commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+      "shared_source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
       "shared_source_audit": [
         {
           "path": "games/poker/engine/table.js",
@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+          "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -458,6 +458,55 @@
           {
             "path": "games/bots.js",
             "sha256": "5fad65fa5c47ee81e1f190c546dc16acc436ef5d0f73b9cf3ce93e287742ce93"
+          },
+          {
+            "path": "games/five-card-draw/room.js",
+            "sha256": "67230f584ccf5b506986d4ad99d0a7e8a674fd21a0598556ec070bde09d7cac3"
+          },
+          {
+            "path": "games/five-card-draw/table.js",
+            "sha256": "a8267dc82b18fe1e6096985ebd292936e689a8278d8576cab1f9ab3b7c035cd6"
+          },
+          {
+            "path": "games/omaha-hi-lo/poker-room.js",
+            "sha256": "7100c6c570a4678962c6cfa98873b1bb7a0f3335828b5c864453004a7e47c00d"
+          },
+          {
+            "path": "games/omaha-hi-lo/bot.js",
+            "sha256": "eb347d2023df6f92b68dd85d3dac758e0cf15877b3b82490511d67d1d701ed28"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.js",
+            "sha256": "e29afe58c160625d739e2660e52b07e081370633b0e80daf03b108ea80f719ca"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.css",
+            "sha256": "977c4b07b8cda93539be8383303b285b03413aa7dd2502d1cf1542832bf50de4"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.js",
+            "sha256": "dd5454e96f250b7aa1dbb198d1402f079ffb6dd7ab4138f995d1305ce88dfb09"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.css",
+            "sha256": "f4787f1bb135b611077eead8e2d15d4b855fca19fb1cfb8a92a54cecc25373cd"
+          }
+        ]
+      },
+      "pre_backlog_10_shared_audit": {
+        "commit": "0051919ff99023bb0f4869e4e9d25f02b5574b9c",
+        "files": [
+          {
+            "path": "games/poker/engine/table.js",
+            "sha256": "218554472156f7533886f45664950d124d0cf0add82fc62494db065a8cb0f318"
+          },
+          {
+            "path": "games/poker/engine/cards.js",
+            "sha256": "4c3ba71c72940bda54861019b204aaa7b5696436b285ad9f6c5590c7b3e5372b"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
           },
           {
             "path": "games/five-card-draw/room.js",
@@ -1053,7 +1102,7 @@
       ],
       "completed_at": "2026-11-07",
       "report": "docs/backlog/BACKLOG-07.md",
-      "shared_source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+      "shared_source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
       "shared_source_audit": [
         {
           "path": "games/party-arena-room.js",
@@ -1065,11 +1114,11 @@
         },
         {
           "path": "games/index.js",
-          "sha256": "669de83f255338acb39875f22bb7e939da25e5702e283c694739dfcc1e23cca8"
+          "sha256": "aab7918a4b8aa94733cc0e8240de299baeff83e57246c8ac42afda8aaf769d5c"
         },
         {
           "path": "games/bots.js",
-          "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+          "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
         },
         {
           "path": "public/games/party-arena-kit.js",
@@ -1081,11 +1130,11 @@
         },
         {
           "path": "public/i18n-en.js",
-          "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
+          "sha256": "d869e5fa278e6a08d19eca99dd3ec892f45461d670e554707514234bae154836"
         },
         {
           "path": "public/index.html",
-          "sha256": "fc25d1ca467b30054b809af4349995082e885ce789ac50af6c271a450014ef77"
+          "sha256": "8181911d269907258aa14c1d97db22b78b29a41e125e7d4fe0a3bf3842a0e762"
         },
         {
           "path": "server/index.js",
@@ -1097,7 +1146,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
         }
       ],
       "permanent_screenshots": 80,
@@ -1202,6 +1251,55 @@
           {
             "path": "public/games/realtime-kit.js",
             "sha256": "ff03eba801f78faa6dda759afa949ccea8e5654f372d2b1f8df2c534f00ca0df"
+          },
+          {
+            "path": "public/i18n-en.js",
+            "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
+          },
+          {
+            "path": "public/index.html",
+            "sha256": "fc25d1ca467b30054b809af4349995082e885ce789ac50af6c271a450014ef77"
+          },
+          {
+            "path": "server/index.js",
+            "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+          },
+          {
+            "path": "server/party-program.js",
+            "sha256": "57b55bd967300e3e06f81e79471aff4ef2074faa771567ae6ec53ecb1e2c5850"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
+          }
+        ]
+      },
+      "pre_backlog_10_shared_audit": {
+        "commit": "768abf69903dda45e372fb8b042abaf719963155",
+        "files": [
+          {
+            "path": "games/party-arena-room.js",
+            "sha256": "8ad2d1bfaccfed767a70cac209332b0887f12c5b0ef1a4b8fd6edc4fa7fdc2f0"
+          },
+          {
+            "path": "games/party-arena-bot.js",
+            "sha256": "bbda45bfaa2199d345edacbc0aff63ea38f3f73012d246f6978d8d89aad44e71"
+          },
+          {
+            "path": "games/index.js",
+            "sha256": "669de83f255338acb39875f22bb7e939da25e5702e283c694739dfcc1e23cca8"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+          },
+          {
+            "path": "public/games/party-arena-kit.js",
+            "sha256": "59a5a688d5590490bbddaa55f7e2b8dd25e3bc1244455a960f71731e3e0fb526"
+          },
+          {
+            "path": "public/games/realtime-kit.js",
+            "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
           },
           {
             "path": "public/i18n-en.js",
@@ -1357,7 +1455,7 @@
       ],
       "completed_at": "2026-11-07",
       "report": "docs/backlog/BACKLOG-09.md",
-      "shared_source_audit_commit": "768abf69903dda45e372fb8b042abaf719963155",
+      "shared_source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
       "shared_source_audit": [
         {
           "path": "games/expedition-room.js",
@@ -1365,23 +1463,23 @@
         },
         {
           "path": "games/index.js",
-          "sha256": "669de83f255338acb39875f22bb7e939da25e5702e283c694739dfcc1e23cca8"
+          "sha256": "aab7918a4b8aa94733cc0e8240de299baeff83e57246c8ac42afda8aaf769d5c"
         },
         {
           "path": "games/bots.js",
-          "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+          "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
         },
         {
           "path": "public/index.html",
-          "sha256": "fc25d1ca467b30054b809af4349995082e885ce789ac50af6c271a450014ef77"
+          "sha256": "8181911d269907258aa14c1d97db22b78b29a41e125e7d4fe0a3bf3842a0e762"
         },
         {
           "path": "public/i18n-en.js",
-          "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
+          "sha256": "d869e5fa278e6a08d19eca99dd3ec892f45461d670e554707514234bae154836"
         },
         {
           "path": "public/games/realtime-kit.js",
@@ -1425,7 +1523,149 @@
           "reason": "Existing singleplayer catalog test still listed Mine Run as planned. It now verifies the registered room API and separation from local Minesweeper; full suite rerun passed."
         }
       ],
-      "permanent_screenshots": 86
+      "permanent_screenshots": 86,
+      "pre_backlog_10_shared_audit": {
+        "commit": "768abf69903dda45e372fb8b042abaf719963155",
+        "files": [
+          {
+            "path": "games/expedition-room.js",
+            "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+          },
+          {
+            "path": "games/index.js",
+            "sha256": "669de83f255338acb39875f22bb7e939da25e5702e283c694739dfcc1e23cca8"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
+          },
+          {
+            "path": "public/index.html",
+            "sha256": "fc25d1ca467b30054b809af4349995082e885ce789ac50af6c271a450014ef77"
+          },
+          {
+            "path": "public/i18n-en.js",
+            "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
+          },
+          {
+            "path": "public/games/realtime-kit.js",
+            "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+          },
+          {
+            "path": "public/games/expedition-kit.js",
+            "sha256": "6de7b478d32f8b47bc7884058bb3fd7af171dd1add78cfed20244d20b0d87f87"
+          },
+          {
+            "path": "public/games/expedition.css",
+            "sha256": "4ac3b01ee61d59e584b233444613f5db4f557b211965174c479ecdbbb0d9aff7"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BACKLOG-10",
+      "games": [
+        "puzzle-panik",
+        "wortjagd",
+        "kistenchaos",
+        "gummiband-challenge"
+      ],
+      "status": "verified",
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "followup_commits": [
+        "80590c603658d50209d7ddb7178de1660056dd91",
+        "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      ],
+      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+      "completed_at": "2026-11-08",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "permanent_screenshots": 108,
+      "shared_source_audit": [
+        {
+          "path": "games/challenge-room.js",
+          "sha256": "164fd4ffd54cd6831d67884b41d63413945ccb365158a1ef28429e5b42cd109d"
+        },
+        {
+          "path": "games/expedition-room.js",
+          "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+        },
+        {
+          "path": "games/realtime-room.js",
+          "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+        },
+        {
+          "path": "public/games/challenge-kit.js",
+          "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+        },
+        {
+          "path": "public/games/challenge.css",
+          "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      ],
+      "scope": "Explicit puzzle-panik, wortjagd, kistenchaos, gummiband-challenge only. Stop after completion; no V2 packages.",
+      "report": "docs/backlog/BACKLOG-10.md"
     }
   ],
   "games": [
@@ -2830,11 +3070,90 @@
     {
       "id": "kistenchaos",
       "name": "Kistenchaos",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-10",
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog10/kistenchaos/mobil-zoom-controls.png"
+      ]
     },
     {
       "id": "backgammon",
@@ -3373,11 +3692,88 @@
     {
       "id": "gummiband-challenge",
       "name": "Gummiband-Challenge",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-10",
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/gummiband-challenge/mobil-spectator.png"
+      ]
     },
     {
       "id": "geschenkfaenger",
@@ -3510,20 +3906,176 @@
     {
       "id": "puzzle-panik",
       "name": "Puzzle-Panik",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-10",
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-zoom-controls.png"
+      ]
     },
     {
       "id": "wortjagd",
       "name": "Wortjagd",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-10",
+      "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+          "passed": 76,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-node-verified.log",
+          "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 326.832403,
+          "report": "artifacts/backlog10-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 99.69594599999999,
+          "report": "artifacts/backlog10-controls-report.json"
+        },
+        {
+          "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+          "passed": 4,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog10-design-registration.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 161.609225,
+          "report": "artifacts/backlog10-result-report.json"
+        },
+        {
+          "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+          "tests": 1590,
+          "passed": 1587,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 241.4839461,
+          "log": "artifacts/backlog10-full-node.log",
+          "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-paused.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-playing.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-result.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-paused.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-playing.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-result.png",
+        "docs/backlog/screenshots/backlog10/wortjagd/mobil-spectator.png"
+      ]
     },
     {
       "id": "stillgestanden",
@@ -4428,14 +4980,14 @@
     }
   ],
   "latest_authorization": {
-    "date": "2026-11-07",
+    "date": "2026-11-08",
     "games": [
-      "schubsarena",
-      "scheinwerfer-flucht",
-      "minenlauf",
-      "labyrinth-chaos"
+      "puzzle-panik",
+      "wortjagd",
+      "kistenchaos",
+      "gummiband-challenge"
     ],
-    "scope": "Only these four realtime-room games, server referee, solvable random minefields/mazes, touch and keyboard, DE/EN and own scenes. No V2 packages; stop after completion."
+    "scope": "Explicit puzzle-panik, wortjagd, kistenchaos, gummiband-challenge only. Stop after completion; no V2 packages."
   },
   "extra_games": [
     {
@@ -4580,6 +5132,16 @@
         "labyrinth-chaos"
       ],
       "scope": "Only these four realtime-room games, server referee, solvable random minefields/mazes, touch and keyboard, DE/EN and own scenes. No V2 packages; stop after completion."
+    },
+    {
+      "date": "2026-11-08",
+      "games": [
+        "puzzle-panik",
+        "wortjagd",
+        "kistenchaos",
+        "gummiband-challenge"
+      ],
+      "scope": "Explicit puzzle-panik, wortjagd, kistenchaos, gummiband-challenge only. Stop after completion; no V2 packages."
     }
   ]
 }

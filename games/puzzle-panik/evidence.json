@@ -1,0 +1,228 @@
+{
+  "package_id": "BACKLOG-10",
+  "game": "puzzle-panik",
+  "date": "2026-11-08",
+  "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+  "followup_commits": [
+    "80590c603658d50209d7ddb7178de1660056dd91",
+    "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+  ],
+  "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-node-verified.log",
+      "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 326.832403,
+      "report": "artifacts/backlog10-ui-verified.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 99.69594599999999,
+      "report": "artifacts/backlog10-controls-report.json"
+    },
+    {
+      "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-design-registration.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 161.609225,
+      "report": "artifacts/backlog10-result-report.json"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+      "tests": 1590,
+      "passed": 1587,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 241.4839461,
+      "log": "artifacts/backlog10-full-node.log",
+      "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-english-rules.png",
+      "sha256": "e472f2b1a409cd8a7f73a5d3f21e7772664763175c7a257f8935cd44a974e581"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-1440x900.png",
+      "sha256": "64f4d589a8d8be0845cb23b9626e1ba0ae19ef0870d9c9fba072bf6ee3b63f42"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-1920x1080.png",
+      "sha256": "dc16d7af4ddba7416de8bd75a2209e76bf256391ac06e811552960e3d8635c94"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-360x800.png",
+      "sha256": "41a86e17089432a73f4ae7ffbea4caa384ec3b31d4db905943f3265e576e07d4"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-390x844.png",
+      "sha256": "5b88c33465acaefeb9aba3f536e40506bfcbce068ba1d9fcaacf798723aabc83"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-768x1024.png",
+      "sha256": "581f4bc4a241febda17af029c15372c544c399db2823e1d26c315f0b5e205b69"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-layout-900x450.png",
+      "sha256": "d5fa95968288cdb42dc6b630b573f7b27192a1ad9db461798631143e79627f3f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-lobby.png",
+      "sha256": "bcaf4f8b070e00855ff29ac27964cc0701e4f12b2b4bee7e56d5a8b5c63a0b53"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-paused.png",
+      "sha256": "ccded31ced65b076b4bd9e86e11657898583d5c1288d384034928c0601facd62"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-playing.png",
+      "sha256": "dac7a89cdafaab9f91527a5b7317c59c6bcc0214c035848f131fd2afab626e4d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-reconnect.png",
+      "sha256": "e6013d1e9816304965a75cc3f15fa1e074553279974b24056c96f0bb85cc77db"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-result.png",
+      "sha256": "4da83f12295066b080804826e024871776340204f750ebb758d80593fde5cea5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-spectator.png",
+      "sha256": "7ff4cbeb1146e2dcafd869d0cb5a83a0ddfe2fcff3aa2e1c75dfd66bb338e2d2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/desktop-zoom-controls.png",
+      "sha256": "190984dc04c8de9770b9e2a73516909079720c5b4beb01c4392864c70c4eb84e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-english-rules.png",
+      "sha256": "b03a1a8af2e618a22b999ee98a770673693b6ba19c89b2b53d8e03e26f491942"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-1440x900.png",
+      "sha256": "6196f59c2eedac525281b0b0f38561958f316c15c932a03504052c5c2b668871"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-1920x1080.png",
+      "sha256": "8a6856d9778b1d3e4acedac92cccae34ef81dcca44e55bb00e29a6426130b8e7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-360x800.png",
+      "sha256": "787b567209257c0ee0aa9ab7ef910b9c3dfa8741b34a4f40ff69caef191bda74"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-390x844.png",
+      "sha256": "1d47da9e5f65396bf4dd246fe3987c095a0ba9b18f99f795fd87373fa1e02837"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-768x1024.png",
+      "sha256": "62753f2f3eca889cca60b218c053afc54ea80655d2b166624fd1936c913d8368"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-layout-900x450.png",
+      "sha256": "4386f44c6ab3c754c1218ec6580f7fa2529cdc42a4c98f000932a8ca9c983755"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-lobby.png",
+      "sha256": "9b3860251ab113542157eb56d74d051d345b95eae4ee565519eda1f4c0907d49"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-paused.png",
+      "sha256": "32c3a0681ffa8d311444e69b9940a5fbd2316d978457ee9ae62006b66e20484e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-playing.png",
+      "sha256": "15dcfd3303f9ed346935c92ee9ffd35798db48b61c054cfc5769f92234aa1c0c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-reconnect.png",
+      "sha256": "f0b82b37ad4b0d8731164d27c792f80d1d840e5daac24777045be99a90286ef8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-result.png",
+      "sha256": "994301863da053902e3dab33af8f50c9de98cadbb7d4516197b8d4880d7cceef"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-spectator.png",
+      "sha256": "c3095c11d269955325cb195c8917f4044234eb9abe924ce18a0e187b0500ae37"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/puzzle-panik/mobil-zoom-controls.png",
+      "sha256": "032982b5892d019eea0597ac353254dea5bd865d30ce169add2400d8150618b9"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/puzzle-panik/index.js",
+      "sha256": "8995f4a5195efa34e1ae39c1f64e89fa830bb0f53c87f356056acf82aa5e4aeb"
+    },
+    {
+      "path": "games/puzzle-panik/room.js",
+      "sha256": "fd006455b18aaa2a7ae000dc0d1ffc935f43c38fa966c42522a8f51a90819a5a"
+    },
+    {
+      "path": "games/puzzle-panik/logic.js",
+      "sha256": "53f074316a1967df8d2e7bfffb315512d9b51b6ee5273cab4f1194714d67e562"
+    },
+    {
+      "path": "public/games/puzzle-panik/puzzle-panik.js",
+      "sha256": "73411e8e3366aba3abef203d61023ed63254de1dd99b40f6126fb570439d8ed7"
+    },
+    {
+      "path": "public/games/puzzle-panik/puzzle-panik.css",
+      "sha256": "0d2c31d8f8fe0abdbd10ef12e6420956d46a6fc1b38751f7bf7cadc74289cae0"
+    },
+    {
+      "path": "games/challenge-room.js",
+      "sha256": "164fd4ffd54cd6831d67884b41d63413945ccb365158a1ef28429e5b42cd109d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/challenge-kit.js",
+      "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+    },
+    {
+      "path": "public/games/challenge.css",
+      "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "Only the four explicitly authorised games; no V2 implementation or production deployment."
+}

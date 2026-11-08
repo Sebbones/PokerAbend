@@ -1,0 +1,228 @@
+{
+  "package_id": "BACKLOG-10",
+  "game": "kistenchaos",
+  "date": "2026-11-08",
+  "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
+  "followup_commits": [
+    "80590c603658d50209d7ddb7178de1660056dd91",
+    "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+  ],
+  "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-node-verified.log",
+      "note": "15 new tests: 2000 certified sliding puzzles, 1000 certified crate arenas, 200 letter fields, 120 complete bot rounds, privacy and strict active word deadline."
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 326.832403,
+      "report": "artifacts/backlog10-ui-verified.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog10-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 99.69594599999999,
+      "report": "artifacts/backlog10-controls-report.json"
+    },
+    {
+      "command": "node --test test/backlog10-client.test.js test/game-design.test.js",
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog10-design-registration.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog10.spec.js --grep=wortjagd (DE/EN result follow-up, desktop + mobil)",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 161.609225,
+      "report": "artifacts/backlog10-result-report.json"
+    },
+    {
+      "command": "node --test --test-concurrency=2 test/*.test.js (isolated committed main + this packet documentation)",
+      "tests": 1590,
+      "passed": 1587,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 241.4839461,
+      "log": "artifacts/backlog10-full-node.log",
+      "note": "Unrelated pending V2-06 and game-world changes excluded. Three existing Bash restore cases are skipped on Windows."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-english-rules.png",
+      "sha256": "0c2d5288d8866be4c14ed5389440dd7ca33454f152b62117ad446eea26e1fb12"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-1440x900.png",
+      "sha256": "f335225f45bfe5d7cf74cf5e607ee28565496fd0606309ce5fd1586a404d31d4"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-1920x1080.png",
+      "sha256": "77847db358142d7b383810cfb361685364a2373f444dae21ef58624b9a3babee"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-360x800.png",
+      "sha256": "a29cd19555c9c4201e007ad7d2c998c39a9fd36d1fa4fec0882493cbbbd80507"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-390x844.png",
+      "sha256": "5bcb5a998d6b312acd7e603a424bdb1adddfdd6425eb94cbacea9e41ffd7ed19"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-768x1024.png",
+      "sha256": "c679d53ab640cca8b90ec6a4793067205220702fe5c23e79b9f4b5de5de2a1f3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-layout-900x450.png",
+      "sha256": "0980100155affa95748896c12a20a1bb2edf26043505e015db2994c0c3c05bf5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-lobby.png",
+      "sha256": "b5cab365c02fc843cf1b6b9ea667222d930b2b009300487b4e0f8791c52257f8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-paused.png",
+      "sha256": "e73026003f9e9f1b0eea7de6629032ebf23f9787f8c3d3eb8e3a416fadcbbe77"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-playing.png",
+      "sha256": "550908d39196b24b2f23f5f116848e47ea2423447c4148fedf39c8fc76cb1e4f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-reconnect.png",
+      "sha256": "fd8f8e6f7b8308690dbc29c77301bf0f0261cb07a79e5d806ac1e90a2f866b6f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-result.png",
+      "sha256": "9a5d15a9e2ea628367f8dce4014fdd92b563e9b3a39576e372f89c829c141c40"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-spectator.png",
+      "sha256": "d1b61f84b2a192dd3f19837dac12a93f2b1f7a2564813107795ba7c3413c7499"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/desktop-zoom-controls.png",
+      "sha256": "f330a4f625e2c108abeddf270b2f69a3cd02185de9db97c3dce436c4b420d5c8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-english-rules.png",
+      "sha256": "d323b78fc63d21ce569a5782b5ca24fe0a1d67f520ec63486be6804822002250"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-1440x900.png",
+      "sha256": "9d7a48d1c3586f15cdfe73accd6632af36128c0288f255b61deaed9c3ee24e57"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-1920x1080.png",
+      "sha256": "9e284c14785907898ccb0b4cdc56f7a155bac0ee4c18f645f8bf4215d214519a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-360x800.png",
+      "sha256": "8ae5851db9901ac1b028a6db34df10033bfcd48dcebb6125f981d2a121885015"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-390x844.png",
+      "sha256": "0ebb4c827280c8432db740f8d33cfefab5f6f88375138182838c74312ec448e5"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-768x1024.png",
+      "sha256": "5d9cb9362acfb5afcdbc7d8cc1ce6ca0373f7010469b74d7c09c382348fd831e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-layout-900x450.png",
+      "sha256": "50074c2d49a43bceaead978a935c97bc8c02493726df7233f518c7c7a5ad5517"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-lobby.png",
+      "sha256": "079a76fe0fbadb31dc240dd9791c6dfcd59db29a08c062f24d0ffcce7fe6416a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-paused.png",
+      "sha256": "292c2553b4861544b4f1ef8bb6eea99f1d87370a7d19292f5475d281b9aea1fe"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-playing.png",
+      "sha256": "48fe95e8fb599fe78216ccbb291edc580479cbf94325c32af9e3202fbaf933eb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-reconnect.png",
+      "sha256": "9632b888eeb4c42059d69a0bb2b10dd81e7f03d93681c9d1d44bc041cdfdcff6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-result.png",
+      "sha256": "0b0313491016e5cd962cb63cb59bc89c44029622b880de5524f5aa9a0503bab9"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-spectator.png",
+      "sha256": "c2b821e1b3a1d3bedda748a67cdd44266520cb66abe6f5fed155c26280b7abf6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog10/kistenchaos/mobil-zoom-controls.png",
+      "sha256": "349cb70c9671b0116b903a95947e227bbb9acf733fb7017d964009a9ba9a10ba"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/kistenchaos/index.js",
+      "sha256": "1036f80a1ae3c29d10aab2e39f5c040710b39d4bda33842c24f9c5d31303f3ce"
+    },
+    {
+      "path": "games/kistenchaos/room.js",
+      "sha256": "585db12fa2422fcfd502ed5ee1e031d84620fedf54ecc4443aa8d22feaf7a58f"
+    },
+    {
+      "path": "games/kistenchaos/logic.js",
+      "sha256": "3cfe2e441f5d07f650ce8398d2f1e5015af74c13bd837650765a665aaaeca4b3"
+    },
+    {
+      "path": "public/games/kistenchaos/kistenchaos.js",
+      "sha256": "c40c0da0e2f25b34d40cbc12a98fbf38e97b57f877ea2dac6020e453c1569e93"
+    },
+    {
+      "path": "public/games/kistenchaos/kistenchaos.css",
+      "sha256": "f169a954d9f93fc7798ef902b8c74f9e12f4d1aa25364ab7f10836b58adb56a2"
+    },
+    {
+      "path": "games/challenge-room.js",
+      "sha256": "164fd4ffd54cd6831d67884b41d63413945ccb365158a1ef28429e5b42cd109d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/challenge-kit.js",
+      "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+    },
+    {
+      "path": "public/games/challenge.css",
+      "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "Only the four explicitly authorised games; no V2 implementation or production deployment."
+}
