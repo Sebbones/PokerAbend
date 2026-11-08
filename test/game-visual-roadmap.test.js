@@ -98,9 +98,10 @@ test('Visual roadmap: human instructions cover every package and both agents poi
 
 test('Visual roadmap: one compact public section, verified visual packages and authored English metadata', () => {
   const section = resolvedRoadmap().filter((p) => p.id === 'neue-spielwelten');
-  assert.equal(section.length, 1); assert.equal(section[0].stufe, 'spaeter');
+  assert.equal(section.length, 1); assert.equal(section[0].stufe, 'erledigt'); // alle 107 VIS-Pakete sind fertig
   assert.equal(section[0].punkte.length, 7);
-  assert.deepEqual(section[0].punkte.filter((p) => p.erledigt).map((p) => p.id), ['visual-scotland-yard', 'visual-kartenwelten']);
+  assert.ok(plan.packages.every((p) => p.visual_status === 'done'));
+  assert.deepEqual(section[0].punkte.filter((p) => p.erledigt).map((p) => p.id), section[0].punkte.map((p) => p.id));
   for (const game of ['scotland-yard', 'farbenchaos', 'stapelrennen', 'zehnetappen']) assert.equal(byGame.get(game).visual_status, 'done');
   assert.ok(section[0].punkte.every((p) => p.art === 'design' && !p.spiel && !p.plannedId));
   const { I18n } = i18nContext({}, 'en');

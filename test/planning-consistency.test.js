@@ -91,6 +91,44 @@ test('V2-Pakete (docs/roadmap/plan.json) ⇔ öffentliche Roadmap im Hub: ein Pu
   }
 });
 
+test('Ist eine Aufgabe in docs/roadmap/plan.json „done“, steht ihr Hub-Eintrag nicht mehr unter „Später“ – offene Aufgaben stehen nicht unter „Erledigt“', () => {
+  const byId = new Map(points.map((p) => [p.id, p]));
+  for (const task of plan.tasks) for (const id of task.public_roadmap_ids) {
+    const point = byId.get(id);
+    assert.ok(point, `${task.id}: Hub-Eintrag ${id} fehlt`);
+    if (task.status === 'done') {
+      assert.ok(point.erledigt, `${task.id} ist done, aber „${point.titel}“ (${id}) ist im Hub nicht erledigt`);
+      assert.equal(point.section.stufe, 'erledigt', `${task.id} ist done, aber „${point.titel}“ steht im Hub noch unter „${point.section.stufe}“ (Etappe ${point.section.id})`);
+    } else {
+      assert.ok(!point.erledigt, `${task.id} ist ${task.status}, „${point.titel}“ darf nicht erledigt sein`);
+      assert.notEqual(point.section.stufe, 'erledigt', `${task.id} ist ${task.status}, „${point.titel}“ darf nicht unter „Erledigt“ stehen`);
+    }
+  }
+});
+
+test('Hub-Roadmap: Datum einer erledigten Etappe = jüngstes Datum ihrer Punkte; Version 3.0, Ausblick und „Was ist neu“ stimmen zur Version', () => {
+  for (const s of sections.filter((x) => x.stufe === 'erledigt')) {
+    const dates = s.punkte.map((p) => p.datum).filter(Boolean).sort();
+    if (dates.length) assert.ok(s.datum >= dates.at(-1), `${s.id}: Etappe ${s.datum} älter als Punkt ${dates.at(-1)}`);
+  }
+  const ids = new Map(sections.map((s) => [s.id, s]));
+  for (const id of ['version-3', 'ranked-bestenlisten', 'erfolge-sammeln', 'gebietskampf-staedtehandel', 'sicherheit-datenschutz']) assert.equal(ids.get(id)?.stufe, 'erledigt', id);
+  const ausblick = ids.get('ausblick');
+  assert.equal(ausblick?.stufe, 'spaeter');
+  assert.deepEqual(['discord-6', 'app-handy', 'discord-2', 'saisons-turniere', 'zuschauen-wiederholungen', 'tutorials', 'hausregeln'].filter((id) => !ausblick.punkte.some((p) => p.id === id && !p.erledigt)), [], 'Ausblick: Wünsche fehlen oder stehen fälschlich als erledigt');
+  assert.match(ausblick.punkte.find((p) => p.id === 'discord-6').titel, /Tischkamera/);
+  // „Was ist neu“ beginnt mit dem Release der aktuellen Version
+  const [first] = whatsNew(8);
+  assert.equal(first.id, 'version-3-release'); assert.match(first.titel, /^Version 3\.0 /);
+  assert.equal(pkg.version.split('.')[0], '3', 'Roadmap „Version 3.0“ passt nur zu einer 3.x-Version');
+  // Jeder neue oder umgeschriebene Text hat eine englische Übersetzung (Roadmap wird übersetzt)
+  const en = read('public/i18n-en.js');
+  for (const id of ['version-3', 'sicherheit-datenschutz', 'ranked-bestenlisten', 'erfolge-sammeln', 'ausblick', 'neue-spielwelten']) {
+    const s = ids.get(id);
+    for (const text of [s.titel, s.satz, ...s.punkte.flatMap((p) => [p.titel, p.text])]) assert.ok(en.includes(JSON.stringify(text).slice(1, -1)), `${id}: englische Übersetzung fehlt für „${text}“`);
+  }
+});
+
 test('Hub-Roadmap: IDs eindeutig, erledigte Etappen vollständig mit Datum, Spiele erledigt ⇔ gebaut, „Was ist neu“ stimmt', () => {
   const all = points.map((p) => p.id);
   assert.equal(new Set(all).size, all.length, 'doppelte Roadmap-Punkte: ' + all.filter((id, i) => all.indexOf(id) !== i).join(', '));

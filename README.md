@@ -734,7 +734,7 @@ Die Datei ist die zentrale Arbeitsliste für alle noch geplanten Spiele und Part
 Regeln für die Zukunft:
 
 - **Wird ein Spiel umgesetzt:** Modul unter `games/<id>/` anlegen, in `games/index.js` registrieren und den Eintrag aus `planned.js` entfernen (der Test schlägt sonst an, weil die ID doppelt vorkommt).
-- **Ist ein Päckchen oder eine Funktion fertig:** Auch `games/roadmap.js` pflegen: Etappe auf `erledigt` mit dem Datum des passenden Git-Commits setzen, die nächste Etappe auf `jetzt`. Die Backlog-Einträge des nächsten Päckchens bekommen `status: 'next'`; immer nur ein Päckchen gleichzeitig.
+- **Ist ein Päckchen oder eine Funktion fertig:** Auch `games/roadmap.js` pflegen: Etappe auf `erledigt` mit dem Datum des passenden Git-Commits setzen, die nächste Etappe auf `jetzt`. Ist eine Aufgabe in `docs/roadmap/plan.json` auf `done`, muss ihr Hub-Eintrag unter „Erledigt“ stehen – das prüft `test/planning-consistency.test.js`, damit die Roadmap nicht veraltet. Die Backlog-Einträge des nächsten Päckchens bekommen `status: 'next'`; immer nur ein Päckchen gleichzeitig.
 - **Neue Ideen** werden nur noch in `planned.js` eingetragen, nicht mehr in dieser README.
 - Geplante Spiele und Funktionen lassen sich nicht hosten oder auswählen; der Server lehnt sie ab.
 

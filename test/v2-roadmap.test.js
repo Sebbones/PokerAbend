@@ -58,7 +58,8 @@ test('Alle V2-Pakete sind über echte, noch offene Besucher-Einträge mit der ö
     assert.equal(found.length, 1, `${t.id}: ${id}`);
     // Only the explicitly authorized DONE packages may complete their linked points.
     assert.equal(!!found[0].erledigt, DONE.includes(t.id) && V2_DONE_POINTS.includes(id), id + ' darf nur durch echte Umsetzung erledigt werden');
-    assert.ok(['spaeter', 'gross'].includes(found[0].stage), id);
+    if (t.status === 'done') assert.equal(found[0].stage, 'erledigt', `${id}: fertiges Paket ${t.id} gehört unter „Erledigt“`);
+    else assert.ok(['spaeter', 'gross'].includes(found[0].stage), id);
   }
   for (const [taskId, gameId] of [['V2-11', 'gebietskampf'], ['V2-12', 'staedtehandel']]) {
     const built = DONE.includes(taskId); // V2-11 (Gebietskampf) und V2-12 (Städtehandel) sind umgesetzt

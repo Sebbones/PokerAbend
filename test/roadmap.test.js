@@ -62,7 +62,7 @@ test('Öffentliche Roadmap enthält die geplanten V2-Wünsche ohne Doppelungen o
     assert.equal(!!byId.get(id).erledigt, ['discord-1', 'discord-3', 'discord-4', 'v2-bot-schwierigkeit', 'v2-online-verbessern', 'v2-erfolge-ausbauen', 'v2-liquid-glass', 'v2-security-tests', 'discord-5', 'v2-historical-rankings', 'v2-player-profiles', 'v2-account-achievements', 'v2-profile-preferences', 'v2-privacy', 'v2-einstellungen', 'v2-release-migration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit'].includes(id), id);
   }
   for (const id of ['v2-spielerkomfort', 'v2-admin-verwaltung', 'discord-login']) {
-    assert.equal(sections.find((section) => section.id === id)?.stufe, 'spaeter');
+    assert.equal(sections.find((section) => section.id === id)?.stufe, 'erledigt', `${id}: alle Punkte sind umgesetzt`);
   }
   assert.equal(new Set(points.map((item) => item.id)).size, points.length);
 });

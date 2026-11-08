@@ -6,10 +6,11 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
   await page.evaluate(() => { location.hash = '#roadmap'; });
   await expect(page.locator('.roadmap-card.current')).toContainText('Benachrichtigungen');
   await page.locator('[data-roadmap-stage="spaeter"] > summary').click();
+  for (const title of ['Tischkamera', 'App fürs Handy', 'Saisons & Turniere']) await expect(page.getByText(title, { exact: true })).toBeVisible(); // Ausblick: noch nicht gebaut
+  await page.locator('[data-roadmap-stage="erledigt"] > summary').click();
   for (const title of ['Dauerhafte Konten & Spieler-IDs', 'Eigene Spielerprofile', 'Privatsphäre selbst bestimmen', 'Bot-Schwierigkeitsgrade', 'Sichere Adminrechte']) {
     await expect(page.getByText(title, { exact: true })).toBeVisible();
   }
-  await page.locator('[data-roadmap-stage="gross"] > summary').click();
   await page.locator('[data-plan="gebietskampf"]').click(); // V2-11: umgesetzt, nicht mehr nur geplant
   await expect(page.locator('#host-dlg')).toContainText('Bereits spielbar');
   await page.locator('#host-dlg .host-close').click();
@@ -63,17 +64,18 @@ test('Roadmap: Navigation, Filter, Spielregeln und gemerkte abgeschlossene Etapp
   await page.locator(nav).getByRole('link', { name: 'Roadmap', exact: true }).click();
   await expect(page).toHaveTitle('Roadmap – Spieleabend');
   await expect(page.locator('.roadmap-card.current')).toContainText('Benachrichtigungen');
-  await page.getByRole('button', { name: 'Spiele', exact: true }).click();
   await page.locator('[data-roadmap-stage="spaeter"] > summary').click();
+  await expect(page.locator('#roadmap-body')).toContainText('Tischkamera'); // Ausblick bleibt offen sichtbar
+  const completed = page.locator('[data-roadmap-stage="erledigt"]');
+  await expect(completed).not.toHaveAttribute('open', '');
+  await completed.locator('summary').click();
+  await page.getByRole('button', { name: 'Spiele', exact: true }).click(); // alle Spiele sind gebaut: der Filter zeigt sie unter „Erledigt“
+  await expect(page.locator('#roadmap-body')).not.toContainText('Markdown-Export'); // Funktionen sind im Spiele-Filter ausgeblendet
   await expect(page.locator('[data-plan="backgammon"]')).toBeVisible();
-  await expect(page.locator('#roadmap-body')).not.toContainText('Markdown-Export');
   await page.locator('[data-plan="backgammon"]').click();
   await expect(page.locator('#host-dlg')).toContainText('Regeln');
   await expect(page.locator('#host-dlg .plan-rules li')).toHaveCount(9);
   await page.locator('#host-dlg .host-close').click();
-  const completed = page.locator('[data-roadmap-stage="erledigt"]');
-  await expect(completed).not.toHaveAttribute('open', '');
-  await completed.locator('summary').click();
   const dates = await completed.locator('time').evaluateAll((nodes) => nodes.map((node) => node.getAttribute('datetime')));
   expect(dates.length).toBeGreaterThan(0);
   expect(dates).toEqual([...dates].sort().reverse());

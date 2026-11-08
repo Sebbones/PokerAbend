@@ -24,16 +24,45 @@ const V2_FERTIG = Object.values(V2_FERTIG_AM).flat();
 const v2Datum = (id) => Object.entries(V2_FERTIG_AM).find(([, ids]) => ids.includes(id))?.[0];
 
 export const ROADMAP = [
+  // Version 3.0 steht ganz oben: Bei gleichem Datum gilt die Reihenfolge der Roadmap, so führt „Was ist neu“ mit dem Release.
+  { id: 'version-3', titel: 'Version 3.0', satz: 'Das große Update: 107 Spiele, eigene Konten, echte Bestenliste – und alles Bisherige bleibt erhalten.', stufe: 'erledigt', datum: '2026-11-08', punkte: [
+    punkt('version-3-release', 'Version 3.0 ist da', 'funktion', 'Im Änderungsprotokoll (CHANGELOG) steht in einfachen Worten, was seit Version 2.0 neu ist. Eure Konten, Statistiken und Tische sind noch da.', true),
+    punkt('version-3-schalter', 'Funktionen ein- und ausschalten', 'betrieb', 'Admins können Discord-Login, Ranked und einzelne Spiele jederzeit ein- und ausschalten. Dabei geht nichts verloren, und laufende Tische spielen weiter.', true),
+    punkt('version-3-anleitung', 'Anleitung & Prüfskript fürs Aufspielen', 'betrieb', 'Eine Schritt-für-Schritt-Anleitung für Server und Updates und ein Skript, das vor und nach dem Aufspielen prüft, ob alles bereit ist.', true),
+  ] },
+  { id: 'sicherheit-datenschutz', titel: 'Sicherheit & Datenschutz', satz: 'Du bestimmst, was andere von dir sehen, und kannst alles herunterladen oder löschen.', stufe: 'erledigt', datum: '2026-11-08', punkte: [
+    { ...punkt('datenschutz-seite', 'Datenschutzseite', 'funktion', 'Auf Deutsch und Englisch steht dort, was gespeichert wird, wie lange und wie du es löschst. IP-Adressen werden nicht gespeichert.', true), datum: '2026-11-07' },
+    { ...punkt('meine-daten', 'Meine Daten', 'funktion', 'Alles, was zu dir gespeichert ist, als Datei herunterladen oder das Konto löschen.', true), datum: '2026-11-07' },
+    punkt('sicherheits-durchgang', 'Gründlich geprüft', 'betrieb', 'Ein Sicherheitsdurchgang und ein Test für alle Spiele: Niemand kann fremde Karten, Würfel oder Rollen sehen.', true),
+  ] },
+  { id: 'ranked-bestenlisten', titel: 'Ranked & Bestenlisten', satz: 'Eine faire Bestenliste: Es zählen nur Partien unter echten, angemeldeten Menschen.', stufe: 'erledigt', datum: '2026-11-07', punkte: [
+    punkt('ranked-wertung', 'Ranked-Wertung', 'funktion', 'Am Tisch steht immer, ob die Runde zählt – und warum nicht. Computer und Gäste zählen nicht mit.', true),
+    punkt('ranked-bestenliste', 'Bestenliste für Woche, Monat und alle Zeiten', 'funktion', 'Je Spiel oder gesamt. Die alte Namensstatistik bleibt daneben sichtbar, und du kannst sie deinem Konto zuordnen.', true),
+  ] },
+  { id: 'erfolge-sammeln', titel: 'Erfolge', satz: 'Abzeichen sammeln, die zu deinem Konto gehören.', stufe: 'erledigt', datum: '2026-11-07', punkte: [
+    punkt('erfolge-konto', '234 Abzeichen', 'funktion', 'Deine Erfolge gehören fest zu deinem Konto – mit Datum, wann du sie geholt hast.', true),
+    punkt('erfolge-fortschritt', 'Fortschritt im Blick', 'funktion', 'Neue Herausforderungen pro Spiel und eine Übersicht, wie weit du schon bist.', true),
+  ] },
+  { id: 'gebietskampf-staedtehandel', titel: 'Gebietskampf & Städtehandel', satz: 'Zwei große Strategiespiele für lange Abende – sie merken sich den Stand auch nach einem Neustart.', stufe: 'erledigt', datum: '2026-11-07', punkte: spiele(['gebietskampf', 'staedtehandel']) },
+  { id: 'ausblick', titel: 'Ausblick: Ideen für später', satz: 'Das ist noch nicht gebaut, nur eine Wunschliste. Was davon kommt, entscheiden wir gemeinsam.', stufe: 'spaeter', punkte: [
+    punkt('discord-6', 'Tischkamera', 'discord', 'Auf Wunsch dein Kamerabild am Tisch zeigen – nur über den Browser, nie automatisch. Der Schalter dafür ist schon da, die Funktion noch nicht.'),
+    punkt('app-handy', 'App fürs Handy', 'funktion', 'Der Spieleabend als App zum Installieren, mit Mitteilung, wenn du dran bist.'),
+    punkt('discord-2', 'Discord-Bot', 'discord', 'Ein Bot, der im Discord Bescheid gibt, wenn jemand einen Tisch aufmacht.'),
+    punkt('saisons-turniere', 'Saisons & Turniere', 'funktion', 'Bestenlisten, die in Saisons neu starten, und echte Turniere mit Auslosung.'),
+    punkt('zuschauen-wiederholungen', 'Zuschauen & Wiederholungen', 'funktion', 'Fertige Partien Zug für Zug noch einmal ansehen – bei allen Spielen.'),
+    punkt('tutorials', 'Tutorials', 'funktion', 'Kurze Erklärungen zum Ausprobieren, damit auch Neue sofort mitspielen können.'),
+    punkt('hausregeln', 'Hausregeln', 'funktion', 'Eigene Regeln für euren Tisch festlegen und speichern.'),
+  ] },
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
   { id: 'einzelspieler-zukunft', titel: 'Weitere Einzelspieler-Spiele', satz: 'Alle neun Klassiker sind spielbar: Snake, Memory, Minesweeper, Nonogramm, Sokoban, Block-Puzzle, Solitär, Mahjong-Solitär und Match-3.', stufe: 'erledigt', datum: '2026-11-07', punkte: spiele(['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3']) },
-  { id: 'neue-spielwelten', titel: 'Neue Spielwelten & schönere Spieloberflächen', satz: 'Scotland Yard, UNO, Skip-Bo und Phase 10 sind visuell überarbeitet. Weitere individuelle Spielwelten folgen schrittweise nach eigener Freigabe.', stufe: 'spaeter', punkte: [
-    punkt('visual-scotland-yard', 'Scotland Yard: Ermittlungszentrale & Stadtkarte', 'design', 'Eigene Stadtviertel, persönliche Figuren, Fahrkarten und Ermittlungsprotokoll – auf Desktop und Handy geprüft.', true),
+  { id: 'neue-spielwelten', titel: 'Eigene Spielwelten für alle Spiele', satz: 'Jedes der 107 Spiele hat jetzt seine eigene Spielwelt, auf dem Handy und am großen Bildschirm.', stufe: 'erledigt', datum: '2026-11-08', punkte: [
+    { ...punkt('visual-scotland-yard', 'Scotland Yard: Ermittlungszentrale & Stadtkarte', 'design', 'Eigene Stadtviertel, persönliche Figuren, Fahrkarten und Ermittlungsprotokoll – auf Desktop und Handy geprüft.', true), datum: '2026-10-31' },
     punkt('visual-kartenwelten', 'UNO, Skip-Bo & Phase 10: eigene Kartenwelten', 'design', 'Farbarena, nummerierte Baureihen und Phasen-Arbeitsfläche mit eigenen Lobbys und klaren Aktionen auf Desktop und Handy.', true),
-    punkt('visual-hintergruende', 'Individuelle Spielwelten', 'design', 'Thematisch passende lokale Hintergründe für weitere Spiele, mit ruhigen und gut lesbaren Spielflächen.'),
-    punkt('visual-spielfelder', 'Hochwertigere Spielbretter', 'design', 'Bretter, Kartenpläne und Figuren passend zum jeweiligen Spiel verfeinern; Regeln und Zugmöglichkeiten bleiben erhalten.'),
-    punkt('visual-material', 'Klarere Karten & Würfel', 'design', 'Spielmaterial, Werte und Symbole hochwertiger und leichter unterscheidbar gestalten.'),
-    punkt('visual-status', 'Bessere Status- & Aktionsbereiche', 'design', 'Eigener Zug, Warten, Tickets, Punkte und erlaubte Aktionen schneller erfassen.'),
-    punkt('visual-schrittweise', 'Schrittweise weitere Spiele überarbeiten', 'design', 'Für alle vorhandenen und geplanten Spiele liegen eigene Designkonzepte vor. Jede Umsetzung wird einzeln freigegeben und geprüft.'),
+    punkt('visual-hintergruende', 'Passende Hintergründe', 'design', 'Jedes Spiel hat Farben, Tisch und Beschriftungen, die zu ihm passen – vom Kneipentisch bei Mäxchen bis zur Holzwerkstatt bei Scrabble.', true),
+    punkt('visual-spielfelder', 'Eigene Spielbretter', 'design', 'Bretter, Kartenpläne und Figuren sehen bei jedem Spiel anders aus; die Regeln sind dabei gleich geblieben.', true),
+    punkt('visual-material', 'Klarere Karten & Würfel', 'design', 'Spielmaterial, Werte und Symbole sind leichter zu unterscheiden.', true),
+    punkt('visual-status', 'Besser sichtbarer Zug', 'design', 'Ob du dran bist, worauf der Tisch wartet und was du tun darfst, siehst du auf einen Blick.', true),
+    punkt('visual-schrittweise', 'Jedes Spiel einzeln gestaltet und geprüft', 'design', 'Alle 107 Spiele wurden einzeln überarbeitet und auf Desktop und Handy getestet.', true),
   ] },
   { id: 'fahndung-und-kleine-spiele', titel: 'Scotland Yard, Hex & Würfelduell', satz: 'Verdeckte Fahndung auf eigenem Stadtplan, danach zwei kompakte neue Spiele.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['scotland-yard', 'hex', 'wuerfelduell']) },
   { id: 'klassiker-varianten', titel: 'Päckchen 10 – Klassiker-Varianten', satz: 'Neue Wege durch bekannte Spiele und eine ganze Lebensreise.', stufe: 'erledigt', datum: '2026-10-30', paeckchen: '10', punkte: liste('p10', 'funktion', [
@@ -88,63 +117,61 @@ export const ROADMAP = [
     ['Termin & Spiele-Abstimmung', 'Einen Termin planen, Zusagen sammeln und über die Spiele abstimmen.'],
     ['Erfolge & Abzeichen', 'Persönliche Meilensteine über mehrere Abende sammeln.'],
   ]).map((p) => ({ ...p, erledigt: true, datum: '2026-10-30' })) },
-  { id: 'benachrichtigungen', titel: 'Benachrichtigungen', satz: 'Eine Nachricht, wenn du dran bist oder der Tisch auf dich wartet.', stufe: 'jetzt', punkte: [punkt('push', 'Push-Mitteilungen', 'funktion', '„Du bist dran“ und „Tisch wartet“ auch außerhalb des aktiven Tabs.') ] },
-  { id: 'betrieb', titel: 'Betrieb & Wartung', satz: 'Updates, Fehler und gespeicherte Abende werden verlässlicher betreut.', stufe: 'spaeter', punkte: liste('betrieb', 'betrieb', [
+  { id: 'benachrichtigungen', titel: 'Benachrichtigungen', satz: 'Eine Nachricht, wenn du dran bist oder der Tisch auf dich wartet.', stufe: 'jetzt', punkte: [punkt('push', 'Push-Mitteilungen', 'funktion', 'Bisher meldet nur Poker „Du bist dran!“, und nur solange der Tab offen ist und du Mitteilungen erlaubt hast. „Du bist dran“ und „Tisch wartet“ auch außerhalb des Tabs und bei allen Spielen fehlen noch.') ] },
+  { id: 'betrieb', titel: 'Betrieb & Wartung', satz: 'Updates, Fehler und Sicherungen sind geregelt. Offen ist nur das Weiterspielen mitten in der Runde nach einem Neustart.', stufe: 'spaeter', punkte: liste('betrieb', 'betrieb', [
     ['Update-Hinweis', 'Vor einem geplanten Neustart rechtzeitig am Tisch Bescheid sagen.'],
     ['Admin-Seite', 'Zustand und Verwaltung der laufenden Instanz an einem Ort.'],
     ['Version & „Was ist neu“', 'Die aktuelle Version und ihre Änderungen im Hub zeigen.'],
     ['Browser-Fehler', 'Fehler aus dem Browser nachvollziehbar erfassen.'],
     ['Ausfall-Wächter', 'Den vorhandenen /health-Endpunkt von außen überwachen.'],
     ['Backups & Restore-Test', 'Backups außer Haus speichern und ihre Wiederherstellung regelmäßig prüfen.'],
-    ['Speichern mitten in der Runde', 'Laufende Spielstände nach einem Neustart fortsetzen.'],
+    ['Speichern mitten in der Runde', 'Gebietskampf, Städtehandel, Party-Brett und Survival-Abend machen nach einem Neustart genau dort weiter. Bei den übrigen Spielen muss die laufende Runde neu gestartet werden.'],
   ]).map((p) => (BETRIEB_FERTIG.includes(p.id) ? { ...p, erledigt: true, datum: ['v2-erfolge-ausbauen','v2-online-verbessern'].includes(p.id) ? '2026-11-07' : '2026-11-01' } : p)) },
-  { id: 'technik', titel: 'Technik aufräumen', satz: 'Eine klare Grundlage für weitere Spiele und verlässliche Spielerdaten.', stufe: 'spaeter', punkte: liste('technik', 'betrieb', [
-    ['Tests aufteilen', 'Die gewachsene Testsammlung in überschaubare Bereiche gliedern.'],
-    ['SQLite', 'Persistente Daten strukturiert in einer Datenbank halten.'],
-    ['Feste Spieler-ID', 'In der Bestenliste eine feste Identität statt nur des Namens verwenden.'],
-    ['Paket-Metadaten', 'package.json-Beschreibung und Versionsnummern aktuell halten.'],
-  ]) },
-  { id: 'englisch', titel: 'Deutsch & Englisch', satz: 'Die Sprachwahl ist verfügbar; die vollständige Übersetzung aller Spieltexte wird ergänzt.', stufe: 'spaeter', punkte: [
+  { id: 'technik', titel: 'Technik aufräumen', satz: 'Tests, Spieler-IDs und Versionsnummern sind aufgeräumt. Offen ist nur der Umzug der Daten in eine Datenbank.', stufe: 'spaeter', punkte: liste('technik', 'betrieb', [
+    ['Tests aufteilen', 'Ein Befehl startet alle Tests; sie sind in schnelle und langsame Bereiche aufgeteilt und werden nachts automatisch durchlaufen.'],
+    ['SQLite', 'Persistente Daten strukturiert in einer Datenbank halten. Bisher liegen sie in einfachen Dateien.'],
+    ['Feste Spieler-ID', 'In der Bestenliste zählt eine feste Identität statt nur des Namens.'],
+    ['Paket-Metadaten', 'Beschreibung und Versionsnummer sind aktuell (Version 3.0.0).'],
+  ]).map((p) => ({ 'technik-1': { ...p, erledigt: true, datum: '2026-11-08' }, 'technik-4': { ...p, erledigt: true, datum: '2026-11-08' } })[p.id] || p) },
+  { id: 'englisch', titel: 'Deutsch & Englisch', satz: 'Die Sprachwahl gibt es, fast alles ist übersetzt. Bei 13 Spielen fehlen noch einzelne Texte im Spielfeld.', stufe: 'spaeter', punkte: [
     punkt('sprachwahl', 'Persönliche Sprachwahl', 'funktion', 'Deutsch oder Englisch auf Anmeldung, Startseite und in den Spieleinstellungen wählen. Im Browser gespeichert, während laufender Runden ohne Neuladen umschaltbar.', true),
     punkt('party-fragen-englisch', '423 zweisprachige Party-Aufgaben', 'funktion', 'Alle eingebauten Fragen von Schätzmeister, Schlagfertig und Wer hat das gesagt? sind auf Deutsch und Englisch verfügbar. Eigene Texte bleiben unverändert.', true),
-    punkt('englische-seite', 'Vollständige englische Oberfläche & Inhalte', 'funktion', 'Noch fehlende Spielregeln, Spieltexte, Begriffe, Systemmeldungen und ältere Hub-Bereiche übersetzen. Bis dahin bleibt für fehlende Übersetzungen der deutsche Text sichtbar.'),
+    punkt('englische-seite', 'Vollständige englische Oberfläche & Inhalte', 'funktion', 'Bei Blackjack, Bröckelboden, Hex, Kronenjagd, Laser-Hüpfer, Mäxchen, Mühle, Schlagfertig, Schwimmen, Shut the Box, Wer hat das gesagt?, Würfelduell und Zehntausend sind einzelne Texte im Spielfeld noch deutsch. Bis dahin bleibt dort der deutsche Text sichtbar.'),
   ] },
   { id: 'echtzeit', titel: 'Päckchen 8 – Echtzeit', satz: 'Alle bewegen sich gleichzeitig im gemeinsamen Spielfeld.', stufe: 'erledigt', datum: '2026-10-29', paeckchen: '8', punkte: [punkt('bauart-c', 'Bauart-C-Baustein', 'funktion', 'Serverberechnete Bewegung, kleine Zustandsbilder, Tastatur, Touch und Echtzeit-Bots.', true), ...spiele(['broeckelboden', 'kronenjagd', 'laser-huepfer'])] },
-  { id: 'discord-login', titel: 'Discord-Login, Gastmodus & Spieler-ID', satz: 'Freiwillig anmelden, ohne Konto mitspielen und Statistiken eindeutig zuordnen.', stufe: 'spaeter', punkte: liste('discord', 'discord', [
-    ['Optionaler Discord-Login', 'Wer möchte, meldet sich sicher mit Discord an und erhält ein dauerhaftes Spielerprofil.'],
-    ['Tisch-Nachricht', 'Im Discord Bescheid geben, wenn jemand einen Tisch aufmacht.'],
-    ['Als Gast spielen', 'Ohne Discord-Konto weiterhin Lobbys erstellen, Freunden per Raumcode beitreten und normal spielen.'],
-    ['Feste Game-ID', 'Registrierte Spieler erhalten eine unveränderliche, öffentliche Kennung für Profil und Statistiken.'],
-    ['Faire Bestenlisten', 'Nur verifizierte und gültige Partien zählen öffentlich; Gäste und Computergegner werden nicht gewertet.'],
-    ['Optionale Tischkamera', 'Auf Wunsch eigenes Kamerabild über den Browser am Tisch zeigen; keine automatische Übernahme von Discord-Videocalls.'],
-  ]) },
-  { id: 'v2-spielerkomfort', titel: 'Mehr Einstellungen & Spielerkomfort', satz: 'Jeder gestaltet die Oberfläche so, wie sie zum eigenen Spieleabend passt.', stufe: 'spaeter', punkte: [
-    punkt('v2-liquid-glass', 'Liquid Glass für neue Kontoansichten', 'design', 'Das vorhandene ruhige Design später für neue Profile und Konto-Einstellungen fortführen; der bestehende Hub bleibt erhalten.'),
+  { id: 'discord-login', titel: 'Discord-Login, Gastmodus & Spieler-ID', satz: 'Freiwillig mit Discord anmelden oder als Gast mitspielen – jeder hat eine feste Game-ID.', stufe: 'erledigt', datum: '2026-11-07', punkte: [
+    punkt('discord-1', 'Optionaler Discord-Login', 'discord', 'Wer möchte, meldet sich sicher mit Discord an und erhält ein dauerhaftes Spielerprofil. Admins können den Login ein- und ausschalten.', true),
+    punkt('discord-3', 'Als Gast spielen', 'discord', 'Ohne Discord-Konto weiterhin Lobbys erstellen, Freunden per Raumcode beitreten und normal spielen.', true),
+    punkt('discord-4', 'Feste Game-ID', 'discord', 'Jeder Browser erhält eine unveränderliche, kurze Kennung für Profil und Statistiken.', true),
+    punkt('discord-5', 'Faire Bestenlisten', 'discord', 'Nur gültige Partien unter angemeldeten Menschen zählen; Gäste und Computergegner werden nicht gewertet.', true),
+  ] },
+  { id: 'v2-spielerkomfort', titel: 'Mehr Einstellungen & Spielerkomfort', satz: 'Jeder gestaltet die Oberfläche so, wie sie zum eigenen Spieleabend passt.', stufe: 'erledigt', datum: '2026-11-07', punkte: [
+    punkt('v2-liquid-glass', 'Gleiches Design für Konto-Seiten', 'design', 'Profil, Einstellungen, Bestenliste, Erfolge und Admin sehen jetzt aus wie die Startseite.'),
     punkt('v2-einstellungen', 'Mehr Anzeige-Einstellungen', 'funktion', 'Spielkategorien, Menübereiche, Bestenlisten, Rückblicke und Erfolge einzeln ein- oder ausblenden.'),
-    punkt('v2-online-verbessern', 'Gerade online verbessern', 'funktion', 'Zuverlässiger Online- und Abwesenheitsstatus, mehrere Geräte erkennen und private Tische schützen.'),
+    punkt('v2-online-verbessern', 'Gerade online verbessert', 'funktion', 'Online, abwesend und unsichtbar stimmen auch mit mehreren Geräten und Tabs; private Tische bleiben geschützt.'),
     punkt('v2-erfolge-ausbauen', 'Mehr Errungenschaften', 'funktion', 'Neue Erfolge und Herausforderungen pro Spiel sowie übersichtliche Fortschrittsanzeigen.'),
     punkt('v2-bot-schwierigkeit', 'Bot-Schwierigkeitsgrade', 'funktion', 'Leicht, Mittel und Schwer für geeignete Computergegner auswählen.'),
   ] },
-  { id: 'v2-admin-verwaltung', titel: 'Adminverwaltung für Ergebnisse & Rückblicke', satz: 'Fehlerhafte Einträge sicher moderieren und Änderungen nachvollziehbar halten.', stufe: 'spaeter', punkte: [
+  { id: 'v2-admin-verwaltung', titel: 'Adminverwaltung für Ergebnisse & Rückblicke', satz: 'Fehlerhafte Einträge sicher moderieren und Änderungen nachvollziehbar halten.', stufe: 'erledigt', datum: '2026-11-07', punkte: [
     punkt('v2-admin-rueckblicke', 'Rückblicke verwalten', 'betrieb', 'Admins können Rückblicke suchen, korrigieren, ausblenden und bei Bedarf löschen oder wiederherstellen.'),
-    punkt('v2-admin-bestenlisten', 'Bestenlisten verwalten', 'betrieb', 'Falsche Wertungen mit Änderungsprotokoll korrigieren; Rangfolge und Erfolge werden konsistent neu berechnet.'),
+    punkt('v2-admin-bestenlisten', 'Bestenlisten verwalten', 'betrieb', 'Falsche Wertungen werden mit Änderungsprotokoll korrigiert; Rangfolge und Erfolge werden neu berechnet.'),
     punkt('v2-admin-sicherheit', 'Sichere Adminrechte', 'betrieb', 'Admin-Aktionen nur mit eigener Berechtigung, Bestätigung und protokollierten Änderungen.'),
   ] },
-  { id: 'v2-profile', titel: 'Dauerhafte Konten, Profile & Privatsphäre', satz: 'Auf Wunsch wiedererkannt werden und selbst über sichtbare Daten entscheiden.', stufe: 'spaeter', punkte: [
-    punkt('v2-account-identity', 'Dauerhafte Konten & Spieler-IDs', 'funktion', 'Jeder Browser ist ein identifizierter Gast mit fester interner ID und kurzer öffentlicher Game-ID; Computergegner sind getrennt, zwei Geräte lassen sich verbinden. Registrierte Konten (Discord) folgen später.'),
-    punkt('v2-player-profiles', 'Eigene Spielerprofile', 'funktion', 'Ein Profil über die öffentliche Game-ID finden; ein Namenswechsel trennt die eigene Geschichte nicht mehr.'),
-    punkt('v2-account-achievements', 'Erfolge dem Konto zuordnen', 'funktion', 'Bestätigte neue Erfolge eindeutig dem jeweiligen Konto zuordnen, ohne alte Namensstatistiken ungeprüft zu übernehmen.'),
-    punkt('v2-profile-preferences', 'Einstellungen auf mehreren Geräten', 'funktion', 'Kontoeinstellungen geräteübergreifend nutzen; Gäste behalten ihre lokale Browser-Auswahl.'),
-    punkt('v2-privacy', 'Privatsphäre selbst bestimmen', 'funktion', 'Öffentliche Profile und Erfolge unabhängig davon steuern, welche Bereiche im eigenen Menü sichtbar sind.'),
+  { id: 'v2-profile', titel: 'Dauerhafte Konten, Profile & Privatsphäre', satz: 'Auf Wunsch wiedererkannt werden und selbst über sichtbare Daten entscheiden.', stufe: 'erledigt', datum: '2026-11-07', punkte: [
+    punkt('v2-account-identity', 'Dauerhafte Konten & Spieler-IDs', 'funktion', 'Jeder Browser hat ein Konto mit fester interner ID und kurzer öffentlicher Game-ID; Computergegner sind getrennt, zwei Geräte lassen sich verbinden. Mit Discord anmelden geht auch.'),
+    punkt('v2-player-profiles', 'Eigene Spielerprofile', 'funktion', 'Ein Profil über die öffentliche Game-ID finden; ein Namenswechsel trennt die eigene Geschichte nicht.'),
+    punkt('v2-account-achievements', 'Erfolge dem Konto zuordnen', 'funktion', 'Neue Erfolge gehören eindeutig zum jeweiligen Konto; alte Namensstatistiken werden nur auf Wunsch übernommen.'),
+    punkt('v2-profile-preferences', 'Einstellungen auf mehreren Geräten', 'funktion', 'Kontoeinstellungen gelten auf allen verbundenen Geräten; Gäste behalten ihre lokale Browser-Auswahl.'),
+    punkt('v2-privacy', 'Privatsphäre selbst bestimmen', 'funktion', 'Öffentliche Profile und Erfolge lassen sich unabhängig davon steuern, welche Bereiche im eigenen Menü sichtbar sind.'),
   ] },
-  { id: 'v2-grundlagen', titel: 'V2 sicher vorbereiten & einführen', satz: 'Bestehende Spiele, Ergebnisse und Zugänge bleiben bei künftigen Erweiterungen geschützt.', stufe: 'spaeter', punkte: [
-    punkt('v2-audit', 'Bestehendes sorgfältig prüfen', 'betrieb', 'Vor neuen Kontofunktionen Zugänge, gespeicherte Daten und mögliche Risiken nachvollziehbar prüfen.'),
-    punkt('v2-backup-migration', 'Gesicherter Datenumzug', 'betrieb', 'Künftige Datenänderungen mit Sicherung, Wiederherstellung und einem Rückweg vorbereiten.'),
-    punkt('v2-session-security', 'Sichere Anmeldung & Abmeldung', 'funktion', 'Anmeldungen prüfen, Sitzungen sicher beenden und bestehendes Gruppenpasswort sowie Adminrechte getrennt halten.'),
-    punkt('v2-historical-rankings', 'Bisherige Bestenlisten erhalten', 'funktion', 'Alte namensbasierte Ergebnisse als Historie bewahren und von künftig verifizierten Ranglisten trennen.'),
-    punkt('v2-platform-integration', 'Vorhandene Bereiche sicher verbinden', 'funktion', 'Tickets, Abendplanung, Rückblicke und Anwesenheit später mit Konten verbinden, ohne fremde Rechte zu übertragen.'),
-    punkt('v2-security-tests', 'Sicherheit & Bestand nachprüfen', 'betrieb', 'Neue Zugänge und Privatsphäre testen und alle bestehenden Spiele und Räume weiter prüfen.'),
-    punkt('v2-release-migration', 'Schrittweise Einführung', 'betrieb', 'Neue Funktionen kontrolliert freischalten, Auswirkungen dokumentieren und einen sicheren Rückweg vorsehen.'),
+  { id: 'v2-grundlagen', titel: 'V2 sicher vorbereiten & einführen', satz: 'Bestehende Spiele, Ergebnisse und Zugänge sind bei den Neuerungen geschützt geblieben.', stufe: 'erledigt', datum: '2026-11-08', punkte: [
+    punkt('v2-audit', 'Bestehendes sorgfältig geprüft', 'betrieb', 'Vor den neuen Kontofunktionen wurden Zugänge, gespeicherte Daten und mögliche Risiken nachvollziehbar geprüft.'),
+    punkt('v2-backup-migration', 'Gesicherter Datenumzug', 'betrieb', 'Datenänderungen laufen mit Sicherung, Wiederherstellung und einem Rückweg.'),
+    punkt('v2-session-security', 'Sichere Anmeldung & Abmeldung', 'funktion', 'Anmeldungen werden geprüft, Sitzungen sicher beendet; Gruppenpasswort und Adminrechte bleiben getrennt.'),
+    punkt('v2-historical-rankings', 'Bisherige Bestenlisten erhalten', 'funktion', 'Alte namensbasierte Ergebnisse bleiben als Historie sichtbar, getrennt von der neuen Ranked-Wertung.'),
+    punkt('v2-platform-integration', 'Vorhandene Bereiche mit Konten verbunden', 'funktion', 'Tickets, Abendplanung, Rückblicke und Anwesenheit gehören jetzt zum Konto, ohne fremde Rechte zu übertragen.'),
+    punkt('v2-security-tests', 'Sicherheit & Bestand nachgeprüft', 'betrieb', 'Zugänge und Privatsphäre sind getestet, und alle bestehenden Spiele und Räume wurden weiter geprüft.'),
+    punkt('v2-release-migration', 'Schrittweise Einführung', 'betrieb', 'Neue Funktionen lassen sich kontrolliert freischalten; Anleitung, Prüfskript und Rückweg sind dokumentiert.'),
   ] },
   { id: 'poker-extras', titel: 'Poker-Extras', satz: 'Vorhandener Komfort und weitere Varianten für den Pokertisch.', stufe: 'spaeter', punkte: [
     punkt('turnier-blinds', 'Turniermodus mit steigenden Blinds', 'funktion', 'Blind-Level nach Zeit oder Händen mit konfigurierbarer Steigerung sind vorhanden.', true),
@@ -157,9 +184,9 @@ export const ROADMAP = [
     punkt('chaos-modus', 'Chaos-Modus', 'funktion', 'Optionale, vor dem Start offen gezogene Zusatzregeln in den drei unterstützten Partyspielen; standardmäßig aus.', true),
     punkt('survival-abend', 'Survival-Abend', 'funktion', 'Abendprogramm mit 1–5 Leben: letzter Platz verliert ein Leben, Ausgeschiedene schauen zu, der letzte Überlebende gewinnt. Mit Gleichstands- und Sicherheitsregeln.', true),
   ] },
-  { id: 'spaetere-spiele', titel: 'Weitere Spiele', satz: 'Der übrige Backlog für kommende Spiele-Päckchen.', stufe: 'spaeter', paeckchen: 'spaeter', punkte: spiele(['risiko-wuerfeln','story-chaos','zahlenreihe','wuerfeljagd','monsterwuerfel','wuerfel-auktion','backgammon','hearts','five-card-draw','scrabble','omaha-hi-lo','short-deck','seven-card-stud','exploding-deck','doppelagent','luegenbaron','stichmeister','labyrinth-brett','schatzinsel','jaeger-schatten','infektionsjagd','letzter-schutzplatz','regelwahnsinn','geschenkfaenger','rhythmus-rausch','stillgestanden','bomben-duell','schubsarena','scheinwerfer-flucht','minenlauf','labyrinth-chaos','puzzle-panik','wortjagd','kistenchaos','gummiband-challenge','turmbauer','fallenbauer','geschenkdiebe','schatzgraeber','brueckenroulette','reaktor-notfall']) },
-  { id: 'grosse-projekte', titel: 'Große Projekte', satz: 'Größere Spielsysteme und Experimente mit mehr Vorlauf.', stufe: 'gross', paeckchen: 'gross', punkte: [
-    ...spiele(['schach', 'gebietskampf', 'staedtehandel']),
+  { id: 'spaetere-spiele', titel: 'Weitere Spiele', satz: 'Alle 41 Spiele aus der Wunschliste sind gebaut und spielbar.', stufe: 'erledigt', datum: '2026-11-08', paeckchen: 'spaeter', punkte: spiele(['risiko-wuerfeln','story-chaos','zahlenreihe','wuerfeljagd','monsterwuerfel','wuerfel-auktion','backgammon','hearts','five-card-draw','scrabble','omaha-hi-lo','short-deck','seven-card-stud','exploding-deck','doppelagent','luegenbaron','stichmeister','labyrinth-brett','schatzinsel','jaeger-schatten','infektionsjagd','letzter-schutzplatz','regelwahnsinn','geschenkfaenger','rhythmus-rausch','stillgestanden','bomben-duell','schubsarena','scheinwerfer-flucht','minenlauf','labyrinth-chaos','puzzle-panik','wortjagd','kistenchaos','gummiband-challenge','turmbauer','fallenbauer','geschenkdiebe','schatzgraeber','brueckenroulette','reaktor-notfall']) },
+  { id: 'grosse-projekte', titel: 'Große Projekte', satz: 'Schach und das Party-Brett sind fertig. Offen sind noch das 3D-Experiment und die Discord Activity.', stufe: 'gross', paeckchen: 'gross', punkte: [
+    ...spiele(['schach']),
     { ...punkt('party-brett', 'Party-Brett', 'funktion', 'Laternenpfad mit echten Party-Minispielen, Platzierungsbewegung, Ereignisfeldern, Items und Sabotage; Brett und Ergebnisse bleiben beim Wiederverbinden und Serverneustart erhalten.', true), datum: '2026-11-08' },
     punkt('3d-experiment', '3D-Experiment', 'design', '3D-Würfel als begrenzter Test für eine räumliche Darstellung.'),
     punkt('discord-activity', 'Discord Activity', 'discord', 'Direkt gemeinsam im Discord-Sprachkanal spielen.'),
