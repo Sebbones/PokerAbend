@@ -228,7 +228,7 @@ test('Geplante Spiele und Funktionen lassen sich nicht hosten oder auswählen; /
   const c = client();
   const games = PLANNED.filter((e) => e.type !== 'feature');
   const features = PLANNED.filter((e) => e.type === 'feature');
-  for (const e of [games[0], games.at(-1), features[0], features.at(-1)]) {
+  for (const e of [games[0], games.at(-1), features[0], features.at(-1)].filter(Boolean)) {
     const r = await c.ask('create', { game: e.id, name: 'Test' });
     assert.equal(r.ok, false, `${e.id} lässt sich hosten`);
     assert.match(r.error, /noch nicht|Liste der geplanten/, e.id);
@@ -237,7 +237,7 @@ test('Geplante Spiele und Funktionen lassen sich nicht hosten oder auswählen; /
   // Spielwechsel zu einem geplanten Spiel
   const host = client();
   await host.ask('create', { game: 'maumau', name: 'Hella' });
-  const sw = await host.ask('switchGame', { game: games[0].id });
+  const sw = await host.ask('switchGame', { game: (games[0] ?? features[0]).id });
   assert.equal(sw.ok, false);
   assert.match(sw.error, /noch nicht/);
   // Die Startseite bekommt Spiele (mit Status), aber keine Funktionen

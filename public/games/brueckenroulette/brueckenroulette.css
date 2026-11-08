@@ -1,0 +1,16 @@
+@import url('/games/party-kit.css');
+.kg-brueckenroulette .kg-main{background:radial-gradient(120% 90% at 50% 0,#3a4a55,#131d24)}
+.kg-brueckenroulette .br-lobby{max-width:640px;margin:auto;text-align:center;padding:clamp(16px,4vw,32px);border:1px solid #c9a46a;border-radius:20px;background:#2d3b45;color:#f2e3c4}.br-lobby .game-art{width:min(100%,320px);height:auto}.br-lobby h2{font:700 clamp(1.4rem,4vw,2.1rem) Georgia,serif}
+.br-scene{text-align:center;padding:10px 0}.br-scene small{letter-spacing:.14em;color:#e0c48a}.br-scene h2{font:700 clamp(1.2rem,3.4vw,1.8rem) Georgia,serif;margin:6px 0}
+.br-bridge{display:grid;gap:10px;max-width:640px;margin:14px auto;padding:14px;border-radius:14px;background:linear-gradient(#1e2d36,#162129);border:1px solid #6a5a43}
+.br-plank{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px;min-height:52px;padding:10px 16px;border-radius:6px;background:repeating-linear-gradient(90deg,#a97b4a 0 38px,#9a6d3e 38px 40px);border:2px solid #ead2a2;color:#1d140b;box-shadow:0 3px 0 #0006}
+.br-plank b{font-size:1.05rem}.br-plank small{font-weight:700;overflow-wrap:anywhere}
+.br-mine{outline:4px solid #fff;outline-offset:2px}
+.br-broken{background:repeating-linear-gradient(120deg,#6b3f2a 0 14px,#412214 14px 18px);border:2px dashed #ff9a7a;color:#fff1de}.br-crack{font-weight:700;color:#ffd1bd}
+.br-private{text-align:center;color:#d6d9cf}
+.br-lost,.br-rows{list-style:none;padding:0;max-width:640px;margin:10px auto}
+.br-lost li,.br-rows li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 12px;padding:8px 10px;border-top:1px solid #8b99a255;overflow-wrap:anywhere}
+.br-lost-row strong{color:#ff9a7a}.br-rows strong{min-width:2ch;text-align:right}
+.br-choices{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}.br-pick{min-height:48px;min-width:112px;touch-action:manipulation}
+.br-done{font-weight:700}
+@media(max-width:640px){.br-plank{padding:8px 12px}.br-pick{flex:1 1 40%}}

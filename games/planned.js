@@ -35,41 +35,11 @@ export const PLANNED = [
   // ---------- Später ----------
 
 
-  spiel({
-    id: 'schatzgraeber', name: 'Schatzgräber', category: 'party', bauart: 'C', minPlayers: 2, maxPlayers: 8, duration: 5, paeckchen: 'spaeter',
-    description: 'Alle graben gleichzeitig in der Arena nach Schätzen – und weichen den Bomben aus.',
-    rules: [
-      'In einer Arena liegen verborgene Schätze und einige Bomben.',
-      'Jeder bewegt sich in Echtzeit und gräbt unter sich; beim Graben steht man kurz still.',
-      'Schätze geben Punkte, Bomben werfen einen kurz zurück.',
-      'Nach der Spielzeit gewinnt, wer die meisten Schätze hat.',
-    ],
-    houseRules: ['Metalldetektor-Hinweise', 'Gegner können Fundstellen stehlen'],
-    art: glyph('shovel', '#7A5238'),
-  }),
-  spiel({
-    id: 'brueckenroulette', name: 'Brückenroulette', category: 'party', bauart: 'A', minPlayers: 3, maxPlayers: 8, duration: 10, paeckchen: 'spaeter',
-    description: 'Alle wählen gleichzeitig eine Planke – die vollste bricht.',
-    rules: [
-      'Pro Runde wählen alle gleichzeitig und geheim eine von drei Planken einer Brücke.',
-      'Die Planke, auf der die meisten stehen, bricht (bei Gleichstand entscheidet der Zufall).',
-      'Wer darauf stand, verliert einen Punkt; alle anderen kommen heil rüber.',
-      'Nach acht Runden gewinnt, wer die wenigsten Punkte verloren hat.',
-    ],
-    houseRules: ['Vier Planken', 'Die leerste Planke bricht'],
-    art: glyph('bridge', '#7A5238'),
-  }),
   funktion({ id: 'modifikatoren', name: 'Modifikatoren', type: 'feature', paeckchen: 'spaeter', beschreibung: 'Zufällige oder vom Host gewählte Regelwürze für Partyspiele, z. B. doppelte Punkte, umgekehrte Wertung oder Zeitdruck – gilt für eine Runde oder die Partie.' }),
 
   // ---------- Groß ----------
 
   // Erhaltene Ideen aus dem alten Party-Katalog (PR #2): ausschließlich Backlog, nicht startbar.
-  spiel({
-    id: 'reaktor-notfall', name: 'Reaktor-Notfall', category: 'party', bauart: 'A', minPlayers: 2, maxPlayers: 8, duration: 6, paeckchen: 'spaeter',
-    description: 'Gemeinsam Rätsel lösen, bevor eine fiktive Anlage überhitzt.',
-    rules: ['Die Gruppe erhält mehrere zusammengehörige Hinweise und kleine Rätsel.', 'Richtige gemeinsame Entscheidungen stabilisieren die Anlage; Fehler kosten Zeit.', 'Alle gewinnen gemeinsam, wenn sie die Aufgaben vor Ablauf des Timers lösen.'],
-    art: glyph('pen'),
-  }),
   funktion({ id: 'party-brett', name: 'Party-Brett', type: 'feature', paeckchen: 'gross', beschreibung: 'Ein Brettspiel, auf dem die Partyspiele als Aufgaben liegen: Ereignisfelder, Items und Sabotage sorgen für Abwechslung, Minispiele entscheiden um Felder und Punkte.' }),
 ];
 

@@ -1,0 +1,7 @@
+export const RULE_PAIRS=[
+["3–8 Personen überqueren mehrere Brücken. In jeder Runde wählen alle gleichzeitig und geheim eine von drei Planken; eine Wahl ist endgültig.","3–8 people cross several bridges. Each round everyone chooses one of three planks simultaneously and in secret; a choice is final."],
+["Erst bei der Auflösung werden alle Wahlen sichtbar. Die Planke mit den meisten Personen bricht; bei Gleichstand entscheidet der Serverzufall unter den gleich vollen Planken.","All choices become visible only at the reveal. The plank with the most people breaks; on a tie the server randomly picks among the equally full planks."],
+["Wer auf der gebrochenen Planke stand, verliert einen Punkt. Alle anderen kommen heil hinüber.","Anyone on the broken plank loses a point. Everyone else crosses safely."],
+["Wer nicht rechtzeitig wählt, bekommt vom Server eine zufällige Planke zugewiesen. Hausregeln: vier Planken oder „Die leerste Planke bricht“ (nur besetzte Planken zählen).","Anyone who does not choose in time gets a random plank from the server. House rules: four planks, or “The emptiest plank breaks” (only occupied planks count)."],
+["Nach der eingestellten Rundenzahl gewinnt, wer die wenigsten Punkte verloren hat; Gleichstand teilt den Sieg. Bots raten ohne Einblick in fremde Wahlen.","After the configured number of rounds, whoever lost the fewest points wins; ties share victory. Bots guess without seeing anyone else’s choice."]
+];

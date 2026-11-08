@@ -1,0 +1,13 @@
+@import url('/games/party-kit.css');
+.kg-reaktor-notfall .kg-main{background:radial-gradient(120% 90% at 50% 0,#27484c,#0f1a1f)}
+.kg-reaktor-notfall .pk-skip{display:none}
+.rn-lobby{max-width:640px;margin:auto;text-align:center;padding:clamp(16px,4vw,32px);border:1px solid #7fd1b0;border-radius:20px;background:#1f3338;color:#e3f2e8}.rn-lobby .game-art{width:min(100%,320px);height:auto}.rn-lobby h2{font:700 clamp(1.3rem,4vw,2rem) Georgia,serif}.rn-lobby>p:first-of-type{font-size:.72rem;letter-spacing:.14em;color:#7fd1b0}
+.rn-panel{max-width:640px;margin:10px auto;padding:16px;border-radius:14px;background:#12222a;border:2px solid #7fd1b0;color:#e3f2e8;text-align:center}.rn-panel>small{letter-spacing:.1em;color:#a6e3c9}
+.rn-heat{position:relative;height:30px;margin:12px 0;border-radius:8px;background:#0a1318;border:1px solid #7fd1b088;overflow:hidden}.rn-heat i{display:block;height:100%;background:linear-gradient(90deg,#ff8a5c,#f2c14e 50%,#7fd1b0)}.rn-heat span{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;color:#fff;text-shadow:0 1px 3px #000}
+.rn-dials{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}.rn-dial{display:grid;place-items:center;width:64px;padding:8px 0;border-radius:10px;background:#0a1318;border:2px solid #d6e8c4}.rn-dial small{color:#a6e3c9}.rn-dial b{font:700 2rem ui-monospace,monospace;color:#f2c14e}
+.rn-board{max-width:640px;margin:10px auto;padding:14px 16px;border-radius:12px;background:#ffffff0d;color:#e3f2e8;text-align:left}.rn-board h3{margin:8px 0 4px;color:#a6e3c9;font-size:1rem}
+.rn-clues{list-style:none;padding:0}.rn-clues li{padding:8px 10px;margin:6px 0;border-radius:8px;background:#f2e8c9;color:#1e2a20;font-weight:600}
+.rn-shared,.rn-proposals{list-style:none;padding:0}.rn-shared li,.rn-proposals li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;padding:6px 4px;border-top:1px solid #8bb9a644;overflow-wrap:anywhere}.rn-proposals span{font:700 1.15rem ui-monospace,monospace;letter-spacing:.2em}
+.rn-note{font-size:.85rem;color:#c9dccf}.rn-code{font:700 1.5rem ui-monospace,monospace;letter-spacing:.2em;color:#f2c14e}.rn-bad h3:first-child{color:#ffb39a}.rn-ok h3:first-child{color:#9be3b5}
+.kg-reaktor-notfall .pk-input::placeholder{letter-spacing:0;font-size:15px}.kg-reaktor-notfall .pk-input{min-height:52px;font-size:20px;letter-spacing:.3em;text-align:center}
+@media(max-width:480px){.rn-dial{width:52px}.rn-dial b{font-size:1.6rem}}

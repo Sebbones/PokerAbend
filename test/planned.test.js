@@ -9,7 +9,7 @@ const games = PLANNED.filter((e) => e.type !== 'feature');
 const features = PLANNED.filter((e) => e.type === 'feature');
 
 test('Spiel-Einträge haben alle Pflichtfelder', () => {
-  assert.ok(games.length === 3);
+  assert.equal(games.length, 0, 'BACKLOG-12 hat die letzten drei geplanten Spiele spielbar gemacht');
   for (const g of games) {
     const w = `${g.id}`;
     assert.match(g.id, /^[a-z0-9-]{1,30}$/, `${w}: id`);
@@ -55,7 +55,7 @@ test('IDs sind eindeutig und kollidieren nicht mit gebauten Spielen oder Spiel-E
 test('Alle Spiele und Funktionen der Liste sind eingetragen – im richtigen Päckchen', () => {
   const want = {
     'solo-zukunft': [],
-    spaeter: [ 'survival-abend', 'chaos-modus', 'schatzgraeber', 'brueckenroulette', 'modifikatoren', 'reaktor-notfall'],
+    spaeter: [ 'survival-abend', 'chaos-modus', 'modifikatoren'],
     gross: ['party-brett'],
   };
   for (const [p, ids] of Object.entries(want)) {

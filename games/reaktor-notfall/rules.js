@@ -1,0 +1,7 @@
+export const RULE_PAIRS=[
+["2–8 Personen lösen gemeinsam Reaktor-Aufgaben gegen die Überhitzungsuhr. Jede Person sieht nur ihre eigenen Hinweise zu den Reglern A, B, C …","2–8 people solve reactor tasks together against the overheating clock. Each person sees only their own clues about regulators A, B, C …"],
+["Zusammen ergeben alle Hinweise genau eine Reglerstellung, jeder Regler steht auf einer Ziffer von 0 bis 9. Sprecht euch ab – lest eure Hinweise einander vor.","Together all clues determine exactly one setting; each regulator is a digit from 0 to 9. Talk it over – read your clues to each other."],
+["Jede Person trägt einen Vorschlag ein. Vorschläge sind für alle sichtbar und lassen sich ändern. Haben alle denselben Code eingetragen, prüft der Server ihn.","Everyone enters a proposal. Proposals are visible to all and can be changed. When everyone has entered the same code, the server checks it."],
+["Ein richtiger Code stabilisiert die Anlage (100 Punkte für alle). Ein falscher gemeinsamer Code kostet Strafsekunden auf der Überhitzungsuhr.","A correct code stabilises the plant (100 points for everyone). A wrong shared code costs penalty seconds on the overheating clock."],
+["Alle gewinnen gemeinsam, wenn alle Aufgaben vor Ablauf der Uhr gelöst sind; sonst überhitzt die fiktive Anlage und niemand gewinnt. Die Lösung bleibt bis zur Auflösung geheim.","Everyone wins together if all tasks are solved before the clock runs out; otherwise the fictional plant overheats and nobody wins. The solution stays secret until the reveal."]
+];

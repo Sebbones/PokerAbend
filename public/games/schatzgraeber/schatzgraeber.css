@@ -1,0 +1,9 @@
+@import url('/games/workshop.css');
+.kg-schatzgraeber{--ws-wash:#5a4531}
+.kg-schatzgraeber .kg-main{background:radial-gradient(ellipse at top,var(--ws-wash),#17222a);min-width:0}
+.kg-schatzgraeber .rt-wrap{max-width:100%;min-width:0;overflow:auto;overscroll-behavior:contain}
+.kg-schatzgraeber .rt-head{padding-top:20px}
+.kg-schatzgraeber #rt-canvas{max-width:none;touch-action:manipulation}
+.kg-schatzgraeber button.ws-primary.btn{min-height:48px;min-width:170px;background:#e9c784;color:#18392f;touch-action:manipulation}
+@media(max-width:640px){.kg-schatzgraeber .kg-main{padding:44px 8px 8px;align-content:start}.kg-schatzgraeber .rt-head{padding-top:36px}}
+@media(max-height:550px) and (orientation:landscape){.kg-schatzgraeber .kg-main{padding:8px}}
