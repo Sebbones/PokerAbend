@@ -5957,5 +5957,21 @@
       ],
       "scope": "User explicitly allowed first-three split: Turmbauer, Fallenbauer, Geschenkdiebe completed. Schatzgräber, Brückenroulette and Reaktor-Notfall remain planned and require a new prompt. Stop after this packet."
     }
+  ],
+  "feature_packages": [
+    {
+      "id": "PARTY-EXTRAS-01",
+      "features": [
+        "party-brett",
+        "modifikatoren",
+        "chaos-modus",
+        "survival-abend"
+      ],
+      "status": "implemented",
+      "implementation_commit": null,
+      "test_results": [],
+      "report": "games/party-brett/README.md",
+      "note": "Explicit feature-only authorization. Separate from the completed 41-game denominator. No V2 changes."
+    }
   ]
 }

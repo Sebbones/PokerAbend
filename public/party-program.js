@@ -1,6 +1,6 @@
 // Päckchen 7: eigener Dialog, damit Live-Updates die Playlist-Eingaben nicht überschreiben.
 'use strict';
-const PROGRAM_LABELS = { abend: 'Abend-Modus · alle Spiele', mix: 'Party-Mix', turnier: 'Party-Turnier', playlist: 'Eigene Playlist', team: 'Team-Duell' };
+const PROGRAM_LABELS = { abend: 'Abend-Modus · alle Spiele', mix: 'Party-Mix', turnier: 'Party-Turnier', playlist: 'Eigene Playlist', team: 'Team-Duell', 'party-brett': 'Party-Brett', 'survival-abend': 'Survival-Abend' };
 const programRunning = (S) => ['running', 'between'].includes(S.partyProgram?.status);
 const programBusy = (S) => S.phase === 'playing' || !!(S.hand && !S.hand.done);
 const programSeated = (S) => S.players ? S.players.filter((p) => p.seated) : S.seats.filter(Boolean);
@@ -12,7 +12,9 @@ const programGameSelect = (choices, selected) => ['karten', 'wuerfel', 'brett', 
 }).join('');
 const copyProgram = (value) => JSON.parse(JSON.stringify(value));
 let programDraft = null;
-const programChoices = (mode = 'mix') => account.games.filter((g) => mode === 'abend' || g.category === 'party' && (mode !== 'team' || (account.partyTeamGames || []).includes(g.id)));
+const programChoices = (mode = 'mix') => account.games.filter((g) => mode === 'abend' || (mode === 'survival-abend' ? g.minPlayers <= 2 && g.maxPlayers >= 2 : g.category === 'party' && (mode !== 'team' || (account.partyTeamGames || []).includes(g.id))));
+const programFeatureHTML = (S) => S.partyProgram?.config.mode === 'party-brett' ? PartyBoardUI.html(S) : S.partyProgram?.config.mode === 'survival-abend' ? SurvivalEveningUI.html(S) : '';
+const programHasReview = (p) => p?.id && p.results.length && !['party-brett', 'survival-abend'].includes(p.config.mode);
 function programPresets() {
   const saved = store.get('poker:partyPlaylists', []);
   if (!Array.isArray(saved)) return [];
@@ -27,7 +29,7 @@ function programPresets() {
         }
         return entry;
       });
-      return { name: p.name.slice(0, 40), mode: p.mode, entries, teams: p.teams && typeof p.teams === 'object' ? p.teams : {} };
+      return { name: p.name.slice(0, 40), mode: p.mode, entries, teams: p.teams && typeof p.teams === 'object' ? p.teams : {}, ...(p.mode === 'party-brett' ? { boardRounds: Number.isInteger(p.boardRounds) && p.boardRounds >= 2 && p.boardRounds <= 12 ? p.boardRounds : 6 } : {}), ...(p.mode === 'survival-abend' ? { lives: Number.isInteger(p.lives) && p.lives >= 1 && p.lives <= 5 ? p.lives : 3 } : {}) };
     }).filter((p) => p.entries.length);
 }
 function assignProgramTeams() {
@@ -43,28 +45,30 @@ function programEntry(game, variant = 'classic') {
 function programControlsHTML(S) {
   const p = S.partyProgram, active = programRunning(S);
   return I18n.html`<section class="program-controls" aria-label="Abendprogramm"><h3>Gemeinsamer Spieleabend</h3>
-    <p class="hint">${p ? `${esc(p.config.name)} · ${PROGRAM_LABELS[p.config.mode]}` : 'Karten, Würfel, Brett und Partyspiele verbinden – mit gemeinsamer Abendwertung.'}</p>
+    <p class="hint">${p ? `${esc(p.config.name)} · ${uiText(PROGRAM_LABELS[p.config.mode])}` : 'Karten, Würfel, Brett und Partyspiele verbinden – mit gemeinsamer Abendwertung.'}</p>
     <button type="button" class="btn" data-program="plan" ${programBusy(S) || active ? 'disabled' : ''}>${p ? 'Programm neu planen' : 'Abendprogramm planen'}</button>
     ${p?.status === 'ready' ? I18n.html('<button type="button" class="btn btn-brass" data-program="start">Programm starten</button>') : ''}
-    ${p?.id && p.results.length ? I18n.html`<button type="button" class="btn" data-review-open="${esc(p.id)}">Abend-Rückblick öffnen</button>` : ''}
-    ${active && !programBusy(S) ? `<button type="button" class="btn btn-brass" data-program="next">${p.status === 'between' ? I18n.t('Nächstes Programm-Spiel') : I18n.t('Partie wiederholen')}</button>` : ''}
+    ${programHasReview(p) ? I18n.html`<button type="button" class="btn" data-review-open="${esc(p.id)}">Abend-Rückblick öffnen</button>` : ''}
+    ${active && !programBusy(S) ? `<button type="button" class="btn btn-brass" data-program="next">${p.awaitingRule ? I18n.content('Mit angekündigter Regel starten', 'Start with announced rule') : p.status === 'between' ? I18n.t('Nächstes Programm-Spiel') : I18n.t('Partie wiederholen')}</button>` : ''}
     ${p ? I18n.html`<button type="button" class="btn" data-program="stand">Gesamtwertung ansehen</button>${p.status !== 'stopped' ? I18n.html`<button type="button" class="btn btn-outline-red" data-program="stop" ${programBusy(S) ? 'disabled' : ''}>Programm beenden</button>` : ''}` : ''}</section>`;
 }
 function programStandHTML(S) {
   const p = S.partyProgram;
   if (!p) return '';
+  const feature = ['party-brett', 'survival-abend'].includes(p.config.mode);
   const table = (list) => I18n.html`<table class="standings"><thead><tr><th>Platz</th><th>Name</th><th class="num">${p.config.mode === 'abend' ? 'Abendpunkte' : 'Programmpunkte'}</th></tr></thead><tbody>${list.map((row) => `<tr><td>${1 + list.filter((other) => other.points > row.points).length}</td><td>${esc(row.name)}${row.team ? I18n.html` <small>· Team ${row.team === 'a' ? '1' : '2'}</small>` : ''}</td><td class="num">${row.points}</td></tr>`).join('')}</tbody></table>`;
-  return I18n.html`<section class="program-stand"><h3>${p.status === 'done' ? 'Siegerehrung' : p.config.mode === 'abend' ? 'Abend-Gesamtwertung' : 'Programm-Gesamtwertung'}</h3>
+  return I18n.html`<section class="program-stand">${programFeatureHTML(S)}<h3>${p.status === 'done' ? 'Siegerehrung' : p.config.mode === 'abend' ? 'Abend-Gesamtwertung' : 'Programm-Gesamtwertung'}</h3>
     ${p.status === 'done' ? `<p class="program-winners">${p.winners.length ? `★ ${esc(p.winners.join(' und '))} ${p.winners.length > 1 ? 'teilen sich den Sieg' : 'gewinnt'}!` : 'Das Programm ist beendet – ohne Sieger.'}</p>` : ''}
-    ${p.config.mode === 'team' ? table([...p.teams].sort((a, b) => b.points - a.points)) : ''}${table(p.standings)}
-    <p class="hint">Pro Spiel zählt die Platzierung: N Punkte für Platz 1 bei N Mitspielern, dann jeweils einer weniger. Gleichstände teilen sich den Platz.${p.config.mode === 'team' ? ' Die Einzelpunkte werden im Team addiert.' : ''} Zuschauer zählen nicht mit.</p>
-    <ol class="program-results">${p.results.map((r) => `<li>${esc(programGameName(r))}: ${p.standings.filter((person) => person.id in r.points).map((person) => `${esc(person.name)} ${r.points[person.id]}`).join(' · ')}</li>`).join('')}</ol>${p.id && p.results.length ? I18n.html`<button type="button" class="btn btn-brass" data-review-open="${esc(p.id)}">Abend-Rückblick öffnen</button>` : ''}</section>`;
+    ${p.config.mode === 'team' ? table([...p.teams].sort((a, b) => b.points - a.points)) : ''}${feature ? '' : table(p.standings)}
+    ${feature ? '' : I18n.html`<p class="hint">Pro Spiel zählt die Platzierung: N Punkte für Platz 1 bei N Mitspielern, dann jeweils einer weniger. Gleichstände teilen sich den Platz.${p.config.mode === 'team' ? ' Die Einzelpunkte werden im Team addiert.' : ''} Zuschauer zählen nicht mit.</p>`}
+    <ol class="program-results">${p.results.map((r) => `<li>${esc(programGameName(r))}: ${p.standings.filter((person) => person.id in r.points).map((person) => `${esc(person.name)} ${r.points[person.id]}`).join(' · ')}</li>`).join('')}</ol>${programHasReview(p) ? I18n.html`<button type="button" class="btn btn-brass" data-review-open="${esc(p.id)}">Abend-Rückblick öffnen</button>` : ''}</section>`;
 }
 function programBannerHTML(S) {
   const p = S.partyProgram;
-  if (!p) return '';
-  const status = p.status === 'done' ? 'Programm beendet · Siegerehrung' : p.status === 'stopped' ? 'Programm beendet' : p.status === 'ready' ? 'Programm vorbereitet' : I18n.html`Spiel ${p.index + 1} von ${p.plan.length}${p.status === 'between' ? ' · bereit für das nächste Spiel' : ''}`;
-  return I18n.html`<section class="program-banner" aria-label="Aktuelles Abendprogramm"><div><b>${esc(p.config.name)}</b><small>${PROGRAM_LABELS[p.config.mode]} · ${status}</small></div><button type="button" class="btn" data-program="stand">Gesamtwertung</button>${S.you?.isHost && p.status === 'between' ? I18n.html('<button type="button" class="btn btn-brass" data-program="next">Nächstes Programm-Spiel</button>') : ''}</section>`;
+  const extra = PartyRulesUI.html(S);
+  if (!p) return extra;
+  const status = p.status === 'done' ? 'Programm beendet · Siegerehrung' : p.status === 'stopped' ? 'Programm beendet' : p.status === 'ready' ? 'Programm vorbereitet' : I18n.html`Spiel ${p.index + 1} von ${p.config.mode === 'party-brett' ? p.config.boardRounds : p.config.mode === 'survival-abend' ? 60 : p.plan.length}${p.status === 'between' ? ' · bereit für das nächste Spiel' : ''}`;
+  return extra + I18n.html`<section class="program-banner" aria-label="Aktuelles Abendprogramm"><div><b>${esc(p.config.name)}</b><small>${uiText(PROGRAM_LABELS[p.config.mode])} · ${status}</small></div><button type="button" class="btn" data-program="stand">${p.config.mode === 'party-brett' ? 'Party-Brett' : p.config.mode === 'survival-abend' ? 'Survival-Abend' : 'Gesamtwertung'}</button>${S.you?.isHost && p.status === 'between' ? I18n.html('<button type="button" class="btn btn-brass" data-program="next">Nächstes Programm-Spiel</button>') : ''}</section>${p.status === 'ready' ? programFeatureHTML(S) : ''}`;
 }
 function programDialog() {
   let d = $('#program-dlg');
@@ -91,8 +95,10 @@ function drawProgramPlan() {
   d.innerHTML = I18n.html`<form id="program-form"><h2 id="program-title">Abendprogramm planen</h2>
     <p>Der Host startet das nächste Spiel mit einem Klick. Raum, Mitspieler und Gesamtwertung bleiben erhalten.</p>
     <label class="field"><span>Programmname</span><input id="program-name" maxlength="40" required value="${esc(programDraft.name)}"></label>
-    <label class="field"><span>Modus</span><select id="program-mode">${Object.entries(PROGRAM_LABELS).map(([id, label]) => `<option value="${id}" ${programDraft.mode === id ? 'selected' : ''}>${label}</option>`).join('')}</select></label>
-    <p class="hint">${programDraft.mode === 'abend' ? I18n.html`Alle ${programChoices('abend').length} Spiele in frei gewählter Reihenfolge. Eine abgeschlossene Spielrunde pro Station; Poker und Omaha zählen je eine Hand mit gleichen Startchips. Platzierungspunkte ergeben die Abendwertung.` : programDraft.mode === 'mix' ? 'Der Server mischt die gewählten Spiele zufällig.' : programDraft.mode === 'team' ? 'Alle antworten einzeln; ihre Platzierungspunkte werden im Team addiert. Gleich große Teams sind empfohlen.' : 'Die Spiele laufen in dieser Reihenfolge, mit Gesamtwertung und Siegerehrung.'}</p>
+    <label class="field"><span>Modus</span><select id="program-mode">${Object.entries(PROGRAM_LABELS).map(([id, label]) => `<option value="${id}" ${programDraft.mode === id ? 'selected' : ''}>${uiText(label)}</option>`).join('')}</select></label>
+    ${programDraft.mode === 'party-brett' ? `${PartyBoardUI.lobby()}<label class="field"><span>${I18n.content('Maximale Brett-Runden', 'Maximum board rounds')}</span><input id="program-board-rounds" type="number" min="2" max="12" value="${programDraft.boardRounds || 6}"></label>` : ''}
+    ${programDraft.mode === 'survival-abend' ? `${SurvivalEveningUI.lobby()}<label class="field"><span>${I18n.content('Leben pro Person', 'Lives per player')}</span><input id="program-lives" type="number" min="1" max="5" value="${programDraft.lives || 3}"></label>` : ''}
+    <p class="hint">${programDraft.mode === 'party-brett' ? I18n.content('Der Würfel wählt die Aufgabe aus diesem Spielepool.', 'The die picks a task from this game pool.') : programDraft.mode === 'survival-abend' ? I18n.content('Die Stationen wiederholen sich, bis nur ein Überlebender übrig ist (Sicherheitsgrenze 60 Partien).', 'Stations repeat until one survivor remains (safety limit: 60 games).') : programDraft.mode === 'abend' ? I18n.html`Alle ${programChoices('abend').length} Spiele in frei gewählter Reihenfolge. Eine abgeschlossene Spielrunde pro Station; Poker und Omaha zählen je eine Hand mit gleichen Startchips. Platzierungspunkte ergeben die Abendwertung.` : programDraft.mode === 'mix' ? 'Der Server mischt die gewählten Spiele zufällig.' : programDraft.mode === 'team' ? 'Alle antworten einzeln; ihre Platzierungspunkte werden im Team addiert. Gleich große Teams sind empfohlen.' : 'Die Spiele laufen in dieser Reihenfolge, mit Gesamtwertung und Siegerehrung.'}</p>
     <p class="notice">${min <= max ? I18n.html`Diese Auswahl braucht ${min}–${max} Mitspieler. Am Tisch sitzen ${programSeated(lastState).length}.` : 'Die Spielerzahlen dieser Auswahl passen nicht zusammen. Wähle andere Spiele.'}</p>
     <div class="program-editor">${programDraft.entries.map((entry, i) => {
       const game = choices.find((g) => g.id === entry.game);
@@ -110,6 +116,8 @@ function updateProgramDraft(e) {
   if (!e.target.closest('#program-form') || !programDraft) return;
   const t = e.target;
   if (t.id === 'program-name') programDraft.name = t.value;
+  if (t.id === 'program-board-rounds') programDraft.boardRounds = Number(t.value);
+  if (t.id === 'program-lives') programDraft.lives = Number(t.value);
   if (t.dataset.programSetting) programDraft.entries[Number(t.dataset.index)].settings[t.dataset.programSetting] = t.type === 'checkbox' ? t.checked : t.tagName === 'SELECT' ? t.value : Number(t.value);
   if (t.dataset.programTeam) programDraft.teams[t.dataset.programTeam] = t.value;
 }
@@ -119,6 +127,8 @@ document.addEventListener('change', (e) => {
   if (e.target.dataset.programVariant !== undefined) { const i = Number(e.target.dataset.programVariant); programDraft.entries[i] = programEntry(programDraft.entries[i].game, e.target.value); drawProgramPlan(); }
   if (e.target.id === 'program-mode') {
     programDraft.mode = e.target.value;
+    if (programDraft.mode === 'party-brett') programDraft.boardRounds ??= 6;
+    if (programDraft.mode === 'survival-abend') programDraft.lives ??= 3;
     const ids = new Set(programChoices(programDraft.mode).map((g) => g.id));
     programDraft.entries = programDraft.entries.filter((entry) => ids.has(entry.game));
     if (!programDraft.entries.length) programDraft.entries = [programEntry([...ids][0])];
@@ -178,3 +188,24 @@ socket.on('state', (S) => {
   const d = $('#program-dlg');
   if (d?.open && !$('#program-form') && S.partyProgram) d.innerHTML = programStandHTML(S) + I18n.html('<button type="button" class="btn btn-brass" data-program-close>Schließen</button>');
 });
+
+// Supplement the existing Rules tab without replacing any game's rules renderer.
+// This observes only the room root; the marker prevents observer feedback loops.
+function programRulesTab() {
+  const card = document.querySelector('.kg-over-card');
+  if (card && lastState?.partyProgram?.status === 'between' && ['party-brett', 'survival-abend'].includes(lastState.partyProgram.config.mode)) {
+    let intermission = card.querySelector('[data-program-intermission]');
+    if (!intermission) { intermission = document.createElement('section'); intermission.dataset.programIntermission = ''; card.insertBefore(intermission, card.querySelector('.kg-over-acts')); }
+    const source = programFeatureHTML(lastState);
+    if (intermission._source !== source) { intermission._source = source; intermission.innerHTML = source; }
+  }
+  const body = document.querySelector('#kg-panel-body');
+  if (!body || !document.querySelector('[data-kit-panel="rules"][aria-current="true"]') || !lastState) return;
+  const html = programFeatureHTML(lastState) + PartyRulesUI.html(lastState);
+  let section = body.querySelector('[data-program-rules]');
+  if (!html) { section?.remove(); return; }
+  if (!section) { section = document.createElement('section'); section.dataset.programRules = ''; body.appendChild(section); }
+  if (section._source !== html) { section._source = html; section.innerHTML = html; }
+}
+new MutationObserver(programRulesTab).observe(document.querySelector('#game-root'), { childList: true, subtree: true });
+window.addEventListener('languagechange', programRulesTab);

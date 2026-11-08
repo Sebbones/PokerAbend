@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Spieleabend</title>
+  <meta name="theme-color" content="#0B1513">
+  <!-- Als App auf dem Homescreen ablegen -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Spieleabend">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='6' y='6' width='52' height='52' rx='13' fill='%23F7F3E8' stroke='%23C99A45' stroke-width='4'/><g fill='%23101a18'><circle cx='21' cy='21' r='5'/><circle cx='43' cy='21' r='5'/><circle cx='32' cy='32' r='5'/><circle cx='21' cy='43' r='5'/><circle cx='43' cy='43' r='5'/></g></svg>">
+  <link rel="preload" href="/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/hub.css">
+  <link rel="stylesheet" href="/tickets.css">
+  <link rel="stylesheet" href="/evening-reviews.css">
+  <link rel="stylesheet" href="/evening-plans.css">
+  <link rel="stylesheet" href="/achievements.css">
+  <link rel="stylesheet" href="/identity.css">
+  <link rel="stylesheet" href="/profile.css">
+  <link rel="stylesheet" href="/settings.css">
+  <link rel="stylesheet" href="/variants.css">
+  <link rel="stylesheet" href="/games/party-kit.css">
+  <link rel="stylesheet" href="/games/solo/solo-kit.css">
+  <link rel="stylesheet" href="/game-design.css">
+  <link rel="stylesheet" href="/ui-theme.css">
+  <link rel="stylesheet" href="/game-pause.css">
+  <link rel="stylesheet" href="/ops.css">
+  <link rel="stylesheet" href="/singleplayer/singleplayer.css">
+</head>
+<body>
+  <!-- Startseite (Hub): Seitenleiste bzw. untere Leiste, Seiten per URL-Hash (#start, #spiele/karten, #tische, #bestenliste) – hub.js zeichnet alles -->
+  <div id="hub" class="hub" hidden>
+    <aside class="hub-side" id="hub-side" aria-label="Navigation">
+      <a class="hub-brand" href="#start" aria-label="PokerAbend – Startseite" data-i18n-attrs="aria-label"><svg class="brand-spade" viewBox="0 0 32 36" aria-hidden="true"><path d="M16 1C13 8 2 12 2 21c0 8 10 11 14 3-1 5-3 8-6 11h12c-3-3-5-6-6-11 4 8 14 5 14-3C30 12 19 8 16 1Z"/></svg><span class="wordmark">PokerAbend</span></a>
+      <button type="button" class="side-toggle" id="side-toggle" aria-expanded="false" aria-label="Seitenleiste ausklappen"></button>
+      <nav id="side-nav" class="side-nav" aria-label="Bereiche" data-i18n-attrs="aria-label"></nav>
+      <div class="side-profile"><button type="button" class="profile-chip" id="profile-chip" aria-label="Profil ändern"></button></div>
+    </aside>
+    <header class="hub-top">
+      <a class="hub-brand" href="#start"><span class="wordmark">PokerAbend</span></a>
+      <div id="hub-search-slot"></div>
+      <div class="hub-top-actions">
+        <span id="hub-language"></span>
+        <button type="button" class="btn btn-ghost hub-create" data-create-table data-i18n>+ Tisch erstellen</button>
+        <button type="button" class="icon-btn hub-more" id="hub-more" aria-label="Weitere Bereiche" aria-haspopup="dialog" data-i18n-attrs="aria-label">☰</button>
+        <button type="button" class="profile-avatar" id="profile-avatar" aria-label="Profil ändern"></button>
+      </div>
+    </header>
+    <main class="hub-main" id="hub-main" tabindex="-1"></main>
+    <nav class="hub-tabbar" id="hub-tabbar" aria-label="Hauptnavigation"></nav>
+  </div>
+
+  <!-- Hosten: Seitenpanel (Desktop) bzw. Leiste von unten (Handy) -->
+  <dialog class="host-dlg" id="host-dlg" aria-labelledby="host-title"></dialog>
+  <dialog class="dlg hub-menu" id="hub-menu" aria-labelledby="hub-menu-title">
+    <form method="dialog"><div class="hub-block-head"><h2 id="hub-menu-title" data-i18n>Euer Spieleabend</h2><button class="icon-btn" aria-label="Menü schließen" data-i18n-attrs="aria-label">✕</button></div><nav id="hub-menu-nav" aria-label="Weitere Bereiche" data-i18n-attrs="aria-label"></nav></form>
+  </dialog>
+
+  <!-- Hier zeichnet das gewählte Spiel seine Oberfläche hinein (z. B. /games/poker/poker.js) -->
+  <div id="game-root" hidden></div>
+
+  <!-- Profil: Name und Avatar einmal festlegen (gespeichert im Browser) -->
+  <dialog class="dlg" id="profile-dlg" aria-labelledby="profile-title">
+    <form id="profile-form" autocomplete="off">
+      <h2 id="profile-title">Wie heißt du?</h2>
+      <p id="profile-text" data-i18n>Name und Avatar sehen die anderen am Tisch. Du legst sie nur einmal fest und kannst sie jederzeit ändern.</p>
+      <label class="field"><span data-i18n>Dein Name</span><input id="p-name" maxlength="16" required placeholder="z. B. Tobi" data-i18n-attrs="placeholder"></label>
+      <fieldset class="field"><legend>Avatar</legend><div id="p-avatars" class="avatars"></div></fieldset>
+      <details class="profile-identity" id="p-identity"><summary data-i18n>Identität & Geräte</summary><div id="p-identity-body"></div></details>
+      <details class="profile-preferences"><summary data-i18n>Einstellungen</summary><div id="p-preferences"></div></details>
+      <div class="ops-about"><small id="p-version"></small><span class="ops-about-actions"><button type="button" class="btn btn-ghost" id="p-whatsnew" data-i18n>Was ist neu?</button><button type="button" class="btn btn-ghost" id="p-bugreport" data-i18n>Fehler melden</button></span></div>
+      <p id="p-error" class="error" role="alert"></p>
+      <button type="button" class="btn" id="p-achievements" data-achievements-open data-i18n>Meine Erfolge & Abzeichen</button>
+      <div class="dlg-actions"><button type="button" class="btn btn-ghost" id="p-cancel" data-i18n>Abbrechen</button><button class="btn btn-brass" type="submit" data-i18n>Speichern</button></div>
+    </form>
+  </dialog>
+
+  <!-- Eigene Bestätigungsdialoge statt confirm()/prompt() -->
+  <dialog class="dlg" id="dlg" aria-labelledby="dlg-title">
+    <form method="dialog">
+      <h2 id="dlg-title"></h2>
+      <p id="dlg-text"></p>
+      <div id="dlg-extra"></div>
+      <div class="dlg-actions">
+        <button class="btn btn-ghost" value="cancel" id="dlg-cancel" data-i18n>Abbrechen</button>
+        <button class="btn btn-brass" value="ok" id="dlg-ok">OK</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog class="dlg" id="home-dlg" aria-labelledby="home-title">
+    <form method="dialog">
+      <h2 id="home-title">Zur Startseite?</h2>
+      <p>„Platz behalten“: Du bleibst am Tisch angemeldet und findest ihn auf der Startseite unter „Weiterspielen“. Für die anderen giltst du als offline. „Tisch verlassen“: Du steigst aus der Runde aus und gibst deinen Platz auf.</p>
+      <div class="dlg-actions home-actions">
+        <button class="btn btn-ghost" value="cancel" data-i18n>Abbrechen</button>
+        <button class="btn btn-danger" type="button" data-home-do="leave" data-i18n>Tisch verlassen</button>
+        <button class="btn btn-brass" type="button" data-home-do="park">Platz behalten</button>
+      </div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="offline" class="offline" hidden data-i18n>Verbindung weg – verbinde neu …</div>
+  <!-- Statt eines schwarzen Bildschirms, wenn der Raum sichtbar ist, aber nichts gemountet oder keine Verbindung da ist -->
+  <div id="lost" class="lost" role="alert" hidden><p data-i18n>Verbindung verloren.</p><button type="button" class="btn btn-brass" id="lost-reload" data-i18n>Neu laden</button></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/i18n-en.js"></script>
+  <script src="/discord-en.js"></script>
+  <script src="/i18n.js"></script>
+  <script src="/core.js"></script>
+  <script src="/game-design.js"></script>
+  <script src="/ui-theme.js"></script>
+  <script src="/variants.js"></script>
+  <script src="/party-program.js"></script>
+  <script src="/tickets.js"></script>
+  <script src="/evening-reviews.js"></script>
+  <script src="/evening-plans.js"></script>
+  <script src="/achievements.js"></script>
+  <script src="/profile.js"></script>
+  <script src="/settings.js"></script>
+  <script src="/identity.js"></script>
+  <!-- Startseite: Profil, Navigation, Tische, Spiele -->
+  <script src="/singleplayer.js"></script>
+  <script src="/hub.js"></script>
+  <script src="/ops.js"></script>
+  <!-- Gemeinsamer Rahmen der Rundenspiele (Mau-Mau, Würfel, Brett …) -->
+  <script src="/games/card-interaction.js"></script>
+  <script src="/games/card-shedding.js"></script>
+  <script src="/games/backlog-kit.js"></script>
+  <script src="/games/five-card-draw/poker-chips.js"></script>
+  <script src="/games/omaha-hi-lo/poker-world.js"></script>
+  <script src="/games/world-kit.js"></script>
+  <script src="/games/kit.js"></script>
+  <script src="/games/party-kit.js"></script>
+  <script src="/games/drawing-kit.js"></script>
+  <script src="/games/realtime-kit.js"></script>
+  <script src="/games/expedition-kit.js"></script>
+  <script src="/games/challenge-kit.js"></script>
+  <script src="/games/workshop-kit.js"></script>
+  <script src="/games/party-arena-kit.js"></script>
+  <script src="/games/arcade-kit.js"></script>
+  <script src="/games/solo/solo-kit.js"></script>
+</body>
+</html>

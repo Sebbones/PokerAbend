@@ -31,7 +31,7 @@ test('Spiel-Einträge haben alle Pflichtfelder', () => {
 });
 
 test('Funktions-Einträge: id, name, type, paeckchen, status, beschreibung – und sie sind keine Spiele', () => {
-  assert.ok(features.length >= 4);
+  assert.equal(features.length, 0, 'Die vier Party-Funktionen sind umgesetzt und aus planned.js entfernt');
   for (const f of features) {
     assert.match(f.id, /^[a-z0-9-]{1,30}$/);
     assert.ok(f.name && f.type === 'feature' && PACKAGES.includes(f.paeckchen) && ['next', 'planned'].includes(f.status), f.id);
@@ -55,8 +55,8 @@ test('IDs sind eindeutig und kollidieren nicht mit gebauten Spielen oder Spiel-E
 test('Alle Spiele und Funktionen der Liste sind eingetragen – im richtigen Päckchen', () => {
   const want = {
     'solo-zukunft': [],
-    spaeter: [ 'survival-abend', 'chaos-modus', 'modifikatoren'],
-    gross: ['party-brett'],
+    spaeter: [],
+    gross: [],
   };
   for (const [p, ids] of Object.entries(want)) {
     assert.deepEqual(PLANNED.filter((e) => e.paeckchen === p).map((e) => e.id), ids, `Päckchen ${p}`);

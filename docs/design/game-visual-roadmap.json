@@ -17816,5 +17816,38 @@
       "implementation_commit": "9ed8c09c2f921acc8d37f848dfb2672a7b62dde3",
       "note": "Schatzgräber, Brückenroulette und Reaktor-Notfall mit ihren Spielen im ausdrücklich freigegebenen BACKLOG-12; jedes Paket mit eigenen Bildnachweisen."
     }
+  ],
+  "feature_packages": [
+    {
+      "id": "VIS-108",
+      "name": "Party program extensions: Lantern Trail, Night Watch and rule workshop",
+      "feature_ids": [
+        "party-brett",
+        "modifikatoren",
+        "chaos-modus",
+        "survival-abend"
+      ],
+      "type": "feature",
+      "implementation_status": "implemented",
+      "visual_status": "in_review",
+      "implementation_commit": null,
+      "completed_at": null,
+      "commits": [],
+      "test_results": [],
+      "screenshots": [],
+      "current_frontend_files": [
+        "public/games/party-brett/party-brett.js",
+        "public/games/party-brett/party-brett.css",
+        "public/games/party-brett/scene.svg",
+        "public/games/survival-abend/survival-abend.js",
+        "public/games/survival-abend/survival-abend.css",
+        "public/games/survival-abend/scene.svg",
+        "public/games/modifikatoren/modifikatoren.js",
+        "public/games/modifikatoren/modifikatoren.css",
+        "public/games/chaos-modus/scene.svg"
+      ],
+      "report": "games/party-brett/README.md",
+      "note": "Independent feature visual package. Existing game VIS IDs, counts and status remain unchanged."
+    }
   ]
 }

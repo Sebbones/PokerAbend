@@ -237,9 +237,12 @@ test('Geplante Spiele und Funktionen lassen sich nicht hosten oder auswählen; /
   // Spielwechsel zu einem geplanten Spiel
   const host = client();
   await host.ask('create', { game: 'maumau', name: 'Hella' });
-  const sw = await host.ask('switchGame', { game: (games[0] ?? features[0]).id });
+  const pending = games[0] ?? features[0];
+  const sw = await host.ask('switchGame', { game: pending?.id || 'party-brett' });
   assert.equal(sw.ok, false);
-  assert.match(sw.error, /noch nicht/);
+  assert.match(sw.error, pending ? /noch nicht/ : /gibt es nicht/);
+  // Completed room options/programs must never become independently hostable games.
+  for (const id of ['party-brett','modifikatoren','chaos-modus','survival-abend']) assert.equal((await c.ask('create', { game: id, name: 'Test' })).ok, false);
   // Die Startseite bekommt Spiele (mit Status), aber keine Funktionen
   const me = await (await fetch(URL + '/me')).json();
   assert.equal(me.planned.length, games.length);

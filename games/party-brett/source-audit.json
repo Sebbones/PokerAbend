@@ -1,0 +1,169 @@
+{
+  "format": "SHA-256 of UTF-8 with LF line endings",
+  "baseline_commit": "7bb43951bedc3426701b9c695f096da20935110f",
+  "current_sources": [
+    {
+      "path": "games/chaos-modus/index.js",
+      "sha256": "70aa66c12b56e37f7d6c11712b05c3396d6b4bee4842f9686e62f55de0bba59b"
+    },
+    {
+      "path": "games/index.js",
+      "sha256": "d1e9baae637ca05409f08a34eab05e0fbc2a49532395f23df90237595d4595d5"
+    },
+    {
+      "path": "games/modifikatoren/index.js",
+      "sha256": "4cb7d85ec4c7b23d91166566a117c9dffd748858c799a4cfb3d133a0fd7ecdac"
+    },
+    {
+      "path": "games/party-brett/index.js",
+      "sha256": "7572ee25f19d38247c65e88c1f4c1d688c06b78d1216640e82c1ec5dcd28219a"
+    },
+    {
+      "path": "games/planned.js",
+      "sha256": "b39bd0ee3ef6c1ef1aca7b830f4f281b4e9bad187efe9b53777f6a549028457d"
+    },
+    {
+      "path": "games/roadmap.js",
+      "sha256": "5f20fa21d83b8f98d453cd12419278f7c8fbd8abba640788cbd96e37660f21ab"
+    },
+    {
+      "path": "games/survival-abend/index.js",
+      "sha256": "43d87b4e43f2ac5d014c355976f48cc02c55adc376e79df8db603a226d953331"
+    },
+    {
+      "path": "public/games/chaos-modus/scene.svg",
+      "sha256": "2bf7c01bd16aa4f680a40604c56ba7f99e92b761e2647c8020efecb13c16a4b7"
+    },
+    {
+      "path": "public/games/modifikatoren/modifikatoren.css",
+      "sha256": "29c738870b78ce882e6bf48e124d8c0374d671d8a35fd461f2c624b87319c00b"
+    },
+    {
+      "path": "public/games/modifikatoren/modifikatoren.js",
+      "sha256": "5639300eb3db39ee7af05e4cdbcbf6ab0c07487684a101ab872c2523e531ec95"
+    },
+    {
+      "path": "public/games/party-brett/party-brett.css",
+      "sha256": "bd4fe23e3ae38df53e4134939e9100420f4b6a5ec5fa3099d1cfbe90320b2f44"
+    },
+    {
+      "path": "public/games/party-brett/party-brett.js",
+      "sha256": "e6aa985af574fe5b4612fb8700c2201c98876f5a1e7f2d17f82a68775c35f3fa"
+    },
+    {
+      "path": "public/games/party-brett/scene.svg",
+      "sha256": "9ef343dadd50ce44f8fb2c387bb05f59f67b6adb4c3e11842268a69bff07cc67"
+    },
+    {
+      "path": "public/games/survival-abend/scene.svg",
+      "sha256": "4c5fe1ae60c8aac05c5f48e1f708f58f285e846a42445583892fb5f11e04d06b"
+    },
+    {
+      "path": "public/games/survival-abend/survival-abend.css",
+      "sha256": "2fceef76d43cb0afd01bd7976da6f725c53c9c0ba19f5f8048d70d6925e31c86"
+    },
+    {
+      "path": "public/games/survival-abend/survival-abend.js",
+      "sha256": "f9d9b4b61448256344ac28b4ab5863e566be6be547aab7d0cd113d903bd8c5cc"
+    },
+    {
+      "path": "public/i18n-en.js",
+      "sha256": "b7c0f9cdc38cdc3325cb8ff4ed6294977d188fa720b4e25d719b1405f19ee5d7"
+    },
+    {
+      "path": "public/index.html",
+      "sha256": "40b811baeff877114840945360c737f98fa6a0295c45a806a0d5e3db21801287"
+    },
+    {
+      "path": "public/party-program.js",
+      "sha256": "4e20039499a6d694cac3a3d2289de1b4b6bcd46db3a11e1160111e3319d5ffcf"
+    },
+    {
+      "path": "server/index.js",
+      "sha256": "c87d58b0a02b955fd169bddd871e25cc58ec6c9550eb95480c534ddce3af5f67"
+    },
+    {
+      "path": "server/party-program.js",
+      "sha256": "55231acfcce95b2a260c6170b48cc639fdb86bf7c362e0704444db816638655d"
+    },
+    {
+      "path": "test/backlog07-proof.test.js",
+      "sha256": "81fe07799943b21c38bcea05378f71a6d22c23c76da1d40587a67275f64afc59"
+    },
+    {
+      "path": "test/backlog09-proof.test.js",
+      "sha256": "bc605f4b26e99b39216afa29db9ef09290b6b6de48e00482ff63ca979bb23bfe"
+    },
+    {
+      "path": "test/backlog12-proof.test.js",
+      "sha256": "cd47800d5da5d71e1e3bcb9f072872553a56db79cce4e778947d0fa71920780b"
+    },
+    {
+      "path": "test/backlog12.test.js",
+      "sha256": "80a7952a23700e3103e904f94ef3f4469cb5efcad576b79851b40090ecd08f9e"
+    },
+    {
+      "path": "test/hub.test.js",
+      "sha256": "153a194fae8aa1cc9f604d9300c75860c6e9f5167834d3c785aa4e448f7ebfbd"
+    },
+    {
+      "path": "test/party-feature-audit.js",
+      "sha256": "38f9e268dd11c5500cd233a4c4fb891542069193b844afdbdf782df21990f0b5"
+    },
+    {
+      "path": "test/party-features-server.test.js",
+      "sha256": "a316d27004c952c6092406a855bb35f48ad91738c74f531b88301dc47cc921e6"
+    },
+    {
+      "path": "test/party-features.test.js",
+      "sha256": "79202ea4cead6fbcb7740ca0c821a687ca940b85ed46b69d3bfd276a1af85e04"
+    },
+    {
+      "path": "test/planned.test.js",
+      "sha256": "0971d869961cf94c816662088edf8f9b036b825f66d0a3948d79119bc74f53bf"
+    },
+    {
+      "path": "test/schaetzmeister.test.js",
+      "sha256": "b00fe3c1dffe73cb9a82c458f8c3cca8051ce79a14622dc9df866887f7220480"
+    },
+    {
+      "path": "test/ui/party-features-roadmap.spec.js",
+      "sha256": "0bde8610113d0a137946df16eff20b4d899253c0ef19b9fc13a7e29799ebeab6"
+    },
+    {
+      "path": "test/ui/party-features.spec.js",
+      "sha256": "65159a65ecd276bc649dcc8d831c44acca4fb1d231a478d8f0396529778adbf9"
+    },
+    {
+      "path": "test/v2-13-14-proof.test.js",
+      "sha256": "00a9a00d16c00cc26bcf2980b93acffbf77ea589526c7086c76be7058eedcd49"
+    }
+  ],
+  "previous_shared_sources": [
+    {
+      "path": "games/index.js",
+      "archive": "test/fixtures/party-features/baseline/games/index.js",
+      "sha256": "5315085602d8e54eb1b37830fede97ceeaa60c3b99a90655ee6d13055331c351"
+    },
+    {
+      "path": "server/index.js",
+      "archive": "test/fixtures/party-features/baseline/server/index.js",
+      "sha256": "0a6e155d57b6c1ecc87e62f8d5f7dbe69b8d3d2eccad7fbb2788c11d3cf19341"
+    },
+    {
+      "path": "server/party-program.js",
+      "archive": "test/fixtures/party-features/baseline/server/party-program.js",
+      "sha256": "57b55bd967300e3e06f81e79471aff4ef2074faa771567ae6ec53ecb1e2c5850"
+    },
+    {
+      "path": "public/index.html",
+      "archive": "test/fixtures/party-features/baseline/public/index.html",
+      "sha256": "e1a856f40c5da938fafa557ef5dd18e13d64d56e18c0dc6639f295c3c3352482"
+    },
+    {
+      "path": "public/i18n-en.js",
+      "archive": "test/fixtures/party-features/baseline/public/i18n-en.js",
+      "sha256": "d3cdbd36f1b04dfffff14425ad50a9fa4291f6c9ef618b537fb79fbf8b69aab8"
+    }
+  ]
+}

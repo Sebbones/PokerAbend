@@ -145,10 +145,15 @@ export const ROADMAP = [
     punkt('pre-actions', 'Pre-Actions', 'funktion', 'Check, Check/Fold und Call als Vorab-Aktionen sind vorhanden.', true),
     ...liste('poker-extra', 'funktion', [['Straddle', 'Optionaler zusätzlicher Blindeinsatz vor dem Geben.'], ['Bomb Pot', 'Gemeinsam mit einem festgelegten Einsatz direkt zum Flop.'], ['Run It Twice', 'Bei All-in die verbleibenden Gemeinschaftskarten zweimal geben.'], ['7-2-Bonus', 'Zusätzlicher Bonus für einen Sieg mit Sieben und Zwei.'], ['Rabbit Hunt', 'Nach einer beendeten Hand die nicht mehr gegebenen Gemeinschaftskarten ansehen.'], ['Hand-Replay', 'Eine vergangene Hand mit ihren einzelnen Aktionen erneut abspielen.']]),
   ] },
-  { id: 'party-extras', titel: 'Party-Extras', satz: 'Bekannte Spiele mit wechselnden Zusatzregeln und neuen Abendformaten.', stufe: 'spaeter', eintraege: ['modifikatoren', 'chaos-modus', 'survival-abend'], punkte: [] },
+  { id: 'party-extras', titel: 'Party-Extras', satz: 'Bekannte Spiele mit wechselnden Zusatzregeln und neuen Abendformaten.', stufe: 'erledigt', datum: '2026-11-08', punkte: [
+    punkt('modifikatoren', 'Modifikatoren', 'funktion', 'Abschaltbare Raumoptionen für Schätzmeister, Schlagfertig und Wer hat das gesagt?: doppelte Punkte, umgekehrte Wertung oder Zeitdruck; für eine Partie oder bis ausgeschaltet.', true),
+    punkt('chaos-modus', 'Chaos-Modus', 'funktion', 'Optionale, vor dem Start offen gezogene Zusatzregeln in den drei unterstützten Partyspielen; standardmäßig aus.', true),
+    punkt('survival-abend', 'Survival-Abend', 'funktion', 'Abendprogramm mit 1–5 Leben: letzter Platz verliert ein Leben, Ausgeschiedene schauen zu, der letzte Überlebende gewinnt. Mit Gleichstands- und Sicherheitsregeln.', true),
+  ] },
   { id: 'spaetere-spiele', titel: 'Weitere Spiele', satz: 'Der übrige Backlog für kommende Spiele-Päckchen.', stufe: 'spaeter', paeckchen: 'spaeter', punkte: spiele(['risiko-wuerfeln','story-chaos','zahlenreihe','wuerfeljagd','monsterwuerfel','wuerfel-auktion','backgammon','hearts','five-card-draw','scrabble','omaha-hi-lo','short-deck','seven-card-stud','exploding-deck','doppelagent','luegenbaron','stichmeister','labyrinth-brett','schatzinsel','jaeger-schatten','infektionsjagd','letzter-schutzplatz','regelwahnsinn','geschenkfaenger','rhythmus-rausch','stillgestanden','bomben-duell','schubsarena','scheinwerfer-flucht','minenlauf','labyrinth-chaos','puzzle-panik','wortjagd','kistenchaos','gummiband-challenge','turmbauer','fallenbauer','geschenkdiebe','schatzgraeber','brueckenroulette','reaktor-notfall']) },
   { id: 'grosse-projekte', titel: 'Große Projekte', satz: 'Größere Spielsysteme und Experimente mit mehr Vorlauf.', stufe: 'gross', paeckchen: 'gross', punkte: [
     ...spiele(['schach', 'gebietskampf', 'staedtehandel']),
+    { ...punkt('party-brett', 'Party-Brett', 'funktion', 'Laternenpfad mit echten Party-Minispielen, Platzierungsbewegung, Ereignisfeldern, Items und Sabotage; Brett und Ergebnisse bleiben beim Wiederverbinden und Serverneustart erhalten.', true), datum: '2026-11-08' },
     punkt('3d-experiment', '3D-Experiment', 'design', '3D-Würfel als begrenzter Test für eine räumliche Darstellung.'),
     punkt('discord-activity', 'Discord Activity', 'discord', 'Direkt gemeinsam im Discord-Sprachkanal spielen.'),
   ] },

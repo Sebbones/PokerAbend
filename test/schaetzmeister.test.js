@@ -90,9 +90,9 @@ test('Katalog wiederholt keine Frage, bis alle einmal dran waren', () => {
 
 test('Lobby-Feld und Optionen: Runden, Zeit, Punkte-Ziel, Zuschauer, Prozent-Regel', () => {
   const keys = GAMES.schaetzmeister.options.map((o) => o.key);
-  assert.deepEqual(keys, ['rounds', 'writeSecs', 'target', 'spectators', 'percent']);
+  assert.deepEqual(keys, ['rounds', 'writeSecs', 'target', 'spectators', 'percent', 'modifierRule', 'chaosMode', 'modifierScope']);
   const r = GAMES.schaetzmeister.create('OPT', {}, () => {});
-  assert.deepEqual(r.settings, { rounds: 10, writeSecs: 30, target: 0, spectators: false, percent: false });
+  assert.deepEqual(r.settings, { rounds: 10, writeSecs: 30, target: 0, spectators: false, percent: false, modifierRule: 'off', chaosMode: false, modifierScope: 'session' });
   r.settings = r.clampSettings({ rounds: 999, writeSecs: 1, target: -5, spectators: 1 }, r.settings);
   assert.deepEqual([r.settings.rounds, r.settings.writeSecs, r.settings.target, r.settings.spectators], [10, 30, 0, true], 'Werte außerhalb der Grenzen werden ignoriert');
   assert.equal(GAMES.schaetzmeister.category, 'party');

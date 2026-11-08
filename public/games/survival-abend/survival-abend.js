@@ -1,0 +1,13 @@
+'use strict';
+window.SurvivalEveningUI = (() => {
+  const t = (de, en) => I18n.content(de, en);
+  const rules = () => t('Spielt die gewählten Stationen des Abend-Modus im Kreis. Nach jeder gewerteten Partie verliert der letzte Platz ein Leben; mehrere Letzte verlieren je ein Leben. Bei komplettem Gleichstand oder einer Partie ohne Ergebnis verliert niemand ein Leben. Ohne Leben schaust du zu. Ein Verbindungsabbruch kostet kein Leben; wer den Raum ausdrücklich verlässt, scheidet vor der nächsten Station aus. Wer allein übrig bleibt, gewinnt. Als Sicherheitsgrenze endet der Abend nach 60 Partien: dann gewinnen die meisten verbleibenden Leben, bei Gleichstand gemeinsam. Nur Spiele, die auch zu zweit funktionieren, sind auswählbar. Abgebrochene Partien werden ohne Lebensverlust wiederholt.',
+    'Cycle through your selected Evening Mode stations. After each scored game, last place loses one life; tied last places each lose one. A complete tie or void game costs nobody a life. With no lives left, you spectate. Disconnecting costs no lives; explicitly leaving the room eliminates you before the next station. The final survivor wins. A safety limit ends the evening after 60 games: most remaining lives wins, shared on a tie. Only games that also work with two players are selectable. Aborted games are replayed without losing lives.');
+  function lobby() { return `<section class="sv-world"><img src="/games/survival-abend/scene.svg" alt=""><h3>${t('Survival-Abend · Nachtwache', 'Survival Evening · Night Watch')}</h3><p>${t('Halte dein Licht am Leben. Jede Station zählt.', 'Keep your light alive. Every station matters.')}</p><details class="pf-rules"><summary>${t('Regeln', 'Rules')}</summary><p>${rules()}</p></details></section>`; }
+  function html(S) {
+    const p = S.partyProgram;
+    if (!p?.lives) return lobby();
+    return `<section class="sv-world" aria-label="${t('Survival-Abend', 'Survival Evening')}"><img src="/games/survival-abend/scene.svg" alt=""><h3>${t('Nachtwache', 'Night Watch')}</h3><p>${t('Partie', 'Game')} ${p.index + 1}/60 · ${p.standings.filter((person) => p.lives[person.id] > 0).length} ${t('übrig', 'remaining')}</p><ul class="sv-lights">${p.standings.map((person) => `<li class="${p.lives[person.id] ? '' : 'sv-out'}"><b>${esc(person.name)}</b><span aria-label="${p.lives[person.id]} ${t('Leben', 'lives')}">${'♥'.repeat(p.lives[person.id])}${'♡'.repeat(p.config.lives - p.lives[person.id])}</span><small>${p.lives[person.id] ? `${p.lives[person.id]} ${t('Leben', 'lives')}` : t('Ausgeschieden · schaut zu', 'Eliminated · spectating')}</small></li>`).join('')}</ul><details class="pf-rules"><summary>${t('Regeln', 'Rules')}</summary><p>${rules()}</p></details></section>`;
+  }
+  return { html, lobby, rules };
+})();

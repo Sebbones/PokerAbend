@@ -15,7 +15,8 @@ const code=(r,id,value)=>r.propose(id,{key:r.runKey,question:r.questionKey,code:
 
 test('BACKLOG-12 scope: exactly the three approved games are playable with bots; no other planned entry was pulled in',()=>{
  for(const id of ids){assert.ok(!PLANNED.some(p=>p.id===id));assert.equal(typeof BOTS[id],'function');}
- assert.deepEqual(PLANNED.map(p=>p.id),['survival-abend','chaos-modus','modifikatoren','party-brett']);
+ assert.deepEqual(PLANNED.map(p=>p.id),[]);
+ for(const id of ['survival-abend','chaos-modus','modifikatoren','party-brett'])assert.equal(GAMES[id],undefined,'Party features remain options/programs, not games');
  const {r}=realtime();assert.ok(r instanceof RealtimeRoom);assert.equal(r.personalFrames,true);r.dispose();
  for(const id of ids.slice(1)){const {r}=party(id,GAMES[id].minPlayers);assert.ok(r instanceof PartyRoom);r.dispose();}
  assert.deepEqual(ids.map(id=>[GAMES[id].minPlayers,GAMES[id].maxPlayers]),[[2,8],[3,8],[2,8]]);

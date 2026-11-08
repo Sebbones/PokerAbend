@@ -18,6 +18,8 @@ import { resolvedRoadmap, whatsNew } from '../games/roadmap.js';
 import { createPresence } from './presence.js';
 import { createTicketAPI } from './ticket-api.js';
 import { configureProgram, beginProgram, nextProgramStep, recordProgramResult, publicProgram, restoreProgram, programActive, programGames, programDefaults, programOptions, programSeats, validateProgramPlayers } from './party-program.js';
+import { boardItem } from '../games/party-brett/index.js';
+import { survivors, attachSurvival } from '../games/survival-abend/index.js';
 import {
   COOKIE, loadSecret, createAuth, parseCookies, cookieHeader, limiter, bucket,
   securityHeaders, sameOrigin, clientIp, safeNext,
@@ -56,6 +58,9 @@ function archiveReview(room, { stopped = false, restoring = false } = {}) {
   const p = room.partyProgram;
   if (!p?.results?.length) return;
   if (stopped && p.status !== 'done') { p.status = 'stopped'; p.endedAt ||= Date.now(); }
+  // These feature formats persist their board/lives and results in the room.
+  // The legacy placement-only review schema cannot represent their winner rules.
+  if (['party-brett', 'survival-abend'].includes(p.config.mode)) return;
   try { reviews?.capture(room, { restoring }); } catch (error) { console.error('Abend-Rückblick konnte nicht gespeichert werden:', error.message); }
 }
 const SAVE_FILE = join(DATA_DIR, 'rooms.json');
@@ -405,6 +410,7 @@ function load() {
       }
       r.openedAt = Date.now();
       r.partyProgram = restoreProgram(d.partyProgram);
+      attachSurvival(r);
       r.lastSnapshot = d;
       archiveReview(r, { restoring: true });
       if (existsSync(historyFile(r.code))) {
@@ -441,9 +447,13 @@ function onRoomChange(room, kind, data) {
   if (kind === 'roundAbort') { ranked.abort(room); return; }
   // Ergebnis einer Partie: in die Bestenliste (gespeichert wird mit dem nächsten Speichern)
   if (kind === 'result') {
+    // Long games can resume a live snapshot without a new ranked round. The
+    // feature program still counts its authoritative result exactly once.
+    const feature = ['party-brett', 'survival-abend'].includes(room.partyProgram?.config.mode);
+    if (feature && recordProgramResult(room)) save();
     const frozen = room.rankedRound;
     if (!frozen || leaderboard.round(frozen.id)) return; // replayed completion is never counted twice
-    if (recordProgramResult(room)) archiveReview(room);
+    if (!feature && recordProgramResult(room)) archiveReview(room);
     // Computer-Mitspieler sind keine Personen; Menschen werden über ihr Konto gezählt (ohne Konto: wie früher über den Namen)
     const participants = (data?.entries || []).map((entry,i) => ({ entry, player:room.players.get(data.ids?.[i]) || [...room.players.values()].find(p=>p.name===entry.name) })).filter(p=>p.player && !p.player.bot);
     const entries = participants.map(({entry,player})=>({...entry,accountId:frozen.accounts[player.id] || null}));
@@ -519,21 +529,49 @@ function switchRoom(old, game, settings = {}, prepare = null) {
 }
 
 function startProgramStep(room, id, program) {
+  if (program.status === 'done') { room.partyProgram = program; room.lastSnapshot = snapshotOf(room); archiveReview(room); return room; }
   const entry = program.plan[program.index];
+  const announced = program.ruleAnnouncement;
+  if (program.awaitingRule && announced?.index === program.index && announced.game === room.game && room.game === entry.game && room.rulePreview === announced.rule) {
+    room.partyProgram = program;
+    program.awaitingRule = false;
+    room.lastSnapshot = snapshotOf(room);
+    room.start(id);
+    save();
+    return room;
+  }
   const extra = room.saveExtra?.();
-  program.saved[scoreKey(room.game, room.variant || 'classic')] = { settings: { ...room.settings }, extra: program.config.mode === 'abend' ? extra?.custom ? { custom: extra.custom } : null : extra };
+  program.saved[scoreKey(room.game, room.variant || 'classic')] = { settings: { ...room.settings }, extra: ['abend', 'survival-abend', 'party-brett'].includes(program.config.mode) ? extra?.custom ? { custom: extra.custom } : null : extra };
   const saved = program.saved[scoreKey(entry.game, entry.variant || 'classic')];
   const poker = ['poker', 'omaha'].includes(entry.game);
   const next = switchRoom(room, GAMES[entry.game], { ...(poker ? programDefaults()[entry.game] : saved?.settings || {}), ...entry.settings, variant: entry.variant || 'classic', ...(poker ? { autoNext: false, rebuy: 'off', gifts: false } : {}) }, (r) => {
     if (saved?.extra) r.loadExtra(saved.extra);
     r.partyProgram = program;
+    attachSurvival(r);
+    if (program.config.mode === 'survival-abend') {
+      const alive = new Set(survivors(program));
+      if (r.table) for (const seat of [...r.table.seats].filter(Boolean)) { if (!alive.has(seat.id)) r.stand(seat.id); }
+      else r.seats = r.seats.filter((id) => alive.has(id));
+    }
     if (!r.table) r.roundNo = Number.isInteger(room.roundNo) ? room.roundNo : 0;
     validateProgramPlayers(r, { ...program.config, entries: [entry] }, programSeats(r));
     r.validateStart?.(programSeats(r));
   });
   // Beim Neustart wird nur die noch nicht gewertete Partie wiederholt.
+  if (next.hasPartyRules?.()) {
+    // New optional rules are shown in the actual lobby before a second Host
+    // start. An aborted station retains its previous public announcement.
+    if (announced?.index === program.index && announced.game === entry.game) next.rulePreview = announced.rule;
+    program.ruleAnnouncement = { index: program.index, game: entry.game, rule: next.rulePreview };
+    program.awaitingRule = true;
+    next.lastSnapshot = snapshotOf(next);
+    save();
+    return next;
+  }
+  program.awaitingRule = false;
   next.lastSnapshot = snapshotOf(next);
   next.start(id);
+  save(); // Persist the station/board selection even while the minigame is running.
   return next;
 }
 
@@ -805,6 +843,7 @@ io.on('connection', (socket) => {
       }
       if (programActive(room) && ['newGame', 'settings', 'adjust', 'gift', 'giftAnswer', 'rebuy', 'nextHand', 'sitOut', 'boardChoose', 'boardSave'].includes(event)) throw new Error('Beende zuerst das Abendprogramm, um diese Einstellungen zu ändern');
       if (programActive(room) && event === 'sit' && !program.roster.some((person) => person.id === p.id)) throw new Error('Dieses Programm läuft schon; du kannst zuschauen und beim nächsten mitspielen');
+      if (programActive(room) && event === 'sit' && program.config.mode === 'survival-abend' && !program.lives[p.id]) throw new Error('Du bist ausgeschieden und kannst zuschauen');
       const fn = GAMES[room.game]?.events[event];
       if (!fn) throw new Error('Das gibt es in diesem Spiel nicht');
       return fn(room, p, d && typeof d === 'object' ? d : {});
@@ -823,6 +862,7 @@ io.on('connection', (socket) => {
   });
 
   on('programSave', (data, room, p) => { configureProgram(room, p.id, data); });
+  on('programBoardItem', (data, room, p) => boardItem(room, p.id, data));
   on('setVariant', ({ variant }, room, p) => {
     room.requireHost(p.id);
     if (room.busy || programActive(room)) throw new Error('Variantenwechsel nur zwischen Partien und außerhalb eines laufenden Programms');
@@ -941,7 +981,7 @@ process.on('unhandledRejection', (e) => console.error('Unerwarteter Fehler:', e)
 const NEW_ROUND_EVENTS = ['start', 'nextHand'];
 
 // Ein Spiel darf keine Plattform-Ereignisse überschreiben
-const RESERVED = ['create', 'join', 'kick', 'makeHost', 'history', 'react', 'switchGame', 'setVariant', 'disconnect', 'addBot', 'removeBot', 'setBotDifficulty', 'lobby', 'peek', 'unlisted', 'park', 'leave', 'abortRound', 'closeTable', 'look', 'presence', 'programSave', 'programStart', 'programNext', 'programStop', 'clientError'];
+const RESERVED = ['create', 'join', 'kick', 'makeHost', 'history', 'react', 'switchGame', 'setVariant', 'disconnect', 'addBot', 'removeBot', 'setBotDifficulty', 'lobby', 'peek', 'unlisted', 'park', 'leave', 'abortRound', 'closeTable', 'look', 'presence', 'programSave', 'programStart', 'programNext', 'programStop', 'programBoardItem', 'clientError'];
 for (const g of Object.values(GAMES)) {
   const clash = Object.keys(g.events).filter((e) => RESERVED.includes(e));
   if (clash.length) throw new Error(`Spiel ${g.id}: Ereignisse ${clash.join(', ')} gehören der Plattform`);

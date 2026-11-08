@@ -7,12 +7,15 @@ import { BOTS } from '../games/bots.js';
 import { DEFAULT_SETTINGS as POKER_DEFAULTS } from '../games/poker/room.js';
 import { randomUUID, createHash } from 'node:crypto';
 import { variantOf } from '../games/variants.js';
+import { beginBoard, boardStation, scoreBoard, boardWinners, validBoard } from '../games/party-brett/index.js';
+import { beginSurvival, survivors, scoreSurvival, survivalWinners, validSurvival, SURVIVAL_MAX_ROUNDS } from '../games/survival-abend/index.js';
 
-export const PROGRAM_MODES = ['mix', 'turnier', 'playlist', 'team', 'abend'];
+export const PROGRAM_MODES = ['mix', 'turnier', 'playlist', 'team', 'abend', 'party-brett', 'survival-abend'];
 export const MAX_PROGRAM_GAMES = 12;
 const NO_TEAM = new Set(['werwolf', 'wer-bin-ich', 'doppelagent', 'jaeger-schatten', 'infektionsjagd']);
 export const programGames = (team = false) => Object.values(GAMES).filter((g) => g.category === 'party' && (!team || !NO_TEAM.has(g.id)));
 export const eveningGames = () => Object.values(GAMES);
+export const survivalGames = () => eveningGames().filter((g) => g.minPlayers <= 2 && g.maxPlayers >= 2);
 export const programSeats = (room) => room.table ? room.table.seats.filter(Boolean).map((s) => s.id) : [...room.seats];
 const POKER_OPTIONS = [
   { key: 'startStack', label: 'Startchips (gleicher Start je Station)', type: 'number', min: 100, max: 1000000 },
@@ -33,12 +36,13 @@ const clone = (value) => JSON.parse(JSON.stringify(value));
 export function normalizeProgram(input) {
   if (!input || !PROGRAM_MODES.includes(input.mode)) throw new Error('Wähle einen gültigen Programm-Modus');
   if (!Array.isArray(input.entries) || !input.entries.length || input.entries.length > MAX_PROGRAM_GAMES) throw new Error('Ein Programm braucht 1 bis 12 Spiele');
-  const allowed = new Set((input.mode === 'abend' ? eveningGames() : programGames(input.mode === 'team')).map((g) => g.id));
+  const allowed = new Set((input.mode === 'survival-abend' ? survivalGames() : input.mode === 'abend' ? eveningGames() : programGames(input.mode === 'team')).map((g) => g.id));
   const entries = input.entries.map((entry) => {
     if (!entry || !allowed.has(entry.game)) throw new Error('Dieses Spiel eignet sich nicht für diesen Party-Modus');
     const game = GAMES[entry.game], settings = {}, variant = entry.variant || 'classic';
     variantOf(game.id, variant);
     if (variant !== 'classic' && !game.variants?.some((v) => v.id === variant)) throw new Error('Diese Variante ist noch nicht verfügbar');
+    if (input.mode === 'survival-abend' && (game.variants?.find((v) => v.id === variant)?.minPlayers || game.minPlayers) > 2) throw new Error('Survival braucht Spiele, die auch zu zweit funktionieren');
     const values = entry.settings && typeof entry.settings === 'object' ? entry.settings : {};
     for (const option of programOptions(game, variant)) {
       if (!Object.hasOwn(values, option.key)) continue;
@@ -65,7 +69,16 @@ export function normalizeProgram(input) {
   if (input.mode === 'team' && input.teams && typeof input.teams === 'object') for (const [id, team] of Object.entries(input.teams).slice(0, 30)) {
     if (/^(?:[a-f0-9]{12}|bot_[a-f0-9]{10})$/.test(id) && ['a', 'b'].includes(team)) teams[id] = team;
   }
-  return { name: cleanText(typeof input.name === 'string' ? input.name : '', 40) || (input.mode === 'abend' ? 'Unser Spieleabend' : 'Unser Party-Abend'), mode: input.mode, entries, teams };
+  const extra = {};
+  if (input.mode === 'survival-abend') {
+    extra.lives = input.lives ?? 3;
+    if (!Number.isInteger(extra.lives) || extra.lives < 1 || extra.lives > 5) throw new Error('Wähle 1 bis 5 Leben');
+  }
+  if (input.mode === 'party-brett') {
+    extra.boardRounds = input.boardRounds ?? 6;
+    if (!Number.isInteger(extra.boardRounds) || extra.boardRounds < 2 || extra.boardRounds > 12) throw new Error('Wähle 2 bis 12 Brett-Runden');
+  }
+  return { name: cleanText(typeof input.name === 'string' ? input.name : '', 40) || (input.mode === 'abend' ? 'Unser Spieleabend' : 'Unser Party-Abend'), mode: input.mode, entries, teams, ...extra };
 }
 
 export function configureProgram(room, id, input) {
@@ -78,6 +91,8 @@ export function configureProgram(room, id, input) {
 
 export function validateProgramPlayers(room, config, ids = programSeats(room)) {
   if (!ids?.length) throw new Error('Erst am Tisch mitspielen, dann das Programm starten');
+  if (['party-brett', 'survival-abend'].includes(config.mode) && ids.length < 2) throw new Error('Mindestens zwei Mitspieler nötig');
+  if (['party-brett', 'survival-abend'].includes(config.mode) && ids.length > 12) throw new Error('Höchstens zwölf Mitspieler für dieses Abendformat');
   for (const entry of config.entries) {
     const game = GAMES[entry.game];
     const v = game.variants?.find((v) => v.id === (entry.variant || 'classic')) || game;
@@ -102,6 +117,8 @@ export function beginProgram(room, id) {
     return { id, name: person.name, avatar: person.avatar, team: p.config.mode === 'team' ? p.config.teams[id] || null : null };
   });
   next.scores = Object.fromEntries(next.roster.map((person) => [person.id, 0]));
+  if (p.config.mode === 'party-brett') { beginBoard(next); next.plan = [boardStation(next)]; }
+  if (p.config.mode === 'survival-abend') { beginSurvival(next); next.plan = [clone(next.config.entries[0])]; }
   next.status = 'running';
   next.startedAt = Date.now();
   return next;
@@ -114,9 +131,17 @@ export function nextProgramStep(room, id) {
   if (!p || !['running', 'between'].includes(p.status)) throw new Error('Gerade wartet kein Programm auf die nächste Partie');
   const next = clone(p);
   if (p.status === 'between') next.index++;
+  if (next.config.mode === 'survival-abend') {
+    for (const id of survivors(next)) if (!room.players.has(id) || room.players.get(id).kicked) next.lives[id] = 0;
+    if (survivors(next).length <= 1) { next.index = p.index; next.status = 'done'; next.endedAt = Date.now(); return next; }
+  }
+  if (p.status === 'between' && next.config.mode === 'party-brett') next.plan.push(boardStation(next));
+  if (p.status === 'between' && next.config.mode === 'survival-abend') next.plan.push(clone(next.config.entries[next.index % next.config.entries.length]));
   if (!next.plan[next.index]) throw new Error('Das Programm ist bereits beendet');
   const seated = programSeats(room);
-  const remaining = next.roster.filter((person) => seated.includes(person.id)).map((person) => person.id);
+  const participants = next.config.mode === 'survival-abend' ? survivors(next) : next.roster.map((person) => person.id);
+  const remaining = participants.filter((id) => seated.includes(id));
+  if (['party-brett', 'survival-abend'].includes(next.config.mode) && remaining.length !== participants.length) throw new Error('Alle verbliebenen Mitspieler müssen wieder Platz nehmen');
   const entry = next.plan[next.index];
   validateProgramPlayers(room, { ...next.config, entries: [entry] }, remaining);
   next.status = 'running';
@@ -137,7 +162,7 @@ function resultForProgram(room) {
 export function recordProgramResult(room) {
   const p = room.partyProgram, result = resultForProgram(room);
   if (!p || p.status !== 'running' || !result || p.plan[p.index]?.game !== room.game || p.results.some((row) => row.index === p.index)) return false;
-  const members = [...new Set(result.players.filter((id) => p.roster.some((person) => person.id === id)))];
+  const members = [...new Set(result.players.filter((id) => p.roster.some((person) => person.id === id) && (p.config.mode !== 'survival-abend' || p.lives[id] > 0)))];
   const value = (id) => Number.isFinite(Number(result.points[id])) ? Number(result.points[id]) : 0;
   const dir = room.opts?.lowWins ? 1 : -1;
   const compare = (a, b) => (value(a) - value(b)) * dir || (room.table ? 0 : Number(result.winners.includes(b)) - Number(result.winners.includes(a)));
@@ -149,6 +174,9 @@ export function recordProgramResult(room) {
   p.results.push({ index: p.index, game: room.game, ...(room.variant && room.variant !== 'classic' ? { variant: room.variant } : {}), points, raw: Object.fromEntries(members.map((id) => [id, value(id)])), at: Date.now(), lowWins: !!room.opts?.lowWins,
     scoreLabel: room.table ? 'Chips netto' : room.opts?.scoreLabel || 'Punkte', winners: result.winners.filter((id) => members.includes(id)) });
   p.status = p.index === p.plan.length - 1 ? 'done' : 'between';
+  const row = p.results.at(-1);
+  if (p.config.mode === 'party-brett') p.status = scoreBoard(p, row) ? 'done' : 'between';
+  if (p.config.mode === 'survival-abend') p.status = scoreSurvival(p, row, members, compare, hasResult) ? 'done' : 'between';
   if (p.status === 'done') p.endedAt = Date.now();
   room.say(p.status === 'done' ? `Abendprogramm „${p.config.name}“ beendet: ${p.roster.map((person) => `${person.name} ${p.scores[person.id] || 0}`).join(' · ')}` : `Abendprogramm: ${p.index + 1} von ${p.plan.length} Spielen gewertet`, 'summary');
   return true;
@@ -162,22 +190,31 @@ export function publicProgram(room) {
   const ranking = p.config.mode === 'team' ? teams : standings;
   const best = Math.max(0, ...ranking.map((row) => row.points));
   return { id: p.id, startedAt: p.startedAt || null, endedAt: p.endedAt || null, config: clone(p.config), status: p.status, index: p.index, plan: clone(p.plan), results: clone(p.results), standings, teams,
-    winners: p.status === 'done' ? ranking.filter((row) => row.points === best && best > 0).map((row) => row.name) : [] };
+    ...(p.awaitingRule ? { awaitingRule: true } : {}),
+    ...(p.board ? { board: clone(p.board) } : {}), ...(p.lives ? { lives: { ...p.lives } } : {}),
+    winners: p.status === 'done' ? p.config.mode === 'party-brett' ? boardWinners(p) : p.config.mode === 'survival-abend' ? survivalWinners(p) : ranking.filter((row) => row.points === best && best > 0).map((row) => row.name) : [] };
 }
 
 export function restoreProgram(data) {
   if (!data || typeof data !== 'object') return null;
   try {
     const config = normalizeProgram(data.config);
+    const maxRounds = config.mode === 'survival-abend' ? SURVIVAL_MAX_ROUNDS : MAX_PROGRAM_GAMES;
     if (!['ready', 'running', 'between', 'done', 'stopped'].includes(data.status)) return null;
-    if (!Array.isArray(data.plan) || data.plan.length > MAX_PROGRAM_GAMES || !Array.isArray(data.roster) || !Array.isArray(data.results)) return null;
+    if (!Array.isArray(data.plan) || data.plan.length > maxRounds || !Array.isArray(data.roster) || !Array.isArray(data.results)) return null;
     if (['running', 'between', 'done'].includes(data.status) && !data.plan.length) return null;
-    if (data.roster.length > 30 || data.results.length > MAX_PROGRAM_GAMES || !data.scores || typeof data.scores !== 'object') return null;
+    if (data.roster.length > 30 || data.results.length > maxRounds || !data.scores || typeof data.scores !== 'object') return null;
     if (data.roster.some((person) => !person || typeof person.id !== 'string' || typeof person.name !== 'string')) return null;
+    if (new Set(data.roster.map((person) => person.id)).size !== data.roster.length) return null;
     if (Object.values(data.scores).some((n) => !Number.isFinite(n))) return null;
     if (data.results.some((row) => !row || !Number.isInteger(row.index) || row.index < 0 || row.index >= data.plan.length || !row.points || typeof row.points !== 'object')) return null;
+    if (new Set(data.results.map((row) => row.index)).size !== data.results.length) return null;
     if (!data.saved || typeof data.saved !== 'object') return null;
-    if (data.plan.length) normalizeProgram({ ...config, entries: data.plan });
+    if (data.ruleAnnouncement && (!Number.isInteger(data.ruleAnnouncement.index) || data.ruleAnnouncement.index < 0 || data.ruleAnnouncement.index >= data.plan.length || data.ruleAnnouncement.game !== data.plan[data.ruleAnnouncement.index].game || !['double','reverse','pressure','double-pressure','reverse-pressure'].includes(data.ruleAnnouncement.rule))) return null;
+    if (data.awaitingRule && data.ruleAnnouncement?.index !== data.index) return null;
+    for (const entry of data.plan) normalizeProgram({ ...config, entries: [entry] });
+    if (data.plan.length && config.mode === 'party-brett' && !validBoard(data)) return null;
+    if (data.plan.length && config.mode === 'survival-abend' && !validSurvival(data)) return null;
     if (!Number.isInteger(data.index) || data.index < 0 || data.index >= Math.max(1, data.plan.length)) return null;
     // Altbestände bekommen eine reproduzierbare Archiv-ID; keine erfundenen Spieldaten.
     const hash = createHash('sha256').update(JSON.stringify([config, data.roster.map((p) => p.id), data.plan])).digest('hex').slice(0, 32);

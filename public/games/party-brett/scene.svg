@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" fill="none">
+<!-- Original artwork for PokerAbend: lantern islands, no external assets. -->
+<defs><linearGradient id="sky" x2="0" y2="220" gradientUnits="userSpaceOnUse"><stop stop-color="#302742"/><stop offset="1" stop-color="#855368"/></linearGradient></defs>
+<rect width="900" height="220" rx="24" fill="url(#sky)"/><circle cx="710" cy="80" r="48" fill="#efc785"/>
+<path d="m0 183 140-101 125 81 147-132 165 143 133-42 190 51v37H0Z" fill="#42495b"/>
+<path d="m0 215 115-40 110 25 134-60 155 55 128-37 258 45v17H0Z" fill="#263f43"/>
+<path d="M80 201q130-80 260-20t240-15 230 21" stroke="#d5b77b" stroke-width="6" stroke-dasharray="4 12"/>
+<g stroke="#f9dd9a" stroke-width="3" fill="#ba7e53"><path d="M200 82v47m-10-34h20v24h-20zm-4 0 14-12 14 12M490 50v48m-10-35h20v24h-20zm-4 0 14-12 14 12M782 120v46m-10-34h20v24h-20zm-4 0 14-12 14 12"/></g>
+<g fill="#ffe8b2"><circle cx="100" cy="40" r="2"/><circle cx="350" cy="50" r="3"/><circle cx="560" cy="24" r="2"/><circle cx="835" cy="45" r="3"/></g></svg>
