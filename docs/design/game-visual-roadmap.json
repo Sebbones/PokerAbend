@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-08",
+  "updated_at": "2026-11-07",
   "audited_source_commit": "ef6511d76f78689fc525a63f6e3637c3f14f1252",
   "audit_hash_format": "SHA-256 of UTF-8 source with LF line endings at package.source_audit_commit, falling back to audited_source_commit",
   "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen. Explicit BACKLOG-03 game, bot and visual-world authorization on 2026-11-01: Backgammon, Hearts and Five Card Draw only. Explicit BACKLOG-04 authorization: Scrabble, Omaha Hi/Lo, Short Deck Poker and Seven Card Stud with bots and individual visual worlds, 2026-11-01.",
@@ -28,9 +28,9 @@
   "inventory": {
     "playable_count": 101,
     "not_implemented_count": 6,
-    "completed_visual_count": 88,
-    "open_playable_visual_count": 13,
-    "planned_visual_count": 19,
+    "completed_visual_count": 101,
+    "open_playable_visual_count": 0,
+    "planned_visual_count": 6,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -231,7 +231,20 @@
       "bomben-duell",
       "sudoku",
       "2048",
-      "wellenwacht"
+      "wellenwacht",
+      "skat",
+      "doppelkopf",
+      "gebietskampf",
+      "staedtehandel",
+      "snake",
+      "memory",
+      "minesweeper",
+      "nonogramm",
+      "sokoban",
+      "block-puzzle",
+      "solitaire",
+      "mahjong-solitaire",
+      "match-3"
     ],
     "individual_complex_board_game_ids": [
       "scotland-yard",
@@ -378,36 +391,8 @@
     "VIS-106",
     "VIS-107"
   ],
-  "effort_order": [
-    "VIS-100",
-    "VIS-099",
-    "VIS-101",
-    "VIS-103",
-    "VIS-104",
-    "VIS-102",
-    "VIS-105",
-    "VIS-106",
-    "VIS-107",
-    "VIS-086",
-    "VIS-087",
-    "VIS-090",
-    "VIS-089"
-  ],
-  "suggested_development_order": [
-    "VIS-099",
-    "VIS-100",
-    "VIS-101",
-    "VIS-102",
-    "VIS-103",
-    "VIS-086",
-    "VIS-087",
-    "VIS-104",
-    "VIS-105",
-    "VIS-106",
-    "VIS-107",
-    "VIS-090",
-    "VIS-089"
-  ],
+  "effort_order": [],
+  "suggested_development_order": [],
   "future_concepts_order": [
     "VIS-083",
     "VIS-091",
@@ -14330,17 +14315,17 @@
       "category": "karten",
       "category_name": "Kartenspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/skat/index.js",
       "existing_visual_work": {
-        "level": "baseline_card_world",
+        "level": "individual_world",
         "evidence": [
-          "games/skat/rules.test.js",
-          "games/skat/ui.spec.js"
+          "public/games/skat/skat.js",
+          "public/games/skat/skat.css"
         ],
-        "assessment": "Erste spielbare Umsetzung mit Szenenbild und Basis-Tisch im bestehenden Kartenstil; die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/skat/skat.js",
@@ -14361,9 +14346,9 @@
           "sha256": "bbb505bd738a87a51fed7ab2e93a10880c2916cc32ae5c6dc609251781d87734"
         }
       ],
-      "current_design": "Grüner Skattisch mit Reizanzeige, Skatablage, Stichmitte und Papier-Wertungsleiste im gemeinsamen Kartenstil.",
+      "current_design": "Klassischer Dreierspieltisch mit Reiznotiz: Phase, Gebot und angesagtes Spiel (Farbe/Grand/Null/Ramsch/Ouvert) als Chips, Skat als abgesetzter verdeckter Stapel, eigene Hand groß.",
       "known_visual_weaknesses": [
-        "Basis-Tisch ohne eigene Kartenillustration, Animationen oder Spezialansichten; individuelle Gestaltung nicht begonnen."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Server- und Bot-Tests sowie Playwright Hosten, Bots und Spielen auf Desktop und Mobil; Planungsstatus der individuellen Gestaltung unverändert.",
       "gameplay_summary": "Das deutsche Kartenspiel: reizen, ansagen und 61 Augen holen.",
@@ -14421,11 +14406,38 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/skat/desktop-english-rules.jpg",
+        "docs/design/screenshots/skat/desktop-lobby.jpg",
+        "docs/design/screenshots/skat/desktop-own-action.jpg",
+        "docs/design/screenshots/skat/desktop-paused.jpg",
+        "docs/design/screenshots/skat/desktop-reconnect.jpg",
+        "docs/design/screenshots/skat/desktop-spectator.jpg",
+        "docs/design/screenshots/skat/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/skat/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/skat/desktop-table-360x800.jpg",
+        "docs/design/screenshots/skat/desktop-table-390x844.jpg",
+        "docs/design/screenshots/skat/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/skat/desktop-table-900x450.jpg",
+        "docs/design/screenshots/skat/desktop-waiting.jpg",
+        "docs/design/screenshots/skat/mobil-english-rules.jpg",
+        "docs/design/screenshots/skat/mobil-lobby.jpg",
+        "docs/design/screenshots/skat/mobil-own-action.jpg",
+        "docs/design/screenshots/skat/mobil-paused.jpg",
+        "docs/design/screenshots/skat/mobil-reconnect.jpg",
+        "docs/design/screenshots/skat/mobil-spectator.jpg",
+        "docs/design/screenshots/skat/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "ff5db5c28c9f81fab9911b0fb08a1226eb37d71b"
+      ],
+      "implementation_commit": "ff5db5c28c9f81fab9911b0fb08a1226eb37d71b",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-087",
@@ -14434,17 +14446,17 @@
       "category": "karten",
       "category_name": "Kartenspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/doppelkopf/index.js",
       "existing_visual_work": {
-        "level": "baseline_card_world",
+        "level": "individual_world",
         "evidence": [
-          "games/doppelkopf/rules.test.js",
-          "games/doppelkopf/ui.spec.js"
+          "public/games/doppelkopf/doppelkopf.js",
+          "public/games/doppelkopf/doppelkopf.css"
         ],
-        "assessment": "Erste spielbare Umsetzung mit Szenenbild und Basis-Tisch im bestehenden Kartenstil; die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/doppelkopf/doppelkopf.js",
@@ -14465,9 +14477,9 @@
           "sha256": "cdb479ac70f9fe53c02ffae4f743529885dfbcca9106251b2f72d148e898dfb2"
         }
       ],
-      "current_design": "Burgunderroter Doppelkopf-Tisch mit Vorbehaltsleiste, Stichmitte, Re/Kontra-Anzeige und Papier-Wertungsleiste im gemeinsamen Kartenstil.",
+      "current_design": "Vierersalon: Stich und öffentliche Ansagen getrennt, Phase und Schweinchen als Chips, die eigene Partei nur in der eigenen Ansicht (Schloss-Chip).",
       "known_visual_weaknesses": [
-        "Basis-Tisch ohne eigene Kartenillustration, Animationen oder Spezialansichten; individuelle Gestaltung nicht begonnen."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Server- und Bot-Tests sowie Playwright Hosten, Bots und Spielen auf Desktop und Mobil; Planungsstatus der individuellen Gestaltung unverändert.",
       "gameplay_summary": "Vier Spieler, zwei Parteien: Re gegen Kontra um 121 von 240 Augen.",
@@ -14525,11 +14537,38 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/doppelkopf/desktop-english-rules.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-lobby.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-own-action.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-paused.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-reconnect.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-spectator.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-table-360x800.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-table-390x844.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-table-900x450.jpg",
+        "docs/design/screenshots/doppelkopf/desktop-waiting.jpg",
+        "docs/design/screenshots/doppelkopf/mobil-english-rules.jpg",
+        "docs/design/screenshots/doppelkopf/mobil-lobby.jpg",
+        "docs/design/screenshots/doppelkopf/mobil-own-action.jpg",
+        "docs/design/screenshots/doppelkopf/mobil-paused.jpg",
+        "docs/design/screenshots/doppelkopf/mobil-reconnect.jpg",
+        "docs/design/screenshots/doppelkopf/mobil-spectator.jpg",
+        "docs/design/screenshots/doppelkopf/mobil-waiting.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "932d54011ca9717d70907bd9c25b9a6e1e405790"
+      ],
+      "implementation_commit": "932d54011ca9717d70907bd9c25b9a6e1e405790",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-088",
@@ -14711,18 +14750,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/staedtehandel/index.js",
       "existing_visual_work": {
-        "level": "baseline_world",
+        "level": "individual_world",
         "evidence": [
-          "games/staedtehandel/rules.js",
-          "test/staedtehandel.test.js",
-          "test/ui/staedtehandel.spec.js"
+          "public/games/staedtehandel/staedtehandel.js",
+          "public/games/staedtehandel/staedtehandel.css"
         ],
-        "assessment": "Erste spielbare Umsetzung des V2-12-Auftrags mit eigener SVG-Insel Aurelia (Brett, Häfen, Zahlenchips, Räuber, Bauteile, Handelsfenster); die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/staedtehandel/staedtehandel.js",
@@ -14742,9 +14780,9 @@
           "sha256": "4f9e0961579642b9835206f80ae1cb54ec6718eeef5ac8ff7702dfd5f9309487"
         }
       ],
-      "current_design": "Insel Aurelia als SVG: Sechsecke mit Landschaftssymbolen und Zahlenchips, Häfen, Räuber, Straßen, Siedlungen und Städte in Spielerfarben mit Symbol, markierte Bauplätze, Rohstoffhand, Handels- und Kartenfenster, Seitenleiste mit Spielern, Bank und Baukosten (zoom- und scrollbar).",
+      "current_design": "Eigener Rohstoff- und Städtebauplan (Hex-, Kanten- und Kreuzungsgeometrie unverändert); Bauziele zusätzlich als zugängliche Liste, die nur tatsächlich legale Plätze enthält und dieselbe Aktion auslöst wie die Karte.",
       "known_visual_weaknesses": [
-        "Erste spielbare Umsetzung mit funktionaler Insel; individuelle Ausarbeitung (Landschaftszeichnung, Würfel- und Ertragsanimation, alternative Bauzielliste) ist dieses geplante Paket und nicht freigegeben."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
       "gameplay_summary": "Rohstoffe erwürfeln, tauschen und eine eigene Stadt aufbauen.",
@@ -14802,11 +14840,46 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/vis-staedtehandel/desktop-board.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-english-rules.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-lobby.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-paused.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-reconnect.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-setup-settlement.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-spectator.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-table-360x800.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-table-390x844.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-table-900x450.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-trade-bank.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-trade-offer.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-trade-waiting.jpg",
+        "docs/design/screenshots/vis-staedtehandel/desktop-zoomed.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-board.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-english-rules.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-lobby.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-paused.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-reconnect.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-setup-settlement.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-spectator.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-trade-bank.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-trade-offer.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-trade-waiting.jpg",
+        "docs/design/screenshots/vis-staedtehandel/mobil-zoomed.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "c76f68e79a2a106d59cd10f7a161778b55084b6e"
+      ],
+      "implementation_commit": "c76f68e79a2a106d59cd10f7a161778b55084b6e",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-090",
@@ -14815,18 +14888,17 @@
       "category": "brett",
       "category_name": "Brettspiele",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
+      "implemented_in_this_order": true,
       "inventory_source": "games/gebietskampf/index.js",
       "existing_visual_work": {
-        "level": "baseline_world",
+        "level": "individual_world",
         "evidence": [
-          "games/gebietskampf/rules.js",
-          "test/gebietskampf.test.js",
-          "test/ui/gebietskampf.spec.js"
+          "public/games/gebietskampf/gebietskampf.js",
+          "public/games/gebietskampf/gebietskampf.css"
         ],
-        "assessment": "Erste spielbare Umsetzung des V2-11-Auftrags mit eigener SVG-Karte; die individuelle visuelle Ausarbeitung bleibt dieses geplante Paket und ist nicht freigegeben."
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/games/gebietskampf/gebietskampf.js",
@@ -14846,9 +14918,9 @@
           "sha256": "9356d006a70518250a1a685396a2383d5df32895cfb6341ca75215fa8d4fe6aa"
         }
       ],
-      "current_design": "Dunkle Seekarte Meridia: sechs Landmassen als weiche Flächen, Gebiete als Spielsteine mit Besitzerfarbe, Symbol und Truppenzahl, Seitenleiste mit Spielern, Karten, Mission und letztem Kampf (SVG, zoom- und scrollbar).",
+      "current_design": "Eigene Seekarte Meridia (Gebiete und Nachbarschaften unverändert); alle Gebiete zusätzlich als zugängliche, nach Landmassen gegliederte Liste mit Besitzer, Truppen, Nachbarzahl und Aktionshinweis – gleiche Bedienung wie die Karte.",
       "known_visual_weaknesses": [
-        "Erste spielbare Umsetzung mit funktionaler Seekarte; individuelle Ausarbeitung (Kartenzeichnung, Animationen, alternative Gebietsliste) ist dieses geplante Paket und nicht freigegeben."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
       "gameplay_summary": "Truppen verteilen, würfeln und Gebiete erobern, bis nur noch einer übrig ist.",
@@ -14906,11 +14978,44 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/vis-gebietskampf/desktop-attack-select.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-battle.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-english-rules.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-lobby.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-paused.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-reconnect.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-reinforce.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-spectator.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-table-360x800.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-table-390x844.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-table-900x450.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-waiting.jpg",
+        "docs/design/screenshots/vis-gebietskampf/desktop-zoomed.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-attack-select.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-battle.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-english-rules.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-lobby.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-paused.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-reconnect.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-reinforce.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-spectator.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-waiting.jpg",
+        "docs/design/screenshots/vis-gebietskampf/mobil-zoomed.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "628cd1129dedb800078b99bc3ad74e167f5ea6c3"
+      ],
+      "implementation_commit": "628cd1129dedb800078b99bc3ad74e167f5ea6c3",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-091",
@@ -15823,14 +15928,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Neon grid with a bright head, distinct food and visible direction controls."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/snake-logic.js",
+          "public/singleplayer/collection-runtime.js",
+          "public/singleplayer/collection.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/snake-logic.js",
@@ -15844,9 +15953,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Neon grid with a bright head, distinct food and visible direction controls.",
+      "current_design": "Klare Leuchtspur auf dunklem Raster: Körper verläuft in der Helligkeit, Kopf mit hellem Rand, Raster angedeutet; ohne Glühen bei reduzierter Bewegung.",
       "known_visual_weaknesses": [
-        "Commit-bound acceptance evidence is pending the implementation commit."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Lenke eine Schlange, sammle Nahrung und vermeide Kollisionen.",
@@ -15904,11 +16013,34 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/snake/desktop-english-rules.jpg",
+        "docs/design/screenshots/snake/desktop-paused.jpg",
+        "docs/design/screenshots/snake/desktop-playing.jpg",
+        "docs/design/screenshots/snake/desktop-reconnect.jpg",
+        "docs/design/screenshots/snake/desktop-start.jpg",
+        "docs/design/screenshots/snake/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/snake/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/snake/desktop-table-360x800.jpg",
+        "docs/design/screenshots/snake/desktop-table-390x844.jpg",
+        "docs/design/screenshots/snake/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/snake/desktop-table-900x450.jpg",
+        "docs/design/screenshots/snake/mobil-english-rules.jpg",
+        "docs/design/screenshots/snake/mobil-paused.jpg",
+        "docs/design/screenshots/snake/mobil-playing.jpg",
+        "docs/design/screenshots/snake/mobil-reconnect.jpg",
+        "docs/design/screenshots/snake/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "dcd9a625d8911d0012b25da1da630a9c63c76b9c"
+      ],
+      "implementation_commit": "dcd9a625d8911d0012b25da1da630a9c63c76b9c",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-100",
@@ -15917,14 +16049,19 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Original botanical and everyday SVG line drawings on illustrated card backs."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/memory-logic.js",
+          "public/singleplayer/collection-runtime.js",
+          "public/singleplayer/collection.css",
+          "public/singleplayer/memory-art.js"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/memory-logic.js",
@@ -15939,9 +16076,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Original botanical and everyday SVG line drawings on illustrated card backs.",
+      "current_design": "Ruhige illustrierte Symbolkarten mit starkem Kontrast; gefundene Paare zusätzlich mit Häkchen.",
       "known_visual_weaknesses": [
-        "Commit-bound acceptance evidence is pending the implementation commit."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Finde passende Kartenpaare in deinem eigenen Tempo.",
@@ -15999,11 +16136,34 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/memory/desktop-english-rules.jpg",
+        "docs/design/screenshots/memory/desktop-paused.jpg",
+        "docs/design/screenshots/memory/desktop-playing.jpg",
+        "docs/design/screenshots/memory/desktop-reconnect.jpg",
+        "docs/design/screenshots/memory/desktop-start.jpg",
+        "docs/design/screenshots/memory/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/memory/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/memory/desktop-table-360x800.jpg",
+        "docs/design/screenshots/memory/desktop-table-390x844.jpg",
+        "docs/design/screenshots/memory/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/memory/desktop-table-900x450.jpg",
+        "docs/design/screenshots/memory/mobil-english-rules.jpg",
+        "docs/design/screenshots/memory/mobil-paused.jpg",
+        "docs/design/screenshots/memory/mobil-playing.jpg",
+        "docs/design/screenshots/memory/mobil-reconnect.jpg",
+        "docs/design/screenshots/memory/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "dcd9a625d8911d0012b25da1da630a9c63c76b9c"
+      ],
+      "implementation_commit": "dcd9a625d8911d0012b25da1da630a9c63c76b9c",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-101",
@@ -16012,14 +16172,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Numbered workshop tiles, explicit touch reveal/flag modes and internal board scrolling."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/minesweeper-logic.js",
+          "public/singleplayer/collection-runtime.js",
+          "public/singleplayer/collection.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/minesweeper-logic.js",
@@ -16033,9 +16197,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Numbered workshop tiles, explicit touch reveal/flag modes and internal board scrolling.",
+      "current_design": "Werkstattoptik: geprägte Metallfelder, Zahlen bleiben farbunabhängig lesbar.",
       "known_visual_weaknesses": [
-        "Commit-bound acceptance evidence is pending the implementation commit."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Entschärfe ein Minenfeld mit Logik und Markierungen.",
@@ -16093,11 +16257,34 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/minesweeper/desktop-english-rules.jpg",
+        "docs/design/screenshots/minesweeper/desktop-paused.jpg",
+        "docs/design/screenshots/minesweeper/desktop-playing.jpg",
+        "docs/design/screenshots/minesweeper/desktop-reconnect.jpg",
+        "docs/design/screenshots/minesweeper/desktop-start.jpg",
+        "docs/design/screenshots/minesweeper/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/minesweeper/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/minesweeper/desktop-table-360x800.jpg",
+        "docs/design/screenshots/minesweeper/desktop-table-390x844.jpg",
+        "docs/design/screenshots/minesweeper/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/minesweeper/desktop-table-900x450.jpg",
+        "docs/design/screenshots/minesweeper/mobil-english-rules.jpg",
+        "docs/design/screenshots/minesweeper/mobil-paused.jpg",
+        "docs/design/screenshots/minesweeper/mobil-playing.jpg",
+        "docs/design/screenshots/minesweeper/mobil-reconnect.jpg",
+        "docs/design/screenshots/minesweeper/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "dcd9a625d8911d0012b25da1da630a9c63c76b9c"
+      ],
+      "implementation_commit": "dcd9a625d8911d0012b25da1da630a9c63c76b9c",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-102",
@@ -16106,14 +16293,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Paper logic sheet with row/column clues, ink pixels and crossed empty cells."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/nonogramm-logic.js",
+          "public/singleplayer/collection-runtime.js",
+          "public/singleplayer/collection.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/nonogramm-logic.js",
@@ -16127,9 +16318,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Paper logic sheet with row/column clues, ink pixels and crossed empty cells.",
+      "current_design": "Papierartige Logiktafel mit Karomuster und kräftigen fertigen Feldern.",
       "known_visual_weaknesses": [
-        "Commit-bound acceptance evidence is pending the implementation commit."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Entschlüssle ein Pixelmotiv anhand von Zahlen am Rand.",
@@ -16187,11 +16378,34 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/nonogramm/desktop-english-rules.jpg",
+        "docs/design/screenshots/nonogramm/desktop-paused.jpg",
+        "docs/design/screenshots/nonogramm/desktop-playing.jpg",
+        "docs/design/screenshots/nonogramm/desktop-reconnect.jpg",
+        "docs/design/screenshots/nonogramm/desktop-start.jpg",
+        "docs/design/screenshots/nonogramm/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/nonogramm/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/nonogramm/desktop-table-360x800.jpg",
+        "docs/design/screenshots/nonogramm/desktop-table-390x844.jpg",
+        "docs/design/screenshots/nonogramm/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/nonogramm/desktop-table-900x450.jpg",
+        "docs/design/screenshots/nonogramm/mobil-english-rules.jpg",
+        "docs/design/screenshots/nonogramm/mobil-paused.jpg",
+        "docs/design/screenshots/nonogramm/mobil-playing.jpg",
+        "docs/design/screenshots/nonogramm/mobil-reconnect.jpg",
+        "docs/design/screenshots/nonogramm/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "dcd9a625d8911d0012b25da1da630a9c63c76b9c"
+      ],
+      "implementation_commit": "dcd9a625d8911d0012b25da1da630a9c63c76b9c",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-103",
@@ -16200,14 +16414,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Original tiled warehouses with wood crates, distinct targets and a visible worker."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/sokoban-logic.js",
+          "public/singleplayer/collection-runtime.js",
+          "public/singleplayer/collection.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/sokoban-logic.js",
@@ -16221,9 +16439,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Original tiled warehouses with wood crates, distinct targets and a visible worker.",
+      "current_design": "Kleines Lagerhaus aus lesbaren 2D-Kacheln: Mauern, Kisten mit Kreuz, Ziele als Ringe, Kachelraster.",
       "known_visual_weaknesses": [
-        "Commit-bound acceptance evidence is pending the implementation commit."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Actual logic tests and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Schiebe Kisten auf Zielmarkierungen und plane jeden Schritt.",
@@ -16281,11 +16499,34 @@
         "status": "playable",
         "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/sokoban/desktop-english-rules.jpg",
+        "docs/design/screenshots/sokoban/desktop-paused.jpg",
+        "docs/design/screenshots/sokoban/desktop-playing.jpg",
+        "docs/design/screenshots/sokoban/desktop-reconnect.jpg",
+        "docs/design/screenshots/sokoban/desktop-start.jpg",
+        "docs/design/screenshots/sokoban/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/sokoban/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/sokoban/desktop-table-360x800.jpg",
+        "docs/design/screenshots/sokoban/desktop-table-390x844.jpg",
+        "docs/design/screenshots/sokoban/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/sokoban/desktop-table-900x450.jpg",
+        "docs/design/screenshots/sokoban/mobil-english-rules.jpg",
+        "docs/design/screenshots/sokoban/mobil-paused.jpg",
+        "docs/design/screenshots/sokoban/mobil-playing.jpg",
+        "docs/design/screenshots/sokoban/mobil-reconnect.jpg",
+        "docs/design/screenshots/sokoban/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "dcd9a625d8911d0012b25da1da630a9c63c76b9c"
+      ],
+      "implementation_commit": "dcd9a625d8911d0012b25da1da630a9c63c76b9c",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-104",
@@ -16294,14 +16535,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Flat tactile shapes on a dark blue grid with preview and hint highlights."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/blockpuzzle-logic.js",
+          "public/singleplayer/puzzles-runtime.js",
+          "public/singleplayer/puzzles.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/blockpuzzle-logic.js",
@@ -16316,9 +16561,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Flat tactile shapes on a dark blue grid with preview and hint highlights.",
+      "current_design": "Materialhafte flache Formen mit Muster zusätzlich zur Farbe: Belegung gerastert, Vorschau gepunktet, ungültige Platzierung schraffiert.",
       "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Setze Formen ein und räume vollständige Reihen ab.",
@@ -16376,11 +16621,34 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/block-puzzle/desktop-english-rules.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-paused.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-playing.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-reconnect.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-start.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-table-360x800.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-table-390x844.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/block-puzzle/desktop-table-900x450.jpg",
+        "docs/design/screenshots/block-puzzle/mobil-english-rules.jpg",
+        "docs/design/screenshots/block-puzzle/mobil-paused.jpg",
+        "docs/design/screenshots/block-puzzle/mobil-playing.jpg",
+        "docs/design/screenshots/block-puzzle/mobil-reconnect.jpg",
+        "docs/design/screenshots/block-puzzle/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "e9b9de8b38ebebb36162e5b17d953edbf9d49112"
+      ],
+      "implementation_commit": "e9b9de8b38ebebb36162e5b17d953edbf9d49112",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-105",
@@ -16389,14 +16657,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Calm green card table using the existing accessible card values with foundations, stock and seven columns."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/solitaire-logic.js",
+          "public/singleplayer/puzzles-runtime.js",
+          "public/singleplayer/puzzles.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/solitaire-logic.js",
@@ -16411,9 +16683,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Calm green card table using the existing accessible card values with foundations, stock and seven columns.",
+      "current_design": "Ruhiger eigener Kartentisch: gestuftes Grün, Fundament-Platzhalter mit Farbsymbolen, 44-px-Karten.",
       "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Ordne ein Kartendeck im klassischen Klondike-Solospiel.",
@@ -16471,11 +16743,34 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/solitaire/desktop-english-rules.jpg",
+        "docs/design/screenshots/solitaire/desktop-paused.jpg",
+        "docs/design/screenshots/solitaire/desktop-playing.jpg",
+        "docs/design/screenshots/solitaire/desktop-reconnect.jpg",
+        "docs/design/screenshots/solitaire/desktop-start.jpg",
+        "docs/design/screenshots/solitaire/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/solitaire/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/solitaire/desktop-table-360x800.jpg",
+        "docs/design/screenshots/solitaire/desktop-table-390x844.jpg",
+        "docs/design/screenshots/solitaire/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/solitaire/desktop-table-900x450.jpg",
+        "docs/design/screenshots/solitaire/mobil-english-rules.jpg",
+        "docs/design/screenshots/solitaire/mobil-paused.jpg",
+        "docs/design/screenshots/solitaire/mobil-playing.jpg",
+        "docs/design/screenshots/solitaire/mobil-reconnect.jpg",
+        "docs/design/screenshots/solitaire/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "e9b9de8b38ebebb36162e5b17d953edbf9d49112"
+      ],
+      "implementation_commit": "e9b9de8b38ebebb36162e5b17d953edbf9d49112",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-106",
@@ -16484,14 +16779,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Layered flat tiles with original line motifs, free and blocked tiles clearly distinguished."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/mahjong-logic.js",
+          "public/singleplayer/puzzles-runtime.js",
+          "public/singleplayer/puzzles.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/mahjong-logic.js",
@@ -16506,9 +16805,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Layered flat tiles with original line motifs, free and blocked tiles clearly distinguished.",
+      "current_design": "Deutliche flache Steinlagen: freie Steine mit kräftigem Rand, gesperrte Steine zusätzlich schraffiert.",
       "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Entferne freie gleiche Steinpaare in eigenen Anordnungen.",
@@ -16566,11 +16865,34 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/mahjong-solitaire/desktop-english-rules.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-paused.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-playing.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-reconnect.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-start.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-table-360x800.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-table-390x844.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/mahjong-solitaire/desktop-table-900x450.jpg",
+        "docs/design/screenshots/mahjong-solitaire/mobil-english-rules.jpg",
+        "docs/design/screenshots/mahjong-solitaire/mobil-paused.jpg",
+        "docs/design/screenshots/mahjong-solitaire/mobil-playing.jpg",
+        "docs/design/screenshots/mahjong-solitaire/mobil-reconnect.jpg",
+        "docs/design/screenshots/mahjong-solitaire/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "e9b9de8b38ebebb36162e5b17d953edbf9d49112"
+      ],
+      "implementation_commit": "e9b9de8b38ebebb36162e5b17d953edbf9d49112",
+      "completed_at": "2026-11-07"
     },
     {
       "id": "VIS-107",
@@ -16579,14 +16901,18 @@
       "category": "einzelspieler",
       "category_name": "Einzelspieler",
       "implementation_status": "playable",
-      "visual_status": "planned",
+      "visual_status": "done",
       "implementation_authorized_now": false,
       "implemented_in_this_order": true,
       "inventory_source": "games/singleplayer/index.js",
       "existing_visual_work": {
-        "level": "individual_game_world",
-        "evidence": [],
-        "assessment": "Original botanical symbol set with distinct silhouettes on a dark garden board."
+        "level": "individual_world",
+        "evidence": [
+          "public/singleplayer/match3-logic.js",
+          "public/singleplayer/puzzles-runtime.js",
+          "public/singleplayer/puzzles.css"
+        ],
+        "assessment": "Individuelle Spielwelt umgesetzt und auf Desktop/Mobile geprüft; Commit und Screenshots sind dokumentiert."
       },
       "current_frontend_files": [
         "public/singleplayer/match3-logic.js",
@@ -16601,9 +16927,9 @@
         "public/singleplayer/singleplayer.css"
       ],
       "source_audit": [],
-      "current_design": "Original botanical symbol set with distinct silhouettes on a dark garden board.",
+      "current_design": "Botanisches Symbolset als Gewächshausbeet: Auswahl mit Rahmen statt nur Farbe, ruhige Kachelgrenzen.",
       "known_visual_weaknesses": [
-        "Optische Abnahme erst an einer gesondert freigegebenen und tatsächlich implementierten Oberfläche möglich."
+        "Weitere Feinpolitur und optionale Varianten sind nicht Teil dieser Umsetzung."
       ],
       "assessment_method": "Logic tests (solvability, rules, saves) and desktop/touch sessions; final permanent evidence follows after the implementation commit.",
       "gameplay_summary": "Tausche benachbarte Symbole und bilde Dreierreihen.",
@@ -16661,11 +16987,34 @@
         "status": "playable",
         "requires_separate_authorization": true
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/design/screenshots/match-3/desktop-english-rules.jpg",
+        "docs/design/screenshots/match-3/desktop-paused.jpg",
+        "docs/design/screenshots/match-3/desktop-playing.jpg",
+        "docs/design/screenshots/match-3/desktop-reconnect.jpg",
+        "docs/design/screenshots/match-3/desktop-start.jpg",
+        "docs/design/screenshots/match-3/desktop-table-1440x900.jpg",
+        "docs/design/screenshots/match-3/desktop-table-1920x1080.jpg",
+        "docs/design/screenshots/match-3/desktop-table-360x800.jpg",
+        "docs/design/screenshots/match-3/desktop-table-390x844.jpg",
+        "docs/design/screenshots/match-3/desktop-table-768x1024.jpg",
+        "docs/design/screenshots/match-3/desktop-table-900x450.jpg",
+        "docs/design/screenshots/match-3/mobil-english-rules.jpg",
+        "docs/design/screenshots/match-3/mobil-paused.jpg",
+        "docs/design/screenshots/match-3/mobil-playing.jpg",
+        "docs/design/screenshots/match-3/mobil-reconnect.jpg",
+        "docs/design/screenshots/match-3/mobil-start.jpg"
+      ],
+      "test_results": [
+        "npx playwright test test/ui/visual-p1.spec.js (desktop + mobil, sauberer Checkout): bestanden, sechs Viewports ohne seitliches Überlaufen, Lobby/eigene Aktion/Zuschauer/Wartend/Pause/Wiederverbindung/Englisch (+ Ergebnis, wo schnell erreichbar).",
+        "Bestehende Specs der betroffenen Spiele (sauberer Checkout, 2026-11-07): siehe Abschlussbericht.",
+        "node --test \"test/*.test.js\": bestanden (sauberer Checkout)."
+      ],
+      "commits": [
+        "e9b9de8b38ebebb36162e5b17d953edbf9d49112"
+      ],
+      "implementation_commit": "e9b9de8b38ebebb36162e5b17d953edbf9d49112",
+      "completed_at": "2026-11-07"
     }
   ],
   "order_history": [
@@ -16764,6 +17113,26 @@
       ],
       "implementation_commit": "0538cc9d6ac315146b6873b2d41a9f4f9587f0d7",
       "note": "Restliche P2-Pakete (16) und alle P3-Pakete (8) in der Reihenfolge von suggested_development_order; jedes Spiel mit eigenem Commit (siehe commits je Paket)."
+    },
+    {
+      "id": "-and-second-half",
+      "implemented": [
+        "VIS-086",
+        "VIS-087",
+        "VIS-090",
+        "VIS-089",
+        "VIS-099",
+        "VIS-100",
+        "VIS-101",
+        "VIS-102",
+        "VIS-103",
+        "VIS-104",
+        "VIS-105",
+        "VIS-106",
+        "VIS-107"
+      ],
+      "implementation_commit": "ff5db5c28c9f81fab9911b0fb08a1226eb37d71b",
+      "note": "Alle after_gameplay-Pakete spielbarer Spiele (13); jedes Spiel mit eigenem Commit (siehe commits je Paket)."
     }
   ]
 }
