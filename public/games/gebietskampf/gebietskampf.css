@@ -59,3 +59,12 @@
   .gk-steps li { padding: 3px 8px; font-size: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .gk-wrap * { transition: none !important; animation: none !important; } }
+
+/* VIS-090: Alternative Gebietsliste – gleiche Bedienung wie die Karte, für Tastatur, Screenreader und schmale Handys */
+.gk-listbox details { border-top: 1px solid #ffffff22; padding: 4px 0; }
+.gk-listbox summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+.gk-listbox ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.gk-li { width: 100%; display: grid; grid-template-columns: 28px minmax(0, 1fr); column-gap: 8px; align-items: center; text-align: left; min-height: 44px; padding: 4px 8px; border-radius: 8px; border: 1px solid #ffffff22; background: #00000030; color: #f2ead6; }
+.gk-li small { grid-column: 2; color: #cdd8d6; }
+.gk-li.pick { border-color: #8fd3a2; border-style: dashed; } .gk-li.hit { border-color: #ff7a6b; border-width: 2px; } .gk-li.from, .gk-li.to { border-color: #fff; border-width: 2px; }
+.gk-li[aria-disabled='true'] { opacity: .8; cursor: default; }

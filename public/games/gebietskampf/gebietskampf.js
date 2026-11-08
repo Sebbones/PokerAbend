@@ -99,7 +99,21 @@
     }
     const hand = g.hand?.length ? `<section class="gk-hand" aria-label="${tx('Deine Karten', 'Your cards')}"><h3>${tx('Deine Karten', 'Your cards')} (${g.hand.length})</h3><ul>${g.hand.map((c) => `<li class="${c.t === null ? 'wild' : ''}">${esc(cardLabel(g, c))}</li>`).join('')}</ul><small>${tx('Nächster Tausch', 'Next trade')}: +${g.nextTrade}</small></section>` : '';
     const mission = g.mission ? `<section class="gk-mission ${g.mission.done ? 'done' : ''}"><h3>${tx('Deine geheime Mission', 'Your secret mission')}</h3><p>${esc(tx(g.mission.de, g.mission.en))}</p></section>` : '';
-    return `<aside class="gk-side"><section><h3>${tx('Spieler', 'Players')}</h3><ul class="gk-players">${rows}</ul></section>${mission}${hand}${battle}<section><h3>${tx('Landmassen', 'Continents')}</h3><ul class="gk-conts">${own}</ul></section></aside>`;
+    return `<aside class="gk-side"><section><h3>${tx('Spieler', 'Players')}</h3><ul class="gk-players">${rows}</ul></section>${mission}${hand}${battle}${territoryList(S)}<section><h3>${tx('Landmassen', 'Continents')}</h3><ul class="gk-conts">${own}</ul></section></aside>`;
+  }
+
+  // Alternative zur Karte: alle Gebiete als zugängliche Liste (Tastatur, Screenreader, schmale Handys) – antippen wirkt wie auf der Karte
+  function territoryList(S) {
+    const g = S.g, t = targets(S), a = adj(g);
+    const groups = g.map.continents.map((c) => {
+      const rows = g.map.nodes.filter((n) => n.c === c.id).map((n) => {
+        const owner = g.owners[n.id], cls = ['gk-li', t.pick.has(n.id) ? 'pick' : '', t.hit.has(n.id) ? 'hit' : '', sel.from === n.id ? 'from' : '', sel.to === n.id ? 'to' : ''].join(' ');
+        const act = t.hit.has(n.id) ? (g.stage === 'fortify' ? tx(' · Ziel', ' · target') : tx(' · angreifen', ' · attack')) : t.pick.has(n.id) ? tx(' · wählbar', ' · selectable') : '';
+        return `<li><button type="button" class="${cls}" data-g="gk-t" data-t="${n.id}" ${t.pick.has(n.id) || t.hit.has(n.id) ? '' : 'aria-disabled="true"'}><span class="gk-chip" style="background:${colorOf(g, owner)}" aria-hidden="true">${owner && g.colors[owner] !== undefined ? GLYPH[g.colors[owner]] : ''}</span><b>${esc(n.name)}</b><small>${esc(nameOf(S, owner))} · ${g.armies[n.id]} ${tx('Truppen', 'armies')} · ${a.get(n.id).length} ${tx('Nachbarn', 'neighbours')}${act}</small></button></li>`;
+      }).join('');
+      return `<details><summary>${esc(I18n.language === 'en' ? c.nameEn : c.name)}</summary><ul>${rows}</ul></details>`;
+    }).join('');
+    return `<section class="gk-listbox"><h3>${tx('Gebietsliste', 'Territory list')}</h3>${groups}</section>`;
   }
 
   function statusStrip(S) {

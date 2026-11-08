@@ -13,7 +13,7 @@ test('Gebietskampf: Hosten, Bots, Verstärken, Angreifen, Verschieben, Zuschauer
   test.setTimeout(240000);
   const shot = async (p, name) => {
     let path = info.outputPath(`gebietskampf-${name}.jpg`);
-    if (process.env.GK_CAPTURE === '1') { const dir = 'docs/design/screenshots/gebietskampf'; mkdirSync(dir, { recursive: true }); path = `${dir}/${info.project.name}-${name}.jpg`; }
+    if (process.env.GK_CAPTURE === '1') { const dir = process.env.VIS_CAPTURE_DIR || 'docs/design/screenshots/gebietskampf'; mkdirSync(dir, { recursive: true }); path = `${dir}/${info.project.name}-${name}.jpg`; }
     await p.screenshot({ path, fullPage: true, type: 'jpeg', quality: 70 });
   };
   await login(page, app); await selectGame(page, 'gebietskampf');
@@ -28,6 +28,9 @@ test('Gebietskampf: Hosten, Bots, Verstärken, Angreifen, Verschieben, Zuschauer
   await expect(page.locator('.gk-t')).toHaveCount(28);
   await myTurn(page);
   await expect(page.locator('.gk-mission')).toBeVisible(); // geheime Mission nur für den Spieler selbst
+  // VIS-090: alle Gebiete zusätzlich als zugängliche Liste; wählbare Gebiete stimmen mit der Karte überein
+  await expect(page.locator('.gk-listbox .gk-li')).toHaveCount(28);
+  await expect(page.locator('.gk-listbox .gk-li.pick')).toHaveCount(await page.locator('.gk-t.pick').count());
   await shot(page, 'reinforce');
 
   // Zuschauer sieht die Karte ohne Aktionen, keine Mission, keine Karten
