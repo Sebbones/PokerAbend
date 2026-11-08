@@ -1,3 +1,4 @@
+@import url('/games/world-kit.css');
 .kg-doppelkopf{--scene-accent:#e8b27c}
 .kg-doppelkopf #kg-main{background:radial-gradient(ellipse at top,#5a2f2f99,#24161600)}
 .dk-world{max-width:1000px!important;margin:auto;gap:15px!important}
@@ -17,3 +18,8 @@
 .dk-pick{display:inline-flex;align-items:center;gap:8px;font-size:13px}.dk-pick select{min-height:44px}
 @media(max-width:600px){.dk-felt{border-radius:34px;padding:14px 8px;min-height:150px;border-width:6px}.dk-trick{gap:8px}.dk-trick .kc{width:46px;height:66px}.dk-ledger li{min-width:130px;flex:1;padding:9px}.dk-hand{max-height:150px;padding:6px 2px;gap:5px}.dk-hand .kc{flex-basis:46px;width:46px;height:67px;font-size:20px}.dk-head h2{font-size:22px}.kg-doppelkopf .kg-table{padding:12px}}
 @media(prefers-reduced-motion:reduce){.kg-doppelkopf *{transition:none!important;animation:none!important}}
+
+/* VIS-087: Vierersalon für partnerschaftliches Stichspiel – Stich und öffentliche Ansagen getrennt, die eigene Partei nur in der eigenen Ansicht (Schloss-Chip) */
+.dk-chips { justify-content: center; }
+.dk-world .dk-ledger li { border: 1px solid #e8b9c844; border-radius: 10px; }
+.dk-world button, .dk-hand button { min-height: 44px; }
