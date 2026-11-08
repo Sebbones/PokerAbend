@@ -88,6 +88,17 @@
     return `<svg class="st-svg ${zoom === 1 ? 'fit' : ''}" viewBox="${x0} ${y0} ${w} ${h}" role="group" aria-label="${tx('Inselkarte Aurelia', 'Island map of Aurelia')}" style="${zoom === 1 ? '' : `width:${Math.round(zoom * 100)}%`}"><rect class="st-sea" x="${x0}" y="${y0}" width="${w}" height="${h}"/>${ports}${hexes}${roads}${builds}${spots}</svg>`;
   }
 
+  // ---------- Bauziele als zugängliche Liste (Alternative zur Karte; nur echte legale Plätze) ----------
+  function buildList(S) {
+    const g = S.g, me = S.you?.id, myTurn = S.turnId === me && S.phase === 'playing', t = myTurn ? toolNow(g) : null;
+    if (!t || !g.board) return '';
+    const b = g.board, near = (vs) => b.hexes.filter((h) => vs.every((v) => h.vs.includes(Number(v)))).map((h) => `${tx(...TN[h.terrain])}${h.num ? ' ' + h.num : ''}`).join(' · ') || tx('Küste', 'Coast');
+    const spots = t === 'settlement' ? g.legal.settlement.map((v) => ['settlement', v, near([v])]) : t === 'city' ? g.legal.city.map((v) => ['city', Number(v), near([Number(v)])]) : t === 'road' ? g.legal.road.map((e) => ['road', e, near(b.es[e])]) : [];
+    if (!spots.length) return '';
+    const kind = { settlement: tx('Siedlung', 'Settlement'), city: tx('Stadt', 'City'), road: tx('Straße', 'Road') }[t];
+    return `<section class="st-buildlist"><h3>${tx('Bauplätze', 'Build spots')} · ${kind}</h3><ul>${spots.map(([k, at, label]) => `<li><button type="button" class="btn" data-g="st-spot" data-kind="${k}" data-at="${at}">${kind} – ${esc(label)}</button></li>`).join('')}</ul></section>`;
+  }
+
   // ---------- Seitenleiste ----------
   function sidePanel(S) {
     const g = S.g, me = S.you?.id;
@@ -103,7 +114,7 @@
       .map(([k, n]) => `<li><b>${esc(n)}</b> ${RES.filter((r) => COST[k][r]).map((r) => `${COST[k][r] > 1 ? COST[k][r] : ''}${icon(r, 13)}`).join(' ')}</li>`).join('');
     const mine = g.hand ? `<p class="st-mine">${tx('Deine Punkte', 'Your points')}: <b>${g.myPoints}</b> / ${g.target}${g.myPoints !== g.points[me] ? ` <small>(${tx('inkl. geheimer Bauwerke', 'incl. hidden landmarks')})</small>` : ''}</p>` : '';
     const awards = `<p class="st-awards">🛣 ${g.longest.holder ? `${esc(nameOf(S, g.longest.holder))} (${g.longest.len})` : tx('längste Handelsstraße: ab 5', 'longest road: from 5')}<br>⚔ ${g.army.holder ? `${esc(nameOf(S, g.army.holder))} (${g.army.n})` : tx('größte Rittermacht: ab 3', 'largest army: from 3')}</p>`;
-    return `<aside class="st-side"><section><h3>${tx('Spieler', 'Players')}</h3><ul class="st-players">${rows}</ul>${mine}${awards}</section>
+    return `<aside class="st-side"><section><h3>${tx('Spieler', 'Players')}</h3><ul class="st-players">${rows}</ul>${mine}${awards}</section>${buildList(S)}
       <section><h3>${tx('Bank', 'Bank')}</h3><ul class="st-bank" aria-label="${tx('Vorrat der Bank', 'Bank stock')}">${bank}</ul><small>${tx('Entwicklungskarten im Stapel', 'Development cards left')}: ${g.deckLeft}</small></section>
       <section><h3>${tx('Baukosten', 'Costs')}</h3><ul class="st-costs">${costs}</ul></section></aside>`;
   }

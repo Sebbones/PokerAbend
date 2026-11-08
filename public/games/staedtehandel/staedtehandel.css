@@ -79,3 +79,7 @@
   .st-two { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { .st-wrap * { transition: none !important; animation: none !important; } }
+
+/* VIS-089: Eigener Rohstoff- und Städtebauplan – Bauziele zusätzlich als zugängliche Liste (nur tatsächlich legale Plätze, gleiche Aktion wie auf der Karte) */
+.st-buildlist ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 260px; overflow: auto; }
+.st-buildlist .btn { width: 100%; min-height: 44px; text-align: left; white-space: normal; }

@@ -25,7 +25,7 @@ test('Städtehandel: Aufbau, Würfeln, Bauen, Handel, Zuschauer, Pause, Reconnec
   const mobile = info.project.name === 'mobil';
   const shot = async (p, name) => {
     let path = info.outputPath(`staedtehandel-${name}.jpg`);
-    if (process.env.ST_CAPTURE === '1') { const dir = 'docs/design/screenshots/staedtehandel'; mkdirSync(dir, { recursive: true }); path = `${dir}/${info.project.name}-${name}.jpg`; }
+    if (process.env.ST_CAPTURE === '1') { const dir = process.env.VIS_CAPTURE_DIR || 'docs/design/screenshots/staedtehandel'; mkdirSync(dir, { recursive: true }); path = `${dir}/${info.project.name}-${name}.jpg`; }
     await p.screenshot({ path, fullPage: true, type: 'jpeg', quality: 70 });
   };
   await hostGame(page, app, { settings: { layout: 'beginner' } });
@@ -39,6 +39,8 @@ test('Städtehandel: Aufbau, Würfeln, Bauen, Handel, Zuschauer, Pause, Reconnec
   // Aufbau: Siedlung, dann Straße – jeweils durch Antippen markierter Plätze
   await myTurn(page);
   await expect(page.locator('.st-spot.settlement').first()).toBeVisible();
+  // VIS-089: dieselben legalen Bauplätze gibt es zusätzlich als zugängliche Liste (gleiche Anzahl wie Plätze auf der Karte)
+  await expect(page.locator('.st-buildlist [data-g=st-spot]')).toHaveCount(await page.locator('.st-spot.settlement').count());
   await shot(page, 'setup-settlement');
   if (mobile) { // Bauplätze sind auf dem Handy groß genug zum Antippen
     const box = await page.locator('.st-spot.settlement .hit').first().boundingBox();
