@@ -60,7 +60,8 @@ test('restore-test.sh: neuestes Backup wird entpackt, Server startet, Bestenlist
   const result = bash(['scripts/restore-test.sh'], { env: { ...process.env, BACKUP_DIR: slash(dir) } });
   assert.equal(result.status, 0, result.stdout + result.stderr);
   assert.match(result.stdout, /spieleabend-2026-11-01_0430\.tar\.gz/);
-  assert.match(result.stdout, /\/health ok, Version 2\.0\.0/);
+  const version = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version; // die gebaute Version, nicht fest eingetragen
+  assert.ok(result.stdout.includes(`/health ok, Version ${version}`), result.stdout);
   assert.match(result.stdout, /Bestenliste geladen/);
   assert.match(result.stdout, /Tickets geladen \(1\)/);
   assert.match(result.stdout, /Tische geladen \(1\)/);
