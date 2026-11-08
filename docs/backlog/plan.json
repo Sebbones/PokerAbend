@@ -5,8 +5,8 @@
   "policy": "Implementation progress snapshot, not a second live backlog. New ideas and authoritative game descriptions remain in games/planned.js. Every subsequent game needs complete rules, UI, tests, documentation and a real implementation commit before being marked done.",
   "status": "in_progress",
   "total_count": 41,
-  "completed_count": 35,
-  "remaining_count": 6,
+  "completed_count": 38,
+  "remaining_count": 3,
   "packages": [
     {
       "id": "BACKLOG-01",
@@ -235,7 +235,7 @@
         "8b6c982c53728b890750ec096b88d9a5d3687bf2"
       ],
       "scope": "Only the four expressly authorised games, bots, visual worlds and directly necessary reuse/compatibility tests. Stop here. No V2 implementation in these game commits.",
-      "shared_source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+      "shared_source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
       "shared_source_audit": [
         {
           "path": "games/poker/engine/table.js",
@@ -247,7 +247,7 @@
         },
         {
           "path": "games/bots.js",
-          "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
+          "sha256": "1df54a59dc082d0db8ed97d3e44dbcda89b3cac4693a7502139e90adfae10d86"
         },
         {
           "path": "games/five-card-draw/room.js",
@@ -507,6 +507,55 @@
           {
             "path": "games/bots.js",
             "sha256": "016deedf7e8887f86da74b2e51800b916d7c474a10143159d298ea7b2f91a5f2"
+          },
+          {
+            "path": "games/five-card-draw/room.js",
+            "sha256": "67230f584ccf5b506986d4ad99d0a7e8a674fd21a0598556ec070bde09d7cac3"
+          },
+          {
+            "path": "games/five-card-draw/table.js",
+            "sha256": "a8267dc82b18fe1e6096985ebd292936e689a8278d8576cab1f9ab3b7c035cd6"
+          },
+          {
+            "path": "games/omaha-hi-lo/poker-room.js",
+            "sha256": "7100c6c570a4678962c6cfa98873b1bb7a0f3335828b5c864453004a7e47c00d"
+          },
+          {
+            "path": "games/omaha-hi-lo/bot.js",
+            "sha256": "eb347d2023df6f92b68dd85d3dac758e0cf15877b3b82490511d67d1d701ed28"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.js",
+            "sha256": "e29afe58c160625d739e2660e52b07e081370633b0e80daf03b108ea80f719ca"
+          },
+          {
+            "path": "public/games/omaha-hi-lo/poker-world.css",
+            "sha256": "977c4b07b8cda93539be8383303b285b03413aa7dd2502d1cf1542832bf50de4"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.js",
+            "sha256": "dd5454e96f250b7aa1dbb198d1402f079ffb6dd7ab4138f995d1305ce88dfb09"
+          },
+          {
+            "path": "public/games/five-card-draw/poker-chips.css",
+            "sha256": "f4787f1bb135b611077eead8e2d15d4b855fca19fb1cfb8a92a54cecc25373cd"
+          }
+        ]
+      },
+      "pre_backlog_11_shared_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "files": [
+          {
+            "path": "games/poker/engine/table.js",
+            "sha256": "218554472156f7533886f45664950d124d0cf0add82fc62494db065a8cb0f318"
+          },
+          {
+            "path": "games/poker/engine/cards.js",
+            "sha256": "4c3ba71c72940bda54861019b204aaa7b5696436b285ad9f6c5590c7b3e5372b"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
           },
           {
             "path": "games/five-card-draw/room.js",
@@ -1102,7 +1151,7 @@
       ],
       "completed_at": "2026-11-07",
       "report": "docs/backlog/BACKLOG-07.md",
-      "shared_source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+      "shared_source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
       "shared_source_audit": [
         {
           "path": "games/party-arena-room.js",
@@ -1114,11 +1163,11 @@
         },
         {
           "path": "games/index.js",
-          "sha256": "aab7918a4b8aa94733cc0e8240de299baeff83e57246c8ac42afda8aaf769d5c"
+          "sha256": "cfa1756f33d32d1908e09bf2f783e40d23a804d0ee5030f1a230738fdb33caf7"
         },
         {
           "path": "games/bots.js",
-          "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
+          "sha256": "1df54a59dc082d0db8ed97d3e44dbcda89b3cac4693a7502139e90adfae10d86"
         },
         {
           "path": "public/games/party-arena-kit.js",
@@ -1130,11 +1179,11 @@
         },
         {
           "path": "public/i18n-en.js",
-          "sha256": "d869e5fa278e6a08d19eca99dd3ec892f45461d670e554707514234bae154836"
+          "sha256": "5f4cc91a25764afa8db961e4a3e5e75e92138f4a0ed848681d75d69844e48681"
         },
         {
           "path": "public/index.html",
-          "sha256": "8181911d269907258aa14c1d97db22b78b29a41e125e7d4fe0a3bf3842a0e762"
+          "sha256": "e1a856f40c5da938fafa557ef5dd18e13d64d56e18c0dc6639f295c3c3352482"
         },
         {
           "path": "server/index.js",
@@ -1146,7 +1195,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
         }
       ],
       "permanent_screenshots": 80,
@@ -1322,6 +1371,55 @@
             "sha256": "7444e070a77f1d5e577ae90bac68e0f4c7974783e1f88dcf82804affdd05ae0d"
           }
         ]
+      },
+      "pre_backlog_11_shared_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "files": [
+          {
+            "path": "games/party-arena-room.js",
+            "sha256": "8ad2d1bfaccfed767a70cac209332b0887f12c5b0ef1a4b8fd6edc4fa7fdc2f0"
+          },
+          {
+            "path": "games/party-arena-bot.js",
+            "sha256": "bbda45bfaa2199d345edacbc0aff63ea38f3f73012d246f6978d8d89aad44e71"
+          },
+          {
+            "path": "games/index.js",
+            "sha256": "aab7918a4b8aa94733cc0e8240de299baeff83e57246c8ac42afda8aaf769d5c"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
+          },
+          {
+            "path": "public/games/party-arena-kit.js",
+            "sha256": "59a5a688d5590490bbddaa55f7e2b8dd25e3bc1244455a960f71731e3e0fb526"
+          },
+          {
+            "path": "public/games/realtime-kit.js",
+            "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+          },
+          {
+            "path": "public/i18n-en.js",
+            "sha256": "d869e5fa278e6a08d19eca99dd3ec892f45461d670e554707514234bae154836"
+          },
+          {
+            "path": "public/index.html",
+            "sha256": "8181911d269907258aa14c1d97db22b78b29a41e125e7d4fe0a3bf3842a0e762"
+          },
+          {
+            "path": "server/index.js",
+            "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+          },
+          {
+            "path": "server/party-program.js",
+            "sha256": "57b55bd967300e3e06f81e79471aff4ef2074faa771567ae6ec53ecb1e2c5850"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          }
+        ]
       }
     },
     {
@@ -1455,7 +1553,7 @@
       ],
       "completed_at": "2026-11-07",
       "report": "docs/backlog/BACKLOG-09.md",
-      "shared_source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+      "shared_source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
       "shared_source_audit": [
         {
           "path": "games/expedition-room.js",
@@ -1463,23 +1561,23 @@
         },
         {
           "path": "games/index.js",
-          "sha256": "aab7918a4b8aa94733cc0e8240de299baeff83e57246c8ac42afda8aaf769d5c"
+          "sha256": "cfa1756f33d32d1908e09bf2f783e40d23a804d0ee5030f1a230738fdb33caf7"
         },
         {
           "path": "games/bots.js",
-          "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
+          "sha256": "1df54a59dc082d0db8ed97d3e44dbcda89b3cac4693a7502139e90adfae10d86"
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
         },
         {
           "path": "public/index.html",
-          "sha256": "8181911d269907258aa14c1d97db22b78b29a41e125e7d4fe0a3bf3842a0e762"
+          "sha256": "e1a856f40c5da938fafa557ef5dd18e13d64d56e18c0dc6639f295c3c3352482"
         },
         {
           "path": "public/i18n-en.js",
-          "sha256": "d869e5fa278e6a08d19eca99dd3ec892f45461d670e554707514234bae154836"
+          "sha256": "5f4cc91a25764afa8db961e4a3e5e75e92138f4a0ed848681d75d69844e48681"
         },
         {
           "path": "public/games/realtime-kit.js",
@@ -1550,6 +1648,47 @@
           {
             "path": "public/i18n-en.js",
             "sha256": "7da0487917ec35bff158acfc421f72f8e760f01d5e8179229f49cab854a77747"
+          },
+          {
+            "path": "public/games/realtime-kit.js",
+            "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+          },
+          {
+            "path": "public/games/expedition-kit.js",
+            "sha256": "6de7b478d32f8b47bc7884058bb3fd7af171dd1add78cfed20244d20b0d87f87"
+          },
+          {
+            "path": "public/games/expedition.css",
+            "sha256": "4ac3b01ee61d59e584b233444613f5db4f557b211965174c479ecdbbb0d9aff7"
+          }
+        ]
+      },
+      "pre_backlog_11_shared_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "files": [
+          {
+            "path": "games/expedition-room.js",
+            "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+          },
+          {
+            "path": "games/index.js",
+            "sha256": "aab7918a4b8aa94733cc0e8240de299baeff83e57246c8ac42afda8aaf769d5c"
+          },
+          {
+            "path": "games/bots.js",
+            "sha256": "c9e4cf8f6643296e71b3ba8e0c13578b9f688557793fa9c573f2b40a69a42be1"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          },
+          {
+            "path": "public/index.html",
+            "sha256": "8181911d269907258aa14c1d97db22b78b29a41e125e7d4fe0a3bf3842a0e762"
+          },
+          {
+            "path": "public/i18n-en.js",
+            "sha256": "d869e5fa278e6a08d19eca99dd3ec892f45461d670e554707514234bae154836"
           },
           {
             "path": "public/games/realtime-kit.js",
@@ -1661,11 +1800,152 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
         }
       ],
       "scope": "Explicit puzzle-panik, wortjagd, kistenchaos, gummiband-challenge only. Stop after completion; no V2 packages.",
-      "report": "docs/backlog/BACKLOG-10.md"
+      "report": "docs/backlog/BACKLOG-10.md",
+      "pre_backlog_11_shared_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "files": [
+          {
+            "path": "games/challenge-room.js",
+            "sha256": "164fd4ffd54cd6831d67884b41d63413945ccb365158a1ef28429e5b42cd109d"
+          },
+          {
+            "path": "games/expedition-room.js",
+            "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+          },
+          {
+            "path": "games/realtime-room.js",
+            "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+          },
+          {
+            "path": "public/games/challenge-kit.js",
+            "sha256": "f9d0e25eaf88ea986b084f893634f95809351970d02a022bcb6a626d7b6d2e59"
+          },
+          {
+            "path": "public/games/challenge.css",
+            "sha256": "25ec8c02fa32cb8cc360d04767d63d1554824a8e02c20b8b441a252147852bdf"
+          },
+          {
+            "path": "public/games/realtime-kit.js",
+            "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+          },
+          {
+            "path": "public/game-design.js",
+            "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          }
+        ]
+      },
+      "shared_source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828"
+    },
+    {
+      "id": "BACKLOG-11",
+      "games": [
+        "turmbauer",
+        "fallenbauer",
+        "geschenkdiebe"
+      ],
+      "status": "verified",
+      "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "followup_commits": [
+        "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
+      ],
+      "completed_at": "2026-11-08",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 64,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-node-final.log",
+          "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+        },
+        {
+          "command": "node --test test/backlog11-client.test.js",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-client.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.880376,
+          "report": "artifacts/backlog11-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 131.50966,
+          "report": "artifacts/backlog11-controls-final.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 282.192945,
+          "report": "artifacts/backlog11-isolated-ui.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 109.15346999999998,
+          "report": "artifacts/backlog11-layout-final.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1612,
+          "passed": 1609,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 202.8589215,
+          "log": "artifacts/backlog11-full-node.log",
+          "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+        }
+      ],
+      "permanent_screenshots": 82,
+      "shared_source_audit": [
+        {
+          "path": "games/workshop-room.js",
+          "sha256": "54ca905f3c99e31b2232970e7b14a08a33b7a6375ca4daa573c01f857063b07d"
+        },
+        {
+          "path": "games/expedition-room.js",
+          "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+        },
+        {
+          "path": "games/realtime-room.js",
+          "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+        },
+        {
+          "path": "public/games/workshop-kit.js",
+          "sha256": "4da78526945558dbce7cb3a9154b0d7dec69958ffdf8615da7747c2097858f04"
+        },
+        {
+          "path": "public/games/workshop.css",
+          "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+        }
+      ],
+      "shared_source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d",
+      "scope": "User explicitly allowed first-three split: Turmbauer, Fallenbauer, Geschenkdiebe completed. Schatzgräber, Brückenroulette and Reaktor-Notfall remain planned and require a new prompt. Stop after this packet.",
+      "report": "docs/backlog/BACKLOG-11.md"
     }
   ],
   "games": [
@@ -4881,29 +5161,288 @@
     {
       "id": "turmbauer",
       "name": "Turmbauer",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-11",
+      "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 64,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-node-final.log",
+          "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+        },
+        {
+          "command": "node --test test/backlog11-client.test.js",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-client.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.880376,
+          "report": "artifacts/backlog11-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 131.50966,
+          "report": "artifacts/backlog11-controls-final.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 282.192945,
+          "report": "artifacts/backlog11-isolated-ui.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 109.15346999999998,
+          "report": "artifacts/backlog11-layout-final.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1612,
+          "passed": 1609,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 202.8589215,
+          "log": "artifacts/backlog11-full-node.log",
+          "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-paused.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-playing.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-result.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-paused.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-playing.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-result.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-spectator.png"
+      ]
     },
     {
       "id": "geschenkdiebe",
       "name": "Geschenkdiebe",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-11",
+      "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 64,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-node-final.log",
+          "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+        },
+        {
+          "command": "node --test test/backlog11-client.test.js",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-client.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.880376,
+          "report": "artifacts/backlog11-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 131.50966,
+          "report": "artifacts/backlog11-controls-final.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 282.192945,
+          "report": "artifacts/backlog11-isolated-ui.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 109.15346999999998,
+          "report": "artifacts/backlog11-layout-final.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1612,
+          "passed": 1609,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 202.8589215,
+          "log": "artifacts/backlog11-full-node.log",
+          "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-paused.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-playing.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-result.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-paused.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-playing.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-result.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-spectator.png"
+      ]
     },
     {
       "id": "fallenbauer",
       "name": "Fallenbauer",
-      "status": "planned",
-      "package_id": null,
-      "implementation_commit": null,
-      "test_results": [],
-      "screenshots": []
+      "status": "verified",
+      "package_id": "BACKLOG-11",
+      "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 64,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-node-final.log",
+          "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+        },
+        {
+          "command": "node --test test/backlog11-client.test.js",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-client.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.880376,
+          "report": "artifacts/backlog11-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 131.50966,
+          "report": "artifacts/backlog11-controls-final.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 282.192945,
+          "report": "artifacts/backlog11-isolated-ui.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 109.15346999999998,
+          "report": "artifacts/backlog11-layout-final.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1612,
+          "passed": 1609,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 202.8589215,
+          "log": "artifacts/backlog11-full-node.log",
+          "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+        }
+      ],
+      "screenshots": [
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-paused.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-playing.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-result.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-run-phase.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-paused.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-playing.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-result.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-run-phase.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-zoom-controls.png"
+      ]
     },
     {
       "id": "reaktor-notfall",
@@ -4982,12 +5521,24 @@
   "latest_authorization": {
     "date": "2026-11-08",
     "games": [
-      "puzzle-panik",
-      "wortjagd",
-      "kistenchaos",
-      "gummiband-challenge"
+      "turmbauer",
+      "fallenbauer",
+      "geschenkdiebe"
     ],
-    "scope": "Explicit puzzle-panik, wortjagd, kistenchaos, gummiband-challenge only. Stop after completion; no V2 packages."
+    "requested_games": [
+      "turmbauer",
+      "fallenbauer",
+      "geschenkdiebe",
+      "schatzgraeber",
+      "brueckenroulette",
+      "reaktor-notfall"
+    ],
+    "deferred_games": [
+      "schatzgraeber",
+      "brueckenroulette",
+      "reaktor-notfall"
+    ],
+    "scope": "User explicitly allowed first-three split: Turmbauer, Fallenbauer, Geschenkdiebe completed. Schatzgräber, Brückenroulette and Reaktor-Notfall remain planned and require a new prompt. Stop after this packet."
   },
   "extra_games": [
     {
@@ -5142,6 +5693,28 @@
         "gummiband-challenge"
       ],
       "scope": "Explicit puzzle-panik, wortjagd, kistenchaos, gummiband-challenge only. Stop after completion; no V2 packages."
+    },
+    {
+      "date": "2026-11-08",
+      "games": [
+        "turmbauer",
+        "fallenbauer",
+        "geschenkdiebe"
+      ],
+      "requested_games": [
+        "turmbauer",
+        "fallenbauer",
+        "geschenkdiebe",
+        "schatzgraeber",
+        "brueckenroulette",
+        "reaktor-notfall"
+      ],
+      "deferred_games": [
+        "schatzgraeber",
+        "brueckenroulette",
+        "reaktor-notfall"
+      ],
+      "scope": "User explicitly allowed first-three split: Turmbauer, Fallenbauer, Geschenkdiebe completed. Schatzgräber, Brückenroulette and Reaktor-Notfall remain planned and require a new prompt. Stop after this packet."
     }
   ]
 }

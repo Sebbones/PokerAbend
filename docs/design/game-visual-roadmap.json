@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-07",
+  "updated_at": "2026-11-08",
   "audited_source_commit": "ef6511d76f78689fc525a63f6e3637c3f14f1252",
   "audit_hash_format": "SHA-256 of UTF-8 source with LF line endings at package.source_audit_commit, falling back to audited_source_commit",
   "authority": "Expliziter zweiphasiger Nutzerauftrag vom 31.10.2026; kein V2-Implementierungsauftrag. Ausdrücklicher Folgeauftrag für UNO, Skip-Bo und Phase 10 vom 31.10.2026. Ausdrücklicher UNO-Ultimate-/Spuknacht-Folgeauftrag vom 31.10.2026; keine Freigabe anderer Spiele. Expliziter Solo-Auftrag vom 31.10.2026: Sudoku, 2048 und Wellenwacht implementieren; neun weitere Solo-Spiele ausschließlich planen. Explicit BACKLOG-03 game, bot and visual-world authorization on 2026-11-01: Backgammon, Hearts and Five Card Draw only. Explicit BACKLOG-04 authorization: Scrabble, Omaha Hi/Lo, Short Deck Poker and Seven Card Stud with bots and individual visual worlds, 2026-11-01.",
@@ -26,11 +26,11 @@
     "docs/design/card-interaction-screenshots.json"
   ],
   "inventory": {
-    "playable_count": 101,
-    "not_implemented_count": 6,
-    "completed_visual_count": 101,
+    "playable_count": 104,
+    "not_implemented_count": 3,
+    "completed_visual_count": 104,
     "open_playable_visual_count": 0,
-    "planned_visual_count": 6,
+    "planned_visual_count": 3,
     "total_visual_packages": 107,
     "playable_game_ids": [
       "scotland-yard",
@@ -121,6 +121,9 @@
       "schach",
       "staedtehandel",
       "gebietskampf",
+      "turmbauer",
+      "geschenkdiebe",
+      "fallenbauer",
       "bomben-duell",
       "sudoku",
       "2048",
@@ -138,9 +141,6 @@
     "not_implemented_game_ids": [
       "schatzgraeber",
       "brueckenroulette",
-      "turmbauer",
-      "geschenkdiebe",
-      "fallenbauer",
       "reaktor-notfall"
     ],
     "completed_visual_game_ids": [
@@ -227,15 +227,18 @@
       "luegenbaron",
       "wuerfel-auktion",
       "zahlenreihe",
+      "skat",
+      "doppelkopf",
       "schach",
+      "staedtehandel",
+      "gebietskampf",
+      "turmbauer",
+      "geschenkdiebe",
+      "fallenbauer",
       "bomben-duell",
       "sudoku",
       "2048",
       "wellenwacht",
-      "skat",
-      "doppelkopf",
-      "gebietskampf",
-      "staedtehandel",
       "snake",
       "memory",
       "minesweeper",
@@ -395,11 +398,8 @@
   "suggested_development_order": [],
   "future_concepts_order": [
     "VIS-083",
-    "VIS-091",
     "VIS-094",
-    "VIS-092",
-    "VIS-076",
-    "VIS-093"
+    "VIS-076"
   ],
   "public_roadmap_section_id": "neue-spielwelten",
   "verification": {
@@ -10845,7 +10845,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -10994,7 +10994,14 @@
       ],
       "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
       "completed_at": "2026-11-08",
-      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      "source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "pre_backlog_11_registration_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "record": {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      }
     },
     {
       "id": "VIS-065",
@@ -11833,7 +11840,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -11980,7 +11987,14 @@
       ],
       "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
       "completed_at": "2026-11-08",
-      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      "source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "pre_backlog_11_registration_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "record": {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      }
     },
     {
       "id": "VIS-071",
@@ -12355,7 +12369,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -12504,7 +12518,14 @@
       ],
       "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
       "completed_at": "2026-11-08",
-      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      "source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "pre_backlog_11_registration_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "record": {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      }
     },
     {
       "id": "VIS-074",
@@ -12557,7 +12578,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -12704,7 +12725,14 @@
       ],
       "implementation_commit": "1c23dc3c4ee040bdcbb7c62674b7e779076a0997",
       "completed_at": "2026-11-08",
-      "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
+      "source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "pre_backlog_11_registration_audit": {
+        "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+        "record": {
+          "path": "public/game-design.js",
+          "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+        }
+      }
     },
     {
       "id": "VIS-075",
@@ -15023,24 +15051,57 @@
       "game_name": "Turmbauer",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/turmbauer/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich abgegrenzten BACKLOG-11."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/turmbauer/turmbauer.js",
+        "public/games/turmbauer/turmbauer.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/workshop-kit.js",
+        "public/games/workshop.css",
+        "public/games/realtime-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/turmbauer/turmbauer.js",
+          "sha256": "0eb7d5f811576e155f47b92370827f2739c25f77a6e1f3f021e6691d1e416609"
+        },
+        {
+          "path": "public/games/turmbauer/turmbauer.css",
+          "sha256": "d98de76330d8dc230ddef67a5a987485d01c0cf9ff175a0570029632ebc0ab67"
+        },
+        {
+          "path": "public/games/workshop-kit.js",
+          "sha256": "4da78526945558dbce7cb3a9154b0d7dec69958ffdf8615da7747c2097858f04"
+        },
+        {
+          "path": "public/games/workshop.css",
+          "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+        }
+      ],
+      "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Touch-Handyabläufe mit drei Browser-Kontexten, Pause/Reload, Bau-/Laufphasen, Privatansichten und sechs Layoutgrößen.",
       "gameplay_summary": "Bewegliche Blöcke im richtigen Moment auf dem eigenen Turm stapeln.",
       "planned_style": "Präzises eigenes Stapelatelier mit klarer Silhouette.",
       "background_concept": "Statischer Werkstatthintergrund ohne scheinbare Baublöcke.",
@@ -15070,8 +15131,8 @@
         "level": "medium",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Tatsächlicher Turm, bewegter Block und gültige Auflagefläche. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit first-three-game BACKLOG-11 authorization completed.",
       "acceptance_criteria": [
         "Dekoration verändert keine wahrgenommene Auflagefläche."
       ],
@@ -15092,15 +15153,104 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "turmbauer",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-paused.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-playing.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-result.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-paused.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-playing.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-result.png",
+        "docs/backlog/screenshots/backlog11/turmbauer/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 64,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-node-final.log",
+          "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+        },
+        {
+          "command": "node --test test/backlog11-client.test.js",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-client.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.880376,
+          "report": "artifacts/backlog11-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 131.50966,
+          "report": "artifacts/backlog11-controls-final.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 282.192945,
+          "report": "artifacts/backlog11-isolated-ui.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 109.15346999999998,
+          "report": "artifacts/backlog11-layout-final.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1612,
+          "passed": 1609,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 202.8589215,
+          "log": "artifacts/backlog11-full-node.log",
+          "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+        }
+      ],
+      "commits": [
+        "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+        "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
+      ],
+      "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
     },
     {
       "id": "VIS-092",
@@ -15108,24 +15258,57 @@
       "game_name": "Geschenkdiebe",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/geschenkdiebe/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich abgegrenzten BACKLOG-11."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/geschenkdiebe/geschenkdiebe.js",
+        "public/games/geschenkdiebe/geschenkdiebe.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/workshop-kit.js",
+        "public/games/workshop.css",
+        "public/games/realtime-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/geschenkdiebe/geschenkdiebe.js",
+          "sha256": "f3a21026fc5b3864bace4d4ecdd6a23c37f484d19fc6cb0799f07db2cd98e5fe"
+        },
+        {
+          "path": "public/games/geschenkdiebe/geschenkdiebe.css",
+          "sha256": "0bcf632f5a90b7aecdb064432054d426f2ec05efc35612e5ce5b014f119d03f2"
+        },
+        {
+          "path": "public/games/workshop-kit.js",
+          "sha256": "4da78526945558dbce7cb3a9154b0d7dec69958ffdf8615da7747c2097858f04"
+        },
+        {
+          "path": "public/games/workshop.css",
+          "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+        }
+      ],
+      "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Touch-Handyabläufe mit drei Browser-Kontexten, Pause/Reload, Bau-/Laufphasen, Privatansichten und sechs Layoutgrößen.",
       "gameplay_summary": "Geschenke einsammeln und sie den anderen in einer gemeinsamen Arena wieder abluchsen.",
       "planned_style": "Freundliche eigene Geschenke-Hofarena.",
       "background_concept": "Ruhiger festlicher Außenrand ohne echte Geschenkobjekte zu imitieren.",
@@ -15155,8 +15338,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Arena und freigegebene Sammel-/Diebstahlbereiche maßstabstreu. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit first-three-game BACKLOG-11 authorization completed.",
       "acceptance_criteria": [
         "Besitzwechsel und lose Geschenke bleiben unterscheidbar."
       ],
@@ -15177,15 +15360,104 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "geschenkdiebe",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-paused.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-playing.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-result.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-paused.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-playing.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-result.png",
+        "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-spectator.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 64,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-node-final.log",
+          "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+        },
+        {
+          "command": "node --test test/backlog11-client.test.js",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-client.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.880376,
+          "report": "artifacts/backlog11-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 131.50966,
+          "report": "artifacts/backlog11-controls-final.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 282.192945,
+          "report": "artifacts/backlog11-isolated-ui.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 109.15346999999998,
+          "report": "artifacts/backlog11-layout-final.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1612,
+          "passed": 1609,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 202.8589215,
+          "log": "artifacts/backlog11-full-node.log",
+          "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+        }
+      ],
+      "commits": [
+        "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+        "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
+      ],
+      "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
     },
     {
       "id": "VIS-093",
@@ -15193,24 +15465,57 @@
       "game_name": "Fallenbauer",
       "category": "party",
       "category_name": "Party Spiele",
-      "implementation_status": "not_implemented",
-      "visual_status": "planned",
+      "implementation_status": "playable",
+      "visual_status": "done",
       "implementation_authorized_now": false,
-      "implemented_in_this_order": false,
-      "inventory_source": "games/planned.js",
+      "implemented_in_this_order": true,
+      "inventory_source": "games/index.js",
       "existing_visual_work": {
-        "level": "no_frontend",
-        "evidence": [],
-        "assessment": "Nur Backlog-Konzept; keine bestehende Oberfläche bewertet."
+        "level": "implemented",
+        "evidence": [
+          "games/fallenbauer/evidence.json"
+        ],
+        "assessment": "Erstimplementierung im ausdrücklich abgegrenzten BACKLOG-11."
       },
-      "current_frontend_files": [],
-      "shared_frontend_files": [],
-      "source_audit": [],
-      "current_design": "Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.",
-      "known_visual_weaknesses": [
-        "Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden."
+      "current_frontend_files": [
+        "public/games/fallenbauer/fallenbauer.js",
+        "public/games/fallenbauer/fallenbauer.css"
       ],
-      "assessment_method": "Vorgemerktes individuelles Konzept auf Grundlage des vorhandenen Backlogs; keine bereits implementierte Funktion behauptet.",
+      "shared_frontend_files": [
+        "public/games/workshop-kit.js",
+        "public/games/workshop.css",
+        "public/games/realtime-kit.js",
+        "public/game-design.js"
+      ],
+      "source_audit": [
+        {
+          "path": "public/games/fallenbauer/fallenbauer.js",
+          "sha256": "3f2c972e03c9884935592ffefe67cac1744b6e8de00ddce6659023384fc65565"
+        },
+        {
+          "path": "public/games/fallenbauer/fallenbauer.css",
+          "sha256": "8493bed500642f904190e9d54dba71c3135a28fc09702f01c7c8be5a2011246e"
+        },
+        {
+          "path": "public/games/workshop-kit.js",
+          "sha256": "4da78526945558dbce7cb3a9154b0d7dec69958ffdf8615da7747c2097858f04"
+        },
+        {
+          "path": "public/games/workshop.css",
+          "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+        },
+        {
+          "path": "public/games/realtime-kit.js",
+          "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+        },
+        {
+          "path": "public/game-design.js",
+          "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+        }
+      ],
+      "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
+      "known_visual_weaknesses": [],
+      "assessment_method": "Echte Desktop-/Touch-Handyabläufe mit drei Browser-Kontexten, Pause/Reload, Bau-/Laufphasen, Privatansichten und sechs Layoutgrößen.",
       "gameplay_summary": "Gemeinsam Fallen platzieren und anschließend den entstandenen Parcours bestehen.",
       "planned_style": "Eigenes Bau-/Parcoursatelier mit klaren Hindernissen.",
       "background_concept": "Statische Werkstattkulisse außerhalb des Parcours.",
@@ -15240,8 +15545,8 @@
         "level": "large",
         "basis": "Grobe reine Design-/Frontend-Schätzung für vorhandene Zustände bzw. künftiges definiertes Gameplay: Bauplätze und fertiger tatsächlicher Laufweg getrennt. Responsive Arbeit und Regressionen eingeschlossen; neue Gameplay-Entwicklung ausgeschlossen."
       },
-      "priority": "after_gameplay",
-      "priority_reason": "Nicht startbares Backlog-Spiel; keine unmittelbare visuelle Implementierung.",
+      "priority": "completed",
+      "priority_reason": "Explicit first-three-game BACKLOG-11 authorization completed.",
       "acceptance_criteria": [
         "Bauentwurf ist von bestätigtem Hindernis erkennbar verschieden."
       ],
@@ -15262,15 +15567,108 @@
       ],
       "gameplay_prerequisite": {
         "game_id": "fallenbauer",
-        "source": "games/planned.js",
-        "status": "not_implemented",
-        "requires_separate_authorization": true
+        "source": "games/index.js",
+        "status": "playable",
+        "requires_separate_authorization": false
       },
-      "screenshots": [],
-      "test_results": [],
-      "commits": [],
-      "implementation_commit": null,
-      "completed_at": null
+      "screenshots": [
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-english-rules.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-lobby.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-paused.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-playing.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-reconnect.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-result.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-run-phase.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-spectator.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/desktop-zoom-controls.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-english-rules.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-1440x900.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-1920x1080.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-360x800.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-390x844.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-768x1024.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-900x450.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-lobby.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-paused.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-playing.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-reconnect.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-result.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-run-phase.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-spectator.png",
+        "docs/backlog/screenshots/backlog11/fallenbauer/mobil-zoom-controls.png"
+      ],
+      "test_results": [
+        {
+          "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+          "passed": 64,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-node-final.log",
+          "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+        },
+        {
+          "command": "node --test test/backlog11-client.test.js",
+          "passed": 2,
+          "failed": 0,
+          "skipped": 0,
+          "log": "artifacts/backlog11-client.log"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 189.880376,
+          "report": "artifacts/backlog11-ui-verified.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 131.50966,
+          "report": "artifacts/backlog11-controls-final.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+          "passed": 12,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 282.192945,
+          "report": "artifacts/backlog11-isolated-ui.json"
+        },
+        {
+          "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 109.15346999999998,
+          "report": "artifacts/backlog11-layout-final.json"
+        },
+        {
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+          "tests": 1612,
+          "passed": 1609,
+          "failed": 0,
+          "skipped": 3,
+          "duration_seconds": 202.8589215,
+          "log": "artifacts/backlog11-full-node.log",
+          "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+        }
+      ],
+      "commits": [
+        "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+        "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
+      ],
+      "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+      "completed_at": "2026-11-08",
+      "source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
     },
     {
       "id": "VIS-094",

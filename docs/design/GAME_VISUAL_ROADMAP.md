@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Quelle: [games/index.js](../../games/index.js) und [games/planned.js](../../games/planned.js). Ursprüngliche Inventur gegen Commit `ef6511d76f78689fc525a63f6e3637c3f14f1252`; die spätere Einzelspieler-Erweiterung und ihre Nachweise stehen in [docs/solo-games](../solo-games/README.md). Die zentrale maschinenlesbare Quelle ist [game-visual-roadmap.json](game-visual-roadmap.json).
 
-**Stand 2026-11-08: 101 spielbare Spiele, 6 noch nicht implementierte Spiele, 107 eigene VIS-Pakete: 88 done, 19 planned.** BACKLOG-10 schließt Kistenchaos (VIS-064), Gummiband-Challenge (VIS-070), Puzzle-Panik (VIS-073) und Wortjagd (VIS-074) ab. [Abschlussbericht](../backlog/BACKLOG-10.md). Andere Pakete bleiben unverändert.
+**Stand 2026-11-08: 104 spielbare Spiele, 3 noch nicht implementierte Spiele, 107 VIS-Pakete: 104 done, 3 planned.** BACKLOG-11 ergänzt ausschließlich Turmbauer (VIS-091), Geschenkdiebe (VIS-092) und Fallenbauer (VIS-093). [Abschlussbericht](../backlog/BACKLOG-11.md). Die übrigen drei Spiele bleiben geplant.
 
 Der anschließende Auftrag [Karten-Interaktion UX V1](CARD_INTERACTION_UX.md) ergänzt ausschließlich UNO, Skip-Bo und Phase 10 um sichere Kartenbedienung. Die [eigene Karten-UX-Roadmap](CARD_INTERACTION_UX_ROADMAP.md) erhält ihre ursprünglichen 13 Pakete; zehn Folgepakete bleiben geplant. Hearts, Five Card Draw und die drei später beauftragten Poker-Varianten erweitern den aktuellen Bestand auf 18 Kartenspiele. Dieser Bedienungsauftrag ändert keine VIS-IDs oder V2-Freigaben.
 
@@ -2621,82 +2621,82 @@ Diese Reihenfolge gilt erst nach separater Gameplay-Freigabe und tatsächlicher 
 ### VIS-091 – Turmbauer
 
 - **Spiel-ID/Kategorie:** `turmbauer` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 10–15 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 10–15 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/turmbauer/turmbauer.js, public/games/turmbauer/turmbauer.css
+- **Gemeinsame Komponenten:** public/games/workshop-kit.js, public/games/workshop.css, public/games/realtime-kit.js, public/game-design.js
+- **Aktueller Stand:** Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.
+- **Optische Verbesserungsziele:** Eigene Materialien und bestätigte Aktionen; sechs Größenprüfungen ohne horizontales Seitenüberlaufen.
 - **Stil:** Präzises eigenes Stapelatelier mit klarer Silhouette.
 - **Hintergrund:** Statischer Werkstatthintergrund ohne scheinbare Baublöcke.
 - **Spielfeld:** Tatsächlicher Turm, bewegter Block und gültige Auflagefläche.
 - **Figuren/Karten/Objekte:** Blöcke mit klaren Außenkanten und Höhenmarken.
 - **Status und Aktionen:** Tippen, gültige Landung und Endhöhe unterscheiden.
 - **Mobil:** Große einzelne Eingabefläche, Turmhöhe folgt lesbar.
-- **Technische Grenzen:** Bewegung/Physik und Zeitmessung nur nach freigegebener Implementierung. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Keine Änderungen an Regeln/RNG anderer Spiele, keine 3D-Funktionen.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von turmbauer.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-11 implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Dekoration verändert keine wahrgenommene Auflagefläche.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-11, Commit `ecef056e5397a71ea5fd1c76bec00b34a2970828`; Originalbilder und Prüfungen: games/turmbauer/evidence.json.
 
 <a id="vis-092"></a>
 ### VIS-092 – Geschenkdiebe
 
 - **Spiel-ID/Kategorie:** `geschenkdiebe` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 13–20 h; kompakte bis mittlere Spieloberfläche.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 13–20 h; kompakte bis mittlere Spieloberfläche.
+- **Frontend:** public/games/geschenkdiebe/geschenkdiebe.js, public/games/geschenkdiebe/geschenkdiebe.css
+- **Gemeinsame Komponenten:** public/games/workshop-kit.js, public/games/workshop.css, public/games/realtime-kit.js, public/game-design.js
+- **Aktueller Stand:** Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.
+- **Optische Verbesserungsziele:** Eigene Materialien und bestätigte Aktionen; sechs Größenprüfungen ohne horizontales Seitenüberlaufen.
 - **Stil:** Freundliche eigene Geschenke-Hofarena.
 - **Hintergrund:** Ruhiger festlicher Außenrand ohne echte Geschenkobjekte zu imitieren.
 - **Spielfeld:** Arena und freigegebene Sammel-/Diebstahlbereiche maßstabstreu.
 - **Figuren/Karten/Objekte:** Eigene Geschenke, Träger und bestätigte Übergabemarker.
 - **Status und Aktionen:** Besitz, Punkte und Diebstahl erst nach bestätigtem Zustand.
 - **Mobil:** Touch-Steuerung außerhalb zentraler Sammelobjekte.
-- **Technische Grenzen:** Keine zusätzliche Reichweite, Beute oder Begegnung durch Effekte vortäuschen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Keine Änderungen an Regeln/RNG anderer Spiele, keine 3D-Funktionen.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von geschenkdiebe.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-11 implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Besitzwechsel und lose Geschenke bleiben unterscheidbar.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-11, Commit `ecef056e5397a71ea5fd1c76bec00b34a2970828`; Originalbilder und Prüfungen: games/geschenkdiebe/evidence.json.
 
 <a id="vis-093"></a>
 ### VIS-093 – Fallenbauer
 
 - **Spiel-ID/Kategorie:** `fallenbauer` / Party Spiele.
-- **Implementierung / Design:** not_implemented / **planned**.
-- **Priorität / Aufwand:** after_gameplay; 18–27 h; individuell aufwendiges Spielfeld.
-- **Frontend:** Kein vorhandenes Spiel-Frontend; ausdrücklich keine Dateien implementiert.
-- **Gemeinsame Komponenten:** Erst nach Gameplay-Implementierung auswählen.
-- **Aktueller Stand:** Noch kein registriertes Spiel und kein vorhandenes Spiel-Frontend. Beschreibung und Regeln stammen ausschließlich aus games/planned.js.
-- **Optische Verbesserungsziele:** Keine existierende Darstellung prüfbar. Das Konzept muss nach einer gesonderten Gameplay-Implementierung mit den tatsächlichen Zuständen abgeglichen werden.
+- **Implementierung / Design:** playable / **done**.
+- **Priorität / Aufwand:** completed; 18–27 h; individuell aufwendiges Spielfeld.
+- **Frontend:** public/games/fallenbauer/fallenbauer.js, public/games/fallenbauer/fallenbauer.css
+- **Gemeinsame Komponenten:** public/games/workshop-kit.js, public/games/workshop.css, public/games/realtime-kit.js, public/game-design.js
+- **Aktueller Stand:** Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.
+- **Optische Verbesserungsziele:** Eigene Materialien und bestätigte Aktionen; sechs Größenprüfungen ohne horizontales Seitenüberlaufen.
 - **Stil:** Eigenes Bau-/Parcoursatelier mit klaren Hindernissen.
 - **Hintergrund:** Statische Werkstattkulisse außerhalb des Parcours.
 - **Spielfeld:** Bauplätze und fertiger tatsächlicher Laufweg getrennt.
 - **Figuren/Karten/Objekte:** Eigene Fallen-/Hindernissymbole mit eindeutigen Wirkflächen.
 - **Status und Aktionen:** Bauen, Bereit und Durchlauf klar als Phasen markieren.
 - **Mobil:** Große Auswahlpalette, alternative Positionseingabe.
-- **Technische Grenzen:** Keine Falle oder Kollisionsfläche als bloß dekoratives Detail hinzufügen. Erst nach ausdrücklich freigegebener und tatsächlich abgeschlossener Gameplay-Implementierung visuell umsetzen; dieses Paket implementiert kein Spiel. Weitere gemeinsame Grenzen: GAME_VISUAL_GUIDELINES.md, G01–G10.
+- **Technische Grenzen:** Nur persönliche Serveransichten zeichnen. Keine Änderungen an Regeln/RNG anderer Spiele, keine 3D-Funktionen.
 - **Varianten:** Keine zusätzlichen registrierten Varianten.
-- **Abhängigkeiten:** VIS-001; zuerst separate Gameplay-Freigabe und Implementierung von fallenbauer.
+- **Abhängigkeiten:** VIS-001. Gameplay im ausdrücklich freigegebenen BACKLOG-11 implementiert.
 
 **Individuelle Akzeptanz:**
 
 - Bauentwurf ist von bestätigtem Hindernis erkennbar verschieden.
 - Zusätzlich gelten G01–G10 aus dem Designstandard und die erforderlichen Zustands-/Größenprüfungen.
 
-**Nachweise:** Noch keine Implementierungscommits, Testergebnisse oder Screenshots für dieses neue Paket. Erst nach tatsächlicher Umsetzung ergänzen.
+**Nachweise:** BACKLOG-11, Commit `ecef056e5397a71ea5fd1c76bec00b34a2970828`; Originalbilder und Prüfungen: games/fallenbauer/evidence.json.
 
 <a id="vis-094"></a>
 ### VIS-094 – Reaktor-Notfall

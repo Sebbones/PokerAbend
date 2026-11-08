@@ -1,0 +1,243 @@
+{
+  "package_id": "BACKLOG-11",
+  "game": "fallenbauer",
+  "date": "2026-11-08",
+  "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+  "followup_commits": [
+    "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
+  ],
+  "source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+      "passed": 64,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog11-node-final.log",
+      "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+    },
+    {
+      "command": "node --test test/backlog11-client.test.js",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog11-client.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 189.880376,
+      "report": "artifacts/backlog11-ui-verified.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 131.50966,
+      "report": "artifacts/backlog11-controls-final.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 282.192945,
+      "report": "artifacts/backlog11-isolated-ui.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 109.15346999999998,
+      "report": "artifacts/backlog11-layout-final.json"
+    },
+    {
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+      "tests": 1612,
+      "passed": 1609,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 202.8589215,
+      "log": "artifacts/backlog11-full-node.log",
+      "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-english-rules.png",
+      "sha256": "9328b5084893865516dc950199e8dd9f4559b069296ffe2184b97d60e8214156"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-1440x900.png",
+      "sha256": "db16017362c9eb25275ecd6ab64014e31f12b2128deac21bea29ac6f80746095"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-1920x1080.png",
+      "sha256": "a719bc779f1fc803e18dae26ee19cebdd6c734111c75436c19d590587f3df083"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-360x800.png",
+      "sha256": "19b752c8adf78de9d6f767e7fc9e384e5e4369af22c0a458968b7db155e6ab2e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-390x844.png",
+      "sha256": "3b8af9bce09e4606f513a901efd95f4d68425e4a57ac06b0ddbb46b973c3f8d8"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-768x1024.png",
+      "sha256": "40ded5ee58c581214958d3a5bb98a0478292430c1328290ca944b8d75af92b07"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-layout-900x450.png",
+      "sha256": "f43f94bab1d9a0d35e7df314b73e40b3a2ef64beda25b9235c9fa87595b9a2bb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-lobby.png",
+      "sha256": "f060d3c0662264fad46b676ff77987f4495ab9e582a238aea0f1379adb19829a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-paused.png",
+      "sha256": "73a1422d24cac7c7fd89a96732cb6bc5c6efb9f13036a12b10a54c3dc35a697a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-playing.png",
+      "sha256": "05504c7192c8251ee6f722f0acbb891683152dfdb6824cd9e6fc6a33f7a30d8c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-reconnect.png",
+      "sha256": "f2265403a508890a723dad6731210288963c32b96d36dbda8c9f972d8805322b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-result.png",
+      "sha256": "a7c2f97904bcbaf786e2f26745fe84e3f79204ef8fc7192c8f2adbdcbdcccaec"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-run-phase.png",
+      "sha256": "d4062149a52d1742dcb034a3a62ac9e86490fe9961ceb4f967565661f1c51e06"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-spectator.png",
+      "sha256": "aff73ac5c79093c826ce3328732ab04109a88dc356b9c35620854fa7c7c85fff"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/desktop-zoom-controls.png",
+      "sha256": "4276dc0d7e41d52552033a6fb1e71288501bf24e6dcd7d42c05cc46544d94536"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-english-rules.png",
+      "sha256": "d0c692e256f4b0d77e6b86d621d657c85e6bfd585e5b2957551e05de8da4338a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-1440x900.png",
+      "sha256": "2527eda888d687201d5384f03659bad56c3970f5635084bdcdffd19d65bda73e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-1920x1080.png",
+      "sha256": "422e9dad2b226e4c0a53f17350695c8430b6bbdc1ba0f9bbacd7d94f4160b7ff"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-360x800.png",
+      "sha256": "de9bc0dc590929a669340f8969aa60568e453e6bef4f577f0e2242390c9bfccb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-390x844.png",
+      "sha256": "076caf128231ee4e03dc8789cd01947551fedde3fd9a103ebb0f3af92637766e"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-768x1024.png",
+      "sha256": "45d22bca8df4351376770eca9f80c6b4cd99b7828e7405347d30b977229bbeb9"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-layout-900x450.png",
+      "sha256": "40f9eb78b8665aca17e9e79b01db92be90e80e36b6d4889b62d741f3edd0fa20"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-lobby.png",
+      "sha256": "b197b89cc342f6dbadf4eb8a0aedbc9bad73ef7d4b53e32aa10c510239ad7986"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-paused.png",
+      "sha256": "34672f04d90b48d4a979b02b35b8e733671582aa42904e8882c98c468b3ddaf6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-playing.png",
+      "sha256": "d71f9597759c734af83aa78247645fb0a3dd9a47c887f30e3e989b49e6dc4def"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-reconnect.png",
+      "sha256": "6be702b976d70f96408b73cd70e8f09eb31337d1e5003be58296f268a2bd1ca7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-result.png",
+      "sha256": "8d081ee5f02042bbbfe72411e2ba5c135797f15f1c5476afeaa30d0d631b61ba"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-run-phase.png",
+      "sha256": "8534e3bf30f5d59de7f6af024fea4136ddf8adfe3a7c42755216de84af5cf1fa"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-spectator.png",
+      "sha256": "266ae1b95d2673151d600fceb9525f776ed300b8eb881be0fcb1b926d681eac0"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/fallenbauer/mobil-zoom-controls.png",
+      "sha256": "7a7dceed39aac22a5573c34090e3b16636b7c99f1eaff766bca4e9623d1cf3e4"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/fallenbauer/index.js",
+      "sha256": "0e7264f140f55f82014b2c74ced0afe0025865c3921d7ff2e70b0b8550ff689a"
+    },
+    {
+      "path": "games/fallenbauer/logic.js",
+      "sha256": "e4b4f529fa4dce35fdb8c7b6636403f5cd3b0af6eb53837d153756ed1bacd623"
+    },
+    {
+      "path": "games/fallenbauer/room.js",
+      "sha256": "f43e6c3185d6bce1fc97a11f0366c49efd1fc63909a2fb2b53bbb27dae129771"
+    },
+    {
+      "path": "public/games/fallenbauer/fallenbauer.js",
+      "sha256": "3f2c972e03c9884935592ffefe67cac1744b6e8de00ddce6659023384fc65565"
+    },
+    {
+      "path": "public/games/fallenbauer/fallenbauer.css",
+      "sha256": "8493bed500642f904190e9d54dba71c3135a28fc09702f01c7c8be5a2011246e"
+    },
+    {
+      "path": "games/workshop-room.js",
+      "sha256": "54ca905f3c99e31b2232970e7b14a08a33b7a6375ca4daa573c01f857063b07d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/workshop-kit.js",
+      "sha256": "4da78526945558dbce7cb3a9154b0d7dec69958ffdf8615da7747c2097858f04"
+    },
+    {
+      "path": "public/games/workshop.css",
+      "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "First three explicitly authorized games only. Other three deferred to a new prompt. No V2 work or production deployment."
+}

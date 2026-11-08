@@ -1,0 +1,227 @@
+{
+  "package_id": "BACKLOG-11",
+  "game": "turmbauer",
+  "date": "2026-11-08",
+  "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+  "followup_commits": [
+    "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
+  ],
+  "source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+      "passed": 64,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog11-node-final.log",
+      "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+    },
+    {
+      "command": "node --test test/backlog11-client.test.js",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog11-client.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 189.880376,
+      "report": "artifacts/backlog11-ui-verified.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 131.50966,
+      "report": "artifacts/backlog11-controls-final.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 282.192945,
+      "report": "artifacts/backlog11-isolated-ui.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 109.15346999999998,
+      "report": "artifacts/backlog11-layout-final.json"
+    },
+    {
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+      "tests": 1612,
+      "passed": 1609,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 202.8589215,
+      "log": "artifacts/backlog11-full-node.log",
+      "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-english-rules.png",
+      "sha256": "d5e03a25ca48d76e22e85413f7e066b87fe1e10025002ef5070a16487eb1acdb"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-1440x900.png",
+      "sha256": "e7bf442279f73e5d085f116e9c2958b554cbda59c65b22f281851cffc6688bae"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-1920x1080.png",
+      "sha256": "0173f3852edc0d7ea122d4ed86b304a853b5b790ddfe72c17a52053ba59bd16d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-360x800.png",
+      "sha256": "d59cfec197442c2d064a80e85b04bdfff0ab79e82f1b9c103923fda736558ae2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-390x844.png",
+      "sha256": "875a2b502cd7c121a3a7b49b4785b3147c40e6445ac7e7de4f86cc07f8ff77aa"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-768x1024.png",
+      "sha256": "3b044eb8cfae5db69f6e9fb1b925dd555b72f3bb1df726995697f0ebe7b7bde6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-layout-900x450.png",
+      "sha256": "7551e6dfe1409e7a489dd28f4ab41d00c27fe4a333760b57c91f4515673d1f89"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-lobby.png",
+      "sha256": "b3962386368213d9d67bac275f2839ddca1fa6bb6a3c04c1bb16dfaa385e4a1f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-paused.png",
+      "sha256": "3cd43991f107cad052eb16c3fbbe1fd76b67e6a4bc0430131147323164ceb903"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-playing.png",
+      "sha256": "d307e1ed12340a10827e3e700aac324c6298c7b23e43a9782cdd31d0ab828696"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-reconnect.png",
+      "sha256": "3a9c40fbbf67655a5f60e07f059ad373aa9eeb5d5d7e98e904c62450513d7a1f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-result.png",
+      "sha256": "5f89141397b774bc5ac8a2c35af1c00773dfa4ba16e3d2130bc0e99c87f223d3"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/desktop-spectator.png",
+      "sha256": "1cb8d52896dd128faca8af688beea5ea55a9e08110c49aadb0270a8ee948fc27"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-english-rules.png",
+      "sha256": "c5f36bb3a974575dafa039bcffb91c43b854a20b6c670e6ca2b30d4de0e7feef"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-1440x900.png",
+      "sha256": "6f9ad8d17bf5da55ef969a012cb3ecf29b65f822ed6d62945dc0413b3c2041c1"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-1920x1080.png",
+      "sha256": "8cb4f1a23e1b084e49ce8c21d8164f38995b3f9655847ae504e1cd52576e4d31"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-360x800.png",
+      "sha256": "369a0c86ed58a15f303fb56598021aed4669c69d0fda51a6fb37612da8da9209"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-390x844.png",
+      "sha256": "84e43c699607564bb6a45cbe8ca4def802655cd7e960029f8dddb956a4613027"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-768x1024.png",
+      "sha256": "1bf1180fc0423efdd01cb7ef6ac20a2414ecbbc28c0161aefe4146a491428822"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-layout-900x450.png",
+      "sha256": "6cb493535743177ad0c4292e1be61840c117b3903ae0116885287f768a846afa"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-lobby.png",
+      "sha256": "bb7c586e7158a7d11778b09d1479dd1a26cd0190832390213486b2a3173ebd43"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-paused.png",
+      "sha256": "e6c82d3c98e363df793858d50229252f7549f5b75ff6c0e9b5d1753e64fb3b4c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-playing.png",
+      "sha256": "90f1fc2875944f3f741790f6c0b617f5e6751e5fb48d923ee9d1786347ad11ae"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-reconnect.png",
+      "sha256": "c5fe13c5bc6c6b6cd326009a220a12dbbef496c7bc3e0752590616713da1d952"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-result.png",
+      "sha256": "e35357387fafca257899c5e55163de9ae0d45709e4e66444b05619fdcf35c435"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/turmbauer/mobil-spectator.png",
+      "sha256": "511d32043934dcb8d3cb74f66219c4532de528e579cf8f7f5c5ca0412fbba899"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/turmbauer/index.js",
+      "sha256": "92762701e48f90c57205509bf51d295e7923813bf070f3c33cb250e96d59bacf"
+    },
+    {
+      "path": "games/turmbauer/logic.js",
+      "sha256": "6c8cb610271e9c32dad626c604f5016b896906d6123003c189c5646a68429aa6"
+    },
+    {
+      "path": "games/turmbauer/room.js",
+      "sha256": "214d72853836b4e971a49b7f13cacf7a1b0a56390b09497784675f4fc340c253"
+    },
+    {
+      "path": "public/games/turmbauer/turmbauer.js",
+      "sha256": "0eb7d5f811576e155f47b92370827f2739c25f77a6e1f3f021e6691d1e416609"
+    },
+    {
+      "path": "public/games/turmbauer/turmbauer.css",
+      "sha256": "d98de76330d8dc230ddef67a5a987485d01c0cf9ff175a0570029632ebc0ab67"
+    },
+    {
+      "path": "games/workshop-room.js",
+      "sha256": "54ca905f3c99e31b2232970e7b14a08a33b7a6375ca4daa573c01f857063b07d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/workshop-kit.js",
+      "sha256": "4da78526945558dbce7cb3a9154b0d7dec69958ffdf8615da7747c2097858f04"
+    },
+    {
+      "path": "public/games/workshop.css",
+      "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "First three explicitly authorized games only. Other three deferred to a new prompt. No V2 work or production deployment."
+}

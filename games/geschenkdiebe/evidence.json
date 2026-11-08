@@ -1,0 +1,227 @@
+{
+  "package_id": "BACKLOG-11",
+  "game": "geschenkdiebe",
+  "date": "2026-11-08",
+  "implementation_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
+  "followup_commits": [
+    "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d"
+  ],
+  "source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d",
+  "tests": [
+    {
+      "command": "node --test --test-concurrency=2 test/backlog11.test.js test/games.test.js test/planned.test.js test/security.test.js test/game-design.test.js",
+      "passed": 64,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog11-node-final.log",
+      "note": "16 new cases: 1000 safe trap courses, 150 complete 2-10-player bot games, exact stacking and theft, privacy, clocks, pause and replay rejection."
+    },
+    {
+      "command": "node --test test/backlog11-client.test.js",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "log": "artifacts/backlog11-client.log"
+    },
+    {
+      "command": "playwright test test/ui/backlog11.spec.js --workers=1 (desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 189.880376,
+      "report": "artifacts/backlog11-ui-verified.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11-controls.spec.js --workers=1 (desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 131.50966,
+      "report": "artifacts/backlog11-controls-final.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11.spec.js test/ui/backlog11-controls.spec.js (isolated committed main, desktop + mobil)",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 282.192945,
+      "report": "artifacts/backlog11-isolated-ui.json"
+    },
+    {
+      "command": "playwright test test/ui/backlog11-controls.spec.js (isolated CSS follow-up, desktop + mobil)",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "duration_seconds": 109.15346999999998,
+      "report": "artifacts/backlog11-layout-final.json"
+    },
+    {
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js (isolated committed main + this packet evidence)",
+      "tests": 1612,
+      "passed": 1609,
+      "failed": 0,
+      "skipped": 3,
+      "duration_seconds": 202.8589215,
+      "log": "artifacts/backlog11-full-node.log",
+      "note": "Unrelated pending server/security and V2-06 changes excluded. Existing Bash restore cases skipped on Windows. --test-force-exit closes leftover Windows process handles only after tests complete."
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-english-rules.png",
+      "sha256": "056ed46139798b0e03393aaa3f11ec351b7ec08d5f81769dc73f97860d688691"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-1440x900.png",
+      "sha256": "03e4358fa98109a407d1c70b16645a56c85a651200403f5278ff3a738ff22098"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-1920x1080.png",
+      "sha256": "b884f802a91ea9895bbbe709c99ee597a131d0b7c8282374c21bb0fa1b098899"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-360x800.png",
+      "sha256": "17c8fb209ebbc96db6d474aa20a6e75b49726dda312ea5799e1a826b15a3c4e6"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-390x844.png",
+      "sha256": "fba16ee375db6e654866cd1487064b6f8466028c8fc8993f2765e015964390d2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-768x1024.png",
+      "sha256": "3de603f761ed820f9b38928832d85f2f9a34f887a1e5482967ffd7353d2d7f3c"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-layout-900x450.png",
+      "sha256": "4200fd72a0690ab57e5b0092d141b6c3511e2b5bbc0866fd682ea707c229c838"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-lobby.png",
+      "sha256": "1fb9d78623756662d60dd344ca7ecf73c423769cc7e3f1d923cc0cbc39f5ece7"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-paused.png",
+      "sha256": "7edb119e8d983f3830541ec45164b9e4bebdab0772bd552d9fd5f7e56e682e84"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-playing.png",
+      "sha256": "2431028e3dbd091c9f33a99faeeff310f31679b5117dfa709906b3d8b1a5a46f"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-reconnect.png",
+      "sha256": "2629d1510bcd536d7f118e02faf983f380dbdca06fc7655b5bfcf678ca7e73d4"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-result.png",
+      "sha256": "7431d60588410f24a8b89989f8c58aaf1e3e1c13a461d0566561204b2ad13258"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/desktop-spectator.png",
+      "sha256": "0c91712ae6af6afdc353d7bb329ccd812e84a98e52da5da1fce4de85b2b9178d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-english-rules.png",
+      "sha256": "41d69ecb0ac6d209ecee912e28c523f86669ec338be8ab06e85e20f1c2c28faf"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-1440x900.png",
+      "sha256": "9dfa804231ec579886c32af3810929b649ca72a858035f2191e77c66aa20564b"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-1920x1080.png",
+      "sha256": "714ad340f346c9b9361022366b8147204f4aa348635f5447b406af9df8f8c77a"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-360x800.png",
+      "sha256": "c84d770213f8079889170faf24ba4cf51c93b1202b9bfe308256c297d16fad35"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-390x844.png",
+      "sha256": "a8236d2bae76e574d1826f68dfbe1e68e448329b4cfaf783dfcbf174e8460283"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-768x1024.png",
+      "sha256": "ef93fa394fecc8e6e0b4ab43b5710986e4d83b6f0abfe1fc186410c6aae95617"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-layout-900x450.png",
+      "sha256": "7ef561c659d5f685726413a85d78e9a878efe7b358ef874348840c5c99808826"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-lobby.png",
+      "sha256": "a27363ee10da613f7802ba8156454abf366e1ef08c8e51e36c822b6c4b0b3106"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-paused.png",
+      "sha256": "35b7befe606217240d7c1592753bf04df12e132fcbc7e24e1a834afef16c4bb2"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-playing.png",
+      "sha256": "05cc6a63163c6aa72f5acd37dca4532b20bfaca27b2f7f2b7521ed2bd12fd29d"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-reconnect.png",
+      "sha256": "54893e1c57d08d43a6541bc24c59a124ead3fa4da09f457f325252079e399e82"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-result.png",
+      "sha256": "6d7973ae2fd2fbbd0489fbdb4267e98481b6b806f5746e439f5e799e47920fff"
+    },
+    {
+      "path": "docs/backlog/screenshots/backlog11/geschenkdiebe/mobil-spectator.png",
+      "sha256": "cdb022a5fab945b3d6c5008637c43d48cae04a214e347e5b2e3633d710e55ba3"
+    }
+  ],
+  "source_audit": [
+    {
+      "path": "games/geschenkdiebe/index.js",
+      "sha256": "38ccfdd38ef96474084604155d4284167856d994f659c77eaa0e5fd379629340"
+    },
+    {
+      "path": "games/geschenkdiebe/logic.js",
+      "sha256": "78a5c32a3b95f5ef2f5aa4e2444265d888ef6888167a18f4df1a4dc5852b965f"
+    },
+    {
+      "path": "games/geschenkdiebe/room.js",
+      "sha256": "1ed3670318689d9cbf45ea73ec0af8f6469ec9bd7cbd29b389a1ce25ca1539fc"
+    },
+    {
+      "path": "public/games/geschenkdiebe/geschenkdiebe.js",
+      "sha256": "f3a21026fc5b3864bace4d4ecdd6a23c37f484d19fc6cb0799f07db2cd98e5fe"
+    },
+    {
+      "path": "public/games/geschenkdiebe/geschenkdiebe.css",
+      "sha256": "0bcf632f5a90b7aecdb064432054d426f2ec05efc35612e5ce5b014f119d03f2"
+    },
+    {
+      "path": "games/workshop-room.js",
+      "sha256": "54ca905f3c99e31b2232970e7b14a08a33b7a6375ca4daa573c01f857063b07d"
+    },
+    {
+      "path": "games/expedition-room.js",
+      "sha256": "5b9257d3001d15fb6bb2343f24fd911a9450b6a08af394808d428e4c80a1f6c3"
+    },
+    {
+      "path": "games/realtime-room.js",
+      "sha256": "dbef2730a955bef30229b933785cea887777fdd404010e9fd36dc219fdd4f6a6"
+    },
+    {
+      "path": "public/games/workshop-kit.js",
+      "sha256": "4da78526945558dbce7cb3a9154b0d7dec69958ffdf8615da7747c2097858f04"
+    },
+    {
+      "path": "public/games/workshop.css",
+      "sha256": "2c9999c27cdf880e975ae0eff725b2dcdb33bd50022f24ccfbd008e7b7cea71b"
+    },
+    {
+      "path": "public/games/realtime-kit.js",
+      "sha256": "98182551929711c30218a65d0e0869b472a325178be0ab0c4d73cc09fce63a6e"
+    },
+    {
+      "path": "public/game-design.js",
+      "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
+    }
+  ],
+  "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
+  "scope": "First three explicitly authorized games only. Other three deferred to a new prompt. No V2 work or production deployment."
+}

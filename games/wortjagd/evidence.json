@@ -7,7 +7,7 @@
     "80590c603658d50209d7ddb7178de1660056dd91",
     "2831ec64e3887cf71f0e91f57bea1571bcdfd31d"
   ],
-  "source_audit_commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+  "source_audit_commit": "ecef056e5397a71ea5fd1c76bec00b34a2970828",
   "tests": [
     {
       "command": "node --test --test-concurrency=2 test/backlog10.test.js test/games.test.js test/planned.test.js test/singleplayer.test.js test/security.test.js",
@@ -212,9 +212,16 @@
     },
     {
       "path": "public/game-design.js",
-      "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+      "sha256": "faa6d7b798181f5eeb5312c653ac804b016fd8d9cff7f5443262b7abec05e304"
     }
   ],
   "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",
-  "scope": "Only the four explicitly authorised games; no V2 implementation or production deployment."
+  "scope": "Only the four explicitly authorised games; no V2 implementation or production deployment.",
+  "pre_backlog_11_registration_audit": {
+    "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
+    "record": {
+      "path": "public/game-design.js",
+      "sha256": "7863bfd6b66cee4e8cbe1907c5847c676d7c5a82d997cd4c2fb5778b4dde0ff5"
+    }
+  }
 }

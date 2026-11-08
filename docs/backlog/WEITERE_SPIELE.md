@@ -2,7 +2,7 @@
 
 Stand: 31.10.2026. Ausgangsstand `2dd1d4b12a9b9c03991272ca654b60f614c919ab`. Nutzerauftrag: die vorhandene Roadmap-Rubrik **„Weitere Spiele – 0 von 41 erledigt“** umsetzen. Ausdrücklich gewählte Reihenfolge: **zuerst Risiko-Würfeln, Story-Chaos und Zahlenreihe**. Fortschritt und tatsächliche Implementierungscommits: [plan.json](plan.json). Das ist ein Ausführungsprotokoll der bestehenden 41 IDs, keine zweite Quelle für neue Spielideen; Beschreibungen des verbleibenden Backlogs stehen weiterhin in `games/planned.js`.
 
-**Aktueller Fortschritt am 2026-11-08: 35 von 41 verifiziert, 6 offen.** 89 Raumspiele plus 12 lokale Einzelspieler ergeben 101 spielbare Spiele. [BACKLOG-10](BACKLOG-10.md) ergänzt Puzzle-Panik, Wortjagd, Kistenchaos und Gummiband-Challenge. Der historische Nenner bleibt 41. Danach stoppen; keine V2-Pakete.
+**Aktueller Fortschritt am 2026-11-08: 38 von 41 verifiziert, 3 offen.** 92 Raumspiele plus 12 lokale Einzelspieler ergeben 104 spielbare Spiele. [BACKLOG-11](BACKLOG-11.md) ergänzt Turmbauer, Fallenbauer und Geschenkdiebe. Schatzgräber, Brückenroulette und Reaktor-Notfall bleiben geplant; Umsetzung erst mit neuem Prompt. Danach stoppen; keine V2-Pakete.
 
 ## BACKLOG-05 – Schach, Exploding-Deck, Doppelagent und Lügenbaron
 
