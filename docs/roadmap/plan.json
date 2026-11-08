@@ -685,7 +685,7 @@
         "Branch-/PR- und Testergebnisse dokumentiert"
       ],
       "status": "done",
-      "implementation_commit": "b6a627eddc73071d9ef5ed5c5c3cf561f83de087",
+      "implementation_commit": "e3640a498474ef56fcffbf966fe908ad49687dd9",
       "completed_at": "2026-11-08",
       "notes": [
         "Ausdrückliche Freigabe 2026-11-08 (V2-10, nach Abschluss von Codex P1). Keine Produktionsbereitstellung: Es wurde nichts auf dem Server aufgespielt; die Anleitung beschreibt den Weg, der Release-Check prüft nur.",
@@ -721,9 +721,9 @@
         }
       ],
       "commits": [
-        "b6a627eddc73071d9ef5ed5c5c3cf561f83de087",
-        "c799c9c5ee5b147541b11baa22d9ef17a3db5830",
-        "9702e3f91177bb43a47cc48953c1cfbdc5dcad5d"
+        "e3640a498474ef56fcffbf966fe908ad49687dd9",
+        "3741fc32c2f4bd5ce7802cded46aaf4bbc7475a4",
+        "3eddf33ff166cd9012bc77be96f06b88f6c2c839"
       ]
     },
     {
