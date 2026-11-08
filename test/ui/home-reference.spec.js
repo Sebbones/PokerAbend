@@ -43,10 +43,9 @@ test('Favoriten aktualisieren die echte rechte Spalte sofort und erhalten den lo
 
 test('Deckender Modus erhält die Bibliothek ohne Raumfoto und den vollständigen Spielekatalog', async ({ page, app }) => {
   await login(page, app);
-  await page.locator('#profile-avatar').click();
-  await page.locator('.profile-preferences summary').click();
-  await page.getByRole('switch', { name: /Glaseffekt reduzieren/ }).check();
-  await page.locator('#p-cancel').click();
+  // Seit V2-05 liegen die Anzeige-Schalter auf der Einstellungsseite (der Dialog „Ich“ verweist nur dorthin)
+  await page.evaluate(() => { location.hash = '#einstellungen'; });
+  await page.locator('[data-set="display.reduceGlass"]').check();
   expect(await page.evaluate(() => getComputedStyle(document.querySelector('#hub'), '::before').backgroundImage)).toBe('none');
   await page.evaluate(() => { location.hash = '#spiele'; });
   await expect(page.locator('#games-body [data-host]')).toHaveCount(await page.evaluate(() => account.games.length));

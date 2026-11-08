@@ -16,7 +16,10 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
   await page.locator('[data-plan="staedtehandel"]').click(); // V2-12: umgesetzt, nicht mehr nur geplant
   await expect(page.locator('#host-dlg')).toContainText('Bereits spielbar');
   await page.locator('#host-dlg .host-close').click();
-  for (const id of ['reaktor-notfall']) { // turmbauer, geschenkdiebe, fallenbauer und bomben-duell sind inzwischen spielbar
+  // Noch nicht gebaute Spiele aus der Roadmap selbst (Stand heute: keins mehr – dann entfällt die Schleife) dürfen nicht startbar sein
+  const open = (await (await page.request.get(app.url + '/roadmap')).json()).flatMap((s) => s.punkte).filter((p) => p.art === 'spiel' && !p.erledigt).map((p) => p.id);
+  for (const id of open) {
+    if (!(await page.locator(`[data-plan="${id}"]`).count())) continue;
     await page.locator(`[data-plan="${id}"]`).click();
     await expect(page.locator('#host-dlg')).toContainText('Noch nicht spielbar');
     await expect(page.locator('#host-form')).toHaveCount(0);
