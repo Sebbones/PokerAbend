@@ -600,7 +600,7 @@ Object.assign(window.EN,{'Doppeltes Deck (bis zehn Spieler)':'Double deck (up to
 'Wer zuletzt übrig ist, gewinnt. Ein Deck reicht für 2–5; mit doppeltem Deck spielen bis zu zehn mit.':'Last survivor wins. One deck supports two to five; double deck supports up to ten.'});
 // V2-03: Ranked-Bestenliste
 Object.assign(window.EN, {
-  'mit Computer-Mitspielern': 'with computer players', 'mit Gästen ohne Discord-Verknüpfung': 'with guests without a Discord link',
+  'mit Computer-Mitspielern': 'with computer players', 'bei ausgeschalteter Ranked-Wertung': 'while ranked scoring is switched off', 'Ranked-Wertung ausgeschaltet': 'Ranked scoring switched off', 'mit Gästen ohne Discord-Verknüpfung': 'with guests without a Discord link',
   'mit zu wenigen registrierten Menschen': 'with too few registered people', 'Teilnehmerkreis änderte sich': 'players changed during the round',
   'ohne gesicherte Wertung': 'without a secured result', 'nicht gewertet': 'not ranked',
   'Diese Woche': 'This week', 'Dieser Monat': 'This month', 'Alles': 'All time', 'Alle Spiele zusammen': 'All games combined',

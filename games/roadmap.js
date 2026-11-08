@@ -13,8 +13,15 @@ const spiele = (ids) => ids.map((id) => punkt(id, GAMES[id].name, 'spiel', GAMES
 // Betrieb & Wartung: Update-Hinweis, Admin-Seite, Version, Browser-Fehler, Ausfall-Wächter, Backups (Speichern mitten in der Runde bleibt offen)
 const BETRIEB_FERTIG = ['betrieb-1', 'betrieb-2', 'betrieb-3', 'betrieb-4', 'betrieb-5', 'betrieb-6'];
 
-// V2-00, V2-01 und V2-02 (Bestandsaufnahme, Plattformidentität, Discord-Anmeldung) sind umgesetzt; alles Übrige bleibt geplant.
-const V2_FERTIG = ['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'technik-3', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security', 'v2-liquid-glass', 'v2-platform-integration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit', 'v2-security-tests'];
+// Erledigte V2-Punkte mit dem Abschlussdatum des jeweiligen Pakets (docs/roadmap/plan.json, completed_at). Ein Punkt gilt nur dann als erledigt,
+// wenn das Paket, das ihn umsetzt, in plan.json auf done steht – das prüft test/planning-consistency.test.js in beide Richtungen.
+const V2_FERTIG_AM = {
+  '2026-11-01': ['v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'technik-3', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security'], // V2-00, V2-01, V2-02, V2-16
+  '2026-11-07': ['discord-5', 'v2-historical-rankings', 'v2-player-profiles', 'v2-account-achievements', 'v2-profile-preferences', 'v2-privacy', 'v2-einstellungen', 'v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-liquid-glass', 'v2-platform-integration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit', 'gebietskampf', 'staedtehandel'], // V2-11, V2-12, V2-03, V2-04, V2-05, V2-15, V2-13, V2-14, V2-06, V2-07, V2-17
+  '2026-11-08': ['v2-security-tests', 'v2-release-migration'], // V2-09, V2-10
+};
+const V2_FERTIG = Object.values(V2_FERTIG_AM).flat();
+const v2Datum = (id) => Object.entries(V2_FERTIG_AM).find(([, ids]) => ids.includes(id))?.[0];
 
 export const ROADMAP = [
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
@@ -173,7 +180,7 @@ export const ROADMAP = [
   { id: 'schutz-fertig', titel: 'Passwortschutz & HTTPS über Traefik', satz: 'Geschützter Zugang und verschlüsselte Verbindung im Server-Betrieb.', stufe: 'erledigt', datum: '2026-10-27', punkte: [punkt('passwort-https', 'Gruppenpasswort & Traefik', 'betrieb', 'Passwortschutz vorhanden; Traefik ersetzt Caddy im Deployment.', true)] },
   { id: 'bots-fertig', titel: 'Computer-Mitspieler, Mühle & Zehntausend', satz: 'Optionale Computer-Mitspieler und zwei weitere Spiele.', stufe: 'erledigt', datum: '2026-10-25', punkte: [...spiele(['muehle', 'zehntausend']), punkt('computer-mitspieler', 'Computer-Mitspieler', 'funktion', 'Bots im Host-Menü hinzufügen oder entfernen; eigene Strategien für unterstützte Spiele.', true)] },
   { id: 'v1-fertig', titel: 'V1 Poker', satz: 'Der erste gemeinsame Pokertisch im Browser.', stufe: 'erledigt', datum: '2026-10-24', punkte: spiele(['poker']) },
-].map((section) => ({ ...section, punkte: section.punkte.map((p) => (V2_FERTIG.includes(p.id) ? { ...p, erledigt: true, datum: '2026-11-01' } : p)) }));
+].map((section) => ({ ...section, punkte: section.punkte.map((p) => (V2_FERTIG.includes(p.id) ? { ...p, erledigt: true, datum: v2Datum(p.id) } : p)) }));
 
 // „Was ist neu“: die neuesten erledigten Punkte (mit Datum), neueste zuerst; bei gleichem Datum gilt die Reihenfolge der Roadmap
 export function whatsNew(limit = 8, roadmap = resolvedRoadmap()) {

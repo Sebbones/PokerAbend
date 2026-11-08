@@ -30,7 +30,7 @@ test('Konsolidierte V2-Roadmap: Besucher sehen neue Planungen, geplante Spiele b
     const matches = points.filter(p => p.id === id);
     expect(matches, `${task.id}: ${id}`).toHaveLength(1);
     // Only explicitly authorized, implemented packages may complete public points.
-    expect(!!matches[0].erledigt, id).toBe(['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'v2-platform-integration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit', 'gebietskampf', 'staedtehandel', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security', 'v2-liquid-glass', 'v2-security-tests'].includes(id));
+    expect(!!matches[0].erledigt, id).toBe(['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'v2-platform-integration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit', 'gebietskampf', 'staedtehandel', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security', 'v2-liquid-glass', 'v2-security-tests', 'discord-5', 'v2-historical-rankings', 'v2-player-profiles', 'v2-account-achievements', 'v2-profile-preferences', 'v2-privacy', 'v2-einstellungen', 'v2-release-migration'].includes(id));
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: info.outputPath('v2-roadmap.png'), fullPage: true });

@@ -8,6 +8,7 @@ import { join } from 'node:path';
 import { io } from 'socket.io-client';
 import { maintenance, assertNewRoundAllowed, UPDATE_BLOCKED } from '../server/maintenance.js';
 import { versionInfo, cleanClientError, createClientErrors, createAdminLog } from '../server/ops.js';
+const VERSION = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version; // gebauter Stand, nicht fest eingetragen
 import { whatsNew, resolvedRoadmap } from '../games/roadmap.js';
 import { GAMES } from '../games/index.js';
 
@@ -103,9 +104,9 @@ test('Admin-Protokoll: speichert, begrenzt und lässt defekte Dateien unangetast
 
 test('Version: package.json und gültiger Commit-Hash, ungültige Werte werden ignoriert', () => {
   const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
-  assert.equal(pkg.version, '2.0.0');
+  assert.match(pkg.version, /^[0-9]+[.][0-9]+[.][0-9]+$/);
   const info = versionInfo({ APP_COMMIT: 'ABCDEF1234567890abcdef1234567890abcdef12' });
-  assert.equal(info.version, '2.0.0');
+  assert.equal(info.version, VERSION);
   assert.equal(info.short, 'abcdef1');
   assert.equal(versionInfo({ APP_COMMIT: 'unbekannt' }).commit, '');
   assert.equal(versionInfo({}).short, '');
@@ -176,16 +177,16 @@ test('/admin ist ohne ADMIN_PASSWORD aus; /health nennt Version und Commit', asy
     assert.equal((await fetch(server.url + '/admin/api/status', { headers: { cookie: server.cookie } })).status, 404);
     const health = await (await fetch(server.url + '/health')).json();
     assert.equal(health.ok, true);
-    assert.equal(health.version, '2.0.0');
+    assert.equal(health.version, VERSION);
     assert.equal(health.commit, '0123456789'.slice(0, 7));
     const me = await (await fetch(server.url + '/me', { headers: { cookie: server.cookie } })).json();
-    assert.equal(me.version, '2.0.0');
+    assert.equal(me.version, VERSION);
     const news = await (await fetch(server.url + '/api/whats-new', { headers: { cookie: server.cookie } })).json();
-    assert.equal(news.version, '2.0.0');
+    assert.equal(news.version, VERSION);
     assert.ok(news.entries.length > 0);
     const s = client(server);
     await until(() => seen(s, 'version').length);
-    assert.equal(seen(s, 'version')[0].data.version, '2.0.0');
+    assert.equal(seen(s, 'version')[0].data.version, VERSION);
     s.disconnect();
   } finally { server.stop(); }
 });
@@ -211,7 +212,7 @@ test('/admin: Gruppenpasswort reicht nicht; ohne oder mit falschem Passwort gesp
     const status = await adminCall(server, '/status', { cookie: ok.cookie });
     assert.equal(status.status, 200);
     const data = await status.json();
-    assert.equal(data.version, '2.0.0');
+    assert.equal(data.version, VERSION);
     assert.ok(Array.isArray(data.rooms) && data.system.memory.rss > 0 && data.data.files.length >= 0);
     // Rate-Limit: acht Fehlversuche, dann gesperrt – auch mit dem richtigen Passwort
     for (let i = 0; i < 8; i++) assert.equal((await adminLogin(server, 'falsch' + i)).res.status, 401);

@@ -77,7 +77,29 @@ async function loadTickets() {
     <td>${esc(t.author.name)}${tag(t.author.gameId)}</td><td><select aria-label="Status #${t.id}">${Object.entries(data.statuses).map(([k, v]) => `<option value="${k}"${k === t.status ? ' selected' : ''}>${esc(v)}</option>`).join('')}</select></td>
     <td class="row"><button type="button" data-ticket-save="${t.id}">Speichern</button><button class="ghost" type="button" data-ticket-comment="${t.id}">Kommentieren</button><button class="danger" type="button" data-ticket-delete="${t.id}" data-label="${esc(t.title)}">Löschen</button></td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine Tickets.</p>';
 }
-async function loadTools() { await Promise.all([loadReviews(), loadBoard(), loadPlayers(), loadTickets()].map((p) => p.catch(bad))); }
+const SOURCE = { admin: 'Admin-Einstellung', env: '.env', standard: 'Standard' };
+let featureState = null;
+function renderFeatures() {
+  if (!featureState) return;
+  $('#feature-flags').innerHTML = `<table><thead><tr><th>Funktion</th><th>Zustand</th><th>Quelle</th><th></th></tr></thead><tbody>${featureState.flags.map((f) => `<tr><td><b>${esc(f.label)}</b><br><span class="muted">${esc(f.hint)}</span></td>
+    <td><b class="${f.value ? 'good' : 'bad'}">${f.value ? 'an' : 'aus'}</b></td><td>${esc(SOURCE[f.source])}${f.source === 'admin' ? `<br><span class="muted">sonst: ${f.baseline ? 'an' : 'aus'}</span>` : ''}</td>
+    <td class="row"><button class="${f.value ? 'danger' : ''}" type="button" data-flag="${esc(f.name)}" data-value="${f.value ? 0 : 1}" data-label="${esc(f.label)}">${f.value ? 'Ausschalten' : 'Einschalten'}</button>${f.source === 'admin' ? `<button class="ghost" type="button" data-flag="${esc(f.name)}" data-value="reset" data-label="${esc(f.label)}">Zurücksetzen</button>` : ''}</td></tr>`).join('')}</tbody></table>`;
+  const q = $('#feature-filter').value.trim().toLowerCase(), offOnly = $('#feature-off-only').checked;
+  const games = featureState.games.filter((g) => (!q || g.id.includes(q)) && (!offOnly || !g.enabled));
+  $('#feature-games').innerHTML = games.length ? `<table><thead><tr><th>Spiel</th><th>Zustand</th><th>Quelle</th><th></th></tr></thead><tbody>${games.map((g) => `<tr><td><code>${esc(g.id)}</code></td><td><b class="${g.enabled ? 'good' : 'bad'}">${g.enabled ? 'an' : 'aus'}</b></td><td>${esc(SOURCE[g.source])}</td>
+    <td class="row"><button class="${g.enabled ? 'danger' : ''}" type="button" data-game="${esc(g.id)}" data-value="${g.enabled ? 0 : 1}">${g.enabled ? 'Ausschalten' : 'Einschalten'}</button>${g.source === 'admin' ? `<button class="ghost" type="button" data-game="${esc(g.id)}" data-value="reset">Zurücksetzen</button>` : ''}</td></tr>`).join('')}</tbody></table>` : '<p class="muted">Keine Treffer.</p>';
+}
+async function loadFeatures() { featureState = await call('/features'); renderFeatures(); }
+$('#feature-filter').addEventListener('input', renderFeatures);
+$('#feature-off-only').addEventListener('change', renderFeatures);
+$('#mod-features').addEventListener('click', async (e) => {
+  const b = e.target.closest('button[data-flag],button[data-game]'); if (!b) return;
+  const value = b.dataset.value === 'reset' ? null : b.dataset.value === '1';
+  const what = b.dataset.flag ? `${b.dataset.label}` : `Spiel ${b.dataset.game}`;
+  if (value === false && b.dataset.flag && !await confirmDialog(`${what} ausschalten?`, 'Die Funktion ist danach für alle sofort weg. Daten bleiben erhalten.', 'Ausschalten')) return;
+  try { featureState = await call(b.dataset.flag ? `/features/${encodeURIComponent(b.dataset.flag)}` : `/features/games/${encodeURIComponent(b.dataset.game)}`, 'POST', { value }); renderFeatures(); say(`${what}: ${value === null ? 'zurückgesetzt' : value ? 'eingeschaltet' : 'ausgeschaltet'}`); load(); } catch (err) { bad(err); }
+});
+async function loadTools() { await Promise.all([loadReviews(), loadBoard(), loadPlayers(), loadTickets(), loadFeatures()].map((p) => p.catch(bad))); }
 async function load() {
   try { const s = await call('/status'); $('#login').hidden = true; $('#app').hidden = false; render(s); }
   catch (e) { if (!$('#app').hidden) say(e.message, true); }

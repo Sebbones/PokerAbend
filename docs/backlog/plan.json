@@ -786,7 +786,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         },
         {
           "path": "public/hub.js",
@@ -955,7 +955,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           },
           {
             "path": "public/hub.js",
@@ -1050,7 +1050,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         },
         {
           "path": "public/i18n-en.js",
@@ -1195,7 +1195,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "permanent_screenshots": 80,
@@ -1270,7 +1270,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           }
         ]
       },
@@ -1319,7 +1319,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           }
         ]
       },
@@ -1368,7 +1368,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           }
         ]
       },
@@ -1417,7 +1417,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           }
         ]
       }
@@ -1569,7 +1569,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         },
         {
           "path": "public/index.html",
@@ -1639,7 +1639,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           },
           {
             "path": "public/index.html",
@@ -1680,7 +1680,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           },
           {
             "path": "public/index.html",
@@ -1800,7 +1800,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "scope": "Explicit puzzle-panik, wortjagd, kistenchaos, gummiband-challenge only. Stop after completion; no V2 packages.",
@@ -1834,7 +1834,7 @@
           },
           {
             "path": "public/game-design.js",
-            "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+            "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
           }
         ]
       },
@@ -1940,7 +1940,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "shared_source_audit_commit": "b5e0035d4f0a37ef4ee28dfa6ffba6848b67582d",
@@ -2010,7 +2010,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         },
         {
           "path": "games/party-room.js",

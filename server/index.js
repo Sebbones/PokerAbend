@@ -9,7 +9,8 @@ import { join, dirname } from 'node:path';
 import { randomBytes } from 'node:crypto';
 import { createRanked } from './ranked.js';
 import { fileURLToPath } from 'node:url';
-import { GAMES, DEFAULT_GAME, gameList, singleplayerGameList, gameEvents, PLANNED, plannedGames } from '../games/index.js';
+import { GAMES, DEFAULT_GAME, gameList, singleplayerGameList, SINGLEPLAYER_GAMES, gameEvents, PLANNED, plannedGames } from '../games/index.js';
+import { createFeatures } from './features.js';
 import { maintenance, assertNewRoundAllowed } from './maintenance.js';
 import { versionInfo, createAdminLog, createClientErrors, createSystemSampler, cleanClientError } from './ops.js';
 import { createAdmin } from './admin.js';
@@ -82,6 +83,10 @@ const MODE = SITE_PASSWORD ? 'password' : 'open';
 const SECRET = loadSecret(DATA_DIR);
 const auth = createAuth({ password: SITE_PASSWORD, secret: SECRET });
 const accounts = createAccountStore(DATA_DIR, { onChange: () => save() });   // interne Konto-IDs und öffentliche Game-IDs
+// Feature-Flags (V2-10): .env (FEATURE_*, DISABLED_GAMES) und /admin → Funktionen; Standard: nichts ändert sich, nur die Kamera ist aus
+const features = createFeatures({ dir: DATA_DIR, knownGames: [...Object.keys(GAMES), ...Object.keys(SINGLEPLAYER_GAMES)] });
+const discordOn = () => !!discord && features.enabled('discord');
+const notEnabled = (id) => `${GAMES[id]?.name || SINGLEPLAYER_GAMES[id]?.name || id} ist gerade ausgeschaltet`;
 const identity = createIdentity({ secret: SECRET });
 const leaderboard = createLeaderboard(DATA_DIR); // Bestenliste über alle Abende
 // V2-07: Name, Avatar und öffentliche Game-ID eines Kontos für Tickets, Planungen und Rückblicke. Versteckte Konten zeigen keine Game-ID.
@@ -112,7 +117,7 @@ app.get('/health', (_req, res) => res.json({ ok: true, version: VERSION.version,
 const isSecure = (req) => req.secure || (TRUST_PROXY && req.headers['x-forwarded-proto'] === 'https');
 const passwordOk = (req) => auth.valid(parseCookies(req.headers.cookie)[COOKIE]);
 // Zugang: Gruppenpasswort-Cookie oder eine gültige Discord-Sitzung (nur mit DISCORD_GUILD_ID und Mitgliedschaft; nie Admin)
-const hasAccess = (cookieHeader) => auth.valid(parseCookies(cookieHeader)[COOKIE]) || !!discord?.hasAccess(cookieHeader);
+const hasAccess = (cookieHeader) => auth.valid(parseCookies(cookieHeader)[COOKIE]) || (discordOn() && !!discord.hasAccess(cookieHeader));
 const loggedIn = (req) => hasAccess(req.headers.cookie);
 const discord = createDiscordAuth({
   config: discordConfig(), secret: SECRET, dataDir: DATA_DIR, accounts, identity, accountOf: (cookieHeader) => accountOf(cookieHeader),
@@ -132,7 +137,7 @@ const loginTpl = readFileSync(join(__dirname, 'login.html'), 'utf8');
 function renderLogin(res, status, error, next) {
   res.status(status).type('html').setHeader('Cache-Control', 'no-store');
   const n = safeNext(next);
-  const button = discord?.config.guildId ? `<div class="lobby-alt"><a class="btn btn-big" id="discord-login" href="/auth/discord/login?next=${escHtml(encodeURIComponent(n))}" data-i18n>Mit Discord anmelden</a></div>` : '';
+  const button = discordOn() && discord.config.guildId ? `<div class="lobby-alt"><a class="btn btn-big" id="discord-login" href="/auth/discord/login?next=${escHtml(encodeURIComponent(n))}" data-i18n>Mit Discord anmelden</a></div>` : '';
   res.send(loginTpl.replace('{{ERROR}}', escHtml(error)).replace('{{NEXT}}', escHtml(n)).replace('{{DISCORD}}', button));
 }
 
@@ -167,7 +172,7 @@ app.post('/logout', (req, res) => {
 });
 
 // Discord: Anmelde- und Rückkehr-Routen müssen vor der Anmeldeprüfung liegen (eigene Prüfungen darin). Ohne Einrichtung: 404.
-app.use('/auth/discord', discord ? discord.router : (_req, res) => res.status(404).type('text').send('Nicht gefunden'));
+app.use('/auth/discord', (req, res, next) => (discordOn() ? discord.router(req, res, next) : res.status(404).type('text').send('Nicht gefunden')));
 
 // Alles ab hier nur angemeldet. Offen bleibt nur, was die Login-Seite braucht.
 // Manifest und Icons auch ohne Login – sonst kann das Handy die Seite nicht als App ablegen (sie verraten nichts)
@@ -212,7 +217,7 @@ app.use('/api', (req, res, next) => {
 });
 app.get('/me', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  res.json({ mode: MODE, discord: { enabled: !!discord, login: !!discord?.config.guildId }, version: VERSION.version, commit: VERSION.short, games: gameList(), singleplayerGames: singleplayerGameList(), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
+  res.json({ mode: MODE, discord: { enabled: discordOn(), login: discordOn() && !!discord.config.guildId }, features: { ranked: features.enabled('ranked'), camera: features.enabled('camera') }, version: VERSION.version, commit: VERSION.short, games: features.filterGames(gameList()), singleplayerGames: features.filterGames(singleplayerGameList()), planned: plannedGames(), partyTeamGames: programGames(true).map((g) => g.id), partyDefaults: programDefaults(), programOptions: Object.fromEntries(Object.values(GAMES).map((g) => [g.id, programOptions(g)])) });
 });
 app.get('/api/whats-new', (_req, res) => {
   res.setHeader('Cache-Control', 'no-store');
@@ -226,7 +231,7 @@ if (ADMIN_PASSWORD) {
   app.use('/admin', createAdmin({
     password: ADMIN_PASSWORD, secret: SECRET, dataDir: DATA_DIR, secure: isSecure, trustProxy: TRUST_PROXY, log: adminLog, errors: clientErrors,
     system: sampler, version: VERSION, rooms: () => adminRooms(), closeRoom: (code) => adminCloseRoom(code), online: () => adminOnline(),
-    announce: (minutes, by) => announceUpdate(minutes, by), cancelUpdate: () => cancelUpdate(),
+    announce: (minutes, by) => announceUpdate(minutes, by), cancelUpdate: () => cancelUpdate(), features,
     tickets: ticketAPI.admin, tools: createAdminTools({ reviews, leaderboard, accounts, mergeAccounts, changed: () => { leaderboard.save(); save(); } }),
     claims: () => leaderboard.claims().map((c) => ({ key: c.key, name: c.name, by: c.by, gameId: accounts.get(c.claimedBy)?.gameId || '', claimedAt: c.claimedAt })),
     undoClaim: (key) => { const info = leaderboard.unclaim(key); if (!info) return null; save(); return { name: info.name, gameId: accounts.get(info.claimedBy)?.gameId || '' }; },
@@ -247,7 +252,7 @@ function mergeAccounts(from, to, { fromGameId, toGameId } = {}) {
   for (const s of io.sockets.sockets.values()) if (s.data.accountId === from) s.data.accountId = to;
   presence.changed();
 }
-app.use('/api/identity', createIdentityAPI({ identity, accounts, leaderboard, secure: isSecure, trustProxy: TRUST_PROXY, onMerge: mergeAccounts, onChange: () => save(), discordEnabled: !!discord }));
+app.use('/api/identity', createIdentityAPI({ identity, accounts, leaderboard, secure: isSecure, trustProxy: TRUST_PROXY, onMerge: mergeAccounts, onChange: () => save(), discordEnabled: discordOn }));
 // V2-04: Spielerprofile (Router wird erst nach Bestenliste und Erfolgen angelegt)
 let profileRouter = (_req, _res, next) => next();
 let meRouter = (_req, _res, next) => next();
@@ -482,7 +487,7 @@ function onRoomChange(room, kind, data) {
 // playerAccounts: welcher Spieler zu welchem Konto gehört (nur Menschen), damit die Bindung einen Neustart überlebt
 
 // ---------- Ranked-Wertung (V2-03): Logik in server/ranked.js ----------
-const ranked = createRanked({ accounts, leaderboard, lowWins: (room) => GAME_INFO[scoreKey(room.game, room.variant || 'classic')]?.lowWins, newId: () => randomBytes(8).toString('hex') });
+const ranked = createRanked({ accounts, leaderboard, enabled: () => features.enabled('ranked'), lowWins: (room) => GAME_INFO[scoreKey(room.game, room.variant || 'classic')]?.lowWins, newId: () => randomBytes(8).toString('hex') });
 const accountsOf = (r) => Object.fromEntries([...r.players.values()].filter((p) => p.accountId && !p.bot).map((p) => [p.id, p.accountId]));
 const snapshotOf = (r) => ({ ...r.snapshot(), game: r.game, code: r.code, unlisted: !!r.unlisted, playerAccounts: accountsOf(r), ...(r.partyProgram ? { partyProgram: r.partyProgram } : {}) });
 
@@ -758,6 +763,7 @@ io.on('connection', (socket) => {
   on('create', ({ game: gameId = DEFAULT_GAME, name, avatar, settings, unlisted, variant }) => {
     const game = gameById(gameId);
     if (!game) throw new Error(notPlayable(gameId));
+    if (!features.gameEnabled(game.id)) throw new Error(notEnabled(game.id));
     if (rooms.size >= MAX_ROOMS) throw new Error('Gerade sind zu viele Tische offen');
     if (!limits.create.hit(ip)) throw new Error('Du hast gerade sehr viele Tische erstellt. Warte ein paar Minuten.');
     const cfg = settings && typeof settings === 'object' && !Array.isArray(settings) ? settings : {};
@@ -856,6 +862,7 @@ io.on('connection', (socket) => {
     if (programActive(room)) throw new Error('Nutze „Nächstes Programm-Spiel“ oder beende zuerst das Abendprogramm');
     const game = gameById(gameId);
     if (!game) throw new Error(notPlayable(gameId));
+    if (!features.gameEnabled(game.id)) throw new Error(notEnabled(game.id));
     if (game.id === room.game) throw new Error('Das wird hier schon gespielt');
     if (room.busy) throw new Error('Wechseln geht erst, wenn die Runde vorbei ist');
     return { room: switchRoom(room, game) };
@@ -870,8 +877,10 @@ io.on('connection', (socket) => {
     if (seated.length > (v.maxPlayers || GAMES[room.game].maxPlayers)) throw new Error('Für diese Variante sitzen zu viele Spieler am Tisch');
     return { room: switchRoom(room, GAMES[room.game], { variant, ...(room.game === 'monopoly' && variant !== 'junior' ? { board: room.settings.board || 'default', theme: room.settings.theme || 'modern' } : {}) }) };
   });
-  on('programStart', (_data, room, p) => (assertNewRoundAllowed(), { room: startProgramStep(room, p.id, beginProgram(room, p.id)) }));
-  on('programNext', (_data, room, p) => (assertNewRoundAllowed(), { room: startProgramStep(room, p.id, nextProgramStep(room, p.id)) }));
+  // Ein Abendprogramm mit einem inzwischen ausgeschalteten Spiel startet nicht (und läuft nicht weiter), bis die Liste geändert oder das Spiel wieder an ist
+  const assertProgramGamesEnabled = (room) => { for (const entry of room.partyProgram?.config?.entries || []) if (!features.gameEnabled(entry.game)) throw new Error(notEnabled(entry.game)); };
+  on('programStart', (_data, room, p) => (assertNewRoundAllowed(), assertProgramGamesEnabled(room), { room: startProgramStep(room, p.id, beginProgram(room, p.id)) }));
+  on('programNext', (_data, room, p) => (assertNewRoundAllowed(), assertProgramGamesEnabled(room), { room: startProgramStep(room, p.id, nextProgramStep(room, p.id)) }));
   on('programStop', (_data, room, p) => {
     room.requireHost(p.id);
     if (room.busy) throw new Error('Beende oder brich zuerst die laufende Partie ab');

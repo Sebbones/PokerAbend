@@ -1,7 +1,7 @@
 // Ranked-Berechtigung (V2-03). Reine Funktion über Serverdaten: Bot-Flag und Konto am Spieler – nie Namen, nie Clientangaben.
 // Gewertet wird nur, wenn alle Beteiligten registrierte Menschen sind (Discord verknüpft) und es mindestens zwei verschiedene Konten gibt.
 // Rückgabe: '' = gewertet, sonst der Grund: 'bots' | 'gast' | 'zu-wenige'.
-export const RANK_REASONS = ['bots', 'gast', 'zu-wenige', 'teilnehmer'];
+export const RANK_REASONS = ['bots', 'gast', 'zu-wenige', 'teilnehmer', 'aus'];
 
 export function rankedReason(players, { isRegistered, resolve }) {
   const list = (players || []).filter(Boolean);
@@ -14,8 +14,9 @@ export function rankedReason(players, { isRegistered, resolve }) {
 
 // Verbindet Räume (onChange 'roundStart' / 'roundAbort' / 'result') mit der Rundenablage der Bestenliste.
 // Die Berechtigung wird beim Rundenstart eingefroren; jede eingefrorene Runde wird höchstens einmal verbucht.
-export function createRanked({ accounts, leaderboard, lowWins = () => false, newId }) {
-  const reasonOf = (room, ids) => rankedReason((ids || []).map((id) => room.players.get(id)), { isRegistered: (id) => accounts.isRegistered(id), resolve: (id) => accounts.resolve(id) });
+// enabled: Feature-Flag „Ranked“ (V2-10). Aus = jede neue Runde zählt nicht (Grund 'aus'); bisherige Ergebnisse und die Namensstatistik bleiben unberührt.
+export function createRanked({ accounts, leaderboard, lowWins = () => false, newId, enabled = () => true }) {
+  const reasonOf = (room, ids) => !enabled() ? 'aus' : rankedReason((ids || []).map((id) => room.players.get(id)), { isRegistered: (id) => accounts.isRegistered(id), resolve: (id) => accounts.resolve(id) });
   return {
     freeze(room, ids) {
       const list = [...new Set((ids || []).filter((id) => room.players.has(id)))];

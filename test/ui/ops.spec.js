@@ -1,5 +1,8 @@
 // Betrieb im Browser: Version, „Was ist neu“, Update-Banner, Neustart-Hinweis, Fehler melden, Admin-Seite.
+import { readFileSync } from 'node:fs';
 import { test, expect, login } from './helpers.js';
+
+const VERSION = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8')).version;
 
 const profileButton = (page) => page.locator('#profile-chip, #profile-avatar').locator('visible=true').first();
 
@@ -8,10 +11,10 @@ test.describe('Browser', () => {
     await login(page, app);
     await profileButton(page).click();
     await expect(page.locator('#profile-dlg')).toBeVisible();
-    await expect(page.locator('#p-version')).toHaveText(/Version 2\.0\.0/);
+    await expect(page.locator('#p-version')).toContainText('Version ' + VERSION);
     await page.locator('#p-whatsnew').click();
     await expect(page.locator('#whatsnew-dlg')).toBeVisible();
-    await expect(page.locator('#whatsnew-dlg')).toContainText('Neu in Version 2.0.0');
+    await expect(page.locator('#whatsnew-dlg')).toContainText('Neu in Version ' + VERSION);
     await expect(page.locator('#whatsnew-dlg li').first()).toBeVisible();
     await page.getByRole('button', { name: 'Verstanden' }).click();
     // Ein Browser, der eine ältere Version gesehen hat, bekommt den Hinweis genau einmal
@@ -19,7 +22,7 @@ test.describe('Browser', () => {
     await page.reload();
     await expect(page.locator('#whatsnew-dlg')).toBeVisible();
     await page.getByRole('button', { name: 'Verstanden' }).click();
-    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('poker:seenVersion')))).toBe('2.0.0');
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('poker:seenVersion')))).toBe(VERSION);
     await page.reload();
     await expect(page.locator('#hub')).toBeVisible();
     await expect(page.locator('#whatsnew-dlg[open]')).toHaveCount(0);
@@ -79,7 +82,7 @@ test.describe('Admin-Seite', () => {
     await admin.locator('#pw').fill('Admin-UI-Test');
     await admin.getByRole('button', { name: 'Anmelden' }).click();
     await expect(admin.locator('#app')).toBeVisible();
-    await expect(admin.locator('#version')).toContainText('2.0.0');
+    await expect(admin.locator('#version')).toContainText(VERSION);
     await expect(admin.locator('#rooms')).toContainText(code);
     await expect(admin.locator('#rooms')).toContainText('Anna');
 

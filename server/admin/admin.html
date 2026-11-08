@@ -57,6 +57,8 @@
     <div class="grid">
       <section><h2>Zustand</h2><div id="system"></div></section>
       <section><h2>Update ankündigen</h2><div id="update"></div></section>
+      <section class="wide" id="mod-features"><h2>Funktionen &amp; Spiele</h2><p class="muted">Schalter gelten sofort und überstehen einen Neustart (gespeichert in <code>features.json</code>). „Zurücksetzen“ nimmt die Admin-Einstellung zurück; dann gilt die <code>.env</code> bzw. der Standard. Ausschalten löscht nie Daten; laufende Tische eines abgeschalteten Spiels spielen weiter.</p>
+        <div class="scroll" id="feature-flags"></div><h2 style="margin-top:14px">Einzelne Spiele</h2><div class="row"><input id="feature-filter" placeholder="Spiel suchen" maxlength="40" aria-label="Spiel suchen"><label class="muted"><input type="checkbox" id="feature-off-only"> nur ausgeschaltete</label></div><div class="scroll" id="feature-games"></div></section>
       <section class="wide"><h2>Offene Räume</h2><div class="scroll" id="rooms"></div></section>
       <section><h2>Datendateien</h2><div id="files"></div></section>
       <section><h2>Übernommene alte Statistiken</h2><div class="scroll" id="claims"></div></section>

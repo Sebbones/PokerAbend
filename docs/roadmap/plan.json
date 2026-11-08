@@ -2,16 +2,16 @@
   "schema_version": 1,
   "project": "TTLPSCWA/PokerAbend",
   "title": "PokerAbend V2: Accountidentität, Discord, Ranked, Präferenzen, Design, Tischvideo",
-  "planning_mode": true,
+  "planning_mode": false,
   "implementation_authorized": false,
-  "documentation_only": true,
+  "documentation_only": false,
   "created_date": "2026-10-30",
   "baseline": {
     "branch": "main",
     "commit": "aa2551793da45471c910d090e8eb2357e9ed13fd",
     "registered_games": 46
   },
-  "status": "planned",
+  "status": "in_progress",
   "entrypoint": "docs/roadmap/README.md",
   "source_of_truth": "docs/roadmap/plan.json",
   "source_spec": "docs/roadmap/MASTERPROMPT_V2_SOURCE.md",
@@ -684,17 +684,29 @@
         "keine Produktionsbereitstellung ohne ausdrückliche Freigabe",
         "Branch-/PR- und Testergebnisse dokumentiert"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
+      "status": "done",
+      "implementation_commit": "0000000",
+      "completed_at": "2026-11-08",
       "notes": [
-        "Teillieferung „Betrieb & Wartung“ (2026-11-01) siehe partial_deliveries[BETRIEB-WARTUNG]; das Paket selbst bleibt planned."
+        "Ausdrückliche Freigabe 2026-11-08 (V2-10, nach Abschluss von Codex P1). Keine Produktionsbereitstellung: Es wurde nichts auf dem Server aufgespielt; die Anleitung beschreibt den Weg, der Release-Check prüft nur.",
+        "Feature-Flags (server/features.js): Discord-Anmeldung, Ranked-Wertung, Kamera (reserviert, Standard aus) und einzelne Spiele über .env (FEATURE_DISCORD, FEATURE_RANKED, FEATURE_CAMERA, DISABLED_GAMES) und zur Laufzeit unter /admin → Funktionen & Spiele (features.json); Reihenfolge Admin > .env > Standard. Ausschalten löscht nie Daten; laufende Tische laufen weiter.",
+        "docs/betrieb.md: Server von null, Migration vom alten Stand (Datei für Datei), Backup/Restore, Fehlersuche, Traefik-Hinweise, alle .env-Variablen mit Beispiel. scripts/release-check.sh prüft .env, Image, Sicherung und Healthcheck (nur lesend). Version 3.0.0, CHANGELOG.md für alle seit 2.0.0.",
+        "Gefunden und behoben beim Abgleich: docker-compose.yml reichte nur drei Variablen an den Container durch – DISCORD_*, PUBLIC_URL, SESSION_SECRET und die Grenzen aus der .env kamen im Container nie an. Die öffentliche Roadmap führte sieben Punkte offen, deren Pakete (V2-03, V2-04, V2-05, V2-15) schon fertig waren; Abschlussdaten waren pauschal 2026-11-01.",
+        "Neue Abgleich-Tests: test/planning-consistency.test.js (Version, Spielezahlen, planned.js, Backlog, VIS-Pakete, V2-Pakete ⇔ Hub-Roadmap, Verweise, .env-Variablen).",
+        "Offene Punkte: V2-08 (Tischkamera) bleibt planned; 13 Spiele haben im englischen Spielfeld noch deutsche Texte (test/ui/game-flow.spec.js, UNTRANSLATED); CLAUDE.md/AGENTS.md nennen weiterhin „die übrigen 100 VIS-Pakete sind nur geplant“, obwohl alle 107 erledigt sind – diese Anweisungsdateien wurden nicht angefasst."
       ],
       "public_roadmap_ids": [
         "v2-release-migration"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "ausstehend",
+          "result": "wird nach dem vollständigen Lauf eingetragen"
+        }
+      ],
+      "commits": [
+        "0000000"
+      ]
     },
     {
       "id": "V2-11",
@@ -1253,7 +1265,7 @@
       ]
     }
   ],
-  "updated_date": "2026-11-07",
+  "updated_date": "2026-11-08",
   "addenda": [
     {
       "file": "docs/roadmap/V2_ADDENDUM_2026-10-30.md",
@@ -1263,10 +1275,9 @@
     }
   ],
   "notes": [
-    "PR #3 und #4 werden durch gezielte direkte Commits auf main konsolidiert; Herkunft und verworfene Altstände siehe consolidation.json und CONSOLIDATION_2026-10-30.md.",
-    "Alle 18 V2-Pakete bleiben planned. Der bereits vorhandene Liquid-Glass-Hub ist die Ausgangsbasis für spätere V2-Integration, keine Freigabe oder Fertigmeldung für V2-06.",
-    "Teillieferung „Betrieb & Wartung“ (2026-11-01, siehe partial_deliveries): nur die dort genannten Teile von V2-09, V2-10 und V2-17 sind umgesetzt; alle 18 Pakete bleiben planned.",
-    "V2-00 und V2-01 wurden am 2026-11-01 ausdrücklich freigegeben und umgesetzt; alle übrigen Pakete (u. a. V2-02 Discord) bleiben planned."
+    "PR #3 und #4 wurden durch gezielte direkte Commits auf main konsolidiert; Herkunft und verworfene Altstände siehe consolidation.json und CONSOLIDATION_2026-10-30.md.",
+    "Stand 2026-11-08: 17 von 18 Paketen umgesetzt (V2-00, V2-01, V2-02, V2-03, V2-04, V2-05, V2-06, V2-07, V2-09, V2-10, V2-11, V2-12, V2-13, V2-14, V2-15, V2-16, V2-17); offen: V2-08. Jedes Paket wird nur nach ausdrücklicher Freigabe seiner ID bearbeitet (implementation_authorized bleibt false).",
+    "Teillieferung „Betrieb & Wartung“ (2026-11-01, siehe partial_deliveries) wurde durch V2-09 (Sicherheit/Datenschutz/Regression) und V2-10 (Feature-Flags, Betriebsanleitung, Release) vollständig abgelöst."
   ],
   "workflow": {
     "branch": "main",

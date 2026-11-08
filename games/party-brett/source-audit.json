@@ -24,7 +24,7 @@
     },
     {
       "path": "games/roadmap.js",
-      "sha256": "5f20fa21d83b8f98d453cd12419278f7c8fbd8abba640788cbd96e37660f21ab"
+      "sha256": "85641129255c3aca1cb105db8527852320a840fad157a360aa2ebe94ae1b3cb3"
     },
     {
       "path": "games/survival-abend/index.js",
@@ -68,7 +68,7 @@
     },
     {
       "path": "public/i18n-en.js",
-      "sha256": "b7c0f9cdc38cdc3325cb8ff4ed6294977d188fa720b4e25d719b1405f19ee5d7"
+      "sha256": "ab16e537e143e995e7dc63d88161071d04e82702cdc4edcb893c9c41e75c80b1"
     },
     {
       "path": "public/index.html",
@@ -80,7 +80,7 @@
     },
     {
       "path": "server/index.js",
-      "sha256": "c87d58b0a02b955fd169bddd871e25cc58ec6c9550eb95480c534ddce3af5f67"
+      "sha256": "dcc6ad6e3bec33af131fa305da1258b8086e698d2cd1ae988867ee58ec606c23"
     },
     {
       "path": "server/party-program.js",

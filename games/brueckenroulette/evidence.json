@@ -174,7 +174,7 @@
     },
     {
       "path": "public/game-design.js",
-      "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+      "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
     }
   ],
   "source_hash_format": "SHA-256 of UTF-8 source with LF line endings",

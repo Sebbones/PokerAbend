@@ -1,5 +1,5 @@
 # PokerAbend V2 – Gemeinsame Entwicklungsplanung
-**Status:** Paketweise Umsetzung nur nach ausdrücklicher Freigabe. Aktuelle Nachweise und Einzelstatus: `plan.json`. **18 Arbeitspakete (V2-00 bis V2-17).**
+**Status:** Paketweise Umsetzung nur nach ausdrücklicher Freigabe. Stand 8. November 2026: **17 von 18 Paketen umgesetzt**, offen ist nur V2-08 (Tischkamera, braucht eigene Freigabe). Aktuelle Nachweise und Einzelstatus: `plan.json`. **18 Arbeitspakete (V2-00 bis V2-17).**
 **GitHub-Repository:** TTLPSCWA/PokerAbend
 **Verwendbar durch:** Codex, Claude Code und andere Coding-Agenten.
 
@@ -7,6 +7,7 @@
 
 - [V2-06: Liquid Glass in den Konto-Seiten](../ui-redesign.md): Profil, Einstellungen, Bestenliste, Erfolge und Admin mit den Tokens des Hubs; keine Logikänderung.
 - [V2-09: Sicherheits- und Datenschutzdurchgang](../security-review-2026-11-08.md): Befunde und Behebungen, Datenschutzseite `/datenschutz` (DE/EN), Leck-Test über alle Spiele, Nachtlauf in 16 parallelen Teilen; offene Risiken im Bericht.
+- [V2-10: Betrieb, Feature-Flags und Release](../betrieb.md): Funktionen und Spiele über `.env` und `/admin` ein-/ausschalten, vollständige Betriebsanleitung mit Migration, `scripts/release-check.sh`, Version 3.0.0, [CHANGELOG](../../CHANGELOG.md) und Abgleich aller Planungsdateien (`test/planning-consistency.test.js`).
 - [V2-11: Gebietskampf (Risiko-inspiriert)](V2-11_GEBIETSKAMPF.md): eigene Weltkarte Meridia, serverseitige Würfelkämpfe, Kartensätze, Missionen, Bots in drei Stufen und Speicherstand mitten im Spiel.
 - [V2-12: Städtehandel](V2-12_STAEDTEHANDEL.md): eigene Insel Aurelia, serverseitiger Würfelertrag, Räuber, Spielerhandel und Bank/Häfen, Entwicklungskarten, längste Straße, Bots in drei Stufen und Speicherstand mitten im Spiel.
 - [V2-13 und V2-14: Erfolge & Presence](V2-13_V2-14_ACHIEVEMENTS_PRESENCE.md): 234 Abzeichen, qualifizierte spielbezogene Meilensteine, idempotente Bestandsauswertung und Statuswechsel mit Privatsphäre, mehreren Tabs und WebKit-Nachweisen. Alle anderen Task-Status bleiben unverändert.

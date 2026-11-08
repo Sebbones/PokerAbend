@@ -9,15 +9,15 @@ import { ROADMAP, resolvedRoadmap } from '../games/roadmap.js';
 const read = (path) => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const plan = JSON.parse(read('docs/roadmap/plan.json'));
 const inventory = JSON.parse(read('docs/roadmap/consolidation.json'));
-const DONE = ['V2-00', 'V2-01', 'V2-02', 'V2-03', 'V2-04', 'V2-05', 'V2-06', 'V2-07', 'V2-09', 'V2-11', 'V2-12', 'V2-13', 'V2-14', 'V2-15', 'V2-16', 'V2-17'];
-const V2_DONE_POINTS = ['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'v2-platform-integration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit', 'gebietskampf', 'staedtehandel', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security', 'v2-liquid-glass', 'v2-security-tests']; // ausdrücklich freigegebene und umgesetzte Pakete
+const DONE = ['V2-00', 'V2-01', 'V2-02', 'V2-03', 'V2-04', 'V2-05', 'V2-06', 'V2-07', 'V2-09', 'V2-10', 'V2-11', 'V2-12', 'V2-13', 'V2-14', 'V2-15', 'V2-16', 'V2-17'];
+const V2_DONE_POINTS = ['v2-erfolge-ausbauen', 'v2-online-verbessern', 'v2-bot-schwierigkeit', 'v2-audit', 'v2-backup-migration', 'v2-account-identity', 'v2-platform-integration', 'v2-admin-rueckblicke', 'v2-admin-bestenlisten', 'v2-admin-sicherheit', 'gebietskampf', 'staedtehandel', 'discord-1', 'discord-3', 'discord-4', 'v2-session-security', 'v2-liquid-glass', 'v2-security-tests', 'discord-5', 'v2-historical-rankings', 'v2-player-profiles', 'v2-account-achievements', 'v2-profile-preferences', 'v2-privacy', 'v2-einstellungen', 'v2-release-migration']; // ausdrücklich freigegebene und umgesetzte Pakete
 
 test('V2-Plan: 18 vollständige, eindeutig geplante Pakete mit gültigen Abhängigkeiten', () => {
   const ids = Array.from({ length: 18 }, (_, i) => `V2-${String(i).padStart(2, '0')}`);
   assert.deepEqual(plan.tasks.map(t => t.id), ids);
   assert.equal(plan.implementation_authorized, false);
-  assert.equal(plan.documentation_only, true);
-  assert.equal(plan.status, 'planned');
+  assert.equal(plan.documentation_only, false, 'es gibt umgesetzte Pakete – die Planung ist nicht mehr nur Dokumentation');
+  assert.equal(plan.status, plan.tasks.every((t) => t.status === 'done') ? 'done' : 'in_progress', 'Gesamtstatus folgt den Paketen');
   assert.equal(plan.baseline.registered_games, 46, 'Historische Konsolidierungsbasis bleibt erhalten');
   assert.ok(Object.keys(GAMES).length >= plan.baseline.registered_games, 'Spätere Spiele dürfen den Katalog erweitern');
   const visited = new Set(), stack = new Set();

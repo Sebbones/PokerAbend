@@ -76,6 +76,8 @@ Das [UI-Redesign-Protokoll](docs/ui-redesign.md) beschreibt Gestaltung, tatsäch
 
 ## Online stellen
 
+> **Vollständige Betriebsanleitung: [docs/betrieb.md](docs/betrieb.md)** – Server von null einrichten, Update vom alten Stand mit Migration, Sicherung und Wiederherstellung, Fehlersuche, Hinweise für Traefik und alle `.env`-Einstellungen mit Beispiel. Was sich seit Version 2.0.0 geändert hat, steht in der [CHANGELOG.md](CHANGELOG.md). Vor dem Aufspielen prüft `scripts/release-check.sh` die Einstellungen, das Image und die Sicherung (nur lesend).
+
 //1. **Image bauen und pushen**  
 
    ```bash
@@ -492,7 +494,7 @@ Bei **SIGTERM** (`docker stop`) und **SIGINT** wird ebenfalls sofort alles gespe
 
 ### Version und „Was ist neu“
 
-Die Version steht in `package.json` (jetzt **2.0.0**), der Commit-Hash kommt als Build-Argument ins Image: Der Workflow übergibt `GIT_COMMIT` automatisch, lokal `docker build --build-arg GIT_COMMIT=$(git rev-parse HEAD) .`. Beides steht unter **Ich** und auf `/health` (`{"ok":true,"version":"2.0.0","commit":"abc1234","uptime":…}`).
+Die Version steht in `package.json` (jetzt **3.0.0**), der Commit-Hash kommt als Build-Argument ins Image: Der Workflow übergibt `GIT_COMMIT` automatisch, lokal `docker build --build-arg GIT_COMMIT=$(git rev-parse HEAD) .`. Beides steht unter **Ich** und auf `/health` (`{"ok":true,"version":"2.0.0","commit":"abc1234","uptime":…}`).
 
 **Was ist neu** zeigt die neuesten erledigten Einträge aus `games/roadmap.js` – automatisch, sobald dort etwas auf erledigt gesetzt wird (mit Datum). Jeder Browser sieht den Hinweis **einmal pro neuer Version** (gemerkt in `poker:seenVersion`; ein ganz neuer Browser bekommt ihn nicht), außerdem jederzeit über **Ich → Was ist neu?**.
 
@@ -501,6 +503,7 @@ Die Version steht in `package.json` (jetzt **2.0.0**), der Commit-Hash kommt als
 Zugang nur über die eigene Umgebungsvariable **`ADMIN_PASSWORD`** (in der `.env`). Sie hat nichts mit dem Gruppenpasswort oder `TICKET_ADMIN_PASSWORD` zu tun; **ohne `ADMIN_PASSWORD` gibt es `/admin` nicht** (404). Die Seite liegt zusätzlich hinter der normalen Seitenanmeldung. Eigener signierter Cookie (`pa_admin`, `HttpOnly`, `SameSite=Strict`, nur für `/admin`, 8 Stunden), nach 8 Fehlversuchen 15 Minuten gesperrt, alle Änderungen verlangen zusätzlich Herkunft und Anfrage-Header der Seite.
 
 - **Anzeigen:** offene Räume (Code, Spiel, Spieler mit Namen, Laufzeit, letzte Aktivität, Rundenstatus), Verbindungen und Spieler online, Laufzeit, Speicher, CPU, Größe der Datendateien, Fehler aus dem Browser (gruppiert), Admin-Protokoll.
+- **Funktionen & Spiele (V2-10):** Discord-Anmeldung, Ranked-Wertung, Kamera (für später, Standard aus) und jedes einzelne Spiel sofort ein- oder ausschalten; die Grundeinstellung steht in der `.env` (`FEATURE_DISCORD`, `FEATURE_RANKED`, `FEATURE_CAMERA`, `DISABLED_GAMES`), die Admin-Einstellung gewinnt, „Zurücksetzen“ führt auf die `.env` zurück. Ausschalten löscht nie Daten, laufende Tische spielen weiter. Einzelheiten: [docs/betrieb.md](docs/betrieb.md#4-funktionen-und-spiele-ein--und-ausschalten).
 - **Aktionen** (jeweils mit Bestätigungsdialog): hängenden Raum schließen (alle Spieler landen mit Hinweis auf der Startseite), Update ankündigen oder zurücknehmen; Link zur Tickets-Verwaltung.
 - **Admin-Protokoll:** `DATA_DIR/admin-log.json` (letzte 500 Einträge: Anmeldung, fehlgeschlagene Anmeldung, geschlossene Räume, Update-Ankündigung und -Beenden). Die Datei gehört ins Daten-Backup. Eine beschädigte Datei bleibt unverändert; das Protokoll läuft dann nur im Speicher.
 

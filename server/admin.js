@@ -14,7 +14,7 @@ const HOURS = 8;
 const dir = join(dirname(fileURLToPath(import.meta.url)), 'admin');
 const equal = (a, b) => { const x = Buffer.from(String(a)), y = Buffer.from(String(b)); return x.length === y.length && timingSafeEqual(x, y); };
 
-export function createAdmin({ password, secret, dataDir, secure = () => false, trustProxy = false, log, errors, system, version, rooms, closeRoom, online, announce, cancelUpdate, claims = () => [], undoClaim = () => null, tools = null, tickets = null }) {
+export function createAdmin({ password, secret, dataDir, secure = () => false, trustProxy = false, log, errors, system, version, rooms, closeRoom, online, announce, cancelUpdate, claims = () => [], undoClaim = () => null, tools = null, tickets = null, features = null }) {
   const router = express.Router();
   const pwHash = createHash('sha256').update('admin:' + password).digest('hex');
   const sign = (payload) => createHmac('sha256', secret).update(`admin:${pwHash}:${payload}`).digest('base64url');
@@ -114,6 +114,22 @@ export function createAdmin({ password, secret, dataDir, secure = () => false, t
     api.post('/tickets/:id/comments', guard((req) => { const t = tickets.comment(req.params.id, req.body.text); log.add('Ticket kommentiert', `#${t.id} ${t.title}`); return { ticket: t }; }));
     api.delete('/tickets/:id/comments/:comment', guard((req) => { const t = tickets.removeComment(req.params.id, req.params.comment); log.add('Ticket-Kommentar gelöscht', `#${t.id} Kommentar ${req.params.comment}`); return { ticket: t }; }));
     api.delete('/tickets/:id', guard((req) => { const before = tickets.detail(req.params.id); tickets.remove(req.params.id); log.add('Ticket gelöscht', `#${before.id} ${before.title}`); return { ok: true }; }));
+  }
+  // ---- V2-10: Funktionen und Spiele ein-/ausschalten (gilt sofort; „zurücksetzen“ führt auf .env bzw. Standard zurück)
+  if (features) {
+    api.get('/features', guard(() => features.describe()));
+    api.post('/features/:name', guard((req) => {
+      const value = req.body.value === null ? null : req.body.value;
+      const r = features.set(req.params.name, value);
+      log.add(value === null ? 'Funktion zurückgesetzt' : r.value ? 'Funktion eingeschaltet' : 'Funktion ausgeschaltet', `${req.params.name} (${r.source})`);
+      return { ok: true, ...r, ...features.describe() };
+    }));
+    api.post('/features/games/:id', guard((req) => {
+      const value = req.body.value === null ? null : req.body.value;
+      const r = features.setGame(req.params.id, value);
+      log.add(value === null ? 'Spiel zurückgesetzt' : r.enabled ? 'Spiel eingeschaltet' : 'Spiel ausgeschaltet', `${req.params.id} (${r.source})`);
+      return { ok: true, ...r, ...features.describe() };
+    }));
   }
   api.get('/log', (req, res) => res.json({ entries: log.recent(Math.max(1, Math.min(500, Number(req.query.limit) || 200))) }));
   api.post('/update', (req, res) => {

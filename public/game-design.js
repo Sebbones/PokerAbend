@@ -47,7 +47,7 @@ const GameDesign = (() => {
   const rankedChip = () => {
     const r = typeof lastState === 'object' && lastState?.ranked;
     if (!r || lastState.phase === 'over') return '';
-    const why = ({ bots: I18n.t('Computer-Mitspieler dabei'), gast: I18n.t('Gäste ohne Discord-Verknüpfung dabei'), 'zu-wenige': I18n.t('zu wenige registrierte Menschen'), teilnehmer: I18n.t('Teilnehmerkreis änderte sich') })[r.reason] || '';
+    const why = ({ bots: I18n.t('Computer-Mitspieler dabei'), gast: I18n.t('Gäste ohne Discord-Verknüpfung dabei'), 'zu-wenige': I18n.t('zu wenige registrierte Menschen'), teilnehmer: I18n.t('Teilnehmerkreis änderte sich'), aus: I18n.t('Ranked-Wertung ausgeschaltet') })[r.reason] || '';
     return r.ranked ? I18n.html`<p class="rank-chip on" data-ranked="on">${I18n.t('Gewertet')} · ${I18n.t('zählt für die Bestenliste')}</p>` : I18n.html`<p class="rank-chip off" data-ranked="off">${I18n.t('Nicht gewertet')}${why ? ` · ${why}` : ''} · ${I18n.t('zählt nur für die Statistik')}</p>`;
   };
   const backdrop = (id) => `<div class="scene-backdrop" aria-hidden="true">${art(id)}</div>${rankedChip()}`;

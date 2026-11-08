@@ -11,6 +11,26 @@ services:
       SITE_PASSWORD: ${SITE_PASSWORD:-}
       TICKET_ADMIN_PASSWORD: ${TICKET_ADMIN_PASSWORD:-}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}   # leer = Admin-Seite /admin aus
+      # Alle weiteren Einstellungen kommen aus der .env (leer = Standard, siehe .env.example und docs/betrieb.md).
+      # Ohne diese Durchreichung käme z. B. DISCORD_CLIENT_SECRET aus der .env nie im Container an.
+      SESSION_SECRET: ${SESSION_SECRET:-}
+      PUBLIC_URL: ${PUBLIC_URL:-}
+      DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID:-}
+      DISCORD_CLIENT_SECRET: ${DISCORD_CLIENT_SECRET:-}
+      DISCORD_GUILD_ID: ${DISCORD_GUILD_ID:-}
+      DISCORD_ROLE_ID: ${DISCORD_ROLE_ID:-}
+      FEATURE_DISCORD: ${FEATURE_DISCORD:-}
+      FEATURE_RANKED: ${FEATURE_RANKED:-}
+      FEATURE_CAMERA: ${FEATURE_CAMERA:-}
+      DISABLED_GAMES: ${DISABLED_GAMES:-}
+      MAX_ROOMS: ${MAX_ROOMS:-}
+      CREATE_LIMIT: ${CREATE_LIMIT:-}
+      API_LIMIT: ${API_LIMIT:-}
+      NEW_ACCOUNT_LIMIT: ${NEW_ACCOUNT_LIMIT:-}
+      MAX_CONN_PER_IP: ${MAX_CONN_PER_IP:-}
+      PLAYER_TIMEOUT_MIN: ${PLAYER_TIMEOUT_MIN:-}
+      UPDATE_ANNOUNCE_MIN: ${UPDATE_ANNOUNCE_MIN:-}
+      UPDATE_DRAIN_MAX_MIN: ${UPDATE_DRAIN_MAX_MIN:-}
     volumes:
       - poker-data:/app/data
 

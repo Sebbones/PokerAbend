@@ -168,3 +168,25 @@ test('Sitzungsdatei: Token nur als Hash, Provider-Tokens und Secret nie im Klart
   assert.ok(!/RT-[0-9a-f]{12}|AT-[0-9a-f]{12}/.test(file));
   assert.ok(!file.includes(SECRET));
 });
+
+test('Feature-Flag „Discord“ (V2-10): aus → kein Knopf, Routen 404, Discord-Sitzungen geben keinen Zugang; an → alles wieder wie vorher', async () => {
+  const member = browser(); await member.discord({ user: MEMBER });
+  assert.ok(await member.inside());
+  const withPassword = await browser().password();
+  assert.match(await (await browser().get('/login')).text(), /Mit Discord anmelden/);
+  assert.equal((await withPassword.post('/admin/api/login', { password: 'adminpw' })).status, 200);
+  const flag = async (value) => (await withPassword.post('/admin/api/features/discord', { value })).json();
+  assert.equal((await flag(false)).value, false);
+  try {
+    assert.ok(!/Mit Discord anmelden/.test(await (await browser().get('/login')).text()), 'kein Knopf');
+    assert.equal((await browser().get('/auth/discord/login')).status, 404);
+    assert.equal((await browser().get('/auth/discord/callback?code=x&state=y')).status, 404);
+    assert.ok(!(await member.inside()), 'die Discord-Sitzung gibt keinen Zugang mehr');
+    assert.ok(await withPassword.inside(), 'das Gruppenpasswort bleibt unberührt');
+    const me = await (await withPassword.get('/me')).json();
+    assert.deepEqual(me.discord, { enabled: false, login: false });
+    assert.equal((await (await withPassword.get('/api/identity')).json()).discord, false);
+  } finally { assert.equal((await flag(null)).source, 'standard'); }
+  assert.ok(await member.inside(), 'wieder an: dieselbe Sitzung gilt wieder (nichts wurde gelöscht)');
+  assert.deepEqual((await (await withPassword.get('/me')).json()).discord, { enabled: true, login: true });
+});

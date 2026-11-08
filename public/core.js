@@ -536,7 +536,7 @@ async function fetchLeaderboard(game, period = 'all', view = 'ranked') {
 }
 // Warum eine Runde nicht gewertet wird (Gründe aus server/ranked.js)
 function rankedReasonText(reason) {
-  return ({ bots: I18n.t('mit Computer-Mitspielern'), gast: I18n.t('mit Gästen ohne Discord-Verknüpfung'), 'zu-wenige': I18n.t('mit zu wenigen registrierten Menschen'), teilnehmer: I18n.t('Teilnehmerkreis änderte sich'), unbekannt: I18n.t('ohne gesicherte Wertung') })[reason] || I18n.t('nicht gewertet');
+  return ({ bots: I18n.t('mit Computer-Mitspielern'), gast: I18n.t('mit Gästen ohne Discord-Verknüpfung'), 'zu-wenige': I18n.t('mit zu wenigen registrierten Menschen'), teilnehmer: I18n.t('Teilnehmerkreis änderte sich'), unbekannt: I18n.t('ohne gesicherte Wertung'), aus: I18n.t('bei ausgeschalteter Ranked-Wertung') })[reason] || I18n.t('nicht gewertet');
 }
 function leaderboardInner(r, pre = 'lb') {
   const ranked = r.view === 'ranked';

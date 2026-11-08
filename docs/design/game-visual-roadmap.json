@@ -10843,7 +10843,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -10997,7 +10997,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       }
     },
@@ -11838,7 +11838,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -11990,7 +11990,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       }
     },
@@ -12367,7 +12367,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -12521,7 +12521,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       }
     },
@@ -12576,7 +12576,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit Server-Schiedsrichter, persönlicher Ansicht, DE/EN-Regeln und Touch-/Tastatursteuerung.",
@@ -12728,7 +12728,7 @@
         "commit": "2831ec64e3887cf71f0e91f57bea1571bcdfd31d",
         "record": {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       }
     },
@@ -12954,7 +12954,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene Grabungsstätte: 12 × 8 Erdschollen, aufgedeckte Felder mit Schatz-, Bomben- und Zahlenmarken (◆ und ● zusätzlich zur Farbe), Grabring, Benommen-Sterne, Touch-Stick und Graben-Knopf; DE/EN.",
@@ -14139,7 +14139,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene Brücke über dem Fluss: Planken als Buttons mit Namen und Form, Wahl privat bis zur Auflösung, gebrochene Planke mit Schraffur und Text zusätzlich zur Farbe; DE/EN.",
@@ -15280,7 +15280,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
@@ -15487,7 +15487,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
@@ -15694,7 +15694,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigene erste Spielwelt mit serverseitiger Wertung, DE/EN-Regeln, persönlicher Ansicht und Touch-/Tastaturaktionen.",
@@ -15905,7 +15905,7 @@
         },
         {
           "path": "public/game-design.js",
-          "sha256": "25e8ae0f5c2fe1aaf0795f5449712476ca217465132a66a5fbf2bff17a0c4a44"
+          "sha256": "ff22a3c1d56ee34a60361407d46b61ac3357daa283535f81067b2372e3768eb7"
         }
       ],
       "current_design": "Eigener Kontrollraum: Überhitzungsuhr, Reglerziffern A–D, private Hinweiskarten, öffentliche Codevorschläge und Auflösung mit allen Hinweisen; DE/EN.",

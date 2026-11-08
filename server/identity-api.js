@@ -32,7 +32,7 @@ export function createIdentityAPI({ identity, accounts, leaderboard, secure = ()
 
   router.get('/', call((req, res) => {
     const a = mine(req);
-    res.json({ gameId: a.gameId, name: a.name, claimed: claimed(a.id).map((c) => c.name), legacyAvailable: leaderboard.legacyNames().length, linkMinutes: LINK_CODE_MINUTES, discord: !!discordEnabled });
+    res.json({ gameId: a.gameId, name: a.name, claimed: claimed(a.id).map((c) => c.name), legacyAvailable: leaderboard.legacyNames().length, linkMinutes: LINK_CODE_MINUTES, discord: !!(typeof discordEnabled === 'function' ? discordEnabled() : discordEnabled) });
   }));
 
   router.post('/link/create', call((req, res) => {
