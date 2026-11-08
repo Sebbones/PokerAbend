@@ -685,7 +685,7 @@
         "Branch-/PR- und Testergebnisse dokumentiert"
       ],
       "status": "done",
-      "implementation_commit": "0000000",
+      "implementation_commit": "b6a627eddc73071d9ef5ed5c5c3cf561f83de087",
       "completed_at": "2026-11-08",
       "notes": [
         "Ausdrückliche Freigabe 2026-11-08 (V2-10, nach Abschluss von Codex P1). Keine Produktionsbereitstellung: Es wurde nichts auf dem Server aufgespielt; die Anleitung beschreibt den Weg, der Release-Check prüft nur.",
@@ -700,12 +700,30 @@
       ],
       "test_results": [
         {
-          "command": "ausstehend",
-          "result": "wird nach dem vollständigen Lauf eingetragen"
+          "command": "npm run test:all (Teil Node-Tests, mit Coverage) – sauberer Worktree auf origin/main 74f8524 plus V2-10",
+          "result": "1954 Tests: 1947 bestanden, 4 fehlgeschlagen, 3 übersprungen, 2 min 53 s; Coverage server/ und games/ 97,68 % Zeilen. Fehlschläge: restore-test.sh erwartete fest „Version 2.0.0“ (echte Folge der Versionserhöhung, behoben in c799c9c, danach 3/3 grün); party-brett, survival-abend und „Survival: long-game live snapshot“ liefen im Gesamtlauf in eine Zeitüberschreitung unter Last und bestehen einzeln (30/30 in test/party-features*.test.js).",
+          "passed": 1947,
+          "failed": 4
+        },
+        {
+          "command": "npm run test:all (Teil Playwright, Desktop und Handy, alle 962 Prüfungen)",
+          "result": "924 bestanden, 14 fehlgeschlagen, 20 übersprungen, 150 min 56 s. Davon durch V2-10 behoben/geklärt: home-reference und roadmap-presence (veraltete Specs, repariert in 9702e3f, 16/16 grün); schaetzmeister und praesident (Artefakte durch parallele eigene Läufe gelöscht, wiederholt grün); pfeilfieber, broeckelboden, backlog09 Schubsarena mobil (Zeitüberschreitungen unter Last, wiederholt grün). Weiterhin rot und schon vor V2-10 rot (auch im Lauf davor ohne diese Änderungen): poker und omaha in visual-p1 (Desktop und Handy), sortierstation in visual-p1 (Desktop), Planung (evening-plans) und Ticket-Verwaltung (tickets) auf dem Handy (Tab-Leiste verdeckt Knöpfe, schon im V2-17/V2-07-Nachweis vermerkt).",
+          "passed": 924,
+          "failed": 14,
+          "skipped": 20,
+          "duration_seconds": 9056
+        },
+        {
+          "command": "node --test test/features.test.js test/release-check.test.js test/planning-consistency.test.js test/discord-inprocess.test.js; playwright test test/ui/features-admin.spec.js",
+          "result": "Neue Prüfungen zu V2-10 grün: Feature-Flags (10), Release-Check (7), Planungsabgleich (10), Discord-Flag im selben Prozess (7), Admin-Bereich „Funktionen & Spiele“ im Browser auf Desktop und Handy (2).",
+          "passed": 36,
+          "failed": 0
         }
       ],
       "commits": [
-        "0000000"
+        "b6a627eddc73071d9ef5ed5c5c3cf561f83de087",
+        "c799c9c5ee5b147541b11baa22d9ef17a3db5830",
+        "9702e3f91177bb43a47cc48953c1cfbdc5dcad5d"
       ]
     },
     {
