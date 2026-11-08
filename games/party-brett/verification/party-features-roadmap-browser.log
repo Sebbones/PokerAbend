@@ -1,0 +1,7 @@
+
+Running 2 tests using 1 worker
+
+  ok 1 [desktop] › test\ui\party-features-roadmap.spec.js:3:1 › Party features: completed roadmap, authored DE/EN descriptions and no standalone game host buttons (5.4s)
+  ok 2 [mobil] › test\ui\party-features-roadmap.spec.js:3:1 › Party features: completed roadmap, authored DE/EN descriptions and no standalone game host buttons (5.2s)
+
+  2 passed (15.3s)

@@ -5967,11 +5967,133 @@
         "chaos-modus",
         "survival-abend"
       ],
-      "status": "implemented",
-      "implementation_commit": null,
-      "test_results": [],
+      "status": "verified",
+      "implementation_commit": "78baf50d9c97506c89adcd1580ebe9fde749afb0",
+      "test_results": [
+        {
+          "id": "baseline-node",
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js",
+          "total": 1749,
+          "passed": 1743,
+          "failed": 0,
+          "skipped": 6,
+          "duration_ms": 268884.3942,
+          "scope": "Isolated original main 7bb43951bedc3426701b9c695f096da20935110f; no concurrent workspace changes."
+        },
+        {
+          "id": "full-node",
+          "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js",
+          "total": 1778,
+          "passed": 1772,
+          "failed": 0,
+          "skipped": 6,
+          "duration_ms": 383717.506,
+          "scope": "Same isolated tracked baseline plus this package only; before final authored English roadmap strings and corresponding focused test."
+        },
+        {
+          "id": "post-english-node",
+          "command": "node --test test/party-features.test.js test/backlog07-proof.test.js test/backlog09-proof.test.js test/backlog12-proof.test.js test/v2-13-14-proof.test.js",
+          "passed": 31,
+          "failed": 0,
+          "skipped": 0,
+          "scope": "Final English roadmap strings and all touched historical shared-source proofs."
+        },
+        {
+          "id": "browser-regression",
+          "command": "playwright test test/ui/party-features.spec.js test/ui/party-program.spec.js test/ui/evening-mode.spec.js",
+          "passed": 16,
+          "failed": 0,
+          "projects": [
+            "desktop",
+            "mobil"
+          ],
+          "scope": "New feature scenarios plus existing playlists, teams and Evening Mode."
+        },
+        {
+          "id": "browser-after-review",
+          "command": "playwright test test/ui/party-features.spec.js",
+          "passed": 8,
+          "failed": 0,
+          "projects": [
+            "desktop",
+            "mobil"
+          ],
+          "scope": "Feature browser repeat after final lifecycle and restart corrections."
+        },
+        {
+          "id": "browser-roadmap",
+          "command": "playwright test test/ui/party-features-roadmap.spec.js",
+          "passed": 2,
+          "failed": 0,
+          "projects": [
+            "desktop",
+            "mobil"
+          ],
+          "scope": "Final authored DE/EN titles, descriptions and non-game registration."
+        },
+        {
+          "id": "completion-proof",
+          "command": "node --test test/party-features-proof.test.js test/backlog07-proof.test.js test/backlog09-proof.test.js test/backlog12-proof.test.js test/v2-13-14-proof.test.js test/game-visual-roadmap.test.js test/roadmap.test.js",
+          "passed": 21,
+          "failed": 0,
+          "skipped": 0,
+          "scope": "Verified planning status, core commit, 48 original screenshots, final source hashes and retained successful logs."
+        }
+      ],
       "report": "games/party-brett/README.md",
-      "note": "Explicit feature-only authorization. Separate from the completed 41-game denominator. No V2 changes."
+      "note": "Explicit feature-only authorization. Separate from the completed 41-game denominator. No V2 changes.",
+      "completed_at": "2026-11-08",
+      "evidence": "games/party-brett/evidence.json",
+      "screenshots": [
+        "test/fixtures/party-features/screenshots/desktop/board-english-rules.png",
+        "test/fixtures/party-features/screenshots/desktop/board-layout-1440x900.png",
+        "test/fixtures/party-features/screenshots/desktop/board-layout-1920x1080.png",
+        "test/fixtures/party-features/screenshots/desktop/board-layout-360x800.png",
+        "test/fixtures/party-features/screenshots/desktop/board-layout-390x844.png",
+        "test/fixtures/party-features/screenshots/desktop/board-layout-768x1024.png",
+        "test/fixtures/party-features/screenshots/desktop/board-layout-900x450.png",
+        "test/fixtures/party-features/screenshots/desktop/board-lobby.png",
+        "test/fixtures/party-features/screenshots/desktop/board-reconnect.png",
+        "test/fixtures/party-features/screenshots/desktop/board-result.png",
+        "test/fixtures/party-features/screenshots/desktop/chaos-english-rules.png",
+        "test/fixtures/party-features/screenshots/desktop/chaos-program-preview.png",
+        "test/fixtures/party-features/screenshots/desktop/chaos-rules.png",
+        "test/fixtures/party-features/screenshots/desktop/modifier-lobby.png",
+        "test/fixtures/party-features/screenshots/desktop/modifier-result.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-english-rules.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-layout-1440x900.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-layout-1920x1080.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-layout-360x800.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-layout-390x844.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-layout-768x1024.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-layout-900x450.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-lobby.png",
+        "test/fixtures/party-features/screenshots/desktop/survival-result.png",
+        "test/fixtures/party-features/screenshots/mobil/board-english-rules.png",
+        "test/fixtures/party-features/screenshots/mobil/board-layout-1440x900.png",
+        "test/fixtures/party-features/screenshots/mobil/board-layout-1920x1080.png",
+        "test/fixtures/party-features/screenshots/mobil/board-layout-360x800.png",
+        "test/fixtures/party-features/screenshots/mobil/board-layout-390x844.png",
+        "test/fixtures/party-features/screenshots/mobil/board-layout-768x1024.png",
+        "test/fixtures/party-features/screenshots/mobil/board-layout-900x450.png",
+        "test/fixtures/party-features/screenshots/mobil/board-lobby.png",
+        "test/fixtures/party-features/screenshots/mobil/board-reconnect.png",
+        "test/fixtures/party-features/screenshots/mobil/board-result.png",
+        "test/fixtures/party-features/screenshots/mobil/chaos-english-rules.png",
+        "test/fixtures/party-features/screenshots/mobil/chaos-program-preview.png",
+        "test/fixtures/party-features/screenshots/mobil/chaos-rules.png",
+        "test/fixtures/party-features/screenshots/mobil/modifier-lobby.png",
+        "test/fixtures/party-features/screenshots/mobil/modifier-result.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-english-rules.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-layout-1440x900.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-layout-1920x1080.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-layout-360x800.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-layout-390x844.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-layout-768x1024.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-layout-900x450.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-lobby.png",
+        "test/fixtures/party-features/screenshots/mobil/survival-result.png"
+      ]
     }
   ]
 }

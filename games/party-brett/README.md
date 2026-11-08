@@ -24,4 +24,28 @@ Die neuen Formate benutzen ihre eigene persistente Brett-/Lebenswertung am Tisch
 
 VIS-108 ist ein **Feature-Paket**, getrennt von den unveränderten 107 Spiel-VIS-Paketen. Laternenpfad: eigene SVG-Inseln, Messingpfad und helle nummerierte Brettfelder. Nachtwache: eigener Leuchtturm und gut lesbare Lebenslichter. Zusatzregeln: eigene Regelwerkstatt. Sämtliche SVGs und CSS sind für dieses Projekt selbst erstellt, ohne Fremdbilder, Markenzeichen oder externe Downloads. DE/EN, vorhandene Regeln-Seitenleiste plus eigene aufklappbare Regeln, Tastaturbedienung, mindestens 44-Pixel-Aktionen, reduzierte Bewegung und sechs Größen werden geprüft.
 
-Testergebnisse, endgültiger Implementierungscommit und Bildnachweise werden nach den echten Läufen in `evidence.json` ergänzt. Fremde Änderungen im Arbeitsverzeichnis werden nicht übernommen.
+## Abschluss und Nachweise
+
+Implementierungscommit: `78baf50d9c97506c89adcd1580ebe9fde749afb0` (`main`). Maschinenlesbare Nachweise: [evidence.json](evidence.json), aktuelle Quellcode-Hashes und unveränderte historische Integrationen: [source-audit.json](source-audit.json). **PARTY-EXTRAS-01 ist verified, VIS-108 ist done.** Die 41 bestehenden Backlog-Spiele und 107 Spiel-VIS-Pakete bleiben unverändert gezählt; dieses Paket enthält vier Funktionen, keine zusätzlichen Spielregistrierungen.
+
+| Prüfung | Tatsächliches Ergebnis |
+| --- | --- |
+| Vollständige unveränderte Baseline `7bb4395` | 1.749 Tests: 1.743 bestanden, 0 fehlgeschlagen, 6 übersprungen |
+| Vollständiger Vergleich mit dem Feature-Code, isoliert von paralleler Arbeit | 1.778 Tests: 1.772 bestanden, 0 fehlgeschlagen, 6 übersprungen |
+| Abschließende EN-Roadmap-Texte und betroffene Quellcode-Nachweise | 31 Node-Prüfungen bestanden |
+| Browser-Regression: neue Funktionen, bisherige Playlists, Teams und Abend-Modus | 16 Desktop-/Mobil-Prüfungen bestanden |
+| Browser-Wiederholung nach Lebenszyklus-/Reconnect-Prüfung | 8 Desktop-/Mobil-Prüfungen bestanden |
+| Abschließende DE/EN-Roadmap und keine eigenen Spielknöpfe für Funktionen | 2 Desktop-/Mobil-Prüfungen bestanden |
+| Abschlussnachweise, unveränderte Bilder, Quellcode-Hashes, Planung und bestehende Nachweise | 21 Node-Prüfungen bestanden |
+
+Der vollständige Vergleichslauf fand **vor** der abschließenden EN-Textpflege der neuen Roadmap-Punkte statt; danach liefen die 31 passenden Node- und zwei Browserprüfungen. Er wird nicht als ein weiterer vollständiger Lauf nach dieser Textänderung ausgegeben. Die Windows-Gesamtläufe verwendeten Node 24.22.0 mit `--test --test-force-exit --test-concurrency=2`; die sechs übersprungenen Bestandsprüfungen wurden als übersprungen beibehalten. Keine Assertion wurde durch `skip` deaktiviert. Der vollständige Lauf enthält die vorherigen Spielsimulationen; zusätzlich endeten 180 Partien der bestehenden Bots mit allen neuen Regeltypen ohne Absturz.
+
+Die ersten Vergleichsläufe waren nicht grün: Die Zwischenanzeige des Bretts fehlte, das Ziel war zunächst versehentlich ein Sturmfeld, alte Tests erwarteten noch die vier geplanten Funktionen und die alte Optionsliste. Ein neuer Mehrbrowser-Test prüfte den zweiten Socket vor dessen Zustellung. Diese Punkte sind korrigiert und nachgeprüft. Historische Screenshot-Hashes bleiben unverändert: Nur betroffene Tests lesen die fünf archivierten Integrationsquellen der echten Baseline und prüfen **zusätzlich** die heutigen Integrationsdateien gegen deren eigene Hashes. Das betrifft auch die Server-Einbindung in den bisherigen V2-13/V2-14-Nachweisen; die V2-Aufgaben und deren Implementierungen wurden nicht geändert.
+
+Die Bestandsläufe fanden in einer archivierten Kopie des tatsächlichen `main` plus ausschließlich den eigenen geänderten Dateien statt. Parallele Änderungen an Abdeckung, CI, Paketdateien, allgemeiner README und anderen Tests wurden weder mitgetestet noch committed. Keine `.env` wurde gelesen oder übernommen; kein Produktivserver wurde aktualisiert.
+
+48 unveränderte permanente Bilder liegen unter [test/fixtures/party-features/screenshots](../../test/fixtures/party-features/screenshots/): Lobby, Ergebnis, Wiederverbindung, DE/EN-Regeln, Chaos-Vorschau und sechs Layoutgrößen für Brett und Survival, jeweils Desktop und Mobil. Die Bilder wurden tatsächlich betrachtet; Brettfelder, Lebensanzeigen und die Regelwerkstatt bleiben bei 360 Pixeln Breite erreichbar und ohne horizontales Überlaufen. Die Funktionen hatten vorher keine eigene Oberfläche; deshalb werden keine erfundenen Vorher-/Nachher-Paare behauptet. Vollständige erfolgreiche Laufprotokolle: [verification](verification/).
+
+Beispiele: [Brett auf 360 × 800](../../test/fixtures/party-features/screenshots/mobil/board-layout-360x800.png), [Survival auf 390 × 844](../../test/fixtures/party-features/screenshots/mobil/survival-layout-390x844.png), [englische Chaos-Regeln](../../test/fixtures/party-features/screenshots/mobil/chaos-english-rules.png).
+
+Keine weiteren Implementierungspakete begonnen. Bewusste Grenzen bleiben die oben aufgeführten drei unterstützten Modifier-Spiele, die offen angekündigte Survival-Sicherheitsgrenze und die fehlende separate Archivansicht für Brett-/Lebensstände. Der Auftrag ist damit abgeschlossen; weitere Spiele und V2-Pakete benötigen eine neue Freigabe.

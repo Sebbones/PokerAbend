@@ -1,0 +1,29 @@
+✔ BACKLOG-07 proof: exactly four verified games, real feature commit and original 41-item denominator (8.4791ms)
+✔ BACKLOG-07 proof: original desktop/touch screenshots, six sizes and source hashes support only these four worlds (165.2771ms)
+✔ BACKLOG-09 proof: exactly four verified realtime games, original 41-item denominator and real implementation/follow-up commits (13.9287ms)
+✔ BACKLOG-09 proof: original screenshot bytes, six sizes and exact game/shared source hashes support only these four worlds (165.8544ms)
+✔ BACKLOG-12 proof: the last three games are verified, all 41 backlog entries are done and no planned game remains (21.2057ms)
+✔ BACKLOG-12 proof: original screenshot bytes, six sizes, final source hashes and three visual packages marked done only with evidence (251.9675ms)
+✔ Visual roadmap: every registered and unimplemented game has exactly one independent package (2.9447ms)
+✔ Visual roadmap: individual concepts and real frontend files are complete, including Omaha alias and shared renderers (129.4285ms)
+✔ Visual roadmap: completion requires real evidence; planned packages contain no invented completion data (474.8744ms)
+✔ Visual roadmap: development order covers all open playable packages and respects dependencies; backlog stays separate (0.5753ms)
+✔ Visual roadmap: human instructions cover every package and both agents point to the authoritative JSON (9.72ms)
+✔ Visual roadmap: one compact public section, verified visual packages and authored English metadata (5.9066ms)
+✔ Party feature evidence: four verified features, original 41-game denominator, real implementation commit and no dummy games (7.1678ms)
+✔ VIS-108: independent feature package, 107 game packages unchanged, original desktop/mobile images at six sizes (176.0651ms)
+✔ Party feature sources: current tested integration plus archived original sources, without Git or rewriting historic evidence (22.93ms)
+✔ Party verification logs: full baseline, full comparison, browser regression and honest post-translation checks are retained (4.8407ms)
+✔ Roadmap: gültige Stufen und Arten, eindeutige IDs und Abschlussdaten (2.1423ms)
+✔ Jeder Backlog-Eintrag kommt genau einmal vor, mit automatisch übernommenen Informationen (1.2935ms)
+✔ Öffentliche Roadmap enthält die geplanten V2-Wünsche ohne Doppelungen oder falsche Fertigmeldungen (0.6219ms)
+✔ V2-13/V2-14 proof: only these two task records changed, actual feature commit and passing evidence (12.6862ms)
+✔ V2-13/V2-14 proof: original desktop, mobile and WebKit images and exact LF source hashes (59.1165ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1331.2336

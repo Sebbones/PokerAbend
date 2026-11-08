@@ -1,0 +1,39 @@
+✔ BACKLOG-07 proof: exactly four verified games, real feature commit and original 41-item denominator (45.9658ms)
+✔ BACKLOG-07 proof: original desktop/touch screenshots, six sizes and source hashes support only these four worlds (136.4097ms)
+✔ BACKLOG-09 proof: exactly four verified realtime games, original 41-item denominator and real implementation/follow-up commits (31.6649ms)
+✔ BACKLOG-09 proof: original screenshot bytes, six sizes and exact game/shared source hashes support only these four worlds (184.6789ms)
+✔ BACKLOG-12 proof: the last three games are verified, all 41 backlog entries are done and no planned game remains (6.8563ms)
+✔ BACKLOG-12 proof: original screenshot bytes, six sizes, final source hashes and three visual packages marked done only with evidence (221.7995ms)
+✔ All four completed feature titles and descriptions have authored English roadmap translations (13.0404ms)
+✔ Party features are programs/options, never four dummy games (0.333ms)
+✔ schaetzmeister: extra rules default off, host-only, strict settings, busy round immutable (4.871ms)
+✔ schaetzmeister: double/reverse final scoring and ties agree with winners and cumulative points (12.9652ms)
+✔ schaetzmeister: pressure timer, one-game scope, chaos preview, abort and snapshot restore (3.7183ms)
+✔ schlagfertig: extra rules default off, host-only, strict settings, busy round immutable (2.0204ms)
+✔ schlagfertig: double/reverse final scoring and ties agree with winners and cumulative points (1.9439ms)
+✔ schlagfertig: pressure timer, one-game scope, chaos preview, abort and snapshot restore (3.4675ms)
+✔ werhatdasgesagt: extra rules default off, host-only, strict settings, busy round immutable (1.3557ms)
+✔ werhatdasgesagt: double/reverse final scoring and ties agree with winners and cumulative points (1.1818ms)
+✔ werhatdasgesagt: pressure timer, one-game scope, chaos preview, abort and snapshot restore (1.0727ms)
+✔ Chaos draws are server-side, bounded and never repeat the preceding selection (0.231ms)
+✔ Feature programs validate life/round limits, player minimum and compatible survival variants (1.8134ms)
+✔ Party Board: a server die picks a real task, placement moves runners; tiles, items, shields and victory (1.3265ms)
+✔ Party Board: unauthorized, paused, midgame, self-target and replayed item commands cannot mutate state (0.7278ms)
+✔ party-brett: program replay, private views, idempotent results and restart after each station (22.0083ms)
+✔ survival-abend: program replay, private views, idempotent results and restart after each station (2.0719ms)
+✔ Survival: ties/void games cost no lives; cycles past 12 stations, deterministic 60-game safety limit (49.3836ms)
+✔ Survival: explicit departure forfeits, disconnect does not; unseated survivor cannot be skipped (0.8741ms)
+✔ Unstarted feature programs can be stopped and restored without inventing board/life state (0.4601ms)
+✔ schaetzmeister: 60 complete existing-bot games across manual, random and chaos rules (42.0632ms)
+✔ schlagfertig: 60 complete existing-bot games across manual, random and chaos rules (23.7646ms)
+✔ werhatdasgesagt: 60 complete existing-bot games across manual, random and chaos rules (17.5507ms)
+✔ V2-13/V2-14 proof: only these two task records changed, actual feature commit and passing evidence (24.86ms)
+✔ V2-13/V2-14 proof: original desktop, mobile and WebKit images and exact LF source hashes (236.402ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1147.7645

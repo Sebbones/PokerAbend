@@ -1,0 +1,13 @@
+
+Running 8 tests using 1 worker
+
+  ok 1 [desktop] › test\ui\party-features.spec.js:27:1 › Party Board: real minigame, own item controls, guest permissions, reconnect, six layouts and English rules (8.8s)
+  ok 2 [desktop] › test\ui\party-features.spec.js:79:1 › Survival Evening: bot round, life accounting, reconnect and visible rules in DE/EN (6.7s)
+  ok 3 [desktop] › test\ui\party-features.spec.js:112:1 › Modifiers and Chaos: host settings, public preview, raw-vs-final score, one-game scope and rules tab (5.3s)
+  ok 4 [desktop] › test\ui\party-features.spec.js:146:1 › Program chaos: real lobby announcement and explicit Host confirmation before any question begins (3.1s)
+  ok 5 [mobil] › test\ui\party-features.spec.js:27:1 › Party Board: real minigame, own item controls, guest permissions, reconnect, six layouts and English rules (8.1s)
+  ok 6 [mobil] › test\ui\party-features.spec.js:79:1 › Survival Evening: bot round, life accounting, reconnect and visible rules in DE/EN (10.4s)
+  ok 7 [mobil] › test\ui\party-features.spec.js:112:1 › Modifiers and Chaos: host settings, public preview, raw-vs-final score, one-game scope and rules tab (7.5s)
+  ok 8 [mobil] › test\ui\party-features.spec.js:146:1 › Program chaos: real lobby announcement and explicit Host confirmation before any question begins (4.3s)
+
+  8 passed (59.6s)

@@ -1,0 +1,380 @@
+{
+  "package_id": "PARTY-EXTRAS-01",
+  "features": [
+    "party-brett",
+    "modifikatoren",
+    "chaos-modus",
+    "survival-abend"
+  ],
+  "implementation_commit": "78baf50d9c97506c89adcd1580ebe9fde749afb0",
+  "status": "verified",
+  "visual_package": "VIS-108",
+  "completed_at": "2026-11-08",
+  "runtime": "Node.js v24.22.0; Windows; Chrome headless via existing Playwright configuration",
+  "tests": [
+    {
+      "id": "baseline-node",
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js",
+      "total": 1749,
+      "passed": 1743,
+      "failed": 0,
+      "skipped": 6,
+      "duration_ms": 268884.3942,
+      "scope": "Isolated original main 7bb43951bedc3426701b9c695f096da20935110f; no concurrent workspace changes."
+    },
+    {
+      "id": "full-node",
+      "command": "node --test --test-force-exit --test-concurrency=2 test/*.test.js",
+      "total": 1778,
+      "passed": 1772,
+      "failed": 0,
+      "skipped": 6,
+      "duration_ms": 383717.506,
+      "scope": "Same isolated tracked baseline plus this package only; before final authored English roadmap strings and corresponding focused test."
+    },
+    {
+      "id": "post-english-node",
+      "command": "node --test test/party-features.test.js test/backlog07-proof.test.js test/backlog09-proof.test.js test/backlog12-proof.test.js test/v2-13-14-proof.test.js",
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "Final English roadmap strings and all touched historical shared-source proofs."
+    },
+    {
+      "id": "browser-regression",
+      "command": "playwright test test/ui/party-features.spec.js test/ui/party-program.spec.js test/ui/evening-mode.spec.js",
+      "passed": 16,
+      "failed": 0,
+      "projects": [
+        "desktop",
+        "mobil"
+      ],
+      "scope": "New feature scenarios plus existing playlists, teams and Evening Mode."
+    },
+    {
+      "id": "browser-after-review",
+      "command": "playwright test test/ui/party-features.spec.js",
+      "passed": 8,
+      "failed": 0,
+      "projects": [
+        "desktop",
+        "mobil"
+      ],
+      "scope": "Feature browser repeat after final lifecycle and restart corrections."
+    },
+    {
+      "id": "browser-roadmap",
+      "command": "playwright test test/ui/party-features-roadmap.spec.js",
+      "passed": 2,
+      "failed": 0,
+      "projects": [
+        "desktop",
+        "mobil"
+      ],
+      "scope": "Final authored DE/EN titles, descriptions and non-game registration."
+    },
+    {
+      "id": "completion-proof",
+      "command": "node --test test/party-features-proof.test.js test/backlog07-proof.test.js test/backlog09-proof.test.js test/backlog12-proof.test.js test/v2-13-14-proof.test.js test/game-visual-roadmap.test.js test/roadmap.test.js",
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "Verified planning status, core commit, 48 original screenshots, final source hashes and retained successful logs."
+    }
+  ],
+  "bot_simulated_games": 180,
+  "screenshots": [
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-english-rules.png",
+      "sha256": "4f8fea07c8f4113037b72923c8b77a68d9a751debc25f461a9de0bb31ba4a008",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-layout-1440x900.png",
+      "sha256": "a6b7a9874bec2d0bd7d18af9c9f7f055f1f00cf6c63c3797eb1f07ba8d4b50a1",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-layout-1920x1080.png",
+      "sha256": "ec0782ab31d4e04fb29048be5f55750dfd22f1a468d2afdb3fbc2ce4c17dfe50",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-layout-360x800.png",
+      "sha256": "cdd03781c30bbf9ea78fa9aee3dc885d212c92db59947c087036b981bc7df142",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-layout-390x844.png",
+      "sha256": "668a46d548afb264bf93f38b51f3cd76c40e4d5084006649f08d7ab110d1b4b9",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-layout-768x1024.png",
+      "sha256": "1894c6e609ab5099d83a08638a5372c4804aeebf674354b2ddd618d0bd38c2aa",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-layout-900x450.png",
+      "sha256": "7ac06e34b10257db2a7149d585bb34c87ab78af23879cf68ec57c77cc9ae5893",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-lobby.png",
+      "sha256": "0568215d23567773cb0db76da9af381187c295c8993b81f9f3f8b8ac987045d4",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-reconnect.png",
+      "sha256": "a6b7a9874bec2d0bd7d18af9c9f7f055f1f00cf6c63c3797eb1f07ba8d4b50a1",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/board-result.png",
+      "sha256": "398163bf529da2e757c249976937eefc796020b1c403bdc977813dc1370c6b04",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/chaos-english-rules.png",
+      "sha256": "e3777286861530991ef4a39e9e7a572758fd9f22ced5b88018f7b2fad1e99b02",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/chaos-program-preview.png",
+      "sha256": "b022f69964641c1c09207ee7a751bb0de31d6f6a4ad18263a07bb52acfa19dd5",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/chaos-rules.png",
+      "sha256": "ad8215eb90b0a2f4f54dceec590a9f61d396169751cd4ba4734ac7ab1edf70cc",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/modifier-lobby.png",
+      "sha256": "b2538c9099d285309a6256796c0468c447318ac4811b4929b7a4ba1200f40d5d",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/modifier-result.png",
+      "sha256": "f47458f34a6402e95d9cb2bce4fefad050e5114e75f3e970bb4672cb6be0aab6",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-english-rules.png",
+      "sha256": "ac1e4c263388e34d8609a4cf44d04b9425174ea91afdd770c9b0b3fe4a9470cd",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-layout-1440x900.png",
+      "sha256": "a608938dd065820db47dd5a248fd85a479d36f9f056cf6324ff6a863c889b0e4",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-layout-1920x1080.png",
+      "sha256": "8f773136f56ac09c3143dc61f5409eefa908c8f164b95842638e8abc09951140",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-layout-360x800.png",
+      "sha256": "51bb8baed8cbd3774a1b9b3e82f7d68b6e0c72427228a0f914fdc483ad6617eb",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-layout-390x844.png",
+      "sha256": "4f4b2f577eb12a73b7b1a8500ab5cfa265808dcef7a532e06cfc65f7bffc9163",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-layout-768x1024.png",
+      "sha256": "abd4c0ff26eec7511031a5bdf33a2a410b738ed22453b28819df115f9d7522a7",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-layout-900x450.png",
+      "sha256": "c2aea4ec0a0adc05ac7609389a76934d0f685b1135edb93f6b3b4f8f6d84c240",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-lobby.png",
+      "sha256": "95bd64ed432e54722184cf9c536703da207492aa10708d034cdcea6be319fe65",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/desktop/survival-result.png",
+      "sha256": "afa04fd8d2e7708ae4def2441361961ef7cdec1d671fbde14b6b2de4b04d7105",
+      "project": "desktop"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-english-rules.png",
+      "sha256": "2af40058a4ac93a077cd8b3ba4a080371b0f0633b9375ed29b431e356364028b",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-layout-1440x900.png",
+      "sha256": "93d3d943739c99afa5d6355db11b138e5a2d4445f928677a51886fbf36d39bb1",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-layout-1920x1080.png",
+      "sha256": "15956a34e1c092a8e18838f46caf8c4c9add7950d4bdbe0b32d27ac9dcddd91c",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-layout-360x800.png",
+      "sha256": "270e85f48835e57134ddaf4bd1074969811183feed2e5437a49c6a03ecc8d80b",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-layout-390x844.png",
+      "sha256": "d230634c166bcce782f483ac50c65fbbd6a925ad2d62ef61ef6ce8813e215e54",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-layout-768x1024.png",
+      "sha256": "1dc96fd2d3cc1bcbb52db5e087995ab4e55ecb46f41803935460c4f1532e276a",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-layout-900x450.png",
+      "sha256": "53a8b9b16057b9680cd1bada0a1a8e51ee8e63a5cffae671d58d6ed4ed906f73",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-lobby.png",
+      "sha256": "47d1986f03c9483cc5bfc37d2f8edcff501ecc73cad1b6e1a49b6bcc7ab164d3",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-reconnect.png",
+      "sha256": "d230634c166bcce782f483ac50c65fbbd6a925ad2d62ef61ef6ce8813e215e54",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/board-result.png",
+      "sha256": "9e6a5cd53623e8386002c16d1392e8e06e3d96e6c82b3d6c4151aa8bd8c7b448",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/chaos-english-rules.png",
+      "sha256": "d5f757f27bb4e193cb685d68e07bb5b469a3351b8e1591e69e35af4e3a2dd041",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/chaos-program-preview.png",
+      "sha256": "205ef39afca4dc7e84a33f080ca41cdd9754bdd4947e1336d11f6c0e51cbc98e",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/chaos-rules.png",
+      "sha256": "374346f88c883dd43cd8e46113c0ce0633128ea447b3c0cefa74f3dabc830692",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/modifier-lobby.png",
+      "sha256": "827b5e30465526a9dd6d3e338d351fa97b1ae59154899c27ea523f88bb7d3eb9",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/modifier-result.png",
+      "sha256": "5c92fd5dfe5406e16cc73fabde2731531f85a8601552c98f11446ab667415714",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-english-rules.png",
+      "sha256": "f15b073d01cd2e82ae19b6f6cb900f23d939ebaec8df042d2fe7c680b410705f",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-layout-1440x900.png",
+      "sha256": "729ae9dd16a4ed1b90fda619f90841c66333cd98efc4bc794fa49184cab8267d",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-layout-1920x1080.png",
+      "sha256": "f7abc9a0fce001bb076ae3ca30ef22fd9223c092adf46a9a308c7a47b52c0a38",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-layout-360x800.png",
+      "sha256": "868635a4741e02ba3f00a0938d5b903066dc9b429e78f2c048a31c282fcdd8f3",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-layout-390x844.png",
+      "sha256": "06d45a900cd6fedad6153acca59feca6e56f73ed7b83c10fad43ed01de3b1fdf",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-layout-768x1024.png",
+      "sha256": "ba13af22f22feb543259619cc16331203ce01e9057be13c525c7ae6842b3df34",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-layout-900x450.png",
+      "sha256": "e964f9e2df4242e3cfea4bfd044141e244235902d1d90c4a4a64048a6c6dfe14",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-lobby.png",
+      "sha256": "0bd5a8e26ef3febe0c1bbe794ec089f526c0fffa4fe286c756f0f0fd6258d26f",
+      "project": "mobil"
+    },
+    {
+      "path": "test/fixtures/party-features/screenshots/mobil/survival-result.png",
+      "sha256": "55118107e922f76d99eb6cfd7dad641c85f4da61354981b0ae4cdcee4f192640",
+      "project": "mobil"
+    }
+  ],
+  "logs": [
+    {
+      "path": "games/party-brett/verification/party-features-baseline-node.log",
+      "sha256": "ae4fa831b5c7e373c0787e403e475417d94e3f329efc3d3635df5ce5d047e997"
+    },
+    {
+      "path": "games/party-brett/verification/party-features-full-node-final.log",
+      "sha256": "0073af77768d4d501acaae5191b846ff9b501c276178fe11db3238c443f0c0c9"
+    },
+    {
+      "path": "games/party-brett/verification/party-features-playwright-final.log",
+      "sha256": "7659f8f3daf30ef60a161531ff8dd918e267bc6317529fa4bc98ef0969ff8fa6"
+    },
+    {
+      "path": "games/party-brett/verification/party-features-browser-after-review.log",
+      "sha256": "3c72c015886963023c172eefaa59e78d2dde5874cb6dd4bf65d9988c2980456e"
+    },
+    {
+      "path": "games/party-brett/verification/party-features-roadmap-browser.log",
+      "sha256": "02996017fb619a9d8dd95b20437b71473a0651ce4248c3dd810d573ae70baae8"
+    },
+    {
+      "path": "games/party-brett/verification/post-english-node.log",
+      "sha256": "da202a55717ce63dd75105b9714863b350faff75008e2d20bbf17b3070a4d1a2"
+    },
+    {
+      "path": "games/party-brett/verification/completion-proof.log",
+      "sha256": "79f0bfb67f9f5bb42c687e3a75dcf3213cd03ca171b35758e87fb43cee05d873"
+    }
+  ],
+  "source_audit": "games/party-brett/source-audit.json",
+  "limitations": [
+    "Modifiers and Chaos are supported only by schaetzmeister, schlagfertig and werhatdasgesagt; default off.",
+    "Feature board/life results persist in the room, not in the legacy placement-only Evening Review archive.",
+    "Survival has an announced 60-game safety limit; most remaining lives wins at the limit, ties share."
+  ],
+  "history": [
+    {
+      "id": "first-full-comparison",
+      "total": 1777,
+      "passed": 1764,
+      "failed": 7,
+      "skipped": 6,
+      "note": "Six stale inventory/options/shared-source assertions and one cross-socket delivery race in the new test; all corrected, followed by a green full repeat."
+    },
+    {
+      "id": "early-browser-runs",
+      "note": "Missing intermission board fixed. Mobile rules used the existing Help-to-Rules route; result overlay closed before banner actions. Final regression and review runs green."
+    }
+  ],
+  "concurrent_changes_excluded": true,
+  "log_hash_format": "SHA-256 of UTF-8 with LF line endings"
+}

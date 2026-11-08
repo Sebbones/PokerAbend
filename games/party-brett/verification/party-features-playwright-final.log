@@ -1,0 +1,21 @@
+
+Running 16 tests using 1 worker
+
+  ok  1 [desktop] › test\ui\evening-mode.spec.js:3:1 › Abend-Modus: alle Kategorien planen, Brett → Poker → Party, Reconnect und gemeinsame Siegerehrung (7.2s)
+  ok  2 [desktop] › test\ui\evening-mode.spec.js:55:1 › Abend-Modus lässt sich auch direkt am Pokertisch vorbereiten und als Vorlage speichern (3.1s)
+  ok  3 [desktop] › test\ui\party-features.spec.js:27:1 › Party Board: real minigame, own item controls, guest permissions, reconnect, six layouts and English rules (5.5s)
+  ok  4 [desktop] › test\ui\party-features.spec.js:79:1 › Survival Evening: bot round, life accounting, reconnect and visible rules in DE/EN (4.9s)
+  ok  5 [desktop] › test\ui\party-features.spec.js:112:1 › Modifiers and Chaos: host settings, public preview, raw-vs-final score, one-game scope and rules tab (4.6s)
+  ok  6 [desktop] › test\ui\party-features.spec.js:146:1 › Program chaos: real lobby announcement and explicit Host confirmation before any question begins (2.7s)
+  ok  7 [desktop] › test\ui\party-program.spec.js:24:1 › Playlist: Vorlagen, Regeln, Wechsel im selben Raum, Reconnect, Gesamtwertung und Siegerehrung (6.2s)
+  ok  8 [desktop] › test\ui\party-program.spec.js:85:1 › Team-Duell: Spieler zuordnen, ungeeignete Spiele fehlen, Teamwertung ist sichtbar (4.5s)
+  ok  9 [mobil] › test\ui\evening-mode.spec.js:3:1 › Abend-Modus: alle Kategorien planen, Brett → Poker → Party, Reconnect und gemeinsame Siegerehrung (8.3s)
+  ok 10 [mobil] › test\ui\evening-mode.spec.js:55:1 › Abend-Modus lässt sich auch direkt am Pokertisch vorbereiten und als Vorlage speichern (3.4s)
+  ok 11 [mobil] › test\ui\party-features.spec.js:27:1 › Party Board: real minigame, own item controls, guest permissions, reconnect, six layouts and English rules (5.8s)
+  ok 12 [mobil] › test\ui\party-features.spec.js:79:1 › Survival Evening: bot round, life accounting, reconnect and visible rules in DE/EN (4.9s)
+  ok 13 [mobil] › test\ui\party-features.spec.js:112:1 › Modifiers and Chaos: host settings, public preview, raw-vs-final score, one-game scope and rules tab (4.3s)
+  ok 14 [mobil] › test\ui\party-features.spec.js:146:1 › Program chaos: real lobby announcement and explicit Host confirmation before any question begins (4.1s)
+  ok 15 [mobil] › test\ui\party-program.spec.js:24:1 › Playlist: Vorlagen, Regeln, Wechsel im selben Raum, Reconnect, Gesamtwertung und Siegerehrung (7.0s)
+  ok 16 [mobil] › test\ui\party-program.spec.js:85:1 › Team-Duell: Spieler zuordnen, ungeeignete Spiele fehlen, Teamwertung ist sichtbar (5.6s)
+
+  16 passed (1.4m)
