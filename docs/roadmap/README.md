@@ -6,6 +6,7 @@
 ## Wichtige Dateien
 
 - [V2-06: Liquid Glass in den Konto-Seiten](../ui-redesign.md): Profil, Einstellungen, Bestenliste, Erfolge und Admin mit den Tokens des Hubs; keine Logikänderung.
+- [V2-09: Sicherheits- und Datenschutzdurchgang](../security-review-2026-11-08.md): Befunde und Behebungen, Datenschutzseite `/datenschutz` (DE/EN), Leck-Test über alle Spiele, Nachtlauf in 16 parallelen Teilen; offene Risiken im Bericht.
 - [V2-11: Gebietskampf (Risiko-inspiriert)](V2-11_GEBIETSKAMPF.md): eigene Weltkarte Meridia, serverseitige Würfelkämpfe, Kartensätze, Missionen, Bots in drei Stufen und Speicherstand mitten im Spiel.
 - [V2-12: Städtehandel](V2-12_STAEDTEHANDEL.md): eigene Insel Aurelia, serverseitiger Würfelertrag, Räuber, Spielerhandel und Bank/Häfen, Entwicklungskarten, längste Straße, Bots in drei Stufen und Speicherstand mitten im Spiel.
 - [V2-13 und V2-14: Erfolge & Presence](V2-13_V2-14_ACHIEVEMENTS_PRESENCE.md): 234 Abzeichen, qualifizierte spielbezogene Meilensteine, idempotente Bestandsauswertung und Statuswechsel mit Privatsphäre, mehreren Tabs und WebKit-Nachweisen. Alle anderen Task-Status bleiben unverändert.

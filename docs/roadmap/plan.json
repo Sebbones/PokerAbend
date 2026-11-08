@@ -620,17 +620,41 @@
         "alle aktuell registrierten Spiele (Baseline: 46) bleiben verfügbar",
         "offene Risiken dokumentiert"
       ],
-      "status": "planned",
-      "implementation_commit": null,
-      "completed_at": null,
+      "status": "done",
+      "implementation_commit": "17dc2cff5ad64fc26c492228910225c568c09c1e",
+      "completed_at": "2026-11-08",
       "notes": [
-        "Teillieferung „Betrieb & Wartung“ (2026-11-01) siehe partial_deliveries[BETRIEB-WARTUNG]; das Paket selbst bleibt planned."
+        "Ausdrückliche Freigabe 2026-11-08 (V2-09). Bericht mit Befunden, Behebungen und offenen Risiken: docs/security-review-2026-11-08.md.",
+        "Kein echtes Leck fremder Karten/Rollen und kein abstürzender Handler gefunden; behoben wurden Härtungslücken (Nutzdaten-Normalisierung, Fehlertext-Mapping, /api-Limit, Limit für neue Gast-Konten, zusätzliche Header) und die fehlende Datenschutzseite /datenschutz (DE/EN).",
+        "Nachtlauf in 4 Node- und 12 Playwright-Teile aufgeteilt plus Zusammenfassungs-Job; die tatsächliche Laufzeit auf GitHub ist noch nicht gemessen. Docker-Build Node22-Alpine in dieser Umgebung nicht ausgeführt (kein Docker) – offenes Risiko.",
+        "Teillieferung „Betrieb & Wartung“ (2026-11-01) siehe partial_deliveries[BETRIEB-WARTUNG]."
       ],
       "public_roadmap_ids": [
         "v2-security-tests"
       ],
-      "test_results": [],
-      "commits": []
+      "test_results": [
+        {
+          "command": "node --test \"test/*.test.js\" (sauberer Worktree auf origin/main b4869c2 plus V2-09)",
+          "result": "1691 Tests: 1686 bestanden, 2 fehlgeschlagen, 3 übersprungen. Die 2 Fehlschläge waren nur die noch nicht neu gepinnten server/index.js-Hashes (BACKLOG-07, V2-13/14); nach dem Neu-Pinnen bestehen sie (15 Proof-Tests grün).",
+          "passed": 1686,
+          "failed": 2
+        },
+        {
+          "command": "node --test test/security-review.test.js test/view-leaks.test.js",
+          "result": "104 Tests, 101 bestanden, 0 fehlgeschlagen; Leck-Test über alle Spiele 25 Wiederholungen stabil.",
+          "passed": 101,
+          "failed": 0
+        },
+        {
+          "command": "playwright test test/ui/roadmap-presence.spec.js test/ui/ui-redesign.spec.js test/ui/game-design.spec.js (Desktop und Mobil, Playwright-Chromium)",
+          "result": "67 bestanden, 1 übersprungen; die einzigen 2 Fehlschläge (roadmap-presence, veraltete Erwartung zu Bomben-Duell aus BACKLOG-08) wurden behoben, roadmap-presence danach 8/8 grün.",
+          "passed": 75,
+          "failed": 0
+        }
+      ],
+      "commits": [
+        "17dc2cff5ad64fc26c492228910225c568c09c1e"
+      ]
     },
     {
       "id": "V2-10",
