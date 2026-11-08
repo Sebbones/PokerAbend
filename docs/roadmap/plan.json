@@ -621,7 +621,7 @@
         "offene Risiken dokumentiert"
       ],
       "status": "done",
-      "implementation_commit": "17dc2cff5ad64fc26c492228910225c568c09c1e",
+      "implementation_commit": "951f7d4fcd19de6cd431915ffed68bbb57a2be90",
       "completed_at": "2026-11-08",
       "notes": [
         "Ausdrückliche Freigabe 2026-11-08 (V2-09). Bericht mit Befunden, Behebungen und offenen Risiken: docs/security-review-2026-11-08.md.",
@@ -653,7 +653,7 @@
         }
       ],
       "commits": [
-        "17dc2cff5ad64fc26c492228910225c568c09c1e"
+        "951f7d4fcd19de6cd431915ffed68bbb57a2be90"
       ]
     },
     {
