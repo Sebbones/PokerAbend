@@ -44,3 +44,24 @@
 .warehouse-cell.worker span { display:grid; place-items:center; background:#e1e5c6; border:3px solid #487c69; border-radius:50%; width:70%; height:70%; margin:auto; }
 .solo-collection .solo-cell-grid button:focus-visible,.solo-collection .ng-cell:focus-visible { outline-offset:-3px; outline:3px solid #eeb945; z-index:1; }
 @media(max-width:740px){.mine-field{--cell:24px}.warehouse-field{--cell:29px}.ng-field{--cell:24px}.memory-card{padding:4px;border-radius:7px}.solo-collection .sp-metrics>span{font-size:12px}.solo-collection .sp-private{font-size:11px}.solo-collection .sp-setup{margin:20px auto}}
+
+/* ---------- VIS-099 … VIS-103: individuelle Spielwelten der fünf lokalen Sammlungsspiele (nur Darstellung, Regeln und Speicher unverändert) ---------- */
+/* Snake: klare Leuchtspur auf dunklem Raster – der Körper verblasst zum Schwanz, Kopf mit hellem Rand; Spur auch ohne Glühen erkennbar */
+.snake-field { background-image: linear-gradient(#a0d4b812 1px, transparent 1px), linear-gradient(90deg, #a0d4b812 1px, transparent 1px); background-size: calc(100%/16) calc(100%/16); }
+.snake-field .body { background: linear-gradient(135deg, #8fe0b0, #6bb48c); border-radius: 4px; }
+.snake-field .head { box-shadow: 0 0 10px #d2f5abaa; border-radius: 5px; }
+.snake-field .food { box-shadow: inset 0 0 0 3px #bc724a, 0 0 8px #eead7488; }
+@media (prefers-reduced-motion: reduce) { .snake-field .body, .snake-field .head, .snake-field .food { box-shadow: none; } }
+/* Memory: ruhige Symbolkarten mit starkem Kontrast – gefundene Paare tragen zusätzlich ein Häkchen */
+.memory-card.face, .solo-memory .memory-card.face { border-color: #f1e8c5; color: #1f4a3b; }
+.solo-memory .memory-card.matched::after { content: '✓'; position: absolute; top: 4px; right: 6px; font-weight: 800; color: #1f5a3a; }
+.memory-card { position: relative; }
+/* Minesweeper: Werkstattoptik – geprägte Metallfelder; Zahlen bleiben farbunabhängig lesbar */
+.mine-cell:not(.open) { background: linear-gradient(145deg, #5d6f7c, #3f4e59); box-shadow: inset 1px 1px 0 #ffffff33, inset -1px -1px 0 #0000004d; }
+.mine-field { background: #3b4650; border-color: #c4d1d6; }
+.mine-cell.open[data-number] { font-variant-numeric: tabular-nums; }
+/* Nonogramm: Papier-Logiktafel – Hinweise auf Karopapier, fertige Felder kräftig */
+.ng-field { background-image: linear-gradient(#60766a22 1px, transparent 1px), linear-gradient(90deg, #60766a22 1px, transparent 1px); background-size: 8px 8px; box-shadow: 0 6px 16px #0003; }
+/* Sokoban: kleine Lagerhäuser aus lesbaren 2D-Kacheln – Mauern gemauert, Kisten mit Kreuz, Ziele als Ringe */
+.warehouse-field { border-radius: 6px; box-shadow: 0 8px 20px #0005; }
+.warehouse-cell { background-image: linear-gradient(#0000000d 1px, transparent 1px), linear-gradient(90deg, #0000000d 1px, transparent 1px); background-size: 50% 50%; }
