@@ -94,6 +94,7 @@ const limits = {
   create: limiter({ windowMs: 10 * 60e3, max: Number(process.env.CREATE_LIMIT || 6) }),    // neue Tische (Tests setzen CREATE_LIMIT höher)    // neue Tische
   badCode: limiter({ windowMs: 10 * 60e3, max: 20 }),  // falsche Tisch-Codes
   newPlayer: limiter({ windowMs: 10 * 60e3, max: 15 }), // neue Namen
+  newAccount: limiter({ windowMs: 10 * 60e3, max: Number(process.env.NEW_ACCOUNT_LIMIT || 30) }), // neue Gast-Konten (Seitenaufruf ohne Cookie) je Anschluss
 };
 const connections = new Map(); // IP → offene Verbindungen
 
@@ -185,12 +186,24 @@ const accountOf = (cookieHeader) => { const id = identity.verify(parseCookies(co
 app.use((req, res, next) => {
   let account = accountOf(req.headers.cookie);
   const issues = isPage(req) || req.path.startsWith('/api/identity');
-  if (!account && issues) account = accounts.ensure(accounts.newId());
+  if (!account && issues) {
+    // Wer ohne Cookie immer wieder die Seite lädt, würde sonst unbegrenzt Konten anlegen
+    if (!limits.newAccount.hit(clientIp(req, TRUST_PROXY))) return res.status(429).type('text').send('Zu viele neue Geräte von deinem Anschluss. Bitte versuche es in ein paar Minuten noch einmal.');
+    account = accounts.ensure(accounts.newId());
+  }
   if (account) {
     req.accountId = account.id;
     if (issues) res.append('Set-Cookie', identity.cookie(identity.issue(account.id), { secure: isSecure(req) }));
   }
   next();
+});
+// Allgemeines Anfrage-Limit für alle /api-Pfade je Anschluss: bremst Abgreifen und Dauerabfragen; die einzelnen Schnittstellen haben zusätzlich eigene, engere Grenzen
+const apiLimit = limiter({ windowMs: 60e3, max: Number(process.env.API_LIMIT || 900) });
+app.use('/api', (req, res, next) => {
+  const ip = clientIp(req, TRUST_PROXY);
+  if (apiLimit.hit(ip)) return next();
+  res.setHeader('Retry-After', apiLimit.retryAfter(ip));
+  res.status(429).json({ error: 'Zu viele Anfragen – bitte kurz warten' });
 });
 app.get('/me', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
@@ -689,12 +702,17 @@ io.on('connection', (socket) => {
         }
         // Auch direkte Socket-Aufrufe dürfen die gemeinsame Pause nicht umgehen.
         if (room?.gamePaused && !['gamePause', 'freeze', 'park', 'leave', 'closeTable', 'abortRound', 'makeHost', 'unlisted'].includes(event)) throw new Error('Das Spiel ist angehalten – der Host setzt es fort');
-        const res = fn(payload || {}, room, player);
+        // Nur Objekte sind gültige Nutzdaten; alles andere (Zahlen, Text, Listen, null) wird zu einem leeren Objekt
+        const data = payload && typeof payload === 'object' && !Array.isArray(payload) ? payload : {};
+        const res = fn(data, room, player);
         const r = res?.closed ? null : (res?.room || room);
         if (r) { r.afterChange(); if (!res?.frameOnly) broadcast(r); if (!r.busy || r.persistMidGame) save(); }
         cb({ ok: true, ...(res?.reply || {}) });
       } catch (e) {
-        cb({ ok: false, error: e.message, ...(e.extra || {}) }); // extra: z. B. ein Namensvorschlag
+        // Interne Fehler (falsche Datentypen in Nutzdaten) nie mit Programmtext an den Browser geben; Spielregel-Fehler sind normale Fehler mit lesbarer Meldung
+        const internal = e instanceof TypeError || e instanceof RangeError || e instanceof ReferenceError || e instanceof SyntaxError;
+        if (internal) console.error(`Socket-Ereignis ${event}: ${e.message}`);
+        cb({ ok: false, error: internal ? 'Ungültige Eingabe' : e.message, ...(internal ? {} : e.extra || {}) }); // extra: z. B. ein Namensvorschlag
       }
     });
   };

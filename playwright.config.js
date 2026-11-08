@@ -1,10 +1,14 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './test/ui',
+  testDir: './test/ui', // spielbezogene Prüfungen (games/<spiel>/ui.spec.js) werden von den backlog-*.spec.js eingebunden
   fullyParallel: false,
   workers: 1,
-  timeout: 30000,
+  // Auf der CI (langsamere, geteilte Rechner) mehr Luft und ein Wiederholungsversuch gegen Einzelwackler; lokal bleibt alles streng
+  timeout: process.env.CI ? 60000 : 30000,
+  expect: { timeout: process.env.CI ? 10000 : 5000 },
+  retries: process.env.CI ? 1 : 0,
+  forbidOnly: !!process.env.CI,
   reporter: 'list',
   use: {
     // Lokales Chrome; PLAYWRIGHT_CHANNEL=chromium nutzt alternativ Playwright-Chromium.

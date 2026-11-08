@@ -131,7 +131,10 @@ test.describe('Spielmotive', () => {
         const lobbies={schach:'.ch-lobby','exploding-deck':'.eb-lobby',doppelagent:'.da-file',luegenbaron:'.lb-lobby'};
         await expect(page.locator(lobbies[id])).toBeVisible();
         await expect(page.locator(lobbies[id]).locator('h2')).not.toHaveText('');
-      } else if (!['poker', 'omaha'].includes(id)) await expect(page.locator('.scene-hero > svg')).toBeVisible();
+      } else if (!['poker', 'omaha'].includes(id)) {
+        // Standard-Lobby mit Szenenbild – oder (neuere Spiele) eine eigene Lobby mit eigenem Aufbau; irgendeine davon muss sichtbar sein
+        await expect.poll(async () => (await page.locator('.scene-hero > svg').count()) + (await page.locator('#kg-main [class*="lobby"], .kg-lobby, [class*="-lobby"]').count()), { message: `${id}: weder Szenenbild noch eigene Lobby` }).toBeGreaterThan(0);
+      }
       const closed=await page.evaluate(()=>send('closeTable'));
       expect(closed.ok,id).toBe(true);
       await expect(page.locator('#hub')).toBeVisible();

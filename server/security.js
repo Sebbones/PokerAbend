@@ -106,12 +106,17 @@ export function bucket({ capacity, perSecond }) {
   };
 }
 
-export function securityHeaders(_req, res, next) {
+export function securityHeaders(req, res, next) {
   res.setHeader('Content-Security-Policy', [
     "default-src 'self'", "script-src 'self'", "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:", "font-src 'self'", "connect-src 'self'",
-    "frame-ancestors 'none'", "base-uri 'none'", "form-action 'self'", "object-src 'none'",
+    "frame-ancestors 'none'", "frame-src 'none'", "base-uri 'none'", "form-action 'self'", "object-src 'none'", "manifest-src 'self'", "worker-src 'self'",
+    ...(req?.secure ? ['upgrade-insecure-requests'] : []),
   ].join('; '));
+  // Nur über HTTPS (hinter dem Proxy): Browser merken sich, die Seite künftig nur verschlüsselt aufzurufen
+  if (req?.secure) res.setHeader('Strict-Transport-Security', 'max-age=31536000');
+  res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+  res.setHeader('X-Permitted-Cross-Domain-Policies', 'none');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Referrer-Policy', 'same-origin');

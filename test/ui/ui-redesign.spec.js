@@ -16,17 +16,17 @@ test('Neuer Tisch: echte Spielauswahl, Tastatur, Host-Dialog und gespeicherte Da
   await page.keyboard.press('Enter');
   await expect(page.locator('#host-title')).toHaveText('Kniffel hosten');
   await page.keyboard.press('Escape');
-  await page.locator('#profile-avatar').click();
-  await page.locator('.profile-preferences summary').click();
-  await page.getByRole('switch', { name: /Glaseffekt reduzieren/ }).check();
+  // Darstellung liegt seit V2-05 auf der gemeinsamen Einstellungsseite (vorher im Profil-Dialog)
+  await page.evaluate(() => { location.hash = '#einstellungen'; });
+  await page.getByRole('switch', { name: /Transparenz reduzieren/ }).check();
   await expect(page.locator('html')).toHaveAttribute('data-glass', 'reduced');
-  await page.getByLabel('Kartengröße', { exact: true }).selectOption('xl');
-  await page.getByRole('combobox', { name: 'Tisch', exact: true }).selectOption('night');
-  await page.locator('#p-cancel').click();
+  await page.locator('select[data-set="display.cardSize"]').selectOption('xl');
+  await page.locator('select[data-set="display.theme"]').selectOption('night');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-glass', 'reduced');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'night');
   expect(await page.evaluate(() => prefs.cardSize)).toBe('xl');
+  await page.evaluate(() => { location.hash = '#start'; });
   await page.locator('.welcome [data-create-table]').click();
   await page.locator('#picker-search').fill('kniffel');
   await page.locator('#picker-games [data-host]').click();

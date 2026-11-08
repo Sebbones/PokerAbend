@@ -1,0 +1,24 @@
+/* Datenschutzseite: gleiche Farben und Schrift wie der Hub (Tokens aus style.css/ui-theme.css), ruhig und gut lesbar */
+:root { color-scheme: dark; --bg: #101815; --panel: #1A2521; --line: #FFFFFF1C; --edge: #FFFFFF24; --text: #F2F0E9; --muted: #B3BDB5; --gold: #E0BC74; --heading: Georgia, 'Times New Roman', serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: radial-gradient(120% 90% at 50% 0, #1b2a23, var(--bg) 60%) fixed, var(--bg); color: var(--text); font: 16px/1.6 ui-sans-serif, system-ui, sans-serif; }
+main { max-width: 860px; margin: 0 auto; padding: 24px 16px 64px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; }
+a { color: var(--gold); text-underline-offset: 3px; }
+.lang { display: inline-flex; gap: 6px; }
+.lang button { min-height: 44px; padding: 8px 14px; border-radius: 12px; border: 1px solid var(--edge); background: transparent; color: var(--text); font: inherit; cursor: pointer; }
+.lang button[aria-pressed='true'] { background: #32765B; border-color: transparent; color: #fff; }
+:is(a, button):focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+article { background: var(--panel); border: 1px solid var(--edge); border-radius: 16px; padding: 20px 22px; box-shadow: 0 12px 36px #0003; }
+h1 { font: 400 clamp(1.7rem, 4vw, 2.3rem)/1.15 var(--heading); letter-spacing: -.02em; margin: 0 0 8px; }
+h2 { font-size: 1.05rem; color: var(--gold); margin: 26px 0 8px; }
+.lead { color: var(--muted); margin-top: 0; }
+.note { color: var(--muted); font-size: .9rem; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+thead th { color: var(--muted); font-weight: 600; }
+tbody th { font-weight: 700; white-space: nowrap; }
+ul { padding-left: 20px; }
+li { margin: 6px 0; }
+@media (max-width: 640px) { table, thead, tbody, tr, th, td { display: block; } thead { display: none; } tr { border-bottom: 1px solid var(--line); padding: 8px 0; } th, td { border: 0; padding: 2px 0; } tbody th { white-space: normal; color: var(--gold); } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

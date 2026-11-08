@@ -1,7 +1,7 @@
 name: Docker-Image
 
 # Bei Push: schnelle Tests + kleine Browser-Rauchprobe, erst bei Grün wird das Image gebaut.
-# Nachts: alle Tests und alle Browser-Prüfungen (ohne Image), Bericht als Artefakt.
+# Nachts: alle Tests und Browser-Prüfungen (ohne Image), in Teilen parallel; ein Bericht-Job fasst zusammen.
 on:
   push:
     branches: [main]
@@ -77,11 +77,17 @@ jobs:
           build-args: |
             GIT_COMMIT=${{ github.sha }}
 
-  nightly:
-    name: Nächtlicher Volllauf
+  # Der Volllauf läuft in Teilen gleichzeitig (Sharding): Node-Tests in 4, Browser-Prüfungen in 12 Teilen.
+  # Vorher: ein Job, bis 90 Minuten. Jetzt: Dauer ≈ längster Teil plus Installation, Ziel unter 40 Minuten.
+  nightly-node:
+    name: Nacht · Node-Tests (Teil ${{ matrix.shard }} von 4)
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
     steps:
       - name: Repository herunterladen
         uses: actions/checkout@v7
@@ -95,51 +101,92 @@ jobs:
       - name: Abhängigkeiten installieren
         run: npm ci
 
-      - name: Alle Node-Tests (inklusive Simulationen)
-        id: node
-        continue-on-error: true
+      - name: Node-Tests (inklusive Simulationen) – ein Viertel der Dateien
         run: |
           mkdir -p reports
-          node --test --test-reporter=spec --test-reporter-destination=stdout \
-            --test-reporter=junit --test-reporter-destination=reports/node-tests.xml "test/*.test.js"
+          node --test --test-shard=${{ matrix.shard }}/4 --test-reporter=spec --test-reporter-destination=stdout \
+            --test-reporter=junit --test-reporter-destination=reports/node-${{ matrix.shard }}.xml "test/*.test.js"
+
+      - name: Bericht sichern
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: nacht-node-${{ matrix.shard }}
+          path: reports/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  nightly-ui:
+    name: Nacht · Browser-Prüfungen (Teil ${{ matrix.shard }} von 12)
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v7
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Abhängigkeiten installieren
+        run: npm ci
 
       - name: Browser installieren
         run: npx playwright install --with-deps chromium
 
-      - name: Alle Playwright-Prüfungen
-        id: ui
-        continue-on-error: true
-        # Ein Wiederholungsversuch fängt einzelne Wackler ab; Wackler bleiben im HTML-Bericht als "flaky" sichtbar.
-        run: npx playwright test --retries=1 --reporter=list,html,junit,json
+      - name: Browser-Prüfungen – ein Zwölftel (Desktop und Mobil)
+        # CI=true schaltet in playwright.config.js längere Wartezeiten und einen Wiederholungsversuch ein;
+        # Wackler bleiben im JSON-Bericht als "flaky" sichtbar.
+        run: npx playwright test --shard=${{ matrix.shard }}/12 --reporter=list,json
         env:
+          CI: 'true'
           PLAYWRIGHT_CHANNEL: chromium
-          PLAYWRIGHT_HTML_OPEN: never
-          PLAYWRIGHT_JUNIT_OUTPUT_NAME: reports/playwright.xml
-          PLAYWRIGHT_JSON_OUTPUT_NAME: reports/playwright.json
+          PLAYWRIGHT_JSON_OUTPUT_NAME: reports/playwright-${{ matrix.shard }}.json
 
-      - name: Wackelige Tests in der Zusammenfassung ausweisen
-        if: always()
-        run: |
-          node -e "
-          const fs=require('fs');if(!fs.existsSync('reports/playwright.json'))process.exit(0);
-          const flaky=[];(function walk(s){for(const x of s.suites||[])walk(x);for(const sp of s.specs||[])for(const t of sp.tests||[])if(t.status==='flaky')flaky.push(t.projectName+' › '+sp.file+':'+sp.line+' › '+sp.title);})({suites:JSON.parse(fs.readFileSync('reports/playwright.json')).suites});
-          const out='### Wackelige Playwright-Tests (erst im Wiederholungsversuch grün): '+flaky.length+'\n'+flaky.map(x=>'- '+x).join('\n')+'\n';
-          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,out);"
-
-      - name: Bericht als Artefakt speichern
+      - name: Bericht und Fehlerbilder sichern
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: nachtlauf-bericht
+          name: nacht-ui-${{ matrix.shard }}
           path: |
             reports/
-            playwright-report/
             test-results/
           if-no-files-found: ignore
           retention-days: 14
 
+  nightly-report:
+    name: Nacht · Zusammenfassung
+    if: github.event_name == 'schedule' && always()
+    needs: [nightly-node, nightly-ui]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v7
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Berichte aller Teile laden
+        uses: actions/download-artifact@v7
+        with:
+          pattern: nacht-*
+          path: berichte
+          merge-multiple: true
+
+      - name: Fehler und wackelige Tests ausweisen
+        run: node scripts/nightly-summary.mjs berichte >> "$GITHUB_STEP_SUMMARY"
+
       - name: Ergebnis prüfen
-        if: steps.node.outcome == 'failure' || steps.ui.outcome == 'failure'
+        if: needs.nightly-node.result != 'success' || needs.nightly-ui.result != 'success'
         run: |
-          echo "Node-Tests: ${{ steps.node.outcome }}, Playwright: ${{ steps.ui.outcome }}"
+          echo "Node-Tests: ${{ needs.nightly-node.result }}, Browser-Prüfungen: ${{ needs.nightly-ui.result }}"
           exit 1

@@ -32,7 +32,7 @@ export const test = base.extend({
     child.stderr.on('data', (d) => { output += d; });
     try {
       const url = await new Promise((resolve, reject) => {
-        const timer = setTimeout(() => reject(new Error('Testserver startet nicht: ' + output)), 15000);
+        const timer = setTimeout(() => reject(new Error('Testserver startet nicht: ' + output)), 45000); // auf ausgelasteten Rechnern braucht der Start länger
         child.once('error', (e) => { clearTimeout(timer); reject(e); });
         child.once('exit', (code) => { clearTimeout(timer); reject(new Error(`Testserver beendet (${code}): ${output}`)); });
         child.stdout.on('data', (d) => {

@@ -1187,7 +1187,7 @@
         },
         {
           "path": "server/index.js",
-          "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+          "sha256": "0a6e155d57b6c1ecc87e62f8d5f7dbe69b8d3d2eccad7fbb2788c11d3cf19341"
         },
         {
           "path": "server/party-program.js",
@@ -1262,7 +1262,7 @@
           },
           {
             "path": "server/index.js",
-            "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+            "sha256": "0a6e155d57b6c1ecc87e62f8d5f7dbe69b8d3d2eccad7fbb2788c11d3cf19341"
           },
           {
             "path": "server/party-program.js",
@@ -1311,7 +1311,7 @@
           },
           {
             "path": "server/index.js",
-            "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+            "sha256": "0a6e155d57b6c1ecc87e62f8d5f7dbe69b8d3d2eccad7fbb2788c11d3cf19341"
           },
           {
             "path": "server/party-program.js",
@@ -1360,7 +1360,7 @@
           },
           {
             "path": "server/index.js",
-            "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f"
+            "sha256": "0a6e155d57b6c1ecc87e62f8d5f7dbe69b8d3d2eccad7fbb2788c11d3cf19341"
           },
           {
             "path": "server/party-program.js",

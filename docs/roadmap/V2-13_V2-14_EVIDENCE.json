@@ -21,9 +21,10 @@
     },
     {
       "path": "server/index.js",
-      "sha256": "d6abf9d354b5c7a4ab955fd76ad59ba939e208067cda703d5f0e99182afab45f",
+      "sha256": "0a6e155d57b6c1ecc87e62f8d5f7dbe69b8d3d2eccad7fbb2788c11d3cf19341",
       "v2_11_update": "V2-11 (Gebietskampf, 2026-11-07): Raeume koennen ihren Spielstand auch mitten im Spiel speichern (persistMidGame); vorheriger Hash 179b54f3...9b5a",
       "v2_12_update": "V2-12 (Städtehandel, 2026-11-07): saveNow() speichert Räume mit persistMidGame auch beim geordneten Beenden mitten im Spiel; vorheriger Hash 5ff5989b...3286",
+      "v2_09_update": "V2-09 (Sicherheitsdurchgang, 2026-11-08): Nutzdaten-Normalisierung und Fehlermapping der Socket-Ereignisse, /api-Limit, Limit für neue Gast-Konten; vorheriger Hash d6abf9d3...b45f",
       "backlog07_update": {
         "implementation_commit": "2eb4b136683f8c8d363540e02269108a71aa936d",
         "previous_sha256": "9a2e84bc9cee6a461231a4ce08f539c30a1cee9213327d6a596804cdc5c4b384",

@@ -145,6 +145,7 @@ const Settings = (() => {
       <div class="set-actions"><button type="button" class="btn" data-profile="me">${esc(tx('Mein Profil ansehen', 'View my profile'))}</button></div></section>
     <section class="home-panel set-section" id="set-daten">${head('daten', 'Meine Daten', 'My data')}
       <p class="hint">${esc(tx('Alles, was zu deinem Konto gespeichert ist, als JSON-Datei. Mitspieler erscheinen nur als Anzahl.', 'Everything stored for your account as a JSON file. Other players appear only as a count.'))}</p>
+      <p class="hint"><a href="/datenschutz" data-privacy-link>${esc(tx('Datenschutz in Kürze: was gespeichert wird, wie lange und wie du es löschst', 'Privacy in brief: what is stored, for how long and how to delete it'))}</a></p>
       <div class="set-actions"><button type="button" class="btn" data-set-export>${esc(tx('Meine Daten herunterladen', 'Download my data'))}</button></div>
       <p class="hint">${esc(tx('Löschen entfernt dein Konto, Name, Einstellungen, Erfolge, Discord-Verknüpfung und deine alte Namensstatistik. Ergebnisse deiner Mitspieler bleiben, dein Name darin wird entfernt.', 'Deleting removes your account, name, settings, achievements, Discord link and old name statistics. Your fellow players’ results stay; your name in them is removed.'))}</p>
       <div class="set-actions"><button type="button" class="btn btn-outline-red" data-set-delete>${esc(tx('Meine Daten löschen …', 'Delete my data …'))}</button></div></section>
