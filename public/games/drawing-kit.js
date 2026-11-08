@@ -58,7 +58,8 @@ function drawingGame({ id, name, short, intro }) {
     if (progress) progress.textContent = I18n.html`${players.filter((p) => p.ready).length} von ${players.length} fertig`;
     if (pointer !== null) return;
     editor = document.querySelector('#kg-main .draw-editor');
-    if (!editor || editor.dataset.bound) return;
+    if (!editor) return;
+    if (editor.dataset.bound) { paint(); return; }
     editor.dataset.bound = 'true';
     paint();
     editor.querySelectorAll('[data-color]').forEach((button) => button.addEventListener('click', () => {

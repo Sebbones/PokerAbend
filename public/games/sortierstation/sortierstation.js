@@ -42,15 +42,15 @@
       const ev = c.L.evaluate(c.round, dec, { noPenalty: !!c.S.settings.noPenalty });
       const left = Math.max(0, Math.ceil((c.round.playMs - c.t) / 1000));
       const boxes = [...Array(c.round.boxes).keys()].map((b) => {
-        const label = rule === 0 ? c.L.COLORS[b].name : c.L.SHAPES[b].name;
+        const label = I18n.t(rule === 0 ? c.L.COLORS[b].name : c.L.SHAPES[b].name);
         const icon = rule === 0 ? `<span class="ss-sw" style="background:${c.L.COLORS[b].css}"></span>` : shape(b, '#E8E2D0');
         return I18n.html`<button type="button" class="ss-box" data-g="ss-box" data-b="${b}" aria-label="${label}, Taste ${b + 1}">${icon}<small>${label} <kbd>${b + 1}</kbd></small></button>`;
       }).join('');
-      const item = it ? `<div class="ss-item" aria-label="${c.L.COLORS[it.color].name}, ${c.L.SHAPES[it.shape].name}">${shape(it.shape, c.L.COLORS[it.color].css)}</div>
+      const item = it ? `<div class="ss-item" aria-label="${I18n.t(c.L.COLORS[it.color].name)}, ${I18n.t(c.L.SHAPES[it.shape].name)}">${shape(it.shape, c.L.COLORS[it.color].css)}</div>
         <div class="so-bar"><i style="width:${Math.max(0, 100 - ((c.t - it.t) / it.life) * 100)}%"></i></div>` : '<div class="ss-item empty">…</div>';
       const W = WorldKit, t = W.t;
-      return `<div class="wk-stage ss-wrap ss-stage">${W.head({ eyebrow: t('Versandstation', 'Dispatch station'), title: `${t('Sortiere nach', 'Sort by')} ${c.L.ruleName(rule)}`, chips: [W.chip('★', `${ev.pts} ${t('Punkte', 'points')}`, 'good'), W.chip('⏱', `${left} s`, left <= 5 ? 'warn' : '')] })}
-        <div class="ss-rulebar" aria-hidden="true">${t('Regel', 'Rule')}: <b>${c.L.ruleName(rule)}</b></div><div class="ss-belt" role="status">${item}</div><div class="ss-boxes so-btns">${boxes}</div></div>`;
+      return `<div class="wk-stage ss-wrap ss-stage">${W.head({ eyebrow: t('Versandstation', 'Dispatch station'), title: `${t('Sortiere nach', 'Sort by')} ${I18n.t(c.L.ruleName(rule))}`, chips: [W.chip('★', `${ev.pts} ${t('Punkte', 'points')}`, 'good'), W.chip('⏱', `${left} s`, left <= 5 ? 'warn' : '')] })}
+        <div class="ss-rulebar" aria-hidden="true">${t('Regel', 'Rule')}: <b>${I18n.t(c.L.ruleName(rule))}</b></div><div class="ss-belt" role="status">${item}</div><div class="ss-boxes so-btns">${boxes}</div></div>`;
     },
     hint: () => 'Tipp das vorderste Ding in die richtige Kiste',
     choose(c, b) {

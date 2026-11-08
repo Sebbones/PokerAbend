@@ -48,7 +48,7 @@
       "Wer zuerst alle vier im Ziel hat, gewinnt.",
     ],
     house: () => ['Die Runde endet beim ersten Sieger'],
-    playerInfo: (p, S) => (p.color !== null && p.color !== undefined ? I18n.html`<span class="hc-dot hc-${p.color}">${colorMark(MARK[p.color])}</span>${NAMES[p.color]} · ${p.home}/4 im Ziel${S.g?.partners?.[p.id] ? I18n.html` · Partner: ${esc(S.players.find((q) => q.id === S.g.partners[p.id])?.name || '')}` : ''}` : ''),
+    playerInfo: (p, S) => (p.color !== null && p.color !== undefined ? I18n.html`<span class="hc-dot hc-${p.color}">${colorMark(MARK[p.color])}</span>${I18n.t(NAMES[p.color])} · ${p.home}/4 im Ziel${S.g?.partners?.[p.id] ? I18n.html` · Partner: ${esc(S.players.find((q) => q.id === S.g.partners[p.id])?.name || '')}` : ''}` : ''),
     direction: false, // man zieht immer im Uhrzeigersinn ums Brett
     onState(S, prev) {
       if (S.g?.rolled) lastRoll = S.g.rolled;

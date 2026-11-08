@@ -1,0 +1,66 @@
+{
+  "baseline_commit": "74f8524cf3e17c3e59ea7f62289c5ecc187a898d",
+  "reason": "Release corrections; original Card UX screenshots and planning source hashes remain historical evidence.",
+  "sources": [
+    {
+      "path": "public/games/farbenchaos/farbenchaos.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/farbenchaos/farbenchaos.js",
+      "baseline_sha256": "90139e335b0d75d83d7165e7c2724d7349c7395edc77b21aba1892d2264f7b30",
+      "current_sha256": "d9bc5bba4964ff9345a48a8219b26efe9f9c42f97920a88bfdc91bbcfd5cc5da"
+    },
+    {
+      "path": "public/games/kit.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/kit.js",
+      "baseline_sha256": "0b71e0da9f3c489f48d2f202a7fc7168a8f3dfdcbbf44366fb9f7fe7cd7401c1",
+      "current_sha256": "c6adefa8a379b52e977ea15308594a3602d9ceaf4213f9decf54b9cb54d624ab"
+    },
+    {
+      "path": "public/games/stapelrennen/stapelrennen.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/stapelrennen/stapelrennen.js",
+      "baseline_sha256": "b706b482d8a653e9a3938066dcdae208598163ff7ff16324dfb1250bebf63a55",
+      "current_sha256": "2f0843fd41505ec3f7447a130b3d1aa260a9bb9a6366bb42a65828654a1c8056"
+    },
+    {
+      "path": "public/games/maumau/maumau.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/maumau/maumau.js",
+      "baseline_sha256": "8feff11be6d7ef5ddaaefd767289ea1fd15a700b76f81336f082cb4cfeabd182",
+      "current_sha256": "6fdaef4f8968aa7f1e36a5398f902a8f6ae69d83f75067cdc88759b414c359e5"
+    },
+    {
+      "path": "public/games/schwimmen/schwimmen.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/schwimmen/schwimmen.js",
+      "baseline_sha256": "bb6e3dadc663d3c0c82957a426101fbafabf3c6e956ec6452409add19e92234c",
+      "current_sha256": "91e14f3a5106928edd42995bcb1041bfd6290f54660521bd81a4173b9c557439"
+    },
+    {
+      "path": "public/games/mogeln/mogeln.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/mogeln/mogeln.js",
+      "baseline_sha256": "4b17e6d2e755ad9d833595854459f2714245eee1f39fe271ae964a6bab421f11",
+      "current_sha256": "3012774c72dfa5dfa5fa36da302901742e3bc9edff100c8bd3ff15dc2bbb98f1"
+    },
+    {
+      "path": "public/games/praesident/praesident.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/praesident/praesident.js",
+      "baseline_sha256": "4485641c28bfc2d4d23db570982c087abb3f12387dbb0a80f0615fc01391e6dd",
+      "current_sha256": "979a275baecf3bc2c614254b20d47cc41e35742ad993791956b6217f128842b9"
+    },
+    {
+      "path": "public/games/monopoly-deal/monopoly-deal.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/monopoly-deal/monopoly-deal.js",
+      "baseline_sha256": "cc4accba2da555dc6ce571c57617d7e54b232852cc2a1c0180385ecd01a6cd28",
+      "current_sha256": "ff72d07042a3a1462992fe3bd98e1ee7349a86ff4d392108637f13bc23f9190a"
+    },
+    {
+      "path": "public/games/blackjack/blackjack.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/blackjack/blackjack.js",
+      "baseline_sha256": "6ce31dc402d61f7465e175e6df818fc6d5d250197b548f32e86fc07e30a0c2b1",
+      "current_sha256": "4e849e9c8f33f09d215e119251f270dbcfefd8605e2f08116ffc0bef432c6fb8"
+    },
+    {
+      "path": "public/games/poker/poker.js",
+      "archive": "test/fixtures/release-2026-11-08/baseline/public/games/poker/poker.js",
+      "baseline_sha256": "749a043080acb4aedba22ed4d6a8d8f54a1aa799c10c4891ea8bdef68bff34b5",
+      "current_sha256": "181b3d1a47b03e50138048f665f74bdf5a960441bf1aa9e62161989e587de5ee"
+    }
+  ]
+}

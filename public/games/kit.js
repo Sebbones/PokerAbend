@@ -19,6 +19,18 @@
 // Läuft nach /core.js ($, esc, send, toast, ask, beep, socket …).
 'use strict';
 
+// Game-local language and touch corrections, loaded without modifying hub or
+// platform files. Existing German copy stays intact; user text is never scanned.
+let releaseEnglishRules = {};
+if (typeof HTMLLinkElement !== 'undefined' && document.head?.appendChild) {
+  const touch = document.createElement('link'); touch.rel = 'stylesheet'; touch.href = '/games/release-touch.css'; document.head.appendChild(touch);
+  window.gameRulesReady = import('/games/release-rules.js').then((module) => {
+    releaseEnglishRules = module.rules;
+    for (const [source, english] of Object.entries(module.copy || {})) if (!Object.hasOwn(window.EN, source)) window.EN[source] = english;
+    if (I18n.language === 'en') window.dispatchEvent(new CustomEvent('languagechange', { detail: 'en' }));
+  });
+}
+
 usePrefs({ marks: true });
 
 // ---------- Bausteine, die mehrere Spiele brauchen ----------
@@ -112,6 +124,12 @@ function actSound(acts, prev) {
 
 // ---------- Rahmen ----------
 function kitGame(def) {
+  const originalRules = Object.getOwnPropertyDescriptor(def, 'rules');
+  const originalShort = Object.getOwnPropertyDescriptor(def, 'short');
+  const original = (descriptor) => descriptor?.get ? descriptor.get.call(def) : descriptor?.value;
+  const english = () => I18n.language === 'en' && (!S?.variant || S.variant === 'classic') && releaseEnglishRules[def.id];
+  Object.defineProperty(def, 'rules', { configurable: true, get() { const text = english(); return text ? text.map((line) => `<p>${line}</p>`).join('') : original(originalRules); } });
+  Object.defineProperty(def, 'short', { configurable: true, get() { return english()?.slice(0, 3) || original(originalShort); } });
   const mod = {};
   let S = null;
   let panel = null;
@@ -188,7 +206,7 @@ function kitGame(def) {
   // Am eigenen Platz unten reicht die kurze Zeile – Hand, Stapel usw. liegen ohnehin vor dir
   const infoOf = (p, seat) => (S.phase !== 'lobby' && p.inRound !== undefined ? (seat && def.seat && p.id !== S.you?.id ? def.seat(p, S) : def.playerInfo?.(p, S)) || '' : '');
   const tr = (t) => (def.translate ? def.translate(t) : t);
-  const RW = def.roundWord || 'Runde';
+  let RW = I18n.t(def.roundWord || 'Runde');
   const lastAct = () => Math.max(0, ...Object.values(S.acts || {}).map((a) => a.n));
   const bubble = (p, cls) => {
     const a = S.acts?.[p.id];
@@ -268,6 +286,7 @@ function kitGame(def) {
   setInterval(() => { if (isMine()) tickClock(); }, 1000);
 
   function render() {
+    RW = I18n.t(def.roundWord || 'Runde');
     if (!isMine() || !$('#kg')) return;
     GameDesign.apply($('#kg'), def.id);
     document.documentElement.style.setProperty('--topbar', $('#kg .topbar').offsetHeight + 'px');
@@ -375,9 +394,14 @@ function kitGame(def) {
     }).join('');
     const host = S.you?.isHost;
     const eveningDone = S.partyProgram?.config.mode === 'abend' && S.partyProgram.status === 'done';
+    // The server's free-form result sentence contains names and is German.
+    // Use structured winners in English rather than translating player input.
+    const resultTitle = I18n.language === 'en'
+      ? r.winners.length ? `${r.winners.map(id => esc(nameOf(id))).join(' & ')} ${r.winners.length === 1 ? 'wins' : 'share the win'}` : 'Round complete'
+      : esc(r.text);
     return I18n.html`<div class="kg-over" role="dialog" aria-labelledby="kg-over-title"><div class="kg-over-card">
       <small class="kg-over-kicker">${eveningDone ? 'Abend-Modus' : I18n.html`${RW} #${S.roundNo} vorbei`}</small>
-      <h2 id="kg-over-title">${eveningDone ? I18n.t('Spieleabend beendet') : esc(r.text)}</h2>
+      <h2 id="kg-over-title">${eveningDone ? I18n.t('Spieleabend beendet') : resultTitle}</h2>
       ${eveningDone ? programStandHTML(S) : ''}
       ${rows ? I18n.html`<table class="standings"><thead><tr><th>Name</th><th class="num">Runde</th><th class="num">Abend (${uiText(S.scoreLabel)})</th></tr></thead><tbody>${rows}</tbody></table>
         <p class="hint" style="margin:0">${S.lowWins ? I18n.t('Wenig Punkte sind gut.') : I18n.t('Viel ist gut.')}</p>` : ''}
@@ -425,7 +449,7 @@ function kitGame(def) {
       const p = S.partyProgram;
       const pending = p?.status === 'ready' || programRunning(S);
       const enough = pending ? seatedCount() > 0 : seatedCount() >= S.minPlayers;
-      const label = p?.status === 'ready' ? I18n.t('Abendprogramm starten') : p?.status === 'between' ? I18n.t('Nächstes Programm-Spiel') : programRunning(S) ? I18n.t('Partie wiederholen') : S.phase === 'over' ? 'Nochmal' : S.roundNo ? I18n.html`Nächste ${RW}` : I18n.html`${RW} starten`;
+      const label = p?.status === 'ready' ? I18n.t('Abendprogramm starten') : p?.status === 'between' ? I18n.t('Nächstes Programm-Spiel') : programRunning(S) ? I18n.t('Partie wiederholen') : S.phase === 'over' ? I18n.t('Nochmal') : S.roundNo ? I18n.html`Nächste ${RW}` : I18n.html`${RW} starten`;
       parts.push(p?.status === 'done' ? I18n.html('<button type="button" class="btn btn-brass" data-program="plan">Programm planen</button>') : `<button class="btn btn-brass" data-kit="start" ${enough ? '' : `disabled title="Es müssen mindestens ${S.minPlayers} mitspielen"`}>${label}</button>`);
       if (S.phase === 'over') parts.push(`<button class="btn" data-kit-panel="host">${programRunning(S) ? I18n.t('Programm verwalten') : I18n.t('Anderes Spiel …')}</button>`);
     }
@@ -496,7 +520,7 @@ function kitGame(def) {
       const fields = opts.length ? `${selects}${nums ? `<div class="host-grid">${nums}</div>` : ''}<div class="kg-switches">${bools}</div>` : '';
       body.innerHTML = I18n.html`<div class="big-actions">
           ${gamePauseButtonHTML(S)}
-          ${S.phase !== 'playing' ? `<button class="btn btn-brass" data-kit="start">${ICON.play} ${S.phase === 'over' ? 'Nochmal' : S.roundNo ? I18n.html`Nächste ${RW}` : I18n.html`${RW} starten`}</button>` : ''}
+          ${S.phase !== 'playing' ? `<button class="btn btn-brass" data-kit="start">${ICON.play} ${S.phase === 'over' ? I18n.t('Nochmal') : S.roundNo ? I18n.html`Nächste ${RW}` : I18n.html`${RW} starten`}</button>` : ''}
           <button class="btn btn-outline-red" data-kit="newGame" ${S.phase === 'playing' ? 'disabled title="Geht nur zwischen zwei Runden"' : ''}>Neues Spiel (Punkte auf null)</button>
         </div>
         ${programControlsHTML(S)}

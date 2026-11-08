@@ -53,10 +53,10 @@
     hint(S, myTurn) {
       const g = S.g;
       if (!myTurn) return I18n.html`${nameOf(S, S.turnId)} ist dran${g.knocker ? ' – letzter Zug nach dem Klopfen' : ''}`;
-      if (sel?.side === 'hand') return 'Jetzt eine Karte aus der Mitte antippen – die beiden tauschen';
-      if (sel?.side === 'mid') return 'Jetzt eine deiner Karten antippen – die beiden tauschen';
+      if (sel?.side === 'hand') return I18n.t('Jetzt eine Karte aus der Mitte antippen – die beiden tauschen');
+      if (sel?.side === 'mid') return I18n.t('Jetzt eine deiner Karten antippen – die beiden tauschen');
       if (g.lastTurn) return I18n.html`${nameOf(S, g.knocker)} hat geklopft – dein letzter Zug: tauschen oder schieben`;
-      return 'Tipp eine deiner Karten und eine aus der Mitte an – oder alle drei tauschen, schieben, klopfen';
+      return I18n.t('Tipp eine deiner Karten und eine aus der Mitte an – oder alle drei tauschen, schieben, klopfen');
     },
     main(S) {
       const g = S.g;

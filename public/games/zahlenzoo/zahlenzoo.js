@@ -1,6 +1,13 @@
 // Zahlenzoo im Browser (Regeln und Wertung: public/games/zahlenzoo/logic.js). Tiere kommen ins Bild und gehen wieder – dann die Zahl zur Frage eintippen.
 'use strict';
 {
+  const animal = {Katzen:'cats',Hunde:'dogs',Hasen:'rabbits',Frösche:'frogs',Mäuse:'mice'};
+  // These sentences come exclusively from this game's fixed question generator.
+  // Do not apply this formatter to player names, chat or custom questions.
+  const questionText = text => I18n.language !== 'en' ? text : text
+    .replace(/^Wie viele (Katzen|Hunde|Hasen|Frösche|Mäuse) sind am Ende noch im Bild\?$/,(_,a)=>`How many ${animal[a]} remain at the end?`)
+    .replace(/^Wie viele (Katzen|Hunde|Hasen|Frösche|Mäuse) mehr als (Katzen|Hunde|Hasen|Frösche|Mäuse) sind am Ende im Bild\?$/,(_,a,b)=>`How many more ${animal[a]} than ${animal[b]} remain at the end?`)
+    .replace(/^Wie viele (Katzen|Hunde|Hasen|Frösche|Mäuse) und (Katzen|Hunde|Hasen|Frösche|Mäuse) zusammen sind insgesamt hereingekommen\?$/,(_,a,b)=>`How many ${animal[a]} and ${animal[b]} entered in total?`);
   soloGame({
     id: 'zahlenzoo',
     name: 'Zahlenzoo',
@@ -29,14 +36,14 @@
       const t = c.t;
       if (t >= c.round.durationMs + 500) return I18n.html('<div class="zz-over" role="status"><b>Vorbei!</b><span>Jetzt zählen und rechnen …</span></div>');
       const counts = c.L.visibleAt(c.round, t);
-      const rows = c.round.types.map((id) => { const a = c.L.ANIMALS.find((x) => x.id === id); return `<div class="zz-row" aria-label="${esc(a.many)}"><span class="zz-name" aria-hidden="true">${esc(a.many)}</span><span class="zz-icons">${`<i>${a.icon}</i>`.repeat(Math.max(0, counts[id]))}</span></div>`; }).join('');
+      const rows = c.round.types.map((id) => { const a = c.L.ANIMALS.find((x) => x.id === id); return `<div class="zz-row" aria-label="${esc(I18n.language === 'en' ? animal[a.many] : a.many)}"><span class="zz-name" aria-hidden="true">${esc(I18n.language === 'en' ? animal[a.many] : a.many)}</span><span class="zz-icons">${`<i>${a.icon}</i>`.repeat(Math.max(0, counts[id]))}</span></div>`; }).join('');
       const W = WorldKit, tt = W.t, left = Math.max(0, Math.ceil((c.round.durationMs - t) / 1000));
       return I18n.html`<div class="wk-stage zz-stage">${W.head({ eyebrow: tt('Tierpark', 'Zoo'), title: tt('Schau genau hin', 'Look closely'), chips: [W.chip('⏱', `${left} s`, left <= 3 ? 'warn' : ''), W.chip('🐾', `${c.round.types.length} ${tt('Tierarten', 'animal kinds')}`)] })}<div class="zz-scene" role="img" aria-label="Tiere im Bild">${rows}</div></div>`;
     },
-    question: (c) => (c.round ? `<div class="pk-q"><h2>${esc(c.round.question.text)}</h2></div>` : ''),
+    question: (c) => (c.round ? `<div class="pk-q"><h2>${esc(questionText(c.round.question.text))}</h2></div>` : ''),
     hint: () => 'Schau genau hin und tipp die Zahl ein, sobald du sie weißt',
-    form: () => pkForm({ kind: 'answer', label: 'Deine Antwort als Zahl', placeholder: 'Deine Zahl', inputmode: 'numeric', max: 4, button: I18n.t('Antworten') }),
+    form: () => pkForm({ kind: 'answer', label: I18n.t('Deine Antwort als Zahl'), placeholder: I18n.t('Deine Zahl'), inputmode: 'numeric', max: 4, button: I18n.t('Antworten') }),
     formPayload(text) { const n = Number(String(text).replace(',', '.')); return Number.isFinite(n) ? { answer: n } : null; },
-    solution: (sol) => I18n.html`<div class="sm-answer" role="status"><small>Richtig ist</small><b>${sol.answer}</b><span>${esc(sol.question)}</span></div>`,
+    solution: (sol) => I18n.html`<div class="sm-answer" role="status"><small>Richtig ist</small><b>${sol.answer}</b><span>${esc(questionText(sol.question))}</span></div>`,
   });
 }

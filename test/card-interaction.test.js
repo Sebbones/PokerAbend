@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {GAMES} from '../games/index.js';
+import {releaseSource} from './release-source-audit.js';
 const source=readFileSync(new URL('../public/games/card-interaction.js',import.meta.url),'utf8');
 function api(){const context=vm.createContext({window:{},I18n:{language:'de'},setTimeout,clearTimeout});vm.runInContext(source,context);return context.window.CardInteraction;}
 const state=(hand)=>({code:'ABCDE',game:'farbenchaos',variant:'classic',roundNo:1,phase:'playing',turnId:'a',you:{id:'a'},players:[{id:'a',inRound:true}],g:{hand,playable:hand}});
@@ -40,9 +41,9 @@ test('Card UX roadmap covers every registered card game once and keeps all ten f
   const future=plan.packages.filter((p)=>p.requires_separate_authorization);assert.equal(future.length,10);
   for(const p of future){assert.equal(p.status,'planned');assert.equal(p.implementation_commit,null);assert.equal(p.completed_at,null);assert.deepEqual(p.test_results,[]);assert.deepEqual(p.screenshots,[]);assert.ok(p.findings.length>=3&&p.proposal.length>=3&&p.acceptance_criteria.length>=3);assert.ok(p.effort_hours.min>0);}
   const pilots=plan.packages.filter((p)=>!p.requires_separate_authorization);assert.deepEqual(pilots.map((p)=>p.game_id).sort(),['farbenchaos','stapelrennen','zehnetappen']);
-  for(const p of pilots){assert.ok(['in_progress','done'].includes(p.status));if(p.status==='done'){assert.match(p.implementation_commit,/^[a-f0-9]{40}$/);assert.match(p.completed_at,/^\d{4}-\d{2}-\d{2}$/);assert.ok(p.test_results.length&&p.screenshots.length);for(const source of p.source_audit){const text=readFileSync(new URL('../'+source.path,import.meta.url),'utf8').replaceAll('\r\n','\n');assert.equal(createHash('sha256').update(text).digest('hex'),source.sha256,p.game_id);}}}
+  for(const p of pilots){assert.ok(['in_progress','done'].includes(p.status));if(p.status==='done'){assert.match(p.implementation_commit,/^[a-f0-9]{40}$/);assert.match(p.completed_at,/^\d{4}-\d{2}-\d{2}$/);assert.ok(p.test_results.length&&p.screenshots.length);for(const source of p.source_audit){const text=releaseSource(source.path).replaceAll('\r\n','\n');assert.equal(createHash('sha256').update(text).digest('hex'),source.sha256,p.game_id);}}}
 });
 test('Card-game frontend sources match their original or explicitly approved shared-chip LF audits',()=>{
   const plan=JSON.parse(readFileSync(new URL('../docs/design/card-interaction-roadmap.json',import.meta.url),'utf8'));
-  for(const p of plan.packages.filter((p)=>p.requires_separate_authorization))for(const source of p.source_audit){const text=readFileSync(new URL('../'+source.path,import.meta.url),'utf8').replaceAll('\r\n','\n');assert.equal(createHash('sha256').update(text).digest('hex'),source.sha256,p.game_id);}
+  for(const p of plan.packages.filter((p)=>p.requires_separate_authorization))for(const source of p.source_audit){const text=releaseSource(source.path).replaceAll('\r\n','\n');assert.equal(createHash('sha256').update(text).digest('hex'),source.sha256,p.game_id);}
 });

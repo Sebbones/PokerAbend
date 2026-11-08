@@ -1,0 +1,20 @@
+/* Release correction: keep shared game chrome and actions touchable. Scope is
+   the game root; hub/account layouts and logical board geometry are untouched. */
+#game-root :is(.kg-farbenchaos,.kg-stapelrennen,.kg-zehnetappen) .kg-main:has(>.rank-chip) {
+  padding-top:56px;
+}
+@media (max-width: 600px), (pointer: coarse) {
+  #game-root :is(.btn,.nav-btn,.code-chip,.icon-btn,.home-btn,.help-btn,.kg-sort,.hands-btn) {
+    min-height:44px;
+    min-width:44px;
+    box-sizing:border-box;
+  }
+  #game-root :is(.toggle,.field:has(input[type=checkbox])) {min-height:44px;}
+  #game-root :is(.kc,.die,.mu-pt) {min-width:44px;min-height:44px;}
+  #game-root :is(.rv-wrap,.dm-wrap) {max-width:100%;overflow-x:auto;grid-template-columns:minmax(0,1fr);justify-items:start;}
+  #game-root .rv-board {min-width:384px;}
+  #game-root .dm-board {min-width:364px;}
+  #game-root .ml-grid {min-width:414px;grid-template-columns:44px repeat(7,minmax(0,1fr)) 44px;}
+  #game-root .ml-arrow {min-width:44px;min-height:44px;}
+  #game-root .si-grid {min-width:394px;}
+}

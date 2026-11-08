@@ -13,7 +13,7 @@
   let witchTarget = false;
   const pl = (S, id) => S.players.find((p) => p.id === id);
   const nm = (S, id) => esc(pl(S, id)?.name ?? '?');
-  const role = (r) => (ROLE[r] ? ROLE[r][0] : '?');
+  const role = (r) => (ROLE[r] ? I18n.t(ROLE[r][0]) : '?');
 
   const targets = (S, ids, act, { skip = null } = {}) => I18n.html`<div class="ww-targets" role="group" aria-label="Spieler wählen">${ids.map((id) => `<button type="button" class="ww-target ${pick.includes(id) ? 'sel' : ''}" data-g="${act}" data-id="${esc(id)}"><span class="ww-av" aria-hidden="true">${avatarHTML(pl(S, id))}</span>${nm(S, id)}</button>`).join('')}${skip ? `<button type="button" class="ww-target skip" data-g="${skip[0]}">${esc(skip[1])}</button>` : ''}</div>`;
 
@@ -51,13 +51,13 @@
       if (g.dead) return 'Du bist tot – du siehst alles, aber verrate nichts';
       if (!S.you?.inRound) return I18n.t('Du schaust zu');
       const t = g.todo;
-      if (t) return { amor: 'Wähl zwei Spieler, die sich verlieben', wolf: 'Wählt ein Opfer', seer: 'Wen willst du ansehen?', witch: 'Willst du etwas tun?', vote: 'Wer soll hingerichtet werden?', shoot: 'Wen nimmst du mit?' }[t.type];
-      return { night: 'Es ist Nacht – du schläfst', day: 'Besprecht euch am Tisch', vote: 'Du hast abgestimmt', hunter: 'Der Jäger schießt gerade' }[g.stage] || '';
+      if (t) return I18n.t({ amor: 'Wähl zwei Spieler, die sich verlieben', wolf: 'Wählt ein Opfer', seer: 'Wen willst du ansehen?', witch: 'Willst du etwas tun?', vote: 'Wer soll hingerichtet werden?', shoot: 'Wen nimmst du mit?' }[t.type]);
+      return I18n.t({ night: I18n.t('Es ist Nacht – du schläfst'), day: 'Besprecht euch am Tisch', vote: 'Du hast abgestimmt', hunter: 'Der Jäger schießt gerade' }[g.stage] || '');
     },
     main(S) {
       const g = S.g;
       if (!g || !g.stage || g.stage === 'over') return I18n.html('<div class="kg-table ww-wrap"><p class="hint">Die Partie ist zu Ende.</p></div>');
-      const me = g.role ? `<div class="ww-role ${g.role}" role="status"><small>${g.dead ? 'Du warst' : 'Deine Rolle'}</small><b>${role(g.role)}</b><span>${esc(ROLE[g.role][1])}</span>
+      const me = g.role ? `<div class="ww-role ${g.role}" role="status"><small>${I18n.t(g.dead ? 'Du warst' : 'Deine Rolle')}</small><b>${role(g.role)}</b><span>${esc(I18n.t(ROLE[g.role][1]))}</span>
         ${g.wolves && g.role === 'wolf' ? I18n.html`<span class="ww-pack">Das Rudel: ${g.wolves.map((id) => nm(S, id)).join(', ')}</span>` : ''}
         ${g.lovers ? I18n.html`<span class="ww-pack">❤ Verliebt: ${g.lovers.map((id) => nm(S, id)).join(' und ')}</span>` : ''}
         ${g.potions && g.role === 'hexe' ? I18n.html`<span class="ww-pack">Heiltrank: ${g.potions.heal ? 'da' : 'verbraucht'} · Gifttrank: ${g.potions.poison ? 'da' : 'verbraucht'}</span>` : ''}</div>` : '';

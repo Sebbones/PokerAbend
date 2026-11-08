@@ -32,7 +32,7 @@ export function mount(root,id,memory,ctx){
     updateSave();
   }
   function render(){
-    const scroller=q('.ww-scroll');if(scroller)viewScroll={x:scroller.scrollLeft,y:scroller.scrollTop};
+    const scroller=q(id==='sudoku'?'.sp-board-wrap':'.ww-scroll');if(scroller)viewScroll={x:scroller.scrollLeft,y:scroller.scrollTop};
     const focus=document.activeElement?.closest('[data-cell],[data-action],[data-dir],[data-tower]');const focusSelector=focus?.hasAttribute('data-cell')?`[data-cell="${focus.dataset.cell}"]`:focus?.hasAttribute('data-action')?`[data-action="${focus.dataset.action}"]`:null;
     cancelAnimationFrame(raf);raf=0;observer?.disconnect();observer=null;
     if(setup){renderSetup();return;}
@@ -40,6 +40,7 @@ export function mount(root,id,memory,ctx){
     const pause=q('[data-action="pause"]');pause.disabled=!state||state.status!=='playing';pause.textContent=state.paused?tx('Fortsetzen','Resume'):tx('Pause','Pause');
     q('[data-message]').textContent=message;
     if(id==='wellenwacht'){const scroll=q('.ww-scroll');scroll.scrollLeft=viewScroll.x;scroll.scrollTop=viewScroll.y;observer=new ResizeObserver(draw);observer.observe(q('canvas'));draw();schedule();}
+    if(id==='sudoku'){const scroll=q('.sp-board-wrap');scroll.scrollLeft=viewScroll.x;scroll.scrollTop=viewScroll.y;}
     if(focusSelector)q(focusSelector)?.focus({preventScroll:true});
   }
   function renderSetup(){
@@ -61,7 +62,7 @@ export function mount(root,id,memory,ctx){
   }
   function draw(){const canvas=q('canvas');if(canvas&&state)drawDefense(canvas,state,ctx.calm());}
   function schedule(){if(!raf&&!dead&&id==='wellenwacht'&&!setup&&!state.paused&&state.active&&state.status==='playing'&&!document.hidden){last=performance.now();raf=requestAnimationFrame(step);}}
-  function step(now){raf=0;if(dead||setup||state.paused||document.hidden)return;const before=[state.coins,state.lives,state.active,state.status].join();td.advance(state,Math.min(.25,(now-last)/1000));last=now;draw();if(now-lastSave>1000)persist();if(before!==[state.coins,state.lives,state.active,state.status].join()){render();}else if(state.active&&state.status==='playing')raf=requestAnimationFrame(step);}
+  function step(now){raf=0;if(dead||setup||state.paused||document.hidden)return;const before=[state.coins,state.lives,state.active,state.status].join();td.advance(state,Math.min(.25,(now-last)/1000));last=now;draw();const changed=before!==[state.coins,state.lives,state.active,state.status].join();if(changed||now-lastSave>1000)persist();if(changed){render();}else if(state.active&&state.status==='playing')raf=requestAnimationFrame(step);}
   function change(fn){if(!state||setup)return;const result=fn();if(result===false)return;persist();render();}
   function placementFeedback(){
     if(id!=='wellenwacht'||!state||state.towers.some((t)=>t.cell===state.selected)){message='';return;}

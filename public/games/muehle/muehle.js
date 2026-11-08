@@ -40,15 +40,15 @@
       'Unentschieden: 50 Züge ohne Schlagen oder dreimal dieselbe Stellung.',
     ],
     house: () => [],
-    playerInfo: (p) => (p.color === null || p.color === undefined ? '' : I18n.html`<span class="mu-dot mu-${p.color}"></span>${COLOR[p.color]} · ${p.hand ? I18n.html`${p.hand} zum Setzen · ` : ''}${p.stones} auf dem Brett${p.flying ? I18n.html(' · <b>springt</b>') : ''}`),
+    playerInfo: (p) => (p.color === null || p.color === undefined ? '' : I18n.html`<span class="mu-dot mu-${p.color}"></span>${I18n.t(COLOR[p.color])} · ${p.hand ? I18n.html`${p.hand} zum Setzen · ` : ''}${p.stones} auf dem Brett${p.flying ? I18n.html(' · <b>springt</b>') : ''}`),
     onState(S, prev) { if (S.turnId !== prev?.turnId || S.g?.step !== 'move') from = null; },
     hint(S, myTurn) {
       const g = S.g;
       if (!myTurn) return I18n.html`${nameOf(S, S.turnId)} ist dran`;
       if (g.step === 'remove') return I18n.html('<b>Mühle!</b> Tipp einen rot markierten Stein an, um ihn zu nehmen');
       if (g.legal?.place) return I18n.html`Setz einen Stein auf einen freien Punkt (noch ${g.inHand[S.you.id]})`;
-      if (from !== null) return g.flying ? 'Du springst: tipp einen freien Punkt an' : 'Tipp ein leuchtendes Ziel an';
-      return g.flying ? 'Du hast nur noch 3 Steine und darfst springen – tipp einen eigenen Stein an' : 'Tipp einen eigenen Stein an, der ziehen kann';
+      if (from !== null) return g.flying ? I18n.t('Du springst: tipp einen freien Punkt an') : I18n.t('Tipp ein leuchtendes Ziel an');
+      return g.flying ? I18n.t('Du hast nur noch 3 Steine und darfst springen – tipp einen eigenen Stein an') : I18n.t('Tipp einen eigenen Stein an, der ziehen kann');
     },
     main(S) {
       const g = S.g;

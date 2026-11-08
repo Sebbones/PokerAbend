@@ -31,6 +31,7 @@
 .sp-settings { max-width:480px; padding:14px 0; }
 .sp-message:empty { display:none; }
 .sp-board-wrap,.ww-board { position:relative; }
+.solo-sudoku .sp-board-wrap { max-width:100%; overflow-x:auto; }
 .sp-paused { position:absolute; inset:0; background:#15251ff5; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; border:1px solid var(--sp-edge); border-radius:12px; text-align:center; padding:12px; z-index:2; }
 .sp-result { border:1px solid #f0d5a1; background:#ffffff0b; border-radius:12px; padding:16px; margin-top:18px; }
 .sp-check { display:flex; align-items:center; gap:10px; min-height:44px; margin-top:10px; }
@@ -42,6 +43,17 @@
 .sdk-cell.peer { background:#e5e8d6; }
 .sdk-cell[aria-selected=true] { background:#c7d8b6; box-shadow:inset 0 0 0 3px #457655; outline:0; }
 .sdk-cell.wrong { color:#a42323; background:#f2d1bd; text-decoration:underline wavy; }
+@media (max-width:600px), (pointer:coarse) {
+  .solo-sudoku .sdk-grid { min-width:402px; }
+  .solo-wellenwacht .ww-board { min-width:616px; }
+  .solo-minesweeper .mine-field { --cell:48px; }
+  .solo-nonogramm .ng-field { --cell:44px; }
+  .solo-sokoban .warehouse-field { --cell:46px; }
+  .solo-block-puzzle .bp-board { min-width:calc(var(--n)*47px + 17px); }
+  .solo-match-3 .m3-board { min-width:389px; }
+  .solo-mahjong-solitaire .mj-board { min-width:calc(var(--w)*30px); }
+  .solo-solitaire .sol-board { --w:44px; min-width:350px; }
+}
 .sdk-cell.box-right { border-right:3px solid #8c8e70; }
 .sdk-cell.box-bottom { border-bottom:3px solid #8c8e70; }
 .sdk-notes { display:grid; grid-template-columns:repeat(3,1fr); width:100%; height:100%; padding:2px; font:500 clamp(8px,1.05vw,12px)/1 sans-serif; color:#3a5c49; }

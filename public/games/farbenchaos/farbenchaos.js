@@ -41,9 +41,9 @@
     const haunted = variant === 'halloween-ghosthunt';
     const illustration = haunted ? value === 'W' ? SIGIL : value === 'F' ? icon('<path d="M10 31V18q0-4 4-2V8q2-4 4 0v11V5q2-4 4 0v14V8q2-4 4 0v14l3-5q4-2 3 3l-5 13H15Z"/>') : value === 'R' ? SIGIL : GHOST : variant === 'all-wild' ? SIGIL : '';
     return `<button type="button" class="kc kc-fc fc-${colour} ${drawValues[value] ? 'fc-attack' : ''} ${cls}" data-uno-theme="${theme}" data-face="${dark ? 'dark' : 'light'}" data-action="${value}" ${attrs} aria-label="${esc(`${colour === 'w' ? '' : CardInteraction.term(COLOR[colour]) + ' '}${name}`)}">
-      <span class="fc-card-border" aria-hidden="true"></span>${colorMark(colour)}<span class="cr tl">${corner}</span>
+      <span class="fc-card-border" aria-hidden="true"></span>${colorMark(colour)}<span class="cr tl ${value === '6' || value === '9' ? 'ul' : ''}">${corner}</span>
       ${illustration ? `<span class="fc-card-art" aria-hidden="true">${illustration}</span>` : ''}<span class="oval"><span class="v ${value === '6' || value === '9' ? 'ul' : ''}">${symbol}</span></span>
-      <span class="fc-card-name" aria-hidden="true">${/^\d$/.test(value) ? haunted ? tx('SPUR', 'CLUE') : variant === 'flip' ? dark ? 'DARK' : 'LIGHT' : 'UNO' : esc(name)}</span><span class="cr br">${corner}</span>
+      <span class="fc-card-name" aria-hidden="true">${/^\d$/.test(value) ? haunted ? tx('SPUR', 'CLUE') : variant === 'flip' ? dark ? 'DARK' : 'LIGHT' : 'UNO' : esc(name)}</span><span class="cr br ${value === '6' || value === '9' ? 'ul' : ''}">${corner}</span>
     </button>`;
   };
   const deckBack = (count, S) => {

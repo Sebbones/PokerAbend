@@ -41,7 +41,7 @@
     look(S) {
       const g = S.g;
       const ids = Object.keys(g.banked).sort((a, b) => g.banked[b] - g.banked[a]);
-      return [{ title: 'Punkte aller', note: I18n.html`Ziel: ${fmt(g.target)}`, html: `<ul class="look-list">${ids.map((id) => `<li><b>${esc(S.players.find((p) => p.id === id)?.name ?? '?')}</b>: ${fmt(g.banked[id])}${g.entered.includes(id) ? '' : ' · noch nicht drin'}</li>`).join('')}</ul>` }];
+      return [{ title: 'Punkte aller', note: I18n.html`Ziel: ${fmt(g.target)}`, html: `<ul class="look-list">${ids.map((id) => `<li><b>${esc(S.players.find((p) => p.id === id)?.name ?? '?')}</b>: ${fmt(g.banked[id])}${g.entered.includes(id) ? '' : I18n.t(' · noch nicht drin')}</li>`).join('')}</ul>` }];
     },
     name: 'Zehntausend',
     direction: false,
@@ -59,7 +59,7 @@
       'Erstes Anschreiben ab 350 Punkten in einem Zug. Wer zuerst 10.000 hat, gewinnt (die anderen haben noch einen Zug).',
     ],
     house: () => [],
-    playerInfo: (p) => (p.banked === undefined ? '' : `${fmt(p.banked)}${p.entered ? '' : ' · noch nicht drin'}${p.lastTurn ? ' · letzter Zug' : ''}`),
+    playerInfo: (p) => (p.banked === undefined ? '' : `${fmt(p.banked)}${p.entered ? '' : I18n.t(' · noch nicht drin')}${p.lastTurn ? I18n.t(' · letzter Zug') : ''}`),
     onState(S) {
       const g = S.g;
       const key = g ? `${S.roundNo}:${S.turnId}:${g.dice.join(',')}:${g.rolled}:${g.aside.length}` : '';
@@ -68,7 +68,7 @@
     hint(S, myTurn) {
       const g = S.g;
       if (!myTurn) return I18n.html`${nameOf(S, S.turnId)} würfelt${g.turnPoints ? I18n.html` – Zug ${fmt(g.turnPoints)}` : ''}`;
-      if (g.rolled) return 'Tipp die Würfel an, die du herauslegst – jeder muss punkten';
+      if (g.rolled) return I18n.t('Tipp die Würfel an, die du herauslegst – jeder muss punkten');
       if (!g.turnPoints) return g.final ? 'Dein letzter Zug – würfle' : I18n.t('Würfle');
       return g.canBank ? I18n.html`Weiterwürfeln mit ${g.remaining} Würfel${g.remaining === 1 ? '' : 'n'} – oder ${fmt(g.turnPoints)} sichern` : I18n.html`Noch nicht eingestiegen: ${fmt(g.entry)} nötig – weiterwürfeln`;
     },

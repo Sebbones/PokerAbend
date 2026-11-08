@@ -69,6 +69,14 @@ const HANDS = [
   [1, 'Paar', 'One Pair', 'Zwei Karten mit gleichem Wert', ['Qs', 'Qh', '6h', '9c', '2d'], 2],
   [0, 'Höchste Karte', 'High Card', 'Nichts davon – die höchste Karte zählt', ['Ah', 'Qs', '6s', '5d', 'Tc'], 1],
 ];
+// Translate only a server-generated hand description, never names or chat.
+function pokerHandEnglish(value) {
+  const words = {'Höchste Karte':'High card','Zwei Paare':'Two pair','Vierling':'Four of a kind','Drilling':'Three of a kind','Straße':'Straight','Paar':'Pair',
+    'Asse':'aces','Könige':'kings','Damen':'queens','Buben':'jacks','Zehnen':'tens','Neunen':'nines','Achten':'eights','Siebenen':'sevens','Sechsen':'sixes','Fünfen':'fives','Vieren':'fours','Dreien':'threes','Zweien':'twos',
+    'Ass':'Ace','König':'King','Dame':'Queen','Bube':'Jack','Zehn':'Ten','Neun':'Nine','Acht':'Eight','Sieben':'Seven','Sechs':'Six','Fünf':'Five','Vier':'Four','Drei':'Three','Zwei':'Two'};
+  let text=String(value);for(const [de,en] of Object.entries(words))text=text.replace(new RegExp('\\b'+de+'\\b','g'),en);
+  return text.replaceAll(' und ',' and ').replaceAll(' über ',' over ').replaceAll(' bis ',' to ').replaceAll(' hoch',' high');
+}
 const HAND_NAME = Object.fromEntries(HANDS.map(([cat, name]) => [cat, name]));
 // Kleiner Balken: Name, Balken, Prozent – die Zahl steht immer dabei (nicht nur die Länge)
 const oddsBar = (name, p) => `<span class="odds-bar"><span class="ob-name">${esc(name)}</span><span class="ob-track"><i style="width:${Math.max(2, Math.min(100, p))}%"></i></span><b>${pct(p)}</b></span>`;
@@ -273,7 +281,7 @@ function render() {
   const b = S.blinds;
   const levels = b.mode !== 'off';
   $('#meta').innerHTML = I18n.html`<div class="blinds"><small>Blinds${levels ? I18n.html` · Level ${b.level}` : ''}</small>${amt(b.sb)} / ${amt(b.bb)}</div>
-    <div class="meta-sub">${h ? I18n.html`Hand #${h.no} · ${STREET[h.street]}` : 'Noch keine Hand'}${S.frozen ? I18n.html(' · <b>Angehalten</b>') : S.paused ? I18n.html(' · <b>Pause</b>') : ''}${levels ? blindNote(b) : ''}</div>`;
+    <div class="meta-sub">${h ? I18n.html`Hand #${h.no} · ${I18n.language === 'en' && h.street === 'done' ? 'Hand complete' : STREET[h.street]}` : 'Noch keine Hand'}${S.frozen ? I18n.html(' · <b>Angehalten</b>') : S.paused ? I18n.html(' · <b>Pause</b>') : ''}${levels ? blindNote(b) : ''}</div>`;
   const fb = $('#freeze-btn');
   fb.hidden = !S.you?.isHost || !S.started;
   fb.classList.toggle('btn-brass', !!S.frozen);
@@ -353,7 +361,7 @@ function renderTable() {
       ? `<div class="big">${seated < 2 ? 'Warte auf Mitspieler' : 'Alle da?'}</div><div class="sub">${seated < 2 ? 'Teil den Link oben – sobald 2 sitzen, kannst du starten.' : I18n.html`<button class="btn btn-brass" data-do="start">Spiel starten</button>`}</div>`
       : I18n.html`<div class="big">Gleich geht’s los</div><div class="sub">Der Host startet das Spiel.</div>`;
   } else if (h.done && h.result) {
-    const lines = h.result.pots.map((p, i) => `<div class="${i ? 'sub' : 'big'}">${esc(p.names.join(' & '))} ${p.winners.length > 1 ? 'teilen sich' : 'gewinnt'} ${amt(p.amount)}${p.hand ? I18n.html` mit ${esc(p.hand)}` : ''}</div>`);
+    const lines = h.result.pots.map((p, i) => `<div class="${i ? 'sub' : 'big'}">${esc(p.names.join(' & '))} ${I18n.language === 'en' ? (p.winners.length > 1 ? 'share' : 'wins') : (p.winners.length > 1 ? 'teilen sich' : 'gewinnt')} ${amt(p.amount)}${p.hand ? (I18n.language === 'en' ? ` with ${esc(pokerHandEnglish(p.hand))}` : I18n.html` mit ${esc(p.hand)}`) : ''}</div>`);
     const next = S.nextAt ? Math.max(0, Math.ceil((S.nextAt - gameNow(S)) / 1000)) : null;
     let sub = '';
     if (S.paused) sub = 'Pause – der Host macht weiter';
@@ -469,7 +477,7 @@ function renderDock() {
     if (better.length) chances = I18n.html`<span class="odds-bars" aria-label="Chancen bis zum River">${better.map(([cat, name]) => oddsBar(name, S.odds[cat])).join('')}</span>`;
   }
   const showName = prefs.strength && S.strength;
-  const strength = myCards && !foldedMine && (showName || chances) ? I18n.html`<button class="strength" data-panel-open="hands" title="Alle Pokerhände und deine Chancen"><span>${showName ? esc(S.strength) : 'Deine Chancen'}</span><small>${STREET[h.street]}</small>${chances}</button>` : '';
+  const strength = myCards && !foldedMine && (showName || chances) ? I18n.html`<button class="strength" data-panel-open="hands" title="Alle Pokerhände und deine Chancen"><span>${showName ? esc(I18n.language === 'en' ? pokerHandEnglish(S.strength) : S.strength) : 'Deine Chancen'}</span><small>${I18n.language === 'en' && h.street === 'done' ? 'Hand complete' : STREET[h.street]}</small>${chances}</button>` : '';
   const myChips = `<span class="me-chips"><span class="chip c5" aria-hidden="true"></span>${amt(me.stack)}</span>`;
   const left = `<div class="mine">${handsBtn()}<div class="cards ${foldedMine ? 'is-folded' : ''}">${cardsHTML}</div><div class="mine-info">${strength}${myChips}</div></div>`;
 
@@ -500,7 +508,7 @@ function renderDock() {
       </div>` : ''}
       <div class="act-row act-main">
         ${clock}
-        <button class="btn btn-outline-red" data-act="fold" ${L.canCheck ? 'title="Du könntest auch checken"' : ''}><span class="amt">Fold</span><small>${L.canCheck ? 'statt Check' : 'aussteigen'} ${kb('F')}</small></button>
+        <button class="btn btn-outline-red" data-act="fold" ${L.canCheck ? 'title="Du könntest auch checken"' : ''}><span class="amt">Fold</span><small>${I18n.t(L.canCheck ? 'statt Check' : 'aussteigen')} ${kb('F')}</small></button>
         <button class="btn" data-act="${L.canCheck ? 'check' : 'call'}">${callInner}</button>
         ${L.canRaise ? `<button class="btn btn-brass" data-act="raise" id="raise-btn">${raiseInner(raiseValue)}</button>` : ''}
       </div>
@@ -1078,6 +1086,27 @@ function pokerHelp() {
   const b = S?.blinds || { sb: s.smallBlind, bb: s.bigBlind, mode: 'off' };
   const rebuy = s.rebuy === 'unlimited' ? 'unbegrenzt' : s.rebuy === 'off' ? 'aus' : I18n.html`höchstens ${s.rebuy}×`;
   const onOff = (v) => (v ? 'an' : 'aus');
+  if (I18n.language === 'en') {
+    const omaha = S?.game === 'omaha' || s.variant === 'omaha';
+    showHelp({
+      title: omaha ? 'Omaha — quick rules' : "Texas Hold’em — quick rules",
+      short: [
+        omaha ? 'Four private cards and five community cards: flop (three), turn and river. Use exactly two private cards and three community cards.' : 'Two private cards and five community cards: flop (three), turn and river. Your best five-card hand from the seven cards wins.',
+        ...(omaha && s.potLimit ? ['Pot limit: the maximum raise is the pot after calling.'] : []),
+        'Bet on each street: check, call, raise or fold. Small and big blinds are compulsory and move one seat each hand.',
+        'An all-in player can win only the pots they contributed to. Tied pots are split. If everyone else folds, the last player wins without showing.',
+      ],
+      house: [
+        `Blinds: ${amt(b.sb)} / ${amt(b.bb)}${b.mode !== 'off' ? ` — increase every ${s.blindEvery} ${b.mode === 'hands' ? 'hands' : 'minutes'}` : ''}`,
+        'At most one bet and three raises per betting round.',
+        `Rebuy: ${s.rebuy === 'unlimited' ? 'unlimited' : s.rebuy === 'off' ? 'off' : `at most ${s.rebuy} times`} (${amt(s.startStack)} chips).`,
+        `Turn time: ${s.turnTime ? s.turnTime + ' s' : 'unlimited'}.`,
+        `Odds display: ${{off:'off',own:'your own only',after:'after the hand'}[s.oddsMode] || 'your own only'}.`,
+        `Chip gifts: ${s.gifts ? 'on' : 'off'}; nudging: ${s.nudge ? 'on' : 'off'}.`,
+      ],
+    });
+    return;
+  }
   showHelp({
     title: s.variant === 'omaha' ? 'Omaha – kurz erklärt' : "Texas Hold'em – kurz erklärt",
     short: [

@@ -82,7 +82,7 @@
   function fit() {
     if (!viewport?.isConnected) return;
     const board = viewport.querySelector('.mo-board');
-    const base = Math.max(364, Math.min(viewport.clientWidth, viewport.clientHeight, 880)); board.style.setProperty('--mo-size', Math.round(base * zoom) + 'px');
+    const base = Math.max(matchMedia('(max-width:600px), (pointer:coarse)').matches ? 530 : 364, Math.min(viewport.clientWidth, viewport.clientHeight, 880)); board.style.setProperty('--mo-size', Math.round(base * zoom) + 'px');
     const label = viewport.parentElement.querySelector('.mo-zoom > span'); if (label) label.textContent = Math.round(zoom * 100) + ' %';
   }
   function showOwn() {

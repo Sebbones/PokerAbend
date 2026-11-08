@@ -34,6 +34,14 @@
     // „Leg ein ♥ Herz oder einen König“ – was gerade passt
     playHint(g) {
       const suit = g.wish || g.top[1];
+      if (I18n.language === 'en') {
+        const suits = german() ? {c:'acorns',s:'leaves',h:'hearts',d:'bells'} : {c:'clubs',s:'spades',h:'hearts',d:'diamonds'};
+        const ranks = {7:'a 7',8:'an 8',9:'a 9',T:'a 10',J:'a jack',Q:'a queen',K:'a king',A:'an ace'};
+        const choices = [`a ${suits[suit]} card`];
+        if (!g.wish) choices.push(ranks[g.top[0]]);
+        if (g.playable.some(c => c[0] === 'J' && c[1] !== suit && g.top[0] !== 'J')) choices.push(ranks.J);
+        return `Play ${choices.join(' or ')}${g.wish ? ' (chosen suit)' : ''}`;
+      }
       const parts = [SUIT_ACC[german() ? 'de' : 'fr'][suit]];
       if (!g.wish) parts.push(rankAcc(g.top[0]));
       if (g.playable.some((c) => c[0] === 'J' && c[1] !== suit && g.top[0] !== 'J')) parts.push(rankAcc('J'));

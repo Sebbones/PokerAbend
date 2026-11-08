@@ -27,7 +27,7 @@
     ],
     house: () => [],
     status: (S) => (S.g?.step === 'bet' ? I18n.html`Hand #${S.roundNo} · Einsätze` : S.g?.step === 'insure' ? I18n.html`Hand #${S.roundNo} · Versicherung?` : null),
-    playerInfo: (p, S) => I18n.html`${fmt(p.stack)} Chips${S.phase === 'playing' && S.g?.bets?.[p.id] ? I18n.html` · Einsatz ${fmt(S.g.bets[p.id])}` : S.g?.step === 'bet' && p.inRound ? (p.decided ? ' · setzt aus' : ' · setzt noch') : ''}`,
+    playerInfo: (p, S) => I18n.html`${fmt(p.stack)} Chips${S.phase === 'playing' && S.g?.bets?.[p.id] ? I18n.html` · Einsatz ${fmt(S.g.bets[p.id])}` : S.g?.step === 'bet' && p.inRound ? (p.decided ? I18n.t(' · setzt aus') : I18n.t(' · setzt noch')) : ''}`,
     // „Stand“: Chips aller Spieler und der Bank
     standExtra(S) {
       const list = S.players.filter((p) => p.stack !== null && p.stack !== undefined);
@@ -72,7 +72,7 @@
         const hs = g.hands[id];
         const cur = g.step === 'play' && S.turnId === id;
         const bet = g.bets[id];
-        if (!hs) return `<div class="bj-seat ${id === S.you?.id ? 'me' : ''}"><b>${nameOf(S, id)}</b><small>${bet ? I18n.html`Einsatz ${fmt(bet)}` : S.players.find((p) => p.id === id)?.decided ? 'setzt aus' : 'setzt noch …'}</small></div>`;
+        if (!hs) return `<div class="bj-seat ${id === S.you?.id ? 'me' : ''}"><b>${nameOf(S, id)}</b><small>${bet ? I18n.html`Einsatz ${fmt(bet)}` : S.players.find((p) => p.id === id)?.decided ? I18n.t('setzt aus') : I18n.t('setzt noch …')}</small></div>`;
         return `<div class="bj-seat ${id === S.you?.id ? 'me' : ''} ${cur ? 'turn' : ''}"><b>${nameOf(S, id)}${id === S.you?.id ? I18n.html(' <small>(du)</small>') : ''}</b>
           ${hs.map((h, k) => I18n.html`<div class="bj-hand ${cur && k === g.handIdx ? 'now' : ''} ${h.total > 21 ? 'bust' : ''}">
             <div class="bj-cards small">${h.cards.map((c) => card(c)).join('')}</div>

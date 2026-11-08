@@ -25,10 +25,11 @@
       'Volles Feld ohne vier = unentschieden. Wer anfängt, wechselt jede Partie.',
     ],
     house: () => [],
-    playerInfo: (p) => (p.color === null || p.color === undefined ? '' : `<span class="vg-dot vg-${p.color}">${colorMark(MARK[p.color])}</span>${COLOR[p.color]}`),
+    playerInfo: (p) => (p.color === null || p.color === undefined ? '' : `<span class="vg-dot vg-${p.color}">${colorMark(MARK[p.color])}</span>${I18n.language === 'en' ? ['Red','Yellow'][p.color] : COLOR[p.color]}`),
     hint(S, myTurn) {
       if (!myTurn) return I18n.html`${nameOf(S, S.turnId)} ist dran`;
       const c = S.g.colors[S.you.id];
+      if (I18n.language === 'en') return `Tap a column — your ${c === 0 ? 'red' : 'yellow'} piece falls to the bottom`;
       return I18n.html`Tipp eine Spalte an – dein ${c === 0 ? 'roter' : 'gelber'} Stein fällt nach unten`;
     },
     main(S) {

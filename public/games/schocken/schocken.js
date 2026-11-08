@@ -64,11 +64,11 @@
             const die = myTurn && !g.done.includes(id)
               ? dieHTML(v, { tag: 'button', cls: I18n.html`big ${kept ? 'kept' : ''}`, attrs: `type="button" data-g="keep" data-i="${i}" aria-pressed="${kept}" ${g.forced?.[id] === i || g.reroll?.[id] === i ? 'disabled' : ''}` })
               : dieHTML(v, { cls: I18n.html`big ${kept ? 'kept' : ''}` });
-            return `<span class="sc-slot ${kept ? 'kept' : ''}">${die}<small>${kept ? 'bleibt' : ''}</small></span>`;
+            return `<span class="sc-slot ${kept ? 'kept' : ''}">${die}<small>${kept ? I18n.t('bleibt') : ''}</small></span>`;
           }).join('')}</div>
           <div class="sc-judge"><small>${name(id)} · ${g.throws[id]}. Wurf von ${g.maxThrows}</small><b>${esc(g.judged[id])}</b></div>
         </div>`
-        : I18n.html`<div class="sc-tray empty"><small>${name(id)} ist dran – noch nicht gewürfelt. Höchstens ${g.maxThrows} ${g.maxThrows === 1 ? 'Wurf' : 'Würfe'}${g.first && g.first !== id ? I18n.html` (legt ${name(g.first)} fest)` : ''}.</small></div>`;
+        : I18n.html`<div class="sc-tray empty"><small>${name(id)} ist dran – noch nicht gewürfelt. Höchstens ${g.maxThrows} ${I18n.t(g.maxThrows === 1 ? 'Wurf' : 'Würfe')}${g.first && g.first !== id ? I18n.html` (legt ${name(g.first)} fest)` : ''}.</small></div>`;
       // Übersicht aller Würfe dieses Durchgangs (oder des letzten, bis jemand würfelt), bester zuerst
       const current = (g.rank || []).length;
       const list = current

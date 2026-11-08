@@ -4,7 +4,7 @@
   let sel = new Set();
   const ORDER = '3456789TJQKA2';
   const RANK_NAME = { T: 'Zehner', J: 'Buben', Q: 'Damen', K: 'Könige', A: 'Asse', 2: 'Zweier' };
-  const rn = (r) => RANK_NAME[r] || I18n.html`${r}er`;
+  const rn = (r) => I18n.language === 'en' ? ({A:'aces',2:'twos',3:'threes',4:'fours',5:'fives',6:'sixes',7:'sevens',8:'eights',9:'nines',T:'tens',J:'jacks',Q:'queens',K:'kings'}[r] || r) : RANK_NAME[r] || I18n.html`${r}er`;
   const nameOf = (S, id) => esc(S.players.find((p) => p.id === id)?.name ?? '?');
   const pw = (c) => ORDER.indexOf(c[0]);
 
@@ -33,7 +33,7 @@
     hint(S, myTurn) {
       const t = S.g.table;
       if (!myTurn) return I18n.html`${nameOf(S, S.turnId)} ist dran`;
-      return t ? I18n.html`Überbiete ${t.count} × ${rn(t.rank)} mit ${t.count} höheren Karten – oder passe` : 'Du spielst aus: 1 bis 4 Karten gleichen Werts';
+      return t ? I18n.html`Überbiete ${t.count} × ${rn(t.rank)} mit ${t.count} höheren Karten – oder passe` : I18n.t('Du spielst aus: 1 bis 4 Karten gleichen Werts');
     },
     main(S) {
       const g = S.g;
@@ -56,7 +56,7 @@
       const hand = (g.hand || []).map((c) => frenchCard(c, { cls: `${sel.has(c) ? 'sel' : ''} ${fits(c) ? 'can' : ''}`, attrs: myTurn ? `data-g="pick" data-c="${c}"` : 'disabled' })).join('');
       const n = sel.size;
       const ok = n && (!t || n === t.count);
-      const acts = myTurn ? `<button class="btn btn-brass" data-g="play" ${ok ? '' : 'disabled'}>${n ? I18n.html`${n} × ${rn([...sel][0][0])} ablegen` : 'Karten wählen'}</button>
+      const acts = myTurn ? `<button class="btn btn-brass" data-g="play" ${ok ? '' : 'disabled'}>${n ? I18n.html`${n} × ${rn([...sel][0][0])} ablegen` : I18n.t('Karten wählen')}</button>
         ${g.canPass ? I18n.html('<button class="btn" data-g="pass">Passen</button>') : ''}` : '';
       return I18n.html`<div class="kg-hand" role="group" aria-label="Deine Karten">${hand}</div><div class="kg-acts">${acts}</div>`;
     },

@@ -1,5 +1,7 @@
 /* Eigene Spielwelten für Block-Puzzle, Solitär, Mahjong-Solitär und Match-3; alle Selektoren sind auf diese vier Spiele begrenzt. */
 .solo-puzzle { min-width:0; }
+.solo-puzzle [data-content] { position:relative; }
+.solo-puzzle .sp-paused { position:relative; inset:auto; min-height:180px; }
 .solo-puzzle .sp-tools { margin-top:14px; }
 .solo-puzzle .sp-note { margin:10px 0 0; padding:8px 12px; border:1px solid var(--sp-edge); border-radius:8px; background:#ffffff0b; }
 .solo-puzzle button:focus-visible { outline:3px solid #eeb945; outline-offset:-3px; z-index:2; }

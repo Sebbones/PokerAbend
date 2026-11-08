@@ -12,6 +12,10 @@
     threeKind: '3 gleiche: alle Augen', fourKind: '4 gleiche: alle Augen', fullHouse: '3 + 2 gleiche: 25', smallStraight: '4 in Folge: 30',
     largeStraight: '5 in Folge: 40', kniffel: '5 gleiche: 50', chance: 'alle Augen',
   };
+  const EN_NAME = {ones:'Ones',twos:'Twos',threes:'Threes',fours:'Fours',fives:'Fives',sixes:'Sixes',threeKind:'Three of a kind',fourKind:'Four of a kind',fullHouse:'Full house',smallStraight:'Small straight',largeStraight:'Large straight',kniffel:'Five of a kind',chance:'Chance'};
+  const EN_HINT = {ones:'count only ones',twos:'only twos',threes:'only threes',fours:'only fours',fives:'only fives',sixes:'only sixes',threeKind:'3 alike: all dice',fourKind:'4 alike: all dice',fullHouse:'3 + 2 alike: 25',smallStraight:'4 in sequence: 30',largeStraight:'5 in sequence: 40',kniffel:'5 alike: 50',chance:'all dice'};
+  const label = f => I18n.language === 'en' ? EN_NAME[f] : NAME[f];
+  const hint = f => I18n.language === 'en' ? EN_HINT[f] : HINT[f];
   let keep = new Set();
   let column = 0;
   let keepKey = '';
@@ -23,15 +27,15 @@
       const g = S.g;
       if (g.columnSheets) {
         const columns = Object.keys(g.columnSheets).flatMap((id) => [0, 1, 2].map((column) => ({ id, column })));
-        const row = (f) => `<tr><th>${NAME[f]}</th>${columns.map(({ id, column }) => `<td class="num">${g.columnSheets[id][column][f] ?? '–'}</td>`).join('')}</tr>`;
+        const row = (f) => `<tr><th>${label(f)}</th>${columns.map(({ id, column }) => `<td class="num">${g.columnSheets[id][column][f] ?? '–'}</td>`).join('')}</tr>`;
         return [{ title: 'Alle drei Spalten', html: I18n.html`<div class="look-table"><table class="look-big"><thead><tr><th></th>${columns.map(({ id, column }) => `<th>${nameOf(S, id)} ×${column + 1}</th>`).join('')}</tr></thead><tbody>${[...UPPER, ...LOWER].map(row).join('')}<tr><th>Gewichtete Summe</th>${columns.map(({ id, column }) => `<td class="num">${g.columnTotals[id][column].total * (column + 1)}</td>`).join('')}</tr></tbody></table></div>` }];
       }
       const ids = Object.keys(g.sheets);
       const cell = (id, f) => { const v = g.sheets[id][f]; return `<td class="num">${v === null ? '' : v === 0 ? '–' : v}</td>`; };
-      const row = (f) => `<tr><th scope="row">${NAME[f]}</th>${ids.map((id) => cell(id, f)).join('')}</tr>`;
+      const row = (f) => `<tr><th scope="row">${label(f)}</th>${ids.map((id) => cell(id, f)).join('')}</tr>`;
       const head = ids.map((id) => `<th class="num" scope="col">${nameOf(S, id)}</th>`).join('');
       const sum = (label, fn) => `<tr class="kn-sum"><th scope="row">${label}</th>${ids.map((id) => `<td class="num"><b>${fn(g.totals[id])}</b></td>`).join('')}</tr>`;
-      return [{ title: 'Punkteblätter aller', html: `<div class="look-table"><table class="look-big"><thead><tr><th></th>${head}</tr></thead><tbody>${UPPER.map(row).join('')}${sum('Summe oben', (t) => t.upper)}${LOWER.map(row).join('')}${sum(I18n.t('Gesamt'), (t) => t.total)}</tbody></table></div>` }];
+      return [{ title: 'Punkteblätter aller', html: `<div class="look-table"><table class="look-big"><thead><tr><th></th>${head}</tr></thead><tbody>${UPPER.map(row).join('')}${sum(I18n.language === 'en' ? 'Upper total' : 'Summe oben', (t) => t.upper)}${LOWER.map(row).join('')}${sum(I18n.t('Gesamt'), (t) => t.total)}</tbody></table></div>` }];
     },
     name: 'Kniffel',
     direction: false,
@@ -49,7 +53,7 @@
       'Nach 13 Runden gewinnt die höchste Summe.',
     ],
     house: () => [],
-    playerInfo: (p, S) => { const n = S.variant === 'triple' ? 39 : 13; return p.total === null || p.total === undefined ? '' : I18n.html`${p.total} Punkte · Runde ${Math.min(n, (p.filled || 0) + 1)}/${n}`; },
+    playerInfo: (p, S) => { const n = S.variant === 'triple' ? 39 : 13; if (I18n.language === 'en' && p.total !== null && p.total !== undefined) return `${p.total} points · Round ${Math.min(n, (p.filled || 0) + 1)}/${n}`; return p.total === null || p.total === undefined ? '' : I18n.html`${p.total} Punkte · Runde ${Math.min(n, (p.filled || 0) + 1)}/${n}`; },
     onState(S) {
       const g = S.g;
       const key = g && S.turnId ? `${S.roundNo}:${S.turnId}:${g.rolls}` : '';
@@ -59,8 +63,8 @@
       const g = S.g;
       if (!myTurn) return I18n.html`${nameOf(S, S.turnId)} würfelt`;
       if (!g.rolls) return I18n.t('Würfle');
-      if (g.rolls < 3) return 'Würfel antippen = liegen lassen. Nochmal würfeln – oder ein Feld in deiner Spalte antippen (grau = Punkte)';
-      return 'Trag ein Feld ein – grau stehen die Punkte, 0 heißt streichen';
+      if (g.rolls < 3) return I18n.t('Würfel antippen = liegen lassen. Nochmal würfeln – oder ein Feld in deiner Spalte antippen (grau = Punkte)');
+      return I18n.t('Trag ein Feld ein – grau stehen die Punkte, 0 heißt streichen');
     },
     main(S) {
       const raw = S.g, triple = S.variant === 'triple';
@@ -72,9 +76,9 @@
       const dice = g.dice.map((v, i) => {
         const kept = canKeep ? keep.has(i) : g.held[i];
         const die = canKeep ? dieHTML(v, { tag: 'button', cls: I18n.html`big ${kept ? 'kept' : ''}`, attrs: `type="button" data-g="keep" data-i="${i}" aria-pressed="${kept}"` }) : dieHTML(v, { cls: I18n.html`big ${kept ? 'kept' : ''}` });
-        return `<span class="kn-slot ${kept ? 'kept' : ''}">${die}<small>${kept ? 'bleibt' : ''}</small></span>`;
+        return `<span class="kn-slot ${kept ? 'kept' : ''}">${die}<small>${kept ? (I18n.language === 'en' ? 'kept' : 'bleibt') : ''}</small></span>`;
       }).join('');
-      const tray = `<div class="kn-tray"><small>${nameOf(S, S.turnId)}${g.rolls ? I18n.html` · ${g.rolls}. Wurf von 3` : ' · noch nicht gewürfelt'}</small><div class="kn-dice">${dice}</div></div>`;
+      const tray = `<div class="kn-tray"><small>${nameOf(S, S.turnId)}${g.rolls ? I18n.html` · ${g.rolls}. Wurf von 3` : (I18n.language === 'en' ? ' · not rolled yet' : ' · noch nicht gewürfelt')}</small><div class="kn-dice">${dice}</div></div>`;
       // Punkteblatt: alle Spieler nebeneinander, eigene Spalte hervorgehoben
       // Eigene Spalte zuerst (auf dem Handy sonst rechts abgeschnitten), dann die anderen in Sitzreihenfolge
       const ids = Object.keys(g.sheets).sort((x, y) => (y === me) - (x === me));
@@ -83,16 +87,16 @@
         const v = g.sheets[id][f];
         const mc = id === me ? 'me' : '';
         if (v !== null) return `<td class="num ${mc} ${v === 0 ? 'zero' : ''}">${v === 0 ? '–' : v}</td>`;
-        if (id === me && f in opts) return `<td class="num me"><button type="button" class="kn-pick ${opts[f] ? '' : 'zero'}" data-g="score" data-f="${f}" aria-label="${NAME[f]}: ${opts[f] ? I18n.html`${opts[f]} Punkte eintragen` : 'streichen'}">${opts[f]}</button></td>`;
+        if (id === me && f in opts) return `<td class="num me"><button type="button" class="kn-pick ${opts[f] ? '' : 'zero'}" data-g="score" data-f="${f}" aria-label="${label(f)}: ${opts[f] ? I18n.html`${opts[f]} Punkte eintragen` : 'streichen'}">${opts[f]}</button></td>`;
         return `<td class="num ${mc}"></td>`;
       };
-      const row = (f) => `<tr><th scope="row"><span>${NAME[f]}</span><small>${HINT[f]}</small></th>${ids.map((id) => cell(id, f)).join('')}</tr>`;
+      const row = (f) => `<tr><th scope="row"><span>${label(f)}</span><small>${hint(f)}</small></th>${ids.map((id) => cell(id, f)).join('')}</tr>`;
       const sumRow = (label, fn, cls = '') => `<tr class="kn-sum ${cls}"><th scope="row">${label}</th>${ids.map((id) => `<td class="num ${id === me ? 'me' : ''}">${fn(g.totals[id], id)}</td>`).join('')}</tr>`;
       const head = ids.map((id) => `<th class="num ${id === me ? 'me' : ''} ${id === S.turnId && S.phase === 'playing' ? 'turn' : ''}" scope="col">${nameOf(S, id)}${id === me ? I18n.html(' <small>(du)</small>') : ''}</th>`).join('');
       const sheet = `<div class="kn-sheet-wrap"><table class="kn-sheet"><thead><tr><th></th>${head}</tr></thead><tbody>
         ${UPPER.map(row).join('')}
-        ${sumRow('Summe oben', (t) => t.upper)}
-        ${sumRow(I18n.html('Bonus <small>ab 63: 35</small>'), (t) => (t.bonus ? '35' : I18n.html`<small>noch ${Math.max(0, 63 - t.upper)}</small>`))}
+        ${sumRow(I18n.language === 'en' ? 'Upper total' : 'Summe oben', (t) => t.upper)}
+        ${sumRow(I18n.html('Bonus <small>ab 63: 35</small>'), (t) => (t.bonus ? '35' : `<small>${I18n.language === 'en' ? 'need' : 'noch'} ${Math.max(0, 63 - t.upper)}</small>`))}
         ${LOWER.map(row).join('')}
         ${S.settings.extraBonus ? sumRow('Extra-Kniffel', (t) => t.extra || '–') : ''}
         ${sumRow(I18n.t('Gesamt'), (t) => `<b>${t.total}</b>`, 'total')}
@@ -116,7 +120,7 @@
       else if (g === 'score') {
         const f = t.dataset.f;
         const v = S.variant === 'triple' ? S.g.optionsByColumn?.[column]?.[f] : S.g.options?.[f];
-        if (!v && !(await ask({ title: I18n.html`${NAME[f]} streichen?`, text: 'Das Feld bekommt 0 Punkte und ist für dieses Spiel belegt.', ok: I18n.t('Streichen'), danger: true }))) return;
+        if (!v && !(await ask({ title: I18n.html`${label(f)} streichen?`, text: 'Das Feld bekommt 0 Punkte und ist für dieses Spiel belegt.', ok: I18n.t('Streichen'), danger: true }))) return;
         send('score', { field: f, column });
       }
     },

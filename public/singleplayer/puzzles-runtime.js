@@ -87,7 +87,7 @@ export function mount(root,id,remember,ctx){
   const board=Array.from({length:n*n},(_,i)=>`<button type="button" class="bp-cell ${s.grid[i]?'full':''} ${cells.has(i)?(ok?'preview':'bad'):''} ${hinted.has(i)?'hint':''} ${cleared.has(i)?'cleared':''}" data-cell="${i}" tabindex="${(preview?preview.r*n+preview.c:cursor)===i?0:-1}" aria-label="${tx('Zeile','Row')} ${Math.floor(i/n)+1}, ${tx('Spalte','column')} ${i%n+1}, ${s.grid[i]?tx('belegt','filled'):tx('frei','empty')}" ${off?'disabled':''}></button>`).join('');
   const trays=s.pieces.map((p,i)=>{if(p===null)return `<div class="bp-piece used" aria-hidden="true"></div>`;const e=blockpuzzle.extent(p),set=new Set(blockpuzzle.cellsOf(p).map(([r,c])=>r*e.cols+c)),fits=blockpuzzle.fitsAnywhere(s,p);
    return `<button type="button" class="bp-piece ${piece===i?'selected':''} ${hintMove?.piece===i?'hint':''} ${fits?'':'stuck'}" data-piece="${i}" aria-pressed="${piece===i}" aria-label="${tx('Form','Shape')} ${i+1}${fits?'':', '+tx('passt nirgends','fits nowhere')}" ${off?'disabled':''}><span class="bp-mini" style="--cols:${e.cols};--rows:${e.rows}">${Array.from({length:e.rows*e.cols},(_,k)=>`<i class="${set.has(k)?'on':''}"></i>`).join('')}</span></button>`;}).join('');
-  return `<div class="bp-layout"><div class="bp-board" style="--n:${n}" role="grid" aria-label="${tx('Spielfeld','Board')}">${board}</div><div class="bp-side"><div class="bp-trays" role="group" aria-label="${tx('Angebotene Formen','Offered shapes')}">${trays}</div>${toolbar()}</div></div>`;
+  return `<div class="bp-layout"><div class="solo-scroll"><div class="bp-board" style="--n:${n}" role="grid" aria-label="${tx('Spielfeld','Board')}">${board}</div></div><div class="bp-side"><div class="bp-trays" role="group" aria-label="${tx('Angebotene Formen','Offered shapes')}">${trays}</div>${toolbar()}</div></div>`;
  }
  // ---------- Solitär ----------
  const same=(a,b)=>a&&b&&a.k===b.k&&a.col===b.col&&a.index===b.index&&a.suit===b.suit;
@@ -103,7 +103,7 @@ export function mount(root,id,remember,ctx){
    let t=0;const parts=p.map((e,index)=>{const at=t;t+=e.up?.44:.2;return e.up?cardHTML(e.c,`data-sol="tab" data-col="${col}" data-index="${index}" style="--t:${at.toFixed(2)}" ${off?'disabled':''}`,mark({k:'tab',col,index},ht?.k==='tab'&&ht.col===col&&index===p.length-1?'hint ':'')):`<span class="kc kc-back sol-down" style="--t:${at.toFixed(2)}" aria-hidden="true"></span>`;});
    return `<div class="sol-col" role="group" aria-label="${tx('Reihe','Column')} ${col+1}" style="--span:${(t-(p[p.length-1].up?.44:.2)).toFixed(2)}">${parts.join('')}</div>`;
   }).join('');
-  return `<div class="sol-board"><div class="sol-top"><div class="sol-stockwaste">${stock}${waste}</div><div class="sol-found" role="group" aria-label="${tx('Fundamente','Foundations')}">${found}</div></div><div class="sol-cols">${columns}</div></div>${toolbar()}`;
+  return `<div class="solo-scroll"><div class="sol-board"><div class="sol-top"><div class="sol-stockwaste">${stock}${waste}</div><div class="sol-found" role="group" aria-label="${tx('Fundamente','Foundations')}">${found}</div></div><div class="sol-cols">${columns}</div></div></div>${toolbar()}`;
  }
  // ---------- Mahjong ----------
  function mahjongHTML(){
@@ -118,15 +118,17 @@ export function mount(root,id,remember,ctx){
   const s=state,off=locked(),lv=match3.levelOf(s),hp=new Set(hintMove||[]);
   const cells=s.grid.map((k,i)=>`<button type="button" class="m3-cell ${s.selected===i?'selected':''} ${hp.has(i)?'hint':''}" data-cell="${i}" tabindex="${cursor===i?0:-1}" aria-label="${esc(tx(PLANTS[k][0],PLANTS[k][1]))}, ${tx('Zeile','row')} ${Math.floor(i/8)+1}, ${tx('Spalte','column')} ${i%8+1}" aria-pressed="${s.selected===i}" ${off?'disabled':''}>${plantSvg(k)}</button>`).join('');
   const pct=Math.min(100,Math.round(s.score/lv.target*100));
-  return `<div class="m3-goal"><div class="m3-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${lv.target}" aria-valuenow="${Math.min(s.score,lv.target)}" aria-label="${tx('Zielpunkte','Target score')}"><span style="width:${pct}%"></span></div><small>${s.score} / ${lv.target}</small></div><div class="m3-board" role="grid" aria-label="${tx('Spielfeld','Board')}">${cells}</div>${s.notice==='invalid'?`<p class="sp-note" role="status">${tx('Dieser Tausch ergibt keine Reihe – er kostet keinen Zug.','That swap makes no line – it costs no move.')}</p>`:s.notice==='shuffled'?`<p class="sp-note" role="status">${tx('Kein Zug mehr möglich – das Brett wurde neu gemischt.','No move left – the board was reshuffled.')}</p>`:''}${toolbar()}`;
+  return `<div class="m3-goal"><div class="m3-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${lv.target}" aria-valuenow="${Math.min(s.score,lv.target)}" aria-label="${tx('Zielpunkte','Target score')}"><span style="width:${pct}%"></span></div><small>${s.score} / ${lv.target}</small></div><div class="solo-scroll"><div class="m3-board" role="grid" aria-label="${tx('Spielfeld','Board')}">${cells}</div></div>${s.notice==='invalid'?`<p class="sp-note" role="status">${tx('Dieser Tausch ergibt keine Reihe – er kostet keinen Zug.','That swap makes no line – it costs no move.')}</p>`:s.notice==='shuffled'?`<p class="sp-note" role="status">${tx('Kein Zug mehr möglich – das Brett wurde neu gemischt.','No move left – the board was reshuffled.')}</p>`:''}${toolbar()}`;
  }
  function render(){
+  const scrolls=[...root.querySelectorAll('.solo-scroll')].map(el=>({x:el.scrollLeft,y:el.scrollTop}));
   const focused=document.activeElement,action=focused?.closest?.('[data-action]')?.dataset.action,cell=focused?.closest?.('[data-cell]')?.dataset.cell,tile=focused?.closest?.('[data-tile]')?.dataset.tile,solKey=focused?.closest?.('[data-sol]')?focused.outerHTML.match(/data-sol="(\w+)"(?: data-col="(\d)")?(?: data-index="(\d+)")?(?: data-suit="(\d)")?/):null,piece0=focused?.closest?.('[data-piece]')?.dataset.piece;
   if(setup){renderSetup();return;}
   const s=state,lv=id==='match-3'?match3.levelOf(s):null;
   const count={'block-puzzle':()=>`${tx('Punkte','Score')}: ${s.score}`,solitaire:()=>`${tx('Züge','Moves')}: ${s.moves}${solitaire.redealsLeft(s)!==Infinity?` · ${tx('Durchgänge','Passes')}: ${solitaire.redealsLeft(s)+1}`:''}`,'mahjong-solitaire':()=>`${tx('Paare','Pairs')}: ${s.removed}/${s.tiles.length/2}`,'match-3':()=>`${tx('Züge','Moves')}: ${s.movesLeft}`}[id]();
   const body={'block-puzzle':blockHTML,solitaire:solitaireHTML,'mahjong-solitaire':mahjongHTML,'match-3':match3HTML}[id]();
   q('[data-content]').innerHTML=`<div class="sp-metrics"><span>${esc(difficultyName(s.difficulty))}${lv?' · '+esc(tx(...lv.name)):''}</span><span>${count}</span><span data-clock>${time(s.elapsedMs)}</span><span data-best>${bestText()}</span></div>${paused()}${s.paused&&s.status==='playing'?'':body}${resultBlock()}`;
+  root.querySelectorAll('.solo-scroll').forEach((el,i)=>{if(scrolls[i]){el.scrollLeft=scrolls[i].x;el.scrollTop=scrolls[i].y;}});
   const pause=q('.sp-common [data-action=pause]');pause.disabled=s.status!=='playing';pause.textContent=s.paused?tx('Fortsetzen','Resume'):tx('Pause','Pause');
   if(action)q(`[data-action="${action}"]:not(:disabled)`)?.focus({preventScroll:true});
   else if(cell!==undefined)q(`[data-cell="${cell}"]:not(:disabled)`)?.focus({preventScroll:true});

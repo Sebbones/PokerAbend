@@ -44,7 +44,7 @@
       const builds = `<ul class="look-list">${g.build.map((b, i) => I18n.html`<li><b>Reihe ${i + 1}:</b> ${b.count ? `1–${b.count}${b.jokers.length ? I18n.html` (★ als ${b.jokers.map((j) => j + 1).join(', ')})` : ''}` : I18n.t('leer')} · nächste: <b>${b.next}</b></li>`).join('')}</ul>`;
       const people = S.players.filter((p) => p.inRound).sort((a, b) => (b.id === S.you?.id) - (a.id === S.you?.id));
       return [{ title: 'Baureihen in der Mitte', html: builds }, ...people.map((p) => ({
-        title: p.id === S.you?.id ? 'Deine Ablagen' : I18n.html`Ablagen von ${p.name}`,
+        title: p.id === S.you?.id ? I18n.t('Deine Ablagen') : I18n.html`Ablagen von ${p.name}`,
         html: I18n.html`<p class="look-stock">Stapel: <b>${p.stock} Karte${p.stock === 1 ? '' : 'n'}</b>${p.stock ? ' · oben:' : ''} ${topCard(p.stockTop)}</p>${(p.piles || []).map((pile, i) => I18n.html`<div class="look-pile"><h4>Ablage ${i + 1} · ${pile.length} Karte${pile.length === 1 ? '' : 'n'}</h4>${lookFan(pile.map((c) => num(c, { tag: 'span' })), { topLabel: 'oben – spielbar' })}</div>`).join('')}`,
       }))];
     },
@@ -105,7 +105,7 @@
       // Wie am echten Tisch: deine vier Ablagen vorne, dein Spielstapel rechts daneben
       const ending = mine && sel?.kind === 'hand';
       const mineHTML = me?.inRound ? I18n.html`<section class="st-mine"><div class="cw-section-head"><span class="cw-eyebrow">${tx('DEIN BEREICH', 'YOUR PLAY AREA')}</span><span>${ending ? tx('Handkarte gewählt · Ablage beendet den Zug', 'Hand card selected · Discard to end your turn') : tx('Karte wählen, dann Ziel antippen', 'Choose a card, then tap its destination')}</span></div><div class="st-row">
-        <div class="st-piles ${ending ? 'ending' : ''}"><div class="st-row">${piles(me, true)}</div><small>${ending ? I18n.html('<b>Handkarte auf eine Ablage = Zug beenden</b>') : 'Deine Ablagen'} <button type="button" class="look-btn" data-g="look" aria-label="Alle Ablagen ansehen">${svg('<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/>')}</button></small></div>
+        <div class="st-piles ${ending ? 'ending' : ''}"><div class="st-row">${piles(me, true)}</div><small>${ending ? I18n.html('<b>Handkarte auf eine Ablage = Zug beenden</b>') : I18n.t('Deine Ablagen')} <button type="button" class="look-btn" data-g="look" aria-label="Alle Ablagen ansehen">${svg('<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/>')}</button></small></div>
         <div class="st-stock st-goal-stock"><span class="cw-eyebrow">${tx('DEIN ZIEL', 'YOUR GOAL')}</span>${me.stock ? num(me.stockTop, { cls: I18n.html`big ${same(sel, { kind: 'stock' }) ? 'sel' : ''}`, attrs: mine ? `data-g="pick" data-kind="stock" data-drag="stock" data-card-key="source:${me.id}:stock" aria-pressed="${!!same(sel,{kind:'stock'})}"` : 'disabled' }) : '<span class="kc kc-empty big"></span>'}<small>Dein Stapel: <b>${me.stock}</b></small><span class="st-goal-note">${tx('Diesen Stapel leeren', 'Clear this pile')}</span></div>
         </div></section>` : '';
       // Am großen Tisch sitzen die Gegner mit Stapel und Ablagen an ihren Plätzen

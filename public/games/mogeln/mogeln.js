@@ -3,7 +3,7 @@
 {
   let sel = new Set();
   const RANK_NAME = { A: 'Asse', T: 'Zehner', J: 'Buben', Q: 'Damen', K: 'Könige' };
-  const rn = (r) => RANK_NAME[r] || I18n.html`${r}er`;
+  const rn = (r) => I18n.language === 'en' ? ({A:'aces',2:'twos',3:'threes',4:'fours',5:'fives',6:'sixes',7:'sevens',8:'eights',9:'nines',T:'tens',J:'jacks',Q:'queens',K:'kings'}[r] || r) : RANK_NAME[r] || I18n.html`${r}er`;
   const ORDER = 'A23456789TJQK';
   const nameOf = (S, id) => esc(S.players.find((p) => p.id === id)?.name ?? '?');
   const sortHand = (h) => [...h].sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]) || a[1].localeCompare(b[1]));
@@ -51,7 +51,7 @@
       const g = S.g;
       const hand = sortHand(g.hand || []).map((c) => frenchCard(c, { cls: sel.has(c) ? 'sel' : '', attrs: myTurn ? `data-g="pick" data-c="${c}"` : 'disabled' })).join('');
       const n = sel.size;
-      const acts = `${myTurn ? `<span class="wk-chip mg-count" data-i="🂠" role="status">${n}/${g.maxCards} ${I18n.content('gewählt', 'selected')}</span><button class="btn btn-brass" data-g="play" ${n && n <= g.maxCards ? '' : 'disabled'}>${n ? I18n.html`${n} Karte${n === 1 ? '' : 'n'} als ${rn(g.need)} ablegen` : 'Karten wählen'}</button>` : ''}
+      const acts = `${myTurn ? `<span class="wk-chip mg-count" data-i="🂠" role="status">${n}/${g.maxCards} ${I18n.content('gewählt', 'selected')}</span><button class="btn btn-brass" data-g="play" ${n && n <= g.maxCards ? '' : 'disabled'}>${n ? I18n.html`${n} Karte${n === 1 ? '' : 'n'} als ${rn(g.need)} ablegen` : I18n.t('Karten wählen')}</button>` : ''}
         ${g.canCall ? I18n.html('<button class="btn btn-danger" data-g="call">Mogeln!</button>') : ''}`;
       return I18n.html`<div class="kg-hand" role="group" aria-label="Deine Karten">${hand}</div><div class="kg-acts">${acts}</div>`;
     },
