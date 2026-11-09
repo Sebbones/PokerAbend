@@ -37,3 +37,7 @@ Diese Regel ersetzt frühere Feature-Branch-Anweisungen. Wenn direkte Änderunge
 - Nicht implementierte Spiele erhalten aus einem Designplan keine Spiellogik. Vorhandene andere Spiele und ihre Oberflächen bleiben unangetastet; gemeinsame Änderungen nur unmittelbar notwendig und eng begrenzt.
 - Nach Abschluss echten Designstatus, Tests, ausgewählte dauerhafte Screenshots und tatsächlichen Implementierungscommit dokumentieren. Ohne Umsetzung bleiben Status `planned`, Nachweislisten leer und Abschlussfelder `null`.
 - Scotland Yard ist der abgeschlossene Pilot; anschließend wurden UNO (VIS-004), Skip-Bo (VIS-009) und Phase 10 (VIS-008) ausdrücklich freigegeben und abgeschlossen. Im ausdrücklichen Solo-Auftrag wurden auch Sudoku (VIS-096), 2048 (VIS-097) und Wellenwacht (VIS-098) abgeschlossen. Die übrigen 100 Pakete sind nur geplant. Nach einem freigegebenen Paket stoppen und auf einen neuen Auftrag warten.
+
+## Erlebnis-Pakete (EXP): Sound, Animation, Figuren
+
+Stufe 2 nach den VIS-Paketen: `docs/design/GAME_EXPERIENCE_ROADMAP.md` (Quelle) und `docs/design/game-experience-roadmap.json` (erzeugt mit `node scripts/build-experience-roadmap.mjs`). EXP-Nummern entsprechen den VIS-Nummern; Fundament EXP-F1 bis EXP-F6 kommt zuerst. Nur ausdrücklich freigegebene IDs umsetzen, Spiellogik unverändert, eigene Grafiken und Klänge, Leitplanken und Abnahme der Roadmap einhalten, danach Status, Commit und Nachweise eintragen und stoppen.

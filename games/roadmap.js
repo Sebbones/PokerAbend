@@ -52,6 +52,7 @@ export const ROADMAP = [
     punkt('zuschauen-wiederholungen', 'Zuschauen & Wiederholungen', 'funktion', 'Fertige Partien Zug für Zug noch einmal ansehen – bei allen Spielen.'),
     punkt('tutorials', 'Tutorials', 'funktion', 'Kurze Erklärungen zum Ausprobieren, damit auch Neue sofort mitspielen können.'),
     punkt('hausregeln', 'Hausregeln', 'funktion', 'Eigene Regeln für euren Tisch festlegen und speichern.'),
+    punkt('klang-animation', 'Klang, Bewegung & Figuren für jedes Spiel', 'design', 'Jedes Spiel bekommt eigene Töne, Animationen und Spielfiguren – vom Chip-Klackern im Casino bis zum Muhen bei 6 nimmt!'),
   ] },
   { id: 'einzelspieler-start', titel: 'Einzelspieler: dein Spiel, dein Tempo', satz: 'Sudoku, 2048 und Wellenwacht mit privaten lokalen Spielständen, ohne weiteren Teilnehmer.', stufe: 'erledigt', datum: '2026-10-31', punkte: spiele(['sudoku', '2048', 'wellenwacht']) },
   { id: 'einzelspieler-zukunft', titel: 'Weitere Einzelspieler-Spiele', satz: 'Alle neun Klassiker sind spielbar: Snake, Memory, Minesweeper, Nonogramm, Sokoban, Block-Puzzle, Solitär, Mahjong-Solitär und Match-3.', stufe: 'erledigt', datum: '2026-11-07', punkte: spiele(['snake','memory','minesweeper','nonogramm','sokoban','block-puzzle','solitaire','mahjong-solitaire','match-3']) },
