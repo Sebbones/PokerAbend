@@ -9,10 +9,12 @@ export const SETTINGS_DEFAULTS = Object.freeze({
   display: Object.freeze({ theme: 'classic', cardSize: 'normal', calm: false, reduceGlass: false, language: 'de' }),
   controls: Object.freeze({ doubleTap: true, confirmations: true }),
   hub: Object.freeze({ hiddenCategories: Object.freeze([]), defaultFilter: 'all', hiddenBlocks: Object.freeze([]) }),
-  sound: Object.freeze({ enabled: true }),
+  sound: Object.freeze({ enabled: true, master: 1, effects: 1, atmosphere: 0, speech: 1, mutedGames: Object.freeze([]) }),
 });
 
 const bool = (v) => typeof v === 'boolean';
+const volume = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 1;
+const gameIds = (v) => Array.isArray(v) && v.length <= 200 && v.every(id => typeof id === 'string' && /^[a-z0-9][a-z0-9-]{0,63}$/.test(id));
 const oneOf = (list) => (v) => typeof v === 'string' && list.includes(v);
 const subset = (list) => (v) => Array.isArray(v) && v.length <= list.length * 2 && v.every((x) => typeof x === 'string' && list.includes(x));
 // Jedes Feld: Prüfung und Bereinigung. Alles Unbekannte oder Ungültige fällt auf den Standard (bzw. den bisherigen Wert) zurück.
@@ -20,7 +22,7 @@ const FIELDS = {
   display: { theme: oneOf(['classic', 'night']), cardSize: oneOf(['normal', 'large', 'xl']), calm: bool, reduceGlass: bool, language: oneOf(['de', 'en']) },
   controls: { doubleTap: bool, confirmations: bool },
   hub: { hiddenCategories: subset(CATEGORIES), defaultFilter: oneOf(FILTERS), hiddenBlocks: subset(BLOCKS) },
-  sound: { enabled: bool },
+  sound: { enabled: bool, master: volume, effects: volume, atmosphere: volume, speech: volume, mutedGames: gameIds },
 };
 const clone = (v) => (Array.isArray(v) ? [...v] : v);
 const fresh = () => Object.fromEntries(Object.entries(SETTINGS_DEFAULTS).map(([s, o]) => [s, Object.fromEntries(Object.entries(o).map(([k, v]) => [k, clone(v)]))]));

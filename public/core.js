@@ -187,51 +187,30 @@ function showHelp({ title, short, house = [], more = null }) {
   d.querySelector('[data-help-close]').focus();
 }
 
-// ---------- Töne ----------
-let audio;
-function beep(freq = 660, ms = 120, vol = 0.05, type = 'sine') {
-  if (!prefs.sound) return;
-  try {
-    audio = audio || new AudioContext();
-    const o = audio.createOscillator(); const g = audio.createGain();
-    o.type = type; o.frequency.value = freq; g.gain.value = vol;
-    o.connect(g); g.connect(audio.destination);
-    g.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + ms / 1000);
-    o.start(); o.stop(audio.currentTime + ms / 1000);
-  } catch { /* kein Ton */ }
+// ---------- Töne (EXP-F1; alte API bleibt für alle Spiele erhalten) ----------
+let soundEngine;
+const soundReady = import('/sound/engine.js').then(({ createSoundEngine }) => {
+  soundEngine = createSoundEngine({
+    settings: () => ({ ...(typeof Settings !== 'undefined' ? Settings.get().sound : {}), enabled: prefs.sound !== false }),
+    game: () => session?.game || window.Singleplayer?.active || document.querySelector('[data-scene]')?.dataset.scene || null,
+  });
+  return soundEngine;
+}).catch(() => null); // fehlendes Web Audio darf ein Spiel nie blockieren
+function soundCall(method, ...args) {
+  if (soundEngine) return soundEngine[method](...args);
+  const requested = performance.now();
+  // Nur der erste Modulimport wird abgewartet, keine alten Züge nachladen oder nach einem Seitenwechsel abspielen.
+  const game = session?.game;
+  return soundReady.then(engine => engine && performance.now() - requested < 600 && session?.game === game ? engine[method](...args) : false);
 }
-
-// Kurze Spiel-Töne, alle per Web Audio erzeugt (keine Dateien): Karten, Würfel, Rufe. Schalter „Töne“ unter „Ich“.
-function noise(sec, freq, vol, type = 'bandpass', q = 1) {
-  if (!prefs.sound) return;
-  try {
-    audio = audio || new AudioContext();
-    const len = Math.max(1, Math.floor(audio.sampleRate * sec));
-    const buf = audio.createBuffer(1, len, audio.sampleRate);
-    const d = buf.getChannelData(0);
-    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / len); // klingt von selbst aus
-    const src = audio.createBufferSource(); const f = audio.createBiquadFilter(); const g = audio.createGain();
-    src.buffer = buf; f.type = type; f.frequency.value = freq; f.Q.value = q; g.gain.value = vol;
-    src.connect(f); f.connect(g); g.connect(audio.destination);
-    src.start();
-  } catch { /* kein Ton */ }
-}
-const SFX = {
-  card: () => noise(0.06, 2600, 0.35),                                                       // Karte legen: kurzes Wischen
-  draw: () => noise(0.1, 1600, 0.22, 'bandpass', 0.7),                                       // Karte ziehen
-  shuffle: () => [0, 45, 90, 135, 180, 225].forEach((t) => setTimeout(() => noise(0.04, 3200, 0.2), t)), // Mischen
-  dice: () => [0, 55, 95, 150, 185].forEach((t, i) => setTimeout(() => noise(0.025, 1800 + i * 300, 0.5, 'bandpass', 4), t + Math.random() * 20)), // Würfelklappern
-  call: () => { beep(660, 110, 0.07, 'square'); setTimeout(() => beep(990, 170, 0.07, 'square'), 110); }, // „UNO!“ / „Mau!“
-  catch: () => { beep(180, 220, 0.08, 'sawtooth'); },                                          // Erwischt
-  hit: () => { beep(420, 90, 0.07, 'triangle'); setTimeout(() => beep(210, 160, 0.07, 'triangle'), 90); }, // Schlagen
-  skip: () => { beep(520, 90, 0.05); setTimeout(() => beep(390, 120, 0.05), 90); },          // Aussetzen
-  drum: () => noise(0.22, 300, 0.6, 'lowpass'),                                               // Aufdecken
-  chips: () => { beep(2200, 40, 0.03, 'triangle'); setTimeout(() => beep(1800, 50, 0.025, 'triangle'), 50); }, // Chips setzen
-  splash: () => { noise(0.28, 700, 0.5, 'lowpass'); setTimeout(() => noise(0.18, 1400, 0.15, 'bandpass'), 60); }, // Wasser (Schiffe versenken)
-  done: () => [523, 659, 784].forEach((f, i) => setTimeout(() => beep(f, 140, 0.05), i * 90)), // Phase geschafft
-  win: () => [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => beep(f, 200, 0.055), i * 110)),
-  end: () => { beep(440, 160, 0.045); setTimeout(() => beep(330, 220, 0.045), 160); },
+window.Sound = {
+  use: (palette) => soundCall('use', palette),
+  play: (event, opts) => soundCall('play', event, opts),
+  ambient: (name) => soundCall('ambient', name),
 };
+function beep(freq = 660, ms = 120, vol = 0.05, type = 'sine') { return soundCall('beep', freq, ms, vol, type); }
+function noise(sec, freq, vol, type = 'bandpass', q = 1) { return soundCall('noise', sec, freq, vol, type, q); }
+const SFX = Object.fromEntries(['card', 'draw', 'shuffle', 'dice', 'call', 'catch', 'hit', 'skip', 'drum', 'chips', 'splash', 'done', 'win', 'end'].map(name => [name, () => Sound.play(name)]));
 const sfx = (name) => SFX[name]?.();
 
 // ---------- Erste Schritte: beim ersten Spiel einer Art eine kurze Einführung in 3 Schritten ----------

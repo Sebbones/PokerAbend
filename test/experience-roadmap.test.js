@@ -34,3 +34,12 @@ test('game-experience-roadmap.json ist aus der Markdown-Quelle erzeugt und aktue
   execFileSync(process.execPath, ['scripts/build-experience-roadmap.mjs']);
   assert.equal(readFileSync('docs/design/game-experience-roadmap.json', 'utf8'), before, 'node scripts/build-experience-roadmap.mjs ausführen');
 });
+
+test('Abgeschlossene EXP-Fundamente tragen einen echten Commit und vorhandene Nachweise', () => {
+  for (const p of json('docs/design/game-experience-roadmap.json').foundation.filter(p => p.status === 'done')) {
+    assert.match(p.implementation_commit, /^[a-f0-9]{40}$/);
+    assert.equal(execFileSync('git', ['cat-file', '-t', p.implementation_commit], { encoding: 'utf8' }).trim(), 'commit');
+    assert.ok(p.evidence.length);
+    for (const path of p.evidence) assert.ok(existsSync(path), path);
+  }
+});

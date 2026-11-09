@@ -4,7 +4,15 @@ const md = readFileSync('docs/design/GAME_EXPERIENCE_ROADMAP.md', 'utf8');
 const vis = JSON.parse(readFileSync('docs/design/game-visual-roadmap.json', 'utf8'));
 const visId = Object.fromEntries(vis.packages.map((p) => [p.game_id, p.id]));
 const keys = { 'Welt': 'world', 'Figuren & Material': 'pieces_and_material', 'Sound': 'sound', 'Animation': 'animation', 'Highlight': 'highlight' };
-const foundation = [...md.matchAll(/^### (EXP-F\d) · (.+)$/gm)].map(([, id, title]) => ({ id, title, status: 'planned' }));
+const foundation = [...md.matchAll(/^### (EXP-F\d) · (.+)$/gm)].map((match) => {
+  const [, id, title] = match, block = md.slice(match.index + match[0].length).split(/\n###? /, 1)[0];
+  const status = block.match(/^- \*\*Status:\*\* (planned|done)$/m)?.[1] || 'planned';
+  if (status !== 'done') return { id, title, status };
+  const implementation_commit = block.match(/^- \*\*Implementierungscommit:\*\* `([a-f0-9]{40})`$/m)?.[1];
+  const evidence = [...(block.match(/^- \*\*Nachweise:\*\* (.+)$/m)?.[1] || '').matchAll(/`([^`]+)`/g)].map(m => m[1]);
+  if (!implementation_commit || !evidence.length) throw new Error(id + ': done braucht Commit und Nachweise');
+  return { id, title, status, implementation_commit, evidence };
+});
 const packages = md.split('\n#### ').slice(1).map((block) => {
   const [head, ...lines] = block.split('\n');
   const m = head.match(/^(EXP-\d{3}) · (.+?) \(`([^`]+)`\) · (P\d)/);

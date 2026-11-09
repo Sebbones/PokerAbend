@@ -5,7 +5,7 @@
 const Settings = (() => {
   const tx = (de, en) => (I18n.language === 'en' ? en : de);
   const KEY = 'poker:settings';
-  const DEFAULTS = { display: { theme: 'classic', cardSize: 'normal', calm: false, reduceGlass: false, language: 'de' }, controls: { doubleTap: true, confirmations: true }, hub: { hiddenCategories: [], defaultFilter: 'all', hiddenBlocks: [] }, sound: { enabled: true } };
+  const DEFAULTS = { display: { theme: 'classic', cardSize: 'normal', calm: false, reduceGlass: false, language: 'de' }, controls: { doubleTap: true, confirmations: true }, hub: { hiddenCategories: [], defaultFilter: 'all', hiddenBlocks: [] }, sound: { enabled: true, master: 1, effects: 1, atmosphere: 0, speech: 1, mutedGames: [] } };
   const CATEGORIES = [['karten', 'Kartenspiele', 'Card games'], ['wuerfel', 'Würfelspiele', 'Dice games'], ['brett', 'Brettspiele', 'Board games'], ['party', 'Party', 'Party'], ['einzelspieler', 'Einzelspieler', 'Single player']];
   const BLOCKS = [['presence', 'Gerade online', 'Who is online'], ['recent', 'Zuletzt gespielt', 'Recently played'], ['favorites', 'Favoriten auf der Startseite', 'Favourites on the start page'], ['achievements', 'Erfolge', 'Achievements'], ['leaderboard', 'Bestenliste', 'Leaderboard'], ['reviews', 'Abend-Rückblicke', 'Evening reviews'], ['planning', 'Abend planen', 'Plan an evening'], ['roadmap', 'Roadmap', 'Roadmap'], ['tickets', 'Tickets', 'Tickets']];
   const FILTERS = [['all', 'Alle Spiele', 'All games'], ['fav', 'Nur Favoriten', 'Favourites only'], ['p2', '2 Spieler', '2 players'], ['p34', '3–4 Spieler', '3–4 players'], ['p56', '5–6 Spieler', '5–6 players'], ['p7', '7 und mehr', '7 or more']];
@@ -21,13 +21,15 @@ const Settings = (() => {
   ];
   const clone = (v) => JSON.parse(JSON.stringify(v));
   const bool = (v) => typeof v === 'boolean';
+  const volume = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 1;
+  const gameIds = (v) => Array.isArray(v) && v.length <= 200 && v.every(id => typeof id === 'string' && /^[a-z0-9][a-z0-9-]{0,63}$/.test(id));
   const oneOf = (list) => (v) => typeof v === 'string' && list.includes(v);
   const subset = (list) => (v) => Array.isArray(v) && v.every((x) => list.includes(x));
   const VALID = {
     display: { theme: oneOf(['classic', 'night']), cardSize: oneOf(['normal', 'large', 'xl']), calm: bool, reduceGlass: bool, language: oneOf(['de', 'en']) },
     controls: { doubleTap: bool, confirmations: bool },
     hub: { hiddenCategories: subset(CATEGORIES.map((c) => c[0])), defaultFilter: oneOf(FILTERS.map((f) => f[0])), hiddenBlocks: subset(BLOCKS.map((b) => b[0])) },
-    sound: { enabled: bool },
+    sound: { enabled: bool, master: volume, effects: volume, atmosphere: volume, speech: volume, mutedGames: gameIds },
   };
   function sanitize(input) {
     const out = clone(DEFAULTS);
@@ -120,6 +122,11 @@ const Settings = (() => {
   const select = (path, label, options) => { const [s, k] = path.split('.'); return `<label class="field set-field"><span>${esc(label)}</span><select class="input" data-set="${path}">${options.map(([v, text]) => `<option value="${v}" ${state[s][k] === v ? 'selected' : ''}>${esc(text)}</option>`).join('')}</select></label>`; };
   const listToggle = (path, items) => items.map(([id, de, en]) => { const [s, k] = path.split('.'); return `<label class="toggle set-toggle"><span>${esc(tx(de, en))}</span><input type="checkbox" role="switch" data-set-list="${path}" data-value="${id}" ${state[s][k].includes(id) ? '' : 'checked'}></label>`; }).join('');
   const head = (id, de, en, section) => `<div class="set-head"><h2>${esc(tx(de, en))}</h2>${section ? `<button type="button" class="btn btn-ghost" data-set-reset="${section}">${esc(tx('Zurücksetzen', 'Reset'))}</button>` : ''}</div>`;
+  const soundSlider = (key, label, hint = '') => `<label class="field set-field"><span>${esc(label)} <output data-sound-value="${key}">${Math.round(state.sound[key] * 100)} %</output></span>${hint ? `<small>${esc(hint)}</small>` : ''}<input type="range" min="0" max="100" step="1" value="${Math.round(state.sound[key] * 100)}" data-sound-level="${key}" aria-label="${esc(label)}"></label>`;
+  function syncSoundMute() {
+    const game = document.querySelector('[data-sound-game]')?.value, control = document.querySelector('[data-sound-mute]');
+    if (control) { control.disabled = !game; control.checked = state.sound.mutedGames.includes(game); }
+  }
   function body() {
     const p = privacy;
     return `<section class="hub-head"><h1>${esc(tx('Einstellungen', 'Settings'))}</h1><p>${esc(tx('Alles an einem Ort. Änderungen gelten sofort.', 'Everything in one place. Changes apply immediately.'))}</p><p class="set-status" id="set-status" role="status"></p></section>
@@ -138,7 +145,15 @@ const Settings = (() => {
       <fieldset class="set-group"><legend>${esc(tx('Spielkategorien anzeigen', 'Show game categories'))}</legend>${listToggle('hub.hiddenCategories', CATEGORIES)}</fieldset>
       ${select('hub.defaultFilter', tx('Standardfilter in der Bibliothek', 'Default library filter'), FILTERS.map(([v, de, en]) => [v, tx(de, en)]))}
       <fieldset class="set-group"><legend>${esc(tx('Bereiche anzeigen', 'Show areas'))}</legend>${listToggle('hub.hiddenBlocks', BLOCKS)}</fieldset></section>
-    <section class="home-panel set-section" id="set-ton">${head('ton', 'Ton', 'Sound', 'sound')}${toggle('sound.enabled', tx('Töne', 'Sounds'), tx('Kurze Signaltöne am Tisch.', 'Short signal sounds at the table.'))}</section>
+    <section class="home-panel set-section" id="set-ton">${head('ton', 'Ton', 'Sound', 'sound')}${toggle('sound.enabled', tx('Töne', 'Sounds'), tx('Kurze Signaltöne am Tisch.', 'Short signal sounds at the table.'))}
+      ${soundSlider('master', tx('Gesamt', 'Master'))}
+      ${soundSlider('effects', tx('Effekte', 'Effects'))}
+      ${soundSlider('atmosphere', tx('Atmosphäre', 'Atmosphere'), tx('Standardmäßig aus. Nur in Welten mit Atmosphäre hörbar.', 'Off by default. Audible only in worlds with atmosphere.'))}
+      ${soundSlider('speech', tx('Sprachausgabe', 'Speech'), tx('Lautstärke für spätere Ansagen.', 'Volume for future announcements.'))}
+      <fieldset class="set-group"><legend>${esc(tx('Stumm pro Spiel', 'Mute per game'))}</legend>
+        <label class="field set-field"><span>${esc(tx('Spiel auswählen', 'Choose game'))}</span><select class="input" data-sound-game>${[...(account.games || []), ...(account.singleplayerGames || [])].map(g => `<option value="${esc(g.id)}">${esc(g.name)}</option>`).join('')}</select></label>
+        <label class="toggle set-toggle"><span>${esc(tx('Dieses Spiel stummschalten', 'Mute this game'))}</span><input type="checkbox" role="switch" data-sound-mute></label>
+      </fieldset></section>
     <section class="home-panel set-section" id="set-datenschutz">${head('datenschutz', 'Datenschutz', 'Privacy')}
       <p class="hint">${esc(tx('Das bestimmt, was andere sehen. Der Server setzt es durch – nicht nur deine Anzeige.', 'This controls what others see. The server enforces it – not just your display.'))}</p>
       ${p ? `${registered ? '' : `<p class="hint set-guest">${esc(tx('Ohne Discord-Verknüpfung ist dein Profil für andere ohnehin nicht öffentlich.', 'Without a Discord link your profile is not public anyway.'))}</p>`}${PRIVACY.map(([k, de, en, hd, he]) => `<label class="toggle set-toggle"><span>${esc(tx(de, en))}<small>${esc(tx(hd, he))}</small></span><input type="checkbox" role="switch" data-set-privacy="${k}" ${p[k] ? 'checked' : ''}></label>`).join('')}` : `<p class="hint">${esc(tx('Wird geladen …', 'Loading …'))}</p>`}
@@ -159,7 +174,7 @@ const Settings = (() => {
   function render() {
     const main = document.getElementById('settings-root'); if (!main) return;
     const y = document.getElementById('hub-main')?.scrollTop || 0;
-    main.innerHTML = body(); refreshStatus();
+    main.innerHTML = body(); refreshStatus(); syncSoundMute();
     if (document.getElementById('hub-main')) document.getElementById('hub-main').scrollTop = y;
   }
   function pageHTML() {
@@ -186,7 +201,20 @@ const Settings = (() => {
     } catch (error) { toast(error.message, true); }
   }
 
+  document.addEventListener('input', (e) => {
+    const key = e.target.dataset?.soundLevel;
+    if (!volume(Number(e.target.value) / 100) || !['master', 'effects', 'atmosphere', 'speech'].includes(key)) return;
+    update({ sound: { [key]: Number(e.target.value) / 100 } });
+    const output = document.querySelector(`[data-sound-value="${key}"]`);
+    if (output) output.textContent = `${e.target.value} %`;
+  });
   document.addEventListener('change', async (e) => {
+    if (e.target.matches?.('[data-sound-game]')) { syncSoundMute(); return; }
+    if (e.target.matches?.('[data-sound-mute]')) {
+      const id = document.querySelector('[data-sound-game]')?.value, list = new Set(state.sound.mutedGames);
+      if (id) { e.target.checked ? list.add(id) : list.delete(id); update({ sound: { mutedGames: [...list] } }); }
+      return;
+    }
     const t = e.target;
     if (t.matches?.('[data-set]')) { const [s, k] = t.dataset.set.split('.'); update({ [s]: { [k]: t.type === 'checkbox' ? t.checked : t.value } }); return; }
     if (t.matches?.('[data-set-list]')) { // Schalter „anzeigen“: an = nicht in der Verstecken-Liste
