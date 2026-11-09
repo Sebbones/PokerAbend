@@ -28,7 +28,13 @@
     {
       "id": "EXP-F3",
       "title": "Material-Bibliothek",
-      "status": "planned"
+      "status": "done",
+      "implementation_commit": "2d9e57a09c839aa4ac86431083f5a3f4d1a81e6b",
+      "evidence": [
+        "test/material.test.js",
+        "test/ui/material.spec.js",
+        "docs/design/experience/EXP-F3/README.md"
+      ]
     },
     {
       "id": "EXP-F4",

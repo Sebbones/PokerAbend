@@ -59,9 +59,12 @@ Kommt **vor** den Spielpaketen. Ohne das Fundament baut sonst jedes Spiel eigene
 - Respektiert „Animationen reduzieren“ und Pause.
 
 ### EXP-F3 · Material-Bibliothek
+- **Status:** done
+- **Implementierungscommit:** `2d9e57a09c839aa4ac86431083f5a3f4d1a81e6b`
+- **Nachweise:** `test/material.test.js`, `test/ui/material.spec.js`, `docs/design/experience/EXP-F3/README.md`
 - `public/material/`: SVG-Sätze, die mehrere Welten teilen und einfärben können:
   - Kartenrücken (12 eigene Muster)
-  - Würfelsätze (Holz, Knochen-Optik ohne Tiermotiv, Glas, Metall, Kneipe)
+  - Würfelsätze (Holz, Glas, Metall, Kneipe, Marmor; jeweils alle sechs Augenzahlen)
   - Spielsteine (Holz, Stein, Glas, Messing)
   - Pöppel-Figuren
   - Chips (6 Werte, Kantenmuster)
