@@ -18,7 +18,12 @@
     {
       "id": "EXP-F2",
       "title": "Animations-Baukasten",
-      "status": "planned"
+      "status": "done",
+      "implementation_commit": "f1fbbc1156988ec53b8a66cba5f53c6d03faed92",
+      "evidence": [
+        "test/ui/motion.spec.js",
+        "docs/design/experience/EXP-F2/README.md"
+      ]
     },
     {
       "id": "EXP-F3",

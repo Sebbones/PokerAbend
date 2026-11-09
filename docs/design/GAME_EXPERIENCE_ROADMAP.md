@@ -42,6 +42,9 @@ Kommt **vor** den Spielpaketen. Ohne das Fundament baut sonst jedes Spiel eigene
 - Tests: Paletten sind vollständig, jede Palette kennt die Pflichtereignisse `select`, `confirm`, `deny`, `turn`, `win`, `lose`.
 
 ### EXP-F2 · Animations-Baukasten
+- **Status:** done
+- **Implementierungscommit:** `f1fbbc1156988ec53b8a66cba5f53c6d03faed92`
+- **Nachweise:** `test/ui/motion.spec.js`, `docs/design/experience/EXP-F2/README.md`
 - `public/motion/motion.js` mit fertigen Bewegungen:
   - `flyTo(el, ziel)`: Karte oder Stein von A nach B, auch zwischen Spielerplätzen
   - `flip(el)`: Karte aufdecken
