@@ -5,7 +5,7 @@ import { mkdirSync } from 'node:fs';
 
 const VIEWPORTS = [[1920, 1080], [1440, 900], [768, 1024], [390, 844], [360, 800], [900, 450]];
 const send = (page, event, data = {}) => page.evaluate(([e, d]) => send(e, d), [event, data]);
-const state = (page) => page.evaluate(() => ({ phase: lastState.phase, turn: lastState.turnId, me: lastState.you.id, g: lastState.g, players: lastState.players }));
+const state = (page) => page.evaluate(() => ({ phase: lastState.phase ?? (lastState.started ? 'playing' : 'lobby'), turn: lastState.turnId, me: lastState.you.id, g: lastState.g, players: lastState.players }));
 const overflow = (page) => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1);
 // Je Spiel: Bots (zusätzlich zum Menschen), Einstellungen, eine eigene Aktion für „nach dem Zug“ und – wo schnell erreichbar – der Weg bis zum Ergebnis
 const GAMES = {
@@ -109,7 +109,7 @@ Object.assign(GAMES, {
     async act(page) { await lastTurn(page); if (!(await tryClick(page, '[data-g=knock]'))) await tryClick(page, '[data-g=pass]'); await page.waitForTimeout(400); },
   },
   sortierstation: {
-    bots: 1, settings: { turnTime: 0, rounds: 1 }, scene: '.ss-stage', watchScene: '[data-scene=sortierstation]',
+    bots: 1, settings: { turnTime: 0, rounds: 1, writeSecs: 120 }, scene: '.ss-stage', watchScene: '[data-scene=sortierstation]',
     async act(page) { await page.waitForTimeout(600); await tryClick(page, '.ss-box'); },
     async finish(page) { await loop(page, async () => { await tryClick(page, '.ss-box', 800); }, 900); },
   },
@@ -164,7 +164,7 @@ Object.assign(GAMES, {
   'wer-bin-ich': { bots: 0, humans: 2, settings: { turnTime: 0 }, scene: '.wb-stage', async act(page) { await page.waitForTimeout(500); } },
   kronenjagd: { bots: 1, settings: {}, scene: '#rt-canvas', async act(page) { await page.waitForTimeout(800); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(300); } },
   'laser-huepfer': { bots: 1, settings: {}, scene: '#rt-canvas', async act(page) { await page.waitForTimeout(800); await page.keyboard.press('ArrowRight'); await page.waitForTimeout(300); } },
-  broeckelboden: { bots: 1, settings: {}, scene: '#rt-canvas', async act(page) { await page.waitForTimeout(800); await page.keyboard.press('ArrowLeft'); await page.waitForTimeout(300); } },
+  broeckelboden: { bots: 3, settings: {}, scene: '#rt-canvas', async act(page) { await page.waitForTimeout(800); await page.keyboard.press('ArrowLeft'); await page.waitForTimeout(300); } },
   'sechs-nimmt': { bots: 2, settings: { turnTime: 0 }, scene: '.sn-table', async act(page) { await tryClick(page, '[data-g=choose]:not([disabled])'); await quiet(page); } },
   durak: { bots: 1, settings: { turnTime: 0 }, scene: '.du-wrap', async act(page) { await lastTurn(page); await tryClick(page, '.kg-hand .kc:not([disabled])'); await tryClick(page, '[data-g=attack]'); await quiet(page); } },
   muehle: { bots: 1, settings: { turnTime: 0 }, scene: '.mu-stage', async act(page) { await lastTurn(page); await tryClick(page, '.mu-pt.can'); await quiet(page); } },
@@ -173,8 +173,8 @@ Object.assign(GAMES, {
   werwolf: { bots: 5, settings: { turnTime: 0 }, scene: '.ww-village', async act(page) { await page.waitForTimeout(600); } },
   blackjack: { bots: 2, settings: { turnTime: 0 }, scene: '.bj-table', async act(page) { await tryClick(page, '[data-g=bet]'); await quiet(page); } },
   'monopoly-deal': { bots: 2, settings: { turnTime: 0 }, scene: '.md-table', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=card]'); await quiet(page); } },
-  poker: { relaxed: true, bots: 2, settings: {}, scene: '.table', async act(page) { await page.waitForTimeout(800); await tryClick(page, '[data-act=call],[data-act=check]'); await quiet(page); } },
-  omaha: { relaxed: true, bots: 2, settings: {}, scene: '.table', async act(page) { await page.waitForTimeout(800); await tryClick(page, '[data-act=call],[data-act=check]'); await quiet(page); } },
+  poker: { relaxed: true, sit: { seat: 0 }, help: '[data-help]', bots: 2, settings: {}, scene: '.table', async act(page) { await page.waitForTimeout(800); await tryClick(page, '[data-act=call],[data-act=check]'); await quiet(page); } },
+  omaha: { relaxed: true, sit: { seat: 0 }, help: '[data-help]', bots: 2, settings: {}, scene: '.table', async act(page) { await page.waitForTimeout(800); await tryClick(page, '[data-act=call],[data-act=check]'); await quiet(page); } },
   'spiel-des-lebens': { bots: 1, settings: { turnTime: 0 }, scene: '.life-table', async act(page) { await lastTurn(page); await tryClick(page, '[data-g=spin]'); await page.waitForTimeout(900); } },
   monopoly: { relaxed: true, bots: 1, settings: { turnTime: 0 }, scene: '.mo-board', async act(page) { await page.waitForTimeout(500); } },
   'risiko-wuerfeln': {
@@ -209,7 +209,7 @@ for (const id of only) {
     await page.locator('#host-form button[type=submit]').click();
     await expect(page.locator('[data-scene]')).toHaveAttribute('data-scene', id);
     await shot(page, 'lobby');
-    expect((await send(page, 'sit')).ok).toBe(true);
+    { const reply = await send(page, 'sit', cfg.sit || {}); expect(reply.ok, JSON.stringify(reply)).toBe(true); }
     for (let i = 0; i < cfg.bots; i++) expect((await send(page, 'addBot')).ok).toBe(true);
     // Spiele ohne Computerspieler (z. B. Kritzelpost): weitere echte Mitspieler in eigenen Kontexten
     const guestContexts = [];
@@ -231,7 +231,7 @@ for (const id of only) {
       await expect(watcher.locator(cfg.watchScene || cfg.scene)).toBeVisible(); await shot(watcher, 'spectator');
     } finally { await context.close(); }
     if (cfg.act) { await cfg.act(page); await page.waitForTimeout(400); await shot(page, 'waiting'); }
-    expect((await send(page, 'gamePause', { paused: true })).ok).toBe(true); await shot(page, 'paused');
+    { const reply = await send(page, 'gamePause', { paused: true }); expect(reply.ok, JSON.stringify(reply)).toBe(true); } await shot(page, 'paused');
     expect((await send(page, 'gamePause', { paused: false })).ok).toBe(true);
     await page.reload(); await expect(page.locator(cfg.scene)).toBeVisible(); await shot(page, 'reconnect');
     if (info.project.name === 'desktop') for (const [width, height] of VIEWPORTS) {
@@ -241,7 +241,7 @@ for (const id of only) {
       await shot(page, `table-${width}x${height}`);
     } else if (!cfg.relaxed) expect(await overflow(page)).toBe(true);
     // Englisch: Kurzregeln im Hilfedialog (vor dem Ergebnis, solange der Tisch läuft)
-    await page.evaluate(() => I18n.select('en')); await page.locator('[data-kit=help]').first().click();
+    await page.evaluate(() => I18n.select('en')); await page.locator(cfg.help || '[data-kit=help]').first().click();
     await expect(page.locator('#help-dlg')).toBeVisible(); await shot(page, 'english-rules'); await page.keyboard.press('Escape');
     if (cfg.finish) { await page.setViewportSize(info.project.name === 'desktop' ? { width: 1440, height: 900 } : page.viewportSize()); await cfg.finish(page); await expect.poll(() => state(page).then((s) => s.phase), { timeout: 60000 }).toBe('over'); await shot(page, 'result'); }
   });

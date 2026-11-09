@@ -45,7 +45,7 @@ const GERMAN = /(?:^|[^A-Za-zÄÖÜäöüß])(und|oder|nicht|noch|bitte|wird|wer
 const germanWords = (text) => { const found = new Set(); for (const line of text.split(/\n+/)) { const m = line.match(GERMAN); if (m) found.add(`${m[1]} ← „${line.trim().slice(0, 60)}“`); } return [...found]; };
 
 const GAP = 'Spieltexte noch teilweise nur auf Deutsch (Stand der Prüfung: siehe Bericht zur Testabdeckung)';
-const UNTRANSLATED = new Map(['blackjack', 'broeckelboden', 'hex', 'kronenjagd', 'laser-huepfer', 'maexchen', 'muehle', 'schlagfertig', 'schwimmen', 'shutthebox', 'werhatdasgesagt', 'wuerfelduell', 'zehntausend'].map((id) => [id, GAP]));
+const UNTRANSLATED = new Map(['blackjack', 'broeckelboden', 'kronenjagd', 'laser-huepfer', 'maexchen', 'muehle', 'schlagfertig', 'schwimmen', 'shutthebox', 'werhatdasgesagt', 'zehntausend'].map((id) => [id, GAP]));
 
 test.use({ createLimit: '100' });
 

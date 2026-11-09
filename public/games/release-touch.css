@@ -11,9 +11,6 @@
   }
   #game-root :is(.toggle,.field:has(input[type=checkbox])) {min-height:44px;}
   #game-root :is(.kc,.die,.mu-pt) {min-width:44px;min-height:44px;}
-  #game-root :is(.rv-wrap,.dm-wrap) {max-width:100%;overflow-x:auto;grid-template-columns:minmax(0,1fr);justify-items:start;}
-  #game-root .rv-board {min-width:384px;}
-  #game-root .dm-board {min-width:364px;}
   #game-root .ml-grid {min-width:414px;grid-template-columns:44px repeat(7,minmax(0,1fr)) 44px;}
   #game-root .ml-arrow {min-width:44px;min-height:44px;}
   #game-root .si-grid {min-width:394px;}
