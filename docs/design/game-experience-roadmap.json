@@ -7,7 +7,13 @@
     {
       "id": "EXP-F1",
       "title": "Klang-Engine",
-      "status": "planned"
+      "status": "done",
+      "implementation_commit": "7a5bc52a4ed203d29cde9d84cbd5b49e2d19d2b0",
+      "evidence": [
+        "test/sound.test.js",
+        "test/ui/sound.spec.js",
+        "docs/design/experience/EXP-F1/README.md"
+      ]
     },
     {
       "id": "EXP-F2",

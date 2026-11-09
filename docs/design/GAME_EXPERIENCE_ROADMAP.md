@@ -32,6 +32,9 @@ Die IDs folgen den VIS-Nummern: **EXP-001 gehört zu VIS-001 (Scotland Yard)** u
 Kommt **vor** den Spielpaketen. Ohne das Fundament baut sonst jedes Spiel eigene Sound- und Animationslösungen.
 
 ### EXP-F1 · Klang-Engine
+- **Status:** done
+- **Implementierungscommit:** `7a5bc52a4ed203d29cde9d84cbd5b49e2d19d2b0`
+- **Nachweise:** `test/sound.test.js`, `test/ui/sound.spec.js`, `docs/design/experience/EXP-F1/README.md`
 - `public/sound/engine.js`: Paletten statt Einzeltöne. Ein Spiel meldet `Sound.use('casino')` und ruft dann Ereignisse auf (`Sound.play('chip')`, `Sound.play('win')`).
 - **Bausteine:** Rauschimpulse mit Filter (Karten, Würfel, Holz), FM-Glocken (Metall, Messing), Plopp und Tock (Steine), weiche Akkorde (Sieg), Tieftöner (Spannung). Alles parametrisiert, damit jede Palette eigen klingt.
 - **Mixer** in den Einstellungen: Gesamt, Effekte, Atmosphäre, Sprachausgabe (für spätere Ansagen). Stumm pro Spiel möglich.
