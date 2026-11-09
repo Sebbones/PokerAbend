@@ -26,4 +26,7 @@ events.deal = events.draw;
 events.chip = events.chips;
 events.piece = [tone(420, 65, 0.05, 'triangle')];
 events.capture = events.hit;
+// EXP-F5 Lobby-Leben: Stuhl rücken beim Hinsetzen, kurzes Aufstehen beim Gehen.
+events.seat = [{ kind: 'noise', ms: 260, freq: 380, vol: 0.12, type: 'bandpass', q: 2.5 }, { kind: 'tock', freq: 150, ms: 90, vol: 0.05, at: 210 }];
+events.stand = [{ kind: 'tock', freq: 210, ms: 70, vol: 0.045 }, { kind: 'noise', ms: 200, freq: 520, vol: 0.09, type: 'bandpass', q: 2, at: 40 }];
 export default { id: 'standard', events };

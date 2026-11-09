@@ -1,5 +1,5 @@
 // Dry dice on the counter, cup thumps and a small bar bell.
-export default { id: 'kneipe', events: {
+export default { id: 'kneipe', ambient: 'kneipe', events: {
   select: [{ kind: 'tock', freq: 430, ms: 70, vol: 0.05 }],
   confirm: [{ kind: 'bell', freq: 820, ms: 220, vol: 0.04, ratio: 2.4 }],
   deny: [{ kind: 'bass', freq: 95, ms: 160, vol: 0.07 }],

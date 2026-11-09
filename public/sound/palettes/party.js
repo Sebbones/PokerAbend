@@ -1,5 +1,5 @@
 // Bouncy plops, bright FM bells and a soft celebratory chord.
-export default { id: 'party', events: {
+export default { id: 'party', ambient: 'jahrmarkt', events: {
   select: [{ kind: 'plop', freq: 720, ms: 85, vol: 0.045 }],
   confirm: [{ kind: 'plop', freq: 850, ms: 140, vol: 0.055 }],
   deny: [{ kind: 'plop', freq: 170, ms: 220, vol: 0.06 }],

@@ -1,7 +1,12 @@
 // EXP-F1. All sound is synthesized locally; importing this module creates no AudioContext.
 import standard from './palettes/standard.js';
+import { SCENES, SCENE_RATE, sceneBuffer } from './ambient/scenes.js';
+import { worldAmbient } from './ambient/worlds.js';
 export const REQUIRED_EVENTS = Object.freeze(['select', 'confirm', 'deny', 'turn', 'win', 'lose']);
 export const PALETTES = Object.freeze(['standard', 'casino', 'holz', 'kneipe', 'party']);
+export { SCENES } from './ambient/scenes.js';
+// EXP-F5: an ambient scene is scaled by this gain on top of the atmosphere slider and fades in gently.
+export const AMBIENT_LEVEL = 0.35, AMBIENT_FADE_IN = 1.5;
 export const MIXER_DEFAULTS = Object.freeze({ enabled: true, master: 1, effects: 1, atmosphere: 0, speech: 1, mutedGames: Object.freeze([]) });
 const clamp = (n, fallback = 1) => Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : fallback;
 export function normalizeMixer(value = {}) {
@@ -19,16 +24,19 @@ export function loadPalette(name) {
 }
 
 export function createSoundEngine({ settings = () => MIXER_DEFAULTS, game = () => null, host = globalThis,
+  paused = () => false, defaultAmbient = worldAmbient,
   contextFactory = () => new (host.AudioContext || host.webkitAudioContext)() } = {}) {
   let context, master, effects, atmosphere, palette = standard, selection = 0, loading = null, activeGame = game();
-  let ambientName = null, ambientVoice = null, disposed = false;
+  // ambientName: the atmosphere this table wants (world default or set by the game); ambientVoice: what is audible now.
+  let ambientName = null, ambientExplicit = false, ambientVoice = null, disposed = false;
+  ambientName = defaultAmbient(activeGame) || null;
   const voices = new Set();
   const mixer = () => normalizeMixer(settings());
   const hidden = () => !!host.document?.hidden;
   const logging = () => Array.isArray(host.__soundLog);
   const allowed = (channel, id = game()) => {
     const m = mixer();
-    return !disposed && !hidden() && m.enabled && m.master > 0 && m[channel] > 0 && !m.mutedGames.includes(id);
+    return !disposed && !hidden() && m.enabled && m.master > 0 && m[channel] > 0 && !m.mutedGames.includes(id) && !(channel === 'atmosphere' && paused());
   };
   function stopVoice(voice) {
     if (!voice) return;
@@ -40,7 +48,7 @@ export function createSoundEngine({ settings = () => MIXER_DEFAULTS, game = () =
   function stopAll() { for (const voice of [...voices]) stopVoice(voice); }
   function syncGame() {
     const id = game();
-    if (id !== activeGame) { activeGame = id; ambientName = null; stopAll(); palette = standard; selection++; loading = null; }
+    if (id !== activeGame) { activeGame = id; ambientName = defaultAmbient(id) || null; ambientExplicit = false; stopAll(); palette = standard; selection++; loading = null; }
   }
   function ensureContext() {
     if (disposed) return null;
@@ -138,19 +146,40 @@ export function createSoundEngine({ settings = () => MIXER_DEFAULTS, game = () =
     const request = ++selection;
     loading = loadPalette(name).then(next => {
       if (request !== selection || disposed) return false;
-      if (palette !== next) { stopAll(); ambientName = null; palette = next; }
+      if (palette !== next) {
+        stopAll(); palette = next;
+        // A palette may bring its world's atmosphere; an atmosphere the game chose itself wins.
+        if (!ambientExplicit && next.ambient) ambientName = next.ambient;
+        startAmbient();
+      }
       return true;
     }).finally(() => { if (request === selection) loading = null; });
     return loading;
   }
-  function ambient(name) {
-    syncGame(); stopVoice(ambientVoice);
-    ambientName = typeof name === 'string' && name ? name : null;
+  function startAmbient() {
+    stopVoice(ambientVoice);
     if (!ambientName || !allowed('atmosphere')) return false;
     if (log('ambient', 'atmosphere', game(), { name: ambientName })) return true;
-    // A quiet, filtered noise bed; world-specific atmospheres belong to EXP-F5.
-    try { ambientVoice = render({ kind: 'noise', ms: 2000, freq: 240, type: 'lowpass', vol: 0.025, q: 0.5 }, 'atmosphere', 1, true); } catch { return false; }
+    try {
+      if (!SCENES.includes(ambientName)) return false;
+      const ctx = ensureContext();
+      if (!ctx || ctx.state === 'suspended') return false;
+      const data = sceneBuffer(ambientName), buffer = ctx.createBuffer(1, data.length, SCENE_RATE);
+      if (buffer.copyToChannel) buffer.copyToChannel(data, 0); else buffer.getChannelData(0).set(data);
+      const source = ctx.createBufferSource(), gain = ctx.createGain(), now = ctx.currentTime;
+      source.buffer = buffer; source.loop = true;
+      gain.gain.setValueAtTime(0.0001, now); gain.gain.linearRampToValueAtTime(AMBIENT_LEVEL, now + AMBIENT_FADE_IN);
+      source.connect(gain); gain.connect(atmosphere);
+      ambientVoice = reserve([source], [source, gain], Infinity);
+      source.start(now);
+    } catch { return false; }
     return !!ambientVoice;
+  }
+  function ambient(name) {
+    syncGame();
+    // 'room' is the F1 name for the plain noise bed; it is a scene now as well.
+    ambientName = typeof name === 'string' && name ? name : null; ambientExplicit = true;
+    return startAmbient();
   }
   function refresh() {
     syncGame();
@@ -163,10 +192,11 @@ export function createSoundEngine({ settings = () => MIXER_DEFAULTS, game = () =
       effects.gain.value = m.effects; atmosphere.gain.value = m.atmosphere;
     }
     if (!allowed('atmosphere') || logging()) stopVoice(ambientVoice);
-    else if (ambientName && !ambientVoice) ambient(ambientName);
+    else if (ambientName && !ambientVoice) startAmbient();
   }
-  const onVisibility = () => { if (hidden()) { ambientName = null; stopAll(); } else refresh(); };
-  const onPageHide = () => { ambientName = null; stopAll(); };
+  // Hidden tab: everything stops; back in view only the atmosphere resumes (effects are never replayed).
+  const onVisibility = () => { if (hidden()) stopAll(); else refresh(); };
+  const onPageHide = () => stopAll();
   // Unlock only on an actual gesture, without creating an AudioContext before any sound is requested.
   const unlock = () => { if (context?.state === 'suspended') context.resume().then(refresh).catch(() => {}); };
   // Navigation away from a table must stop ambient even when no further sound is played.
@@ -183,6 +213,8 @@ export function createSoundEngine({ settings = () => MIXER_DEFAULTS, game = () =
     beep: (freq = 660, ms = 120, vol = 0.05, type = 'sine') => playNotes('beep', [{ kind: 'tone', freq, ms, vol, type }]),
     noise: (sec, freq, vol, type = 'bandpass', q = 1) => playNotes('noise', [{ kind: 'noise', freq, ms: sec * 1000, vol, type, q }]),
     get palette() { return palette.id; },
+    get ambientScene() { return ambientName; },
+    get ambientPlaying() { return !!ambientVoice; },
     get voiceCount() { return voices.size; },
     dispose() {
       disposed = true; selection++; loading = null; stopAll(); observer?.disconnect();

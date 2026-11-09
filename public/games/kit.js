@@ -55,6 +55,10 @@ window.showWinnerStage = (host, state, options = {}) => {
   });
 };
 socket.on('disconnect', () => { winnerStageReconnecting = true; window.finishWinnerStages(); });
+// EXP-F5: Lobby-Leben (Hinsetzen/Aufstehen) für alle kit-Spiele.
+let lobbyLife = null;
+import('/motion/lobby-life.js').then((m) => { lobbyLife = m.createLobbyLife({ reduced: motionOff }); }).catch(() => {});
+socket.on('disconnect', () => lobbyLife?.reset());
 
 usePrefs({ marks: true });
 
@@ -346,6 +350,7 @@ function kitGame(def) {
       const html=GameDesign.backdrop(def.id)+help+programBannerHTML(S)+(ring?ringHTML(center):center)+(S.phase==='over'&&S.result&&resultClosed!==S.roundNo?resultHTML():'');
       if(def.cardUX)CardInteraction.patch(main,html);else main.innerHTML=html;
     }
+    lobbyLife?.observe(S, $('#kg'));
 
     // Aktionsleiste
     const baseDockKey = def.dockKey ? def.dockKey(S, myTurn) : null;

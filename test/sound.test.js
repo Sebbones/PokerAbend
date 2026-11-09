@@ -74,7 +74,8 @@ test('Sound: game changes and visibility stop live voices; zero atmosphere creat
   game='schach';engine.refresh();assert.equal(engine.voiceCount,0);
   sound={...sound,atmosphere:.2};engine.ambient('room');assert.equal(engine.voiceCount,1);
   host.document.hidden=true;events.visibilitychange();assert.equal(engine.voiceCount,0);
-  host.document.hidden=false;events.visibilitychange();assert.equal(engine.voiceCount,0,'no backlog after returning');engine.dispose();
+  // EXP-F5: back in view only the atmosphere resumes; effects are never replayed.
+  host.document.hidden=false;events.visibilitychange();assert.equal(engine.voiceCount,1,'only the ambient bed resumes');assert.equal(engine.ambientPlaying,true);engine.dispose();
 });
 test('Sound: mixer validates numbers/game IDs and persists per player across restart and merge', () => {
   assert.deepEqual(SETTINGS_DEFAULTS.sound,MIXER_DEFAULTS);

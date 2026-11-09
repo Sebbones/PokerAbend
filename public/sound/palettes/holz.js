@@ -1,5 +1,5 @@
 // Warm wooden board and piece transients.
-export default { id: 'holz', events: {
+export default { id: 'holz', ambient: 'kamin', events: {
   select: [{ kind: 'tock', freq: 620, ms: 65, vol: 0.045 }],
   confirm: [{ kind: 'plop', freq: 480, ms: 100, vol: 0.06 }],
   deny: [{ kind: 'tock', freq: 170, ms: 130, vol: 0.05 }],

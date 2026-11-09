@@ -1,5 +1,5 @@
 // Own synthetic brass, chips and felt; no recordings.
-export default { id: 'casino', events: {
+export default { id: 'casino', ambient: 'salon', events: {
   select: [{ kind: 'bell', freq: 1600, ms: 90, vol: 0.025, ratio: 2.6, index: 1.5 }],
   confirm: [{ kind: 'bell', freq: 980, ms: 260, vol: 0.04 }],
   deny: [{ kind: 'bass', freq: 110, ms: 180, vol: 0.06 }],

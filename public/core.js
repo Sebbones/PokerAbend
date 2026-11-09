@@ -79,7 +79,9 @@ function renderGamePause(st) {
   if (!root || !st) return;
   const header = root.querySelector('.topbar');
   if (header && header !== observedGameHeader) { gameHeaderObserver.disconnect(); observedGameHeader = header; gameHeaderObserver.observe(header); }
+  const wasPaused = root.classList.contains('game-paused');
   root.classList.toggle('game-paused', !!st.gamePaused);
+  if (wasPaused !== !!st.gamePaused) soundEngine?.refresh();
   root.querySelectorAll('#kg-main, #kg-dock, .table-wrap, #dock').forEach((el) => { el.inert = !!st.gamePaused; });
   let banner = $('#game-pause-banner');
   if (st.gamePaused && !banner) {
@@ -193,6 +195,8 @@ const soundReady = import('/sound/engine.js').then(({ createSoundEngine }) => {
   soundEngine = createSoundEngine({
     settings: () => ({ ...(typeof Settings !== 'undefined' ? Settings.get().sound : {}), enabled: prefs.sound !== false }),
     game: () => session?.game || window.Singleplayer?.active || document.querySelector('[data-scene]')?.dataset.scene || null,
+    // EXP-F5: Atmosphäre schweigt während einer gemeinsamen Spielpause.
+    paused: () => !!document.querySelector('#game-root.game-paused'),
   });
   return soundEngine;
 }).catch(() => null); // fehlendes Web Audio darf ein Spiel nie blockieren
@@ -207,6 +211,8 @@ window.Sound = {
   use: (palette) => soundCall('use', palette),
   play: (event, opts) => soundCall('play', event, opts),
   ambient: (name) => soundCall('ambient', name),
+  // Nur lesend, für Tests und Einstellungen: welche Atmosphäre der Tisch will und ob sie gerade läuft.
+  state: () => ({ ambient: soundEngine?.ambientScene ?? null, playing: !!soundEngine?.ambientPlaying }),
 };
 function beep(freq = 660, ms = 120, vol = 0.05, type = 'sine') { return soundCall('beep', freq, ms, vol, type); }
 function noise(sec, freq, vol, type = 'bandpass', q = 1) { return soundCall('noise', sec, freq, vol, type, q); }
