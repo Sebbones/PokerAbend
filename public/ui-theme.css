@@ -6,7 +6,7 @@
   grid-template-rows: auto 1fr; gap: 0 var(--hub-gap); padding: var(--hub-top) clamp(20px, 2.7vw, 52px) 24px;
   --font: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
 }
-.hub::before { content: ''; position: fixed; z-index: -1; inset: -5px; background: linear-gradient(#090c0b30, #090b0960), url('/assets/games-lounge.webp') center / cover no-repeat, #17201b; filter: blur(3px); pointer-events: none; }
+.hub::before { content: ''; position: fixed; z-index: -1; inset: -5px; transform: translateZ(0); will-change: transform; /* own layer; the photo is pre-blurred in the file (…-soft.webp), a CSS filter here cost ~40% of scroll frames */ background: linear-gradient(#090c0b30, #090b0960), url('/assets/games-lounge-soft.webp') center / cover no-repeat, #17201b; pointer-events: none; }
 .hub-side { top: var(--hub-top); height: calc(100dvh - var(--hub-top) - 24px); padding: 22px 8px 12px; border: 1px solid var(--hub-edge); border-radius: 16px; background: #0e100fe8; box-shadow: 0 12px 36px #0003; }
 .hub-brand { display: flex; align-items: center; gap: 10px; padding: 0 9px 26px; color: #f0c57f; }
 .brand-spade { width: 34px; height: 38px; fill: currentColor; flex: none; }
@@ -174,9 +174,13 @@
 .kg-over-card { border-color: var(--glass-edge); background: var(--panel); }
 .btn { text-decoration: none; }
 :root[data-theme='night'] .kg[data-scene-family='cards'] { --felt: #1D2B45; --felt-light: #2A3C5E; }
+/* Scroll performance: a backdrop blur on the scrolling hub surfaces is recomputed every frame
+   (≈10 fps on weaker machines). The lounge photo behind is already blurred once (.hub::before),
+   so the large surfaces use near-opaque glass colours instead; only short-lived dialogs keep the blur. */
 @supports (backdrop-filter: blur(1px)) {
-  .hub-side, .hub-main, .hub-tabbar, .host-dlg, .dlg { background: var(--glass); backdrop-filter: blur(var(--glass-blur)); }
+  .host-dlg, .dlg { background: var(--glass); backdrop-filter: blur(var(--glass-blur)); }
 }
+.hub-side, .hub-main, .hub-tabbar { background: var(--glass); }
 :root[data-glass='reduced'] { --glass: var(--panel); --glass-soft: #1C2923; --glass-blur: 0px; }
 :root[data-glass='reduced'] :is(.hub-side, .hub-main, .hub-tabbar, .host-dlg, .dlg, .lobby-felt) { backdrop-filter: none; }
 @media (prefers-reduced-transparency: reduce) {
@@ -184,10 +188,8 @@
 }
 
 /* Ein Raum, eine Bildfläche; deckende Basis auch ohne Filterunterstützung. */
-@supports (backdrop-filter: blur(1px)) {
-  .hub-side, .hub-top, .hub-main { background: #1013109c; backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px); }
-  .home-panel { background: #1719139e; backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); }
-}
+.hub-side, .hub-top, .hub-main { background: #101310c4; }
+.home-panel { background: #171913c2; }
 :root[data-glass='reduced'] .hub::before { background-image: none; filter: none; }
 :root[data-glass='reduced'] :is(.hub-side, .hub-top, .hub-main, .home-panel) { background: var(--panel); backdrop-filter: none; -webkit-backdrop-filter: none; }
 @media (prefers-reduced-transparency: reduce) {
@@ -217,7 +219,7 @@
 }
 @media (max-width: 640px) {
   .hub { display: block; padding: 0 0 calc(76px + env(safe-area-inset-bottom)); }
-  .hub::before { background-image: linear-gradient(#090c0b65, #090b0980), url('/assets/games-lounge-mobile.webp'); background-position: center; }
+  .hub::before { background-image: linear-gradient(#090c0b65, #090b0980), url('/assets/games-lounge-mobile-soft.webp'); background-position: center; }
   .hub-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: calc(10px + env(safe-area-inset-top)) 16px 12px; position: relative; top: 0; border: 0; border-bottom: 1px solid var(--hub-edge); border-radius: 0; }
   .hub-top > .hub-brand { display: block; padding: 0; }
   .hub-top .wordmark { font: 600 25px var(--heading); }

@@ -14,3 +14,9 @@
 .set-status { font-size: 13px; opacity: .85; margin: 4px 0 0; }
 .set-guest { font-style: italic; }
 @media (max-width: 600px) { .set-section { padding: 14px; } }
+/* Am PC zwei Spalten nebeneinander, damit nichts gescrollt werden muss; Abschnitte werden nicht zerteilt. */
+@media (min-width: 1100px) {
+  .set-page { display: block; max-width: 1400px; columns: 2; column-gap: 16px; }
+  .set-page > .set-section { break-inside: avoid; margin: 0 0 16px; }
+}
+@media (min-width: 1600px) { .set-page { columns: 3; } }

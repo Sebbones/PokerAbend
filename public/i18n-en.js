@@ -62,7 +62,7 @@ window.EN = {
   'Weitere Bereiche': 'More sections', 'Bereiche': 'Sections', 'Euer Spieleabend': 'Your game night',
   'Menü schließen': 'Close menu', 'Menü': 'Menu', 'Mehr': 'More', 'Schließen': 'Close',
   'Seitenleiste ausklappen': 'Expand sidebar', 'Seitenleiste einklappen': 'Collapse sidebar',
-  'PokerAbend – Startseite': 'PokerAbend – Home', 'Profil ändern': 'Edit profile',
+  'Spieleabend – Startseite': 'Games Night – Home', 'Profil ändern': 'Edit profile',
   'Profil anlegen': 'Create profile', 'Profil': 'Profile', 'Ich': 'Me',
   'Profil ändern, du bist {0}': 'Edit profile, you are {0}', 'Wie heißt du?': 'What is your name?',
   'Dein Name': 'Your name', 'z. B. Tobi': 'e.g. Alex',

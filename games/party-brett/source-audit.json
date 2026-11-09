@@ -68,11 +68,11 @@
     },
     {
       "path": "public/i18n-en.js",
-      "sha256": "58563773aae68b1ffdf0ebfb346398c6924c70ecb3df211563c113fd058698c7"
+      "sha256": "43c3c3474ae8f99e7ba3874e0b5514ea25f8281e61bede7b9b0658499e954739"
     },
     {
       "path": "public/index.html",
-      "sha256": "40b811baeff877114840945360c737f98fa6a0295c45a806a0d5e3db21801287"
+      "sha256": "e1df7c136f466b0632419fab39b8929dd9c7c9a67a28616cfdd9024376dfef33"
     },
     {
       "path": "public/party-program.js",

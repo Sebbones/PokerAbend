@@ -60,7 +60,6 @@ body {
     radial-gradient(ellipse at 8% 55%, #2B614439, transparent 54%),
     radial-gradient(ellipse at 60% 100%, #6B49321F, transparent 55%),
     var(--bg);
-  background-attachment: fixed;
   background-color: var(--bg);
   -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums;
 }

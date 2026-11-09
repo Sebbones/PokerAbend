@@ -7,7 +7,7 @@
     document.documentElement.lang = value;
     document.querySelectorAll('[data-for]').forEach((el) => { el.hidden = el.dataset.for !== value; });
     document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === value)));
-    document.title = value === 'en' ? 'Privacy · PokerAbend' : 'Datenschutz · PokerAbend';
+    document.title = value === 'en' ? 'Privacy · Games Night' : 'Datenschutz · Spieleabend';
   };
   document.querySelectorAll('[data-lang]').forEach((b) => b.addEventListener('click', () => {
     apply(b.dataset.lang);
