@@ -73,6 +73,9 @@ Kommt **vor** den Spielpaketen. Ohne das Fundament baut sonst jedes Spiel eigene
 - **Avatar-Figuren:** Die Eulen bekommen pro Welt kleine Accessoires (Detektivhut, Kochmütze, Krone usw.). So sieht man überall, wer wer ist.
 
 ### EXP-F4 · Siegerbühne
+- **Status:** done
+- **Implementierungscommit:** `158a4b79922b5d463ae82c92097c5f787a998d0f`
+- **Nachweise:** `test/celebrate.test.js`, `test/ui/celebrate.spec.js`, `docs/design/experience/EXP-F4/README.md`
 - Gemeinsames Spielende mit drei Stufen:
   - **Runde gewonnen:** kurz, Punktezähler läuft hoch
   - **Partie gewonnen:** Podest, Konfetti in den Farben der Welt

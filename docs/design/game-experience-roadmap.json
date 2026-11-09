@@ -39,7 +39,13 @@
     {
       "id": "EXP-F4",
       "title": "Siegerbühne",
-      "status": "planned"
+      "status": "done",
+      "implementation_commit": "158a4b79922b5d463ae82c92097c5f787a998d0f",
+      "evidence": [
+        "test/celebrate.test.js",
+        "test/ui/celebrate.spec.js",
+        "docs/design/experience/EXP-F4/README.md"
+      ]
     },
     {
       "id": "EXP-F5",
