@@ -135,7 +135,7 @@
     },
     {
       "path": "public/games/kit.js",
-      "lf_sha256": "c6adefa8a379b52e977ea15308594a3602d9ceaf4213f9decf54b9cb54d624ab"
+      "lf_sha256": "9651fc3dcd95901ff244121fa6c72a6964644811f30d38b0739652fe542c327d"
     },
     {
       "path": "public/games/kniffel/kniffel.js",
@@ -163,7 +163,7 @@
     },
     {
       "path": "public/games/poker/poker.js",
-      "lf_sha256": "181b3d1a47b03e50138048f665f74bdf5a960441bf1aa9e62161989e587de5ee"
+      "lf_sha256": "6e70fa0a97d4ebb0c0d5255dc51484f328bec01cab508a4c3d490c944d87f937"
     },
     {
       "path": "public/games/praesident/praesident.js",

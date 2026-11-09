@@ -608,7 +608,7 @@ function cues(a, b) {
   else if (a?.hand?.no === b.hand.no && (b.hand.board?.length || 0) > (a.hand.board?.length || 0)) sfx('card');
   const betsBefore = a?.hand && !a.hand.done ? a.hand.bets : 0;
   if (b.hand.bets > betsBefore) sounds.chips();
-  if (b.hand.done && !(a?.hand?.done && a.hand.no === b.hand.no)) {
+  if (a?.hand && b.you?.seat != null && b.hand.done && !(a.hand.done && a.hand.no === b.hand.no)) {
     const big = bigWin(b.hand);
     if (b.hand.result?.pots.some((p) => p.winners.includes(mine))) (big ? sounds.bigWin : sounds.win)(); else sounds.chips();
     const winners = [...new Set(b.hand.result?.pots.flatMap((p) => p.winners) || [])];
@@ -1361,8 +1361,10 @@ registerGame('poker', {
     ]); }, 400);
   },
   onState(st) {
+    window.finishWinnerStages?.();
     prevS = S; S = st;
     animateChips(prevS, S); syncHistory(); render(); cues(prevS, S);
+    window.showWinnerStage?.($('#game'), S, { poker: true, fresh: !!prevS?.hand && !prevS.hand.done && !!S.hand?.done });
   },
   onPrefs() { applyPrefs(); render(); if (panel) { $('#panel-title').textContent = I18n.t(PANEL_TITLES[panel]); renderPanel(true); } },
 });

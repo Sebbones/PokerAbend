@@ -1,0 +1,23 @@
+/* EXP-F4: static stage layout. Motion uses transform/opacity only. */
+.winner-stage { position: relative; display: grid; gap: 12px; padding: 14px; border: 1px solid var(--scene-accent, #bfa36b); border-radius: 12px; min-width: 0; overflow: hidden; }
+.winner-stage-title { margin: 0; font-size: 17px; text-align: center; }
+.winner-scores,.winner-podium { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.winner-scores .winner-place { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.winner-podium { grid-template-columns: repeat(3,minmax(0,1fr)); align-items: end; }
+.winner-podium .winner-place { display: grid; align-content: start; gap: 6px; text-align: center; padding: 10px 5px; background: color-mix(in srgb,var(--scene-accent,#bd9f67) 13%,transparent); border: 1px solid currentColor; border-radius: 8px 8px 2px 2px; min-height: 105px; }
+.winner-podium .is-winner { min-height: 135px; border-color: var(--scene-accent,#bd9f67); }
+.winner-name { overflow-wrap: anywhere; font-size: 13px; }
+.winner-rank { font-size: 22px; }.winner-score { font: 700 22px/1.2 system-ui,sans-serif; font-variant-numeric: tabular-nums; min-width: 3ch; }
+.winner-actual { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.winner-trophy { text-align: center; }.winner-trophy svg { width: 48px; height: 48px; fill: var(--scene-accent,#d8b16a); stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }.winner-summary { margin: 0; text-align: center; font-size: 13px; }
+.winner-best { border-top: 1px solid currentColor; padding-top: 8px; }.winner-best h4 { margin: 0; font-size: 14px; }.winner-best p { margin: 4px 0; font-size: 13px; }
+.winner-confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.winner-paper { position: absolute; width: 8px; height: 13px; }.winner-paper.shape-chip { width: 11px; height: 11px; border-radius: 50%; border: 1px solid currentColor; }.winner-paper.shape-leaf { border-radius: 80% 0 80% 0; }.winner-paper.shape-star { clip-path: polygon(50% 0,62% 35%,100% 38%,72% 61%,82% 100%,50% 77%,18% 100%,28% 61%,0 38%,38% 35%); }
+#game > [data-result-stage] { position: absolute; z-index: 8; left: 50%; bottom: 90px; transform: translateX(-50%); max-width: 540px; width: calc(100% - 24px); max-height: 45dvh; overflow: auto; background: var(--panel,#19342a); }
+@media(max-width:500px) { .winner-stage { padding: 10px; }.winner-podium { gap: 5px; }.winner-score { font-size: 19px; } }
+
+.winner-podium .winner-place:first-child { grid-column: 2; grid-row: 1; }
+.winner-podium .winner-place:nth-child(2) { grid-column: 1; grid-row: 1; }
+.winner-podium .winner-place:nth-child(3) { grid-column: 3; grid-row: 1; }
+
+.winner-badge { font-size: 11px; font-weight: 700; }

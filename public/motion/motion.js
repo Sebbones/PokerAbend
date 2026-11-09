@@ -187,6 +187,7 @@ export class TableMotion {
     const stage = Math.max(1, Math.min(3, Math.floor(finite(level, 1))));
     return this.enqueue(() => list.map((el, i) => {
       const base = this.base(el);
+      if (opts.confetti) return { el, final: base.inline, frames: [{ transform: 'translateY(-18px) rotate(0deg)', opacity: 0 }, { transform: `translate(${(i % 5 - 2) * 12}px, 60px) rotate(${i * 19}deg)`, opacity: 1, offset: .3 }, { transform: `translate(${(i % 5 - 2) * 25}px, ${180 + stage * 40}px) rotate(${180 + i * 23}deg)`, opacity: 0 }], duration: 950 + stage * 150, delay: 0 };
       return { el, final: base.inline, frames: [{ transform: base.transform || 'none', opacity: base.opacity }, { transform: `${base.transform} translateY(${-8 * stage}px) rotate(${(i % 2 ? 1 : -1) * stage * 3}deg) scale(${1 + stage * .04})`.trim(), offset: .45, opacity: 1 }, { transform: base.transform || 'none', opacity: base.opacity }], duration: 350 + stage * 180, delay: i * 25 };
     }), opts);
   }

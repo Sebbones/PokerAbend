@@ -31,6 +31,31 @@ if (typeof HTMLLinkElement !== 'undefined' && document.head?.appendChild) {
   });
 }
 
+// EXP-F4: shared result component; also callable by non-kit games.
+const winnerStageModule = import('/motion/celebrate.js');
+let winnerStageGeneration = 0;
+let winnerStageReconnecting = false;
+window.configureWinnerWorld = (game, options) => winnerStageModule.then(m => m.configureWorld(game, options));
+window.finishWinnerStages = () => { winnerStageGeneration++; winnerStageModule.then(m => m.finishAll()); };
+window.showWinnerStage = (host, state, options = {}) => {
+  const generation = ++winnerStageGeneration, requested = performance.now(), restoring = winnerStageReconnecting;
+  if (options.poker) winnerStageReconnecting = false;
+  return winnerStageModule.then(m => {
+    if (generation !== winnerStageGeneration || !host?.isConnected) return;
+    if (options.poker && !state.hand?.done) { m.finishAll(); host.querySelector('[data-result-stage]')?.remove(); return; }
+    let root = options.poker ? host.querySelector('[data-result-stage]') : host;
+    if (!root) { root = document.createElement('section'); root.dataset.resultStage = ''; host.append(root); }
+    const model = options.poker ? m.pokerResultModel(state) : m.resultModel(state, options);
+    const stage = m.mountStage(root, model, { ...options, fresh: options.fresh && !restoring && performance.now() - requested < 600,
+      language: I18n.language, reduced: motionOff,
+      playSound: async (event, world) => { if (world.palette) await Sound.use(world.palette); if (root.isConnected && !root.closest('[hidden]') && generation === winnerStageGeneration) await Sound.play(event, { game: state.game }); },
+    });
+    if (options.poker) { const close = document.createElement('button'); close.className = 'btn btn-ghost'; close.textContent = I18n.language === 'en' ? 'Close result' : 'Ergebnis schließen'; close.onclick = () => { stage?.finish(); root.remove(); }; root.append(close); }
+    return stage;
+  });
+};
+socket.on('disconnect', () => { winnerStageReconnecting = true; window.finishWinnerStages(); });
+
 usePrefs({ marks: true });
 
 // ---------- Bausteine, die mehrere Spiele brauchen ----------
@@ -199,6 +224,7 @@ function kitGame(def) {
   WIDE.addEventListener('change', () => { if (isMine()) render(); });
   const FINE = matchMedia('(pointer: fine)');
   let dockKeyPrev = null; // Schlüssel der zuletzt gezeichneten Aktionsleiste (dockKey)
+  let resultFresh = false;
   let resultClosed = 0; // Rundennummer, deren Ergebnisfenster weggeklickt wurde
   let peekKey = null;   // Handy: vergrößerte Karte in einer überlappenden Hand
 
@@ -335,6 +361,9 @@ function kitGame(def) {
     setupHand();
     document.documentElement.style.setProperty('--dock-h', $('#kg-dock').offsetHeight + 'px');
     if (panel) renderPanel();
+    const stage = $('#kg [data-result-stage]');
+    if (stage) window.showWinnerStage(stage, S, { fresh: resultFresh, roundWord: def.roundWord, category: account.games.find(g => g.id === def.id)?.category });
+    resultFresh = false;
     def.afterRender?.(S);
     renderGamePause(S);
     GameDesign.fit($('#kg'));
@@ -402,6 +431,7 @@ function kitGame(def) {
     return I18n.html`<div class="kg-over" role="dialog" aria-labelledby="kg-over-title"><div class="kg-over-card">
       <small class="kg-over-kicker">${eveningDone ? 'Abend-Modus' : I18n.html`${RW} #${S.roundNo} vorbei`}</small>
       <h2 id="kg-over-title">${eveningDone ? I18n.t('Spieleabend beendet') : resultTitle}</h2>
+      <section data-result-stage></section>
       ${eveningDone ? programStandHTML(S) : ''}
       ${rows ? I18n.html`<table class="standings"><thead><tr><th>Name</th><th class="num">Runde</th><th class="num">Abend (${uiText(S.scoreLabel)})</th></tr></thead><tbody>${rows}</tbody></table>
         <p class="hint" style="margin:0">${S.lowWins ? I18n.t('Wenig Punkte sind gut.') : I18n.t('Viel ist gut.')}</p>` : ''}
@@ -665,6 +695,9 @@ function kitGame(def) {
     },
     onState(st) {
       const prev = S;
+      window.finishWinnerStages();
+      resultFresh = prev?.phase === 'playing' && st.phase === 'over' && socket.connected && !winnerStageReconnecting;
+      winnerStageReconnecting = false;
       S = st;
       // Bin ich gerade drangekommen? Ton und Hinweis im Tab
       const now = st.turnId && st.turnId === st.you?.id;
@@ -677,11 +710,11 @@ function kitGame(def) {
       if (prev && prev.roundNo !== st.roundNo && st.phase === 'playing') cue = 'shuffle';
       else if (prev?.phase === 'playing' && st.phase === 'over') cue = st.result?.winners?.includes(st.you?.id) ? 'win' : 'end';
       else if (prev && prev.roundNo === st.roundNo) cue = def.sounds?.(st, prev) || actSound(st.acts, prev.acts);
-      if (cue) GameDesign.sound(def.id, cue);
+      if (cue && !['win','end'].includes(cue)) GameDesign.sound(def.id, cue);
       if(def.cardUX){cardTracker.update(st);reconnecting=!socket.connected;if(prev&&CardInteraction.context(prev)!==CardInteraction.context(st))clearDrag();}else sortHand(st);
       def.onState?.(st, prev);
       render();
-      if (cue) GameDesign.pulse($('#kg'), cue);
+      if (cue && !['win','end'].includes(cue)) GameDesign.pulse($('#kg'), cue);
       // Neues Rundenende: Fokus ins Ergebnisfenster (Tastatur, Bildschirmleser)
       if (st.phase === 'over' && prev?.phase === 'playing') $('#kg .kg-over .btn-brass, #kg .kg-over .btn')?.focus();
     },
