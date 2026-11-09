@@ -42,7 +42,7 @@ Voraussetzungen: ein Linux-Server mit Docker (Compose v2), ein zentraler Traefik
    cd /srv/spieleabend
    ```
 
-3. **`.env` anlegen und ausfüllen** (Werte siehe [Abschnitt 3](#3-alle-einstellungen-env)). Mindestens `DOMAIN`, `IMAGE` und `SITE_PASSWORD`; empfohlen auch `ADMIN_PASSWORD` und `TICKET_ADMIN_PASSWORD`:
+3. **`.env` anlegen und ausfüllen** (Werte siehe [Abschnitt 3](#3-alle-einstellungen-env)). Für den Produktivbetrieb unter `poker.scwagaming.com` mindestens `DOMAIN=poker.scwagaming.com`, `IMAGE` und `SITE_PASSWORD` setzen; empfohlen auch `ADMIN_PASSWORD` und `TICKET_ADMIN_PASSWORD`:
 
    ```bash
    cp .env.example .env
@@ -52,23 +52,24 @@ Voraussetzungen: ein Linux-Server mit Docker (Compose v2), ein zentraler Traefik
 
    Die `.env` kommt **nie** zu GitHub und nie in einen Chat. Sie steht in `.gitignore`.
 
-4. **Image holen und starten:**
+4. **Den Docker-Kontext `projekt` auswählen und den Produktivbetrieb starten.** Prüfen, dass `docker context show` anschließend `projekt` ausgibt:
 
    ```bash
-   docker compose -f docker-compose.yml -f docker-compose.prod.yml pull
-   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+   docker context use projekt
+   docker context show
+   docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml --env-file .env up -d
    ```
 
-   Ohne `SITE_PASSWORD` oder `DOMAIN` bricht Compose mit einer verständlichen Meldung ab. Das ist Absicht: Auf dem Server soll nie etwas ohne Gruppenpasswort laufen.
+   Die `.env` muss `DOMAIN=poker.scwagaming.com` und die erforderlichen Image- und Passwortwerte enthalten. Ohne `SITE_PASSWORD` oder `DOMAIN` bricht Compose mit einer verständlichen Meldung ab. Das ist Absicht: Auf dem Server soll nie etwas ohne Gruppenpasswort laufen.
 
 5. **Prüfen:**
 
    ```bash
-   docker compose -f docker-compose.yml -f docker-compose.prod.yml ps        # Zustand sollte "healthy" werden
-   curl -s https://DEINE-DOMAIN/health                                          # {"ok":true,"version":"3.0.0",...}
+   docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml --env-file .env ps
+   curl -s https://poker.scwagaming.com/health
    ```
 
-   Im Browser `https://DEINE-DOMAIN` öffnen, mit dem Gruppenpasswort anmelden. Mit `ADMIN_PASSWORD` ist unter `https://DEINE-DOMAIN/admin` die Admin-Seite erreichbar.
+   Im Browser `https://poker.scwagaming.com` öffnen, mit dem Gruppenpasswort anmelden. Mit `ADMIN_PASSWORD` ist unter `https://poker.scwagaming.com/admin` die Admin-Seite erreichbar.
 
 6. **Sicherung einrichten** (siehe [Abschnitt 7](#7-sichern-und-wiederherstellen)) und **einmal den Release-Check laufen lassen** ([Abschnitt 10](#10-release-check-vor-dem-aufspielen)).
 

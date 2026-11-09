@@ -5,8 +5,6 @@ services:
   poker:
     build: !reset null
     ports: !reset []
-    expose:
-      - "3000"
     environment:
       # Ohne Gruppenpasswort startet auf dem Server nichts
       SITE_PASSWORD: ${SITE_PASSWORD:?Bitte SITE_PASSWORD in der .env setzen}

@@ -90,11 +90,10 @@ Das [UI-Redesign-Protokoll](docs/ui-redesign.md) beschreibt Gestaltung, tatsäch
    Die Dateien `docker-compose.yml`, `docker-compose.prod.yml` und `.env.example` hochladen.
 
    ```bash
-   cp .env.example .env            # DOMAIN und IMAGE eintragen
-   docker compose -f docker-compose.yml -f docker-compose.prod.yml pull
-   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+   cp .env.example .env            # DOMAIN=poker.scwagaming.com, IMAGE und SITE_PASSWORD setzen
+   docker context use projekt
+   docker compose -f ./docker-compose.yml -f ./docker-compose.prod.yml --env-file .env up -d
    ```
-
    Die Domain muss per DNS-A-Record auf den Server zeigen. Traefik erkennt den Container an seinen Labels (`Host(DOMAIN)`, Port 3000) und holt das HTTPS-Zertifikat automatisch; die App selbst ist nicht direkt von außen erreichbar (nur `expose`, kein `ports`).
 
 **Kompression (gzip über Traefik):** Die Labels in `docker-compose.prod.yml` hängen die Middleware `poker-gzip` (`compress=true`) an den Router `poker`. Die App selbst komprimiert nicht. Traefik komprimiert nur Antworten, die der Browser mit `Accept-Encoding` erlaubt, und lässt WebSocket-Verbindungen (Socket.IO-Upgrade) sowie bereits komprimierte Dateien (PNG, WOFF2) unverändert. Nach dem Deployment prüfen:
