@@ -128,8 +128,8 @@ function kitGame(def) {
   const originalShort = Object.getOwnPropertyDescriptor(def, 'short');
   const original = (descriptor) => descriptor?.get ? descriptor.get.call(def) : descriptor?.value;
   const english = () => I18n.language === 'en' && (!S?.variant || S.variant === 'classic') && releaseEnglishRules[def.id];
-  Object.defineProperty(def, 'rules', { configurable: true, get() { const text = english(); return text ? text.map((line) => `<p>${line}</p>`).join('') : original(originalRules); } });
-  Object.defineProperty(def, 'short', { configurable: true, get() { return english()?.slice(0, 3) || original(originalShort); } });
+  Object.defineProperty(def, 'rules', { configurable: true, get() { const text = english(); return Array.isArray(text) ? text.map((line) => `<p>${line}</p>`).join('') : original(originalRules); } });
+  Object.defineProperty(def, 'short', { configurable: true, get() { const text = english(); return (Array.isArray(text) && text.slice(0, 3)) || original(originalShort); } });
   const mod = {};
   let S = null;
   let panel = null;
