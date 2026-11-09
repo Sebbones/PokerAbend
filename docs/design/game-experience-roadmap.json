@@ -50,7 +50,13 @@
     {
       "id": "EXP-F5",
       "title": "Atmosphäre und Lobby-Leben",
-      "status": "planned"
+      "status": "done",
+      "implementation_commit": "ede1e846d9790b8616336d7442463ace0b1a7374",
+      "evidence": [
+        "test/ambient.test.js",
+        "test/ui/ambient.spec.js",
+        "docs/design/experience/EXP-F5/README.md"
+      ]
     },
     {
       "id": "EXP-F6",

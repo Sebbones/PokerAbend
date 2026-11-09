@@ -83,6 +83,9 @@ Kommt **vor** den Spielpaketen. Ohne das Fundament baut sonst jedes Spiel eigene
 - Jede Welt kann Konfetti, Farben und Siegklang austauschen (z. B. Chips-Regen im Casino, Laub im Wald).
 
 ### EXP-F5 · Atmosphäre und Lobby-Leben
+- **Status:** done
+- **Implementierungscommit:** `ede1e846d9790b8616336d7442463ace0b1a7374`
+- **Nachweise:** `test/ambient.test.js`, `test/ui/ambient.spec.js`, `docs/design/experience/EXP-F5/README.md`
 - Optionale, leise Ambient-Schleifen pro Welt, standardmäßig aus und erzeugt statt aufgenommen:
   - Kaminknistern, Kneipengemurmel als gefiltertes Rauschen
   - Meeresrauschen
