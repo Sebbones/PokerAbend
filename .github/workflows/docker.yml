@@ -1,11 +1,16 @@
 name: Docker-Image
 
 # Bei Push: schnelle Tests + kleine Browser-Rauchprobe, erst bei Grün wird das Image gebaut.
-# Nachts: alle Tests und Browser-Prüfungen (ohne Image), in Teilen parallel; ein Bericht-Job fasst zusammen.
+# Nachts (oder von Hand: Actions → Docker-Image → Run workflow → „Volllauf“ anhaken): alle Tests und Browser-Prüfungen (ohne Image), in Teilen parallel; ein Bericht-Job fasst zusammen.
 on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      volllauf:
+        description: 'Nächtlichen Volllauf jetzt starten (statt Image bauen)'
+        type: boolean
+        default: false
   schedule:
     - cron: '17 2 * * *'
 
@@ -16,7 +21,7 @@ permissions:
 jobs:
   fast:
     name: Schnelle Tests und Rauchprobe
-    if: github.event_name != 'schedule'
+    if: github.event_name != 'schedule' && !inputs.volllauf
     runs-on: ubuntu-latest
     steps:
       - name: Repository herunterladen
@@ -54,7 +59,7 @@ jobs:
   build:
     name: Image bauen und veröffentlichen
     needs: fast
-    if: github.event_name != 'schedule'
+    if: github.event_name != 'schedule' && !inputs.volllauf
     runs-on: ubuntu-latest
     steps:
       - name: Repository herunterladen
@@ -81,7 +86,7 @@ jobs:
   # Vorher: ein Job, bis 90 Minuten. Jetzt: Dauer ≈ längster Teil plus Installation, Ziel unter 40 Minuten.
   nightly-node:
     name: Nacht · Node-Tests (Teil ${{ matrix.shard }} von 4)
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'schedule' || inputs.volllauf
     runs-on: ubuntu-latest
     timeout-minutes: 30
     strategy:
@@ -116,7 +121,7 @@ jobs:
 
   nightly-ui:
     name: Nacht · Browser-Prüfungen (Teil ${{ matrix.shard }} von 12)
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'schedule' || inputs.volllauf
     runs-on: ubuntu-latest
     timeout-minutes: 40
     strategy:
@@ -161,7 +166,7 @@ jobs:
 
   nightly-report:
     name: Nacht · Zusammenfassung
-    if: github.event_name == 'schedule' && always()
+    if: (github.event_name == 'schedule' || inputs.volllauf) && always()
     needs: [nightly-node, nightly-ui]
     runs-on: ubuntu-latest
     steps:
