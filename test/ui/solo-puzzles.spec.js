@@ -30,7 +30,11 @@ async function sizes(page,info,id,selector){
   if(info.project.name!=='desktop')return;
   for(const [width,height] of [[1920,1080],[1440,900],[768,1024],[390,844],[360,800],[900,450]]){
     await page.setViewportSize({width,height});expect(await overflow(page)).toBe(true);
-    const box=await page.locator(selector).first().boundingBox();expect(box.x).toBeGreaterThanOrEqual(-1);expect(box.x+box.width).toBeLessThanOrEqual(width+1);
+    // On phones the release layout enlarges boards to 44 px targets inside a horizontal scroller
+    // (see release-regressions.spec.js). Then the scroller has to fit, not the wider board inside it.
+    const board=page.locator(selector).first(),scroller=board.locator('xpath=ancestor::*[contains(concat(" ",normalize-space(@class)," ")," solo-scroll ") or contains(concat(" ",normalize-space(@class)," ")," sp-board-wrap ")][1]');
+    const scrolls=await scroller.count()&&await scroller.evaluate(el=>el.scrollWidth>el.clientWidth+1);
+    const box=await (scrolls?scroller:board).boundingBox();expect(box.x).toBeGreaterThanOrEqual(-1);expect(box.x+box.width,`${id} ${width}x${height}`).toBeLessThanOrEqual(width+1);
     await shot(page,info,`${id}-${width}x${height}`);
   }
 }

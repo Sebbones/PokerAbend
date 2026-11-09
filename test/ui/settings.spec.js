@@ -72,6 +72,7 @@ test('Kategorien: Brettspiele ausblenden und wieder einblenden; Einladungslink u
     await login(host, app, 'Gastgeber');
     await selectGame(host, 'viergewinnt');
     await host.locator('#host-form button[type=submit]').click();
+    await expect.poll(() => host.evaluate(() => (typeof lastState !== 'undefined' && lastState?.code) || null)).toBeTruthy();
     const code = await host.evaluate(() => lastState.code);
     await page.evaluate((c) => joinAndEnter(c, 'watch'), code);
     await expect(page.locator('[data-scene]')).toHaveAttribute('data-scene', 'viergewinnt');
