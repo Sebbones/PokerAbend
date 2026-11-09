@@ -47,3 +47,7 @@ Stumme Kanäle/Spiele werden nicht als abgespielt protokolliert. Alte direkte To
 - Browserkonfiguration dieser Cloud: externer Playwright-Override mit `/usr/bin/chromium`. Regulär im Repository: `PLAYWRIGHT_CHANNEL=chromium npm run test:ui -- test/ui/sound.spec.js` nach Installation des Playwright-Chromiums.
 - Dauerhafte Mixer-Screenshots: [Desktop](mixer-desktop.png), [Mobilgerät](mixer-mobil.png).
 - Keine Spiellogik, keine `.env`, kein Deployment geändert. Bestehende Source-Audits referenzieren keine der geänderten Dateien; fremde Audit-Hashes bleiben erhalten.
+
+### CI-Korrektur: flacher Checkout
+
+Der erste Roadmap-Nachweistest verwendete `git cat-file` auf den früheren Implementierungscommit. Das scheitert beim standardmäßigen Actions-Checkout mit Tiefe 1, obwohl alle Dateien und Nachweise vorliegen. Reproduziert in einem lokalen `--depth 1`-Clone: 3 Tests bestanden, 1 fehlgeschlagen (`could not get object info`). Der Test prüft jetzt Commitformat, vorhandene Nachweisdateien und die Nennung desselben Commits im eingecheckten Markdown-Nachweis. Nach der Korrektur bestehen alle 4 Roadmap-Tests auch im flachen Checkout; keine zusätzliche Git-Historie oder Netzwerkzugriffe sind dafür nötig.
