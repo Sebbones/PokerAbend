@@ -55,7 +55,14 @@
     {
       "id": "EXP-F6",
       "title": "Prüfwerkzeuge",
-      "status": "planned"
+      "status": "done",
+      "implementation_commit": "c86713ecf0b52b647ca8f942f456c9bc63664017",
+      "evidence": [
+        "test/presentation-audit.test.js",
+        "test/ui/experience-helpers.spec.js",
+        "test/ui/README.md",
+        "docs/design/experience/EXP-F6/README.md"
+      ]
     }
   ],
   "packages": [

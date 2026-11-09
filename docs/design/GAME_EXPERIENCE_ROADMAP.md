@@ -90,6 +90,9 @@ Kommt **vor** den Spielpaketen. Ohne das Fundament baut sonst jedes Spiel eigene
 - Lobby: Wer neu dazukommt, „setzt sich“ sichtbar an den Tisch, mit kurzer Animation und Stuhlrücken-Geräusch.
 
 ### EXP-F6 · Prüfwerkzeuge
+- **Status:** done
+- **Implementierungscommit:** `c86713ecf0b52b647ca8f942f456c9bc63664017`
+- **Nachweise:** `test/presentation-audit.test.js`, `test/ui/experience-helpers.spec.js`, `test/ui/README.md`, `docs/design/experience/EXP-F6/README.md`
 - Playwright-Hilfe `expectSmoothMotion(page)`: misst FPS während einer Animation und schlägt unter dem Budget fehl.
 - Klang-Test: Im Testmodus loggt die Engine die abgespielten Ereignisse, statt sie hörbar abzuspielen. So ist prüfbar, dass ein Zug den richtigen Ton auslöst.
 - Visueller Abgleich bleibt wie bei VIS (6 Größen, Desktop und Handy).
