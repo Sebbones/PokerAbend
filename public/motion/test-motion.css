@@ -1,0 +1,22 @@
+/* Test fixture only: static layout, animated properties live exclusively in motion.js. */
+* { box-sizing: border-box; }
+body { margin: 0; background: #122820; color: #f4efe2; font: 16px/1.5 system-ui, sans-serif; }
+main { max-width: 900px; margin: auto; padding: 16px; }
+h1 { font-size: clamp(22px, 5vw, 32px); }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+button, label { min-height: 44px; padding: 8px 12px; }
+button { border: 1px solid #bea66c; border-radius: 8px; background: #253f33; color: inherit; font: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 3px solid #f5cd72; outline-offset: 2px; }
+.table { position: relative; height: 380px; border: 2px solid #bea66c; border-radius: 14px; background: #1b3b2e; }
+.slot { position: absolute; top: 20px; width: 64px; height: 50px; border: 1px dashed #bea66c; display: grid; place-items: center; }
+#source { left: 12px; } #target { right: 12px; }
+.piece { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #f0c46e; color: #1b3026; }
+#piece { position: absolute; left: 26px; top: 90px; }
+.card, .die { width: 48px; height: 64px; display: grid; place-items: center; border-radius: 6px; background: #f2e9d5; color: #223b30; font-weight: 700; }
+#card { position: absolute; top: 145px; left: 20px; } #die { position: absolute; right: 20px; top: 145px; width: 44px; height: 44px; }
+.cards, .chips { display: flex; gap: 14px; position: absolute; left: 20px; top: 240px; }
+.chips { top: 330px; gap: 30px; }
+.chip { width: 28px; height: 28px; display: grid; place-items: center; background: #b57951; border-radius: 50%; }
+#celebration { position: absolute; right: 26px; top: 270px; color: #f0c46e; font-size: 36px; }
+.other-table { margin-top: 18px; border: 1px solid #bea66c; padding: 12px; min-height: 65px; }
+#status { min-height: 24px; }

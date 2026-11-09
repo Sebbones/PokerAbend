@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><link rel="icon" href="/icons/apple-touch-icon.png"><title>EXP-F2 · Motion-Testdemo</title><link rel="stylesheet" href="/motion/test-motion.css"><script type="module" src="/motion/test-motion.js"></script></head>
+<body><main>
+<h1>Motion-Testdemo · EXP-F2</h1><p>Unverlinkte Prüffläche. Die Schaltflächen simulieren bestätigte Serveransichten; sie spielen keine Partie.</p>
+<div class="controls"><label><input type="checkbox" id="reduced"> Animationen reduzieren</label><button id="reset">Zurücksetzen</button><button id="new-state">Neuer Zustand</button><button id="pause">Pause</button><button id="watch">Zuschauen</button><button id="reconnect">Wiederverbinden</button></div>
+<p id="status" role="status">Wird geladen …</p>
+<section id="table" class="table" aria-label="Testtisch"><div id="source" class="slot">Start</div><div id="target" class="slot">Ziel</div>
+<div id="piece" class="piece">●</div><div id="card" class="card" aria-label="Verdeckte Karte">?</div><div id="die" class="die" aria-label="Verdeckter Würfel">?</div>
+<div class="cards"><span class="card deal-card">A</span><span class="card deal-card">B</span><span class="card deal-card">C</span></div>
+<div class="chips"><span class="chip">1</span><span class="chip">2</span><span class="chip">3</span></div>
+<div id="celebration" data-motion-celebration aria-label="Feier">★</div></section>
+<div class="controls" aria-label="Bewegungen"><button data-motion="flyTo">Fliegen</button><button data-motion="flip">Karte bestätigen und aufdecken</button><button data-motion="deal">Austeilen</button><button data-motion="roll">Würfelwert bestätigen</button><button data-motion="walk">Laufen</button><button data-motion="stack">Stapeln</button><button data-motion="shake">Schütteln</button><button data-motion="pulse">Pulsieren</button><button data-motion="celebrate">Feiern</button><button id="all">Alle nacheinander</button></div>
+<section id="other-table" class="other-table" aria-label="Zweiter Testtisch"><div id="other-piece" class="piece">●</div></section>
+</main></body></html>
